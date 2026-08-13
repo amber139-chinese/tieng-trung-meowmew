@@ -3,274 +3,604 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> LỚP HỌC TIẾNG TRUNG MEOW MEOW - MEOW MEOW 课堂</title>
+
+<title>LỚP HỌC TIẾNG TRUNG MEOW MEOW - MEOW MEOW 课堂</title>
+
+<!-- FONT -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
+
+/* =========================
+   MÀU CHỦ ĐẠO
+========================= */
+
 :root{
-  --red:#c8102e;
-  --red2:#e63946;
-  --gold:#e8b84a;
-  --ink:#2b2118;
-  --muted:#776b61;
-  --shadow:0 10px 30px rgba(60,35,20,.10)
+  --blue:#6FAFC4;
+  --blue2:#8CC8D6;
+  --blue-dark:#4F91A8;
+
+  --gold:#E8B84A;
+
+  --ink:#24343B;
+  --muted:#687980;
+
+  --cream:#F7FCFD;
+  --blue-light:#EAF6F8;
+  --blue-pale:#F3FAFB;
+
+  --shadow:0 10px 30px rgba(55,110,125,.10);
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
+
+
+/* =========================
+   GENERAL
+========================= */
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
 body{
   margin:0;
-  font-family:"Segoe UI","Noto Sans SC",Arial,sans-serif;
+
+  font-family:"Be Vietnam Pro",sans-serif;
+
   color:var(--ink);
-  background:linear-gradient(135deg,#fff8f1,#fffdf9);
-  line-height:1.7
+
+  background:
+    linear-gradient(
+      135deg,
+      #F7FCFD,
+      #FFFFFF
+    );
+
+  line-height:1.8;
+
+  font-weight:400;
 }
+
+
+/* =========================
+   HEADER
+========================= */
+
 header{
-  padding:70px 20px 62px;
+  padding:85px 20px 75px;
+
   text-align:center;
+
   color:#fff;
-  background:linear-gradient(135deg,var(--red),var(--red2),#f08a5d);
-  box-shadow:var(--shadow)
+
+  background:
+    linear-gradient(
+      135deg,
+      #5F9FB5,
+      #7DBDCC,
+      #A9D9E1
+    );
+
+  box-shadow:var(--shadow);
 }
+
 .brand{
   display:inline-block;
-  padding:7px 14px;
-  margin-bottom:14px;
-  border:1px solid rgba(255,255,255,.35);
+
+  padding:7px 16px;
+
+  margin-bottom:18px;
+
+  border:1px solid rgba(255,255,255,.45);
+
   border-radius:999px;
-  background:rgba(255,255,255,.12);
-  font-size:.9rem;
-  font-weight:700
+
+  background:rgba(255,255,255,.14);
+
+  font-size:.82rem;
+
+  font-weight:600;
+
+  letter-spacing:.5px;
 }
+
 header h1{
   margin:0;
-  font-size:clamp(2.1rem,5vw,3.7rem);
-  letter-spacing:1px
+
+  font-family:
+    "Noto Serif SC",
+    "Playfair Display",
+    serif;
+
+  font-size:clamp(2.1rem,5vw,3.8rem);
+
+  font-weight:500;
+
+  letter-spacing:1px;
+
+  line-height:1.35;
 }
+
 header .sub{
-  max-width:780px;
-  margin:12px auto 0;
-  color:rgba(255,255,255,.94);
-  font-size:1.05rem
+  max-width:760px;
+
+  margin:18px auto 0;
+
+  color:rgba(255,255,255,.95);
+
+  font-size:1rem;
+
+  font-weight:400;
 }
-.wrap{
-  max-width:1100px;
-  margin:0 auto;
-  padding:30px 18px 70px
-}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
 nav{
   position:sticky;
+
   top:0;
+
   z-index:30;
+
   display:flex;
+
   justify-content:center;
+
   flex-wrap:wrap;
+
   gap:8px;
-  padding:12px;
+
+  padding:13px;
+
   background:rgba(255,255,255,.96);
-  box-shadow:0 3px 15px rgba(0,0,0,.07);
-  backdrop-filter:blur(10px)
+
+  box-shadow:
+    0 3px 15px rgba(40,90,105,.08);
+
+  backdrop-filter:blur(10px);
 }
+
 nav a{
   text-decoration:none;
-  color:var(--red);
+
+  color:var(--blue-dark);
+
   background:#fff;
-  border:2px solid #f0c8bc;
-  padding:8px 15px;
+
+  border:1px solid #C5E3E9;
+
+  padding:8px 16px;
+
   border-radius:999px;
-  font-weight:700
+
+  font-size:.88rem;
+
+  font-weight:600;
+
+  transition:.2s;
 }
+
 nav a:hover{
-  background:var(--red);
+  background:var(--blue);
+
   color:#fff;
-  border-color:var(--red)
+
+  border-color:var(--blue);
 }
-.section{margin-top:34px}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
+.wrap{
+  max-width:1100px;
+
+  margin:0 auto;
+
+  padding:30px 18px 70px;
+}
+
+.section{
+  margin-top:65px;
+}
+
 .section h2{
-  margin:0 0 8px;
+  margin:0 0 10px;
+
   text-align:center;
-  color:var(--red);
-  font-size:2rem
+
+  color:var(--blue-dark);
+
+  font-family:
+    "Playfair Display",
+    "Noto Serif SC",
+    serif;
+
+  font-size:2.2rem;
+
+  font-weight:600;
+
+  letter-spacing:.3px;
 }
+
 .lead{
   max-width:760px;
-  margin:0 auto 22px;
+
+  margin:0 auto 25px;
+
   text-align:center;
-  color:var(--muted)
+
+  color:var(--muted);
+
+  font-size:.98rem;
 }
-.hero-card,.info-card{
+
+
+/* =========================
+   CARDS
+========================= */
+
+.hero-card,
+.info-card{
   background:#fff;
+
   border-radius:22px;
+
   box-shadow:var(--shadow);
-  padding:26px
+
+  padding:28px;
 }
+
 .hero-card{
   display:grid;
+
   grid-template-columns:1.1fr .9fr;
+
   gap:24px;
-  align-items:center
-}
-.illustration{
-  min-height:260px;
-  border-radius:20px;
-  display:flex;
+
   align-items:center;
-  justify-content:center;
-  text-align:center;
-  font-size:5rem;
-  background:linear-gradient(145deg,#fff1e3,#fff9f3);
-  border:3px solid #f6dbc8
 }
-.eyebrow{
-  display:inline-block;
-  margin-bottom:8px;
-  color:#9a5b00;
-  background:#fff3d9;
-  border-radius:999px;
-  padding:4px 10px;
-  font-size:.8rem;
-  font-weight:800
-}
+
 .hero-card h3{
   margin:0 0 10px;
-  font-size:1.7rem
+
+  font-family:
+    "Playfair Display",
+    "Noto Serif SC",
+    serif;
+
+  font-size:1.7rem;
+
+  font-weight:600;
+
+  line-height:1.4;
 }
+
 .hero-card p{
-  color:#5f554d;
-  margin:8px 0
+  color:#596A70;
+
+  margin:9px 0;
+
+  font-size:.96rem;
 }
+
+
+/* =========================
+   ILLUSTRATION
+========================= */
+
+.illustration{
+  min-height:260px;
+
+  border-radius:20px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  text-align:center;
+
+  font-size:5rem;
+
+  background:
+    linear-gradient(
+      145deg,
+      #EAF6F8,
+      #F7FCFD
+    );
+
+  border:2px solid #D0EAF0;
+}
+
+
+/* =========================
+   EYEBROW
+========================= */
+
+.eyebrow{
+  display:inline-block;
+
+  margin-bottom:8px;
+
+  color:#4F8496;
+
+  background:#EAF6F8;
+
+  border-radius:999px;
+
+  padding:4px 11px;
+
+  font-size:.75rem;
+
+  font-weight:600;
+
+  letter-spacing:.3px;
+}
+
+
+/* =========================
+   FEATURE GRID
+========================= */
+
 .feature-grid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:16px;
 }
-.info-card{text-align:center}
+
+.info-card{
+  text-align:center;
+
+  transition:.2s;
+}
+
+.info-card:hover{
+  transform:translateY(-3px);
+}
+
 .icon{
-  font-size:2.2rem;
-  margin-bottom:6px
+  font-size:2.1rem;
+
+  margin-bottom:6px;
 }
+
 .info-card h3{
-  margin:3px 0 6px
+  margin:3px 0 6px;
+
+  font-family:
+    "Playfair Display",
+    "Noto Serif SC",
+    serif;
+
+  font-size:1.2rem;
+
+  font-weight:600;
 }
+
 .info-card p{
   margin:0;
+
   color:var(--muted);
-  font-size:.95rem
+
+  font-size:.9rem;
 }
+
+
+/* =========================
+   COURSES
+========================= */
+
 .course-grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:18px
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:18px;
 }
+
 .course-card{
   display:flex;
+
   flex-direction:column;
+
   justify-content:space-between;
+
   background:#fff;
+
   border-radius:20px;
-  padding:22px;
+
+  padding:24px;
+
   box-shadow:var(--shadow);
-  border:2px solid transparent;
-  transition:.2s
+
+  border:1px solid transparent;
+
+  transition:.25s;
 }
+
 .course-card:hover{
   transform:translateY(-4px);
-  border-color:#efc2b5
+
+  border-color:#B8DDE5;
+
+  box-shadow:
+    0 14px 35px rgba(55,110,125,.14);
 }
+
 .course-top{
   display:flex;
+
   align-items:center;
-  gap:14px
+
+  gap:14px;
 }
+
 .course-icon{
   width:60px;
+
   height:60px;
+
   border-radius:16px;
+
   display:flex;
+
   align-items:center;
+
   justify-content:center;
-  background:#fff1e3;
+
+  background:var(--blue-light);
+
   font-size:2rem;
-  flex:none
+
+  flex:none;
 }
+
 .course-card h3{
   margin:0;
-  color:#3b2d24
-}
-.course-name{
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  color:#33464D;
+
   font-size:1.15rem;
-  color:var(--red);
-  font-weight:800;
-  margin:12px 0 6px
 }
+
+.course-name{
+  font-family:
+    "Noto Serif SC",
+    serif;
+
+  font-size:1.15rem;
+
+  color:var(--blue-dark);
+
+  font-weight:600;
+
+  margin:8px 0 6px;
+}
+
 .course-desc{
   color:var(--muted);
-  margin:0 0 18px
+
+  margin:0 0 18px;
+
+  font-size:.92rem;
 }
+
 .course-btn{
   align-self:flex-start;
+
   text-decoration:none;
-  background:var(--red);
+
+  background:var(--blue);
+
   color:#fff;
-  padding:9px 16px;
+
+  padding:9px 17px;
+
   border-radius:999px;
-  font-weight:700
+
+  font-size:.88rem;
+
+  font-weight:600;
+
+  transition:.2s;
 }
+
 .course-btn:hover{
-  background:#a60d26
+  background:var(--blue-dark);
+
+  transform:translateX(2px);
 }
-.rules{
-  margin:0;
-  padding-left:20px;
-  color:#5f554d
-}
-.note{
-  margin-top:16px;
-  padding:14px 16px;
-  border-left:5px solid var(--gold);
-  border-radius:10px;
-  background:#fff9e8
-}
-.footer{
-  text-align:center;
-  color:#8e847d;
-  font-size:.86rem;
-  padding-top:25px
-}
+
+
+/* =========================
+   TEACHER
+========================= */
+
 .teacher-card{
   display:flex;
+
   align-items:center;
+
   gap:20px;
+
   margin-top:20px;
+
   background:#fff;
+
   border-radius:22px;
-  padding:22px 26px;
+
+  padding:24px 28px;
+
   box-shadow:var(--shadow);
-  border-left:6px solid var(--red);
+
+  border-left:5px solid var(--blue);
 }
 
 .teacher-icon{
   width:75px;
+
   height:75px;
+
   border-radius:20px;
-  background:#fff1e3;
+
+  background:var(--blue-light);
+
   display:flex;
+
   align-items:center;
+
   justify-content:center;
+
   font-size:2.5rem;
+
   flex:none;
 }
 
 .teacher-info h3{
   margin:4px 0 8px;
-  color:var(--red);
+
+  color:var(--blue-dark);
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size:1.3rem;
 }
 
 .teacher-info p{
   margin:4px 0;
+
   color:var(--muted);
+
+  font-size:.92rem;
 }
 
 .teacher-info a{
-  color:var(--red);
+  color:var(--blue-dark);
+
   text-decoration:none;
+
   font-weight:600;
 }
 
@@ -278,58 +608,178 @@ nav a:hover{
   text-decoration:underline;
 }
 
+
+/* =========================
+   RULES
+========================= */
+
+.rules{
+  margin:0;
+
+  padding-left:20px;
+
+  color:#596A70;
+}
+
+.note{
+  margin-top:16px;
+
+  padding:14px 16px;
+
+  border-left:5px solid var(--gold);
+
+  border-radius:10px;
+
+  background:#FFF9E8;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+  text-align:center;
+
+  color:#829399;
+
+  font-size:.82rem;
+
+  padding-top:35px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:760px){
+
+  .hero-card{
+    grid-template-columns:1fr;
+  }
+
+  .feature-grid,
+  .course-grid{
+    grid-template-columns:1fr;
+  }
+
+  .illustration{
+    min-height:180px;
+  }
+
+  .section{
+    margin-top:48px;
+  }
+
+}
+
 @media(max-width:600px){
+
   .teacher-card{
     flex-direction:column;
+
     text-align:center;
   }
+
+  header{
+    padding:65px 18px 55px;
+  }
+
+  header h1{
+    font-size:2rem;
+  }
+
 }
-@media(max-width:760px){
-  .hero-card{grid-template-columns:1fr}
-  .feature-grid,.course-grid{grid-template-columns:1fr}
-  .illustration{min-height:180px}
-}
+
 </style>
 </head>
 
+
 <body>
 
-<header>
-  <div class="brand">🇨🇳 LỚP HỌC TIẾNG TRUNG MEOW MEOW </div>
 
-  <h1>你好！欢迎来到我们的中文课堂</h1>
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+  <div class="brand">
+    🇨🇳 LỚP HỌC TIẾNG TRUNG MEOW MEOW
+  </div>
+
+  <h1>
+    你好！欢迎来到我们的中文课堂
+  </h1>
 
   <p class="sub">
     Chào mừng đến với lớp học tiếng Trung.
     Đây là trang giới thiệu chung; các bài học sẽ được thêm dần ở những trang riêng.
   </p>
+
 </header>
 
+
+<!-- =========================
+     NAV
+========================= -->
+
 <nav>
-  <a href="#gioi-thieu">Giới thiệu</a>
-  <a href="#lop-hoc">Lớp học</a>
-  <a href="#phuong-phap">Cách học</a>
-  <a href="#bai-hoc">Bài học</a>
-  <a href="#quy-dinh">Lưu ý</a>
+
+  <a href="#gioi-thieu">
+    Giới thiệu
+  </a>
+
+  <a href="#lop-hoc">
+    Lớp học
+  </a>
+
+  <a href="#phuong-phap">
+    Cách học
+  </a>
+
+  <a href="#bai-hoc">
+    Bài học
+  </a>
+
+  <a href="#quy-dinh">
+    Lưu ý
+  </a>
+
 </nav>
+
 
 <div class="wrap">
 
+
+<!-- =========================
+     GIỚI THIỆU
+========================= -->
+
 <section class="section" id="gioi-thieu">
 
-  <h2>🌸 Giới thiệu lớp học</h2>
+  <h2>
+    🌸 Giới thiệu lớp học
+  </h2>
 
   <p class="lead">
     Nếu bạn đang muốn học tiếng Trung - đừng lo, đã có Meow Meow!!!🐱
   </p>
 
+
   <div class="hero-card">
+
 
     <div>
 
-      <span class="eyebrow">AI 小语</span>
+      <span class="eyebrow">
+        AI 小语
+      </span>
 
-      <h3>Học tiếng Trung theo từng bài, từng bước</h3>
+      <h3>
+        Học tiếng Trung theo từng bài, từng bước
+      </h3>
 
       <p>
         Mỗi bài học có một trang riêng.
@@ -342,21 +792,29 @@ nav a:hover{
 
     </div>
 
+
     <div class="illustration">
+
       📚
+
       <span style="font-size:1.2rem;margin-left:12px">
         你好 · 学习 · 练习
       </span>
+
     </div>
 
   </div>
 
+
   <!-- THÔNG TIN GIÁO VIÊN -->
+
   <div class="teacher-card">
+
 
     <div class="teacher-icon">
       👩‍🏫
     </div>
+
 
     <div class="teacher-info">
 
@@ -365,22 +823,30 @@ nav a:hover{
       </span>
 
       <h3>
-        Giáo viên: Nguyen Thu Huong 
+        Giáo viên: Nguyen Thu Huong
       </h3>
 
-      <p>
-  📞 Số điện thoại:
-  <a href="tel:0905878295">
-    0905.878.295
-  </a>
-</p>
 
-<p>
-  📧 Email:
-  <a href="mailto:ngthuhuong139@gmail.com">
-    ngthuhuong139@gmail.com
-  </a>
-</p>
+      <p>
+
+        📞 Số điện thoại:
+
+        <a href="tel:0905878295">
+          0905.878.295
+        </a>
+
+      </p>
+
+
+      <p>
+
+        📧 Email:
+
+        <a href="mailto:ngthuhuong139@gmail.com">
+          ngthuhuong139@gmail.com
+        </a>
+
+      </p>
 
     </div>
 
@@ -389,70 +855,156 @@ nav a:hover{
 </section>
 
 
+
+<!-- =========================
+     LỚP HỌC
+========================= -->
+
 <section class="section" id="lop-hoc">
 
-  <h2>🏫 Lớp học Meow Meow có gì?</h2>
+  <h2>
+    🏫 Lớp học Meow Meow có gì?
+  </h2>
 
   <p class="lead">
     Mỗi bài có thể kết hợp nhiều hoạt động để học và thực hành.
   </p>
 
+
   <div class="feature-grid">
 
-    <div class="info-card">
-      <div class="icon">📖</div>
-      <h3>Từ vựng</h3>
-      <p>Chữ Hán, pinyin, nghĩa, ví dụ </p>
-    </div>
 
     <div class="info-card">
-      <div class="icon">📐</div>
-      <h3>Ngữ pháp</h3>
-      <p>Giải thích cấu trúc ngữ pháp và cách dùng theo từng bài.</p>
+
+      <div class="icon">
+        📖
+      </div>
+
+      <h3>
+        Từ vựng
+      </h3>
+
+      <p>
+        Chữ Hán, pinyin, nghĩa, ví dụ
+      </p>
+
     </div>
 
-    <div class="info-card">
-      <div class="icon">🎧</div>
-      <h3>Nghe & nói</h3>
-      <p>Hội thoại, nghe câu mẫu và luyện phát âm.</p>
-    </div>
 
     <div class="info-card">
-      <div class="icon">🎮</div>
-      <h3>Bài tập</h3>
-      <p>Quiz, ghép từ, sắp xếp câu và hoạt động tương tác.</p>
+
+      <div class="icon">
+        📐
+      </div>
+
+      <h3>
+        Ngữ pháp
+      </h3>
+
+      <p>
+        Giải thích cấu trúc ngữ pháp và cách dùng theo từng bài.
+      </p>
+
     </div>
 
-    <div class="info-card">
-      <div class="icon">🎬</div>
-      <h3>Video</h3>
-      <p>Video minh họa từ vựng, hội thoại hoặc nội dung bổ trợ.</p>
-    </div>
 
     <div class="info-card">
-      <div class="icon">📝</div>
-      <h3>Ôn tập</h3>
-      <p>Ôn lại kiến thức sau mỗi bài học.</p>
+
+      <div class="icon">
+        🎧
+      </div>
+
+      <h3>
+        Nghe & nói
+      </h3>
+
+      <p>
+        Hội thoại, nghe câu mẫu và luyện phát âm.
+      </p>
+
     </div>
+
+
+    <div class="info-card">
+
+      <div class="icon">
+        🎮
+      </div>
+
+      <h3>
+        Bài tập
+      </h3>
+
+      <p>
+        Quiz, ghép từ, sắp xếp câu và hoạt động tương tác.
+      </p>
+
+    </div>
+
+
+    <div class="info-card">
+
+      <div class="icon">
+        🎬
+      </div>
+
+      <h3>
+        Video
+      </h3>
+
+      <p>
+        Video minh họa từ vựng, hội thoại hoặc nội dung bổ trợ.
+      </p>
+
+    </div>
+
+
+    <div class="info-card">
+
+      <div class="icon">
+        📝
+      </div>
+
+      <h3>
+        Ôn tập
+      </h3>
+
+      <p>
+        Ôn lại kiến thức sau mỗi bài học.
+      </p>
+
+    </div>
+
 
   </div>
 
 </section>
 
 
+
+<!-- =========================
+     CÁCH HỌC
+========================= -->
+
 <section class="section" id="phuong-phap">
 
-  <h2>✨ Cách học</h2>
+  <h2>
+    ✨ Cách học
+  </h2>
 
   <p class="lead">
     Một quy trình gợi ý để học từ mới đến vận dụng.
   </p>
 
+
   <div class="hero-card">
+
 
     <div>
 
-      <span class="eyebrow">Gợi ý</span>
+      <span class="eyebrow">
+        Gợi ý
+      </span>
 
       <h3>
         Khởi động → Từ mới → Ngữ pháp → Luyện tập → Hội thoại
@@ -465,36 +1017,47 @@ nav a:hover{
 
     </div>
 
+
     <div
       class="info-card"
-      style="box-shadow:none;border:2px dashed #f1cfc0"
+      style="box-shadow:none;border:2px dashed #B8DDE5"
     >
 
       <div class="icon">
         🔥 → 📖 → 📐 → 🎮 → 🎧
       </div>
 
-      <h3>Một quy trình học hoàn chỉnh</h3>
+      <h3>
+        Một quy trình học hoàn chỉnh
+      </h3>
 
-      <p>Có thể thay đổi tùy theo từng bài.</p>
+      <p>
+        Có thể thay đổi tùy theo từng bài.
+      </p>
 
     </div>
+
 
   </div>
 
 </section>
 
 
+
+<!-- =========================
+     BÀI HỌC
+========================= -->
+
 <section class="section" id="bai-hoc">
 
-  <h2>📚 Các bài học</h2>
+  <h2>
+    📚 Các bài học
+  </h2>
 
   <p class="lead">
-
+    Chọn bài học để bắt đầu.
   </p>
 
-
-  <!-- ====== DANH SÁCH BÀI HỌC:====== -->
 
   <div class="course-grid">
 
@@ -503,17 +1066,22 @@ nav a:hover{
 
     <div class="course-card">
 
+
       <div>
 
         <div class="course-top">
+
 
           <div class="course-icon">
             📕
           </div>
 
+
           <div>
 
-            <h3>Bài 1</h3>
+            <h3>
+              Bài 1
+            </h3>
 
             <div class="course-name">
               你好！
@@ -521,7 +1089,9 @@ nav a:hover{
 
           </div>
 
+
         </div>
+
 
         <p class="course-desc">
           Giới thiệu nội dung Bài 1 ở đây.
@@ -529,28 +1099,36 @@ nav a:hover{
 
       </div>
 
+
       <a class="course-btn" href="bai1.html">
         Vào bài →
       </a>
 
+
     </div>
+
 
 
     <!-- BÀI 2 -->
 
     <div class="course-card">
 
+
       <div>
 
         <div class="course-top">
+
 
           <div class="course-icon">
             📗
           </div>
 
+
           <div>
 
-            <h3>Bài 2</h3>
+            <h3>
+              Bài 2
+            </h3>
 
             <div class="course-name">
               我叫李文
@@ -558,7 +1136,9 @@ nav a:hover{
 
           </div>
 
+
         </div>
+
 
         <p class="course-desc">
           Giới thiệu nội dung Bài 2 ở đây.
@@ -566,16 +1146,13 @@ nav a:hover{
 
       </div>
 
+
       <a class="course-btn" href="bai2.html">
         Vào bài →
       </a>
 
+
     </div>
-
-
-    <!--
-    
-    -->
 
 
   </div>
@@ -583,11 +1160,23 @@ nav a:hover{
 </section>
 
 
+
+<!-- =========================
+     LƯU Ý
+========================= -->
+
 <section class="section" id="quy-dinh">
 
-  <h2>📌 Lưu ý cho học viên</h2>
+  <h2>
+    📌 Lưu ý cho học viên
+  </h2>
 
-  <div class="info-card" style="text-align:left">
+
+  <div
+    class="info-card"
+    style="text-align:left"
+  >
+
 
     <ul class="rules">
 
@@ -609,25 +1198,35 @@ nav a:hover{
 
     </ul>
 
+
     <div class="note">
 
       💡 <b>Mẹo:</b>
+
       Học ít nhưng lặp lại thường xuyên sẽ dễ nhớ hơn.
 
     </div>
+
 
   </div>
 
 </section>
 
 
+
+<!-- =========================
+     FOOTER
+========================= -->
+
 <div class="footer">
 
- 中文学习空间 · Trang giới thiệu lớp học
+  中文学习空间 · Trang giới thiệu lớp học
 
 </div>
 
+
 </div>
+
 
 </body>
 </html>
