@@ -2704,43 +2704,25 @@ l.dataset.r===r
 
 let ai=0;
 
-
 function playAll(){
+  speechSynthesis.cancel();
+  ai=0;
+  const seq=D1.map(l=>l.zh);
 
-speechSynthesis.cancel();
+  (function go(){
+    if(ai>=seq.length)return;
 
-ai=0;
+    const u=new SpeechSynthesisUtterance(seq[ai]);
+    u.lang='zh-CN';
+    u.rate=.8;
 
-const seq=
-D1.map(l=>l.zh);
+    u.onend=()=>{
+      ai++;
+      setTimeout(go,500)
+    };
 
-
-(function go(){
-
-if(ai>=seq.length)
-return;
-
-const u=
-new SpeechSynthesisUtterance(
-seq[ai]
-);
-
-u.lang='zh-CN';
-
-u.rate=.8;
-
-u.onend=()=>{
-
-ai++;
-
-setTimeout(go,500);
-
-};
-
-speechSynthesis.speak(u);
-
-})();
-
+    speechSynthesis.speak(u);
+  })();
 }
 
 
