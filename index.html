@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第一课 你好 — Bài 1: Xin chào | AI 小语</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,'Microsoft YaHei',sans-serif;background:linear-gradient(135deg,#fff5f5,#fff9ec);color:#2b2118;line-height:1.6}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px 60px}
+header{background:linear-gradient(135deg,#c8102e,#e63946 55%,#f4a261);color:#fff;padding:34px 16px 28px;text-align:center;box-shadow:0 6px 24px rgba(200,16,46,.25)}
+header .lantern{font-size:42px}
+header h1{font-size:2.3rem;letter-spacing:2px;margin:6px 0}
+header p{opacity:.95}
+nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;background:#fff;padding:12px;border-radius:0 0 18px 18px;box-shadow:0 4px 14px rgba(0,0,0,.08);position:sticky;top:0;z-index:50}
+nav button{border:2px solid #c8102e;background:#fff;color:#c8102e;padding:9px 18px;border-radius:30px;font-weight:700;cursor:pointer;transition:.2s;font-size:.95rem}
+nav button:hover{transform:translateY(-2px)}
+nav button.active{background:#c8102e;color:#fff}
+section{display:none;animation:fade .35s}
+section.show{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+h2.title{text-align:center;margin:32px 0 6px;font-size:1.8rem;color:#c8102e}
+h2.title span{display:block;font-size:1rem;color:#7a6a5a;font-weight:400}
+.hint{text-align:center;color:#7a6a5a;margin-bottom:22px;font-size:.95rem}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:18px}
+/* FLASHCARD */
+.fc{perspective:1000px;height:245px;cursor:pointer}
+.fc-in{position:relative;width:100%;height:100%;transition:transform .6s;transform-style:preserve-3d}
+.fc.flip .fc-in{transform:rotateY(180deg)}
+.fc-f,.fc-b{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px;text-align:center;box-shadow:0 6px 18px rgba(0,0,0,.12)}
+.fc-f{background:#fff;border:3px solid #f4a261}
+.fc-b{background:linear-gradient(160deg,#c8102e,#e76f51);color:#fff;transform:rotateY(180deg)}
+.fc .emo{font-size:56px}
+.fc .han{font-size:40px;font-weight:700;color:#c8102e}
+.fc .pin{color:#e76f51;font-weight:600}
+.fc-b .han{color:#fff;font-size:34px}
+.fc-b .hv{background:rgba(255,255,255,.22);padding:2px 12px;border-radius:20px;margin:6px 0;font-size:.85rem;letter-spacing:1px}
+.fc-b .mean{font-size:1.15rem;font-weight:700}
+.speak{margin-top:8px;background:#fff3;border:1px solid #fff8;color:#fff;border-radius:20px;padding:4px 12px;cursor:pointer;font-size:.8rem}
+/* VOCAB */
+.v-card{background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 16px rgba(0,0,0,.08);border-left:6px solid #c8102e;display:flex;gap:16px;align-items:flex-start}
+.v-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.v-emo{font-size:46px;flex-shrink:0;background:#fff5f0;border-radius:14px;padding:6px 10px}
+.v-han{font-size:30px;font-weight:800;color:#c8102e}
+.v-pin{color:#e76f51;font-weight:700}
+.tag{display:inline-block;font-size:.72rem;padding:2px 10px;border-radius:20px;margin-left:6px;vertical-align:middle}
+.t-dt{background:#e0f2fe;color:#0369a1}.t-tt{background:#dcfce7;color:#166534}.t-dgt{background:#fef9c3;color:#854d0e}
+.t-pt{background:#fae8ff;color:#86198f}.t-trt{background:#ffe4e6;color:#9f1239}.t-cum{background:#e2e8f0;color:#334155}
+.v-hv{font-size:.82rem;color:#8a7a6a;letter-spacing:1px;text-transform:uppercase}
+.v-mean{font-weight:700;margin:4px 0}
+.v-ex{background:#fff8f0;border-radius:10px;padding:8px 12px;margin-top:8px;font-size:.92rem}
+.v-ex b{color:#c8102e}
+.mini{background:#c8102e;color:#fff;border:none;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:.9rem}
+/* GENERIC BOX */
+.box{background:#fff;border-radius:18px;padding:22px;box-shadow:0 4px 16px rgba(0,0,0,.08);margin-bottom:20px}
+.box h3{color:#c8102e;margin-bottom:10px;font-size:1.25rem}
+.formula{background:linear-gradient(135deg,#c8102e,#e76f51);color:#fff;padding:12px 18px;border-radius:12px;font-size:1.15rem;font-weight:700;text-align:center;margin:12px 0;letter-spacing:1px}
+.eg{border-left:4px solid #f4a261;padding:6px 14px;margin:8px 0;background:#fffaf3;border-radius:0 10px 10px 0}
+.eg b{color:#c8102e;font-size:1.05rem}
+.note{background:#fffbea;border:1px dashed #f4a261;padding:10px 14px;border-radius:10px;font-size:.92rem}
+/* MATCH GAME */
+.match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.col h4{text-align:center;margin-bottom:10px;color:#7a6a5a}
+.m-item{background:#fff;border:2px solid #ffd9c0;border-radius:12px;padding:12px;margin-bottom:10px;cursor:pointer;text-align:center;font-weight:600;transition:.15s}
+.m-item:hover{border-color:#e76f51}
+.m-item.sel{background:#ffe6d5;border-color:#c8102e}
+.m-item.ok{background:#dcfce7;border-color:#16a34a;color:#166534;cursor:default}
+.m-item.bad{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+/* ORDER GAME */
+.pool,.drop{display:flex;flex-wrap:wrap;gap:8px;min-height:56px;padding:10px;border-radius:12px}
+.pool{background:#f8f4ef}
+.drop{background:#fff;border:2px dashed #f4a261}
+.chip{background:#c8102e;color:#fff;padding:8px 14px;border-radius:10px;cursor:pointer;font-weight:600;user-select:none}
+.chip.g{background:#e76f51}
+/* QUIZ */
+.q{background:#fff;border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:0 3px 10px rgba(0,0,0,.06)}
+.q p.stem{font-weight:600;margin-bottom:8px}
+.opt{display:inline-block;border:2px solid #ffd9c0;border-radius:20px;padding:6px 16px;margin:4px 6px 0 0;cursor:pointer;transition:.15s}
+.opt:hover{border-color:#e76f51}
+.opt.ok{background:#dcfce7;border-color:#16a34a}
+.opt.no{background:#fee2e2;border-color:#dc2626}
+input.blank{border:none;border-bottom:2px solid #c8102e;font-size:1.05rem;width:110px;text-align:center;background:transparent;font-family:inherit}
+.btn{background:#c8102e;color:#fff;border:none;padding:10px 22px;border-radius:24px;font-weight:700;cursor:pointer;margin:6px 6px 0 0}
+.btn.alt{background:#f4a261;color:#3b2a17}
+.score{font-weight:800;color:#16a34a;margin-left:10px}
+/* DIALOGUE */
+.dlg{background:#fff;border-radius:18px;padding:20px;box-shadow:0 4px 16px rgba(0,0,0,.08);margin-bottom:18px}
+.line{display:flex;gap:12px;align-items:flex-start;padding:10px;border-radius:12px;margin-bottom:8px;cursor:pointer}
+.line:hover{background:#fff5ef}
+.av{font-size:34px;flex-shrink:0}
+.line .zh{font-size:1.3rem;font-weight:700;color:#2b2118}
+.line .py{color:#e76f51;font-size:.9rem}
+.line .vi{color:#6b5b4b;font-size:.92rem;font-style:italic}
+.audio-box{background:linear-gradient(135deg,#fff5f5,#fff2e2);border:2px dashed #c8102e;border-radius:16px;padding:18px;text-align:center;margin-bottom:18px}
+audio{width:100%;max-width:520px;margin-top:10px}
+.roleplay{background:#fffaf3;border-radius:14px;padding:16px}
+.hidden-line{filter:blur(6px);transition:.25s}
+.hidden-line.reveal{filter:none}
+footer{text-align:center;padding:26px;color:#8a7a6a;font-size:.9rem}
+@media(max-width:640px){.match-wrap{grid-template-columns:1fr}header h1{font-size:1.6rem}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="lantern">🏮</div>
+  <h1>第一课　你好</h1>
+  <p>Bài 1: Xin chào — Giáo trình <b>AI 小语</b> | Trình độ: Sơ cấp (HSK 1)</p>
+</header>
+
+<nav>
+  <button class="active" data-t="warm">🔥 Khởi động</button>
+  <button data-t="vocab">📚 Từ mới</button>
+  <button data-t="act">🎮 Luyện từ vựng</button>
+  <button data-t="gram">📐 Ngữ pháp</button>
+  <button data-t="dlg">💬 Hội thoại</button>
+</nav>
+
+<div class="wrap">
+
+<!-- ============ 1. KHỞI ĐỘNG ============ -->
+<section id="warm" class="show">
+  <h2 class="title">热身 · Khởi động<span>Nhấp vào thẻ để lật — nhấn 🔊 để nghe phát âm</span></h2>
+  <p class="hint">👀 Nhìn hình – đoán nghĩa – lật thẻ kiểm tra nhé!</p>
+  <div class="card-grid" id="warmCards"></div>
+
+  <div class="box" style="margin-top:26px">
+    <h3>👥 主要人物 · Các nhân vật chính trong giáo trình</h3>
+    <div class="v-list">
+      <div class="v-card"><div class="v-emo">👩‍🏫</div><div><div class="v-han">王一飞</div><div class="v-pin">Wáng Yīfēi</div><div class="v-hv">Vương Nhất Phi</div><div>Nữ, người Bắc Kinh, ~30 tuổi, <b>giáo viên tiếng Trung</b>.</div></div></div>
+      <div class="v-card"><div class="v-emo">👩‍🎓</div><div><div class="v-han">白家月</div><div class="v-pin">Bái Jiāyuè</div><div class="v-hv">Bạch Gia Nguyệt</div><div>Nữ, người <b>Pháp</b>, ~20 tuổi, sinh viên lớp cô Vương.</div></div></div>
+      <div class="v-card"><div class="v-emo">👱‍♀️</div><div><div class="v-han">安妮</div><div class="v-pin">Ānnī</div><div class="v-hv">An Ni (Annie)</div><div>Nữ, người <b>Canada</b>, ~20 tuổi, sinh viên.</div></div></div>
+      <div class="v-card"><div class="v-emo">👨‍🎓</div><div><div class="v-han">陈天中</div><div class="v-pin">Chén Tiānzhōng</div><div class="v-hv">Trần Thiên Trung</div><div>Nam, người <b>Thái Lan</b>, ~20 tuổi, sinh viên.</div></div></div>
+      <div class="v-card"><div class="v-emo">🧑‍⚕️</div><div><div class="v-han">李文</div><div class="v-pin">Lǐ Wén</div><div class="v-hv">Lý Văn</div><div>Nam, Bắc Kinh, ~20 tuổi, du học sinh <b>ngành y</b>.</div></div></div>
+      <div class="v-card"><div class="v-emo">🤖</div><div><div class="v-han">AI 小语</div><div class="v-pin">AI Xiǎoyǔ</div><div class="v-hv">AI Tiểu Ngữ</div><div>Trợ lý AI học tiếng Trung của lớp.</div></div></div>
+    </div>
+  </div>
+
+  <div class="box">
+    <h3>🗣️ 课堂用语 · Câu nói trong lớp học</h3>
+    <div class="v-list">
+      <div class="v-card" style="border-color:#0ea5e9"><div class="v-emo">👩‍🏫</div><div><b style="color:#0369a1">Lời giáo viên nói</b>
+        <div class="v-ex"><b>现在上课。</b> Xiànzài shàngkè. — Bắt đầu tiết học.</div>
+        <div class="v-ex"><b>请打开书，第×页。</b> Qǐng dǎkāi shū, dì × yè. — Mở sách trang X.</div>
+        <div class="v-ex"><b>请跟我读。</b> Qǐng gēn wǒ dú. — Đọc theo cô.</div>
+        <div class="v-ex"><b>请再读一遍。</b> Qǐng zài dú yí biàn. — Đọc lại lần nữa.</div>
+        <div class="v-ex"><b>请坐。/ 下课。</b> Qǐng zuò. / Xiàkè. — Mời ngồi. / Tan học.</div></div></div>
+      <div class="v-card" style="border-color:#16a34a"><div class="v-emo">🙋</div><div><b style="color:#166534">Lời học sinh nói</b>
+        <div class="v-ex"><b>请再说一遍。</b> Qǐng zài shuō yí biàn. — Cô nói lại lần nữa ạ.</div>
+        <div class="v-ex"><b>老师，请慢点儿说。</b> Lǎoshī, qǐng màn diǎnr shuō. — Cô nói chậm lại ạ.</div>
+        <div class="v-ex"><b>这个是什么意思？</b> Zhège shì shénme yìsi? — Cái này nghĩa là gì ạ?</div>
+        <div class="v-ex"><b>这是什么？</b> Zhè shì shénme? — Đây là cái gì?</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. TỪ MỚI ============ -->
+<section id="vocab">
+  <h2 class="title">生词 · Từ mới<span>16 từ trọng tâm — nhấn 🔊 để nghe</span></h2>
+  <div class="v-list" id="vocabList"></div>
+
+  <div class="box" style="margin-top:20px">
+    <h3>🧩 Chiết tự — Hiểu chữ Hán cho dễ nhớ</h3>
+    <div class="eg"><b>好 (hǎo)</b> = <b>女</b> (nǚ – người phụ nữ) + <b>子</b> (zǐ – đứa trẻ).<br>
+    Hình ảnh người mẹ bên con nhỏ → sự hài hoà, hạnh phúc, <i>tốt đẹp</i>. 👩‍👦</div>
+    <div class="eg"><b>您 (nín)</b> = <b>你</b> (nǐ – bạn) + <b>心</b> (xīn – trái tim).<br>
+    Nói chuyện với người lớn tuổi bằng cả <i>tấm lòng</i> → cách xưng hô <b>kính trọng</b>. ❤️</div>
+  </div>
+</section>
+
+<!-- ============ 3. HOẠT ĐỘNG ============ -->
+<section id="act">
+  <h2 class="title">词汇练习 · Luyện tập từ vựng<span>2 hoạt động tương tác</span></h2>
+
+  <div class="box">
+    <h3>🎯 Hoạt động 1: 连线 — Ghép từ với nghĩa</h3>
+    <p class="hint" style="text-align:left">Nhấp 1 ô bên trái ➜ nhấp 1 ô bên phải. Ghép đúng sẽ chuyển màu xanh 💚</p>
+    <div class="match-wrap">
+      <div class="col"><h4>汉语 · Tiếng Trung</h4><div id="mLeft"></div></div>
+      <div class="col"><h4>越南语 · Tiếng Việt</h4><div id="mRight"></div></div>
+    </div>
+    <p style="margin-top:12px">Điểm: <span class="score" id="mScore">0 / 8</span>
+      <button class="btn alt" onclick="buildMatch()">🔄 Chơi lại</button></p>
+  </div>
+
+  <div class="box">
+    <h3>🧱 Hoạt động 2: 连词成句 — Sắp xếp thành câu</h3>
+    <p class="hint" style="text-align:left">Nhấp các mảnh chữ theo đúng thứ tự để tạo thành câu hoàn chỉnh.</p>
+    <div id="orderGame"></div>
+  </div>
+</section>
+
+<!-- ============ 4. NGỮ PHÁP ============ -->
+<section id="gram">
+  <h2 class="title">语法 · Ngữ pháp<span>4 điểm trọng tâm của Bài 1</span></h2>
+
+  <div class="box"><h3>① 你好！— Lời chào vạn năng</h3>
+    <div class="formula">你好！／您好！／你们好！／大家好！</div>
+    <p>Dùng được <b>mọi lúc trong ngày</b> (sáng, trưa, tối), với người mới quen hoặc bạn bè. Người được chào đáp lại cũng bằng <b>你好！</b></p>
+    <div class="eg"><b>A：你好！</b> Nǐ hǎo! &nbsp;→&nbsp; <b>B：你好！</b> Nǐ hǎo!</div>
+    <div class="note">⚠️ <b>你 vs 您</b>: 你 dùng với bạn bè, người ngang/nhỏ tuổi. <b>您</b> dùng với thầy cô, người lớn tuổi, khách hàng (lịch sự). Số nhiều: 你们 / 大家 (không nói ❌您们, hãy dùng 大家).</div>
+  </div>
+
+  <div class="box"><h3>② 很 + Tính từ — Câu vị ngữ tính từ (KHÔNG dùng 是)</h3>
+    <div class="formula">Chủ ngữ + 很 + Tính từ</div>
+    <div class="eg"><b>我很好。</b> Wǒ hěn hǎo. — Tôi rất khoẻ.</div>
+    <div class="eg"><b>老师很好。</b> Lǎoshī hěn hǎo. — Cô giáo rất tốt.</div>
+    <div class="note">❌ 我<s>是</s>好。 ✅ 我很好。 — Trong tiếng Trung, tính từ tự làm vị ngữ, 很 ở đây thường <b>chỉ đóng vai trò cân bằng nhịp câu</b>, không nhất thiết dịch là "rất".</div>
+  </div>
+
+  <div class="box"><h3>③ Câu hỏi với trợ từ 吗</h3>
+    <div class="formula">Câu trần thuật + 吗？</div>
+    <div class="eg"><b>你好吗？</b> Nǐ hǎo ma? — Bạn khoẻ không? → 我很好。／我也很好。</div>
+    <div class="eg"><b>王老师好吗？</b> Wáng lǎoshī hǎo ma? — Cô Vương khoẻ không?</div>
+    <div class="note">Bỏ 吗 là câu kể, thêm 吗 thành câu hỏi. Trật tự từ <b>không đổi</b>. Trả lời phủ định: <b>我不好。</b> Wǒ bù hǎo.</div>
+  </div>
+
+  <div class="box"><h3>④ Câu hỏi lược với 呢 &amp; phó từ 也</h3>
+    <div class="formula">A + 呢？ = "Còn A thì sao?" &nbsp;|&nbsp; 也 đặt TRƯỚC 很/động từ</div>
+    <div class="eg"><b>我很好，你呢？</b> Wǒ hěn hǎo, nǐ ne? — Tôi khoẻ, còn bạn?<br><b>—— 我也很好。</b> Wǒ yě hěn hǎo. — Tôi cũng khoẻ.</div>
+    <div class="note">✅ 我也很好。&nbsp;&nbsp;❌ 也我很好 / 我很也好.</div>
+  </div>
+
+  <div class="box"><h3>✍️ 练习 · Bài luyện tập ngữ pháp</h3>
+    <div id="quizBox"></div>
+    <button class="btn" onclick="checkQuiz()">✅ Kiểm tra</button>
+    <button class="btn alt" onclick="resetQuiz()">🔄 Làm lại</button>
+    <span class="score" id="qScore"></span>
+  </div>
+</section>
+
+<!-- ============ 5. HỘI THOẠI ============ -->
+<section id="dlg">
+  <h2 class="title">课文 · Hội thoại<span>Nhấp vào từng câu để nghe</span></h2>
+
+  <div class="audio-box">
+    <b>🎧 File nghe của bài</b>
+    <p style="font-size:.9rem;color:#7a6a5a">Giáo viên tải file MP3 của bài vào đây (file sẽ đính kèm sau). Chưa có file? Dùng nút 🔊 ở mỗi câu để nghe giọng đọc tự động.</p>
+    <input type="file" accept="audio/*" onchange="loadAudio(event)" style="margin-top:8px">
+    <audio id="player" controls></audio>
+  </div>
+
+  <div class="dlg">
+    <h3 style="color:#c8102e">课文一 · Bài khoá 1 &nbsp;<button class="btn" style="padding:5px 14px;font-size:.85rem" onclick="playAll(1)">▶️ Nghe cả bài</button></h3>
+    <div id="d1"></div>
+  </div>
+
+  <div class="dlg">
+    <h3 style="color:#c8102e">课文二 · Bài khoá 2 &nbsp;<button class="btn" style="padding:5px 14px;font-size:.85rem" onclick="playAll(2)">▶️ Nghe cả bài</button></h3>
+    <div id="d2"></div>
+  </div>
+
+  <div class="box"><h3>🎭 Hoạt động 1: 角色扮演 — Đóng vai</h3>
+    <p class="hint" style="text-align:left">Chọn vai bạn muốn đóng → lời thoại của bạn sẽ bị làm mờ. Hãy tự nói ra, rồi nhấp để kiểm tra!</p>
+    <div class="roleplay">
+      <button class="btn" onclick="hideRole('A')">🙋‍♀️ Tôi đóng vai 白家月</button>
+      <button class="btn alt" onclick="hideRole('B')">👩‍🏫 Tôi đóng vai 王老师</button>
+      <button class="btn" style="background:#6b7280" onclick="hideRole('')">👀 Hiện tất cả</button>
+    </div>
+  </div>
+
+  <div class="box"><h3>📝 Hoạt động 2: 补全对话 — Hoàn thành hội thoại</h3>
+    <div id="fillDlg"></div>
+    <button class="btn" onclick="checkFill()">✅ Kiểm tra</button>
+    <span class="score" id="fScore"></span>
+  </div>
+
+  <div class="box"><h3>🔀 Hoạt động 3: Sắp xếp lại hội thoại</h3>
+    <p class="hint" style="text-align:left">Nhấp các câu theo đúng thứ tự của một cuộc hội thoại.</p>
+    <div id="dOrder"></div>
+  </div>
+</section>
+
+</div>
+<footer>第一课 你好 · AI 小语 — Học liệu tương tác dành cho lớp tiếng Trung sơ cấp 🏮</footer>
+
+<script>
+/* ---------- TTS ---------- */
+function say(t){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='zh-CN';u.rate=.78;speechSynthesis.speak(u);}catch(e){}}
+
+/* ---------- TABS ---------- */
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('section').forEach(x=>x.classList.remove('show'));
+  b.classList.add('active');document.getElementById(b.dataset.t).classList.add('show');window.scrollTo({top:0,behavior:'smooth'});
+});
+
+/* ---------- DATA ---------- */
+const VOCAB=[
+ {h:'你',p:'nǐ',hv:'NHĨ',m:'bạn, cậu, anh, chị',t:'Đại từ',tc:'t-dt',e:'👋',ex:'你好！',exp:'Nǐ hǎo!',exv:'Xin chào!'},
+ {h:'好',p:'hǎo',hv:'HẢO',m:'tốt, khoẻ, hay',t:'Tính từ',tc:'t-tt',e:'👍',ex:'我很好。',exp:'Wǒ hěn hǎo.',exv:'Tôi rất khoẻ.'},
+ {h:'你好',p:'nǐ hǎo',hv:'NHĨ HẢO',m:'xin chào',t:'Cụm chào hỏi',tc:'t-cum',e:'🙋',ex:'AI 小语，你好！',exp:'AI Xiǎoyǔ, nǐ hǎo!',exv:'AI Tiểu Ngữ, xin chào!'},
+ {h:'您',p:'nín',hv:'NÂM',m:'ngài, ông/bà, thầy/cô (kính ngữ)',t:'Đại từ',tc:'t-dt',e:'🙇',ex:'老师，您好！',exp:'Lǎoshī, nín hǎo!',exv:'Thưa cô, cô khoẻ ạ!'},
+ {h:'老师',p:'lǎoshī',hv:'LÃO SƯ',m:'giáo viên, thầy/cô',t:'Danh từ',tc:'t-dt',e:'👩‍🏫',ex:'王老师很好。',exp:'Wáng lǎoshī hěn hǎo.',exv:'Cô Vương rất tốt.'},
+ {h:'王',p:'Wáng',hv:'VƯƠNG',m:'họ Vương',t:'Danh từ riêng',tc:'t-dt',e:'👑',ex:'她是王老师。',exp:'Tā shì Wáng lǎoshī.',exv:'Cô ấy là cô Vương.'},
+ {h:'我',p:'wǒ',hv:'NGÃ',m:'tôi, tớ, mình',t:'Đại từ',tc:'t-dt',e:'🙋‍♂️',ex:'我是学生。',exp:'Wǒ shì xuésheng.',exv:'Tôi là học sinh.'},
+ {h:'很',p:'hěn',hv:'NGẬN',m:'rất',t:'Phó từ',tc:'t-pt',e:'💯',ex:'我很好，谢谢。',exp:'Wǒ hěn hǎo, xièxie.',exv:'Tôi rất khoẻ, cảm ơn.'},
+ {h:'也',p:'yě',hv:'DÃ',m:'cũng',t:'Phó từ',tc:'t-pt',e:'➕',ex:'我也很好。',exp:'Wǒ yě hěn hǎo.',exv:'Tôi cũng rất khoẻ.'},
+ {h:'吗',p:'ma',hv:'MA',m:'…không? (trợ từ nghi vấn)',t:'Trợ từ',tc:'t-trt',e:'❔',ex:'你好吗？',exp:'Nǐ hǎo ma?',exv:'Bạn khoẻ không?'},
+ {h:'呢',p:'ne',hv:'NI',m:'còn… thì sao?',t:'Trợ từ',tc:'t-trt',e:'❓',ex:'你呢？',exp:'Nǐ ne?',exv:'Còn bạn thì sao?'},
+ {h:'不',p:'bù',hv:'BẤT',m:'không (phủ định)',t:'Phó từ',tc:'t-pt',e:'🚫',ex:'我不好。',exp:'Wǒ bù hǎo.',exv:'Tôi không khoẻ.'},
+ {h:'谢谢',p:'xièxie',hv:'TẠ TẠ',m:'cảm ơn',t:'Động từ',tc:'t-dgt',e:'🙏',ex:'谢谢老师！',exp:'Xièxie lǎoshī!',exv:'Cảm ơn cô ạ!'},
+ {h:'再见',p:'zàijiàn',hv:'TÁI KIẾN',m:'tạm biệt',t:'Động từ',tc:'t-dgt',e:'👋',ex:'老师，再见！',exp:'Lǎoshī, zàijiàn!',exv:'Tạm biệt cô ạ!'},
+ {h:'们',p:'men',hv:'MÔN',m:'các… (hậu tố số nhiều)',t:'Hậu tố',tc:'t-cum',e:'👥',ex:'你们好！',exp:'Nǐmen hǎo!',exv:'Chào các bạn!'},
+ {h:'大家',p:'dàjiā',hv:'ĐẠI GIA',m:'mọi người',t:'Đại từ',tc:'t-dt',e:'👨‍👩‍👧‍👦',ex:'大家好！',exp:'Dàjiā hǎo!',exv:'Chào mọi người!'}
+];
+
+/* ---------- WARM-UP CARDS ---------- */
+const WARM=[0,2,4,7,9,12,13,15].map(i=>VOCAB[i]);
+document.getElementById('warmCards').innerHTML=WARM.map(v=>`
+<div class="fc" onclick="this.classList.toggle('flip')">
+ <div class="fc-in">
+  <div class="fc-f"><div class="emo">${v.e}</div><div class="han">${v.h}</div><div class="pin">${v.p}</div><small style="color:#aaa">Nhấp để lật</small></div>
+  <div class="fc-b"><div class="han">${v.h}</div><div>${v.p}</div><div class="hv">${v.hv}</div><div class="mean">${v.m}</div>
+   <button class="speak" onclick="event.stopPropagation();say('${v.h}')">🔊 Nghe</button></div>
+ </div></div>`).join('');
+
+/* ---------- VOCAB LIST ---------- */
+document.getElementById('vocabList').innerHTML=VOCAB.map((v,i)=>`
+<div class="v-card"><div class="v-emo">${v.e}</div>
+ <div style="flex:1">
+  <div><span class="v-han">${v.h}</span> <span class="tag ${v.tc}">${v.t}</span>
+   <button class="mini" style="float:right" onclick="say('${v.h}')">🔊</button></div>
+  <div class="v-pin">${v.p}</div>
+  <div class="v-hv">Hán Việt: ${v.hv}</div>
+  <div class="v-mean">➜ ${v.m}</div>
+  <div class="v-ex"><b>${v.ex}</b> <span style="color:#e76f51">${v.exp}</span><br><i>${v.exv}</i>
+   <button class="mini" style="width:24px;height:24px;font-size:.75rem" onclick="say('${v.ex}')">🔊</button></div>
+ </div></div>`).join('');
+
+/* ---------- MATCH GAME ---------- */
+const MPAIRS=[['你好','xin chào'],['老师','giáo viên'],['谢谢','cảm ơn'],['再见','tạm biệt'],['很','rất'],['也','cũng'],['大家','mọi người'],['您','ngài / thầy cô (kính)']];
+let sel=null,mDone=0;
+function shuffle(a){return a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(x=>x[1]);}
+function buildMatch(){
+ sel=null;mDone=0;document.getElementById('mScore').textContent='0 / 8';
+ document.getElementById('mLeft').innerHTML=shuffle(MPAIRS).map(p=>`<div class="m-item" data-k="${p[0]}" data-s="L" onclick="pick(this)">${p[0]} <small style="color:#e76f51">${VOCAB.find(v=>v.h===p[0])?VOCAB.find(v=>v.h===p[0]).p:''}</small></div>`).join('');
+ document.getElementById('mRight').innerHTML=shuffle(MPAIRS).map(p=>`<div class="m-item" data-k="${p[0]}" data-s="R" onclick="pick(this)">${p[1]}</div>`).join('');
+}
+function pick(el){
+ if(el.classList.contains('ok'))return;
+ if(!sel){sel=el;el.classList.add('sel');say(el.dataset.s==='L'?el.dataset.k:'');return;}
+ if(sel===el){el.classList.remove('sel');sel=null;return;}
+ if(sel.dataset.s===el.dataset.s){sel.classList.remove('sel');sel=el;el.classList.add('sel');return;}
+ if(sel.dataset.k===el.dataset.k){sel.classList.remove('sel');sel.classList.add('ok');el.classList.add('ok');say(el.dataset.k);
+   mDone++;document.getElementById('mScore').textContent=mDone+' / 8';
+   if(mDone===8)setTimeout(()=>alert('🎉 太棒了！Bạn đã ghép đúng tất cả!'),300);}
+ else{el.classList.add('bad');sel.classList.add('bad');const a=sel,b=el;setTimeout(()=>{a.classList.remove('bad','sel');b.classList.remove('bad');},400);}
+ sel=null;
+}
+buildMatch();
+
+/* ---------- ORDER GAME (words) ---------- */
+const SENTS=[
+ {w:['我','很','好','，','谢谢','。'],a:'我很好，谢谢。',v:'Tôi rất khoẻ, cảm ơn.'},
+ {w:['老师','，','您','好','！'],a:'老师，您好！',v:'Thưa cô, em chào cô!'},
+ {w:['你','好','吗','？'],a:'你好吗？',v:'Bạn khoẻ không?'},
+ {w:['我','也','很','好','。'],a:'我也很好。',v:'Tôi cũng rất khoẻ.'},
+ {w:['大家','好','，','再见','！'],a:'大家好，再见！',v:'Chào mọi người, tạm biệt!'}
+];
+function buildOrder(){
+ document.getElementById('orderGame').innerHTML=SENTS.map((s,i)=>`
+ <div style="margin-bottom:18px">
+  <p style="font-weight:600">Câu ${i+1}: <i style="color:#7a6a5a">${s.v}</i></p>
+  <div class="drop" id="dr${i}"></div>
+  <div class="pool" id="po${i}">${shuffle(s.w.slice()).map(w=>`<span class="chip" onclick="mv(this,${i})">${w}</span>`).join('')}</div>
+  <button class="btn" style="padding:6px 16px;font-size:.85rem" onclick="chk(${i})">Kiểm tra</button>
+  <span id="r${i}" style="font-weight:700;margin-left:8px"></span>
+ </div>`).join('');
+}
+function mv(el,i){const d=document.getElementById('dr'+i),p=document.getElementById('po'+i);
+ if(el.parentNode===p){el.classList.add('g');d.appendChild(el);}else{el.classList.remove('g');p.appendChild(el);}}
+function chk(i){const t=[...document.getElementById('dr'+i).children].map(c=>c.textContent).join('');
+ const r=document.getElementById('r'+i);
+ if(t===SENTS[i].a){r.textContent='✅ 正确！ '+SENTS[i].a;r.style.color='#16a34a';say(SENTS[i].a);}
+ else{r.textContent='❌ Chưa đúng, thử lại nhé!';r.style.color='#dc2626';}}
+buildOrder();
+
+/* ---------- GRAMMAR QUIZ ---------- */
+const QUIZ=[
+ {s:'1. Chọn từ đúng: 王老师，___好！',o:['你','您','我'],a:1,ex:'Với thầy cô phải dùng kính ngữ 您.'},
+ {s:'2. Câu nào ĐÚNG?',o:['我是好。','我很好。','我好很。'],a:1,ex:'Tính từ làm vị ngữ không dùng 是, và 很 đứng trước tính từ.'},
+ {s:'3. Điền trợ từ: 你好___？(Bạn khoẻ không?)',o:['呢','吗','也'],a:1,ex:'吗 tạo câu hỏi Có/Không.'},
+ {s:'4. 我很好，你___？',o:['吗','呢','不'],a:1,ex:'呢 dùng để hỏi lược: "Còn bạn thì sao?"'},
+ {s:'5. Vị trí đúng của 也: 我 ( ) 很 ( ) 好。',o:['Vị trí (1) → 我也很好','Vị trí (2) → 我很也好','Đầu câu → 也我很好'],a:0,ex:'也 đứng sau chủ ngữ, trước 很.'},
+ {s:'6. Chào cả lớp, nói thế nào?',o:['您们好！','大家好！','我好！'],a:1,ex:'Không nói ❌您们, dùng 大家好 hoặc 你们好.'},
+ {s:'7. Phủ định của 我很好 là:',o:['我不好。','我没好。','不我好。'],a:0,ex:'不 đặt trước tính từ.'},
+ {s:'8. "Cảm ơn cô!" trong tiếng Trung là:',o:['再见老师！','谢谢老师！','老师你呢？'],a:1,ex:'谢谢 = cảm ơn.'}
+];
+document.getElementById('quizBox').innerHTML=QUIZ.map((q,i)=>`
+ <div class="q"><p class="stem">${q.s}</p>
+ ${q.o.map((o,j)=>`<span class="opt" data-q="${i}" data-j="${j}" onclick="pickOpt(this)">${o}</span>`).join('')}
+ <p class="ex" id="ex${i}" style="display:none;margin-top:8px;color:#7a6a5a;font-size:.9rem">💡 ${q.ex}</p></div>`).join('');
+let ans={};
+function pickOpt(el){const i=el.dataset.q;ans[i]=+el.dataset.j;
+ [...el.parentNode.querySelectorAll('.opt')].forEach(o=>o.style.background='');el.style.background='#ffe6d5';}
+function checkQuiz(){let s=0;
+ QUIZ.forEach((q,i)=>{const opts=document.querySelectorAll('.opt[data-q="'+i+'"]');
+  opts.forEach(o=>{o.classList.remove('ok','no');o.style.background='';
+   if(+o.dataset.j===q.a)o.classList.add('ok');
+   if(ans[i]!==undefined&&+o.dataset.j===ans[i]&&ans[i]!==q.a)o.classList.add('no');});
+  document.getElementById('ex'+i).style.display='block';
+  if(ans[i]===q.a)s++;});
+ document.getElementById('qScore').textContent='Kết quả: '+s+'/'+QUIZ.length+(s===QUIZ.length?' 🎉 满分！':'');}
+function resetQuiz(){ans={};document.querySelectorAll('.opt').forEach(o=>{o.classList.remove('ok','no');o.style.background='';});
+ QUIZ.forEach((q,i)=>document.getElementById('ex'+i).style.display='none');document.getElementById('qScore').textContent='';}
+
+/* ---------- DIALOGUES ---------- */
+const D1=[
+ {r:'A',n:'白家月',e:'👩‍🎓',z:'AI 小语，你好！',p:'AI Xiǎoyǔ, nǐ hǎo!',v:'AI Tiểu Ngữ, xin chào!'},
+ {r:'B',n:'AI 小语',e:'🤖',z:'你好！',p:'Nǐ hǎo!',v:'Xin chào!'},
+ {r:'A',n:'白家月',e:'👩‍🎓',z:'再见！',p:'Zàijiàn!',v:'Tạm biệt!'},
+ {r:'B',n:'AI 小语',e:'🤖',z:'再见！',p:'Zàijiàn!',v:'Tạm biệt!'}
+];
+const D2=[
+ {r:'A',n:'白家月',e:'👩‍🎓',z:'王老师，您好！',p:'Wáng lǎoshī, nín hǎo!',v:'Thưa cô Vương, em chào cô ạ!'},
+ {r:'B',n:'王老师',e:'👩‍🏫',z:'你好，家月。你好吗？',p:'Nǐ hǎo, Jiāyuè. Nǐ hǎo ma?',v:'Chào em, Gia Nguyệt. Em khoẻ không?'},
+ {r:'A',n:'白家月',e:'👩‍🎓',z:'我很好，谢谢。您呢？',p:'Wǒ hěn hǎo, xièxie. Nín ne?',v:'Em rất khoẻ, cảm ơn cô. Còn cô ạ?'},
+ {r:'B',n:'王老师',e:'👩‍🏫',z:'我也很好。',p:'Wǒ yě hěn hǎo.',v:'Cô cũng rất khoẻ.'},
+ {r:'A',n:'白家月',e:'👩‍🎓',z:'老师，再见！',p:'Lǎoshī, zàijiàn!',v:'Thưa cô, em chào cô ạ!'},
+ {r:'B',n:'王老师',e:'👩‍🏫',z:'再见！',p:'Zàijiàn!',v:'Tạm biệt em!'}
+];
+function render(arr,id){document.getElementById(id).innerHTML=arr.map(l=>`
+ <div class="line" data-r="${l.r}" onclick="say('${l.z}')">
+  <div class="av">${l.e}</div>
+  <div><small style="color:#c8102e;font-weight:700">${l.n}</small>
+   <div class="zh">${l.z}</div><div class="py">${l.p}</div><div class="vi">${l.v}</div></div>
+  <div style="margin-left:auto">🔊</div></div>`).join('');}
+render(D1,'d1');render(D2,'d2');
+function playAll(n){const arr=n===1?D1:D2;let i=0;
+ (function nxt(){if(i>=arr.length)return;const u=new SpeechSynthesisUtterance(arr[i].z);u.lang='zh-CN';u.rate=.75;u.onend=()=>{i++;setTimeout(nxt,450);};speechSynthesis.speak(u);})();}
+function hideRole(r){document.querySelectorAll('#d1 .line,#d2 .line').forEach(l=>{
+ l.querySelector('.zh').classList.remove('hidden-line');l.querySelector('.py').classList.remove('hidden-line');
+ if(r&&l.dataset.r===r){l.querySelector('.zh').classList.add('hidden-line');l.querySelector('.py').classList.add('hidden-line');
+  l.onclick=function(){this.querySelectorAll('.hidden-line').forEach(x=>x.classList.toggle('reveal'));say(l.dataset.zh||l.querySelector('.zh').textContent);};}
+ else{const z=l.querySelector('.zh').textContent;l.onclick=()=>say(z);}});}
+function loadAudio(e){const f=e.target.files[0];if(f)document.getElementById('player').src=URL.createObjectURL(f);}
+
+/* ---------- FILL DIALOGUE ---------- */
+const FILL=[['您','nín'],['吗','ma'],['很','hěn'],['呢','ne'],['也','yě'],['再见','zàijiàn']];
+document.getElementById('fillDlg').innerHTML=`
+<div style="font-size:1.15rem;line-height:2.4">
+ 白家月：王老师，<input class="blank" id="f0">好！<br>
+ 王老师：你好，家月。你好<input class="blank" id="f1">？<br>
+ 白家月：我<input class="blank" id="f2">好，谢谢。您<input class="blank" id="f3">？<br>
+ 王老师：我<input class="blank" id="f4">很好。<br>
+ 白家月：老师，<input class="blank" id="f5">！
+</div>
+<p style="color:#7a6a5a;font-size:.9rem;margin-top:8px">Gợi ý: 很 · 吗 · 呢 · 也 · 您 · 再见</p>`;
+function checkFill(){let s=0;FILL.forEach((f,i)=>{const el=document.getElementById('f'+i);
+ const v=el.value.trim();if(v===f[0]||v.toLowerCase()===f[1]){el.style.color='#16a34a';el.style.borderColor='#16a34a';s++;}
+ else{el.style.color='#dc2626';el.style.borderColor='#dc2626';}});
+ document.getElementById('fScore').textContent=s+'/'+FILL.length+(s===FILL.length?' 🎉 完全正确！':' — thử lại nhé!');}
+
+/* ---------- DIALOGUE ORDER ---------- */
+const DORD=['王老师，您好！','你好，家月。你好吗？','我很好，谢谢。您呢？','我也很好。','老师，再见！','再见！'];
+document.getElementById('dOrder').innerHTML=`<div class="drop" id="doDrop"></div>
+ <div class="pool" id="doPool">${shuffle(DORD.slice()).map(x=>`<span class="chip" onclick="dmv(this)">${x}</span>`).join('')}</div>
+ <button class="btn" onclick="dchk()">Kiểm tra</button> <span id="dRes" style="font-weight:700;margin-left:8px"></span>`;
+function dmv(el){const d=document.getElementById('doDrop'),p=document.getElementById('doPool');
+ if(el.parentNode===p){el.classList.add('g');d.appendChild(el);}else{el.classList.remove('g');p.appendChild(el);}}
+function dchk(){const t=[...document.getElementById('doDrop').children].map(c=>c.textContent);
+ const r=document.getElementById('dRes');
+ if(t.join('|')===DORD.join('|')){r.textContent='✅ 太棒了！Thứ tự chính xác!';r.style.color='#16a34a';}
+ else{r.textContent='❌ Chưa đúng ('+t.filter((x,i)=>x===DORD[i]).length+'/6 câu đúng vị trí)';r.style.color='#dc2626';}}
+</script>
+</body>
+</html>
