@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bài 3 · 我是中国人 — Tiếng Trung Meowmeow</title>
+<style>
+:root{
+  --bg:#fff8f5; --paper:#ffffff; --ink:#352b35; --muted:#756a74;
+  --pink:#f5a8b8; --pink2:#ffe3e9; --purple:#8f79a8; --purple2:#eee8f6;
+  --yellow:#f8d98b; --green:#a8d8c0; --line:#eadde3;
+  --shadow:0 12px 32px rgba(91,65,86,.10); --radius:22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Be Vietnam Pro","Noto Sans",Arial,sans-serif;line-height:1.65;
+}
+a{color:inherit;text-decoration:none}
+.container{width:min(1120px,92%);margin:auto}
+header{
+  background:linear-gradient(135deg,#fff,#fff0f3 55%,#f2ecf8);
+  border-bottom:1px solid var(--line);padding:28px 0 20px;
+  position:sticky;top:0;z-index:20;backdrop-filter:blur(12px);
+}
+.brand{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.logo{font-weight:900;font-size:20px}
+.logo span{color:var(--purple)}
+.pill{padding:8px 13px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:13px}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+nav a,.tab{
+  padding:9px 13px;border-radius:999px;background:#fff;border:1px solid var(--line);
+  font-size:13px;font-weight:700;cursor:pointer
+}
+nav a:hover,.tab:hover{background:var(--pink2)}
+.hero{padding:52px 0 34px}
+.hero-card{
+  padding:38px;border-radius:30px;background:linear-gradient(135deg,#fff,#fff1f4 60%,#f2edf8);
+  box-shadow:var(--shadow);border:1px solid #f0e3e9;position:relative;overflow:hidden
+}
+.hero-card:after{content:"🐱";position:absolute;right:35px;bottom:-8px;font-size:88px;opacity:.18}
+.eyebrow{font-weight:800;color:var(--purple);letter-spacing:.04em}
+h1{font-size:clamp(34px,6vw,58px);line-height:1.1;margin:8px 0}
+h2{font-size:30px;margin:0 0 8px}
+h3{margin:0 0 8px}
+.subtitle{color:var(--muted);max-width:700px}
+.section{padding:34px 0}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:18px}
+.section-head p{margin:0;color:var(--muted);font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.hero-card{padding:25px}}
+.card{
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:0 8px 22px rgba(91,65,86,.06);padding:18px
+}
+.flashcard{min-height:230px;perspective:900px;cursor:pointer}
+.flash-inner{position:relative;width:100%;height:100%;min-height:194px;transition:transform .6s;transform-style:preserve-3d}
+.flashcard.flipped .flash-inner{transform:rotateY(180deg)}
+.face{
+  position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;padding:15px;text-align:center
+}
+.front{background:linear-gradient(145deg,#fff,#fff4f6)}
+.back{background:var(--purple2);transform:rotateY(180deg)}
+.hanzi{font-size:42px;font-weight:900}
+.pinyin{font-size:17px;color:var(--purple);font-weight:800}
+.meaning{color:var(--muted);font-size:14px}
+.ill{font-size:42px;margin-bottom:4px}
+.badge{display:inline-block;padding:4px 9px;border-radius:999px;background:var(--pink2);font-size:12px;font-weight:800;color:#875365}
+.vocab-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:850px){.vocab-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.vocab-grid{grid-template-columns:1fr}}
+.vocab-card{overflow:hidden}
+.vocab-art{
+  height:135px;border-radius:17px;background:linear-gradient(135deg,#fff0f3,#f3eff9);
+  display:flex;align-items:center;justify-content:center;font-size:66px
+}
+.vocab-top{display:flex;justify-content:space-between;gap:10px;align-items:start;margin-top:14px}
+.vn{font-size:30px;font-weight:900}
+.example{margin-top:12px;padding:12px 13px;background:#fff8fa;border-radius:14px;border-left:4px solid var(--pink)}
+.example .zh{font-weight:800}.example .py{font-size:13px;color:var(--purple)}
+.audio{
+  border:0;background:var(--purple);color:white;border-radius:999px;padding:8px 11px;
+  cursor:pointer;font-weight:800
+}
+.note{padding:14px 16px;border-radius:16px;background:#fff7df;border:1px solid #f2dfaa;margin:14px 0}
+.grammar{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:700px){.grammar{grid-template-columns:1fr}}
+.formula{
+  padding:17px;border-radius:17px;background:var(--purple2);font-size:22px;text-align:center;font-weight:900
+}
+.dialogue{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:700px){.dialogue{grid-template-columns:1fr}}
+.line{
+  padding:15px 17px;border-radius:18px;margin:9px 0;background:#fff;border:1px solid var(--line)
+}
+.line.a{border-left:5px solid var(--pink)} .line.b{border-left:5px solid var(--purple)}
+.line .speaker{font-size:12px;font-weight:900;color:var(--purple)}
+.zhbig{font-size:23px;font-weight:900}.small{font-size:13px;color:var(--muted)}
+.activity{margin-top:18px}
+.activity-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.btn{
+  border:0;border-radius:13px;padding:10px 14px;background:var(--purple);color:white;
+  font-weight:800;cursor:pointer
+}
+.btn.secondary{background:var(--pink);color:#542e3a}
+.match{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.match button,.word{
+  border:1px solid var(--line);background:#fff;padding:13px;border-radius:14px;cursor:pointer;
+  font-weight:700
+}
+.match button.selected,.word.selected{background:var(--pink2);border-color:var(--pink)}
+.feedback{font-weight:800;margin-top:10px;min-height:24px}
+.sortbox{display:flex;flex-wrap:wrap;gap:8px;margin:15px 0}
+.word{background:#fff}.sentence{min-height:42px;padding:12px;border:2px dashed var(--line);border-radius:14px}
+.fill input{
+  border:0;border-bottom:2px solid var(--purple);width:110px;padding:4px 5px;
+  font-size:16px;background:transparent;outline:none
+}
+.quiz label{display:block;padding:10px;border:1px solid var(--line);border-radius:12px;margin:7px 0;cursor:pointer}
+.quiz label:hover{background:#fff6f8}
+footer{padding:40px 0 60px;color:var(--muted);text-align:center}
+.backtop{position:fixed;right:18px;bottom:18px;background:var(--purple);color:white;padding:11px 14px;border-radius:50%;box-shadow:var(--shadow)}
+.kicker{font-size:13px;color:var(--muted)}
+hr{border:0;border-top:1px solid var(--line);margin:28px 0}
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="brand">
+      <div class="logo">📚 Tiếng Trung <span>Meowmeow</span></div>
+      <div class="pill">Bài 3 · 我是中国人</div>
+    </div>
+    <nav>
+      <a href="#khoidong">🌸 Khởi động</a>
+      <a href="#tuvung">📖 Từ mới</a>
+      <a href="#hoatdong">🎮 Ôn tập</a>
+      <a href="#nguphap">📐 Ngữ pháp</a>
+      <a href="#hoithoai">🗣️ Hội thoại</a>
+      <a href="#luyentap">✍️ Luyện tập</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+<section class="hero">
+  <div class="hero-card">
+    <div class="eyebrow">第 3 课 · Dì sān kè</div>
+    <h1>我是中国人！</h1>
+    <p class="subtitle">Wǒ shì Zhōngguórén! · Tôi là người Trung Quốc</p>
+    <p>Học theo trình tự: khởi động → từ mới → ôn tập tương tác → ngữ pháp → hội thoại → luyện tập.</p>
+  </div>
+</section>
+
+<section id="khoidong" class="section">
+  <div class="section-head"><div><h2>🌸 Khởi động</h2><p>Nhấp vào thẻ để lật và tự đọc từ.</p></div></div>
+  <div class="grid">
+    <div class="flashcard" onclick="this.classList.toggle('flipped')"><div class="flash-inner">
+      <div class="face front"><div class="ill">🇨🇳</div><div class="hanzi">中国人</div><div class="pinyin">Zhōngguórén</div></div>
+      <div class="face back"><div class="meaning">người Trung Quốc</div><div class="kicker">Nhấp để lật lại</div></div>
+    </div></div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')"><div class="flash-inner">
+      <div class="face front"><div class="ill">🇫🇷</div><div class="hanzi">法国人</div><div class="pinyin">Fǎguórén</div></div>
+      <div class="face back"><div class="meaning">người Pháp</div><div class="kicker">Nhấp để lật lại</div></div>
+    </div></div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')"><div class="flash-inner">
+      <div class="face front"><div class="ill">👩🏻‍🏫</div><div class="hanzi">中文老师</div><div class="pinyin">Zhōngwén lǎoshī</div></div>
+      <div class="face back"><div class="meaning">giáo viên tiếng Trung</div><div class="kicker">Nhấp để lật lại</div></div>
+    </div></div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')"><div class="flash-inner">
+      <div class="face front"><div class="ill">👩‍❤️‍👨</div><div class="hanzi">女朋友</div><div class="pinyin">nǚpéngyou</div></div>
+      <div class="face back"><div class="meaning">bạn gái</div><div class="kicker">Nhấp để lật lại</div></div>
+    </div></div>
+  </div>
+</section>
+
+<section id="tuvung" class="section">
+  <div class="section-head"><div><h2>📖 Từ mới</h2><p>Đầy đủ từ mới xuất hiện trong 3 bài khóa của tài liệu.</p></div></div>
+  <div class="vocab-grid">
+    <article class="card vocab-card"><div class="vocab-art">👥</div><div class="vocab-top"><div><div class="vn">人</div><div class="pinyin">rén</div></div><span class="badge">Danh từ</span></div><b>Hán Việt:</b> nhân<br><span class="meaning">người, con người</span><div class="example"><div class="zh">我是中国人。</div><div class="py">Wǒ shì Zhōngguó rén.</div>Tôi là người Trung Quốc.</div></article>
+    <article class="card vocab-card"><div class="vocab-art">🔗</div><div class="vocab-top"><div><div class="vn">的</div><div class="pinyin">de</div></div><span class="badge">Trợ từ</span></div><b>Hán Việt:</b> đích<br><span class="meaning">của; chỉ quan hệ sở hữu</span><div class="example"><div class="zh">我的老师。</div><div class="py">Wǒ de lǎoshī.</div>Giáo viên của tôi.</div></article>
+    <article class="card vocab-card"><div class="vocab-art">👉</div><div class="vocab-top"><div><div class="vn">这</div><div class="pinyin">zhè</div></div><span class="badge">Đại từ</span></div><b>Hán Việt:</b> giá<br><span class="meaning">đây, này</span><div class="example"><div class="zh">这是书。</div><div class="py">Zhè shì shū.</div>Đây là sách.</div></article>
+    <article class="card vocab-card"><div class="vocab-art">❓</div><div class="vocab-top"><div><div class="vn">谁</div><div class="pinyin">shéi / shuí</div></div><span class="badge">Đại từ</span></div><b>Hán Việt:</b> thùy<br><span class="meaning">ai; dùng để hỏi người</span><div class="example"><div class="zh">这是谁？</div><div class="py">Zhè shì shuí?</div>Đây là ai?</div></article>
+    <article class="card vocab-card"><div class="vocab-art">💗</div><div class="vocab-top"><div><div class="vn">女朋友</div><div class="pinyin">nǚpéngyou</div></div><span class="badge">Danh từ</span></div><b>Hán Việt:</b> nữ bằng hữu<br><span class="meaning">bạn gái</span><div class="example"><div class="zh">她是我女朋友。</div><div class="py">Tā shì wǒ nǚpéngyou.</div>Cô ấy là bạn gái tôi.</div></article>
+    <article class="card vocab-card"><div class="vocab-art">🗺️</div><div class="vocab-top"><div><div class="vn">哪</div><div class="pinyin">nǎ</div></div><span class="badge">Đại từ</span></div><b>Hán Việt:</b> na<br><span class="meaning">nào, đâu; dùng để hỏi</span><div class="example"><div class="zh">你是哪国人？</div><div class="py">Nǐ shì nǎ guó rén?</div>Bạn là người nước nào?</div></article>
+    <article class="card vocab-card"><div class="vocab-art">🌏</div><div class="vocab-top"><div><div class="vn">国</div><div class="pinyin">guó</div></div><span class="badge">Danh từ</span></div><b>Hán Việt:</b> quốc<br><span class="meaning">đất nước, quốc gia</span><div class="example"><div class="zh">中国、美国</div><div class="py">Zhōngguó, Měiguó</div>Trung Quốc, Mỹ.</div></article>
+    <article class="card vocab-card"><div class="vocab-art">👩</div><div class="vocab-top"><div><div class="vn">她</div><div class="pinyin">tā</div></div><span class="badge">Đại từ</span></div><b>Hán Việt:</b> tha<br><span class="meaning">cô ấy, chị ấy</span><div class="example"><div class="zh">她是法国人。</div><div class="py">Tā shì Fǎguó rén.</div>Cô ấy là người Pháp.</div></article>
+    <article class="card vocab-card"><div class="vocab-art">🇹🇭</div><div class="vocab-top"><div><div class="vn">泰国</div><div class="pinyin">Tàiguó</div></div><span class="badge">Danh từ</span></div><b>Hán Việt:</b> Thái Quốc<br><span class="meaning">Thái Lan</span><div class="example"><div class="zh">她也是泰国人。</div><div class="py">Tā yě shì Tàiguó rén.</div>Cô ấy cũng là người Thái Lan.</div></article>
+    <article class="card vocab-card"><div class="vocab-art">📞</div><div class="vocab-top"><div><div class="vn">喂</div><div class="pinyin">wèi</div></div><span class="badge">Thán từ</span></div><b>Hán Việt:</b> vị<br><span class="meaning">alo (gọi điện), ê, này</span><div class="example"><div class="zh">喂！你好！</div><div class="py">Wèi! Nǐ hǎo!</div>Alo! Xin chào!</div></article>
+    <article class="card vocab-card"><div class="vocab-art">👩‍🦰</div><div class="vocab-top"><div><div class="vn">姐姐</div><div class="pinyin">jiějie</div></div><span class="badge">Danh từ</span></div><b>Hán Việt:</b> tỷ tỷ<br><span class="meaning">chị gái</span><div class="example"><div class="zh">这是我姐姐。</div><div class="py">Zhè shì wǒ jiějie.</div>Đây là chị gái tôi.</div></article>
+    <article class="card vocab-card"><div class="vocab-art">💼</div><div class="vocab-top"><div><div class="vn">工作</div><div class="pinyin">gōngzuò</div></div><span class="badge">Danh từ</span></div><b>Hán Việt:</b> công tác<br><span class="meaning">công việc</span><div class="example"><div class="zh">工作忙。</div><div class="py">Gōngzuò máng.</div>Công việc bận.</div></article>
+    <article class="card vocab-card"><div class="vocab-art">🔄</div><div class="vocab-top"><div><div class="vn">还</div><div class="pinyin">hái</div></div><span class="badge">Trợ từ</span></div><b>Hán Việt:</b> hoàn<br><span class="meaning">vẫn</span><div class="example"><div class="zh">还忙吗？</div><div class="py">Hái máng ma?</div>Vẫn bận à?</div></article>
+    <article class="card vocab-card"><div class="vocab-art">😵‍💫</div><div class="vocab-top"><div><div class="vn">忙</div><div class="pinyin">máng</div></div><span class="badge">Tính từ</span></div><b>Hán Việt:</b> mang<br><span class="meaning">bận</span><div class="example"><div class="zh">我不太忙。</div><div class="py">Wǒ bú tài máng.</div>Tôi không quá bận.</div></article>
+    <article class="card vocab-card"><div class="vocab-art">❔</div><div class="vocab-top"><div><div class="vn">吗</div><div class="pinyin">ma</div></div><span class="badge">Trợ từ</span></div><b>Hán Việt:</b> ma<br><span class="meaning">đứng cuối câu để hỏi có/không</span><div class="example"><div class="zh">你是老师吗？</div><div class="py">Nǐ shì lǎoshī ma?</div>Bạn là giáo viên phải không?</div></article>
+    <article class="card vocab-card"><div class="vocab-art">✅</div><div class="vocab-top"><div><div class="vn">对</div><div class="pinyin">duì</div></div><span class="badge">Tính từ</span></div><b>Hán Việt:</b> đối<br><span class="meaning">đúng, phải</span><div class="example"><div class="zh">对的。</div><div class="py">Duì de.</div>Đúng vậy.</div></article>
+    <article class="card vocab-card"><div class="vocab-art">🔥</div><div class="vocab-top"><div><div class="vn">太</div><div class="pinyin">tài</div></div><span class="badge">Trợ từ</span></div><b>Hán Việt:</b> thái<br><span class="meaning">quá, rất, lắm</span><div class="example"><div class="zh">太忙了。</div><div class="py">Tài máng le.</div>Bận quá.</div></article>
+    <article class="card vocab-card"><div class="vocab-art">👨‍👩‍👧‍👦</div><div class="vocab-top"><div><div class="vn">我们</div><div class="pinyin">wǒmen</div></div><span class="badge">Đại từ</span></div><b>Hán Việt:</b> ngã môn<br><span class="meaning">chúng tôi, chúng mình</span><div class="example"><div class="zh">我们想你。</div><div class="py">Wǒmen xiǎng nǐ.</div>Chúng mình nhớ bạn.</div></article>
+    <article class="card vocab-card"><div class="vocab-art">🥹</div><div class="vocab-top"><div><div class="vn">想</div><div class="pinyin">xiǎng</div></div><span class="badge">Động từ</span></div><b>Hán Việt:</b> tưởng<br><span class="meaning">nhớ</span><div class="example"><div class="zh">我也想你们。</div><div class="py">Wǒ yě xiǎng nǐmen.</div>Tôi cũng nhớ mọi người.</div></article>
+  </div>
+</section>
+
+<section id="hoatdong" class="section">
+  <div class="section-head"><div><h2>🎮 2 hoạt động ôn tập từ mới</h2><p>Thiết kế để học viên thao tác trực tiếp trên trang.</p></div></div>
+
+  <div class="card activity">
+    <div class="activity-head"><h3>① Ghép từ với nghĩa</h3><button class="btn secondary" onclick="resetMatch()">Làm lại</button></div>
+    <p class="small">Chọn một từ tiếng Trung rồi chọn nghĩa tương ứng.</p>
+    <div class="match" id="matchArea"></div>
+    <div class="feedback" id="matchFeedback"></div>
+  </div>
+
+  <div class="card activity">
+    <div class="activity-head"><h3>② Sắp xếp câu</h3><button class="btn secondary" onclick="newSort()">Câu mới</button></div>
+    <p class="small">Bấm các từ theo đúng trật tự.</p>
+    <div class="sortbox" id="sortWords"></div>
+    <div class="sentence" id="sentence"></div>
+    <button class="btn" onclick="checkSort()">Kiểm tra</button>
+    <div class="feedback" id="sortFeedback"></div>
+  </div>
+</section>
+
+<section id="nguphap" class="section">
+  <div class="section-head"><div><h2>📐 Ngữ pháp</h2><p>Trọng tâm bám theo tài liệu: 是、的、吗.</p></div></div>
+
+  <div class="grammar">
+    <article class="card">
+      <h3>① Câu với “是”</h3>
+      <p>Dùng để chỉ ra người hoặc sự vật tương đương / thuộc về một loại nào đó. Phủ định là <b>不是</b>.</p>
+      <div class="formula">S + 是 + O</div>
+      <p>我 是 中国人。<br><span class="small">Wǒ shì Zhōngguó rén. · Tôi là người Trung Quốc.</span></p>
+      <div class="formula">S + 不是 + O</div>
+      <p>我 不是 中国人。<br><span class="small">Wǒ bú shì Zhōngguó rén. · Tôi không phải người Trung Quốc.</span></p>
+    </article>
+
+    <article class="card">
+      <h3>② “的” chỉ sở hữu</h3>
+      <p>Đặt giữa thành phần sở hữu và danh từ trung tâm để biểu thị quan hệ sở hữu.</p>
+      <div class="formula">PP + 的 + O</div>
+      <p>我的老师 · <span class="small">Wǒ de lǎoshī · giáo viên của tôi</span></p>
+      <p>你的名字 · <span class="small">Nǐ de míngzi · tên của bạn</span></p>
+      <div class="note">📌 Sau đại từ nhân xưng, nếu sau đó là từ chỉ quan hệ họ hàng hoặc danh từ chỉ người, “的” có thể được lược bỏ: 我妈妈、我老师、我学生、你同学.</div>
+    </article>
+
+    <article class="card">
+      <h3>③ Câu hỏi với “吗”</h3>
+      <p><b>吗</b> đứng cuối câu để tạo câu hỏi có/không.</p>
+      <div class="formula">Câu khẳng định + 吗？</div>
+      <p>你是老师吗？<br><span class="small">Nǐ shì lǎoshī ma? · Bạn là giáo viên phải không?</span></p>
+      <p><b>是 / 是的</b> → trả lời khẳng định<br><b>不 / 不是</b> → trả lời phủ định</p>
+    </article>
+  </div>
+
+  <div class="card activity">
+    <h3>🧠 Luyện tập ngữ pháp</h3>
+    <div class="quiz" id="grammarQuiz">
+      <p><b>1.</b> “我___中国人。”</p>
+      <label><input type="radio" name="q1" value="a"> 的</label>
+      <label><input type="radio" name="q1" value="b"> 是</label>
+      <label><input type="radio" name="q1" value="c"> 吗</label>
+
+      <p><b>2.</b> “这是___中文老师。”</p>
+      <label><input type="radio" name="q2" value="a"> 我</label>
+      <label><input type="radio" name="q2" value="b"> 我的</label>
+      <label><input type="radio" name="q2" value="c"> 我是</label>
+
+      <p><b>3.</b> Câu “你是老师___？” cần điền:</p>
+      <label><input type="radio" name="q3" value="a"> 的</label>
+      <label><input type="radio" name="q3" value="b"> 是</label>
+      <label><input type="radio" name="q3" value="c"> 吗</label>
+    </div>
+    <button class="btn" onclick="checkGrammar()">Chấm điểm</button>
+    <div class="feedback" id="grammarFeedback"></div>
+  </div>
+</section>
+
+<section id="hoithoai" class="section">
+  <div class="section-head"><div><h2>🗣️ Hội thoại</h2><p>Có sẵn vị trí để gắn file nghe sau.</p></div></div>
+
+  <div class="card">
+    <h3>课文 1 · Bài khóa 1</h3>
+    <div class="dialogue">
+      <div>
+        <div class="line a"><div class="speaker">A · 李文 Lǐ Wén</div><div class="zhbig">我是中国人。</div><div class="pinyin">Wǒ shì Zhōngguó rén.</div><button class="audio" onclick="speak('我是中国人。')">🔊 Nghe</button></div>
+        <div class="line b"><div class="speaker">B · 白家月 Bái Jiāyuè</div><div class="zhbig">我是法国人。</div><div class="pinyin">Wǒ shì Fǎguó rén.</div><button class="audio" onclick="speak('我是法国人。')">🔊 Nghe</button></div>
+      </div>
+      <div>
+        <div class="line a"><div class="speaker">A</div><div class="zhbig">我的中文老师也是中国人。</div><div class="pinyin">Wǒ de Zhōngwén lǎoshī yě shì Zhōngguó rén.</div><button class="audio" onclick="speak('我的中文老师也是中国人。')">🔊 Nghe</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:18px">
+    <h3>课文 2 · Bài khóa 2</h3>
+    <div class="dialogue">
+      <div>
+        <div class="line a"><div class="speaker">陈天中 Chén Tiānzhōng</div><div class="zhbig">这是我女朋友。</div><div class="pinyin">Zhè shì wǒ nǚpéngyou.</div><button class="audio" onclick="speak('这是我女朋友。')">🔊 Nghe</button></div>
+        <div class="line b"><div class="speaker">安妮 Ānní</div><div class="zhbig">这是谁？</div><div class="pinyin">Zhè shì shuí?</div><button class="audio" onclick="speak('这是谁？')">🔊 Nghe</button></div>
+      </div>
+      <div>
+        <div class="line a"><div class="speaker">陈天中</div><div class="zhbig">她也是泰国人。</div><div class="pinyin">Tā yě shì Tàiguó rén.</div><button class="audio" onclick="speak('她也是泰国人。')">🔊 Nghe</button></div>
+        <div class="line b"><div class="speaker">安妮</div><div class="zhbig">你女朋友是哪国人？</div><div class="pinyin">Nǐ nǚpéngyou shì nǎ guó rén?</div><button class="audio" onclick="speak('你女朋友是哪国人？')">🔊 Nghe</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:18px">
+    <h3>课文 3 · Bài khóa 3</h3>
+    <div class="dialogue">
+      <div>
+        <div class="line a"><div class="speaker">王一雪 Wáng Yīxuě</div><div class="zhbig">喂，一飞！</div><div class="pinyin">Wèi, Yīfēi!</div><button class="audio" onclick="speak('喂，一飞！')">🔊 Nghe</button></div>
+        <div class="line a"><div class="speaker">王一飞 Wáng Yīfēi</div><div class="zhbig">姐姐！</div><div class="pinyin">Jiějie!</div><button class="audio" onclick="speak('姐姐！')">🔊 Nghe</button></div>
+        <div class="line a"><div class="speaker">王一雪</div><div class="zhbig">你工作还忙吗？</div><div class="pinyin">Nǐ gōngzuò hái máng ma?</div><button class="audio" onclick="speak('你工作还忙吗？')">🔊 Nghe</button></div>
+      </div>
+      <div>
+        <div class="line b"><div class="speaker">王一飞</div><div class="zhbig">对，还很忙。你也很忙吗？</div><div class="pinyin">Duì, hái hěn máng. Nǐ yě hěn máng ma?</div><button class="audio" onclick="speak('对，还很忙。你也很忙吗？')">🔊 Nghe</button></div>
+        <div class="line a"><div class="speaker">王一雪</div><div class="zhbig">我不太忙。我们很想你。</div><div class="pinyin">Wǒ bú tài máng. Wǒmen hěn xiǎng nǐ.</div><button class="audio" onclick="speak('我不太忙。我们很想你。')">🔊 Nghe</button></div>
+        <div class="line b"><div class="speaker">王一飞</div><div class="zhbig">我也想你们。</div><div class="pinyin">Wǒ yě xiǎng nǐ men.</div><button class="audio" onclick="speak('我也想你们。')">🔊 Nghe</button></div>
+      </div>
+    </div>
+    <div class="note">🎧 Khi có file nghe, đổi đường dẫn trong phần <b>AUDIO FILES</b> ở cuối file. Hiện nút 🔊 dùng giọng đọc của trình duyệt để trang vẫn hoạt động ngay cả khi chưa upload MP3.</div>
+  </div>
+</section>
+
+<section id="luyentap" class="section">
+  <div class="section-head"><div><h2>✍️ Luyện tập hội thoại</h2><p>Cho học viên luyện nói theo cặp.</p></div></div>
+  <div class="grid">
+    <div class="card"><span class="badge">课文 1</span><h3>Nhìn tranh & nói</h3><p><b>这是谁？</b></p><p>Gợi ý: 这是我的中文老师。</p><button class="audio" onclick="speak('这是谁？这是我的中文老师。')">🔊 Nghe mẫu</button></div>
+    <div class="card"><span class="badge">课文 2</span><h3>Hỏi quốc tịch</h3><p><b>这是 XXX。XXX 是哪国人？</b></p><p>Gợi ý: XXX 是泰国人。</p><button class="audio" onclick="speak('这是安妮。安妮是哪国人？她是泰国人。')">🔊 Nghe mẫu</button></div>
+    <div class="card"><span class="badge">课文 3</span><h3>Đóng vai</h3><p>A: 喂，一飞！<br>B: 姐姐！<br>A: 你工作还忙吗？</p><p>Đổi vai và đọc lại toàn bộ hội thoại.</p></div>
+    <div class="card"><span class="badge">挑战</span><h3>Điền từ</h3>
+      <div class="fill">你工作忙<input id="fill1">？</div>
+      <div class="fill" style="margin-top:10px">我很<input id="fill2">你们。</div>
+      <div class="fill" style="margin-top:10px">你是<input id="fill3">国人？</div>
+      <button class="btn" style="margin-top:12px" onclick="checkFill()">Kiểm tra</button>
+      <div class="feedback" id="fillFeedback"></div>
+    </div>
+  </div>
+  <div class="card activity">
+    <h3>🗣️ 跟读绕口令 · Luyện đọc</h3>
+    <p class="zhbig">四是四，十是十。</p>
+    <p class="pinyin">Sì shì sì, shí shì shí.</p>
+    <p>Bốn vẫn là bốn. Mười vẫn là mười.</p>
+    <p class="zhbig">十四是十四，四十是四十。</p>
+    <p class="pinyin">Shí sì shì shí sì, sì shí shì sì shí.</p>
+    <p>Mười bốn vẫn là mười bốn. Bốn mươi vẫn là bốn mươi.</p>
+    <button class="audio" onclick="speak('四是四，十是十。十四是十四，四十是四十。')">🔊 Nghe mẫu</button>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">🐾 Tiếng Trung Meowmeow · Bài 3 · 我是中国人<br><span class="small">Nội dung triển khai theo tài liệu PDF được cung cấp.</span></div>
+</footer>
+<a class="backtop" href="#">↑</a>
+
+<script>
+/* =========================
+   AUDIO FILES
+   Khi có MP3, có thể thay các nút speak() bằng <audio controls src="audio/ten-file.mp3"></audio>.
+   Gợi ý tên file:
+   audio/bai3-khoavan1.mp3
+   audio/bai3-khoavan2.mp3
+   audio/bai3-khoavan3.mp3
+========================= */
+
+function speak(text){
+  if(!('speechSynthesis' in window)){
+    alert('Trình duyệt này chưa hỗ trợ đọc tiếng Trung.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='zh-CN'; u.rate=.78;
+  speechSynthesis.speak(u);
+}
+
+const matchData=[
+  ['人','người, con người'],['这','đây, này'],['谁','ai'],
+  ['女朋友','bạn gái'],['哪','nào, đâu'],['忙','bận'],
+  ['想','nhớ'],['姐姐','chị gái']
+];
+let matchState={left:null, right:null};
+function resetMatch(){
+  matchState={left:null,right:null};
+  const left=[...matchData].sort(()=>Math.random()-.5);
+  const right=[...matchData].sort(()=>Math.random()-.5);
+  const area=document.getElementById('matchArea');
+  area.innerHTML='';
+  const l=document.createElement('div'), r=document.createElement('div');
+  left.forEach(x=>{let b=document.createElement('button');b.textContent=x[0];b.dataset.key=x[0];b.onclick=()=>choose('left',b);l.appendChild(b)});
+  right.forEach(x=>{let b=document.createElement('button');b.textContent=x[1];b.dataset.key=x[0];b.onclick=()=>choose('right',b);r.appendChild(b)});
+  area.append(l,r);
+  document.getElementById('matchFeedback').textContent='';
+}
+function choose(side,b){
+  document.querySelectorAll('#matchArea button').forEach(x=>{if(x.parentElement===b.parentElement)x.classList.remove('selected')});
+  b.classList.add('selected'); matchState[side]=b.dataset.key;
+  if(matchState.left&&matchState.right){
+    if(matchState.left===matchState.right){
+      document.getElementById('matchFeedback').textContent='✅ Chính xác!';
+      document.getElementById('matchFeedback').style.color='#39765b';
+      b.disabled=true;
+      document.querySelectorAll('#matchArea button').forEach(x=>{if(x.dataset.key===matchState.left)x.disabled=true});
+    }else{
+      document.getElementById('matchFeedback').textContent='❌ Chưa đúng, thử lại nhé!';
+      document.getElementById('matchFeedback').style.color='#a44b63';
+    }
+    matchState={left:null,right:null};
+  }
+}
+resetMatch();
+
+const sorts=[
+  {words:['我是','中国人。'],answer:'我是中国人。'},
+  {words:['她是','我女朋友。'],answer:'她是我女朋友。'},
+  {words:['你','是哪国人？'],answer:'你是哪国人？'},
+  {words:['我不太忙。','我们','很想你。'],answer:'我不太忙。我们很想你。'}
+];
+let currentSort=null, chosen=[];
+function newSort(){
+  currentSort=sorts[Math.floor(Math.random()*sorts.length)];
+  chosen=[];
+  const box=document.getElementById('sortWords'); box.innerHTML='';
+  [...currentSort.words].sort(()=>Math.random()-.5).forEach((w,i)=>{
+    const b=document.createElement('button');b.className='word';b.textContent=w;
+    b.onclick=()=>{if(b.disabled)return;chosen.push(w);b.disabled=true;b.style.opacity=.5;document.getElementById('sentence').textContent=chosen.join('')};
+    box.appendChild(b);
+  });
+  document.getElementById('sentence').textContent='';
+  document.getElementById('sortFeedback').textContent='';
+}
+function checkSort(){
+  const ok=chosen.join('')===currentSort.answer;
+  document.getElementById('sortFeedback').textContent=ok?'✅ Đúng rồi!':'❌ Chưa đúng, thử sắp xếp lại.';
+  document.getElementById('sortFeedback').style.color=ok?'#39765b':'#a44b63';
+}
+newSort();
+
+function checkGrammar(){
+  const ans={q1:'b',q2:'b',q3:'c'};let score=0;
+  Object.keys(ans).forEach(q=>{const x=document.querySelector('input[name="'+q+'"]:checked');if(x&&x.value===ans[q])score++});
+  const f=document.getElementById('grammarFeedback');
+  f.textContent='Bạn đúng '+score+'/3 câu '+(score===3?'🎉':'— xem lại phần ngữ pháp rồi thử lại nhé!');
+  f.style.color=score===3?'#39765b':'#a44b63';
+}
+function checkFill(){
+  const a=document.getElementById('fill1').value.trim();
+  const b=document.getElementById('fill2').value.trim();
+  const c=document.getElementById('fill3').value.trim();
+  let score=(a==='吗'?1:0)+(b==='想'?1:0)+(c==='哪'?1:0);
+  const f=document.getElementById('fillFeedback');
+  f.textContent='Bạn đúng '+score+'/3 câu. Đáp án: 吗 · 想 · 哪';
+  f.style.color=score===3?'#39765b':'#a44b63';
+}
+</script>
+</body>
+</html>
