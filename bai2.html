@@ -1,87 +1,280 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bài 2 · 我叫李文 — Tiếng Trung</title>
+<title>Tiếng Trung Meowmeow · Bài 2 · 我叫李文</title>
 <style>
 :root{
-  --red:#c8102e; --red2:#e63946; --gold:#e7b94a; --green:#2a9d8f;
-  --ink:#2b2118; --muted:#777; --paper:#fff; --bg:#fff7f0;
-  --shadow:0 6px 18px rgba(0,0,0,.10);
+  --bg:#fff8f5;
+  --paper:#fff;
+  --ink:#352b35;
+  --muted:#756a74;
+  --pink:#f5a8b8;
+  --pink2:#ffe3e9;
+  --purple:#8f79a8;
+  --purple2:#eee8f6;
+  --yellow:#f8d98b;
+  --green:#a8d8c0;
+  --line:#eadde3;
+  --shadow:0 12px 32px rgba(91,65,86,.10);
+  --radius:22px;
 }
 *{box-sizing:border-box}
-body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,"Microsoft YaHei",sans-serif;
-background:linear-gradient(135deg,#fff7f0,#fffdf8);color:var(--ink);line-height:1.65}
-.wrap{max-width:1180px;margin:auto;padding:0 16px 60px}
-header{background:linear-gradient(135deg,#c8102e,#e63946 55%,#f4a261);color:#fff;
-padding:34px 16px 28px;text-align:center;box-shadow:0 6px 24px rgba(200,16,46,.22)}
-header h1{font-size:2.4rem;margin:0 0 6px;letter-spacing:1px}
-header p{margin:0;opacity:.95}
-nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;background:#fff;
-padding:12px;border-radius:0 0 18px 18px;box-shadow:0 4px 14px rgba(0,0,0,.08);
-position:sticky;top:0;z-index:50}
-nav button,.btn{border:2px solid #c8102e;background:#fff;color:#c8102e;padding:9px 16px;
-border-radius:30px;font-weight:700;cursor:pointer;transition:.2s}
-nav button:hover,.btn:hover{transform:translateY(-2px)}
-nav button.active{background:#c8102e;color:#fff}
-section{display:none;animation:fade .3s}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:"Be Vietnam Pro","Noto Sans","Noto Sans SC",Arial,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.65;
+}
+button,input,select{font:inherit}
+.wrap{max-width:1180px;margin:auto;padding:0 18px 70px}
+header{
+  background:linear-gradient(135deg,#fff,#fff0f3 55%,#f2ecf8);
+  color:var(--ink);
+  padding:42px 18px 34px;
+  text-align:center;
+  border-bottom:1px solid var(--line);
+  box-shadow:var(--shadow);
+}
+header h1{
+  font-family:"Noto Serif SC","Noto Sans SC","Be Vietnam Pro",serif;
+  font-size:clamp(2rem,5vw,3rem);
+  margin:0 0 8px;
+  letter-spacing:.6px;
+  font-weight:700;
+  color:#403542;
+  line-height:1.3;
+}
+header p{margin:0;color:var(--muted)}
+nav{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  justify-content:center;
+  background:rgba(255,255,255,.96);
+  padding:12px;
+  box-shadow:0 3px 15px rgba(91,65,86,.08);
+  position:sticky;
+  top:0;
+  z-index:50;
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+nav button,.btn{
+  border:1px solid var(--line);
+  background:#fff;
+  color:var(--purple);
+  padding:9px 15px;
+  border-radius:999px;
+  font-weight:800;
+  cursor:pointer;
+  transition:.2s;
+}
+nav button:hover,.btn:hover{
+  transform:translateY(-2px);
+  background:var(--pink2);
+  border-color:#e7b7c3;
+}
+nav button.active,.btn{
+  background:var(--purple);
+  color:#fff;
+  border-color:var(--purple);
+}
+section{display:none;animation:fade .35s}
 section.show{display:block}
-@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-h2{text-align:center;margin:32px 0 6px;font-size:1.9rem;color:#c8102e}
-.sub{text-align:center;color:#7a6a5a;margin-bottom:22px}
-.card{background:#fff;border-radius:18px;padding:20px;margin:16px 0;box-shadow:var(--shadow)}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+h2{
+  text-align:center;
+  margin:32px 0 6px;
+  font-family:"Playfair Display","Noto Serif SC","Be Vietnam Pro",serif;
+  font-size:2rem;
+  color:var(--purple);
+  font-weight:700;
+}
+h3{
+  margin:18px 0 8px;
+  color:#403542;
+  font-family:"Playfair Display","Noto Serif SC","Be Vietnam Pro",serif;
+  font-weight:700;
+}
+h4{color:#5b4c62}
+.sub{text-align:center;color:var(--muted);margin-bottom:22px}
+.card{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:20px;
+  margin:16px 0;
+  box-shadow:0 8px 22px rgba(91,65,86,.06);
+}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
 .fc{perspective:1000px;height:245px;cursor:pointer}
 .fc-in{position:relative;width:100%;height:100%;transition:transform .6s;transform-style:preserve-3d}
 .fc.flip .fc-in{transform:rotateY(180deg)}
-.fc-f,.fc-b{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;
-display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px;
-text-align:center;box-shadow:var(--shadow)}
-.fc-f{background:#fff;border:3px solid #c8102e}
-.fc-b{background:linear-gradient(160deg,#fff3e6,#ffe1cc);color:#2b2118;transform:rotateY(180deg)}
-.hz{font-size:2.1rem;font-weight:800}
-.py{color:#2a9d8f;font-size:.95rem}
-.fc-b .py{color:#2a9d8f;font-weight:700}
+.fc-f,.fc-b{
+  position:absolute;
+  inset:0;
+  backface-visibility:hidden;
+  border-radius:var(--radius);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:14px;
+  text-align:center;
+  box-shadow:0 8px 22px rgba(91,65,86,.06);
+  border:1px solid var(--line);
+}
+.fc-f{background:linear-gradient(145deg,#fff,#fff4f6)}
+.fc-b{
+  background:linear-gradient(145deg,#8f79a8,#aa95bd);
+  color:#fff;
+  transform:rotateY(180deg);
+}
+.hz{
+  font-family:"Noto Serif SC","Noto Sans SC","Be Vietnam Pro",serif;
+  font-size:2.3rem;
+  font-weight:800;
+  color:#3e3440;
+}
+.py{color:var(--purple);font-size:.95rem;font-weight:700}
+.fc-b .hz{color:#fff}
+.fc-b .py{color:#f8edf3}
 .emo{font-size:2.8rem}
-.spk{border:0;border-radius:50%;width:38px;height:38px;cursor:pointer;background:#fff;
-box-shadow:0 2px 8px rgba(0,0,0,.12);font-size:1rem}
-.tag{display:inline-block;background:#fff0d7;padding:3px 9px;border-radius:12px;color:#9a5b00;font-size:.82rem}
-.table{width:100%;border-collapse:collapse}
-.table th,.table td{padding:10px 12px;text-align:left;border-bottom:1px solid #eee}
-.table th{background:#c8102e;color:#fff}
-.note{background:#fff9e6;border-left:5px solid var(--gold);padding:12px 14px;border-radius:8px;margin:10px 0}
+.spk{
+  border:0;
+  border-radius:50%;
+  width:38px;
+  height:38px;
+  cursor:pointer;
+  background:var(--purple);
+  color:#fff;
+  box-shadow:0 2px 8px rgba(91,65,86,.12);
+  font-size:1rem;
+}
+.spk:hover{transform:scale(1.05);background:#735d8c}
+.tag{
+  display:inline-block;
+  background:var(--purple2);
+  padding:3px 10px;
+  border-radius:999px;
+  color:#715f83;
+  font-size:.78rem;
+  font-weight:800;
+}
+.table{width:100%;border-collapse:collapse;margin-top:10px;background:#fff;border-radius:14px;overflow:hidden}
+.table th,.table td{padding:10px 12px;text-align:left;border-bottom:1px solid #f0e5e9}
+.table th{background:var(--purple);color:#fff;font-weight:800}
+.table tr:hover td{background:#fff7f9}
+.note{
+  background:#fff7df;
+  border-left:5px solid var(--yellow);
+  padding:12px 14px;
+  border-radius:10px;
+  margin:10px 0;
+}
+
+.vcard{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:0 8px 22px rgba(91,65,86,.06);
+  padding:16px;
+  border-top:6px solid var(--pink);
+  transition:.2s;
+}
+.vcard:hover{transform:translateY(-4px)}
+.vhead{display:flex;align-items:center;gap:10px}
+.vhead .emo{
+  font-size:2.4rem;
+  background:var(--pink2);
+  border-radius:18px;
+  width:64px;
+  height:64px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:none;
+}
+.vhead .hz{font-size:2.2rem}
+.vmeta{margin-top:8px}
+.vmeaning{margin-top:7px}
+.vexample{
+  background:#fff8fa;
+  border-left:4px solid var(--pink);
+  padding:9px 11px;
+  border-radius:10px;
+  margin-top:10px;
+  font-size:.92rem;
+}
+.vexample .py{font-size:.9rem}
+.vvideo{margin-top:10px}
+.vvideo video{width:100%;max-height:170px;border-radius:12px;background:#000}
+
 .dialogue .line{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
-.who{min-width:110px;font-weight:700;color:#c8102e;text-align:right}
-.bubble{background:#fff;border-radius:16px;padding:12px 16px;box-shadow:var(--shadow);flex:1}
-.bubble .zh{font-size:1.3rem}
-.bubble .pin{color:#2a9d8f;font-size:.9rem}
-.bubble .vi{color:#666;font-size:.9rem}
-.roleA .bubble{background:#eef5ff}.roleB .bubble{background:#fff4ec}
+.who{min-width:110px;font-weight:800;color:var(--purple);text-align:right}
+.bubble{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:17px;
+  padding:12px 16px;
+  box-shadow:0 7px 20px rgba(91,65,86,.06);
+  flex:1;
+}
+.bubble .zh{
+  font-family:"Noto Serif SC","Noto Sans SC","Be Vietnam Pro",serif;
+  font-size:1.3rem;
+  font-weight:700;
+}
+.bubble .pin{color:var(--purple);font-size:.9rem}
+.bubble .vi{color:var(--muted);font-size:.9rem}
+.roleA .bubble{background:#fff5f7}
+.roleB .bubble{background:#f4f0f8}
 .chips{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
-.chip{background:#fff;border:2px solid #ddd;padding:9px 13px;border-radius:12px;cursor:pointer}
-.chip:hover{border-color:#c8102e}
-.chip.sel{border-color:#e7b94a;background:#fff9e6}
-.chip.ok{border-color:#2a9d8f;background:#e8f7f3}
-.msg{margin-top:12px;font-weight:700}
-.good{color:#2a9d8f}.bad{color:#d7263d}
-.blank{width:100px;border:0;border-bottom:2px solid #c8102e;background:transparent;
-font-size:1rem;outline:none}
+.chip{
+  background:#fff;
+  border:1px solid var(--line);
+  padding:10px 14px;
+  border-radius:14px;
+  cursor:pointer;
+  font-weight:700;
+}
+.chip:hover{border-color:var(--pink);background:var(--pink2)}
+.chip.sel{border-color:var(--pink);background:var(--pink2)}
+.chip.ok{border-color:var(--green);background:#e3f4ed;color:#4e836c}
+.msg{margin-top:12px;font-weight:800}
+.good{color:#4e836c}.bad{color:#b95d6f}
+.blank{
+  width:100px;
+  border:0;
+  border-bottom:2px solid var(--purple);
+  background:transparent;
+  font-size:1rem;
+  outline:none;
+}
 .lesson-title{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.pill{background:#c8102e;color:#fff;border-radius:20px;padding:4px 10px;font-size:.8rem}
-.example{background:rgba(255,255,255,.72);padding:12px 15px;border-radius:12px;margin:10px 0}
+.pill{background:var(--purple);color:#fff;border-radius:999px;padding:4px 11px;font-size:.8rem}
+.example{background:#fff8fa;padding:12px 15px;border-radius:14px;margin:10px 0;border-left:4px solid var(--pink)}
 .controls{text-align:center;margin:14px 0}
-select{padding:8px;border-radius:8px;border:1px solid #ccc}
-footer{text-align:center;color:#888;padding:24px;font-size:.85rem}
+select{padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--ink)}
+footer{text-align:center;color:#8b7f88;padding:24px;font-size:.85rem;border-top:1px solid var(--line)}
+input[type="radio"]{accent-color:var(--purple)}
+ul,ol{color:var(--muted)}
 @media(max-width:600px){
- .who{min-width:70px;font-size:.8rem} header h1{font-size:1.6rem}
- .fc{height:220px}
+  .who{min-width:70px;font-size:.8rem}
+  header h1{font-size:1.7rem}
+  .fc{height:220px}
+  .wrap{padding-left:14px;padding-right:14px}
 }
 </style>
 </head>
 <body>
 <header>
-  <h1>📚 我叫李文 · Bài 2</h1>
+  <h1>📚 Tiếng Trung Meowmeow · 第2课 我叫李文</h1>
   <p>Ngữ âm · Bài khóa 1 · Bài khóa 2 · Bài khóa 3 · Luyện tập · 小语的彩蛋</p>
 </header>
 
@@ -285,7 +478,7 @@ footer{text-align:center;color:#888;padding:24px;font-size:.85rem}
 </div>
 </section>
 
-<footer>我叫李文 · Bài học tiếng Trung tương tác</footer>
+<footer>Tiếng Trung Meowmeow · 第2课 我叫李文</footer>
 </div>
 
 <script>
@@ -323,17 +516,36 @@ const VOCAB=[
 ];
 
 document.getElementById('vocabGrid').innerHTML=VOCAB.map((v,i)=>`
-<div class="fc" onclick="this.classList.toggle('flip')">
- <div class="fc-in">
-  <div class="fc-f"><div class="emo">${v.emo}</div><div class="hz">${v.hz}</div><div class="py">${v.py}</div>
-   <button class="spk" onclick="event.stopPropagation();speak('${v.hz}')">🔊</button>
+<div class="vcard">
+  <div class="vhead">
+    <div class="emo">${v.emo}</div>
+    <div>
+      <div class="hz">${v.hz}</div>
+      <div class="py">${v.py}</div>
+    </div>
+    <button class="spk" style="margin-left:auto" onclick="speak('${v.hz}')">🔊</button>
   </div>
-  <div class="fc-b"><div class="hz">${v.hz}</div><div>${v.mean}</div><div class="py">${v.py}</div>
-   <div class="example"><b>例:</b> ${v.ex}<br><span class="py">${v.exp}</span><br>${v.exv}
-   ${(v.videoData || v.video) ? `<div style="margin-top:10px"><video controls playsinline style="width:100%;max-height:150px;border-radius:12px;background:#000" onclick="event.stopPropagation()"><source src="${v.videoData ? `data:video/mp4;base64,${v.videoData}` : v.video}" type="video/mp4"></video></div>` : ''}
-   </div>
+
+  <div class="vmeta">
+    <span class="tag">${v.pos}</span>
   </div>
- </div>
+
+  <div class="vmeaning">
+    <b>Nghĩa:</b> ${v.mean}
+  </div>
+
+  <div class="vexample">
+    <b>例:</b> ${v.ex}<br>
+    <span class="py">${v.exp}</span><br>
+    <span style="color:var(--muted)">${v.exv}</span>
+    <button class="spk" style="width:26px;height:26px;font-size:.8rem;float:right" onclick="speak('${v.ex}')">🔊</button>
+    ${(v.videoData || v.video) ? `
+      <div class="vvideo">
+        <video controls playsinline onclick="event.stopPropagation()">
+          <source src="${v.videoData ? `data:video/mp4;base64,${v.videoData}` : v.video}" type="video/mp4">
+        </video>
+      </div>` : ''}
+  </div>
 </div>`).join('');
 
 const D1=[
