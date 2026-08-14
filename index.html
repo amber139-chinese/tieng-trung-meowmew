@@ -39,19 +39,12 @@
 }
 
 .quote-card img{
-  width:150px;
-  height:190px;
-
+  width:130px;
+  height:180px;
   object-fit:cover;
   object-position:center;
-
-  flex:none;
-
   border-radius:16px;
-  border:2px solid rgba(79,145,168,.20);
 
-  box-shadow:
-    0 8px 22px rgba(55,110,125,.12);
 }
 
 .quote-text{
@@ -70,13 +63,14 @@
     "PingFang SC",
     serif;
 
-  font-size:1.02rem;
+  font-size:1.05rem;
   font-weight:600;
   line-height:1.8;
-
   color:#33464D;
 
-  white-space:nowrap;
+  white-space:normal;
+  word-break:keep-all;
+  overflow-wrap:break-word;
 }
 
 .quote-vi{
@@ -88,16 +82,14 @@
     Arial,
     sans-serif;
 
-  font-size:.94rem;
+  font-size:.96rem;
   font-weight:400;
   line-height:1.75;
-
   color:#596A70;
 
-  white-space:nowrap;
+  white-space:normal;
+  overflow-wrap:break-word;
 }
-
-@media(max-width:760px){
 
   .illustration.quote-card{
     flex-direction:column;
@@ -1009,7 +1001,7 @@ nav a,
 
   <div class="illustration quote-card">
 
-  <img src="tuan-tu.png" alt="Tuân Tử">
+  <img src="tuantu.png" alt="Tuân Tử">
 
   <div class="quote-text">
 
