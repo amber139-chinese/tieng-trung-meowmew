@@ -15,6 +15,101 @@
 
 <style>
 
+   /* =========================
+   TUÂN TỬ - TRÍCH DẪN
+========================= */
+
+.illustration.quote-card{
+  min-height:260px;
+  padding:18px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  text-align:left;
+
+  background:linear-gradient(
+    145deg,
+    #EAF6F8,
+    #F7FCFD
+  );
+
+  border:2px solid #D0EAF0;
+  overflow:hidden;
+}
+
+.quote-card img{
+  width:150px;
+  height:190px;
+
+  object-fit:cover;
+  object-position:center;
+
+  flex:none;
+
+  border-radius:16px;
+  border:2px solid rgba(79,145,168,.20);
+
+  box-shadow:
+    0 8px 22px rgba(55,110,125,.12);
+}
+
+.quote-text{
+  min-width:0;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.quote-zh{
+  font-family:
+    "Noto Serif SC",
+    "Noto Sans SC",
+    "Microsoft YaHei",
+    "PingFang SC",
+    serif;
+
+  font-size:1.02rem;
+  font-weight:600;
+  line-height:1.8;
+
+  color:#33464D;
+
+  white-space:nowrap;
+}
+
+.quote-vi{
+  margin-top:8px;
+
+  font-family:
+    "Be Vietnam Pro",
+    "Noto Sans",
+    Arial,
+    sans-serif;
+
+  font-size:.94rem;
+  font-weight:400;
+  line-height:1.75;
+
+  color:#596A70;
+
+  white-space:nowrap;
+}
+
+@media(max-width:760px){
+
+  .illustration.quote-card{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .quote-zh,
+  .quote-vi{
+    white-space:normal;
+  }
+
+}
 /* =========================
    MÀU CHỦ ĐẠO
 ========================= */
@@ -912,19 +1007,23 @@ nav a,
     </div>
 
 
-    <div class="illustration">
+  <div class="illustration quote-card">
 
-      📚
+  <img src="tuan-tu.png" alt="Tuân Tử">
 
-      <span style="font-size:1.2rem;margin-left:12px">
-       不积跬步，无以至千里；不积小流，无以成江海 
-         Không tích lũy bước nhỏ thì không thể đi đến ngàn dặm, 
-         không góp dòng nước nhỏ thì không thể thành sông biển...
-      </span>
+  <div class="quote-text">
 
+    <div class="quote-zh">
+      不积跬步，无以至千里；不积小流，无以成江海
+    </div>
+
+    <div class="quote-vi">
+      Không tích lũy bước nhỏ thì không thể đi đến ngàn dặm, không góp dòng nước nhỏ thì không thể thành sông biển.
     </div>
 
   </div>
+
+</div>
 
 
   <!-- THÔNG TIN GIÁO VIÊN -->
@@ -1387,7 +1486,7 @@ nav a,
 <section class="section" id="quy-dinh">
 
   <h2>
-    📌 Lưu ý cho học viên
+    Lưu ý cho học viên
   </h2>
 
 
