@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -68,75 +69,58 @@ body{
 }
 
 
+
 /* =========================
-   HEADER
+   HEADER TYPOGRAPHY FIX
 ========================= */
-
 header{
-  padding:85px 20px 75px;
-
+  padding:72px 20px 64px;
   text-align:center;
-
   color:#fff;
-
-  background:
-    linear-gradient(
-      135deg,
-      #5F9FB5,
-      #7DBDCC,
-      #A9D9E1
-    );
-
+  background:linear-gradient(135deg,#5F9FB5,#7DBDCC,#A9D9E1);
   box-shadow:var(--shadow);
 }
 
-.brand{
+header .brand{
   display:inline-block;
-
   padding:7px 16px;
-
   margin-bottom:18px;
-
   border:1px solid rgba(255,255,255,.45);
-
   border-radius:999px;
-
   background:rgba(255,255,255,.14);
-
-  font-size:.82rem;
-
+  font-family:"Be Vietnam Pro","Arial",sans-serif;
+  font-size:.86rem;
   font-weight:600;
-
-  letter-spacing:.5px;
+  letter-spacing:.2px;
+  line-height:1.4;
 }
 
 header h1{
-  margin:0;
-
-  font-family:
-    "Noto Serif SC",
-    "Playfair Display",
-    serif;
-
-  font-size:clamp(2.1rem,5vw,3.8rem);
-
-  font-weight:500;
-
-  letter-spacing:1px;
-
+  display:block;
+  visibility:visible;
+  opacity:1;
+  margin:0 auto;
+  max-width:980px;
+  color:#fff;
+  font-family:"Noto Serif SC","Noto Sans SC","Microsoft YaHei","PingFang SC","Hiragino Sans GB",serif;
+  font-size:clamp(2rem,4.2vw,3.5rem);
+  font-weight:600;
+  letter-spacing:.5px;
   line-height:1.35;
+  text-rendering:optimizeLegibility;
 }
 
 header .sub{
+  display:block;
+  visibility:visible;
+  opacity:1;
   max-width:760px;
-
   margin:18px auto 0;
-
-  color:rgba(255,255,255,.95);
-
+  color:rgba(255,255,255,.96);
+  font-family:"Be Vietnam Pro","Arial",sans-serif;
   font-size:1rem;
-
   font-weight:400;
+  line-height:1.7;
 }
 
 
@@ -182,7 +166,7 @@ nav a{
 
   border-radius:999px;
 
-  font-size:.88rem;
+  font-size:.96rem;
 
   font-weight:600;
 
@@ -242,7 +226,7 @@ nav a:hover{
 
   color:var(--muted);
 
-  font-size:.98rem;
+  font-size:1rem;
 }
 
 
@@ -342,7 +326,7 @@ nav a:hover{
 
   padding:4px 11px;
 
-  font-size:.75rem;
+  font-size:.8rem;
 
   font-weight:600;
 
@@ -397,7 +381,7 @@ nav a:hover{
 
   color:var(--muted);
 
-  font-size:.9rem;
+  font-size:.96rem;
 }
 
 
@@ -502,7 +486,7 @@ nav a:hover{
 
   margin:0 0 18px;
 
-  font-size:.92rem;
+  font-size:.96rem;
 }
 
 .course-btn{
@@ -518,7 +502,7 @@ nav a:hover{
 
   border-radius:999px;
 
-  font-size:.88rem;
+  font-size:.96rem;
 
   font-weight:600;
 
@@ -593,7 +577,7 @@ nav a:hover{
 
   color:var(--muted);
 
-  font-size:.92rem;
+  font-size:.96rem;
 }
 
 .teacher-info a{
@@ -643,7 +627,7 @@ nav a:hover{
 
   color:#829399;
 
-  font-size:.82rem;
+  font-size:.88rem;
 
   padding-top:35px;
 }
@@ -692,6 +676,142 @@ nav a:hover{
 
 }
 
+
+/* =========================
+   FOLDER / HSK1 3.0
+========================= */
+
+.folder-list{
+  max-width:1000px;
+  margin:0 auto;
+}
+
+.folder-card{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding:22px 24px;
+  background:#fff;
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  border:1px solid transparent;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.folder-card:hover{
+  transform:translateY(-3px);
+  border-color:#B8DDE5;
+  box-shadow:0 14px 35px rgba(55,110,125,.14);
+}
+
+.folder-left{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.folder-icon{
+  width:68px;
+  height:68px;
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--blue-light);
+  font-size:2.2rem;
+  flex:none;
+}
+
+.folder-card h3{
+  margin:0;
+  font-family:"Playfair Display",serif;
+  color:#33464D;
+  font-size:1.25rem;
+}
+
+.folder-name{
+  margin-top:4px;
+  color:var(--blue-dark);
+  font-family:"Noto Serif SC",serif;
+  font-weight:600;
+}
+
+.folder-card p{
+  margin:4px 0 0;
+  color:var(--muted);
+  font-size:.88rem;
+}
+
+.folder-arrow{
+  color:var(--blue-dark);
+  font-size:1rem;
+  transition:.25s;
+  flex:none;
+}
+
+.folder-card.open .folder-arrow{
+  transform:rotate(180deg);
+}
+
+.lesson-panel{
+  display:none;
+  margin-top:18px;
+  padding:20px;
+  border-radius:22px;
+  background:#F7FCFD;
+  border:1px solid #D6EBEF;
+}
+
+.lesson-panel.open{
+  display:block;
+}
+
+.lesson-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+}
+
+@media(max-width:760px){
+  .lesson-grid{
+    grid-template-columns:1fr;
+  }
+
+  .folder-card{
+    padding:18px;
+  }
+}
+
+
+/* ===== Chỉnh chữ tiếng Việt nhỏ cho dễ đọc ===== */
+.course-desc,
+.info-card p,
+.teacher-info p,
+.lead,
+.hero-card p,
+.rules,
+.folder-card p{
+  font-size:0.96rem;
+  line-height:1.75;
+  letter-spacing:0;
+}
+
+nav a,
+.course-btn{
+  font-size:0.92rem;
+}
+
+.footer{
+  font-size:0.88rem;
+}
+
+.folder-name,
+.course-name{
+  font-size:1.08rem;
+}
+
 </style>
 </head>
 
@@ -714,8 +834,7 @@ nav a:hover{
   </h1>
 
   <p class="sub">
-    Chào mừng đến với lớp học tiếng Trung.
-    Đây là trang giới thiệu chung; các bài học sẽ được thêm dần ở những trang riêng.
+    Chào mừng đến với lớp học tiếng Trung Meow Meowwww 
   </p>
 
 </header>
@@ -774,7 +893,7 @@ nav a:hover{
     <div>
 
       <span class="eyebrow">
-        AI 小语
+      Meow Mewo 课堂
       </span>
 
       <h3>
@@ -787,7 +906,7 @@ nav a:hover{
       </p>
 
       <p>
-        🎯 Mục tiêu: dễ học, dễ ôn và có thể quay lại luyện tập bất cứ lúc nào.
+        Mục tiêu: dễ học, dễ ôn và có thể quay lại luyện tập bất cứ lúc nào.
       </p>
 
     </div>
@@ -798,7 +917,9 @@ nav a:hover{
       📚
 
       <span style="font-size:1.2rem;margin-left:12px">
-        你好 · 学习 · 练习
+       不积跬步，无以至千里；不积小流，无以成江海 
+         Không tích lũy bước nhỏ thì không thể đi đến ngàn dặm, 
+         không góp dòng nước nhỏ thì không thể thành sông biển...
       </span>
 
     </div>
@@ -823,7 +944,7 @@ nav a:hover{
       </span>
 
       <h3>
-        Giáo viên: Nguyen Thu Huong
+        Giáo viên: Nguyễn Thu Hương
       </h3>
 
 
@@ -1055,362 +1176,210 @@ nav a:hover{
   </h2>
 
   <p class="lead">
-    Chọn bài học để bắt đầu.
+    Chọn cấp độ để xem các bài học.
   </p>
 
+  <div class="folder-list">
 
-  <div class="course-grid">
+    <!-- THƯ MỤC HSK1 3.0 -->
+    <div class="folder-card" onclick="toggleFolder('hsk1-folder', this)">
 
+      <div class="folder-left">
 
-    <!-- BÀI 1 -->
+        <div class="folder-icon">
+          📁
+        </div>
 
-    <div class="course-card">
+        <div>
 
+          <h3>
+            HSK1 3.0
+          </h3>
 
-      <div>
-
-        <div class="course-top">
-
-
-          <div class="course-icon">
-            📕
+          <div class="folder-name">
+            汉语教程 · 初级
           </div>
 
+          <p>
+            Bài 1 → Bài 9
+          </p>
 
+        </div>
+
+      </div>
+
+      <div class="folder-arrow">
+        ▼
+      </div>
+
+    </div>
+
+
+    <!-- DANH SÁCH BÀI HỌC -->
+    <div class="lesson-panel" id="hsk1-folder">
+
+      <div class="lesson-grid">
+
+        <!-- BÀI 1 -->
+        <div class="course-card">
           <div>
-
-            <h3>
-              Bài 1
-            </h3>
-
-            <div class="course-name">
-              你好！
+            <div class="course-top">
+              <div class="course-icon">📕</div>
+              <div>
+                <h3>Bài 1</h3>
+                <div class="course-name">你好！</div>
+              </div>
             </div>
-
+            <p class="course-desc">
+              Giới thiệu nội dung Bài 1.
+            </p>
           </div>
-
-
+          <a class="course-btn" href="bai1.html">Vào bài →</a>
         </div>
 
-
-        <p class="course-desc">
-          Giới thiệu nội dung Bài 1 ở đây.
-        </p>
-
-      </div>
-
-
-      <a class="course-btn" href="bai1.html">
-        Vào bài →
-      </a>
-
-
-    </div>
-
-
-
-    <!-- BÀI 2 -->
-
-    <div class="course-card">
-
-
-      <div>
-
-        <div class="course-top">
-
-
-          <div class="course-icon">
-            📗
-          </div>
-
-
+        <!-- BÀI 2 -->
+        <div class="course-card">
           <div>
-
-            <h3>
-              Bài 2
-            </h3>
-
-            <div class="course-name">
-              我叫李文
+            <div class="course-top">
+              <div class="course-icon">📗</div>
+              <div>
+                <h3>Bài 2</h3>
+                <div class="course-name">我叫李文</div>
+              </div>
             </div>
-
+            <p class="course-desc">
+              Hỏi tên, giới thiệu bản thân và cấu trúc cơ bản.
+            </p>
           </div>
-
-
+          <a class="course-btn" href="bai2.html">Vào bài →</a>
         </div>
 
-
-        <p class="course-desc">
-          Giới thiệu nội dung Bài 2 ở đây.
-        </p>
-
-      </div>
-
-
-      <a class="course-btn" href="bai2.html">
-        Vào bài →
-      </a>
-
-
-    </div>
-
-
-  </div>
-
-
-<!-- BÀI 3 -->
-<div class="course-card">
-
-  <div>
-
-    <div class="course-top">
-
-      <div class="course-icon">
-        📘
-      </div>
-
-      <div>
-
-        <h3>
-          Bài 3
-        </h3>
-
-        <div class="course-name">
-          我是中国人
+        <!-- BÀI 3 -->
+        <div class="course-card">
+          <div>
+            <div class="course-top">
+              <div class="course-icon">📘</div>
+              <div>
+                <h3>Bài 3</h3>
+                <div class="course-name">我是中国人</div>
+              </div>
+            </div>
+            <p class="course-desc">
+              Quốc tịch, 是、的、吗 và hội thoại.
+            </p>
+          </div>
+          <a class="course-btn" href="bai3.html">Vào bài →</a>
         </div>
 
-      </div>
-
-    </div>
-
-    <p class="course-desc">
-      Luyện từ vựng, ngữ pháp và hội thoại bài 3.
-    </p>
-
-  </div>
-
-  <a class="course-btn" href="bai3.html">
-    Vào bài →
-  </a>
-
-</div>
-   <!-- BÀI 4 -->
-<div class="course-card">
-
-  <div>
-
-    <div class="course-top">
-
-      <div class="course-icon">
-        📙
-      </div>
-
-      <div>
-
-        <h3>
-          Bài 4
-        </h3>
-
-        <div class="course-name">
-          我有两个孩子
+        <!-- BÀI 4 -->
+        <div class="course-card">
+          <div>
+            <div class="course-top">
+              <div class="course-icon">📙</div>
+              <div>
+                <h3>Bài 4</h3>
+                <div class="course-name">我有两个孩子</div>
+              </div>
+            </div>
+            <p class="course-desc">
+              Gia đình, số lượng và cách hỏi tuổi.
+            </p>
+          </div>
+          <a class="course-btn" href="bai4.html">Vào bài →</a>
         </div>
 
-      </div>
-
-    </div>
-
-    <p class="course-desc">
-      Gia đình, số lượng và cách hỏi tuổi.
-    </p>
-
-  </div>
-
-  <a class="course-btn" href="bai4.html">
-    Vào bài →
-  </a>
-
-</div>
-   <!-- BÀI 5 -->
-<div class="course-card">
-
-  <div>
-
-    <div class="course-top">
-
-      <div class="course-icon">
-        📕
-      </div>
-
-      <div>
-
-        <h3>
-          Bài 5
-        </h3>
-
-        <div class="course-name">
-          今天我休息
+        <!-- BÀI 5 -->
+        <div class="course-card">
+          <div>
+            <div class="course-top">
+              <div class="course-icon">📕</div>
+              <div>
+                <h3>Bài 5</h3>
+                <div class="course-name">今天我休息</div>
+              </div>
+            </div>
+            <p class="course-desc">
+              Ngày tháng, thời gian, 会 và hoạt động hằng ngày.
+            </p>
+          </div>
+          <a class="course-btn" href="bai5.html">Vào bài →</a>
         </div>
 
-      </div>
+        <!-- BÀI 6 -->
+        <div class="course-card">
+          <div>
+            <div class="course-top">
+              <div class="course-icon">📗</div>
+              <div>
+                <h3>Bài 6</h3>
+                <div class="course-name">你的手机号是多少？</div>
+              </div>
+            </div>
+            <p class="course-desc">
+              Số điện thoại, mua sắm và cách hỏi phương thức.
+            </p>
+          </div>
+          <a class="course-btn" href="bai6.html">Vào bài →</a>
+        </div>
 
-    </div>
+        <!-- BÀI 7 -->
+        <div class="course-card">
+          <div>
+            <div class="course-top">
+              <div class="course-icon">📓</div>
+              <div>
+                <h3>Bài 7</h3>
+                <div class="course-name">我晚上六点半下班</div>
+              </div>
+            </div>
+            <p class="course-desc">
+              Cách nói giờ, phút, buổi trong ngày và lịch học.
+            </p>
+          </div>
+          <a class="course-btn" href="bai7.html">Vào bài →</a>
+        </div>
 
-    <p class="course-desc">
-      Ngày tháng, thời gian, 会 và hoạt động hằng ngày.
-    </p>
+        <!-- BÀI 8 -->
+        <div class="course-card">
+          <div>
+            <div class="course-top">
+              <div class="course-icon">📔</div>
+              <div>
+                <h3>Bài 8</h3>
+                <div class="course-name">我爸爸也在医院工作</div>
+              </div>
+            </div>
+            <p class="course-desc">
+              Phương vị, 在、能 và địa điểm làm việc.
+            </p>
+          </div>
+          <a class="course-btn" href="bai8.html">Vào bài →</a>
+        </div>
 
-  </div>
-
-  <a class="course-btn" href="bai5.html">
-    Vào bài →
-  </a>
-
-</div>
-   <!-- BÀI 6 -->
-<div class="course-card">
-
-  <div>
-
-    <div class="course-top">
-
-      <div class="course-icon">
-        📗
-      </div>
-
-      <div>
-
-        <h3>
-          Bài 6
-        </h3>
-
-        <div class="course-name">
-          你的手机号是多少？
+        <!-- BÀI 9 -->
+        <div class="course-card">
+          <div>
+            <div class="course-top">
+              <div class="course-icon">📙</div>
+              <div>
+                <h3>Bài 9</h3>
+                <div class="course-name">我明天上午在学校学习</div>
+              </div>
+            </div>
+            <p class="course-desc">
+              Câu tồn hiện, thời gian + địa điểm + động từ và 第.
+            </p>
+          </div>
+          <a class="course-btn" href="bai9.html">Vào bài →</a>
         </div>
 
       </div>
-
     </div>
-
-    <p class="course-desc">
-      Số điện thoại, mua sắm và cách hỏi phương thức.
-    </p>
 
   </div>
 
-  <a class="course-btn" href="bai6.html">
-    Vào bài →
-  </a>
+</section>
 
-</div>
-   <!-- BÀI 7 -->
-<div class="course-card">
-
-  <div>
-
-    <div class="course-top">
-
-      <div class="course-icon">
-        📓
-      </div>
-
-      <div>
-
-        <h3>
-          Bài 7
-        </h3>
-
-        <div class="course-name">
-          我晚上六点半下班
-        </div>
-
-      </div>
-
-    </div>
-
-    <p class="course-desc">
-      Cách nói giờ, phút, buổi trong ngày và lịch học.
-    </p>
-
-  </div>
-
-  <a class="course-btn" href="bai7.html">
-    Vào bài →
-  </a>
-
-</div>
-   <!-- BÀI 8 -->
-<div class="course-card">
-
-  <div>
-
-    <div class="course-top">
-
-      <div class="course-icon">
-        📔
-      </div>
-
-      <div>
-
-        <h3>
-          Bài 8
-        </h3>
-
-        <div class="course-name">
-          我爸爸也在医院工作
-        </div>
-
-      </div>
-
-    </div>
-
-    <p class="course-desc">
-      Phương vị, 在, 能 và địa điểm làm việc.
-    </p>
-
-  </div>
-
-  <a class="course-btn" href="bai8.html">
-    Vào bài →
-  </a>
-
-</div>
-   <!-- BÀI 9 -->
-<div class="course-card">
-
-  <div>
-
-    <div class="course-top">
-
-      <div class="course-icon">
-        📕
-      </div>
-
-      <div>
-
-        <h3>
-          Bài 9
-        </h3>
-
-        <div class="course-name">
-          我明天上午在学校学习
-        </div>
-
-      </div>
-
-    </div>
-
-    <p class="course-desc">
-   Mô tả hoạt động trong ngày của bạn
-    </p>
-
-  </div>
-
-  <a class="course-btn" href="bai9.html">
-    Vào bài →
-  </a>
-
-</div>
-   </section>
 <!-- =========================
      LƯU Ý
 ========================= -->
@@ -1470,13 +1439,22 @@ nav a:hover{
 
 <div class="footer">
 
-  中文学习空间 · Trang giới thiệu lớp học
+  中文学习空间 · Trang giới thiệu lớp học Meow meow
 
 </div>
 
 
 </div>
 
+
+
+<script>
+function toggleFolder(id, card){
+  const panel = document.getElementById(id);
+  panel.classList.toggle('open');
+  card.classList.toggle('open');
+}
+</script>
 
 </body>
 </html>
