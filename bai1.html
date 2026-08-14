@@ -1,17 +1,326 @@
 
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>AI 小语 · 第1课 你好 | Bài 1: Xin chào</title>
+<title>Tiếng Trung Meowmeow · Bài 1: 你好</title>
 <style>
-:root{--blue:#5b9bd5;--blue-dark:#397bb5;--blue-light:#eaf5ff;--blue-soft:#dff0ff;--ink:#243746;--muted:#6f7f8c;--white:#fff;--green:#4fa89b;--shadow:0 8px 24px rgba(52,105,145,.1)}
-*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:"Noto Sans","Noto Sans SC","Segoe UI",Arial,sans-serif;background:linear-gradient(135deg,#f1f9ff,#f8fcff);color:var(--ink);line-height:1.7}header{background:linear-gradient(135deg,#6faee0,#8fc5eb);color:#fff;padding:32px 16px;text-align:center;box-shadow:var(--shadow)}header h1{font-size:2rem;letter-spacing:1px;font-weight:800}header p{opacity:.95;margin-top:6px}nav{position:sticky;top:0;z-index:50;display:flex;flex-wrap:wrap;justify-content:center;gap:8px;background:rgba(255,255,255,.96);padding:10px;box-shadow:0 3px 15px rgba(45,100,140,.08);backdrop-filter:blur(10px)}nav button,.btn{border:none;background:var(--blue-light);color:var(--blue-dark);padding:10px 16px;border-radius:999px;cursor:pointer;font-weight:700;font-family:inherit;transition:.2s}nav button:hover,.btn:hover{transform:translateY(-2px);background:var(--blue-soft)}nav button.active,.btn{background:var(--blue);color:#fff}.btn.alt{background:var(--green)}.btn.grey{background:#7f8d96}.btn{margin:6px 6px 6px 0}main{max-width:1100px;margin:24px auto;padding:0 16px 60px}section{display:none;animation:fade .4s}section.show{display:block}@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}h2{color:var(--blue-dark);margin:18px 0 6px;font-size:1.6rem;font-weight:800}h3{margin:18px 0 8px;color:#344b5c}.sub{color:var(--muted);margin-bottom:14px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}.flip{perspective:1000px;height:230px;cursor:pointer}.flip-in{position:relative;width:100%;height:100%;transition:transform .6s;transform-style:preserve-3d}.flip.on .flip-in{transform:rotateY(180deg)}.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px;text-align:center}.front{background:linear-gradient(160deg,#fff,#eef8ff)}.back{background:linear-gradient(160deg,#66a9dc,#8dc5eb);color:#fff;transform:rotateY(180deg)}.emoji{font-size:3rem}.hz{font-size:2.6rem;font-weight:700}.py{color:var(--green);font-weight:600}.back .py{color:#e8f7ff}.tip{font-size:.75rem;opacity:.6;margin-top:8px}.vcard,.box{background:#fff;border-radius:18px;box-shadow:var(--shadow);padding:20px;margin-bottom:22px}.vcard{padding:16px;border-top:6px solid #79b6e5;transition:.2s}.vcard:hover{transform:translateY(-4px)}.vhead{display:flex;align-items:center;gap:10px}.vhead .emoji{font-size:2.4rem;background:var(--blue-light);border-radius:50%;width:64px;height:64px;display:flex;align-items:center;justify-content:center}.tag{display:inline-block;background:#e8f6f4;color:#418e84;font-size:.72rem;padding:2px 10px;border-radius:999px;font-weight:700}.hv{color:#8b7650;font-style:italic;font-size:.9rem}.ex{background:#f8fbfd;border-left:4px solid var(--blue);padding:8px 10px;border-radius:8px;margin-top:10px;font-size:.92rem}.spk{border:none;background:var(--blue);color:#fff;border-radius:50%;width:34px;height:34px;cursor:pointer;font-size:1rem;transition:.2s}.spk:hover{background:var(--blue-dark);transform:scale(1.05)}.chips{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}.chip{background:var(--blue-light);border:2px solid transparent;border-radius:12px;padding:10px 16px;cursor:pointer;font-weight:600;transition:.15s}.chip:hover{transform:scale(1.05);background:var(--blue-soft)}.chip.sel{border-color:var(--blue);background:#d9edff}.chip.ok{background:#cceee8;color:#397d73;cursor:default;opacity:.65}.chip.bad{background:#ffdede;animation:shake .3s}@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}.drop{min-height:56px;border:2px dashed #b8cedd;border-radius:12px;padding:10px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:1.15rem;background:#fbfdff}.msg{margin-top:10px;font-weight:700}.good{color:var(--green)}.bad{color:#d85c5c}input.blank{border:none;border-bottom:2px solid var(--blue);font-size:1.05rem;width:90px;text-align:center;background:transparent;outline:none;font-family:inherit}table{width:100%;border-collapse:collapse;margin-top:10px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}th,td{padding:10px 12px;text-align:left;border-bottom:1px solid #edf3f7}th{background:var(--blue);color:#fff}tr:hover td{background:#f7fbfe}.note{background:#f2f9ff;border-left:5px solid var(--blue);padding:12px 14px;border-radius:8px;margin:10px 0}.line{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}.who{min-width:110px;font-weight:700;color:var(--blue-dark);text-align:right}.bubble{background:#fff;border-radius:16px;padding:12px 16px;box-shadow:var(--shadow);flex:1}.bubble .zh{font-size:1.3rem}.bubble .pin{color:var(--green);font-size:.9rem}.bubble .vi{color:#666;font-size:.9rem}.roleA .bubble{background:#eef7ff}.roleB .bubble{background:#f3fbfa}audio{width:100%;margin:10px 0}footer{text-align:center;color:#7f919e;padding:20px;font-size:.85rem}@media(max-width:600px){.who{min-width:70px;font-size:.8rem}header h1{font-size:1.4rem}.btn{margin-bottom:6px}}
+:root{
+  --bg:#fff8f5;
+  --paper:#fff;
+  --ink:#352b35;
+  --muted:#756a74;
+  --pink:#f5a8b8;
+  --pink2:#ffe3e9;
+  --purple:#8f79a8;
+  --purple2:#eee8f6;
+  --yellow:#f8d98b;
+  --green:#a8d8c0;
+  --line:#eadde3;
+  --shadow:0 12px 32px rgba(91,65,86,.10);
+  --radius:22px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:"Be Vietnam Pro","Noto Sans","Noto Sans SC",Arial,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.65;
+}
+button,input{font:inherit}
+header{
+  background:linear-gradient(135deg,#fff,#fff0f3 55%,#f2ecf8);
+  color:var(--ink);
+  padding:42px 18px 34px;
+  text-align:center;
+  border-bottom:1px solid var(--line);
+  box-shadow:var(--shadow);
+}
+header h1{
+  margin:0;
+  font-family:"Noto Serif SC","Be Vietnam Pro",serif;
+  font-size:clamp(2rem,5vw,3rem);
+  letter-spacing:.6px;
+  font-weight:700;
+  color:#403542;
+  line-height:1.3;
+}
+header p{opacity:.9;margin-top:9px;color:var(--muted)}
+nav{
+  position:sticky;
+  top:0;
+  z-index:50;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:8px;
+  background:rgba(255,255,255,.96);
+  padding:12px;
+  box-shadow:0 3px 15px rgba(91,65,86,.08);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+nav button,.btn{
+  border:none;
+  background:#fff;
+  color:var(--purple);
+  border:1px solid var(--line);
+  padding:9px 14px;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:800;
+  transition:.2s;
+}
+nav button:hover,.btn:hover{
+  transform:translateY(-2px);
+  background:var(--pink2);
+  border-color:#e7b7c3;
+}
+nav button.active,.btn{
+  background:var(--purple);
+  color:#fff;
+  border-color:var(--purple);
+}
+.btn.alt{background:var(--green);color:#fff;border-color:var(--green)}
+.btn.grey{background:#8b7f88;color:#fff;border-color:#8b7f88}
+.btn{margin:6px 6px 6px 0}
+main{
+  max-width:1120px;
+  margin:0 auto;
+  padding:32px 18px 70px;
+}
+section{display:none;animation:fade .4s}
+section.show{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+h2{
+  color:var(--purple);
+  margin:12px 0 8px;
+  font-family:"Playfair Display","Noto Serif SC",serif;
+  font-size:2rem;
+  font-weight:700;
+}
+h3{
+  margin:18px 0 8px;
+  color:#403542;
+  font-family:"Playfair Display","Noto Serif SC","Be Vietnam Pro",serif;
+  font-weight:700;
+}
+.sub{color:var(--muted);margin-bottom:16px}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+.flip{perspective:1000px;height:235px;cursor:pointer}
+.flip-in{
+  position:relative;
+  width:100%;
+  height:100%;
+  transition:transform .6s;
+  transform-style:preserve-3d;
+}
+.flip.on .flip-in{transform:rotateY(180deg)}
+.face{
+  position:absolute;
+  inset:0;
+  backface-visibility:hidden;
+  border-radius:var(--radius);
+  box-shadow:0 8px 22px rgba(91,65,86,.07);
+  border:1px solid var(--line);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:14px;
+  text-align:center;
+}
+.front{background:linear-gradient(145deg,#fff,#fff4f6)}
+.back{
+  background:linear-gradient(145deg,#8f79a8,#aa95bd);
+  color:#fff;
+  transform:rotateY(180deg);
+}
+.emoji{font-size:3rem}
+.hz{
+  font-family:"Noto Serif SC","Noto Sans SC",serif;
+  font-size:2.6rem;
+  font-weight:800;
+  color:#3e3440;
+}
+.front .py{color:var(--purple);font-weight:800}
+.back .hz{color:#fff;font-size:1.5rem}
+.back .py{color:#f8edf3}
+.tip{font-size:.75rem;opacity:.6;margin-top:8px}
+.vcard,.box{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:0 8px 22px rgba(91,65,86,.06);
+  padding:20px;
+  margin-bottom:22px;
+}
+.vcard{
+  padding:16px;
+  border-top:6px solid var(--pink);
+  transition:.2s;
+}
+.vcard:hover{transform:translateY(-4px)}
+.vhead{display:flex;align-items:center;gap:10px}
+.vhead .emoji{
+  font-size:2.4rem;
+  background:var(--pink2);
+  border-radius:18px;
+  width:64px;
+  height:64px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.tag{
+  display:inline-block;
+  background:var(--purple2);
+  color:#715f83;
+  font-size:.72rem;
+  padding:3px 10px;
+  border-radius:999px;
+  font-weight:800;
+}
+.hv{color:#8b7650;font-style:italic;font-size:.9rem}
+.ex{
+  background:#fff8fa;
+  border-left:4px solid var(--pink);
+  padding:9px 11px;
+  border-radius:10px;
+  margin-top:10px;
+  font-size:.92rem;
+}
+.py{
+  color:var(--purple);
+  font-family:"Be Vietnam Pro",Arial,sans-serif;
+  font-weight:700;
+}
+.spk{
+  border:none;
+  background:var(--purple);
+  color:#fff;
+  border-radius:50%;
+  width:34px;
+  height:34px;
+  cursor:pointer;
+  font-size:1rem;
+  transition:.2s;
+}
+.spk:hover{background:#735d8c;transform:scale(1.05)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
+.chip{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:10px 15px;
+  cursor:pointer;
+  font-weight:700;
+  transition:.15s;
+}
+.chip:hover{transform:scale(1.04);background:var(--pink2)}
+.chip.sel{border-color:var(--pink);background:var(--pink2)}
+.chip.ok{background:#e3f4ed;color:#4e836c;cursor:default;opacity:.65}
+.chip.bad{background:#ffdede;animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.drop{
+  min-height:56px;
+  border:2px dashed #d7c5ce;
+  border-radius:14px;
+  padding:10px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  align-items:center;
+  font-size:1.15rem;
+  background:#fffafb;
+}
+.msg{margin-top:10px;font-weight:800}
+.good{color:#4e836c}.bad{color:#b95d6f}
+input.blank{
+  border:none;
+  border-bottom:2px solid var(--purple);
+  font-size:1.05rem;
+  width:90px;
+  text-align:center;
+  background:transparent;
+  outline:none;
+  font-family:inherit;
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+  background:#fff;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 6px 18px rgba(91,65,86,.05);
+}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid #f0e5e9}
+th{
+  background:var(--purple);
+  color:#fff;
+  font-weight:800;
+}
+tr:hover td{background:#fff7f9}
+.note{
+  background:#fff7df;
+  border-left:5px solid var(--yellow);
+  padding:12px 14px;
+  border-radius:10px;
+  margin:10px 0;
+}
+.line{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
+.who{
+  min-width:110px;
+  font-weight:800;
+  color:var(--purple);
+  text-align:right;
+}
+.bubble{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:17px;
+  padding:12px 16px;
+  box-shadow:0 7px 20px rgba(91,65,86,.06);
+  flex:1;
+}
+.bubble .zh{
+  font-family:"Noto Serif SC","Noto Sans SC",serif;
+  font-size:1.3rem;
+  font-weight:700;
+}
+.bubble .pin{color:var(--purple);font-size:.9rem}
+.bubble .vi{color:#756a74;font-size:.9rem}
+.roleA .bubble{background:#fff5f7}
+.roleB .bubble{background:#f4f0f8}
+audio{width:100%;margin:10px 0}
+footer{
+  text-align:center;
+  color:#8b7f88;
+  padding:24px;
+  font-size:.85rem;
+  border-top:1px solid var(--line);
+}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){
+  .grid{grid-template-columns:1fr}
+  .who{min-width:70px;font-size:.8rem}
+  header h1{font-size:1.7rem}
+  .btn{margin-bottom:6px}
+  table{font-size:.9rem}
+}
 </style>
 </head>
 <body>
-<header><h1>AI 小语 · 第一课　你好</h1><p>Bài 1: Xin chào — Khởi động · Từ mới · Luyện tập · Ngữ pháp · Hội thoại</p></header>
+<header><h1>Tiếng Trung Meowmeow · 第一课　你好</h1><p>Bài 1: Xin chào — Khởi động · Từ mới · Luyện tập · Ngữ pháp · Hội thoại</p></header>
 <nav><button class="active" data-t="s1">🔥 Khởi động</button><button data-t="s2">📖 Từ mới</button><button data-t="s3">🎮 Luyện tập</button><button data-t="s4">📐 Ngữ pháp</button><button data-t="s5">🎧 Hội thoại</button></nav>
 <main>
 <section id="s1" class="show"><h2>🔥 Khởi động – 热身</h2><p class="sub">Nhấp vào từng thẻ để lật xem nghĩa. Nhấn 🔊 để nghe phát âm.</p><div class="grid" id="warmup"></div><div class="box"><h3>💬 Câu hỏi mở đầu</h3><p>1. Bạn đã từng nghe câu chào tiếng Trung nào chưa? 🇨🇳</p><p>2. Ở Việt Nam, khi gặp thầy cô bạn nói gì? Người Trung Quốc nói thế nào nhỉ?</p><p>3. Nhìn chữ <b style="font-size:1.4rem">好</b>: bạn thấy có <b>女</b> + <b>子</b> → tại sao lại mang nghĩa “tốt đẹp”? 🤔</p></div></section>
