@@ -16,6 +16,299 @@
 <style>
 
    /* =========================
+   MEOW MEOW CHAT BOX
+========================= */
+
+.chatbox{
+  position:fixed;
+
+  right:24px;
+  bottom:24px;
+
+  width:320px;
+
+  background:#fff;
+
+  border-radius:22px;
+
+  overflow:hidden;
+
+  box-shadow:
+    0 14px 35px rgba(55,110,125,.20);
+
+  border:1px solid #CDE6EB;
+
+  z-index:9999;
+
+  animation:chatIn .35s ease;
+}
+
+
+/* HEADER */
+
+.chatbox-header{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  padding:15px 17px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #6FAFC4,
+      #8CC8D6
+    );
+
+  color:#fff;
+
+}
+
+.chat-avatar{
+
+  width:46px;
+  height:46px;
+
+  border-radius:50%;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  background:#fff;
+
+  font-size:1.45rem;
+
+  flex:none;
+
+}
+
+.chat-title{
+
+  flex:1;
+
+}
+
+.chat-title strong{
+
+  display:block;
+
+  font-size:1rem;
+
+  font-weight:700;
+
+}
+
+.chat-title span{
+
+  display:block;
+
+  margin-top:2px;
+
+  font-size:.74rem;
+
+  opacity:.92;
+
+}
+
+.chat-close{
+
+  border:0;
+
+  background:transparent;
+
+  color:#fff;
+
+  font-size:1.1rem;
+
+  cursor:pointer;
+
+  padding:4px;
+
+}
+
+
+/* BODY */
+
+.chatbox-body{
+
+  padding:18px;
+
+  background:#F7FCFD;
+
+}
+
+.chat-message{
+
+  background:#fff;
+
+  border-radius:16px;
+
+  padding:13px 15px;
+
+  color:#52646B;
+
+  font-size:.88rem;
+
+  line-height:1.65;
+
+  box-shadow:
+    0 5px 16px rgba(55,110,125,.07);
+
+  margin-bottom:15px;
+
+}
+
+.chat-message strong{
+
+  color:#4F91A8;
+
+}
+
+
+/* BUTTON */
+
+.chat-button{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:8px;
+
+  width:100%;
+
+  padding:11px 15px;
+
+  border-radius:999px;
+
+  background:#6FAFC4;
+
+  color:#fff;
+
+  text-decoration:none;
+
+  font-size:.88rem;
+
+  font-weight:700;
+
+  transition:.2s;
+
+}
+
+.chat-button:hover{
+
+  background:#4F91A8;
+
+  transform:translateY(-2px);
+
+}
+
+
+/* NÚT NHỎ SAU KHI ĐÓNG */
+
+.chat-mini{
+
+  position:fixed;
+
+  right:24px;
+  bottom:24px;
+
+  width:58px;
+  height:58px;
+
+  border:0;
+
+  border-radius:50%;
+
+  background:#6FAFC4;
+
+  color:#fff;
+
+  font-size:1.45rem;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 10px 25px rgba(55,110,125,.22);
+
+  z-index:9998;
+
+  transition:.2s;
+
+}
+
+.chat-mini:hover{
+
+  background:#4F91A8;
+
+  transform:
+    translateY(-3px)
+    scale(1.04);
+
+}
+
+.chatbox.hidden{
+
+  display:none;
+
+}
+
+
+@keyframes chatIn{
+
+  from{
+
+    opacity:0;
+
+    transform:
+      translateY(15px)
+      scale(.96);
+
+  }
+
+  to{
+
+    opacity:1;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+  }
+
+}
+
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+  .chatbox{
+
+    right:12px;
+    bottom:12px;
+
+    width:
+      calc(100% - 24px);
+
+  }
+
+  .chat-mini{
+
+    right:15px;
+    bottom:15px;
+
+  }
+
+}
+   /* =========================
    TUÂN TỬ - TRÍCH DẪN
 ========================= */
 
@@ -2011,6 +2304,114 @@ function toggleFolder(id, card){
   card.classList.toggle('open');
 }
 </script>
+<!-- =========================
+     MEOW MEOW CHAT BOX
+========================= -->
 
+<div
+  class="chatbox"
+  id="chatbox"
+>
+
+  <div class="chatbox-header">
+
+    <div class="chat-avatar">
+      🐱
+    </div>
+
+    <div class="chat-title">
+
+      <strong>
+        Meow Meow
+      </strong>
+
+      <span>
+       Cần hỗ trợ gì z bảo bối ơi!!!!
+      </span>
+
+    </div>
+
+    <button
+      class="chat-close"
+      onclick="closeChat()"
+    >
+      ✕
+    </button>
+
+  </div>
+
+
+  <div class="chatbox-body">
+
+    <div class="chat-message">
+
+      你好!<br>
+
+      Nếu cần hỗ trợ về
+      <strong>lớp học</strong>,
+      <strong>bài học</strong>
+      hay
+      <strong>tiếng Trung</strong>
+      thì nhắn Meow Meow nha 🐱
+
+    </div>
+
+
+    <a
+      class="chat-button"
+      href="https://www.facebook.com/huong.nguyen.696014/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+
+      💬 Nhắn tin ngay cho tuiii
+
+    </a>
+
+  </div>
+
+</div>
+
+
+<!-- NÚT CHAT SAU KHI ĐÓNG -->
+
+<button
+  class="chat-mini"
+  id="chatMini"
+  onclick="openChat()"
+  style="display:none"
+>
+  💬
+</button>
+
+
+<script>
+
+function closeChat(){
+
+  document
+    .getElementById("chatbox")
+    .classList.add("hidden");
+
+  document
+    .getElementById("chatMini")
+    .style.display="block";
+
+}
+
+
+function openChat(){
+
+  document
+    .getElementById("chatbox")
+    .classList.remove("hidden");
+
+  document
+    .getElementById("chatMini")
+    .style.display="none";
+
+}
+
+</script>
 </body>
 </html>
