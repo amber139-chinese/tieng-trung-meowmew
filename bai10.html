@@ -1,0 +1,4710 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>
+  Bài 10 · 这儿的苹果真便宜！ · Tiếng Trung Meowmeow
+</title>
+
+<!-- =========================
+     FONT
+========================= -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+>
+
+
+<style>
+
+/* =========================
+   MÀU CHỦ ĐẠO
+   GIỐNG BÀI 7
+========================= */
+
+:root{
+
+  --bg:#fff8f5;
+
+  --paper:#fff;
+
+  --ink:#352b35;
+
+  --muted:#756a74;
+
+  --pink:#f5a8b8;
+
+  --pink2:#ffe3e9;
+
+  --purple:#8f79a8;
+
+  --purple2:#eee8f6;
+
+  --yellow:#f8d98b;
+
+  --line:#eadde3;
+
+  --shadow:
+    0 12px 32px rgba(91,65,86,.10);
+
+  --radius:22px;
+
+}
+
+
+/* =========================
+   GENERAL
+========================= */
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+
+  margin:0;
+
+  background:var(--bg);
+
+  color:var(--ink);
+
+  font-family:
+    "Be Vietnam Pro",
+    "Noto Sans",
+    Arial,
+    sans-serif;
+
+  line-height:1.65;
+
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,
+input{
+  font:inherit;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+
+  padding:30px 0 22px;
+
+  color:#fff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e99bad,
+      #dca7c5,
+      #bda8cc
+    );
+
+  box-shadow:var(--shadow);
+
+  position:sticky;
+
+  top:0;
+
+  z-index:30;
+
+}
+
+
+.container{
+
+  width:min(1120px,92%);
+
+  margin:auto;
+
+}
+
+
+.brand{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  gap:16px;
+
+}
+
+
+.logo{
+
+  font-size:20px;
+
+  font-weight:700;
+
+}
+
+
+.logo span{
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+}
+
+
+.lesson-number{
+
+  padding:7px 13px;
+
+  border-radius:999px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.55);
+
+  background:
+    rgba(255,255,255,.16);
+
+  font-size:.85rem;
+
+  font-weight:700;
+
+}
+
+
+nav{
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:8px;
+
+  margin-top:15px;
+
+}
+
+
+nav a{
+
+  text-decoration:none;
+
+  color:var(--purple);
+
+  background:#fff;
+
+  border:1px solid var(--line);
+
+  padding:8px 14px;
+
+  border-radius:999px;
+
+  font-size:.9rem;
+
+  font-weight:600;
+
+  transition:.2s;
+
+}
+
+
+nav a:hover{
+
+  background:var(--purple);
+
+  color:#fff;
+
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+
+  padding:42px 0 25px;
+
+}
+
+
+.hero-card{
+
+  background:var(--paper);
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:
+    var(--radius);
+
+  box-shadow:
+    var(--shadow);
+
+  padding:34px;
+
+}
+
+
+.eyebrow{
+
+  display:inline-block;
+
+  background:var(--purple2);
+
+  color:var(--purple);
+
+  border-radius:999px;
+
+  padding:4px 11px;
+
+  font-size:.78rem;
+
+  font-weight:700;
+
+}
+
+
+.hero-card h1{
+
+  margin:10px 0 8px;
+
+  color:var(--purple);
+
+  font-family:
+    "Noto Serif SC",
+    "Playfair Display",
+    serif;
+
+  font-size:
+    clamp(
+      2.1rem,
+      5vw,
+      3.6rem
+    );
+
+  line-height:1.25;
+
+}
+
+
+.hero-pinyin{
+
+  color:#9d6381;
+
+  font-weight:700;
+
+  font-size:1.05rem;
+
+}
+
+
+.hero-meaning{
+
+  color:var(--muted);
+
+  margin-top:8px;
+
+}
+
+
+.hero-card p{
+
+  color:var(--muted);
+
+}
+
+
+/* =========================
+   SECTION
+========================= */
+
+.section{
+
+  padding:36px 0 18px;
+
+}
+
+
+.section-title{
+
+  margin:0 0 8px;
+
+  text-align:center;
+
+  color:var(--purple);
+
+  font-family:
+    "Playfair Display",
+    "Noto Serif SC",
+    serif;
+
+  font-size:2.15rem;
+
+}
+
+
+.section-desc{
+
+  max-width:760px;
+
+  margin:0 auto 24px;
+
+  text-align:center;
+
+  color:var(--muted);
+
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.card{
+
+  background:var(--paper);
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:var(--radius);
+
+  padding:18px;
+
+  box-shadow:
+    0 8px 22px
+    rgba(91,65,86,.07);
+
+}
+
+
+/* =========================
+   FLASHCARD
+========================= */
+
+.flash-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:16px;
+
+}
+
+
+.flashcard{
+
+  height:225px;
+
+  perspective:1000px;
+
+  cursor:pointer;
+
+}
+
+
+.flash-inner{
+
+  width:100%;
+
+  height:100%;
+
+  position:relative;
+
+  transition:
+    transform .6s;
+
+  transform-style:preserve-3d;
+
+}
+
+
+.flashcard.flipped
+.flash-inner{
+
+  transform:
+    rotateY(180deg);
+
+}
+
+
+.flash-face{
+
+  position:absolute;
+
+  inset:0;
+
+  backface-visibility:hidden;
+
+  border-radius:18px;
+
+  padding:18px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
+
+  text-align:center;
+
+  border:
+    1px solid
+    var(--line);
+
+}
+
+
+.flash-front{
+
+  background:
+    linear-gradient(
+      145deg,
+      #fff,
+      #fff0f3
+    );
+
+}
+
+
+.flash-back{
+
+  background:var(--pink2);
+
+  transform:
+    rotateY(180deg);
+
+}
+
+
+.flash-icon{
+
+  font-size:2.8rem;
+
+}
+
+
+.hanzi{
+
+  margin-top:6px;
+
+  font-family:
+    "Noto Serif SC",
+    "Noto Sans SC",
+    "Microsoft YaHei",
+    serif;
+
+  font-size:2.25rem;
+
+  font-weight:700;
+
+}
+
+
+.pinyin{
+
+  color:var(--purple);
+
+  font-weight:700;
+
+}
+
+
+.flash-meaning{
+
+  color:var(--muted);
+
+}
+
+
+/* =========================
+   VOCABULARY
+========================= */
+
+.vocab-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:16px;
+
+}
+
+
+.vocab-image{
+
+  height:120px;
+
+  border-radius:16px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--pink2),
+      var(--purple2)
+    );
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:3.2rem;
+
+}
+
+
+.vocab-top{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:flex-start;
+
+  gap:10px;
+
+  margin-top:12px;
+
+}
+
+
+.vocab-zh{
+
+  font-family:
+    "Noto Serif SC",
+    "Noto Sans SC",
+    "Microsoft YaHei",
+    serif;
+
+  font-size:1.85rem;
+
+  font-weight:700;
+
+  color:#55415c;
+
+}
+
+
+.vocab-meta{
+
+  display:flex;
+
+  gap:6px;
+
+  align-items:center;
+
+}
+
+
+.badge{
+
+  background:var(--pink2);
+
+  color:var(--purple);
+
+  border-radius:999px;
+
+  padding:4px 9px;
+
+  font-size:.72rem;
+
+  font-weight:700;
+
+  white-space:nowrap;
+
+}
+
+
+.audio-btn{
+
+  border:0;
+
+  background:var(--purple);
+
+  color:#fff;
+
+  padding:7px 10px;
+
+  border-radius:999px;
+
+  cursor:pointer;
+
+  font-weight:700;
+
+}
+
+
+.audio-btn:hover{
+
+  background:
+    #7b6693;
+
+}
+
+
+.hanviet{
+
+  margin-top:6px;
+
+}
+
+
+.meaning{
+
+  color:var(--muted);
+
+  margin-top:3px;
+
+}
+
+
+.example{
+
+  margin-top:12px;
+
+  padding:12px;
+
+  background:#fffafa;
+
+  border-left:
+    4px solid
+    var(--pink);
+
+  border-radius:10px;
+
+}
+
+
+.example-zh{
+
+  font-family:
+    "Noto Serif SC",
+    "Noto Sans SC",
+    serif;
+
+  font-weight:700;
+
+  color:#4f3d52;
+
+}
+
+
+.example-pinyin{
+
+  color:#987084;
+
+  font-size:.9rem;
+
+}
+
+
+.example-vi{
+
+  color:#756a74;
+
+  margin-top:2px;
+
+}
+
+
+.example .audio-btn{
+
+  margin-top:8px;
+
+}
+
+
+/* =========================
+   ACTIVITIES
+========================= */
+
+.activity{
+
+  margin-top:18px;
+
+}
+
+
+.activity-title{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  gap:10px;
+
+}
+
+
+.activity-title h3{
+
+  margin:0;
+
+  font-family:
+    "Playfair Display",
+    "Noto Serif SC",
+    serif;
+
+  color:#55415c;
+
+}
+
+
+.secondary-btn{
+
+  border:0;
+
+  background:var(--purple2);
+
+  color:var(--purple);
+
+  border-radius:10px;
+
+  padding:8px 12px;
+
+  cursor:pointer;
+
+  font-weight:700;
+
+}
+
+
+.match-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:12px;
+
+  margin-top:15px;
+
+}
+
+
+.match-column{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:9px;
+
+}
+
+
+.match-item{
+
+  border:
+    1px solid
+    var(--line);
+
+  background:#fff;
+
+  border-radius:12px;
+
+  padding:12px;
+
+  cursor:pointer;
+
+  text-align:left;
+
+}
+
+
+.match-item.selected{
+
+  background:var(--purple2);
+
+  border-color:var(--purple);
+
+}
+
+
+.feedback{
+
+  min-height:24px;
+
+  margin-top:10px;
+
+  font-weight:700;
+
+}
+
+
+.word-bank{
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:8px;
+
+  margin:14px 0;
+
+}
+
+
+.word-button{
+
+  border:
+    1px solid
+    var(--line);
+
+  background:#fff;
+
+  border-radius:10px;
+
+  padding:9px 12px;
+
+  cursor:pointer;
+
+}
+
+
+.word-button:hover{
+
+  background:var(--pink2);
+
+}
+
+
+.word-button:disabled{
+
+  opacity:.4;
+
+}
+
+
+.answer-box{
+
+  min-height:50px;
+
+  padding:12px;
+
+  border:
+    2px dashed
+    #d8baca;
+
+  border-radius:13px;
+
+  margin-bottom:10px;
+
+  background:#fffafb;
+
+}
+
+
+.primary-btn{
+
+  border:0;
+
+  background:var(--purple);
+
+  color:#fff;
+
+  padding:10px 15px;
+
+  border-radius:11px;
+
+  cursor:pointer;
+
+  font-weight:700;
+
+}
+
+
+.primary-btn:hover{
+
+  background:#7b6693;
+
+}
+
+
+/* =========================
+   GRAMMAR
+========================= */
+
+.grammar-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:16px;
+
+}
+
+
+.grammar-card h3{
+
+  margin-top:0;
+
+  color:var(--purple);
+
+}
+
+
+.formula{
+
+  background:var(--purple2);
+
+  color:#55415c;
+
+  border-radius:14px;
+
+  padding:13px;
+
+  text-align:center;
+
+  font-weight:800;
+
+  font-size:1.1rem;
+
+  margin:10px 0;
+
+}
+
+
+.note{
+
+  margin-top:12px;
+
+  padding:13px 15px;
+
+  background:#fff7df;
+
+  border-left:
+    5px solid
+    var(--yellow);
+
+  border-radius:10px;
+
+}
+
+
+.quiz label{
+
+  display:block;
+
+  padding:9px 11px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:10px;
+
+  margin:7px 0;
+
+  cursor:pointer;
+
+}
+
+
+.quiz label:hover{
+
+  background:#fff4f6;
+
+}
+
+
+/* =========================
+   DIALOGUE
+========================= */
+
+.dialogue-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:16px;
+
+}
+
+
+.dialogue-line{
+
+  margin:9px 0;
+
+  padding:14px;
+
+  border-radius:16px;
+
+  border:
+    1px solid
+    var(--line);
+
+  background:#fff;
+
+}
+
+
+.dialogue-line.a{
+
+  border-left:
+    5px solid
+    var(--pink);
+
+}
+
+
+.dialogue-line.b{
+
+  border-left:
+    5px solid
+    var(--purple);
+
+}
+
+
+.speaker{
+
+  color:var(--purple);
+
+  font-size:.8rem;
+
+  font-weight:800;
+
+}
+
+
+.dialogue-zh{
+
+  margin-top:3px;
+
+  font-family:
+    "Noto Serif SC",
+    "Noto Sans SC",
+    serif;
+
+  font-size:1.15rem;
+
+  font-weight:700;
+
+  color:#4d3b50;
+
+}
+
+
+.dialogue-pinyin{
+
+  color:#987084;
+
+  font-size:.9rem;
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+
+  text-align:center;
+
+  color:#8d7b86;
+
+  padding:35px 0 50px;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:900px){
+
+  .flash-grid{
+
+    grid-template-columns:
+      repeat(2,1fr);
+
+  }
+
+  .vocab-grid{
+
+    grid-template-columns:
+      repeat(2,1fr);
+
+  }
+
+}
+
+
+@media(max-width:700px){
+
+  .grammar-grid,
+  .dialogue-grid,
+  .match-grid{
+
+    grid-template-columns:1fr;
+
+  }
+
+}
+
+
+@media(max-width:600px){
+
+  .flash-grid,
+  .vocab-grid{
+
+    grid-template-columns:1fr;
+
+  }
+
+  .hero-card{
+
+    padding:24px;
+
+  }
+
+  .brand{
+
+    align-items:flex-start;
+
+    flex-direction:column;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+  <div class="container">
+
+    <div class="brand">
+
+      <div class="logo">
+        📚 Tiếng Trung <span>Meowmeow</span>
+      </div>
+
+      <div class="lesson-number">
+        Bài 10
+      </div>
+
+    </div>
+
+
+    <nav>
+
+      <a href="#khoidong">
+        🌸 Khởi động
+      </a>
+
+      <a href="#tumo">
+        📖 Từ mới
+      </a>
+
+      <a href="#onthi">
+        🎮 Ôn tập
+      </a>
+
+      <a href="#nguphap">
+        📐 Ngữ pháp
+      </a>
+
+      <a href="#hoithoai">
+        🗣️ Hội thoại
+      </a>
+
+    </nav>
+
+  </div>
+
+</header>
+
+
+<main class="container">
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+  <div class="hero-card">
+
+    <span class="eyebrow">
+      第十课 · Zhèr de píngguǒ zhēn piányi
+    </span>
+
+    <h1>
+      这儿的苹果真便宜！
+    </h1>
+
+    <div class="hero-pinyin">
+      Zhèr de píngguǒ zhēn piányi
+    </div>
+
+    <div class="hero-meaning">
+      Táo ở đây rẻ thật!
+    </div>
+
+    <p>
+      Chủ đề bài học: mua sắm, giá tiền, trái cây,
+      quần áo và cách hỏi ý kiến bằng “怎么样”.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     KHỞI ĐỘNG
+========================= -->
+
+<section
+  class="section"
+  id="khoidong"
+>
+
+  <h2 class="section-title">
+    🌸 Khởi động
+  </h2>
+
+  <p class="section-desc">
+    Nhấp vào thẻ để lật.
+    Nhấn 🔊 để nghe cách đọc tiếng Trung.
+  </p>
+
+
+  <div class="flash-grid">
+
+
+    <!-- FLASH 1 -->
+
+    <div
+      class="flashcard"
+      onclick="this.classList.toggle('flipped')"
+    >
+
+      <div class="flash-inner">
+
+        <div class="flash-face flash-front">
+
+          <div class="flash-icon">
+            🥛
+          </div>
+
+          <div class="hanzi">
+            杯子
+          </div>
+
+          <div class="pinyin">
+            bēizi
+          </div>
+
+        </div>
+
+
+        <div class="flash-face flash-back">
+
+          <div class="flash-meaning">
+            cái ly / cốc
+          </div>
+
+          <button
+            class="audio-btn"
+            onclick="event.stopPropagation(); speakText('杯子')"
+          >
+            🔊 Nghe
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- FLASH 2 -->
+
+    <div
+      class="flashcard"
+      onclick="this.classList.toggle('flipped')"
+    >
+
+      <div class="flash-inner">
+
+        <div class="flash-face flash-front">
+
+          <div class="flash-icon">
+            🍎
+          </div>
+
+          <div class="hanzi">
+            苹果
+          </div>
+
+          <div class="pinyin">
+            píngguǒ
+          </div>
+
+        </div>
+
+
+        <div class="flash-face flash-back">
+
+          <div class="flash-meaning">
+            quả táo
+          </div>
+
+          <button
+            class="audio-btn"
+            onclick="event.stopPropagation(); speakText('苹果')"
+          >
+            🔊 Nghe
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- FLASH 3 -->
+
+    <div
+      class="flashcard"
+      onclick="this.classList.toggle('flipped')"
+    >
+
+      <div class="flash-inner">
+
+        <div class="flash-face flash-front">
+
+          <div class="flash-icon">
+            👕
+          </div>
+
+          <div class="hanzi">
+            衣服
+          </div>
+
+          <div class="pinyin">
+            yīfu
+          </div>
+
+        </div>
+
+
+        <div class="flash-face flash-back">
+
+          <div class="flash-meaning">
+            quần áo
+          </div>
+
+          <button
+            class="audio-btn"
+            onclick="event.stopPropagation(); speakText('衣服')"
+          >
+            🔊 Nghe
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- FLASH 4 -->
+
+    <div
+      class="flashcard"
+      onclick="this.classList.toggle('flipped')"
+    >
+
+      <div class="flash-inner">
+
+        <div class="flash-face flash-front">
+
+          <div class="flash-icon">
+            💰
+          </div>
+
+          <div class="hanzi">
+            钱
+          </div>
+
+          <div class="pinyin">
+            qián
+          </div>
+
+        </div>
+
+
+        <div class="flash-face flash-back">
+
+          <div class="flash-meaning">
+            tiền
+          </div>
+
+          <button
+            class="audio-btn"
+            onclick="event.stopPropagation(); speakText('钱')"
+          >
+            🔊 Nghe
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     TỪ MỚI
+========================= -->
+
+<section
+  class="section"
+  id="tumo"
+>
+
+  <h2 class="section-title">
+    📖 Từ mới
+  </h2>
+
+  <p class="section-desc">
+    Chữ Hán · pinyin · âm Hán Việt · từ loại · nghĩa · ví dụ · audio.
+  </p>
+
+
+  <div class="vocab-grid">
+
+
+    <!-- =====================
+         杯子
+    ====================== -->
+
+    <article class="card">
+
+      <div class="vocab-image">
+        🥛
+      </div>
+
+      <div class="vocab-top">
+
+        <div>
+
+          <div class="vocab-zh">
+            杯子
+          </div>
+
+          <div class="pinyin">
+            bēizi
+          </div>
+
+        </div>
+
+        <div class="vocab-meta">
+
+          <span class="badge">
+            Danh từ
+          </span>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('杯子')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="hanviet">
+        <b>Hán Việt:</b> bôi tử
+      </div>
+
+      <div class="meaning">
+        cái ly, cốc
+      </div>
+
+      <div class="example">
+
+        <div class="example-zh">
+          请给我一个杯子。
+        </div>
+
+        <div class="example-pinyin">
+          Qǐng gěi wǒ yí gè bēizi.
+        </div>
+
+        <div class="example-vi">
+          Hãy đưa cho tôi một cái cốc.
+        </div>
+
+        <button
+          class="audio-btn"
+          onclick="speakText('请给我一个杯子。')"
+        >
+          🔊 Nghe ví dụ
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- =====================
+         售货员
+    ====================== -->
+
+    <article class="card">
+
+      <div class="vocab-image">
+        🧑‍💼
+      </div>
+
+      <div class="vocab-top">
+
+        <div>
+
+          <div class="vocab-zh">
+            售货员
+          </div>
+
+          <div class="pinyin">
+            shòuhuòyuán
+          </div>
+
+        </div>
+
+        <div class="vocab-meta">
+
+          <span class="badge">
+            Danh từ
+          </span>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('售货员')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="hanviet">
+        <b>Hán Việt:</b> thụ hóa viên
+      </div>
+
+      <div class="meaning">
+        nhân viên bán hàng
+      </div>
+
+      <div class="example">
+
+        <div class="example-zh">
+          我妈妈是售货员。
+        </div>
+
+        <div class="example-pinyin">
+          Wǒ māma shì shòuhuòyuán.
+        </div>
+
+        <div class="example-vi">
+          Mẹ tôi là nhân viên bán hàng.
+        </div>
+
+        <button
+          class="audio-btn"
+          onclick="speakText('我妈妈是售货员。')"
+        >
+          🔊 Nghe ví dụ
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- 这边 -->
+
+    <article class="card">
+
+      <div class="vocab-image">
+        👉
+      </div>
+
+      <div class="vocab-top">
+
+        <div>
+
+          <div class="vocab-zh">
+            这边
+          </div>
+
+          <div class="pinyin">
+            zhèbiān
+          </div>
+
+        </div>
+
+        <div class="vocab-meta">
+
+          <span class="badge">
+            Đại từ
+          </span>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('这边')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="hanviet">
+        <b>Hán Việt:</b> giá biên
+      </div>
+
+      <div class="meaning">
+        bên này
+      </div>
+
+      <div class="example">
+
+        <div class="example-zh">
+          杯子在这边。
+        </div>
+
+        <div class="example-pinyin">
+          Bēizi zài zhèbiān.
+        </div>
+
+        <div class="example-vi">
+          Cốc ở bên này.
+        </div>
+
+        <button
+          class="audio-btn"
+          onclick="speakText('杯子在这边。')"
+        >
+          🔊 Nghe ví dụ
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- 钱 -->
+
+    <article class="card">
+
+      <div class="vocab-image">
+        💰
+      </div>
+
+      <div class="vocab-top">
+
+        <div>
+
+          <div class="vocab-zh">
+            钱
+          </div>
+
+          <div class="pinyin">
+            qián
+          </div>
+
+        </div>
+
+        <div class="vocab-meta">
+
+          <span class="badge">
+            Danh từ
+          </span>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('钱')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="hanviet">
+        <b>Hán Việt:</b> tiền
+      </div>
+
+      <div class="meaning">
+        tiền
+      </div>
+
+      <div class="example">
+
+        <div class="example-zh">
+          这个杯子多少钱？
+        </div>
+
+        <div class="example-pinyin">
+          Zhège bēizi duōshao qián?
+        </div>
+
+        <div class="example-vi">
+          Cái cốc này bao nhiêu tiền?
+        </div>
+
+        <button
+          class="audio-btn"
+          onclick="speakText('这个杯子多少钱？')"
+        >
+          🔊 Nghe ví dụ
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- 这些 -->
+
+    <article class="card">
+
+      <div class="vocab-image">
+        👈
+      </div>
+
+      <div class="vocab-top">
+
+        <div>
+
+          <div class="vocab-zh">
+            这些
+          </div>
+
+          <div class="pinyin">
+            zhèxiē
+          </div>
+
+        </div>
+
+        <div class="vocab-meta">
+
+          <span class="badge">
+            Đại từ
+          </span>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('这些')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="hanviet">
+        <b>Hán Việt:</b> giá ta
+      </div>
+
+      <div class="meaning">
+        những cái này
+      </div>
+
+      <div class="example">
+
+        <div class="example-zh">
+          这些杯子
+        </div>
+
+        <div class="example-pinyin">
+          Zhèxiē bēizi
+        </div>
+
+        <div class="example-vi">
+          Những cái cốc này.
+        </div>
+
+        <button
+          class="audio-btn"
+          onclick="speakText('这些杯子')"
+        >
+          🔊 Nghe ví dụ
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- 块 -->
+
+    <article class="card">
+
+      <div class="vocab-image">
+        💵
+      </div>
+
+      <div class="vocab-top">
+
+        <div>
+
+          <div class="vocab-zh">
+            块
+          </div>
+
+          <div class="pinyin">
+            kuài
+          </div>
+
+        </div>
+
+        <div class="vocab-meta">
+
+          <span class="badge">
+            Lượng từ
+          </span>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('块')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="hanviet">
+        <b>Hán Việt:</b> khối
+      </div>
+
+      <div class="meaning">
+        đơn vị tiền trong khẩu ngữ
+      </div>
+
+      <div class="example">
+
+        <div class="example-zh">
+          五块钱
+        </div>
+
+        <div class="example-pinyin">
+          Wǔ kuài qián
+        </div>
+
+        <div class="example-vi">
+          Năm đồng.
+        </div>
+
+        <button
+          class="audio-btn"
+          onclick="speakText('五块钱')"
+        >
+          🔊 Nghe ví dụ
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- 那些 -->
+
+    <article class="card">
+
+      <div class="vocab-image">
+        👉
+      </div>
+
+      <div class="vocab-top">
+
+        <div>
+
+          <div class="vocab-zh">
+            那些
+          </div>
+
+          <div class="pinyin">
+            nàxiē
+          </div>
+
+        </div>
+
+        <div class="vocab-meta">
+
+          <span class="badge">
+            Đại từ
+          </span>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('那些')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="hanviet">
+        <b>Hán Việt:</b> na ta
+      </div>
+
+      <div class="meaning">
+        những cái đó
+      </div>
+
+      <div class="example">
+
+        <div class="example-zh">
+          那些书
+        </div>
+
+        <div class="example-pinyin">
+          Nàxiē shū
+        </div>
+
+        <div class="example-vi">
+          Những quyển sách đó.
+        </div>
+
+        <button
+          class="audio-btn"
+          onclick="speakText('那些书')"
+        >
+          🔊 Nghe ví dụ
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- 这儿 -->
+
+    <article class="card">
+
+      <div class="vocab-image">
+        📍
+      </div>
+
+      <div class="vocab-top">
+
+        <div>
+
+          <div class="vocab-zh">
+            这儿
+          </div>
+
+          <div class="pinyin">
+            zhèr
+          </div>
+
+        </div>
+
+        <div class="vocab-meta">
+
+          <span class="badge">
+            Đại từ
+          </span>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('这儿')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="hanviet">
+        <b>Hán Việt:</b> giá nhi
+      </div>
+
+      <div class="meaning">
+        ở đây
+      </div>
+
+      <div class="example">
+
+        <div class="example-zh">
+          这儿有一只小猫。
+        </div>
+
+        <div class="example-pinyin">
+          Zhèr yǒu yì zhī xiǎomāo.
+        </div>
+
+        <div class="example-vi">
+          Ở đây có một con mèo.
+        </div>
+
+        <button
+          class="audio-btn"
+          onclick="speakText('这儿有一只小猫。')"
+        >
+          🔊 Nghe ví dụ
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- 水果 -->
+
+    <article class="card">
+
+      <div class="vocab-image">
+        🍎🍌🍊
+      </div>
+
+      <div class="vocab-top">
+
+        <div>
+
+          <div class="vocab-zh">
+            水果
+          </div>
+
+          <div class="pinyin">
+            shuǐguǒ
+          </div>
+
+        </div>
+
+        <div class="vocab-meta">
+
+          <span class="badge">
+            Danh từ
+          </span>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('水果')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="hanviet">
+        <b>Hán Việt:</b> thủy quả
+      </div>
+
+      <div class="meaning">
+        trái cây
+      </div>
+
+      <div class="example">
+
+        <div class="example-zh">
+          我想买些水果。
+        </div>
+
+        <div class="example-pinyin">
+          Wǒ xiǎng mǎi xiē shuǐguǒ.
+        </div>
+
+        <div class="example-vi">
+          Tôi muốn mua ít trái cây.
+        </div>
+
+        <button
+          class="audio-btn"
+          onclick="speakText('我想买些水果。')"
+        >
+          🔊 Nghe ví dụ
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- 少 -->
+
+    <article class="card">
+
+      <div class="vocab-image">
+        ⬇️
+      </div>
+
+      <div class="vocab-top">
+
+        <div>
+
+          <div class="vocab-zh">
+            少
+          </div>
+
+          <div class="pinyin">
+            shǎo
+          </div>
+
+        </div>
+
+        <div class="vocab-meta">
+
+          <span class="badge">
+            Tính từ
+          </span>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('少')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="hanviet">
+        <b>Hán Việt:</b> thiểu
+      </div>
+
+      <div class="meaning">
+        ít
+      </div>
+
+      <div class="example">
+
+        <div class="example-zh">
+          这儿的水果真不少。
+        </div>
+
+        <div class="example-pinyin">
+          Zhèr de shuǐguǒ zhēn bù shǎo.
+        </div>
+
+        <div class="example-vi">
+          Trái cây ở đây thật không ít.
+        </div>
+
+        <button
+          class="audio-btn"
+          onclick="speakText('这儿的水果真不少。')"
+        >
+          🔊 Nghe ví dụ
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- 斤 -->
+
+    <article class="card">
+
+      <div class="vocab-image">
+        ⚖️
+      </div>
+
+      <div class="vocab-top">
+
+        <div>
+
+          <div class="vocab-zh">
+            斤
+          </div>
+
+          <div class="pinyin">
+            jīn
+          </div>
+
+        </div>
+
+        <div class="vocab-meta">
+
+          <span class="badge">
+            Lượng từ
+          </span>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('斤')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="hanviet">
+        <b>Hán Việt:</b> cân
+      </div>
+
+      <div class="meaning">
+        cân (1 斤 = 0,5 kg)
+      </div>
+
+      <div class="example">
+
+        <div class="example-zh">
+          两斤苹果
+        </div>
+
+        <div class="example-pinyin">
+          Liǎng jīn píngguǒ
+        </div>
+
+        <div class="example-vi">
+          Hai cân táo.
+        </div>
+
+        <button
+          class="audio-btn"
+          onclick="speakText('两斤苹果')"
+        >
+          🔊 Nghe ví dụ
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- 苹果 -->
+
+    <article class="card">
+
+      <div class="vocab-image">
+        🍎
+      </div>
+
+      <div class="vocab-top">
+
+        <div>
+
+          <div class="vocab-zh">
+            苹果
+          </div>
+
+          <div class="pinyin">
+            píngguǒ
+          </div>
+
+        </div>
+
+        <div class="vocab-meta">
+
+          <span class="badge">
+            Danh từ
+          </span>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('苹果')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="hanviet">
+        <b>Hán Việt:</b> bình quả
+      </div>
+
+      <div class="meaning">
+        quả táo
+      </div>
+
+      <div class="example">
+
+        <div class="example-zh">
+          我买两斤苹果。
+        </div>
+
+        <div class="example-pinyin">
+          Wǒ mǎi liǎng jīn píngguǒ.
+        </div>
+
+        <div class="example-vi">
+          Tôi mua hai cân táo.
+        </div>
+
+        <button
+          class="audio-btn"
+          onclick="speakText('我买两斤苹果。')"
+        >
+          🔊 Nghe ví dụ
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- 便宜 -->
+
+    <article class="card">
+
+      <div class="vocab-image">
+        💸
+      </div>
+
+      <div class="vocab-top">
+
+        <div>
+
+          <div class="vocab-zh">
+            便宜
+          </div>
+
+          <div class="pinyin">
+            piányi
+          </div>
+
+        </div>
+
+        <div class="vocab-meta">
+
+          <span class="badge">
+            Tính từ
+          </span>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('便宜')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="hanviet">
+        <b>Hán Việt:</b> tiện nghi
+      </div>
+
+      <div class="meaning">
+        rẻ
+      </div>
+
+      <div class="example">
+
+        <div class="example-zh">
+          这儿的苹果真便宜！
+        </div>
+
+        <div class="example-pinyin">
+          Zhèr de píngguǒ zhēn piányi!
+        </div>
+
+        <div class="example-vi">
+          Táo ở đây rẻ thật!
+        </div>
+
+        <button
+          class="audio-btn"
+          onclick="speakText('这儿的苹果真便宜！')"
+        >
+          🔊 Nghe ví dụ
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- 商店 -->
+
+    <article class="card">
+
+      <div class="vocab-image">
+        🏪
+      </div>
+
+      <div class="vocab-top">
+
+        <div>
+
+          <div class="vocab-zh">
+            商店
+          </div>
+
+          <div class="pinyin">
+            shāngdiàn
+          </div>
+
+        </div>
+
+        <div class="vocab-meta">
+
+          <span class="badge">
+            Danh từ
+          </span>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('商店')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="hanviet">
+        <b>Hán Việt:</b> thương điếm
+      </div>
+
+      <div class="meaning">
+        cửa hàng
+      </div>
+
+      <div class="example">
+
+        <div class="example-zh">
+          这个商店很大。
+        </div>
+
+        <div class="example-pinyin">
+          Zhège shāngdiàn hěn dà.
+        </div>
+
+        <div class="example-vi">
+          Cửa hàng này rất lớn.
+        </div>
+
+        <button
+          class="audio-btn"
+          onclick="speakText('这个商店很大。')"
+        >
+          🔊 Nghe ví dụ
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- 衣服 -->
+
+    <article class="card">
+
+      <div class="vocab-image">
+        👕
+      </div>
+
+      <div class="vocab-top">
+
+        <div>
+
+          <div class="vocab-zh">
+            衣服
+          </div>
+
+          <div class="pinyin">
+            yīfu
+          </div>
+
+        </div>
+
+        <div class="vocab-meta">
+
+          <span class="badge">
+            Danh từ
+          </span>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('衣服')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="hanviet">
+        <b>Hán Việt:</b> y phục
+      </div>
+
+      <div class="meaning">
+        quần áo
+      </div>
+
+      <div class="example">
+
+        <div class="example-zh">
+          这件衣服很好看。
+        </div>
+
+        <div class="example-pinyin">
+          Zhè jiàn yīfu hěn hǎokàn.
+        </div>
+
+        <div class="example-vi">
+          Bộ quần áo này rất đẹp.
+        </div>
+
+        <button
+          class="audio-btn"
+          onclick="speakText('这件衣服很好看。')"
+        >
+          🔊 Nghe ví dụ
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- 件 -->
+
+    <article class="card">
+
+      <div class="vocab-image">
+        👕
+      </div>
+
+      <div class="vocab-top">
+
+        <div>
+
+          <div class="vocab-zh">
+            件
+          </div>
+
+          <div class="pinyin">
+            jiàn
+          </div>
+
+        </div>
+
+        <div class="vocab-meta">
+
+          <span class="badge">
+            Lượng từ
+          </span>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('件')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="hanviet">
+        <b>Hán Việt:</b> kiện
+      </div>
+
+      <div class="meaning">
+        lượng từ dùng cho quần áo
+      </div>
+
+      <div class="example">
+
+        <div class="example-zh">
+          一件衣服
+        </div>
+
+        <div class="example-pinyin">
+          Yí jiàn yīfu
+        </div>
+
+        <div class="example-vi">
+          Một bộ quần áo.
+        </div>
+
+        <button
+          class="audio-btn"
+          onclick="speakText('一件衣服')"
+        >
+          🔊 Nghe ví dụ
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- 元 -->
+
+    <article class="card">
+
+      <div class="vocab-image">
+        💴
+      </div>
+
+      <div class="vocab-top">
+
+        <div>
+
+          <div class="vocab-zh">
+            元
+          </div>
+
+          <div class="pinyin">
+            yuán
+          </div>
+
+        </div>
+
+        <div class="vocab-meta">
+
+          <span class="badge">
+            Lượng từ
+          </span>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('元')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="hanviet">
+        <b>Hán Việt:</b> nguyên
+      </div>
+
+      <div class="meaning">
+        đồng, đơn vị tiền tệ
+      </div>
+
+      <div class="example">
+
+        <div class="example-zh">
+          一百元
+        </div>
+
+        <div class="example-pinyin">
+          Yìbǎi yuán
+        </div>
+
+        <div class="example-vi">
+          Một trăm đồng.
+        </div>
+
+        <button
+          class="audio-btn"
+          onclick="speakText('一百元')"
+        >
+          🔊 Nghe ví dụ
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- 怎么样 -->
+
+    <article class="card">
+
+      <div class="vocab-image">
+        🤔
+      </div>
+
+      <div class="vocab-top">
+
+        <div>
+
+          <div class="vocab-zh">
+            怎么样
+          </div>
+
+          <div class="pinyin">
+            zěnmeyàng
+          </div>
+
+        </div>
+
+        <div class="vocab-meta">
+
+          <span class="badge">
+            Đại từ nghi vấn
+          </span>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('怎么样')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="hanviet">
+        <b>Hán Việt:</b> chẩm ma dạng
+      </div>
+
+      <div class="meaning">
+        thế nào, như thế nào
+      </div>
+
+      <div class="example">
+
+        <div class="example-zh">
+          这件衣服怎么样？
+        </div>
+
+        <div class="example-pinyin">
+          Zhè jiàn yīfu zěnmeyàng?
+        </div>
+
+        <div class="example-vi">
+          Bộ quần áo này thế nào?
+        </div>
+
+        <button
+          class="audio-btn"
+          onclick="speakText('这件衣服怎么样？')"
+        >
+          🔊 Nghe ví dụ
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- 贵 -->
+
+    <article class="card">
+
+      <div class="vocab-image">
+        💎
+      </div>
+
+      <div class="vocab-top">
+
+        <div>
+
+          <div class="vocab-zh">
+            贵
+          </div>
+
+          <div class="pinyin">
+            guì
+          </div>
+
+        </div>
+
+        <div class="vocab-meta">
+
+          <span class="badge">
+            Tính từ
+          </span>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('贵')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="hanviet">
+        <b>Hán Việt:</b> quý
+      </div>
+
+      <div class="meaning">
+        đắt
+      </div>
+
+      <div class="example">
+
+        <div class="example-zh">
+          太贵了。
+        </div>
+
+        <div class="example-pinyin">
+          Tài guì le.
+        </div>
+
+        <div class="example-vi">
+          Đắt quá.
+        </div>
+
+        <button
+          class="audio-btn"
+          onclick="speakText('太贵了。')"
+        >
+          🔊 Nghe ví dụ
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- 穿 -->
+
+    <article class="card">
+
+      <div class="vocab-image">
+        👕
+      </div>
+
+      <div class="vocab-top">
+
+        <div>
+
+          <div class="vocab-zh">
+            穿
+          </div>
+
+          <div class="pinyin">
+            chuān
+          </div>
+
+        </div>
+
+        <div class="vocab-meta">
+
+          <span class="badge">
+            Động từ
+          </span>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('穿')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="hanviet">
+        <b>Hán Việt:</b> xuyên
+      </div>
+
+      <div class="meaning">
+        mặc
+      </div>
+
+      <div class="example">
+
+        <div class="example-zh">
+          我能穿吗？
+        </div>
+
+        <div class="example-pinyin">
+          Wǒ néng chuān ma?
+        </div>
+
+        <div class="example-vi">
+          Tôi mặc được không?
+        </div>
+
+        <button
+          class="audio-btn"
+          onclick="speakText('我能穿吗？')"
+        >
+          🔊 Nghe ví dụ
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- 女 -->
+
+    <article class="card">
+
+      <div class="vocab-image">
+        👧
+      </div>
+
+      <div class="vocab-top">
+
+        <div>
+
+          <div class="vocab-zh">
+            女
+          </div>
+
+          <div class="pinyin">
+            nǚ
+          </div>
+
+        </div>
+
+        <div class="vocab-meta">
+
+          <span class="badge">
+            Tính từ / Danh từ
+          </span>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('女')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="hanviet">
+        <b>Hán Việt:</b> nữ
+      </div>
+
+      <div class="meaning">
+        nữ, con gái
+      </div>
+
+      <div class="example">
+
+        <div class="example-zh">
+          女孩子
+        </div>
+
+        <div class="example-pinyin">
+          Nǚ háizi
+        </div>
+
+        <div class="example-vi">
+          Con gái.
+        </div>
+
+        <button
+          class="audio-btn"
+          onclick="speakText('女孩子')"
+        >
+          🔊 Nghe ví dụ
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- 男 -->
+
+    <article class="card">
+
+      <div class="vocab-image">
+        👦
+      </div>
+
+      <div class="vocab-top">
+
+        <div>
+
+          <div class="vocab-zh">
+            男
+          </div>
+
+          <div class="pinyin">
+            nán
+          </div>
+
+        </div>
+
+        <div class="vocab-meta">
+
+          <span class="badge">
+            Tính từ / Danh từ
+          </span>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('男')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="hanviet">
+        <b>Hán Việt:</b> nam
+      </div>
+
+      <div class="meaning">
+        nam, con trai
+      </div>
+
+      <div class="example">
+
+        <div class="example-zh">
+          男孩子
+        </div>
+
+        <div class="example-pinyin">
+          Nán háizi
+        </div>
+
+        <div class="example-vi">
+          Con trai.
+        </div>
+
+        <button
+          class="audio-btn"
+          onclick="speakText('男孩子')"
+        >
+          🔊 Nghe ví dụ
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- 那儿 -->
+
+    <article class="card">
+
+      <div class="vocab-image">
+        📍
+      </div>
+
+      <div class="vocab-top">
+
+        <div>
+
+          <div class="vocab-zh">
+            那儿
+          </div>
+
+          <div class="pinyin">
+            nàr
+          </div>
+
+        </div>
+
+        <div class="vocab-meta">
+
+          <span class="badge">
+            Đại từ
+          </span>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('那儿')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="hanviet">
+        <b>Hán Việt:</b> na nhi
+      </div>
+
+      <div class="meaning">
+        ở kia, ở đó
+      </div>
+
+      <div class="example">
+
+        <div class="example-zh">
+          男孩子的衣服在那儿。
+        </div>
+
+        <div class="example-pinyin">
+          Nán háizi de yīfu zài nàr.
+        </div>
+
+        <div class="example-vi">
+          Quần áo nam ở kia.
+        </div>
+
+        <button
+          class="audio-btn"
+          onclick="speakText('男孩子的衣服在那儿。')"
+        >
+          🔊 Nghe ví dụ
+        </button>
+
+      </div>
+
+    </article>
+
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     ÔN TẬP
+========================= -->
+
+<section
+  class="section"
+  id="onthi"
+>
+
+  <h2 class="section-title">
+    🎮 Ôn tập tương tác
+  </h2>
+
+  <p class="section-desc">
+    Hai hoạt động giúp ôn từ mới và mẫu câu của bài.
+  </p>
+
+
+  <!-- GHÉP TỪ -->
+
+  <div class="card activity">
+
+    <div class="activity-title">
+
+      <h3>
+        ① Ghép từ với nghĩa
+      </h3>
+
+      <button
+        class="secondary-btn"
+        onclick="resetMatch()"
+      >
+        Làm lại
+      </button>
+
+    </div>
+
+
+    <div
+      class="match-grid"
+      id="matchArea"
+    >
+    </div>
+
+
+    <div
+      class="feedback"
+      id="matchFeedback"
+    >
+    </div>
+
+  </div>
+
+
+  <!-- SẮP XẾP CÂU -->
+
+  <div class="card activity">
+
+    <div class="activity-title">
+
+      <h3>
+        ② Sắp xếp câu
+      </h3>
+
+      <button
+        class="secondary-btn"
+        onclick="newSentence()"
+      >
+        Câu mới
+      </button>
+
+    </div>
+
+
+    <div
+      class="word-bank"
+      id="wordBank"
+    >
+    </div>
+
+
+    <div
+      class="answer-box"
+      id="answerBox"
+    >
+    </div>
+
+
+    <button
+      class="primary-btn"
+      onclick="checkSentence()"
+    >
+      Kiểm tra
+    </button>
+
+
+    <div
+      class="feedback"
+      id="sentenceFeedback"
+    >
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     NGỮ PHÁP
+========================= -->
+
+<section
+  class="section"
+  id="nguphap"
+>
+
+  <h2 class="section-title">
+    📐 Ngữ pháp
+  </h2>
+
+  <p class="section-desc">
+    Tập trung vào các cấu trúc chính trong bài.
+  </p>
+
+
+  <div class="grammar-grid">
+
+
+    <!-- TIỀN -->
+
+    <article
+      class="card grammar-card"
+    >
+
+      <h3>
+        💰 1. Biểu đạt số tiền
+      </h3>
+
+      <p>
+        Đơn vị tiền được trình bày theo thứ tự:
+      </p>
+
+      <div class="formula">
+        元 / 块 → 角 / 毛 → 分
+      </div>
+
+      <p>
+        Trong khẩu ngữ,
+        元 thường nói là 块,
+        角 thường nói là 毛.
+      </p>
+
+      <div class="formula">
+        1元 / 块<br>
+        5元 / 块<br>
+        10元 / 块
+      </div>
+
+      <p>
+        Ví dụ:
+        <b>苹果三块五一斤。</b>
+      </p>
+
+    </article>
+
+
+    <!-- TÍNH TỪ -->
+
+    <article
+      class="card grammar-card"
+    >
+
+      <h3>
+        🌷 2. Câu vị ngữ tính từ
+      </h3>
+
+      <p>
+        Tính từ có thể trực tiếp làm vị ngữ.
+        Trước tính từ có thể dùng phó từ mức độ hoặc phủ định.
+      </p>
+
+      <div class="formula">
+        S + 很 / 真 / 不 + Adj
+      </div>
+
+      <p>
+        这儿的水果很多。<br>
+        我的房间不大。<br>
+        那个苹果不好吃。
+      </p>
+
+    </article>
+
+
+    <!-- 怎么样 -->
+
+    <article
+      class="card grammar-card"
+    >
+
+      <h3>
+        ❓ 3. 疑问代词“怎么样”
+      </h3>
+
+      <p>
+        “怎么样” dùng để hỏi ý kiến
+        hoặc hỏi tình hình.
+      </p>
+
+      <div class="formula">
+        ……怎么样？
+      </div>
+
+      <p>
+        这件衣服怎么样？<br>
+        我们去这儿买水果，怎么样？<br>
+        今天中午吃面条，怎么样？
+      </p>
+
+    </article>
+
+
+    <!-- MẪU MUA SẮM -->
+
+    <article
+      class="card grammar-card"
+    >
+
+      <h3>
+        🛍️ 4. Mẫu câu mua sắm
+      </h3>
+
+      <div class="formula">
+        多少钱一个？
+      </div>
+
+      <p>
+        这些五块钱一个，<br>
+        那些十块钱一个。
+      </p>
+
+      <div class="formula">
+        苹果三块五一斤。
+      </div>
+
+    </article>
+
+
+  </div>
+
+
+  <!-- QUIZ -->
+
+  <div class="card activity">
+
+    <h3>
+      🧠 Luyện tập ngữ pháp
+    </h3>
+
+
+    <p>
+      <b>1.</b>
+      这儿的苹果真 ______。
+    </p>
+
+    <label>
+      <input
+        type="radio"
+        name="q1"
+        value="a"
+      >
+      便宜
+    </label>
+
+    <label>
+      <input
+        type="radio"
+        name="q1"
+        value="b"
+      >
+      贵
+    </label>
+
+    <label>
+      <input
+        type="radio"
+        name="q1"
+        value="c"
+      >
+      小
+    </label>
+
+
+    <p>
+      <b>2.</b>
+      “这件衣服怎么样？”
+      dùng để:
+    </p>
+
+    <label>
+      <input
+        type="radio"
+        name="q2"
+        value="a"
+      >
+      Hỏi ý kiến / tình hình
+    </label>
+
+    <label>
+      <input
+        type="radio"
+        name="q2"
+        value="b"
+      >
+      Hỏi tuổi
+    </label>
+
+    <label>
+      <input
+        type="radio"
+        name="q2"
+        value="c"
+      >
+      Hỏi quốc tịch
+    </label>
+
+
+    <p>
+      <b>3.</b>
+      苹果三块五 ______。
+    </p>
+
+    <label>
+      <input
+        type="radio"
+        name="q3"
+        value="a"
+      >
+      一斤
+    </label>
+
+    <label>
+      <input
+        type="radio"
+        name="q3"
+        value="b"
+      >
+      一个
+    </label>
+
+    <label>
+      <input
+        type="radio"
+        name="q3"
+        value="c"
+      >
+      一件
+    </label>
+
+
+    <button
+      class="primary-btn"
+      onclick="checkQuiz()"
+    >
+      Chấm điểm
+    </button>
+
+
+    <div
+      class="feedback"
+      id="quizFeedback"
+    >
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     HỘI THOẠI
+========================= -->
+
+<section
+  class="section"
+  id="hoithoai"
+>
+
+  <h2 class="section-title">
+    🗣️ Hội thoại
+  </h2>
+
+  <p class="section-desc">
+    Bám theo 3 bài khóa trong PDF.
+    Nhấn 🔊 để nghe từng câu.
+  </p>
+
+
+  <!-- =====================
+       BÀI KHÓA 1
+  ====================== -->
+
+  <div
+    class="card activity"
+  >
+
+    <h3>
+      📘 课文 1 · Bài khóa 1
+    </h3>
+
+
+    <div class="dialogue-grid">
+
+
+      <div>
+
+
+        <div class="dialogue-line a">
+
+          <div class="speaker">
+            王一雪
+          </div>
+
+          <div class="dialogue-zh">
+            请问，有杯子吗？
+          </div>
+
+          <div class="dialogue-pinyin">
+            Qǐngwèn, yǒu bēizi ma?
+          </div>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('请问，有杯子吗？')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+
+        <div class="dialogue-line b">
+
+          <div class="speaker">
+            售货员
+          </div>
+
+          <div class="dialogue-zh">
+            有，杯子在这边。
+          </div>
+
+          <div class="dialogue-pinyin">
+            Yǒu, bēizi zài zhèbiān.
+          </div>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('有，杯子在这边。')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+
+      </div>
+
+
+      <div>
+
+
+        <div class="dialogue-line a">
+
+          <div class="speaker">
+            王一雪
+          </div>
+
+          <div class="dialogue-zh">
+            多少钱一个？
+          </div>
+
+          <div class="dialogue-pinyin">
+            Duōshao qián yí gè?
+          </div>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('多少钱一个？')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+
+        <div class="dialogue-line b">
+
+          <div class="speaker">
+            售货员
+          </div>
+
+          <div class="dialogue-zh">
+            这些五块钱一个，
+            那些十块钱一个。
+          </div>
+
+          <div class="dialogue-pinyin">
+            Zhèxiē wǔ kuài qián yí gè,
+            nàxiē shí kuài qián yí gè.
+          </div>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('这些五块钱一个，那些十块钱一个。')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+
+        <div class="dialogue-line a">
+
+          <div class="speaker">
+            王一雪
+          </div>
+
+          <div class="dialogue-zh">
+            我买这个吧。
+          </div>
+
+          <div class="dialogue-pinyin">
+            Wǒ mǎi zhège ba.
+          </div>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('我买这个吧。')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================
+       BÀI KHÓA 2
+  ====================== -->
+
+  <div
+    class="card activity"
+  >
+
+    <h3>
+      📗 课文 2 · Bài khóa 2
+    </h3>
+
+
+    <div class="dialogue-grid">
+
+
+      <div>
+
+
+        <div class="dialogue-line a">
+
+          <div class="speaker">
+            王一雪
+          </div>
+
+          <div class="dialogue-zh">
+            这儿的水果真不少。
+          </div>
+
+          <div class="dialogue-pinyin">
+            Zhèr de shuǐguǒ zhēn bù shǎo.
+          </div>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('这儿的水果真不少。')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+
+        <div class="dialogue-line b">
+
+          <div class="speaker">
+            售货员
+          </div>
+
+          <div class="dialogue-zh">
+            您想买什么？
+          </div>
+
+          <div class="dialogue-pinyin">
+            Nín xiǎng mǎi shénme?
+          </div>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('您想买什么？')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+
+      </div>
+
+
+      <div>
+
+
+        <div class="dialogue-line a">
+
+          <div class="speaker">
+            王一雪
+          </div>
+
+          <div class="dialogue-zh">
+            我想买两斤苹果。
+          </div>
+
+          <div class="dialogue-pinyin">
+            Wǒ xiǎng mǎi liǎng jīn píngguǒ.
+          </div>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('我想买两斤苹果。')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+
+        <div class="dialogue-line b">
+
+          <div class="speaker">
+            售货员
+          </div>
+
+          <div class="dialogue-zh">
+            苹果三块五一斤，
+            这些七块二，七块钱吧。
+          </div>
+
+          <div class="dialogue-pinyin">
+            Píngguǒ sān kuài wǔ yì jīn,
+            zhèxiē qī kuài èr,
+            qī kuài qián ba.
+          </div>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('苹果三块五一斤，这些七块二，七块钱吧。')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+
+        <div class="dialogue-line a">
+
+          <div class="speaker">
+            王一雪
+          </div>
+
+          <div class="dialogue-zh">
+            好的，这儿的苹果真便宜。
+          </div>
+
+          <div class="dialogue-pinyin">
+            Hǎo de, zhèr de píngguǒ zhēn piányi.
+          </div>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('好的，这儿的苹果真便宜。')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================
+       BÀI KHÓA 3
+  ====================== -->
+
+  <div
+    class="card activity"
+  >
+
+    <h3>
+      📙 课文 3 · Bài khóa 3
+    </h3>
+
+
+    <div class="dialogue-grid">
+
+
+      <div>
+
+
+        <div class="dialogue-line a">
+
+          <div class="speaker">
+            刘明
+          </div>
+
+          <div class="dialogue-zh">
+            这家商店衣服真多，
+            这件一百元，怎么样？
+          </div>
+
+          <div class="dialogue-pinyin">
+            Zhè jiā shāngdiàn yīfu zhēn duō,
+            zhè jiàn yìbǎi yuán,
+            zěnmeyàng?
+          </div>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('这家商店衣服真多，这件一百元，怎么样？')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+
+        <div class="dialogue-line b">
+
+          <div class="speaker">
+            王一雪
+          </div>
+
+          <div class="dialogue-zh">
+            好看，也不贵。
+          </div>
+
+          <div class="dialogue-pinyin">
+            Hǎokàn, yě bú guì.
+          </div>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('好看，也不贵。')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+
+      </div>
+
+
+      <div>
+
+
+        <div class="dialogue-line a">
+
+          <div class="speaker">
+            刘明
+          </div>
+
+          <div class="dialogue-zh">
+            小雪能穿，买一件吧。
+          </div>
+
+          <div class="dialogue-pinyin">
+            Xiǎo Xuě néng chuān,
+            mǎi yí jiàn ba.
+          </div>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('小雪能穿，买一件吧。')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+
+        <div class="dialogue-line b">
+
+          <div class="speaker">
+            王一雪
+          </div>
+
+          <div class="dialogue-zh">
+            好的，小明能穿吗？
+          </div>
+
+          <div class="dialogue-pinyin">
+            Hǎo de, Xiǎo Míng néng chuān ma?
+          </div>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('好的，小明能穿吗？')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+
+        <div class="dialogue-line a">
+
+          <div class="speaker">
+            刘明
+          </div>
+
+          <div class="dialogue-zh">
+            不能，这些是女孩子的衣服，
+            男孩子的衣服在那儿。
+          </div>
+
+          <div class="dialogue-pinyin">
+            Bù néng, zhèxiē shì nǚ háizi de yīfu,
+            nán háizi de yīfu zài nàr.
+          </div>
+
+          <button
+            class="audio-btn"
+            onclick="speakText('不能，这些是女孩子的衣服，男孩子的衣服在那儿。')"
+          >
+            🔊
+          </button>
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================
+       ROLEPLAY
+  ====================== -->
+
+  <div class="card activity">
+
+    <h3>
+      🎭 Luyện hội thoại
+    </h3>
+
+    <p>
+      Chia nhóm 3 người:
+      1 người làm 售货员,
+      2 người làm khách hàng.
+      Dựa vào ba bài khóa để tạo hội thoại mới.
+    </p>
+
+    <div class="note">
+
+      💡 Từ khóa:
+
+      <b>
+        杯子、
+        钱、
+        这些、
+        块、
+        那些、
+        水果、
+        苹果、
+        便宜、
+        商店、
+        衣服、
+        怎么样、
+        贵、
+        穿、
+        女、
+        男、
+        那儿
+      </b>
+
+    </div>
+
+  </div>
+
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+  中文学习空间 ·
+  Tiếng Trung Meowmeow ·
+  Bài 10
+
+</footer>
+
+
+<script>
+
+/* =========================
+   AUDIO
+========================= */
+
+function speakText(text){
+
+  if(
+    !("speechSynthesis" in window)
+  ){
+
+    alert(
+      "Trình duyệt của bạn chưa hỗ trợ đọc tiếng Trung."
+    );
+
+    return;
+
+  }
+
+
+  speechSynthesis.cancel();
+
+
+  const utterance =
+    new SpeechSynthesisUtterance(
+      text
+    );
+
+
+  utterance.lang =
+    "zh-CN";
+
+
+  utterance.rate =
+    0.78;
+
+
+  utterance.pitch =
+    1;
+
+
+  speechSynthesis.speak(
+    utterance
+  );
+
+}
+
+
+/* =========================
+   GHÉP TỪ
+========================= */
+
+const matchPairs = [
+
+  ["杯子","cái cốc"],
+
+  ["钱","tiền"],
+
+  ["苹果","quả táo"],
+
+  ["便宜","rẻ"],
+
+  ["衣服","quần áo"],
+
+  ["怎么样","thế nào"],
+
+  ["商店","cửa hàng"]
+
+];
+
+
+let matchState = {
+
+  left:null,
+
+  right:null
+
+};
+
+
+function resetMatch(){
+
+  const area =
+    document.getElementById(
+      "matchArea"
+    );
+
+
+  area.innerHTML = `
+
+    <div
+      class="match-column"
+      id="leftColumn"
+    ></div>
+
+    <div
+      class="match-column"
+      id="rightColumn"
+    ></div>
+
+  `;
+
+
+  const left =
+    [...matchPairs].sort(
+      () =>
+        Math.random() - .5
+    );
+
+
+  const right =
+    [...matchPairs].sort(
+      () =>
+        Math.random() - .5
+    );
+
+
+  left.forEach(item => {
+
+    const button =
+      document.createElement(
+        "button"
+      );
+
+
+    button.className =
+      "match-item";
+
+
+    button.textContent =
+      item[0];
+
+
+    button.dataset.key =
+      item[0];
+
+
+    button.onclick =
+      () =>
+        chooseMatch(
+          "left",
+          button
+        );
+
+
+    document
+      .getElementById(
+        "leftColumn"
+      )
+      .appendChild(
+        button
+      );
+
+  });
+
+
+  right.forEach(item => {
+
+    const button =
+      document.createElement(
+        "button"
+      );
+
+
+    button.className =
+      "match-item";
+
+
+    button.textContent =
+      item[1];
+
+
+    button.dataset.key =
+      item[0];
+
+
+    button.onclick =
+      () =>
+        chooseMatch(
+          "right",
+          button
+        );
+
+
+    document
+      .getElementById(
+        "rightColumn"
+      )
+      .appendChild(
+        button
+      );
+
+  });
+
+
+  matchState = {
+
+    left:null,
+
+    right:null
+
+  };
+
+
+  document
+    .getElementById(
+      "matchFeedback"
+    )
+    .textContent = "";
+
+}
+
+
+function chooseMatch(
+  side,
+  button
+){
+
+  [
+    ...button
+      .parentElement
+      .children
+  ].forEach(
+    item =>
+      item.classList.remove(
+        "selected"
+      )
+  );
+
+
+  button.classList.add(
+    "selected"
+  );
+
+
+  matchState[side] =
+    button.dataset.key;
+
+
+  if(
+    matchState.left &&
+    matchState.right
+  ){
+
+    const feedback =
+      document.getElementById(
+        "matchFeedback"
+      );
+
+
+    if(
+      matchState.left ===
+      matchState.right
+    ){
+
+      feedback.textContent =
+        "✅ Chính xác!";
+
+      feedback.style.color =
+        "#6e4d78";
+
+    }else{
+
+      feedback.textContent =
+        "❌ Chưa đúng, thử lại nhé!";
+
+      feedback.style.color =
+        "#b05b77";
+
+    }
+
+
+    matchState = {
+
+      left:null,
+
+      right:null
+
+    };
+
+  }
+
+}
+
+
+resetMatch();
+
+
+/* =========================
+   SẮP XẾP CÂU
+========================= */
+
+const sentenceData = [
+
+  {
+
+    words:[
+      "这儿的",
+      "苹果",
+      "真便宜！"
+    ],
+
+    answer:
+      "这儿的苹果真便宜！"
+
+  },
+
+  {
+
+    words:[
+      "这个杯子",
+      "多少钱？"
+    ],
+
+    answer:
+      "这个杯子多少钱？"
+
+  },
+
+  {
+
+    words:[
+      "这件衣服",
+      "怎么样？"
+    ],
+
+    answer:
+      "这件衣服怎么样？"
+
+  },
+
+  {
+
+    words:[
+      "那些杯子",
+      "五块钱。"
+    ],
+
+    answer:
+      "那些杯子五块钱。"
+
+  }
+
+];
+
+
+let currentSentence =
+  null;
+
+
+let selectedWords =
+  [];
+
+
+function newSentence(){
+
+  currentSentence =
+    sentenceData[
+      Math.floor(
+        Math.random() *
+        sentenceData.length
+      )
+    ];
+
+
+  selectedWords = [];
+
+
+  const box =
+    document.getElementById(
+      "wordBank"
+    );
+
+
+  box.innerHTML = "";
+
+
+  const shuffled =
+    [
+      ...currentSentence.words
+    ].sort(
+      () =>
+        Math.random() - .5
+    );
+
+
+  shuffled.forEach(
+    word => {
+
+      const button =
+        document.createElement(
+          "button"
+        );
+
+
+      button.className =
+        "word-button";
+
+
+      button.textContent =
+        word;
+
+
+      button.onclick =
+        () => {
+
+          selectedWords.push(
+            word
+          );
+
+
+          button.disabled =
+            true;
+
+
+          document
+            .getElementById(
+              "answerBox"
+            )
+            .textContent =
+              selectedWords.join(
+                ""
+              );
+
+        };
+
+
+      box.appendChild(
+        button
+      );
+
+    }
+  );
+
+
+  document
+    .getElementById(
+      "answerBox"
+    )
+    .textContent = "";
+
+
+  document
+    .getElementById(
+      "sentenceFeedback"
+    )
+    .textContent = "";
+
+}
+
+
+function checkSentence(){
+
+  const feedback =
+    document.getElementById(
+      "sentenceFeedback"
+    );
+
+
+  const answer =
+    selectedWords.join("");
+
+
+  if(
+    answer ===
+    currentSentence.answer
+  ){
+
+    feedback.textContent =
+      "✅ Chính xác!";
+
+    feedback.style.color =
+      "#6e4d78";
+
+  }else{
+
+    feedback.textContent =
+      "❌ Chưa đúng, thử lại nhé!";
+
+    feedback.style.color =
+      "#b05b77";
+
+  }
+
+}
+
+
+newSentence();
+
+
+/* =========================
+   QUIZ
+========================= */
+
+function checkQuiz(){
+
+  const answers = [
+
+    "a",
+    "a",
+    "a"
+
+  ];
+
+
+  let score = 0;
+
+
+  answers.forEach(
+    (answer,index) => {
+
+      const checked =
+        document.querySelector(
+          `input[name="q${index + 1}"]:checked`
+        );
+
+
+      if(
+        checked &&
+        checked.value ===
+        answer
+      ){
+
+        score++;
+
+      }
+
+    }
+  );
+
+
+  const feedback =
+    document.getElementById(
+      "quizFeedback"
+    );
+
+
+  feedback.textContent =
+    `Bạn đúng ${score}/3 câu.`;
+
+
+  feedback.style.color =
+
+    score === 3
+
+      ? "#6e4d78"
+
+      : "#b05b77";
+
+}
+
+</script>
+
+
+</body>
+
+</html>
