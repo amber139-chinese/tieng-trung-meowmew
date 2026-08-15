@@ -1,0 +1,1910 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Bài 14 · 我看了一个电影 · Tiếng Trung Meowmeow</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --bg:#fff8f5;
+  --paper:#fff;
+  --ink:#352b35;
+  --muted:#756a74;
+  --pink:#f5a8b8;
+  --pink2:#ffe3e9;
+  --purple:#8f79a8;
+  --purple2:#eee8f6;
+  --yellow:#f8d98b;
+  --line:#eadde3;
+  --shadow:0 12px 32px rgba(91,65,86,.10);
+  --radius:22px;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:
+    linear-gradient(
+      135deg,
+      #fff8f5,
+      #fffdfb
+    );
+  color:var(--ink);
+  font-family:"Be Vietnam Pro","Noto Sans",Arial,sans-serif;
+  line-height:1.65;
+  overflow-x:hidden;
+}
+
+button,
+input{
+  font:inherit;
+}
+
+.container{
+  width:min(1120px,92%);
+  margin:auto;
+}
+
+
+/* HEADER */
+
+header{
+  padding:28px 0 22px;
+  color:#fff;
+  background:
+    linear-gradient(
+      135deg,
+      #e99bad,
+      #dca7c5,
+      #bda8cc
+    );
+  box-shadow:var(--shadow);
+  position:sticky;
+  top:0;
+  z-index:30;
+}
+
+.brand{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+}
+
+.logo{
+  font-size:20px;
+  font-weight:700;
+}
+
+.logo span{
+  font-family:"Playfair Display",serif;
+}
+
+.lesson{
+  padding:7px 13px;
+  border:1px solid rgba(255,255,255,.5);
+  border-radius:999px;
+  background:rgba(255,255,255,.15);
+  font-size:.85rem;
+}
+
+nav{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:14px;
+}
+
+nav a{
+  padding:8px 14px;
+  background:#fff;
+  color:var(--purple);
+  border:1px solid var(--line);
+  border-radius:999px;
+  font-size:.9rem;
+  font-weight:700;
+  text-decoration:none;
+}
+
+nav a:hover{
+  background:var(--purple);
+  color:#fff;
+}
+
+
+/* HERO */
+
+.hero{
+  padding:42px 0 25px;
+}
+
+.hero-card,
+.card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:18px;
+}
+
+.hero-card{
+  padding:32px;
+}
+
+.eyebrow{
+  display:inline-block;
+  background:var(--purple2);
+  color:var(--purple);
+  border-radius:999px;
+  padding:4px 11px;
+  font-size:.78rem;
+  font-weight:700;
+}
+
+h1,
+h2,
+h3{
+  font-family:"Playfair Display","Noto Serif SC",serif;
+}
+
+h1{
+  font-family:"Noto Serif SC",serif;
+  font-size:clamp(2.1rem,5vw,3.5rem);
+  color:var(--purple);
+  margin:10px 0;
+  line-height:1.25;
+}
+
+h2{
+  color:var(--purple);
+  font-size:2.15rem;
+  text-align:center;
+}
+
+h3{
+  color:#55415c;
+}
+
+.pinyin{
+  color:var(--purple);
+  font-weight:700;
+}
+
+.section{
+  padding:34px 0 18px;
+}
+
+.desc{
+  text-align:center;
+  color:var(--muted);
+  margin:-5px auto 22px;
+}
+
+
+/* GRIDS */
+
+.grid4{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+
+.grid3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  align-items:stretch;
+}
+
+@media(max-width:900px){
+  .grid4,
+  .grid3{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:600px){
+  .grid4,
+  .grid3{
+    grid-template-columns:1fr;
+  }
+}
+
+
+/* FLASHCARD */
+
+.flash{
+  height:215px;
+  perspective:900px;
+  cursor:pointer;
+}
+
+.inner{
+  height:100%;
+  position:relative;
+  transition:.6s;
+  transform-style:preserve-3d;
+}
+
+.flash.flipped .inner{
+  transform:rotateY(180deg);
+}
+
+.face{
+  position:absolute;
+  inset:0;
+  backface-visibility:hidden;
+  border-radius:18px;
+  border:1px solid var(--line);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:15px;
+}
+
+.front{
+  background:linear-gradient(145deg,#fff,#fff0f3);
+}
+
+.back{
+  background:var(--pink2);
+  transform:rotateY(180deg);
+}
+
+.hanzi{
+  font-family:"Noto Serif SC",serif;
+  font-size:2.2rem;
+  font-weight:700;
+}
+
+
+/* VOCAB */
+
+.grid3 .card{
+  height:530px;
+  min-height:530px;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+
+.vocab-art{
+  width:100%;
+  height:120px;
+  min-height:120px;
+  flex:none;
+
+  border-radius:15px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--pink2),
+      var(--purple2)
+    );
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:3rem;
+}
+
+.vtop{
+  height:68px;
+  min-height:68px;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+
+  gap:10px;
+  margin-top:12px;
+}
+
+.vtop > div:first-child{
+  flex:1;
+  min-width:0;
+}
+
+.vzh{
+  font-family:"Noto Serif SC",serif;
+  font-size:1.8rem;
+  font-weight:700;
+  line-height:1.25;
+}
+
+.vtop .badge{
+  display:block;
+  margin-bottom:5px;
+  white-space:nowrap;
+}
+
+.badge{
+  background:var(--pink2);
+  color:var(--purple);
+  padding:4px 8px;
+  border-radius:999px;
+  font-size:.72rem;
+  font-weight:700;
+}
+
+.audio{
+  border:0;
+  background:var(--purple);
+  color:#fff;
+  padding:6px 10px;
+  border-radius:999px;
+  cursor:pointer;
+  flex:none;
+}
+
+.audio:hover{
+  background:#7b6694;
+}
+
+.hanviet{
+  margin-top:4px;
+  min-height:30px;
+  line-height:1.55;
+}
+
+.meaning{
+  min-height:42px;
+  line-height:1.55;
+}
+
+.example{
+  margin-top:auto;
+  height:138px;
+  min-height:138px;
+  overflow:hidden;
+
+  padding:11px 12px;
+
+  background:#fffafa;
+
+  border-left:4px solid var(--pink);
+  border-radius:10px;
+
+  display:flex;
+  flex-direction:column;
+}
+
+.ezh{
+  font-family:"Noto Serif SC",serif;
+  font-weight:700;
+  line-height:1.5;
+}
+
+.example .pinyin{
+  font-size:.88rem;
+  line-height:1.5;
+}
+
+.evi{
+  color:var(--muted);
+  margin:2px 0 7px;
+  line-height:1.5;
+}
+
+
+/* PRACTICE */
+
+.actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+@media(max-width:700px){
+  .actions{
+    grid-template-columns:1fr;
+  }
+}
+
+.match{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:12px;
+}
+
+.match button,
+.word{
+  padding:10px;
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.match button:hover,
+.word:hover{
+  background:var(--pink2);
+}
+
+.selected{
+  background:var(--purple2)!important;
+}
+
+.words{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:12px 0;
+}
+
+.answer{
+  min-height:45px;
+  border:2px dashed #d8baca;
+  border-radius:12px;
+  padding:10px;
+  background:#fffafa;
+}
+
+.btn{
+  margin-top:8px;
+  background:var(--purple);
+  color:#fff;
+  border:0;
+  border-radius:10px;
+  padding:9px 14px;
+  cursor:pointer;
+  font-weight:700;
+}
+
+.btn:hover{
+  background:#7b6694;
+}
+
+.feedback{
+  min-height:22px;
+  margin-top:8px;
+  font-weight:700;
+}
+
+
+/* GRAMMAR */
+
+.grammar{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+@media(max-width:700px){
+  .grammar{
+    grid-template-columns:1fr;
+  }
+}
+
+.formula{
+  background:var(--purple2);
+  padding:12px;
+  border-radius:12px;
+  text-align:center;
+  font-weight:800;
+}
+
+.note{
+  background:#fff7df;
+  border-left:5px solid var(--yellow);
+  padding:12px;
+  border-radius:10px;
+}
+
+
+/* DIALOGUE */
+
+.dialogue{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+@media(max-width:700px){
+  .dialogue{
+    grid-template-columns:1fr;
+  }
+}
+
+.line{
+  padding:12px;
+  margin:8px 0;
+  border:1px solid var(--line);
+  border-radius:14px;
+}
+
+.line.a{
+  border-left:5px solid var(--pink);
+}
+
+.line.b{
+  border-left:5px solid var(--purple);
+}
+
+.speaker{
+  font-size:.78rem;
+  color:var(--purple);
+  font-weight:700;
+}
+
+.dzh{
+  font-family:"Noto Serif SC",serif;
+  font-size:1.1rem;
+  font-weight:700;
+}
+
+.dp{
+  color:#987084;
+  font-size:.9rem;
+}
+
+
+/* FOOTER */
+
+footer{
+  text-align:center;
+  color:#8d7b86;
+  padding:30px 0 45px;
+}
+
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+  .brand{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .hero-card{
+    padding:24px;
+  }
+
+  .grid3 .card{
+    height:auto;
+    min-height:0;
+  }
+
+  .vocab-art{
+    height:115px;
+    min-height:115px;
+  }
+
+  .example{
+    height:auto;
+    min-height:120px;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<header>
+
+<div class="container">
+
+<div class="brand">
+
+<div class="logo">
+📚 Tiếng Trung <span>Meowmeow</span>
+</div>
+
+<div class="lesson">
+Bài 14
+</div>
+
+</div>
+
+<nav>
+
+<a href="#warm">🌸 Khởi động</a>
+<a href="#vocab">📖 Từ mới</a>
+<a href="#practice">🎮 Ôn tập</a>
+<a href="#grammar">📐 Ngữ pháp</a>
+<a href="#dialogue">🗣️ Hội thoại</a>
+
+</nav>
+
+</div>
+
+</header>
+
+
+<main class="container">
+
+
+<section class="hero">
+
+<div class="hero-card">
+
+<span class="eyebrow">
+第十四课
+</span>
+
+<h1>
+我看了一个电影
+</h1>
+
+<div class="pinyin">
+Wǒ kàn le yí gè diànyǐng
+</div>
+
+<p>
+Tôi đã xem một bộ phim.
+</p>
+
+</div>
+
+</section>
+
+
+<section class="section" id="warm">
+
+<h2>🌸 Khởi động</h2>
+
+<p class="desc">
+Nhấp vào thẻ để lật.
+</p>
+
+<div class="grid4">
+
+<div class="flash" onclick="this.classList.toggle('flipped')">
+<div class="inner">
+<div class="face front">
+<div>🚆</div>
+<div class="hanzi">火车</div>
+<div class="pinyin">huǒchē</div>
+</div>
+<div class="face back">
+tàu hỏa
+<button class="audio" onclick="event.stopPropagation();speak('火车')">🔊 Nghe</button>
+</div>
+</div>
+</div>
+
+
+<div class="flash" onclick="this.classList.toggle('flipped')">
+<div class="inner">
+<div class="face front">
+<div>👂</div>
+<div class="hanzi">听见</div>
+<div class="pinyin">tīngjiàn</div>
+</div>
+<div class="face back">
+nghe thấy
+<button class="audio" onclick="event.stopPropagation();speak('听见')">🔊 Nghe</button>
+</div>
+</div>
+</div>
+
+
+<div class="flash" onclick="this.classList.toggle('flipped')">
+<div class="inner">
+<div class="face front">
+<div>✍️</div>
+<div class="hanzi">写</div>
+<div class="pinyin">xiě</div>
+</div>
+<div class="face back">
+viết
+<button class="audio" onclick="event.stopPropagation();speak('写')">🔊 Nghe</button>
+</div>
+</div>
+</div>
+
+
+<div class="flash" onclick="this.classList.toggle('flipped')">
+<div class="inner">
+<div class="face front">
+<div>🎯</div>
+<div class="hanzi">都</div>
+<div class="pinyin">dōu</div>
+</div>
+<div class="face back">
+đều
+<button class="audio" onclick="event.stopPropagation();speak('都')">🔊 Nghe</button>
+</div>
+</div>
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section" id="vocab">
+
+<h2>📖 Từ mới</h2>
+
+<p class="desc">
+Chữ Hán · pinyin · Hán Việt · từ loại · nghĩa · ví dụ · 🔊 audio.
+</p>
+
+<div class="grid3">
+
+
+<article class="card">
+<div class="vocab-art">🚆</div>
+
+<div class="vtop">
+<div>
+<div class="vzh">上</div>
+<div class="pinyin">shàng</div>
+</div>
+
+<div>
+<span class="badge">Động từ</span>
+<button class="audio" onclick="speak('上')">🔊</button>
+</div>
+</div>
+
+<div class="hanviet"><b>Hán Việt:</b> thượng</div>
+<div class="meaning">lên</div>
+
+<div class="example">
+<div class="ezh">请上车。</div>
+<div class="pinyin">Qǐng shàng chē.</div>
+<div class="evi">Mời lên xe.</div>
+<button class="audio" onclick="speak('请上车。')">🔊</button>
+</div>
+</article>
+
+
+<article class="card">
+<div class="vocab-art">🚆</div>
+
+<div class="vtop">
+<div>
+<div class="vzh">火车</div>
+<div class="pinyin">huǒchē</div>
+</div>
+
+<div>
+<span class="badge">Danh từ</span>
+<button class="audio" onclick="speak('火车')">🔊</button>
+</div>
+</div>
+
+<div class="hanviet"><b>Hán Việt:</b> hỏa xa</div>
+<div class="meaning">tàu hỏa</div>
+
+<div class="example">
+<div class="ezh">火车几点开？</div>
+<div class="pinyin">Huǒchē jǐ diǎn kāi?</div>
+<div class="evi">Tàu mấy giờ chạy?</div>
+<button class="audio" onclick="speak('火车几点开？')">🔊</button>
+</div>
+</article>
+
+
+<article class="card">
+<div class="vocab-art">🌞</div>
+
+<div class="vtop">
+<div>
+<div class="vzh">中午</div>
+<div class="pinyin">zhōngwǔ</div>
+</div>
+
+<div>
+<span class="badge">Danh từ</span>
+<button class="audio" onclick="speak('中午')">🔊</button>
+</div>
+</div>
+
+<div class="hanviet"><b>Hán Việt:</b> trung ngọ</div>
+<div class="meaning">buổi trưa</div>
+</article>
+
+
+<article class="card">
+<div class="vocab-art">▶️</div>
+
+<div class="vtop">
+<div>
+<div class="vzh">开</div>
+<div class="pinyin">kāi</div>
+</div>
+
+<div>
+<span class="badge">Động từ</span>
+<button class="audio" onclick="speak('开')">🔊</button>
+</div>
+</div>
+
+<div class="hanviet"><b>Hán Việt:</b> khai</div>
+<div class="meaning">chạy, mở</div>
+
+<div class="example">
+<div class="ezh">火车几点开？</div>
+<div class="pinyin">Huǒchē jǐ diǎn kāi?</div>
+<div class="evi">Tàu mấy giờ chạy?</div>
+<button class="audio" onclick="speak('火车几点开？')">🔊</button>
+</div>
+</article>
+
+
+<article class="card">
+<div class="vocab-art">👥</div>
+
+<div class="vtop">
+<div>
+<div class="vzh">有些</div>
+<div class="pinyin">yǒuxiē</div>
+</div>
+
+<div>
+<span class="badge">Đại từ</span>
+<button class="audio" onclick="speak('有些')">🔊</button>
+</div>
+</div>
+
+<div class="hanviet"><b>Hán Việt:</b> hữu ta</div>
+<div class="meaning">một số, một vài</div>
+</article>
+
+
+<article class="card">
+<div class="vocab-art">👥</div>
+
+<div class="vtop">
+<div>
+<div class="vzh">有的</div>
+<div class="pinyin">yǒude</div>
+</div>
+
+<div>
+<span class="badge">Đại từ</span>
+<button class="audio" onclick="speak('有的')">🔊</button>
+</div>
+</div>
+
+<div class="hanviet"><b>Hán Việt:</b> hữu đích</div>
+<div class="meaning">có người/có cái</div>
+</article>
+
+
+<article class="card">
+<div class="vocab-art">✅</div>
+
+<div class="vtop">
+<div>
+<div class="vzh">了</div>
+<div class="pinyin">le</div>
+</div>
+
+<div>
+<span class="badge">Trợ từ</span>
+<button class="audio" onclick="speak('了')">🔊</button>
+</div>
+</div>
+
+<div class="hanviet"><b>Hán Việt:</b> liễu</div>
+<div class="meaning">đã, rồi</div>
+
+<div class="example">
+<div class="ezh">我看了一个电影。</div>
+<div class="pinyin">Wǒ kàn le yí gè diànyǐng.</div>
+<div class="evi">Tôi đã xem một bộ phim.</div>
+<button class="audio" onclick="speak('我看了一个电影。')">🔊</button>
+</div>
+</article>
+
+
+<article class="card">
+<div class="vocab-art">✍️</div>
+
+<div class="vtop">
+<div>
+<div class="vzh">写</div>
+<div class="pinyin">xiě</div>
+</div>
+
+<div>
+<span class="badge">Động từ</span>
+<button class="audio" onclick="speak('写')">🔊</button>
+</div>
+</div>
+
+<div class="hanviet"><b>Hán Việt:</b> tả</div>
+<div class="meaning">viết</div>
+
+<div class="example">
+<div class="ezh">我会写汉字。</div>
+<div class="pinyin">Wǒ huì xiě Hànzì.</div>
+<div class="evi">Tôi biết viết chữ Hán.</div>
+<button class="audio" onclick="speak('我会写汉字。')">🔊</button>
+</div>
+</article>
+
+
+<article class="card">
+<div class="vocab-art">🎯</div>
+
+<div class="vtop">
+<div>
+<div class="vzh">都</div>
+<div class="pinyin">dōu</div>
+</div>
+
+<div>
+<span class="badge">Phó từ</span>
+<button class="audio" onclick="speak('都')">🔊</button>
+</div>
+</div>
+
+<div class="hanviet"><b>Hán Việt:</b> đô</div>
+<div class="meaning">đều, tất cả</div>
+
+<div class="example">
+<div class="ezh">我们都没听见。</div>
+<div class="pinyin">Wǒmen dōu méi tīngjiàn.</div>
+<div class="evi">Tất cả chúng tôi đều không nghe thấy.</div>
+<button class="audio" onclick="speak('我们都没听见。')">🔊</button>
+</div>
+</article>
+
+
+<article class="card">
+<div class="vocab-art">👂</div>
+
+<div class="vtop">
+<div>
+<div class="vzh">听见</div>
+<div class="pinyin">tīngjiàn</div>
+</div>
+
+<div>
+<span class="badge">Động từ</span>
+<button class="audio" onclick="speak('听见')">🔊</button>
+</div>
+</div>
+
+<div class="hanviet"><b>Hán Việt:</b> thính kiến</div>
+<div class="meaning">nghe thấy</div>
+
+<div class="example">
+<div class="ezh">我没听见。</div>
+<div class="pinyin">Wǒ méi tīngjiàn.</div>
+<div class="evi">Tôi không nghe thấy.</div>
+<button class="audio" onclick="speak('我没听见。')">🔊</button>
+</div>
+</article>
+
+
+<article class="card">
+<div class="vocab-art">🚫</div>
+
+<div class="vtop">
+<div>
+<div class="vzh">不要</div>
+<div class="pinyin">búyào</div>
+</div>
+
+<div>
+<span class="badge">Phó từ</span>
+<button class="audio" onclick="speak('不要')">🔊</button>
+</div>
+</div>
+
+<div class="hanviet"><b>Hán Việt:</b> bất yếu</div>
+<div class="meaning">đừng, không được</div>
+
+<div class="example">
+<div class="ezh">不要说话。</div>
+<div class="pinyin">Búyào shuōhuà.</div>
+<div class="evi">Đừng nói chuyện.</div>
+<button class="audio" onclick="speak('不要说话。')">🔊</button>
+</div>
+</article>
+
+
+<article class="card">
+<div class="vocab-art">🗣️</div>
+
+<div class="vtop">
+<div>
+<div class="vzh">说话</div>
+<div class="pinyin">shuōhuà</div>
+</div>
+
+<div>
+<span class="badge">Động từ</span>
+<button class="audio" onclick="speak('说话')">🔊</button>
+</div>
+</div>
+
+<div class="hanviet"><b>Hán Việt:</b> thuyết thoại</div>
+<div class="meaning">nói chuyện</div>
+
+<div class="example">
+<div class="ezh">不要说话。</div>
+<div class="pinyin">Búyào shuōhuà.</div>
+<div class="evi">Đừng nói chuyện.</div>
+<button class="audio" onclick="speak('不要说话。')">🔊</button>
+</div>
+</article>
+
+
+<article class="card">
+<div class="vocab-art">👂</div>
+
+<div class="vtop">
+<div>
+<div class="vzh">听</div>
+<div class="pinyin">tīng</div>
+</div>
+
+<div>
+<span class="badge">Động từ</span>
+<button class="audio" onclick="speak('听')">🔊</button>
+</div>
+</div>
+
+<div class="hanviet"><b>Hán Việt:</b> thính</div>
+<div class="meaning">nghe</div>
+
+<div class="example">
+<div class="ezh">我在听中文歌。</div>
+<div class="pinyin">Wǒ zài tīng Zhōngwén gē.</div>
+<div class="evi">Tôi đang nghe nhạc Trung.</div>
+<button class="audio" onclick="speak('我在听中文歌。')">🔊</button>
+</div>
+</article>
+
+
+<article class="card">
+<div class="vocab-art">❓</div>
+
+<div class="vtop">
+<div>
+<div class="vzh">哪些</div>
+<div class="pinyin">nǎxiē</div>
+</div>
+
+<div>
+<span class="badge">Đại từ</span>
+<button class="audio" onclick="speak('哪些')">🔊</button>
+</div>
+</div>
+
+<div class="hanviet"><b>Hán Việt:</b> na ta</div>
+<div class="meaning">những... nào</div>
+</article>
+
+
+<article class="card">
+<div class="vocab-art">汉</div>
+
+<div class="vtop">
+<div>
+<div class="vzh">字</div>
+<div class="pinyin">zì</div>
+</div>
+
+<div>
+<span class="badge">Danh từ</span>
+<button class="audio" onclick="speak('字')">🔊</button>
+</div>
+</div>
+
+<div class="hanviet"><b>Hán Việt:</b> tự</div>
+<div class="meaning">chữ</div>
+
+<div class="example">
+<div class="ezh">我学了十个字。</div>
+<div class="pinyin">Wǒ xué le shí gè zì.</div>
+<div class="evi">Tôi đã học 10 chữ.</div>
+<button class="audio" onclick="speak('我学了十个字。')">🔊</button>
+</div>
+</article>
+
+
+<article class="card">
+<div class="vocab-art">📅</div>
+
+<div class="vtop">
+<div>
+<div class="vzh">明年</div>
+<div class="pinyin">míngnián</div>
+</div>
+
+<div>
+<span class="badge">Danh từ</span>
+<button class="audio" onclick="speak('明年')">🔊</button>
+</div>
+</div>
+
+<div class="hanviet"><b>Hán Việt:</b> minh niên</div>
+<div class="meaning">năm sau</div>
+
+<div class="example">
+<div class="ezh">我明年去中国。</div>
+<div class="pinyin">Wǒ míngnián qù Zhōngguó.</div>
+<div class="evi">Năm sau tôi đi Trung Quốc.</div>
+<button class="audio" onclick="speak('我明年去中国。')">🔊</button>
+</div>
+</article>
+
+
+<article class="card">
+<div class="vocab-art">🏫</div>
+
+<div class="vtop">
+<div>
+<div class="vzh">中学</div>
+<div class="pinyin">zhōngxué</div>
+</div>
+
+<div>
+<span class="badge">Danh từ</span>
+<button class="audio" onclick="speak('中学')">🔊</button>
+</div>
+</div>
+
+<div class="hanviet"><b>Hán Việt:</b> trung học</div>
+<div class="meaning">trường trung học</div>
+</article>
+
+
+<article class="card">
+<div class="vocab-art">🏫</div>
+
+<div class="vtop">
+<div>
+<div class="vzh">小学</div>
+<div class="pinyin">xiǎoxué</div>
+</div>
+
+<div>
+<span class="badge">Danh từ</span>
+<button class="audio" onclick="speak('小学')">🔊</button>
+</div>
+</div>
+
+<div class="hanviet"><b>Hán Việt:</b> tiểu học</div>
+<div class="meaning">trường tiểu học</div>
+</article>
+
+
+<article class="card">
+<div class="vocab-art">🎓</div>
+
+<div class="vtop">
+<div>
+<div class="vzh">中学生</div>
+<div class="pinyin">zhōngxuéshēng</div>
+</div>
+
+<div>
+<span class="badge">Danh từ</span>
+<button class="audio" onclick="speak('中学生')">🔊</button>
+</div>
+</div>
+
+<div class="hanviet"><b>Hán Việt:</b> trung học sinh</div>
+<div class="meaning">học sinh trung học</div>
+</article>
+
+
+<article class="card">
+<div class="vocab-art">🎒</div>
+
+<div class="vtop">
+<div>
+<div class="vzh">小学生</div>
+<div class="pinyin">xiǎoxuéshēng</div>
+</div>
+
+<div>
+<span class="badge">Danh từ</span>
+<button class="audio" onclick="speak('小学生')">🔊</button>
+</div>
+</div>
+
+<div class="hanviet"><b>Hán Việt:</b> tiểu học sinh</div>
+<div class="meaning">học sinh tiểu học</div>
+</article>
+
+
+<article class="card">
+<div class="vocab-art">🏫</div>
+
+<div class="vtop">
+<div>
+<div class="vzh">上学</div>
+<div class="pinyin">shàngxué</div>
+</div>
+
+<div>
+<span class="badge">Động từ</span>
+<button class="audio" onclick="speak('上学')">🔊</button>
+</div>
+</div>
+
+<div class="hanviet"><b>Hán Việt:</b> thượng học</div>
+<div class="meaning">đi học</div>
+
+<div class="example">
+<div class="ezh">你几点上学？</div>
+<div class="pinyin">Nǐ jǐ diǎn shàngxué?</div>
+<div class="evi">Bạn đi học lúc mấy giờ?</div>
+<button class="audio" onclick="speak('你几点上学？')">🔊</button>
+</div>
+</article>
+
+
+<article class="card">
+<div class="vocab-art">👨‍👩‍👧‍👦</div>
+
+<div class="vtop">
+<div>
+<div class="vzh">他们</div>
+<div class="pinyin">tāmen</div>
+</div>
+
+<div>
+<span class="badge">Đại từ</span>
+<button class="audio" onclick="speak('他们')">🔊</button>
+</div>
+</div>
+
+<div class="hanviet"><b>Hán Việt:</b> tha môn</div>
+<div class="meaning">bọn họ</div>
+</article>
+
+
+<article class="card">
+<div class="vocab-art">👩‍👩</div>
+
+<div class="vtop">
+<div>
+<div class="vzh">她们</div>
+<div class="pinyin">tāmen</div>
+</div>
+
+<div>
+<span class="badge">Đại từ</span>
+<button class="audio" onclick="speak('她们')">🔊</button>
+</div>
+</div>
+
+<div class="hanviet"><b>Hán Việt:</b> tha môn</div>
+<div class="meaning">họ, chỉ nữ</div>
+</article>
+
+
+<article class="card">
+<div class="vocab-art">🐾</div>
+
+<div class="vtop">
+<div>
+<div class="vzh">它们</div>
+<div class="pinyin">tāmen</div>
+</div>
+
+<div>
+<span class="badge">Đại từ</span>
+<button class="audio" onclick="speak('它们')">🔊</button>
+</div>
+</div>
+
+<div class="hanviet"><b>Hán Việt:</b> tha môn</div>
+<div class="meaning">chúng, chỉ vật/con vật</div>
+</article>
+
+
+<article class="card">
+<div class="vocab-art">🌙</div>
+
+<div class="vtop">
+<div>
+<div class="vzh">晚</div>
+<div class="pinyin">wǎn</div>
+</div>
+
+<div>
+<span class="badge">Tính từ</span>
+<button class="audio" onclick="speak('晚')">🔊</button>
+</div>
+</div>
+
+<div class="hanviet"><b>Hán Việt:</b> vãn</div>
+<div class="meaning">trễ, muộn</div>
+
+<div class="example">
+<div class="ezh">现在太晚了。</div>
+<div class="pinyin">Xiànzài tài wǎn le.</div>
+<div class="evi">Bây giờ muộn quá rồi.</div>
+<button class="audio" onclick="speak('现在太晚了。')">🔊</button>
+</div>
+</article>
+
+
+</div>
+</section>
+
+
+<section class="section" id="practice">
+
+<h2>🎮 Ôn tập</h2>
+
+<div class="actions">
+
+<div class="card">
+
+<h3>① Ghép từ với nghĩa</h3>
+
+<div class="match" id="match"></div>
+
+<div class="feedback" id="matchFb"></div>
+
+<button class="btn" onclick="makeMatch()">
+Làm lại
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h3>② Sắp xếp câu</h3>
+
+<div class="words" id="words"></div>
+
+<div class="answer" id="answer"></div>
+
+<button class="btn" onclick="checkSort()">
+Kiểm tra
+</button>
+
+<button class="btn" onclick="newSort()">
+Câu mới
+</button>
+
+<div class="feedback" id="sortFb"></div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section" id="grammar">
+
+<h2>📐 Ngữ pháp</h2>
+
+<div class="grammar">
+
+
+<div class="card">
+
+<h3>✅ ① 动态助词“了”</h3>
+
+<p>
+“了” đứng sau động từ,
+biểu thị hành động đã xảy ra/hoàn thành.
+</p>
+
+<div class="formula">
+V + 了
+</div>
+
+<p>
+我看了一个电影。<br>
+我吃了一个苹果。
+</p>
+
+<div class="note">
+Phủ định dùng 没 + V và bỏ 了.
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>🔗 ② 离合词</h3>
+
+<p>
+Một số từ có thể tách ra
+để chèn thành phần khác.
+</p>
+
+<div class="formula">
+上班 → 上八小时班<br>
+说话 → 说了半小时话
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>🎯 ③ 范围副词“都”</h3>
+
+<p>
+都 mang nghĩa “đều, tất cả”.
+Đối tượng được bao quát đứng trước 都.
+</p>
+
+<div class="formula">
+S + 都 + V
+</div>
+
+<p>
+我们都没听见。
+</p>
+
+<div class="note">
+Khi phủ định, từ phủ định đứng sau 都.
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>🧠 Luyện tập</h3>
+
+<p>
+<b>1.</b>
+我 ______ 一个电影。
+</p>
+
+<label>
+<input type="radio" name="q1" value="a">
+看了
+</label>
+
+<label>
+<input type="radio" name="q1" value="b">
+看吗
+</label>
+
+
+<p>
+<b>2.</b>
+我们 ______ 没听见。
+</p>
+
+<label>
+<input type="radio" name="q2" value="a">
+都
+</label>
+
+<label>
+<input type="radio" name="q2" value="b">
+哪些
+</label>
+
+
+<p>
+<b>3.</b>
+Phủ định của “我去了商店” là:
+</p>
+
+<label>
+<input type="radio" name="q3" value="a">
+我没去商店。
+</label>
+
+<label>
+<input type="radio" name="q3" value="b">
+我不去了商店。
+</label>
+
+<br>
+
+<button class="btn" onclick="quiz()">
+Chấm điểm
+</button>
+
+<div id="quizFb" class="feedback"></div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section" id="dialogue">
+
+<h2>🗣️ Hội thoại</h2>
+
+<div class="card">
+
+<h3>📘 课文 3</h3>
+
+<div class="dialogue">
+
+<div>
+
+<div class="line a">
+<div class="speaker">王一雪</div>
+<div class="dzh">明年女儿上中学。</div>
+<div class="dp">Míngnián nǚ'ér shàng zhōngxué.</div>
+<button class="audio" onclick="speak('明年女儿上中学。')">🔊</button>
+</div>
+
+<div class="line b">
+<div class="speaker">刘明</div>
+<div class="dzh">对，儿子也上小学了。</div>
+<div class="dp">Duì, érzi yě shàng xiǎoxué le.</div>
+<button class="audio" onclick="speak('对，儿子也上小学了。')">🔊</button>
+</div>
+
+</div>
+
+
+<div>
+
+<div class="line a">
+<div class="speaker">王一雪</div>
+<div class="dzh">我们家有了一个中学生。</div>
+<div class="dp">Wǒmen jiā yǒu le yí gè zhōngxuéshēng.</div>
+<button class="audio" onclick="speak('我们家有了一个中学生。')">🔊</button>
+</div>
+
+<div class="line b">
+<div class="speaker">刘明</div>
+<div class="dzh">还有了一个小学生。</div>
+<div class="dp">Hái yǒu le yí gè xiǎoxuéshēng.</div>
+<button class="audio" onclick="speak('还有了一个小学生。')">🔊</button>
+</div>
+
+<div class="line a">
+<div class="speaker">王一雪</div>
+<div class="dzh">上学后，他们都忙了。</div>
+<div class="dp">Shàngxué hòu, tāmen dōu máng le.</div>
+<button class="audio" onclick="speak('上学后，他们都忙了。')">🔊</button>
+</div>
+
+<div class="line b">
+<div class="speaker">刘明</div>
+<div class="dzh">是的，太晚了，睡吧。</div>
+<div class="dp">Shì de, tài wǎn le, shuì ba.</div>
+<button class="audio" onclick="speak('是的，太晚了，睡吧。')">🔊</button>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>🎭 Luyện hội thoại</h3>
+
+<p>
+Làm việc theo cặp và nói về những việc
+đã làm vào thứ Bảy hoặc Chủ Nhật tuần trước.
+</p>
+
+<div class="note">
+我星期六上午上了中文课。<br>
+中午吃了饭后休息了一下。<br>
+下午去商店买了一些东西。
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer>
+中文学习空间 · Tiếng Trung Meowmeow · Bài 14
+</footer>
+
+
+<script>
+
+function speak(text){
+
+  if(!("speechSynthesis" in window)){
+    alert("Trình duyệt chưa hỗ trợ audio.");
+    return;
+  }
+
+  speechSynthesis.cancel();
+
+  let u=
+    new SpeechSynthesisUtterance(text);
+
+  u.lang="zh-CN";
+  u.rate=.78;
+
+  speechSynthesis.speak(u);
+
+}
+
+
+const pairs=[
+  ["火车","tàu hỏa"],
+  ["有些","một số"],
+  ["写","viết"],
+  ["都","đều"],
+  ["听见","nghe thấy"],
+  ["不要","đừng"],
+  ["明年","năm sau"]
+];
+
+let state={
+  l:null,
+  r:null
+};
+
+function makeMatch(){
+
+  let box=
+    document.getElementById("match");
+
+  box.innerHTML=
+    '<div id="ml"></div><div id="mr"></div>';
+
+  let a=
+    [...pairs].sort(
+      ()=>Math.random()-.5
+    );
+
+  let b=
+    [...pairs].sort(
+      ()=>Math.random()-.5
+    );
+
+  a.forEach(x=>{
+
+    let z=
+      document.createElement("button");
+
+    z.textContent=x[0];
+    z.dataset.k=x[0];
+
+    z.onclick=
+      ()=>pick("l",z);
+
+    document
+      .getElementById("ml")
+      .appendChild(z);
+
+  });
+
+  b.forEach(x=>{
+
+    let z=
+      document.createElement("button");
+
+    z.textContent=x[1];
+    z.dataset.k=x[0];
+
+    z.onclick=
+      ()=>pick("r",z);
+
+    document
+      .getElementById("mr")
+      .appendChild(z);
+
+  });
+
+  state={
+    l:null,
+    r:null
+  };
+
+  document
+    .getElementById("matchFb")
+    .textContent="";
+
+}
+
+
+function pick(side,b){
+
+  [
+    ...b.parentElement.children
+  ].forEach(
+    x=>x.classList.remove("selected")
+  );
+
+  b.classList.add("selected");
+
+  state[side]=b.dataset.k;
+
+  if(state.l&&state.r){
+
+    let f=
+      document.getElementById("matchFb");
+
+    let ok=
+      state.l===state.r;
+
+    f.textContent=
+      ok
+        ?"✅ Chính xác!"
+        :"❌ Thử lại nhé!";
+
+    f.style.color=
+      ok
+        ?" #6e4d78"
+        :"#b05b77";
+
+    state={
+      l:null,
+      r:null
+    };
+
+  }
+
+}
+
+makeMatch();
+
+
+const sentences=[
+
+  {
+    w:["我","看了","一个电影。"],
+    a:"我看了一个电影。"
+  },
+
+  {
+    w:["有些人","在看书，","有些人在睡觉。"],
+    a:"有些人在看书，有些人在睡觉。"
+  },
+
+  {
+    w:["我们","都","没听见。"],
+    a:"我们都没听见。"
+  },
+
+  {
+    w:["上学后，","他们","都忙了。"],
+    a:"上学后，他们都忙了。"
+  }
+
+];
+
+let cur;
+let selected=[];
+
+function newSort(){
+
+  cur=
+    sentences[
+      Math.floor(
+        Math.random()*sentences.length
+      )
+    ];
+
+  selected=[];
+
+  let box=
+    document.getElementById("words");
+
+  box.innerHTML="";
+
+  [...cur.w]
+    .sort(()=>Math.random()-.5)
+    .forEach(w=>{
+
+      let b=
+        document.createElement("button");
+
+      b.className="word";
+      b.textContent=w;
+
+      b.onclick=()=>{
+
+        selected.push(w);
+        b.disabled=true;
+
+        document
+          .getElementById("answer")
+          .textContent=
+            selected.join("");
+
+      };
+
+      box.appendChild(b);
+
+    });
+
+  document
+    .getElementById("answer")
+    .textContent="";
+
+  document
+    .getElementById("sortFb")
+    .textContent="";
+
+}
+
+newSort();
+
+
+function checkSort(){
+
+  let f=
+    document.getElementById("sortFb");
+
+  let ok=
+    selected.join("")===cur.a;
+
+  f.textContent=
+    ok
+      ?"✅ Chính xác!"
+      :"❌ Chưa đúng!";
+
+  f.style.color=
+    ok
+      ?" #6e4d78"
+      :"#b05b77";
+
+}
+
+
+function quiz(){
+
+  let ans=[
+    "a",
+    "a",
+    "a"
+  ];
+
+  let score=0;
+
+  ans.forEach((x,i)=>{
+
+    let q=
+      document.querySelector(
+        `input[name="q${i+1}"]:checked`
+      );
+
+    if(q&&q.value===x){
+      score++;
+    }
+
+  });
+
+  document
+    .getElementById("quizFb")
+    .textContent=
+      `Bạn đúng ${score}/3 câu.`;
+
+}
+
+</script>
+
+</body>
+</html>
