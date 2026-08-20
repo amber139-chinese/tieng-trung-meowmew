@@ -1,806 +1,89 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>简单的爱情 · Ôn tập HSK4 — Bài 1</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#FBF5EE;
-    --paper:#FFFFFF;
-    --maroon:#7A2438;
-    --maroon-dark:#4F1622;
-    --maroon-soft:#9C4157;
-    --pink:#F4D9DE;
-    --pink-deep:#E9B7C2;
-    --gold:#AD7A2C;
-    --ink:#2E2320;
-    --ink-soft:#6B5B54;
-    --green:#3E7A4E;
-    --green-bg:#E7F3E9;
-    --red:#B23A32;
-    --red-bg:#FBEAE8;
-    --line:#E7DACB;
-    --radius:16px;
-    --shadow: 0 10px 30px -12px rgba(79,22,34,0.25);
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--bg);
-    color:var(--ink);
-    font-family:'Be Vietnam Pro', sans-serif;
-    line-height:1.55;
-    -webkit-font-smoothing:antialiased;
-  }
-  .hanzi{font-family:'Noto Serif SC','Noto Sans SC',serif;}
-  .filmstrip{
-    height:14px;
-    background:
-      repeating-linear-gradient(90deg, var(--maroon-dark) 0 10px, transparent 10px 22px);
-    background-color:var(--maroon);
-    position:relative;
-  }
-  .filmstrip::before,.filmstrip::after{
-    content:"";
-    position:absolute; top:3px; height:8px; width:100%;
-    background-image: repeating-linear-gradient(90deg, var(--bg) 0 6px, transparent 6px 22px);
-  }
-  .filmstrip::after{ top:auto; bottom:3px; }
 
-  header.hero{
-    background: radial-gradient(120% 160% at 15% 0%, var(--maroon-soft) 0%, var(--maroon) 45%, var(--maroon-dark) 100%);
-    color:#fff;
-    padding: 46px 20px 34px;
-    text-align:center;
-    position:relative;
-  }
-  header.hero .eyebrow{
-    letter-spacing:.22em; text-transform:uppercase; font-size:12px; font-weight:600;
-    color:var(--pink-deep); margin-bottom:10px;
-  }
-  header.hero .nav-link{
-    position:absolute; top:18px; right:22px;
-    background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.4);
-    padding:6px 14px; border-radius:999px; font-size:13px; color:#fff; text-decoration:none;
-  }
-  header.hero .nav-link:hover{ background:rgba(255,255,255,.24); }
-  header.hero h1{
-    font-family:'Noto Serif SC',serif;
-    font-weight:900; font-size:clamp(34px,6vw,54px);
-    margin: 4px 0 8px;
-    text-shadow:0 2px 18px rgba(0,0,0,.25);
-  }
-  header.hero p.sub{
-    font-size:17px; color:#F6E4E8; max-width:640px; margin:0 auto; opacity:.95;
-  }
-  header.hero .badges{
-    margin-top:18px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;
-  }
-  header.hero .badges span{
-    background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.35);
-    padding:6px 14px; border-radius:999px; font-size:13px;
-  }
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HSK4 Bài 1</title><style>
+:root{--pink:#f7d6df;--pink2:#fcecf1;--rose:#bd5b76;--rose2:#963f5a;--cream:#fffaf5;--paper:rgba(255,255,255,.92);--ink:#3b3135;--muted:#7e6f75;--line:#efd6de;--gold:#d5a45a;--green:#2f7d62;--bad:#b54c55;--shadow:0 16px 40px rgba(128,75,90,.12)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI","Noto Sans","Microsoft YaHei",Arial,sans-serif;line-height:1.58;background:linear-gradient(180deg,rgba(255,248,250,.95),rgba(252,238,243,.95)),radial-gradient(circle at 15% 12%,#ffdce8 0 12%,transparent 36%),radial-gradient(circle at 90% 18%,#fbe6c9 0 10%,transparent 32%);min-height:100vh;position:relative}
+body:before{content:"喵  中文  HSK4  学习  加油  ✿  喵  中文  HSK4  学习  加油  ✿";position:fixed;inset:0;z-index:-2;pointer-events:none;font-family:"Noto Serif SC","Songti SC",serif;font-size:44px;line-height:3.4;letter-spacing:22px;color:rgba(184,86,114,.045);transform:rotate(-8deg) scale(1.15);transform-origin:center;white-space:pre-wrap;word-break:break-all;padding:40px}
+body:after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(circle at 10% 20%,rgba(255,255,255,.85) 0 2px,transparent 3px),radial-gradient(circle at 75% 35%,rgba(255,255,255,.7) 0 3px,transparent 4px);background-size:80px 80px,120px 120px}
+button,select,input,textarea{font:inherit}.app{max-width:1120px;margin:0 auto;padding:20px}.site-top{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}.brand{display:flex;align-items:center;gap:10px;font-weight:900;color:var(--rose2)}.catdot{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#f39ab2,#f7cf9e);display:grid;place-items:center;box-shadow:0 8px 22px rgba(181,83,111,.18)}.catdot:before{content:"喵";color:white;font-family:"Noto Serif SC",serif;font-weight:900}.lesson-nav{display:flex;gap:7px;flex-wrap:wrap}.lesson-nav a{text-decoration:none;color:#79555f;background:rgba(255,255,255,.8);border:1px solid var(--line);padding:7px 11px;border-radius:999px;font-size:13px;font-weight:800}.lesson-nav a.current{background:var(--rose);color:#fff;border-color:var(--rose)}
+.hero{background:linear-gradient(135deg,rgba(255,255,255,.96),rgba(255,243,247,.94));border:1px solid var(--line);border-radius:28px;padding:27px;box-shadow:var(--shadow);position:relative;overflow:hidden}.hero:after{content:"学";position:absolute;right:20px;bottom:-48px;font-family:"Noto Serif SC",serif;font-size:175px;color:rgba(181,83,111,.07)}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.14em;font-weight:900;color:var(--rose)}.hero h1{margin:6px 0 5px;font-family:"Noto Serif SC","Songti SC",serif;font-size:clamp(30px,4.2vw,50px);line-height:1.15}.hero .vi{color:var(--muted);font-size:17px}.hero .theme{margin-top:12px;color:#66555b;max-width:760px}.hero-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.pill{background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 11px;font-size:12px;color:#775d66;font-weight:700}.progressbox{margin-top:16px;max-width:420px}.progressline{height:8px;background:#f1dfe5;border-radius:999px;overflow:hidden}.progressline i{display:block;height:100%;width:0;background:linear-gradient(90deg,#e988a5,#c35e7b);transition:.25s}.progressText{font-size:12px;color:var(--muted);margin-bottom:5px}
+.panel{margin-top:18px;background:var(--paper);border:1px solid var(--line);border-radius:25px;box-shadow:var(--shadow);overflow:hidden;backdrop-filter:blur(10px)}.tabs{display:flex;gap:5px;padding:10px 12px;border-bottom:1px solid var(--line);overflow:auto;background:rgba(255,247,249,.9)}.tab{border:0;background:transparent;padding:10px 14px;border-radius:12px;white-space:nowrap;color:#755f66;font-weight:800;cursor:pointer}.tab.active{background:#fff;color:var(--rose2);box-shadow:0 3px 12px rgba(140,82,98,.1)}.content{padding:25px}.section-intro{display:flex;gap:14px;justify-content:space-between;align-items:flex-start;margin-bottom:18px}.section-intro h2{font-size:24px;margin:0 0 5px}.section-intro p{margin:0;color:var(--muted);max-width:720px}.actions{display:flex;gap:8px;flex-wrap:wrap}.btn{border:1px solid var(--line);background:#fff;color:#624d54;border-radius:12px;padding:9px 13px;font-weight:800;cursor:pointer}.btn.primary{background:var(--rose);color:#fff;border-color:var(--rose)}.btn.soft{background:#fff3f6}.btn:hover{filter:brightness(.985)}
+.flash-wrap{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:18px}.flashcard{min-height:330px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,#fff,#fff4f7);display:grid;place-items:center;text-align:center;padding:30px;cursor:pointer;position:relative}.flashcard .cn{font-family:"Noto Serif SC","Songti SC",serif;font-size:64px;font-weight:900}.flashcard .py{font-size:21px;color:var(--rose2);margin:5px 0}.flashcard .vi{font-size:22px;color:#56474c}.flashcard .hint{position:absolute;bottom:13px;color:#a18b92;font-size:12px}.flashcard.mask .py,.flashcard.mask .vi{filter:blur(9px);opacity:.24}.vocab-list{max-height:330px;overflow:auto;border:1px solid var(--line);border-radius:18px;padding:7px;background:#fff}.vrow{display:grid;grid-template-columns:38px 1fr;gap:8px;padding:8px;border-radius:10px;cursor:pointer}.vrow:hover{background:#fff3f6}.vrow .n{color:#b6a4aa;font-size:12px;padding-top:4px}.vrow b{font-family:"Noto Serif SC","Songti SC",serif}.vrow small{display:block;color:var(--muted)}
+.quiz-grid,.task-list{display:grid;gap:12px}.qcard,.task,.gcard{border:1px solid var(--line);border-radius:17px;padding:16px;background:#fff}.qtitle,.task h3{font-weight:850;margin:0 0 11px}.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.opt{border:1px solid #ead7de;border-radius:12px;padding:10px 12px;background:#fff;text-align:left;cursor:pointer}.opt.selected{border-color:var(--rose);background:#fff3f6}.opt.good{border-color:#70a68f;background:#eff9f5}.opt.bad{border-color:#d57880;background:#fff0f1}.feedback{font-size:13px;color:var(--muted);margin-top:8px}.score{display:inline-block;background:#fff3f6;border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-weight:900}.grammar-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.gcard h3{font-family:"Noto Serif SC","Songti SC",serif;color:var(--rose2);margin:0 0 6px}.example{background:#fff8ed;border-left:4px solid var(--gold);padding:9px 11px;border-radius:8px;margin-top:8px;font-family:"Noto Serif SC","Songti SC",serif}
+.task textarea{width:100%;min-height:145px;border:1px solid #e8d5dc;border-radius:13px;padding:12px;background:#fffdfd;resize:vertical;outline:none}.task textarea:focus{border-color:#cf8096;box-shadow:0 0 0 3px rgba(207,128,150,.12)}.grader{margin-top:12px;border-radius:14px;padding:13px;background:#fff7f9;border:1px dashed #e7b8c5;display:none}.grader.show{display:block}.grade-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:8px}.grade-big{font-size:26px;font-weight:950;color:var(--rose2)}.criterion{display:flex;justify-content:space-between;gap:12px;border-top:1px solid #f0dce2;padding:7px 0;font-size:13px}.criterion:first-of-type{border-top:0}.criterion.good{color:var(--green)}.criterion.bad{color:var(--bad)}.criterion.partial{color:#9b721e}.grade-note{margin-top:9px;color:#806b72;font-size:12px}.hintbox{margin-top:9px;background:#fffaf0;border:1px solid #eddcb9;padding:10px;border-radius:10px;display:none}.hintbox.show{display:block}.overall{margin-bottom:14px;background:linear-gradient(135deg,#fff7f9,#fff);border:1px solid var(--line);border-radius:16px;padding:14px}.overall b{color:var(--rose2)}.footer{padding:20px 5px 8px;text-align:center;color:#8d7880;font-size:12px}.toast{position:fixed;right:18px;bottom:18px;background:#4b3b40;color:#fff;padding:10px 13px;border-radius:11px;opacity:0;transform:translateY(8px);transition:.2s;pointer-events:none}.toast.show{opacity:1;transform:none}
+@media(max-width:820px){.app{padding:12px}.content{padding:17px}.flash-wrap{grid-template-columns:1fr}.grammar-grid,.opts{grid-template-columns:1fr}.section-intro{display:block}.section-intro .actions{margin-top:10px}.hero{padding:22px}.site-top{align-items:flex-start}}
+@media print{.site-top,.tabs,.actions,.footer,.toast,.grader{display:none!important}.app{max-width:none;padding:0}.panel,.hero{box-shadow:none}.panel{border:0}.task{break-inside:avoid}}
 
-  nav.tabs{
-    position:sticky; top:0; z-index:50;
-    background:rgba(251,245,238,.92); backdrop-filter:blur(6px);
-    border-bottom:1px solid var(--line);
-  }
-  .tabs-inner{
-    max-width:1080px; margin:0 auto;
-    display:flex; gap:6px; overflow-x:auto; padding:10px 14px;
-    scrollbar-width:thin;
-  }
-  .tab-btn{
-    flex:0 0 auto;
-    border:none; background:transparent; cursor:pointer;
-    padding:10px 16px; border-radius:999px; font-weight:600; font-size:14.5px;
-    color:var(--ink-soft); white-space:nowrap;
-    transition:.18s;
-  }
-  .tab-btn:hover{ background:var(--pink); color:var(--maroon-dark); }
-  .tab-btn.active{ background:var(--maroon); color:#fff; }
+/* Advanced HSK-style exercise board */
+.adv-board{display:grid;gap:18px}.adv-section{border:1px solid var(--line);background:rgba(255,255,255,.94);border-radius:20px;padding:18px}.adv-section-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:12px}.adv-section h3{margin:0;font-size:20px}.adv-section .desc{color:var(--muted);font-size:13px;margin-top:3px}.adv-num{min-width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:#fff0f4;color:var(--rose2);font-weight:900;border:1px solid var(--line)}.adv-card{border:1px solid var(--line);border-radius:16px;padding:15px;margin-top:11px;background:#fff}.adv-q{font-weight:800;margin-bottom:10px}.adv-options{display:grid;gap:8px}.adv-opt{width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:11px;padding:10px 12px;cursor:pointer;color:var(--ink)}.adv-opt:hover{background:#fff7f9}.adv-opt.selected{border-color:var(--rose);background:#fff0f4}.adv-opt.good{border-color:var(--green);background:#eef8f3}.adv-opt.bad{border-color:var(--bad);background:#fff0f1}.adv-feedback{display:none;margin-top:9px;padding:9px 11px;border-radius:10px;background:#faf6f7;color:#6d5c62;font-size:13px}.adv-feedback.show{display:block}.order-bank,.order-answer{display:flex;gap:8px;flex-wrap:wrap;padding:11px;border-radius:12px}.order-bank{background:#fff7f9;border:1px solid var(--line)}.order-answer{min-height:52px;margin-top:8px;border:2px dashed #ead0d9;background:#fff}.word-chip{border:1px solid #e8cbd5;background:#fff;border-radius:999px;padding:7px 10px;cursor:pointer;font-weight:800}.word-chip.used{opacity:.28;pointer-events:none}.order-answer .word-chip{background:#fff0f4}.order-answer.good{border-color:var(--green);background:#eef8f3}.order-answer.bad{border-color:var(--bad);background:#fff2f3}.sequence-items{background:#fff8fa;border-left:3px solid #e6a2b5;padding:9px 12px;border-radius:8px;margin:8px 0 11px}.sequence-items div{margin:3px 0}.reading-text{padding:14px 16px;background:#fff8f5;border:1px solid #f0dfd6;border-radius:13px;font-size:16px;line-height:1.8;margin-bottom:12px}.adv-scorebar{position:sticky;bottom:12px;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 14px;margin-top:16px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.96);box-shadow:0 10px 28px rgba(128,75,90,.13);backdrop-filter:blur(8px)}.adv-scorebar .scoretxt{font-weight:900;color:var(--rose2)}.adv-note{background:#fff8ee;border:1px solid #efdcc0;padding:10px 12px;border-radius:12px;color:#725f48;font-size:13px}.adv-card.unanswered{border-color:#e1b55f}.adv-card.correct{border-color:#8bbda9}.adv-card.incorrect{border-color:#d9969b}
 
-  main{ max-width:1080px; margin:0 auto; padding: 28px 16px 80px; }
-  .panel{ display:none; animation:fade .35s ease; }
-  .panel.active{ display:block; }
-  @keyframes fade{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+</style></head>
+<body><div class="app"><div class="site-top"><div class="brand"><span class="catdot"></span><span>Tiếng Trung Meow Meow · HSK4</span></div><nav class="lesson-nav" id="lessonNav"></nav></div>
+<header class="hero"><div class="eyebrow">HSK 4 · Ôn tập tương tác</div><h1><span id="lessonNo"></span> · <span id="lessonTitle"></span></h1><div class="vi" id="lessonVi"></div><div class="theme" id="theme"></div><div class="hero-meta"><span class="pill" id="vocabCount"></span><span class="pill">Không có phần bài khóa</span><span class="pill">Có chấm bài viết tự động</span><span class="pill">Tự lưu trên trình duyệt</span></div><div class="progressbox"><div class="progressText" id="progressText"></div><div class="progressline"><i id="progressBar"></i></div></div></header>
+<main class="panel"><nav class="tabs" id="tabs"></nav><section class="content" id="content"></section></main>
+<div class="footer">Lưu ý: bài viết được chấm theo rubric kỹ thuật ngay trên trình duyệt; dữ liệu không tự gửi cho giáo viên hay máy chủ.</div></div><div class="toast" id="toast"></div>
+<script>const DATA={"title":"简单的爱情","vi":"Tình yêu đơn giản","theme":"Tình yêu – tính cách – sự thấu hiểu – hạnh phúc","vocab":[["法律","fǎlǜ","pháp luật, luật"],["俩","liǎ","hai (người/vật, khẩu ngữ)"],["印象","yìnxiàng","ấn tượng"],["深","shēn","sâu, sâu sắc"],["熟悉","shúxī","quen thuộc, hiểu rõ"],["不仅","bùjǐn","không những"],["性格","xìnggé","tính cách"],["最好","zuìhǎo","tốt nhất; nên"],["从来","cónglái","từ trước đến nay"],["游戏","yóuxì","trò chơi"],["开玩笑","kāi wánxiào","nói đùa"],["幸福","xìngfú","hạnh phúc"],["适合","shìhé","phù hợp với"],["共同","gòngtóng","chung, cùng"],["接受","jiēshòu","chấp nhận"],["缺点","quēdiǎn","khuyết điểm"],["够","gòu","đủ"],["浪漫","làngmàn","lãng mạn"],["刚","gāng","vừa, vừa mới"],["生活","shēnghuó","cuộc sống; sống"],["即使","jíshǐ","cho dù, ngay cả khi"],["星星","xīngxing","ngôi sao"],["爱情","àiqíng","tình yêu"],["羡慕","xiànmù","ngưỡng mộ, ghen tị"],["感动","gǎndòng","cảm động, làm xúc động"],["亮","liàng","sáng; chiếu sáng"],["加班","jiābān","tăng ca, làm thêm giờ"],["互相","hùxiāng","lẫn nhau"],["原因","yuányīn","nguyên nhân"],["自然","zìrán","tự nhiên; đương nhiên"],["脾气","píqi","tính khí"],["幽默","yōumò","hóm hỉnh"],["吸引","xīyǐn","thu hút"]],"grammar":[["俩","俩 thường tương đương 两个 trong khẩu ngữ, không thêm 个 sau 俩.","他们俩是好朋友。"],["深","Ngoài nghĩa “sâu”, 深 còn dùng cho mức độ ấn tượng/cảm xúc.","那个人给我的印象很深。"],["不仅……也／还／而且……","Không những… mà còn…; vị trí 不仅 phụ thuộc việc hai vế có cùng chủ ngữ hay không.","他不仅很幽默，而且性格也很好。"],["从来","Thường đi với phủ định để nói “từ trước đến nay chưa/không…”.","我从来没迟到过。"],["最好","Dùng để đưa ra lời khuyên: tốt nhất/nên…","两个人在一起，最好能互相理解。"],["适合 / 合适","适合 là động từ “phù hợp với”; 合适 là tính từ “thích hợp”.","这件衣服适合你。 / 这件衣服很合适。"],["……吧？","Dùng ở cuối câu để suy đoán hoặc hỏi xác nhận.","你是在开玩笑吧？"],["刚 / 刚才","刚 là phó từ “vừa mới”; 刚才 là danh từ thời gian “lúc nãy”.","我刚到家。 / 刚才谁给我打电话了？"],["即使……也……","Cho dù điều kiện có thay đổi thì kết quả vẫn không đổi.","即使星期天，他也要加班。"],["互相","Đặt trước động từ để diễn tả hành động qua lại giữa hai bên.","两个人应该互相帮助、互相理解。"],["（在）……上","Chỉ phương diện/lĩnh vực: về mặt…, ở phương diện…","他们在性格上很不一样。"]],"fills":[{"s":"他们____认识很多年了，关系一直很好。","a":"俩","o":["俩","深","够","亮"]},{"s":"第一次见面时，她给我的____很深。","a":"印象","o":["印象","原因","法律","星星"]},{"s":"他____工作认真，而且性格也很幽默。","a":"不仅","o":["不仅","从来","即使","最好"]},{"s":"我____没有因为一点儿小事跟她生气过。","a":"从来","o":["从来","刚","自然","共同"]},{"s":"两个人一起生活，____有一些共同的兴趣。","a":"最好","o":["最好","够","亮","熟悉"]},{"s":"这份工作不太____他，因为他不喜欢经常出差。","a":"适合","o":["适合","接受","吸引","生活"]},{"s":"____周末要加班，他____会抽时间陪家人吃饭。","a":"即使 / 也","o":["即使 / 也","不仅 / 而且","从来 / 没","最好 / 吧"]},{"s":"相处久了以后，我们学会了____理解，也更能接受对方的缺点。","a":"互相","o":["互相","自然","共同","刚"]}],"grammarQuiz":[{"q":"Câu nào dùng 俩 đúng?","o":["他们俩是大学同学。","他们俩个是大学同学。","他们俩个人个是同学。","俩他们是同学。"],"a":0,"e":"俩 không đi với 个."},{"q":"Điền: 她____会做饭，而且很会照顾人。","o":["不仅","从来","最好","刚"],"a":0,"e":"不仅……而且……"},{"q":"Câu nào diễn tả “từ trước đến nay tôi chưa nói dối anh ấy”?","o":["我从来没对他说过谎。","我从来说过没谎。","我刚没从来对他说谎。","我最好从来谎。"],"a":0,"e":"从来 thường đi với phủ định."},{"q":"Chọn câu dùng 最好 như lời khuyên.","o":["你最好先了解对方的性格。","你最好了昨天。","最好他很浪漫。","你是最好吧。"],"a":0,"e":"最好 + động từ/cụm động từ."},{"q":"Điền: ____工作再忙，他____会记得给家里打电话。","o":["即使 / 也","不仅 / 而且","从来 / 没","刚 / 才"],"a":0,"e":"即使……也……"},{"q":"“在性格上” có nghĩa gần nhất là…","o":["về phương diện tính cách","ở trên một người","sau khi tính cách thay đổi","chỉ nói về địa điểm"],"a":0,"e":"（在）……上 có thể chỉ phương diện."}],"apply":["Viết hội thoại 8–10 lượt: Hai người bạn nói về mẫu người yêu/vợ/chồng phù hợp. Dùng ít nhất 6 từ: 性格、幽默、共同、浪漫、适合、接受、缺点、互相、幸福、吸引。","Viết 80–100 chữ: 你觉得什么是“简单的爱情”？ Bắt buộc dùng 不仅……而且……, 即使……也…… và ít nhất 5 từ mới Bài 1.","Viết 60–80 chữ: Hai người có tính cách khác nhau thì nên làm gì để sống hạnh phúc? Dùng 互相、最好、在……上 và ít nhất 4 từ mới."],"advanced":[{"q":"Sửa lỗi: 他们俩个人都很幽默。","hint":"俩 đã bao hàm 两个, không thêm 个.","sample":"他们俩都很幽默。"},{"q":"Viết lại bằng 不仅……而且……: 他很认真。他也很幽默。","hint":"Cùng chủ ngữ → 不仅 đặt sau chủ ngữ.","sample":"他不仅很认真，而且很幽默。"},{"q":"Viết 60–80 chữ nêu một hành động “lãng mạn đơn giản” trong đời sống hằng ngày. Dùng 即使……也……、互相、感动、幸福.","hint":"Tập trung vào hành động nhỏ nhưng thể hiện quan tâm và thấu hiểu.","sample":"开放题：重点检查结构、词汇和内容是否完整。"}],"summary":"Bài 1 xoay quanh tình yêu, tính cách, sự phù hợp, điểm mạnh/khuyết điểm, sự lãng mạn và cách hai người cùng xây dựng cuộc sống hạnh phúc."};const ADV_DATA={"mcq":[{"q":"第一次见面时，他说话很幽默，给我的____很深。","o":["印象","法律","星星","原因"],"a":0,"e":"“印象很深” là collocation trọng tâm."},{"q":"两个人一起生活，____能有共同的兴趣和爱好。","o":["最好","刚","从来","够"],"a":0,"e":"最好 dùng để đưa ra lời khuyên."},{"q":"她____工作认真，____很会照顾家人。","o":["不仅 / 而且","即使 / 也","从来 / 没","刚 / 才"],"a":0,"e":"不仅……而且…… bổ sung ưu điểm thứ hai."},{"q":"____周末要加班，他____会抽时间陪家人吃饭。","o":["即使 / 也","不仅 / 而且","最好 / 吧","从来 / 没"],"a":0,"e":"即使……也…… = cho dù… vẫn…"},{"q":"长期生活在一起，两个人应该____理解和帮助。","o":["互相","自然","共同","适合"],"a":0,"e":"互相 + động từ diễn tả hành động qua lại."}],"reorder":[{"parts":["他们俩","是在","一次志愿活动中","认识的"],"answer":"他们俩是在一次志愿活动中认识的","e":"俩 đứng sau đại từ/chủ ngữ, không thêm 个."},{"parts":["她","不仅很幽默","而且","性格","也很好"],"answer":"她不仅很幽默而且性格也很好","e":"不仅……而且…… nối hai đặc điểm tích cực."},{"parts":["我","从来没有","因为小事","跟他","生过气"],"answer":"我从来没有因为小事跟他生过气","e":"从来没有/没 + động từ."},{"parts":["两个人","最好","学会","互相理解","和接受"],"answer":"两个人最好学会互相理解和接受","e":"最好 + VP; 互相 đứng trước động từ."},{"parts":["即使","工作很忙","他","也会","陪家人"],"answer":"即使工作很忙他也会陪家人","e":"即使……也……结构。"}],"sequence":[{"q":"Sắp xếp quá trình xây dựng một mối quan hệ lành mạnh:","items":["A. 先了解对方的性格","B. 接受彼此的一些缺点","C. 在生活中互相理解和帮助"],"o":["A → B → C","C → A → B","B → A → C","A → C → B"],"a":0,"e":"了解 → 接受 → 在长期生活中互相支持。"},{"q":"Một người muốn xin lỗi sau khi tranh cãi, thứ tự hợp lý là:","items":["A. 先冷静下来","B. 说明自己生气的原因","C. 听对方解释并互相理解"],"o":["A → B → C","B → C → A","C → A → B","A → C → B"],"a":0,"e":"先冷静，再说明原因，最后沟通理解。"},{"q":"Sắp xếp tình huống “关心伴侣”:","items":["A. 发现对方最近常常加班","B. 问他是不是太累","C. 主动准备晚饭并陪他聊天"],"o":["A → B → C","C → B → A","B → A → C","A → C → B"],"a":0,"e":"先观察，再询问，最后行动。"}],"error":[{"q":"Chọn câu đúng với 俩.","o":["我们俩都喜欢旅行。","我们俩个人都喜欢旅行。","俩我们喜欢旅行。","我们两个俩喜欢旅行。"],"a":0,"e":"俩 = 两个, không thêm 个."},{"q":"Chọn câu đúng với 从来.","o":["我从来没骗过他。","我从来骗没过他。","我没从来骗他。","我从来了骗他。"],"a":0,"e":"从来 + 没/不 + VP."},{"q":"Chọn câu đúng với 适合 / 合适.","o":["这件衣服很合适，也很适合你。","这件衣服很适合，也很合适你。","这件衣服合适你。","你适合很这件衣服。"],"a":0,"e":"合适 là tính từ; 适合 + đối tượng."},{"q":"Chọn câu đúng với 即使……也…….","o":["即使下雨，我们也去。","即使下雨，我们去也。","即使也下雨，我们去。","我们即使去也下雨。"],"a":0,"e":"即使 + điều kiện, chủ ngữ + 也 + kết quả."}],"reading":[{"text":"周文和小雨结婚三年了。两个人的性格不完全一样：周文很幽默，喜欢热闹；小雨比较安静，喜欢在家看书。不过，他们有共同的爱好，都喜欢做饭和旅行。周文有时工作很忙，即使周末也要加班，小雨也不会生气。她觉得两个人共同生活，最重要的是互相理解。小雨心情不好的时候，周文会开玩笑让她开心；周文遇到困难的时候，小雨也会陪他一起想办法。对他们来说，这样的生活虽然不特别浪漫，却很幸福。","qs":[{"q":"周文和小雨有什么共同的爱好？","o":["做饭和旅行","看足球和游泳","买家具和做广告","学习法律和开会"],"a":0,"e":"文中明确说两个人都喜欢做饭和旅行。"},{"q":"小雨认为什么对共同生活最重要？","o":["互相理解","每天买礼物","性格完全一样","从来不加班"],"a":0,"e":"她认为“最重要的是互相理解”。"},{"q":"这段话想说明什么？","o":["简单的关心和理解也能带来幸福","爱情一定要非常浪漫","性格不同的人不能结婚","工作忙就不能有幸福生活"],"a":0,"e":"短文强调平凡的支持、理解和陪伴。"}]}]};const RULES={"apply":[{"criteria":[{"type":"line_count","label":"8–10 lượt thoại","weight":20,"min":8,"max":10},{"type":"keywords","label":"Dùng ≥6 từ bắt buộc","weight":35,"words":["性格","幽默","共同","浪漫","适合","接受","缺点","互相","幸福","吸引"],"min":6},{"type":"keywords","label":"Đúng chủ đề tình yêu/đối tượng phù hợp","weight":20,"words":["爱情","男朋友","女朋友","结婚","喜欢","适合","幸福"],"min":2},{"type":"hanzi_min","label":"Có nội dung tiếng Trung đủ dài","weight":15,"min":45},{"type":"punctuation","label":"Câu/ý được tách rõ","weight":10,"min":5}]},{"criteria":[{"type":"hanzi_length","label":"Độ dài 80–100 chữ Hán","weight":20,"min":80,"max":100},{"type":"combo","label":"Dùng 不仅……而且……","weight":20,"groups":[["不仅","而且"]]},{"type":"combo","label":"Dùng 即使……也……","weight":20,"groups":[["即使","也"]]},{"type":"vocab_hits","label":"Dùng ≥5 từ mới Bài 1","weight":25,"min":5},{"type":"keywords","label":"Đúng chủ đề 简单的爱情","weight":15,"words":["爱情","浪漫","理解","幸福","生活","互相"],"min":2}]},{"criteria":[{"type":"hanzi_length","label":"Độ dài 60–80 chữ Hán","weight":20,"min":60,"max":80},{"type":"keywords","label":"Có 互相、最好","weight":25,"words":["互相","最好"],"min":2},{"type":"combo","label":"Dùng cấu trúc 在……上","weight":20,"groups":[["在","上"]]},{"type":"vocab_hits","label":"Dùng ≥4 từ mới Bài 1","weight":25,"min":4},{"type":"punctuation","label":"Có ít nhất 3 câu/ý","weight":10,"min":3}]}],"advanced":[{"criteria":[{"type":"forbidden","label":"Không dùng 俩个人","weight":50,"words":["俩个人"]},{"type":"keywords","label":"Giữ từ 俩","weight":50,"words":["俩"],"min":1}]},{"criteria":[{"type":"combo","label":"Dùng 不仅……而且……","weight":60,"groups":[["不仅","而且"]]},{"type":"keywords","label":"Giữ ý 认真、幽默","weight":40,"words":["认真","幽默"],"min":2}]},{"criteria":[{"type":"hanzi_length","label":"60–80 chữ Hán","weight":20,"min":60,"max":80},{"type":"combo","label":"即使……也……","weight":25,"groups":[["即使","也"]]},{"type":"keywords","label":"Dùng 互相、感动、幸福","weight":35,"words":["互相","感动","幸福"],"min":3},{"type":"punctuation","label":"≥3 câu/ý","weight":20,"min":3}]}]};
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const el=(tag,cls,txt)=>{const x=document.createElement(tag);if(cls)x.className=cls;if(txt!==undefined)x.textContent=txt;return x};
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const state={tab:'flash',flashIndex:0,flashMask:false,quiz:[],quizAns:{},fillAns:{},grammarAns:{},advChoice:{},done:0};
+const tabs=[["flash", "Từ vựng"], ["quiz", "Trắc nghiệm"], ["fill", "Điền từ"], ["grammar", "Ngữ pháp"], ["apply", "Vận dụng"], ["advanced", "Nâng cao"]];
+const lesson="1";
+const L=DATA;
+function toast(t){const x=$('#toast');x.textContent=t;x.classList.add('show');setTimeout(()=>x.classList.remove('show'),1400)}
+function saveState(){localStorage.setItem(`hsk4_bai${lesson}_state`,JSON.stringify({done:state.done}))}
+function loadState(){try{const x=JSON.parse(localStorage.getItem(`hsk4_bai${lesson}_state`)||'{}');state.done=x.done||0}catch(e){}}
+function bump(ok){state.done++;saveState();updateProgress()}
+function updateProgress(){const pct=Math.min(100,Math.round(state.done/35*100));$('#progressText').textContent=`Tiến độ luyện tập: ${state.done} lượt đã chấm`;$('#progressBar').style.width=pct+'%'}
+function intro(title,sub,actions=''){return `<div class="section-intro"><div><h2>${title}</h2><p>${sub}</p></div><div class="actions">${actions}</div></div>`}
+function init(){loadState();document.title=`HSK4 Bài ${lesson} · ${L.title}`;$('#lessonNo').textContent=`Bài ${lesson}`;$('#lessonTitle').textContent=L.title;$('#lessonVi').textContent=L.vi;$('#theme').textContent=L.theme;$('#vocabCount').textContent=`${L.vocab.length} từ mới`;const nav=$('#lessonNav');[1,2,3,4,5,6].forEach(n=>{const a=el('a',String(n)===String(lesson)?'current':'',`Bài ${n}`);a.href=`hsk4.bai${n}.html`;nav.appendChild(a)});renderTabs();updateProgress();renderContent()}
+function renderTabs(){const w=$('#tabs');w.innerHTML='';tabs.forEach(([id,name])=>{const b=el('button','tab'+(state.tab===id?' active':''),name);b.onclick=()=>{state.tab=id;state.quiz=[];state.quizAns={};state.fillAns={};state.grammarAns={};renderTabs();renderContent()};w.appendChild(b)})}
+function renderContent(){const c=$('#content');if(state.tab==='flash')renderFlash(c);else if(state.tab==='quiz')renderQuiz(c);else if(state.tab==='fill')renderFill(c);else if(state.tab==='grammar')renderGrammar(c);else if(state.tab==='apply')renderOpenTasks(c,'apply');else if(state.tab==='advanced')renderAdvanced(c)}
+function renderFlash(c){const v=L.vocab[state.flashIndex];c.innerHTML=intro(`Từ vựng · ${L.vocab.length} từ`,`Bấm vào thẻ để ẩn/hiện pinyin và nghĩa.`,`<button class="btn" id="prev">← Trước</button><button class="btn" id="random">Ngẫu nhiên</button><button class="btn" id="next">Sau →</button>`)+`<div class="flash-wrap"><div class="flashcard ${state.flashMask?'mask':''}" id="fc"><div><div class="cn">${v[0]}</div><div class="py">${v[1]}</div><div class="vi">${v[2]}</div></div><div class="hint">Từ ${state.flashIndex+1}/${L.vocab.length} · bấm để che/hiện</div></div><div class="vocab-list" id="vlist"></div></div>`;const list=$('#vlist');L.vocab.forEach((x,i)=>{const r=el('div','vrow');r.innerHTML=`<div class="n">${String(i+1).padStart(2,'0')}</div><div><b>${x[0]}</b><small>${x[1]} · ${x[2]}</small></div>`;r.onclick=()=>{state.flashIndex=i;renderFlash(c)};list.appendChild(r)});$('#fc').onclick=()=>{state.flashMask=!state.flashMask;renderFlash(c)};$('#prev').onclick=()=>{state.flashIndex=(state.flashIndex-1+L.vocab.length)%L.vocab.length;renderFlash(c)};$('#next').onclick=()=>{state.flashIndex=(state.flashIndex+1)%L.vocab.length;renderFlash(c)};$('#random').onclick=()=>{state.flashIndex=Math.floor(Math.random()*L.vocab.length);renderFlash(c)}}
+function makeVocabQuiz(vocab,n=10){return shuffle(vocab.map((v,i)=>({v,i}))).slice(0,n).map(({v,i})=>{const reverse=Math.random()<.45;const pool=shuffle(vocab.filter((_,j)=>j!==i)).slice(0,3);const options=shuffle([v,...pool]);return reverse?{q:`Chọn từ Hán đúng với nghĩa: “${v[2]}”`,options:options.map(x=>x[0]),ans:options.findIndex(x=>x[0]===v[0]),exp:`${v[0]} · ${v[1]} = ${v[2]}`}:{q:`${v[0]} · ${v[1]} có nghĩa là gì?`,options:options.map(x=>x[2]),ans:options.findIndex(x=>x[0]===v[0]),exp:`${v[0]} = ${v[2]}`}})}
+function renderQuiz(c){if(!state.quiz.length)state.quiz=makeVocabQuiz(L.vocab,10);c.innerHTML=intro('Trắc nghiệm từ vựng','10 câu ngẫu nhiên Trung ↔ Việt.','<button class="btn" id="newQuiz">Tạo bộ mới</button><button class="btn primary" id="checkQuiz">Chấm điểm</button>')+'<div class="quiz-grid" id="qgrid"></div><div id="qscore" style="margin-top:14px"></div>';const g=$('#qgrid');state.quiz.forEach((q,qi)=>{const card=el('div','qcard');card.innerHTML=`<div class="qtitle">${qi+1}. ${q.q}</div><div class="opts"></div><div class="feedback"></div>`;q.options.forEach((o,oi)=>{const b=el('button','opt'+(state.quizAns[qi]===oi?' selected':''),o);b.onclick=()=>{state.quizAns[qi]=oi;renderQuiz(c)};card.querySelector('.opts').appendChild(b)});g.appendChild(card)});$('#newQuiz').onclick=()=>{state.quiz=makeVocabQuiz(L.vocab,10);state.quizAns={};renderQuiz(c)};$('#checkQuiz').onclick=()=>{let s=0;state.quiz.forEach((q,qi)=>{const card=g.children[qi],bs=card.querySelectorAll('.opt'),ch=state.quizAns[qi];bs[q.ans]?.classList.add('good');if(ch!==undefined&&ch!==q.ans)bs[ch]?.classList.add('bad');const ok=ch===q.ans;if(ok)s++;card.querySelector('.feedback').textContent=(ok?'✓ Đúng. ':'✗ ')+q.exp;bump(ok)});$('#qscore').innerHTML=`<div class="score">Kết quả: ${s}/${state.quiz.length}</div>`}}
+function renderBankQuiz(c,items,bagName,title,sub){const bag=state[bagName];c.innerHTML=intro(title,sub,'<button class="btn" id="resetBank">Làm lại</button><button class="btn primary" id="checkBank">Chấm điểm</button>')+'<div class="quiz-grid" id="bankgrid"></div><div id="bankscore" style="margin-top:14px"></div>';const g=$('#bankgrid');items.forEach((q,qi)=>{const card=el('div','qcard');card.innerHTML=`<div class="qtitle">${qi+1}. ${q.q||q.s}</div><div class="opts"></div><div class="feedback"></div>`;q.o.forEach((o,oi)=>{const val=typeof q.a==='number'?oi:o;const b=el('button','opt'+(bag[qi]===val?' selected':''),o);b.onclick=()=>{bag[qi]=val;renderBankQuiz(c,items,bagName,title,sub)};card.querySelector('.opts').appendChild(b)});g.appendChild(card)});$('#resetBank').onclick=()=>{state[bagName]={};renderBankQuiz(c,items,bagName,title,sub)};$('#checkBank').onclick=()=>{let score=0;items.forEach((q,qi)=>{const card=g.children[qi],btns=card.querySelectorAll('.opt'),ansVal=q.a,chosen=bag[qi],ansIndex=typeof ansVal==='number'?ansVal:q.o.indexOf(ansVal),chosenIndex=typeof chosen==='number'&&typeof ansVal==='number'?chosen:q.o.indexOf(chosen);btns[ansIndex]?.classList.add('good');if(chosen!==undefined&&chosen!==ansVal)btns[chosenIndex]?.classList.add('bad');const ok=chosen===ansVal;if(ok)score++;card.querySelector('.feedback').textContent=ok?'✓ Đúng':`✗ Đáp án: ${typeof ansVal==='number'?q.o[ansVal]:ansVal}`;bump(ok)});$('#bankscore').innerHTML=`<div class="score">Kết quả: ${score}/${items.length}</div>`}}
+function renderFill(c){renderBankQuiz(c,L.fills,'fillAns','Điền từ theo ngữ cảnh','Các câu bám từ vựng và tình huống của bài học.')}
+function renderGrammar(c){c.innerHTML=intro('Ngữ pháp trọng tâm','Ôn cấu trúc rồi làm phần kiểm tra bên dưới.')+'<div class="grammar-grid">'+L.grammar.map(g=>`<div class="gcard"><h3>${g[0]}</h3><div>${g[1]}</div><div class="example">${g[2]}</div></div>`).join('')+'</div><div style="height:20px"></div><div id="gquiz"></div>';renderGrammarQuiz($('#gquiz'))}
+function renderGrammarQuiz(c){const items=L.grammarQuiz;c.innerHTML=intro('Kiểm tra ngữ pháp','Chọn đáp án phù hợp.','<button class="btn" id="resetG">Làm lại</button><button class="btn primary" id="checkG">Chấm điểm</button>')+'<div class="quiz-grid" id="gg"></div><div id="gs"></div>';const g=$('#gg');items.forEach((q,qi)=>{const card=el('div','qcard');card.innerHTML=`<div class="qtitle">${qi+1}. ${q.q}</div><div class="opts"></div><div class="feedback"></div>`;q.o.forEach((o,oi)=>{const b=el('button','opt'+(state.grammarAns[qi]===oi?' selected':''),o);b.onclick=()=>{state.grammarAns[qi]=oi;renderGrammarQuiz(c)};card.querySelector('.opts').appendChild(b)});g.appendChild(card)});$('#resetG').onclick=()=>{state.grammarAns={};renderGrammarQuiz(c)};$('#checkG').onclick=()=>{let s=0;items.forEach((q,qi)=>{const card=g.children[qi],bs=card.querySelectorAll('.opt'),ch=state.grammarAns[qi];bs[q.a]?.classList.add('good');if(ch!==undefined&&ch!==q.a)bs[ch]?.classList.add('bad');const ok=ch===q.a;if(ok)s++;card.querySelector('.feedback').textContent=(ok?'✓ ':'✗ ')+q.e;bump(ok)});$('#gs').innerHTML=`<div class="score" style="margin-top:14px">Kết quả: ${s}/${items.length}</div>`}}
+function taskKey(type,i){return `hsk4_bai${lesson}_${type}_${i}`}
+function cleanText(t){return (t||'').replace(/\r/g,'').trim()}
+function countHanzi(t){return (t.match(/[\u3400-\u9fff]/g)||[]).length}
+function countLines(t){return t.split(/\n+/).map(x=>x.trim()).filter(Boolean).length}
+function countSentences(t){const p=(t.match(/[。！？!?；;]/g)||[]).length;return Math.max(p,countLines(t))}
+function timeMarkers(t){return (t.match(/(?:\d{1,2}[:：点时]|上午|下午|早上|晚上|中午|星期|周[一二三四五六日天]|今天|明天|后天)/g)||[]).length}
+function numberMarkers(t){return (t.match(/\d+(?:\.\d+)?|[一二两三四五六七八九十百千万]+块?/g)||[]).length}
+function discountCount(t){const a=t.match(/\d+(?:\.\d+)?折|[一二三四五六七八九十]+折|百分之\s*\d+/g)||[];return new Set(a).size}
+function evalCriterion(c,t){let ratio=0,detail='';const han=countHanzi(t);if(c.type==='hanzi_length'){if(han>=c.min&&han<=c.max)ratio=1;else if(han>0){const dist=han<c.min?c.min-han:han-c.max;ratio=Math.max(0,1-dist/Math.max(20,c.max-c.min+20))}detail=`${han} chữ Hán`}
+else if(c.type==='hanzi_min'){ratio=Math.min(1,han/c.min);detail=`${han}/${c.min} chữ Hán`}
+else if(c.type==='line_count'){const n=countLines(t);ratio=n>=c.min&&(!c.max||n<=c.max)?1:Math.min(1,n/c.min);if(c.max&&n>c.max)ratio=Math.max(.7,1-(n-c.max)*.08);detail=`${n} lượt/dòng`}
+else if(c.type==='sentence_count'){const n=countSentences(t);ratio=n>=c.min&&(!c.max||n<=c.max)?1:Math.min(1,n/c.min);if(c.max&&n>c.max)ratio=Math.max(.75,1-(n-c.max)*.05);detail=`${n} câu/ý`}
+else if(c.type==='punctuation'){const n=countSentences(t);ratio=Math.min(1,n/c.min);detail=`${n}/${c.min} câu/ý`}
+else if(c.type==='keywords'){const base=c.words||[];const hits=base.filter(w=>t.includes(w));let extra=0;if(c.anyWords&&c.anyWords.some(w=>t.includes(w)))extra=1;const need=c.min||base.length;const got=hits.length+extra;ratio=Math.min(1,got/need);const miss=base.filter(w=>!t.includes(w));detail=`đạt ${got}/${need}${miss.length?' · thiếu: '+miss.slice(0,5).join('、'):''}${c.anyWords&&!extra?' · cần một trong: '+c.anyWords.join('/') : ''}`}
+else if(c.type==='vocab_hits'){const words=L.vocab.map(x=>x[0]);const hits=words.filter(w=>t.includes(w));ratio=Math.min(1,hits.length/c.min);detail=`${hits.length}/${c.min} từ: ${hits.slice(0,8).join('、')||'chưa có'}`}
+else if(c.type==='combo'){const ok=(c.groups||[]).some(g=>g.every(w=>t.includes(w)));ratio=ok?1:0;detail=ok?'đã dùng':'chưa thấy cấu trúc yêu cầu'}
+else if(c.type==='forbidden'){const bad=(c.words||[]).filter(w=>t.includes(w));ratio=bad.length?0:1;detail=bad.length?'còn lỗi: '+bad.join('、'):'không còn lỗi mục tiêu'}
+else if(c.type==='time_markers'){const n=timeMarkers(t);ratio=Math.min(1,n/c.min);detail=`${n}/${c.min} mốc thời gian`}
+else if(c.type==='number_markers'){const n=numberMarkers(t);ratio=Math.min(1,n/c.min);detail=`${n}/${c.min} số/giá`}
+else if(c.type==='discount_count'){const n=discountCount(t);ratio=Math.min(1,n/c.min);detail=`${n}/${c.min} mức ưu đãi`}
+else if(c.type==='speaker_lines'){const n=t.split(/\n+/).filter(x=>/[：:]/.test(x)).length;ratio=Math.min(1,n/c.min);detail=`${n}/${c.min} dòng có người nói`}
+return {ratio:Math.max(0,Math.min(1,ratio)),detail}}
+function gradeText(text,rule){text=cleanText(text);if(!text)return {score:0,rows:[{label:'Chưa có bài làm',weight:100,ratio:0,detail:'Hãy nhập câu trả lời trước.'}]};let total=0;const rows=(rule.criteria||[]).map(c=>{const r=evalCriterion(c,text);const pts=r.ratio*c.weight;total+=pts;return {...c,...r,pts}});return {score:Math.round(total),rows}}
+function gradeBlockHTML(res){const verdict=res.score>=85?'Rất tốt':res.score>=70?'Đạt':res.score>=50?'Cần bổ sung':'Chưa đạt';return `<div class="grade-head"><div><b>Chấm tự động theo rubric</b><div style="font-size:12px;color:var(--muted)">${verdict}</div></div><div class="grade-big">${res.score}/100</div></div>`+res.rows.map(r=>`<div class="criterion ${r.ratio>=.99?'good':r.ratio>=.55?'partial':'bad'}"><span>${r.label}<br><small>${r.detail||''}</small></span><b>${Math.round(r.pts||0)}/${r.weight}</b></div>`).join('')+`<div class="grade-note">Điểm này do trình duyệt chấm theo tiêu chí có thể đo được (độ dài, từ khóa, cấu trúc, hình thức). Nó không đánh giá đầy đủ độ tự nhiên, lập luận hay lỗi ngữ pháp tinh tế như giáo viên/AI.</div>`}
 
-  .lesson-head{
-    display:flex; align-items:center; gap:16px; margin-bottom:22px;
-  }
-  .seal{
-    flex:0 0 auto; width:58px; height:58px; border-radius:50%;
-    background:radial-gradient(circle at 35% 30%, var(--maroon-soft), var(--maroon-dark));
-    color:#fff; display:flex; align-items:center; justify-content:center;
-    font-family:'Noto Serif SC',serif; font-weight:900; font-size:22px;
-    box-shadow: 0 6px 14px -4px rgba(79,22,34,.5), inset 0 0 0 3px rgba(255,255,255,.18);
-    border:2px solid var(--gold);
-  }
-  .lesson-head h2{
-    margin:0; font-family:'Noto Serif SC',serif; font-size:26px; color:var(--maroon-dark);
-  }
-  .lesson-head p{ margin:2px 0 0; color:var(--ink-soft); font-size:14.5px; }
+function normalizeAdv(s){return String(s||'').replace(/[\s，。！？、；：,.!?;:]/g,'')}
+function advChoiceHTML(q,key){const chosen=state.advChoice[key];return `<div class="adv-options">${q.o.map((o,oi)=>`<button class="adv-opt ${chosen===oi?'selected':''}" data-advkey="${key}" data-choice="${oi}">${String.fromCharCode(65+oi)}. ${o}</button>`).join('')}</div><div class="adv-feedback" data-feedback="${key}"></div>`}
+function bindAdvOptions(){document.querySelectorAll('.adv-opt').forEach(b=>b.onclick=()=>{const key=b.dataset.advkey,choice=Number(b.dataset.choice);state.advChoice[key]=choice;b.closest('.adv-options').querySelectorAll('.adv-opt').forEach(x=>x.classList.remove('selected','good','bad'));b.classList.add('selected');const fb=document.querySelector(`[data-feedback="${key}"]`);if(fb){fb.classList.remove('show');fb.textContent=''};b.closest('.adv-card')?.classList.remove('unanswered','correct','incorrect')})}
+function bindOrderCards(){document.querySelectorAll('.order-card').forEach(card=>{const bank=card.querySelector('.order-bank'),ans=card.querySelector('.order-answer');bank.querySelectorAll('.word-chip').forEach(ch=>ch.onclick=()=>{if(ch.classList.contains('used'))return;ch.classList.add('used');const x=document.createElement('button');x.className='word-chip';x.textContent=ch.textContent;x.dataset.source=ch.dataset.source;x.onclick=()=>{const original=bank.querySelector(`[data-source="${x.dataset.source}"]`);if(original)original.classList.remove('used');x.remove();ans.classList.remove('good','bad');card.classList.remove('unanswered','correct','incorrect')};ans.appendChild(x);ans.classList.remove('good','bad')})})}
+function renderAdvanced(c){const A=ADV_DATA;state.advChoice=state.advChoice||{};let n=1;let html=intro('Bài nâng cao · dạng HSK tương tác','Tự chấm 100 điểm: chọn đáp án, sắp xếp từ thành câu, sắp xếp trình tự, sửa lỗi và đọc hiểu. Phần này chấm đáp án chính xác nên không cần giáo viên/AI.','<button class="btn" id="resetAdv">Làm lại</button><button class="btn primary" id="gradeAdv">Chấm toàn bộ</button>');html+=`<div class="adv-note"><b>Cách làm:</b> Với bài sắp xếp từ, bấm các mảnh theo đúng thứ tự; bấm lại mảnh ở ô trả lời để gỡ. Các dạng còn lại chọn 1 đáp án. Mỗi câu = 5 điểm.</div><div class="adv-board">`;
+html+=`<section class="adv-section"><div class="adv-section-head"><div><h3>① Chọn từ / cấu trúc phù hợp</h3><div class="desc">5 câu vận dụng từ vựng và ngữ pháp của bài.</div></div><div class="adv-num">25đ</div></div>`;A.mcq.forEach((q,i)=>{const key=`mcq-${i}`;html+=`<div class="adv-card" data-cardkey="${key}"><div class="adv-q">${n++}. ${q.q}</div>${advChoiceHTML(q,key)}</div>`});html+=`</section>`;
+html+=`<section class="adv-section"><div class="adv-section-head"><div><h3>② Sắp xếp từ thành câu</h3><div class="desc">Bấm từng cụm từ theo thứ tự để tạo câu hoàn chỉnh.</div></div><div class="adv-num">25đ</div></div>`;A.reorder.forEach((q,i)=>{html+=`<div class="adv-card order-card" id="adv-reorder-${i}" data-cardkey="reorder-${i}"><div class="adv-q">${n++}. Sắp xếp thành câu đúng:</div><div class="order-bank">${q.parts.map((p,j)=>`<button class="word-chip" data-source="${j}">${p}</button>`).join('')}</div><div class="order-answer" aria-label="Câu trả lời"></div><div class="adv-feedback" data-feedback="reorder-${i}"></div></div>`});html+=`</section>`;
+html+=`<section class="adv-section"><div class="adv-section-head"><div><h3>③ Sắp xếp trình tự</h3><div class="desc">Chọn thứ tự A–B–C hợp lý nhất theo ngữ cảnh.</div></div><div class="adv-num">15đ</div></div>`;A.sequence.forEach((q,i)=>{const key=`sequence-${i}`;html+=`<div class="adv-card" data-cardkey="${key}"><div class="adv-q">${n++}. ${q.q}</div><div class="sequence-items">${q.items.map(x=>`<div>${x}</div>`).join('')}</div>${advChoiceHTML(q,key)}</div>`});html+=`</section>`;
+html+=`<section class="adv-section"><div class="adv-section-head"><div><h3>④ Chọn câu đúng / sửa lỗi</h3><div class="desc">4 câu tập trung vào lỗi cấu trúc dễ nhầm.</div></div><div class="adv-num">20đ</div></div>`;A.error.forEach((q,i)=>{const key=`error-${i}`;html+=`<div class="adv-card" data-cardkey="${key}"><div class="adv-q">${n++}. ${q.q}</div>${advChoiceHTML(q,key)}</div>`});html+=`</section>`;
+html+=`<section class="adv-section"><div class="adv-section-head"><div><h3>⑤ Đọc hiểu mini</h3><div class="desc">Đọc đoạn ngắn mới, sau đó trả lời 3 câu.</div></div><div class="adv-num">15đ</div></div>`;A.reading.forEach((r,ri)=>{html+=`<div class="reading-text">${r.text}</div>`;r.qs.forEach((q,qi)=>{const key=`reading-${ri}-${qi}`;html+=`<div class="adv-card" data-cardkey="${key}"><div class="adv-q">${n++}. ${q.q}</div>${advChoiceHTML(q,key)}</div>`})});html+=`</section></div><div class="adv-scorebar"><div><div class="scoretxt" id="advScore">Chưa chấm · 20 câu / 100 điểm</div><div style="font-size:12px;color:var(--muted)">Đáp án và giải thích hiện sau khi chấm.</div></div><div class="actions"><button class="btn" id="resetAdv2">Làm lại</button><button class="btn primary" id="gradeAdv2">Chấm toàn bộ</button></div></div>`;c.innerHTML=html;bindAdvOptions();bindOrderCards();$('#resetAdv').onclick=$('#resetAdv2').onclick=()=>{state.advChoice={};renderAdvanced(c);toast('Đã làm mới bài nâng cao')};$('#gradeAdv').onclick=$('#gradeAdv2').onclick=()=>gradeAdvanced(c)}
+function gradeChoiceQuestion(q,key){const chosen=state.advChoice[key];const card=document.querySelector(`[data-cardkey="${key}"]`);const opts=card?card.querySelectorAll('.adv-opt'):[];opts.forEach(x=>x.classList.remove('good','bad'));if(opts[q.a])opts[q.a].classList.add('good');if(chosen!==undefined&&chosen!==q.a&&opts[chosen])opts[chosen].classList.add('bad');const ok=chosen===q.a;card?.classList.remove('unanswered','correct','incorrect');card?.classList.add(chosen===undefined?'unanswered':ok?'correct':'incorrect');const fb=card?.querySelector('.adv-feedback');if(fb){fb.classList.add('show');fb.innerHTML=chosen===undefined?`⚠ Chưa chọn đáp án. Đáp án đúng: <b>${String.fromCharCode(65+q.a)}</b>. ${q.e}`:`${ok?'✓ Đúng':'✗ Chưa đúng'} · Đáp án: <b>${String.fromCharCode(65+q.a)}</b>. ${q.e}`};return ok?1:0}
+function gradeAdvanced(c){const A=ADV_DATA;let correct=0,total=0;A.mcq.forEach((q,i)=>{total++;correct+=gradeChoiceQuestion(q,`mcq-${i}`)});A.reorder.forEach((q,i)=>{total++;const card=document.querySelector(`#adv-reorder-${i}`),ans=card.querySelector('.order-answer'),txt=[...ans.querySelectorAll('.word-chip')].map(x=>x.textContent).join('');const ok=normalizeAdv(txt)===normalizeAdv(q.answer);ans.classList.remove('good','bad');ans.classList.add(ok?'good':'bad');card.classList.remove('unanswered','correct','incorrect');card.classList.add(!txt?'unanswered':ok?'correct':'incorrect');const fb=card.querySelector('.adv-feedback');fb.classList.add('show');fb.innerHTML=!txt?`⚠ Chưa sắp xếp. Đáp án: <b>${q.answer}。</b> ${q.e}`:`${ok?'✓ Đúng':'✗ Chưa đúng'} · Đáp án: <b>${q.answer}。</b> ${q.e}`;if(ok)correct++});A.sequence.forEach((q,i)=>{total++;correct+=gradeChoiceQuestion(q,`sequence-${i}`)});A.error.forEach((q,i)=>{total++;correct+=gradeChoiceQuestion(q,`error-${i}`)});A.reading.forEach((r,ri)=>r.qs.forEach((q,qi)=>{total++;correct+=gradeChoiceQuestion(q,`reading-${ri}-${qi}`)}));const score=Math.round(correct/total*100),verdict=score>=90?'Xuất sắc':score>=80?'Rất tốt':score>=70?'Đạt':score>=50?'Cần ôn thêm':'Nên làm lại';$('#advScore').textContent=`${score}/100 · ${correct}/${total} câu đúng · ${verdict}`;bump(true);toast(`Bài nâng cao: ${score}/100`)}
 
-  .card{
-    background:var(--paper); border:1px solid var(--line); border-radius:var(--radius);
-    padding:20px 22px; margin-bottom:22px; box-shadow:var(--shadow);
-  }
-  .card h3{
-    margin:0 0 14px; font-size:18px; color:var(--maroon-dark);
-    display:flex; align-items:center; gap:8px;
-  }
-  .card h3 .dot{ width:8px; height:8px; border-radius:50%; background:var(--gold); display:inline-block;}
-
-  details.dialogue{
-    background:var(--pink); border-radius:12px; padding:4px 16px; margin-bottom:22px;
-    border:1px solid var(--pink-deep);
-  }
-  details.dialogue summary{ cursor:pointer; padding:12px 0; font-weight:700; color:var(--maroon-dark); }
-  details.dialogue pre{
-    white-space:pre-wrap; font-family:'Noto Sans SC','Be Vietnam Pro',sans-serif;
-    font-size:15px; line-height:1.9; color:var(--ink); padding-bottom:14px; margin:0;
-  }
-
-  /* Flashcards */
-  .fc-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:14px; }
-  .flip-card{ perspective:1000px; height:120px; cursor:pointer; }
-  .flip-inner{ position:relative; width:100%; height:100%; transition:transform .5s; transform-style:preserve-3d; }
-  .flip-card.flipped .flip-inner{ transform:rotateY(180deg); }
-  .flip-front,.flip-back{
-    position:absolute; inset:0; backface-visibility:hidden; border-radius:12px;
-    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:8px;
-  }
-  .flip-front{ background:linear-gradient(160deg,#fff,var(--pink)); border:1px solid var(--pink-deep); }
-  .flip-front .hz{ font-family:'Noto Serif SC',serif; font-weight:700; font-size:26px; color:var(--maroon-dark); }
-  .flip-front .py{ color:var(--gold); font-size:13px; margin-top:4px; font-weight:600; }
-  .flip-back{ background:var(--maroon); color:#fff; transform:rotateY(180deg); }
-  .flip-back .mn{ font-weight:700; font-size:14.5px; }
-  .flip-back .vd{ font-size:11.5px; opacity:.85; margin-top:6px; font-family:'Noto Sans SC',sans-serif; }
-  .fc-hint{ font-size:13px; color:var(--ink-soft); margin:-8px 0 16px; }
-
-  /* Grammar cards */
-  .g-item{ border-left:3px solid var(--gold); padding:10px 0 10px 16px; margin-bottom:16px; }
-  .g-item:last-child{ margin-bottom:0; }
-  .g-item h4{ margin:0 0 6px; font-family:'Noto Serif SC',serif; color:var(--maroon-dark); font-size:17px; }
-  .g-item p{ margin:0 0 8px; font-size:14.5px; color:var(--ink); }
-  .g-item ul{ margin:0; padding-left:18px; }
-  .g-item li{ font-size:14px; color:var(--ink-soft); margin-bottom:3px; font-family:'Noto Sans SC','Be Vietnam Pro',sans-serif; }
-
-  /* Quiz */
-  .quiz-score{ display:inline-block; background:var(--pink); color:var(--maroon-dark); font-weight:700;
-    padding:6px 14px; border-radius:999px; margin-bottom:16px; font-size:14px; }
-  .quiz-score .score-val{ font-size:15px; }
-  .q-box{ margin-bottom:18px; padding-bottom:16px; border-bottom:1px dashed var(--line); }
-  .q-box:last-child{ border-bottom:none; }
-  .q-text{ font-size:15px; margin-bottom:10px; font-weight:600; }
-  .q-num{ color:var(--gold); }
-  .opt-wrap{ display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:8px; }
-  .opt-btn{
-    text-align:left; padding:10px 12px; border-radius:10px; border:1px solid var(--line);
-    background:#fff; cursor:pointer; font-size:14px; font-family:inherit; color:var(--ink);
-    transition:.15s;
-  }
-  .opt-btn:hover:not(:disabled){ border-color:var(--maroon-soft); background:var(--pink); }
-  .opt-btn.correct{ background:var(--green-bg); border-color:var(--green); color:var(--green); font-weight:700; }
-  .opt-btn.wrong{ background:var(--red-bg); border-color:var(--red); color:var(--red); font-weight:700; }
-  .opt-btn:disabled{ cursor:default; opacity:.85; }
-  .q-note{ margin-top:8px; font-size:13px; color:var(--ink-soft); background:#FAF3EA; padding:8px 10px; border-radius:8px; }
-
-  .tf-wrap{ display:flex; gap:8px; }
-  .tf-btn{
-    padding:8px 16px; border-radius:8px; border:1px solid var(--line); background:#fff;
-    cursor:pointer; font-weight:700; font-size:13.5px;
-  }
-  .tf-btn.correct{ background:var(--green-bg); border-color:var(--green); color:var(--green); }
-  .tf-btn.wrong{ background:var(--red-bg); border-color:var(--red); color:var(--red); }
-  .tf-btn:disabled{ cursor:default; }
-
-  .btn-main{
-    background:var(--maroon); color:#fff; border:none; padding:10px 20px; border-radius:999px;
-    font-weight:700; cursor:pointer; font-size:14px; box-shadow:0 6px 14px -6px rgba(79,22,34,.6);
-  }
-  .btn-main:hover{ background:var(--maroon-dark); }
-  .btn-row{ margin-bottom:16px; }
-
-  /* Matching game */
-  .match-wrap{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
-  .match-col{ display:flex; flex-direction:column; gap:8px; }
-  .match-btn{
-    padding:12px; border-radius:10px; border:1px solid var(--line); background:#fff; cursor:pointer;
-    text-align:center; font-size:14px; font-family:inherit; color:var(--ink);
-  }
-  .match-btn .py-sm{ display:block; font-size:11px; color:var(--gold); font-weight:600; margin-top:2px; }
-  .match-btn.selected{ border-color:var(--maroon); background:var(--pink); }
-  .match-btn.matched{ background:var(--green-bg); border-color:var(--green); color:var(--green); cursor:default; }
-  .match-btn.shake{ animation:shake .35s; border-color:var(--red); }
-  @keyframes shake{ 0%,100%{transform:translateX(0);} 25%{transform:translateX(-6px);} 75%{transform:translateX(6px);} }
-  .match-done{ grid-column:1/-1; text-align:center; font-weight:700; color:var(--green); margin-top:10px; }
-
-  /* Cloze */
-  .cloze-passage{
-    font-family:'Noto Sans SC','Be Vietnam Pro',sans-serif; font-size:16px; line-height:2.1;
-    background:#FAF3EA; border:1px solid var(--line); border-radius:12px; padding:18px 20px; margin-bottom:16px;
-  }
-  .blank{ display:inline-block; min-width:64px; text-align:center; padding:1px 8px; border-radius:6px;
-    border-bottom:2px solid var(--gold); font-weight:700; color:var(--gold); }
-  .blank.correct{ color:var(--green); border-color:var(--green); }
-  .blank.wrong{ color:var(--red); border-color:var(--red); }
-  .cloze-q{ margin-bottom:14px; }
-  .cloze-q .lbl{ font-size:13.5px; font-weight:700; color:var(--maroon-dark); margin-bottom:6px; }
-  .cloze-opts{ display:flex; gap:8px; flex-wrap:wrap; }
-  .cloze-opts button{
-    padding:7px 14px; border-radius:999px; border:1px solid var(--line); background:#fff; cursor:pointer; font-size:13.5px;
-  }
-  .cloze-opts button.correct{ background:var(--green-bg); border-color:var(--green); color:var(--green); font-weight:700;}
-  .cloze-opts button.wrong{ background:var(--red-bg); border-color:var(--red); color:var(--red); font-weight:700;}
-
-  .intro-text{ color:var(--ink-soft); font-size:14.5px; margin-bottom:18px; }
-  .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:22px; }
-  @media(max-width:720px){
-    .grid2{ grid-template-columns:1fr; }
-    .match-wrap{ grid-template-columns:1fr; }
-  }
-  footer{ text-align:center; padding:26px; color:var(--ink-soft); font-size:13px; }
-</style>
-</head>
-<body>
-
-<div class="filmstrip"></div>
-<header class="hero">
-  <a class="nav-link" href="hsk4-bai2-on-tap.html">真正的朋友 · Bài 2 📚</a>
-  <div class="eyebrow">HSK 标准教程 4 · Bài 1</div>
-  <h1 class="hanzi">简单的爱情</h1>
-  <p class="sub">Tình yêu đơn giản — Ôn tập từ vựng &amp; ngữ pháp Phần 1–5, kèm bài tập vận dụng và nâng cao</p>
-  <div class="badges">
-    <span>📖 5 phần bài khoá</span>
-    <span>🈺 32 từ vựng</span>
-    <span>✏️ 12 điểm ngữ pháp</span>
-    <span>🧩 Trắc nghiệm tự chấm</span>
-  </div>
-</header>
-<div class="filmstrip"></div>
-
-<nav class="tabs">
-  <div class="tabs-inner" id="tabBar"></div>
-</nav>
-
-<main id="mainContent"></main>
-
-<footer>Biên soạn dựa trên 《HSK标准教程4》— Bài 1 · 简单的爱情 · Chúc bạn học vui 🌸</footer>
-
-<script>
-/* ============ DATA ============ */
-const VOCAB = {
-  p1:[
-    {h:"法律",p:"fǎ lǜ",m:"pháp luật, luật",vd:"我学的是法律。"},
-    {h:"俩",p:"liǎ",m:"hai (người/vật)",vd:"他们俩是好朋友。"},
-    {h:"印象",p:"yìn xiàng",m:"ấn tượng",vd:"我对他印象很深。"},
-    {h:"深",p:"shēn",m:"sâu, sâu sắc",vd:"那个人给我的印象很深。"},
-    {h:"熟悉",p:"shú xi",m:"hiểu rõ, quen thuộc",vd:"后来就慢慢熟悉了。"},
-    {h:"不仅",p:"bù jǐn",m:"không những, chẳng những",vd:"他不仅足球踢得好，性格也不错。"},
-    {h:"性格",p:"xìng gé",m:"tính cách, tính nết",vd:"他性格也不错。"}
-  ],
-  p2:[
-    {h:"最好",p:"zuì hǎo",m:"tốt nhất",vd:"两个人在一起，最好能有共同的兴趣。"},
-    {h:"从来",p:"cóng lái",m:"từ trước đến nay",vd:"我从来没这么快乐过。"},
-    {h:"开玩笑",p:"kāi wánxiào",m:"nói đùa, đùa",vd:"你是在开玩笑吧？"},
-    {h:"幸福",p:"xìng fú",m:"hạnh phúc",vd:"祝你们幸福！"},
-    {h:"适合",p:"shì hé",m:"phù hợp (động từ)",vd:"你真的找到适合你的人了。"},
-    {h:"共同",p:"gòng tóng",m:"chung, cùng",vd:"我们有很多共同的爱好。"}
-  ],
-  p3:[
-    {h:"接受",p:"jiē shòu",m:"chấp nhận",vd:"她慢慢接受了这个事实。"},
-    {h:"缺点",p:"quē diǎn",m:"nhược điểm, khuyết điểm",vd:"每个人都有自己的缺点。"},
-    {h:"够",p:"gòu",m:"đủ",vd:"只有浪漫和新鲜感是不够的。"},
-    {h:"浪漫",p:"làng màn",m:"lãng mạn",vd:"两个人共同生活，只有浪漫是不够的。"},
-    {h:"刚",p:"gāng",m:"vừa, vừa mới (phó từ)",vd:"我和丈夫刚结婚的时候……"},
-    {h:"生活",p:"shēng huó",m:"cuộc sống, sống",vd:"我们的生活一直挺幸福的。"}
-  ],
-  p4:[
-    {h:"羡慕",p:"xiàn mù",m:"ước ao, ngưỡng mộ",vd:"很多女孩子羡慕浪漫的爱情。"},
-    {h:"即使",p:"jí shǐ",m:"cho dù",vd:"即使晚上加班到零点……"},
-    {h:"星星",p:"xīng xing",m:"ngôi sao",vd:"你不会给她星星。"},
-    {h:"爱情",p:"ài qíng",m:"tình yêu",vd:"很多女孩子羡慕浪漫的爱情。"},
-    {h:"加班",p:"jiā bān",m:"tăng ca, làm thêm giờ",vd:"即使晚上加班到零点。"},
-    {h:"亮",p:"liàng",m:"chiếu sáng, tỏa sáng; sáng",vd:"自己家里也还亮着灯。"},
-    {h:"感动",p:"gǎn dòng",m:"cảm động, làm xúc động",vd:"让我们感动的，是生活中简单的爱情。"}
-  ],
-  p5:[
-    {h:"自然",p:"zì rán",m:"đương nhiên, hiển nhiên",vd:"人们就会很自然地想起爱情。"},
-    {h:"互相",p:"hù xiāng",m:"lẫn nhau, qua lại",vd:"更需要性格上互相吸引。"},
-    {h:"原因",p:"yuán yīn",m:"nguyên nhân",vd:"爱情是结婚的重要原因。"},
-    {h:"吸引",p:"xī yǐn",m:"hấp dẫn, thu hút",vd:"更需要性格上互相吸引。"},
-    {h:"幽默",p:"yōu mò",m:"hóm hỉnh, khôi hài",vd:"我丈夫是个很幽默的人。"},
-    {h:"脾气",p:"pí qi",m:"tính tình, tính khí",vd:"而且他的脾气也不错。"}
-  ]
-};
-
-const GRAMMAR = {
-  p1:[
-    {t:"俩",e:"“俩” = 两 + lượng từ, bản thân nó đã bao hàm lượng từ nên KHÔNG thêm lượng từ khác nữa. Dùng cho người hoặc vật.",
-     ex:["他们俩是好朋友。 = 他们两个是好朋友。","我吃了俩苹果。 = 我吃了两个苹果。","你们俩认识吗？"]},
-    {t:"不仅……也／还／而且……",e:"“Không những... mà còn...”. Nếu chủ ngữ 2 vế giống nhau, 不仅 đứng SAU chủ ngữ; nếu chủ ngữ 2 vế khác nhau, 不仅 đứng TRƯỚC chủ ngữ.",
-     ex:["他不仅足球踢得好，性格也不错。","他不仅身体健康，还是一名长跑运动员。","云南不仅风景很美，而且人也非常热情。"]}
-  ],
-  p2:[
-    {t:"从来",e:"Phó từ, thường dùng trong câu PHỦ ĐỊNH để nhấn mạnh một tính chất luôn đúng “từ trước đến nay”.",
-     ex:["这家面馆儿从来只卖一种东西：牛肉面。","老张这个人开会从来不迟到。","我从来没这么快乐过。"]},
-    {t:"最好",e:"Đưa ra lời khuyên: “tốt nhất nên...”.",
-     ex:["天气预报说明天会下雪，你最好多穿点儿衣服。","两个人在一起，最好能有共同的兴趣和爱好。"]},
-    {t:"适合 (đt) / 合适 (tt)",e:"适合 là ĐỘNG TỪ, luôn cần tân ngữ phía sau (适合 + ai/cái gì). 合适 là TÍNH TỪ, không có tân ngữ.",
-     ex:["这件衣服不适合我。 = 我穿这件衣服不合适。","这个男人不适合你。 = 你和他在一起不合适。"]},
-    {t:"……吧？",e:"Đặt cuối câu để phỏng đoán, xác nhận lại điều mình nghĩ.",
-     ex:["你是在开玩笑吧？","天哪，不会下雨了吧？"]}
-  ],
-  p3:[
-    {t:"生活",e:"生活 vừa là DANH TỪ (cuộc sống) vừa là ĐỘNG TỪ (sống, sinh sống).",
-     ex:["结婚这么多年，我们的生活一直挺幸福的。","他总是说，一个人在北京生活，太痛苦了。"]},
-    {t:"刚 (phó từ) / 刚才 (danh từ)",e:"刚 là PHÓ TỪ, luôn đứng trước động từ, không đứng một mình đầu câu. 刚才 là DANH TỪ, có thể đứng đầu câu, đứng độc lập.",
-     ex:["我上午刚借的那本书，怎么找不到了？","我和丈夫刚结婚的时候，每天都觉得很新鲜。","刚才你说什么？我没听清楚。"]},
-    {t:"感 (từ tố)",e:"“感” kết hợp thành nhiều từ: 感到 (cảm thấy), 感动 (cảm động), 感冒 (cảm cúm), 感兴趣 (hứng thú).",
-     ex:["他的话让我感到事情有点儿不对。","这部电影很多人都被感动得哭了。","很多留学生对中国文化感兴趣。"]}
-  ],
-  p4:[
-    {t:"即使……也……",e:"“Cho dù... cũng...”, nêu một giả thiết dù có xảy ra thì kết quả vẫn không đổi.",
-     ex:["即使只是跟他们吃吃饭、聊聊天，他们也会觉得很幸福。","即使晚上加班到零点，到家时，自己家里也还亮着灯。"]},
-    {t:"亮 (tính từ / động từ)",e:"亮 làm TÍNH TỪ nghĩa là “sáng”; làm ĐỘNG TỪ nghĩa là “phát sáng, bật (đèn)”.",
-     ex:["为什么天上的星星有的很亮，有的不太亮呢？（tính từ）","灯怎么突然不亮了？（động từ）","自己家里也还亮着灯。（động từ）"]}
-  ],
-  p5:[
-    {t:"互相 + động từ",e:"互相 phải đi kèm ĐỘNG TỪ phía sau (互相帮助, 互相理解, 互相吸引…), không đứng một mình.",
-     ex:["更需要性格上互相吸引。","朋友之间应该互相帮助、互相理解。"]},
-    {t:"(在)……上",e:"“Về mặt/phương diện...”, nêu phạm vi hay khía cạnh của sự việc.",
-     ex:["我把你的手机放在桌子上了。（nghĩa gốc: trên）","你觉得北方和南方在饮食上有什么不同？（nghĩa mở rộng: về mặt）","更需要性格上互相吸引。"]}
-  ]
-};
-
-const GRAMMAR_QUIZ = {
-  p1:[
-    {q:"他们___认识很多年了，感情很好。",options:["俩","二","两"],answer:0,note:"“俩”đã bao hàm lượng từ, không cần thêm “个”."},
-    {q:"他___会说汉语，___会说英语和法语。",options:["不仅…也","虽然…但是","因为…所以"],answer:0,note:"“不仅…也…” = không những…mà còn…"},
-    {q:"这次比赛他一个人踢进两个球，我对他___很深。",options:["印象","熟悉","性格"],answer:0},
-    {q:"两个人相处久了，会越来越___对方。",options:["熟悉","印象","法律"],answer:0}
-  ],
-  p2:[
-    {q:"他工作很努力，开会___不迟到。",options:["从来","最好","刚"],answer:0,note:"从来 thường đi cùng 不/没 để nhấn mạnh."},
-    {q:"明天要下雨，你___带把伞。",options:["最好","从来","刚"],answer:0},
-    {q:"这条裙子颜色太深了，穿在我身上不太___。",options:["合适","适合","接受"],answer:0,note:"合适 là tính từ, không có tân ngữ theo sau."},
-    {q:"这份工作的时间不___我，我没办法接受。",options:["适合","合适","够"],answer:0,note:"适合 là động từ, phải có tân ngữ (适合 + 我)."},
-    {q:"都十二点了，你明天不用上班___？",options:["吧","呢","吗"],answer:0,note:"“…吧？” dùng để phỏng đoán, xác nhận."}
-  ],
-  p3:[
-    {q:"我___从机场回来，还没来得及洗澡。",options:["刚","刚才","才"],answer:0,note:"刚 là phó từ, luôn đứng trước động từ."},
-    {q:"___你说什么？我没听清楚。",options:["刚才","刚","从来"],answer:0,note:"刚才 là danh từ, có thể đứng đầu câu, độc lập."},
-    {q:"我看了这部电影，特别___。",options:["感动","感冒","感兴趣"],answer:0},
-    {q:"结婚以后，两个人的___发生了很大的变化。",options:["生活","刚","浪漫"],answer:0}
-  ],
-  p4:[
-    {q:"___天气再冷，他___坚持每天跑步。",options:["即使…也","因为…所以","不仅…也"],answer:0},
-    {q:"屋子里的灯还___着，说明家里有人。",options:["亮","浪漫","羡慕"],answer:0},
-    {q:"这条项链看起来很___，很适合搭配晚礼服。",options:["亮","深","够"],answer:0}
-  ],
-  p5:[
-    {q:"朋友之间应该___帮助、___理解。",options:["互相","自然","原因"],answer:0},
-    {q:"你觉得中国菜和越南菜在口味___有什么不同？",options:["上","里","中"],answer:0,note:"“在……上”= về mặt/phương diện nào đó."},
-    {q:"两个人性格___互相吸引，才能走得长久。",options:["上","里","中"],answer:0}
-  ]
-};
-
-const READING = {
-  p1:{title:"孙月和王静聊王静的男朋友",
-    passage:"孙月：听说你男朋友李进跟你是一个学校的，是你同学吗？\n王静：是的，他学的是新闻，我学的是法律，我和他不是一个班。\n孙月：那你们俩是怎么认识的？\n王静：我们是在一次足球比赛中认识的。我们班跟他们班比赛，他一个人踢进两个球，我对他印象很深，后来就慢慢熟悉了。\n孙月：你为什么喜欢他？\n王静：他不仅足球踢得好，性格也不错。",
-    items:[
-      {t:"李进是王静的男朋友。",a:true},
-      {t:"王静学的是法律，她和李进一个班。",a:false},
-      {t:"王静和李进是在一次篮球比赛上认识的。",a:false},
-      {t:"因为李进一个人进了两个球，所以王静对他印象很深。",a:true}
-    ]},
-  p2:{title:"王静跟李老师聊她要结婚的事情",
-    passage:"王静：李老师，我下个月五号就要结婚了。\n李老师：你是在开玩笑吧？你们不是才认识一个月？\n王静：虽然我们认识的时间不长，但我从来没这么快乐过。\n李老师：两个人在一起，最好能有共同的兴趣和爱好。\n王静：我们有很多共同的爱好，经常一起打球、唱歌、做菜。\n李老师：看来你真的找到适合你的人了。祝你们幸福！",
-    items:[
-      {t:"王静下个月十五号要结婚。",a:false},
-      {t:"李老师早就知道王静下个月结婚。",a:false},
-      {t:"王静觉得现在她很幸福。",a:true},
-      {t:"李老师觉得两个人在一起最好要有共同的爱好。",a:true}
-    ]},
-  p3:{title:"高老师和李老师聊结婚后的生活",
-    passage:"高老师：听说您跟妻子结婚快二十年了？\n李老师：到6月9号，我们就结婚二十年了。这么多年，我们的生活一直挺幸福的。\n高老师：我和丈夫刚结婚的时候，每天都觉得新鲜，在一起有说不完的话。但是现在……\n李老师：两个人共同生活，只有浪漫和新鲜感是不够的。",
-    items:[
-      {t:"到采访的时候，李老师已经结婚满二十年了。",a:false},
-      {t:"李老师觉得这么多年的婚姻生活一直挺幸福的。",a:true},
-      {t:"高老师现在觉得和丈夫还像刚结婚时一样，有说不完的话。",a:false},
-      {t:"李老师认为两个人共同生活，只有浪漫和新鲜感是不够的。",a:true}
-    ]},
-  p4:{title:"不同的人对浪漫的理解",
-    passage:"很多女孩子羡慕浪漫的爱情。那什么是浪漫呢？年轻人说：浪漫是她想要月亮时，你不会给她星星；中年人说：浪漫是即使晚上加班到零点，到家时，自己家里也还亮着灯；老年人说：浪漫其实就像歌中唱的那样，“我能想到最浪漫的事，就是和你一起慢慢变老。”其实，让我们感动的，就是生活中简单的爱情。有时候，简单就是最大的幸福。",
-    items:[
-      {t:"年轻人认为的浪漫是：她想要月亮时，你会真心给她想要的，而不是随便应付她。",a:true},
-      {t:"中年人认为的浪漫是即使加班到很晚，回家时家里的灯还亮着。",a:true},
-      {t:"老年人认为最浪漫的事是收到很多昂贵的礼物。",a:false},
-      {t:"文中认为，生活中简单的爱情最能让人感动，简单有时候就是最大的幸福。",a:true}
-    ]},
-  p5:{title:"爱情与婚姻",
-    passage:"说到结婚，人们就会很自然地想起爱情。爱情是结婚的重要原因，因为两个人共同生活，不仅需要浪漫的爱情，更需要性格上互相吸引。我丈夫是个很幽默的人。即使是很普通的事情，从他嘴里说出来也会变得很有意思。在我难过的时候，他总是有办法让我高兴起来。而且他的脾气也不错，结婚快十年了，我们俩几乎没因为什么事红过脸，很多人都特别羡慕我们。",
-    items:[
-      {t:"作者认为，两个人共同生活只需要浪漫的爱情就够了。",a:false},
-      {t:"作者的丈夫是个很幽默的人，能把普通的事情说得很有意思。",a:true},
-      {t:"作者和丈夫结婚快十年了，两人几乎没有因为什么事吵过架、生过气。",a:true},
-      {t:"很多人都特别羡慕作者和她丈夫的婚姻生活。",a:true}
-    ]}
-};
-
-const CONFUSABLE = [
-  {q:"我觉得穿西装参加这个聚会不太___。",options:["合适","适合","接受"],answer:0,note:"合适 là tính từ, đứng sau 不太, không cần tân ngữ."},
-  {q:"安静的环境比较___学习。",options:["适合","合适","够"],answer:0,note:"适合 là động từ, cần tân ngữ “学习”theo sau."},
-  {q:"___，谁在敲门？我好像听到了声音。",options:["刚才","刚","从来"],answer:0,note:"刚才 là danh từ, có thể đứng đầu câu độc lập."},
-  {q:"他___走，你现在打电话应该还能找到他。",options:["刚","刚才","才"],answer:0,note:"刚 là phó từ, phải đứng trước động từ “走”."},
-  {q:"他___会做饭，___会修电脑，是个全能的人。",options:["不仅…也","虽然…但是","如果…就"],answer:0},
-  {q:"他工资___不高，___他每天都工作得很开心。",options:["虽然…但是","不仅…也","即使…也"],answer:0},
-  {q:"___明天下雨，我们___要去爬山，因为票已经买好了。",options:["即使…也","如果…就","因为…所以"],answer:0},
-  {q:"___明天不下雨，我们___去爬山。",options:["如果…就","即使…也","不仅…也"],answer:0}
-];
-
-const SENTENCE_MC = [
-  {q:"Chọn câu đúng ngữ pháp:",
-   options:["他不仅幽默，而且脾气也很好。","他不仅幽默而且脾气也很好不仅。","不仅他幽默脾气也很好而且。"],answer:0},
-  {q:"Chọn câu đúng ngữ pháp:",
-   options:["即使很忙他也每天锻炼身体即使。","他即使很忙，也每天锻炼身体。","他每天锻炼身体即使很忙也。"],answer:1},
-  {q:"Chọn câu đúng ngữ pháp:",
-   options:["朋友之间应该互相帮助、互相理解。","朋友之间应该帮助互相、理解互相。","朋友之间应该互相、帮助理解互相。"],answer:0},
-  {q:"Chọn câu đúng ngữ pháp:",
-   options:["你觉得这两个国家在饮食有什么不同上？","你觉得这两个国家上在饮食有什么不同？","你觉得这两个国家在饮食上有什么不同？"],answer:2},
-  {q:"Chọn câu đúng ngữ pháp:",
-   options:["他们俩个是好朋友。","他们俩是好朋友。","他们个俩是好朋友。"],answer:1}
-];
-
-const CLOZE = [
-  {title:"不同的人对浪漫的理解",
-   text:"很多女孩子{{1}}浪漫的爱情。中年人说：浪漫是{{2}}晚上加班到零点，到家时，自己家里也还{{3}}着灯。其实，让我们{{4}}的，就是生活中简单的爱情。",
-   blanks:[
-     {id:1,answer:"羡慕",options:["羡慕","吸引","幽默"]},
-     {id:2,answer:"即使",options:["即使","虽然","因为"]},
-     {id:3,answer:"亮",options:["亮","深","够"]},
-     {id:4,answer:"感动",options:["感动","接受","适合"]}
-   ]},
-  {title:"爱情与婚姻",
-   text:"爱情是结婚的重要{{1}}，因为两个人共同生活，不仅需要浪漫的爱情，更需要性格上{{2}}吸引。我丈夫是个很{{3}}的人。而且他的{{4}}也不错，很多人都特别{{5}}我们。",
-   blanks:[
-     {id:1,answer:"原因",options:["原因","自然","俩"]},
-     {id:2,answer:"互相",options:["互相","自然","不仅"]},
-     {id:3,answer:"幽默",options:["幽默","浪漫","脾气"]},
-     {id:4,answer:"脾气",options:["脾气","幽默","性格"]},
-     {id:5,answer:"羡慕",options:["羡慕","感动","接受"]}
-   ]}
-];
-
-const ALL_VOCAB = [...VOCAB.p1,...VOCAB.p2,...VOCAB.p3,...VOCAB.p4,...VOCAB.p5];
-
-/* ============ HELPERS ============ */
-function shuffle(arr){ const a=[...arr]; for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
-function el(tag,cls,html){ const e=document.createElement(tag); if(cls) e.className=cls; if(html!==undefined) e.innerHTML=html; return e; }
-
-function renderFlashcards(container, vocab){
-  container.innerHTML='';
-  vocab.forEach(v=>{
-    const card=el('div','flip-card');
-    card.innerHTML=`<div class="flip-inner">
-      <div class="flip-front"><div class="hz hanzi">${v.h}</div><div class="py">${v.p}</div></div>
-      <div class="flip-back"><div class="mn">${v.m}</div><div class="vd hanzi">${v.vd||''}</div></div>
-    </div>`;
-    card.addEventListener('click',()=>card.classList.toggle('flipped'));
-    container.appendChild(card);
-  });
-}
-
-function buildVocabMCQ(vocabList,pool,n){
-  const chosen=shuffle(vocabList).slice(0,n||vocabList.length);
-  return chosen.map(v=>{
-    const distract=shuffle(pool.filter(x=>x.h!==v.h)).slice(0,3).map(x=>x.m);
-    const options=shuffle([v.m,...distract]);
-    return {q:`“<span class="hanzi">${v.h}</span> (${v.p})” có nghĩa là gì?`, options, answer:options.indexOf(v.m)};
-  });
-}
-
-function renderMCQuiz(container, questions){
-  container.innerHTML='';
-  let score=0;
-  const scoreBox=el('div','quiz-score',`Điểm: <span class="score-val">0</span>/${questions.length}`);
-  container.appendChild(scoreBox);
-  questions.forEach((q,qi)=>{
-    const qBox=el('div','q-box');
-    qBox.innerHTML=`<div class="q-text"><span class="q-num">Câu ${qi+1}.</span> ${q.q}</div>`;
-    const optWrap=el('div','opt-wrap');
-    q.options.forEach((opt,oi)=>{
-      const b=el('button','opt-btn',opt);
-      b.addEventListener('click',()=>{
-        if(qBox.classList.contains('answered')) return;
-        qBox.classList.add('answered');
-        [...optWrap.children].forEach((btn,i)=>{
-          btn.disabled=true;
-          if(i===q.answer) btn.classList.add('correct');
-          else if(i===oi) btn.classList.add('wrong');
-        });
-        if(oi===q.answer){ score++; scoreBox.querySelector('.score-val').textContent=score; }
-        if(q.note) qBox.appendChild(el('div','q-note','💡 '+q.note));
-      });
-      optWrap.appendChild(b);
-    });
-    qBox.appendChild(optWrap);
-    container.appendChild(qBox);
-  });
-}
-
-function renderTF(container, items){
-  container.innerHTML='';
-  let score=0;
-  const scoreBox=el('div','quiz-score',`Điểm: <span class="score-val">0</span>/${items.length}`);
-  container.appendChild(scoreBox);
-  items.forEach((it,ii)=>{
-    const qBox=el('div','q-box');
-    qBox.innerHTML=`<div class="q-text hanzi"><span class="q-num" style="font-family:'Be Vietnam Pro',sans-serif;">Câu ${ii+1}.</span> ${it.t}</div>`;
-    const wrap=el('div','tf-wrap');
-    ['Đúng','Sai'].forEach((lbl,oi)=>{
-      const val = oi===0;
-      const b=el('button','tf-btn',lbl);
-      b.addEventListener('click',()=>{
-        if(qBox.classList.contains('answered')) return;
-        qBox.classList.add('answered');
-        [...wrap.children].forEach((btn,i)=>{
-          btn.disabled=true;
-          const bval = i===0;
-          if(bval===it.a) btn.classList.add('correct');
-          else if(bval===val && val!==it.a) btn.classList.add('wrong');
-        });
-        if(val===it.a) { score++; scoreBox.querySelector('.score-val').textContent=score; }
-      });
-      wrap.appendChild(b);
-    });
-    qBox.appendChild(wrap);
-    container.appendChild(qBox);
-  });
-}
-
-function renderMatching(container, vocabList){
-  container.innerHTML='';
-  const left=shuffle(vocabList);
-  const right=shuffle(vocabList);
-  let selectedLeft=null, matchedCount=0;
-  const wrap=el('div','match-wrap');
-  const colL=el('div','match-col');
-  const colR=el('div','match-col');
-  left.forEach(item=>{
-    const b=el('button','match-btn',`<span class="hanzi" style="font-size:18px;">${item.h}</span><span class="py-sm">${item.p}</span>`);
-    b.dataset.key=item.h;
-    b.addEventListener('click',()=>{
-      if(b.classList.contains('matched')) return;
-      [...colL.children].forEach(x=>x.classList.remove('selected'));
-      b.classList.add('selected'); selectedLeft=b;
-    });
-    colL.appendChild(b);
-  });
-  right.forEach(item=>{
-    const b=el('button','match-btn',item.m);
-    b.dataset.key=item.h;
-    b.addEventListener('click',()=>{
-      if(b.classList.contains('matched')||!selectedLeft) return;
-      if(b.dataset.key===selectedLeft.dataset.key){
-        b.classList.add('matched'); selectedLeft.classList.add('matched');
-        b.classList.remove('selected'); selectedLeft.classList.remove('selected');
-        selectedLeft=null; matchedCount++;
-        if(matchedCount===left.length) container.appendChild(el('div','match-done','🎉 Hoàn thành! Bạn đã nối đúng tất cả.'));
-      } else {
-        [b,selectedLeft].forEach(x=>{ x.classList.add('shake'); setTimeout(()=>x.classList.remove('shake'),380); });
-      }
-    });
-    colR.appendChild(b);
-  });
-  wrap.appendChild(colL); wrap.appendChild(colR);
-  container.appendChild(wrap);
-}
-
-function renderCloze(container, clozeItem){
-  container.innerHTML='';
-  const title=el('h4','',clozeItem.title);
-  title.style.margin='0 0 10px'; title.style.color='var(--maroon-dark)';
-  container.appendChild(title);
-  let html=clozeItem.text.replace(/\{\{(\d+)\}\}/g,(m,id)=>`<span class="blank hanzi" id="blank-${clozeItem._uid}-${id}">＿＿＿</span>`);
-  const passage=el('div','cloze-passage hanzi', html);
-  container.appendChild(passage);
-  clozeItem.blanks.forEach(bl=>{
-    const qDiv=el('div','cloze-q');
-    qDiv.appendChild(el('div','lbl',`Chỗ trống (${bl.id}):`));
-    const optWrap=el('div','cloze-opts');
-    shuffle(bl.options).forEach(opt=>{
-      const btn=el('button','',opt);
-      btn.classList.add('hanzi');
-      btn.addEventListener('click',()=>{
-        if(qDiv.classList.contains('done')) return;
-        qDiv.classList.add('done');
-        const span=document.getElementById(`blank-${clozeItem._uid}-${bl.id}`);
-        [...optWrap.children].forEach(b=>b.disabled=true);
-        if(opt===bl.answer){
-          btn.classList.add('correct'); span.textContent=bl.answer; span.classList.add('correct');
-        } else {
-          btn.classList.add('wrong'); span.textContent=bl.answer; span.classList.add('wrong');
-          [...optWrap.children].forEach(b=>{ if(b.textContent===bl.answer) b.classList.add('correct'); });
-        }
-      });
-      optWrap.appendChild(btn);
-    });
-    qDiv.appendChild(optWrap);
-    container.appendChild(qDiv);
-  });
-}
-
-/* ============ PAGE BUILDING ============ */
-const TABS=[
-  {id:'p1',label:'Phần 1',num:'一'},
-  {id:'p2',label:'Phần 2',num:'二'},
-  {id:'p3',label:'Phần 3',num:'三'},
-  {id:'p4',label:'Phần 4',num:'四'},
-  {id:'p5',label:'Phần 5',num:'五'},
-  {id:'vd',label:'Vận dụng',num:'★'},
-  {id:'nc',label:'Nâng cao',num:'✦'}
-];
-const LESSON_TITLE={
-  p1:'孙月和王静聊王静的男朋友', p2:'王静跟李老师聊她要结婚的事情',
-  p3:'高老师和李老师聊结婚后的生活', p4:'不同的人对浪漫的理解', p5:'爱情与婚姻'
-};
-
-const tabBar=document.getElementById('tabBar');
-const main=document.getElementById('mainContent');
-
-TABS.forEach((t,i)=>{
-  const b=el('button','tab-btn'+(i===0?' active':''), t.label);
-  b.dataset.tab=t.id;
-  b.addEventListener('click',()=>switchTab(t.id));
-  tabBar.appendChild(b);
-});
-
-function buildPhanPanel(pid){
-  const panel=el('section','panel',``);
-  panel.id='panel-'+pid;
-  const num = {p1:'一',p2:'二',p3:'三',p4:'四',p5:'五'}[pid];
-  panel.innerHTML=`
-    <div class="lesson-head">
-      <div class="seal hanzi">${num}</div>
-      <div><h2 class="hanzi">${LESSON_TITLE[pid]}</h2><p>Từ vựng · Ngữ pháp · Đọc hiểu — Phần ${pid.slice(1)}</p></div>
-    </div>
-    <details class="dialogue"><summary>📜 Xem lại đoạn hội thoại / đoạn văn</summary><pre class="hanzi"></pre></details>
-    <div class="card">
-      <h3><span class="dot"></span>Từ vựng mới</h3>
-      <p class="fc-hint">Nhấn vào thẻ để lật xem nghĩa.</p>
-      <div class="fc-grid"></div>
-    </div>
-    <div class="card">
-      <h3><span class="dot"></span>Trắc nghiệm từ vựng</h3>
-      <div class="btn-row"><button class="btn-main regen">🔄 Làm lại</button></div>
-      <div class="quiz-mount"></div>
-    </div>
-    <div class="card">
-      <h3><span class="dot"></span>Điểm ngữ pháp</h3>
-      <div class="g-mount"></div>
-    </div>
-    <div class="card">
-      <h3><span class="dot"></span>Bài tập ngữ pháp</h3>
-      <div class="g-quiz-mount"></div>
-    </div>
-    <div class="card">
-      <h3><span class="dot"></span>Đọc hiểu — Đúng hay Sai</h3>
-      <div class="tf-mount"></div>
-    </div>
-  `;
-  panel.querySelector('pre').textContent=READING[pid].passage;
-  renderFlashcards(panel.querySelector('.fc-grid'), VOCAB[pid]);
-
-  const quizMount=panel.querySelector('.quiz-mount');
-  const regen=()=>renderMCQuiz(quizMount, buildVocabMCQ(VOCAB[pid], ALL_VOCAB));
-  regen();
-  panel.querySelector('.regen').addEventListener('click',regen);
-
-  const gMount=panel.querySelector('.g-mount');
-  GRAMMAR[pid].forEach(g=>{
-    const item=el('div','g-item');
-    item.innerHTML=`<h4>${g.t}</h4><p>${g.e}</p><ul>${g.ex.map(x=>`<li class="hanzi">${x}</li>`).join('')}</ul>`;
-    gMount.appendChild(item);
-  });
-
-  renderMCQuiz(panel.querySelector('.g-quiz-mount'), GRAMMAR_QUIZ[pid]);
-  renderTF(panel.querySelector('.tf-mount'), READING[pid].items);
-
-  return panel;
-}
-
-function buildVanDungPanel(){
-  const panel=el('section','panel',``);
-  panel.id='panel-vd';
-  panel.innerHTML=`
-    <div class="lesson-head">
-      <div class="seal hanzi">★</div>
-      <div><h2 class="hanzi">综合练习</h2><p>Vận dụng — ôn tập tổng hợp toàn bộ 32 từ vựng của Bài 1</p></div>
-    </div>
-    <div class="card">
-      <h3><span class="dot"></span>Ôn nhanh toàn bộ từ vựng</h3>
-      <p class="fc-hint">Nhấn vào thẻ để lật xem nghĩa. (Gồm cả 5 phần)</p>
-      <div class="fc-grid-all"></div>
-    </div>
-    <div class="card">
-      <h3><span class="dot"></span>Trắc nghiệm tổng hợp (20 câu ngẫu nhiên)</h3>
-      <div class="btn-row"><button class="btn-main regen-all">🔄 Làm lại</button></div>
-      <div class="quiz-all-mount"></div>
-    </div>
-    <div class="card">
-      <h3><span class="dot"></span>Trò chơi nối từ</h3>
-      <p class="fc-hint">Chọn 1 từ Hán tự bên trái rồi chọn nghĩa tương ứng bên phải.</p>
-      <div class="btn-row"><button class="btn-main regen-match">🔀 Đổi bộ từ khác</button></div>
-      <div class="match-mount"></div>
-    </div>
-  `;
-  renderFlashcards(panel.querySelector('.fc-grid-all'), ALL_VOCAB);
-
-  const quizAll=panel.querySelector('.quiz-all-mount');
-  const regenAll=()=>renderMCQuiz(quizAll, buildVocabMCQ(ALL_VOCAB, ALL_VOCAB, 20));
-  regenAll();
-  panel.querySelector('.regen-all').addEventListener('click',regenAll);
-
-  const matchMount=panel.querySelector('.match-mount');
-  const regenMatch=()=>renderMatching(matchMount, shuffle(ALL_VOCAB).slice(0,8));
-  regenMatch();
-  panel.querySelector('.regen-match').addEventListener('click',regenMatch);
-
-  return panel;
-}
-
-function buildNangCaoPanel(){
-  const panel=el('section','panel',``);
-  panel.id='panel-nc';
-  panel.innerHTML=`
-    <div class="lesson-head">
-      <div class="seal hanzi">✦</div>
-      <div><h2 class="hanzi">提高练习</h2><p>Nâng cao — phân biệt từ dễ nhầm, chọn câu đúng &amp; đọc hiểu điền từ</p></div>
-    </div>
-    <div class="card">
-      <h3><span class="dot"></span>1. Phân biệt từ dễ nhầm</h3>
-      <p class="fc-hint">适合/合适 · 刚/刚才 · 不仅…也/虽然…但是 · 即使…也/如果…就</p>
-      <div class="confusable-mount"></div>
-    </div>
-    <div class="card">
-      <h3><span class="dot"></span>2. Chọn câu đúng ngữ pháp</h3>
-      <div class="sentence-mount"></div>
-    </div>
-    <div class="card">
-      <h3><span class="dot"></span>3. Đọc hiểu — điền từ vào đoạn văn</h3>
-      <div class="cloze1-mount"></div>
-    </div>
-    <div class="card">
-      <h3><span class="dot"></span>4. Đọc hiểu — điền từ vào đoạn văn (2)</h3>
-      <div class="cloze2-mount"></div>
-    </div>
-  `;
-  renderMCQuiz(panel.querySelector('.confusable-mount'), CONFUSABLE);
-  renderMCQuiz(panel.querySelector('.sentence-mount'), SENTENCE_MC);
-  CLOZE[0]._uid='a'; CLOZE[1]._uid='b';
-  renderCloze(panel.querySelector('.cloze1-mount'), CLOZE[0]);
-  renderCloze(panel.querySelector('.cloze2-mount'), CLOZE[1]);
-  return panel;
-}
-
-['p1','p2','p3','p4','p5'].forEach(pid=> main.appendChild(buildPhanPanel(pid)) );
-main.appendChild(buildVanDungPanel());
-main.appendChild(buildNangCaoPanel());
-document.getElementById('panel-p1').classList.add('active');
-
-function switchTab(id){
-  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-  document.getElementById('panel-'+id).classList.add('active');
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active', b.dataset.tab===id));
-  window.scrollTo({top:0, behavior:'smooth'});
-}
-</script>
-</body>
-</html>
+function renderOpenTasks(c,type){const arr=L[type];const rules=RULES[type];const isAdv=type==='advanced';c.innerHTML=intro(isAdv?'Bài nâng cao':'Bài vận dụng',isAdv?'Sửa lỗi, viết lại và case nâng cao. Có chấm tự động theo rubric.':'Bài viết/hội thoại có nút Chấm bài. Điểm là điểm luyện tập tự động, không phải điểm giáo viên.','<button class="btn" onclick="window.print()">In phần này</button><button class="btn primary" id="gradeAll">Chấm toàn bộ</button>')+`<div class="overall"><b>Cơ chế chấm:</b> trình duyệt kiểm tra độ dài, từ vựng bắt buộc, cấu trúc ngữ pháp, số lượt/câu và dấu hiệu nội dung theo từng đề. Không có bài viết nào được gửi ra ngoài trang này.</div><div class="task-list" id="tasks"></div><div id="overallScore" style="margin-top:14px"></div>`;const w=$('#tasks');arr.forEach((item,i)=>{const q=typeof item==='string'?item:item.q;const t=el('div','task');t.innerHTML=`<h3>${i+1}. ${q}</h3><textarea placeholder="Nhập câu trả lời bằng tiếng Trung..."></textarea><div class="actions" style="margin-top:9px"><button class="btn save">Lưu</button><button class="btn primary grade">Chấm bài</button>${isAdv?'<button class="btn soft hintbtn">Gợi ý / đáp án mẫu</button>':''}</div><div class="grader"></div>${isAdv?`<div class="hintbox"><b>Gợi ý:</b> ${item.hint}<br><b>Mẫu:</b> ${item.sample}</div>`:''}`;const ta=t.querySelector('textarea');ta.value=localStorage.getItem(taskKey(type,i))||'';t.querySelector('.save').onclick=()=>{localStorage.setItem(taskKey(type,i),ta.value);toast('Đã lưu bài trên trình duyệt')};t.querySelector('.grade').onclick=()=>{localStorage.setItem(taskKey(type,i),ta.value);const res=gradeText(ta.value,rules[i]);const box=t.querySelector('.grader');box.innerHTML=gradeBlockHTML(res);box.classList.add('show');bump(true)};if(isAdv)t.querySelector('.hintbtn').onclick=()=>t.querySelector('.hintbox').classList.toggle('show');w.appendChild(t)});$('#gradeAll').onclick=()=>{let sum=0,n=0;[...w.children].forEach((t,i)=>{const ta=t.querySelector('textarea'),res=gradeText(ta.value,rules[i]);localStorage.setItem(taskKey(type,i),ta.value);const box=t.querySelector('.grader');box.innerHTML=gradeBlockHTML(res);box.classList.add('show');sum+=res.score;n++});$('#overallScore').innerHTML=`<div class="score">Điểm trung bình phần ${isAdv?'Nâng cao':'Vận dụng'}: ${Math.round(sum/n)}/100</div>`;bump(true)}}
+init();
+</script></body></html>
