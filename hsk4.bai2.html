@@ -30,6 +30,25 @@ const state={tab:'flash',flashIndex:0,flashMask:false,quiz:[],quizAns:{},fillAns
 const tabs=[["flash", "Từ vựng"], ["quiz", "Trắc nghiệm"], ["fill", "Điền từ"], ["grammar", "Ngữ pháp"], ["apply", "Vận dụng"], ["advanced", "Nâng cao"]];
 const lesson="2";
 const L=DATA;
+function shuffleStaticQuestion(q){
+  if(!q || !Array.isArray(q.o) || !q.o.length) return;
+  const numericAnswer = typeof q.a === 'number';
+  const correct = numericAnswer ? q.o[q.a] : q.a;
+  q.o = shuffle(q.o);
+  if(numericAnswer) q.a = q.o.indexOf(correct);
+}
+function randomizeStaticAnswers(){
+  (L.fills || []).forEach(shuffleStaticQuestion);
+  (L.grammarQuiz || []).forEach(shuffleStaticQuestion);
+  if(typeof ADV_DATA !== 'undefined' && ADV_DATA){
+    (ADV_DATA.mcq || []).forEach(shuffleStaticQuestion);
+    (ADV_DATA.sequence || []).forEach(shuffleStaticQuestion);
+    (ADV_DATA.error || []).forEach(shuffleStaticQuestion);
+    (ADV_DATA.reading || []).forEach(r => (r.qs || []).forEach(shuffleStaticQuestion));
+  }
+}
+randomizeStaticAnswers();
+
 function toast(t){const x=$('#toast');x.textContent=t;x.classList.add('show');setTimeout(()=>x.classList.remove('show'),1400)}
 function saveState(){localStorage.setItem(`hsk4_bai${lesson}_state`,JSON.stringify({done:state.done}))}
 function loadState(){try{const x=JSON.parse(localStorage.getItem(`hsk4_bai${lesson}_state`)||'{}');state.done=x.done||0}catch(e){}}
