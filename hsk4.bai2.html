@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>真正的朋友 · Ôn tập HSK4 — Bài 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F1F6F4;
+    --paper:#FFFFFF;
+    --maroon:#1F5A4F;
+    --maroon-dark:#123A33;
+    --maroon-soft:#2F7A6A;
+    --pink:#DCEFE8;
+    --pink-deep:#B9DED0;
+    --gold:#B08A2E;
+    --ink:#22302C;
+    --ink-soft:#5C6B65;
+    --green:#3E7A4E;
+    --green-bg:#E7F3E9;
+    --red:#B23A32;
+    --red-bg:#FBEAE8;
+    --line:#DCE7E1;
+    --radius:16px;
+    --shadow: 0 10px 30px -12px rgba(18,58,51,0.25);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Be Vietnam Pro', sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .hanzi{font-family:'Noto Serif SC','Noto Sans SC',serif;}
+  .filmstrip{
+    height:14px;
+    background:
+      repeating-linear-gradient(90deg, var(--maroon-dark) 0 10px, transparent 10px 22px);
+    background-color:var(--maroon);
+    position:relative;
+  }
+  .filmstrip::before,.filmstrip::after{
+    content:"";
+    position:absolute; top:3px; height:8px; width:100%;
+    background-image: repeating-linear-gradient(90deg, var(--bg) 0 6px, transparent 6px 22px);
+  }
+  .filmstrip::after{ top:auto; bottom:3px; }
+
+  header.hero{
+    background: radial-gradient(120% 160% at 15% 0%, var(--maroon-soft) 0%, var(--maroon) 45%, var(--maroon-dark) 100%);
+    color:#fff;
+    padding: 46px 20px 34px;
+    text-align:center;
+    position:relative;
+  }
+  header.hero .nav-link{
+    position:absolute; top:18px; right:22px;
+    background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.4);
+    padding:6px 14px; border-radius:999px; font-size:13px; color:#fff; text-decoration:none;
+  }
+  header.hero .nav-link:hover{ background:rgba(255,255,255,.24); }
+  header.hero .eyebrow{
+    letter-spacing:.22em; text-transform:uppercase; font-size:12px; font-weight:600;
+    color:var(--pink-deep); margin-bottom:10px;
+  }
+  header.hero h1{
+    font-family:'Noto Serif SC',serif;
+    font-weight:900; font-size:clamp(34px,6vw,54px);
+    margin: 4px 0 8px;
+    text-shadow:0 2px 18px rgba(0,0,0,.25);
+  }
+  header.hero p.sub{
+    font-size:17px; color:#EAF5F1; max-width:640px; margin:0 auto; opacity:.95;
+  }
+  header.hero .badges{
+    margin-top:18px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;
+  }
+  header.hero .badges span{
+    background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.35);
+    padding:6px 14px; border-radius:999px; font-size:13px;
+  }
+
+  nav.tabs{
+    position:sticky; top:0; z-index:50;
+    background:rgba(241,246,244,.92); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .tabs-inner{
+    max-width:1080px; margin:0 auto;
+    display:flex; gap:6px; overflow-x:auto; padding:10px 14px;
+    scrollbar-width:thin;
+  }
+  .tab-btn{
+    flex:0 0 auto;
+    border:none; background:transparent; cursor:pointer;
+    padding:10px 16px; border-radius:999px; font-weight:600; font-size:14.5px;
+    color:var(--ink-soft); white-space:nowrap;
+    transition:.18s;
+  }
+  .tab-btn:hover{ background:var(--pink); color:var(--maroon-dark); }
+  .tab-btn.active{ background:var(--maroon); color:#fff; }
+
+  main{ max-width:1080px; margin:0 auto; padding: 28px 16px 80px; }
+  .panel{ display:none; animation:fade .35s ease; }
+  .panel.active{ display:block; }
+  @keyframes fade{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+
+  .lesson-head{
+    display:flex; align-items:center; gap:16px; margin-bottom:22px;
+  }
+  .seal{
+    flex:0 0 auto; width:58px; height:58px; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, var(--maroon-soft), var(--maroon-dark));
+    color:#fff; display:flex; align-items:center; justify-content:center;
+    font-family:'Noto Serif SC',serif; font-weight:900; font-size:22px;
+    box-shadow: 0 6px 14px -4px rgba(18,58,51,.5), inset 0 0 0 3px rgba(255,255,255,.18);
+    border:2px solid var(--gold);
+  }
+  .lesson-head h2{
+    margin:0; font-family:'Noto Serif SC',serif; font-size:26px; color:var(--maroon-dark);
+  }
+  .lesson-head p{ margin:2px 0 0; color:var(--ink-soft); font-size:14.5px; }
+
+  .card{
+    background:var(--paper); border:1px solid var(--line); border-radius:var(--radius);
+    padding:20px 22px; margin-bottom:22px; box-shadow:var(--shadow);
+  }
+  .card h3{
+    margin:0 0 14px; font-size:18px; color:var(--maroon-dark);
+    display:flex; align-items:center; gap:8px;
+  }
+  .card h3 .dot{ width:8px; height:8px; border-radius:50%; background:var(--gold); display:inline-block;}
+
+  details.dialogue{
+    background:var(--pink); border-radius:12px; padding:4px 16px; margin-bottom:22px;
+    border:1px solid var(--pink-deep);
+  }
+  details.dialogue summary{ cursor:pointer; padding:12px 0; font-weight:700; color:var(--maroon-dark); }
+  details.dialogue pre{
+    white-space:pre-wrap; font-family:'Noto Sans SC','Be Vietnam Pro',sans-serif;
+    font-size:15px; line-height:1.9; color:var(--ink); padding-bottom:14px; margin:0;
+  }
+
+  /* Flashcards */
+  .fc-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:14px; }
+  .flip-card{ perspective:1000px; height:128px; cursor:pointer; }
+  .flip-inner{ position:relative; width:100%; height:100%; transition:transform .5s; transform-style:preserve-3d; }
+  .flip-card.flipped .flip-inner{ transform:rotateY(180deg); }
+  .flip-front,.flip-back{
+    position:absolute; inset:0; backface-visibility:hidden; border-radius:12px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:8px;
+  }
+  .flip-front{ background:linear-gradient(160deg,#fff,var(--pink)); border:1px solid var(--pink-deep); }
+  .flip-front .hz{ font-family:'Noto Serif SC',serif; font-weight:700; font-size:26px; color:var(--maroon-dark); }
+  .flip-front .py{ color:var(--gold); font-size:13px; margin-top:4px; font-weight:600; }
+  .flip-front .wc{ margin-top:5px; font-size:10.5px; background:var(--maroon-soft); color:#fff; padding:1px 8px; border-radius:999px; }
+  .flip-back{ background:var(--maroon); color:#fff; transform:rotateY(180deg); }
+  .flip-back .mn{ font-weight:700; font-size:14px; }
+  .flip-back .vd{ font-size:11px; opacity:.85; margin-top:6px; font-family:'Noto Sans SC',sans-serif; }
+  .fc-hint{ font-size:13px; color:var(--ink-soft); margin:-8px 0 16px; }
+
+  /* Grammar cards */
+  .g-item{ border-left:3px solid var(--gold); padding:10px 0 10px 16px; margin-bottom:16px; }
+  .g-item:last-child{ margin-bottom:0; }
+  .g-item h4{ margin:0 0 6px; font-family:'Noto Serif SC',serif; color:var(--maroon-dark); font-size:17px; }
+  .g-item p{ margin:0 0 8px; font-size:14.5px; color:var(--ink); }
+  .g-item ul{ margin:0; padding-left:18px; }
+  .g-item li{ font-size:14px; color:var(--ink-soft); margin-bottom:3px; font-family:'Noto Sans SC','Be Vietnam Pro',sans-serif; }
+
+  /* Quiz */
+  .quiz-score{ display:inline-block; background:var(--pink); color:var(--maroon-dark); font-weight:700;
+    padding:6px 14px; border-radius:999px; margin-bottom:16px; font-size:14px; }
+  .quiz-score .score-val{ font-size:15px; }
+  .q-box{ margin-bottom:18px; padding-bottom:16px; border-bottom:1px dashed var(--line); }
+  .q-box:last-child{ border-bottom:none; }
+  .q-text{ font-size:15px; margin-bottom:10px; font-weight:600; }
+  .q-num{ color:var(--gold); }
+  .opt-wrap{ display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:8px; }
+  .opt-btn{
+    text-align:left; padding:10px 12px; border-radius:10px; border:1px solid var(--line);
+    background:#fff; cursor:pointer; font-size:14px; font-family:inherit; color:var(--ink);
+    transition:.15s;
+  }
+  .opt-btn:hover:not(:disabled){ border-color:var(--maroon-soft); background:var(--pink); }
+  .opt-btn.correct{ background:var(--green-bg); border-color:var(--green); color:var(--green); font-weight:700; }
+  .opt-btn.wrong{ background:var(--red-bg); border-color:var(--red); color:var(--red); font-weight:700; }
+  .opt-btn:disabled{ cursor:default; opacity:.85; }
+  .q-note{ margin-top:8px; font-size:13px; color:var(--ink-soft); background:#F3F0E7; padding:8px 10px; border-radius:8px; }
+
+  .tf-wrap{ display:flex; gap:8px; }
+  .tf-btn{
+    padding:8px 16px; border-radius:8px; border:1px solid var(--line); background:#fff;
+    cursor:pointer; font-weight:700; font-size:13.5px;
+  }
+  .tf-btn.correct{ background:var(--green-bg); border-color:var(--green); color:var(--green); }
+  .tf-btn.wrong{ background:var(--red-bg); border-color:var(--red); color:var(--red); }
+  .tf-btn:disabled{ cursor:default; }
+
+  .btn-main{
+    background:var(--maroon); color:#fff; border:none; padding:10px 20px; border-radius:999px;
+    font-weight:700; cursor:pointer; font-size:14px; box-shadow:0 6px 14px -6px rgba(18,58,51,.6);
+  }
+  .btn-main:hover{ background:var(--maroon-dark); }
+  .btn-row{ margin-bottom:16px; }
+
+  /* Matching game */
+  .match-wrap{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .match-col{ display:flex; flex-direction:column; gap:8px; }
+  .match-btn{
+    padding:12px; border-radius:10px; border:1px solid var(--line); background:#fff; cursor:pointer;
+    text-align:center; font-size:14px; font-family:inherit; color:var(--ink);
+  }
+  .match-btn .py-sm{ display:block; font-size:11px; color:var(--gold); font-weight:600; margin-top:2px; }
+  .match-btn.selected{ border-color:var(--maroon); background:var(--pink); }
+  .match-btn.matched{ background:var(--green-bg); border-color:var(--green); color:var(--green); cursor:default; }
+  .match-btn.shake{ animation:shake .35s; border-color:var(--red); }
+  @keyframes shake{ 0%,100%{transform:translateX(0);} 25%{transform:translateX(-6px);} 75%{transform:translateX(6px);} }
+  .match-done{ grid-column:1/-1; text-align:center; font-weight:700; color:var(--green); margin-top:10px; }
+
+  /* Cloze */
+  .cloze-passage{
+    font-family:'Noto Sans SC','Be Vietnam Pro',sans-serif; font-size:16px; line-height:2.1;
+    background:#F3F0E7; border:1px solid var(--line); border-radius:12px; padding:18px 20px; margin-bottom:16px;
+  }
+  .blank{ display:inline-block; min-width:64px; text-align:center; padding:1px 8px; border-radius:6px;
+    border-bottom:2px solid var(--gold); font-weight:700; color:var(--gold); }
+  .blank.correct{ color:var(--green); border-color:var(--green); }
+  .blank.wrong{ color:var(--red); border-color:var(--red); }
+  .cloze-q{ margin-bottom:14px; }
+  .cloze-q .lbl{ font-size:13.5px; font-weight:700; color:var(--maroon-dark); margin-bottom:6px; }
+  .cloze-opts{ display:flex; gap:8px; flex-wrap:wrap; }
+  .cloze-opts button{
+    padding:7px 14px; border-radius:999px; border:1px solid var(--line); background:#fff; cursor:pointer; font-size:13.5px;
+  }
+  .cloze-opts button.correct{ background:var(--green-bg); border-color:var(--green); color:var(--green); font-weight:700;}
+  .cloze-opts button.wrong{ background:var(--red-bg); border-color:var(--red); color:var(--red); font-weight:700;}
+
+  .intro-text{ color:var(--ink-soft); font-size:14.5px; margin-bottom:18px; }
+  .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+  @media(max-width:720px){
+    .grid2{ grid-template-columns:1fr; }
+    .match-wrap{ grid-template-columns:1fr; }
+  }
+  footer{ text-align:center; padding:26px; color:var(--ink-soft); font-size:13px; }
+</style>
+</head>
+<body>
+
+<div class="filmstrip"></div>
+<header class="hero">
+  <a class="nav-link" href="hsk4-bai1-on-tap.html">📚 Bài 1 · 简单的爱情</a>
+  <div class="eyebrow">HSK 标准教程 4 · Bài 2</div>
+  <h1 class="hanzi">真正的朋友</h1>
+  <p class="sub">Người bạn chân chính — Ôn tập từ vựng &amp; ngữ pháp Phần 1–5, kèm bài tập vận dụng và nâng cao</p>
+  <div class="badges">
+    <span>📖 5 phần bài khoá</span>
+    <span>🈺 30 từ vựng</span>
+    <span>✏️ 10 điểm ngữ pháp</span>
+    <span>🧩 Trắc nghiệm tự chấm</span>
+  </div>
+</header>
+<div class="filmstrip"></div>
+
+<nav class="tabs">
+  <div class="tabs-inner" id="tabBar"></div>
+</nav>
+
+<main id="mainContent"></main>
+
+<footer>Biên soạn dựa trên 《HSK标准教程4》— Bài 2 · 真正的朋友 · Chúc bạn học vui 🍃</footer>
+
+<script>
+/* ============ DATA ============ */
+const VOCAB = {
+  p1:[
+    {h:"适应",p:"shì yìng",wc:"Động từ",m:"thích nghi",vd:"来中国快一年了，你适应这儿的生活了吗？"},
+    {h:"交",p:"jiāo",wc:"Động từ",m:"kết giao, nộp, giao",vd:"最近我还交了一个中国朋友。"},
+    {h:"平时",p:"píng shí",wc:"Danh từ",m:"lúc thường, ngày thường",vd:"平时我们常常一起看书、逛街、踢足球。"},
+    {h:"逛",p:"guàng",wc:"Động từ",m:"đi dạo",vd:"平时我们常常一起看书、逛街、踢足球。"},
+    {h:"短信",p:"duǎn xìn",wc:"Danh từ",m:"tin nhắn",vd:"有时候他还给我发一些幽默短信。"},
+    {h:"正好",p:"zhèng hǎo",wc:"Phó từ/Tính từ",m:"đúng lúc, đúng dịp, vừa vặn",vd:"我们下午要去踢足球，正好一起去吧。"}
+  ],
+  p2:[
+    {h:"聚会",p:"jùhuì",wc:"Động từ/Danh từ",m:"gặp gỡ, cuộc họp mặt",vd:"星期天同学聚会，你能来吗？"},
+    {h:"联系",p:"liánxì",wc:"Động từ",m:"liên hệ",vd:"班里同学你联系得怎么样了？"},
+    {h:"差不多",p:"chàbuduō",wc:"Phó từ/Tính từ",m:"gần như, hầu như, xấp xỉ",vd:"差不多一半儿吧，张远还专门从国外飞回来呢。"},
+    {h:"专门",p:"zhuānmén",wc:"Phó từ",m:"đặc biệt, riêng biệt",vd:"张远还专门从国外飞回来呢。"},
+    {h:"毕业",p:"bìyè",wc:"Động từ",m:"tốt nghiệp",vd:"毕业都快十年了，真想大家啊！"},
+    {h:"麻烦",p:"máfan",wc:"Động từ",m:"làm phiền",vd:"麻烦你跟她联系一下，请她一起来参加同学聚会。"}
+  ],
+  p3:[
+    {h:"好像",p:"hǎoxiàng",wc:"Phó từ",m:"giống như, dường như",vd:"好像重新回到了校园。"},
+    {h:"重新",p:"chóngxīn",wc:"Phó từ",m:"lần nữa, lại một lần nữa",vd:"好像重新回到了校园。"},
+    {h:"尽管",p:"jǐnguǎn",wc:"Liên từ",m:"cho dù, mặc dù",vd:"尽管已经毕业这么多年，我们还是经常联系的。"},
+    {h:"真正",p:"zhēnzhèng",wc:"Tính từ",m:"chân chính, thực sự",vd:"能有一个真正的朋友，是多么不容易！"},
+    {h:"友谊",p:"yǒuyì",wc:"Danh từ",m:"tình bạn",vd:"有一段真正的友谊，是多么不容易！"}
+  ],
+  p4:[
+    {h:"丰富",p:"fēngfù",wc:"Tính từ/Động từ",m:"phong phú / làm phong phú",vd:"朋友可以丰富我们的生活。"},
+    {h:"无聊",p:"wúliáo",wc:"Tính từ",m:"vô vị, nhàm chán",vd:"离开朋友，我们的生活一定会非常无聊。"},
+    {h:"讨厌",p:"tǎoyàn",wc:"Động từ",m:"ghét",vd:"一个脾气不好的人虽然不一定让人讨厌。"},
+    {h:"却",p:"què",wc:"Phó từ",m:"lại, nhưng mà",vd:"但是却很难跟人交朋友。"},
+    {h:"周围",p:"zhōuwéi",wc:"Danh từ",m:"xung quanh",vd:"我们还要经常跟周围的人交流。"},
+    {h:"交流",p:"jiāoliú",wc:"Động từ",m:"giao lưu, trao đổi",vd:"我们还要经常跟周围的人交流。"}
+  ],
+  p5:[
+    {h:"理解",p:"lǐjiě",wc:"Động từ",m:"hiểu",vd:"每个人对幸福都有不同的理解。"},
+    {h:"镜子",p:"jìngzi",wc:"Danh từ",m:"tấm gương, gương soi",vd:"朋友应该像镜子，能帮自己看到缺点。"},
+    {h:"而",p:"ér",wc:"Liên từ",m:"trong khi đó, mà (chỉ sự tương phản)",vd:"而我的理解是：当你遇到困难的时候……"},
+    {h:"当",p:"dāng",wc:"Giới từ",m:"khi",vd:"当你遇到困难的时候，真正的朋友会站出来。"},
+    {h:"困难",p:"kùnnan",wc:"Danh từ",m:"khó khăn",vd:"当你遇到困难的时候，真正的朋友会站出来。"},
+    {h:"及时",p:"jíshí",wc:"Phó từ",m:"đúng lúc, kịp thời",vd:"真正的朋友会站出来，及时给你帮助。"},
+    {h:"陪",p:"péi",wc:"Động từ",m:"đi cùng, đi bên cạnh",vd:"真正的朋友会陪在你身边。"}
+  ]
+};
+
+const GRAMMAR = {
+  p1:[
+    {t:"交 (nhiều nghĩa)",e:"交 có thể mang nghĩa “nộp” (bài tập, tiền), “giao” (đồ vật cho ai), hoặc “kết giao” (bạn bè).",
+     ex:["老师说明天要交作业。（nộp）","这个月的水费你交了吗？（nộp）","他把捡到的一万块钱交给了警察。（giao）","最近我新交了一个中国朋友。（kết giao）"]},
+    {t:"正好",e:"“正好” có thể làm tính từ, mang nghĩa “vừa vặn”, diễn tả đối tượng (thời gian, vị trí, thể tích, số lượng, mức độ…) thỏa mãn đúng một điều kiện nào đó.",
+     ex:["你们四个人想打车去体育场，要打几辆出租车？","我们四个人正好打一辆出租车。"]}
+  ],
+  p2:[
+    {t:"差不多 (tính từ)",e:"Mang nghĩa “xấp xỉ, khác biệt rất nhỏ”.",
+     ex:["这两个电子词典看上去差不多，左边这个怎么这么贵？","他们俩性格差不多，所以很快就成了好朋友。"]},
+    {t:"差不多 (phó từ)",e:"Diễn tả các đối tượng xấp xỉ, gần như nhau về mức độ, phạm vi, thời gian, khoảng cách, số lượng…",
+     ex:["A：来多少人？ B：差不多一半儿吧。","现在都快一米七了，差不多跟我一样高了。"]},
+    {t:"差不多 vs 几乎",e:"Giống nhau: cả hai đều là phó từ, diễn tả sự xấp xỉ, có thể làm trạng ngữ. Khác nhau: 差不多 còn có thể làm TÍNH TỪ làm vị ngữ (几乎 thì không); 几乎 diễn tả việc SUÝT xảy ra nhưng cuối cùng không xảy ra (差不多 thì không). Trước tính từ 1 âm tiết có thể dùng 差不多 trực tiếp; với 几乎 cần thêm từ ngữ khác.",
+     ex:["姐妹俩性格差不多。（tính từ, 几乎 không dùng được）","这件事我几乎忘了告诉你了。（suýt quên, 差不多 không dùng được）","他们俩差不多高。 / 他们俩几乎一样高。"]}
+  ],
+  p3:[
+    {t:"尽管……但是／可是／却／还是……",e:"Liên từ, vế 1 nêu một sự thật, vế 2 nêu kết quả với từ ngữ chuyển ý (但是、可是、却、还是…).",
+     ex:["汉语比较难，但是我很喜欢。","尽管我会做中国菜，但做得不好吃。"]},
+    {t:"尽管 (cứ, thoải mái)",e:"尽管 còn có nghĩa “cứ việc, thoải mái” khi đứng trước động từ trong câu mời/cho phép.",
+     ex:["大家有意见尽管提。","有什么事儿你尽管说吧。","这些东西你尽管吃，千万别客气！"]},
+    {t:"一……就……",e:"“Vừa... thì (liền)...”, diễn tả hai hành động xảy ra kế tiếp nhau ngay lập tức.",
+     ex:["我每天一下班就回家。","他们一下了飞机就打的去酒店。","一看到这张照片，我就想起过去那段快乐的日子。"]},
+    {t:"一定……吧？",e:"Phỏng đoán chắc chắn: “chắc là… nhỉ?”.",
+     ex:["你今天穿得这么帅，一定有约会吧？","旁边这个人一定是你的好朋友吧？"]}
+  ],
+  p4:[
+    {t:"丰富 (tính từ / động từ)",e:"丰富 làm TÍNH TỪ nghĩa là “phong phú”; làm ĐỘNG TỪ nghĩa là “làm phong phú”.",
+     ex:["他的经历真丰富啊！（tính từ）","朋友可以丰富我们的生活。（động từ）"]},
+    {t:"却",e:"Phó từ diễn tả sự chuyển ý, tương phản: “lại, nhưng mà”.",
+     ex:["一个脾气不好的人虽然不一定让人讨厌，但是却很难跟人交朋友。","现在很多人虽然住在同一个楼里，但是却从来没说过话。"]}
+  ],
+  p5:[
+    {t:"而",e:"而 có 2 cách dùng: (1) liên kết đồng đẳng — nối 2 vế đối chiếu song song; (2) liên kết chuyển ý — nối 2 vế tương phản.",
+     ex:["“明”字，左边的“日”意思是太阳，而右边的“月”意思是月亮。（đồng đẳng）","有些人觉得朋友就是能和自己一起快乐的人，而我的理解是……（chuyển ý）"]},
+    {t:"当……的时候",e:"“Khi...”, giới thiệu thời điểm xảy ra sự việc ở vế sau.",
+     ex:["当我还是个孩子的时候，经常和小朋友一起去河里游泳。","当你遇到困难的时候，真正的朋友会站出来，及时给你帮助。"]}
+  ]
+};
+
+const GRAMMAR_QUIZ = {
+  p1:[
+    {q:"你们四个人想打车去体育场，正好可以打___出租车。",options:["一辆","两辆","三辆"],answer:0,note:"“正好”diễn tả vừa đủ điều kiện."},
+    {q:"他最近___了一个新朋友，两人常常一起踢足球。",options:["交","逛","联系"],answer:0},
+    {q:"___我们常常一起看书、逛街。",options:["平时","正好","专门"],answer:0},
+    {q:"老师说明天要___作业，你写完了吗？",options:["交","逛","陪"],answer:0}
+  ],
+  p2:[
+    {q:"这两本词典看起来___，价格却差很多。",options:["差不多","专门","及时"],answer:0},
+    {q:"要不是你提醒，我___忘了告诉你，幸好想起来了。",options:["几乎","差不多","正好"],answer:0,note:"“几乎” diễn tả việc suýt xảy ra nhưng cuối cùng không xảy ra."},
+    {q:"他___从国外飞回来参加同学聚会，大家都很感动。",options:["专门","差不多","及时"],answer:0},
+    {q:"他大学___后就去了上海工作。",options:["毕业","聚会","联系"],answer:0},
+    {q:"___你跟她联系一下，请她一起来参加聚会。",options:["麻烦","讨厌","理解"],answer:0}
+  ],
+  p3:[
+    {q:"___已经毕业这么多年，我们还是经常联系的。",options:["尽管","因为","如果"],answer:0},
+    {q:"一看到这张照片，我___想起过去那段快乐的日子。",options:["就","才","却"],answer:0,note:"“一…就…” = vừa…thì (liền)…"},
+    {q:"能有一个___的朋友，是多么不容易！",options:["真正","重新","友谊"],answer:0},
+    {q:"她说话的声音___在哪儿听过。",options:["好像","重新","尽管"],answer:0}
+  ],
+  p4:[
+    {q:"朋友可以___我们的生活，让每天都更精彩。",options:["丰富","无聊","讨厌"],answer:0},
+    {q:"周末一个人在家太___了，你应该找朋友出去逛逛。",options:["无聊","丰富","及时"],answer:0},
+    {q:"他虽然脾气不好，___很聪明，工作能力很强。",options:["却","丰富","交流"],answer:0},
+    {q:"我们要经常跟___的人交流，这样才容易交到朋友。",options:["周围","镜子","困难"],answer:0}
+  ],
+  p5:[
+    {q:"男人喜欢自己解决问题，___女人喜欢跟朋友说。",options:["而","当","及时"],answer:0},
+    {q:"___你遇到困难的时候，真正的朋友会站出来帮你。",options:["当","而","却"],answer:0},
+    {q:"朋友应该像___一样，能帮自己看到缺点。",options:["镜子","友谊","困难"],answer:0},
+    {q:"真正的朋友会___在你身边，陪你度过难过的时刻。",options:["陪","交","逛"],answer:0}
+  ]
+};
+
+const READING = {
+  p1:{title:"小夏和马克聊马克的中国朋友",
+    passage:"小夏：来中国快一年了，你适应这儿的生活了吗？\n马克：开始有点儿不习惯，后来就慢慢适应了，最近我还交了一个中国朋友。\n小夏：那就好，快给我讲讲你新交的中国朋友。\n马克：我们是在图书馆认识的。平时我们常常一起看书、逛街、踢足球。有时候他还给我发一些幽默短信。\n小夏：你的这个朋友真不错！下次介绍我们认识认识，怎么样？\n马克：没问题！我们下午要去踢足球，正好一起去吧。",
+    items:[
+      {t:"马克来中国一年多了。",a:false},
+      {t:"马克适应了中国的生活。",a:true},
+      {t:"马克最近新交了一个中国朋友。",a:true},
+      {t:"平时马克常常和他的新朋友一起看书、逛街、打篮球。",a:false},
+      {t:"小夏不想认识马克的新朋友。",a:false}
+    ]},
+  p2:{title:"小李跟小林聊同学聚会的事情",
+    passage:"小李：星期天同学聚会，你能来吗？\n小林：能来。班里同学你联系得怎么样了？来多少人？\n小李：差不多一半儿吧，张远还专门从国外飞回来呢。\n小林：是吗？毕业都快十年了，真想大家啊！对了，今天早上，我在地铁站遇到了王静，她毕业后就去上海工作了，她这次是来旅游的。\n小李：那太好了！麻烦你跟她联系一下，请她一起来参加同学聚会。聚会就在学校门口那个饭店，六点半。别迟到啊！\n小林：放心吧。星期天六点半见!",
+    items:[
+      {t:"小林不能参加同学聚会。",a:false},
+      {t:"差不多一半儿的同学来参加聚会。",a:true},
+      {t:"张远来旅游，所以顺便参加聚会。",a:false},
+      {t:"小林昨天早上在地铁站遇到了王静。",a:false},
+      {t:"他们在学校后面的那个饭店聚会。",a:false}
+    ]},
+  p3:{title:"孙月和王静聊她们的朋友",
+    passage:"孙月：这是什么时候的照片？你真年轻！\n王静：这是上大学时的照片。一看到这张照片，我就想起过去那段快乐的日子，好像重新回到了校园。\n孙月：旁边这个人一定是你的好朋友吧？你们现在还联系吗？\n王静：当然了，尽管已经毕业这么多年，我们还是经常联系的，每次都有说不完的话。\n孙月：真羡慕你！我上大学时最好的朋友去了南方工作，我们俩已经好久没联系了。我一会儿就给她打个电话。\n王静：对。要知道，能有一个真正的朋友，有一段真正的友谊，是多么不容易！",
+    items:[
+      {t:"他们在看王静大学时的照片。",a:true},
+      {t:"照片中，王静旁边的是她的好朋友。",a:true},
+      {t:"因为毕业很多年了，所以王静不经常和她的好朋友联系了。",a:false},
+      {t:"虽然孙月大学时的好朋友去了南方工作，但他们还是经常联系。",a:false},
+      {t:"王静觉得能有一段真正的友谊很不容易。",a:true}
+    ]},
+  p4:{title:"每个人都需要朋友",
+    passage:"每个人都需要朋友，朋友可以丰富我们的生活。离开朋友，我们的生活一定会非常无聊？那么，怎样才能交到更多的朋友呢？当然，要有好脾气。一个脾气不好的人虽然不一定让人讨厌，但是却很难跟人交朋友。因为没有人会喜欢跟一个总是容易生气的人在一起。我们还要经常跟周围的人交流。交流能让人们互相了解，如果有共同的兴趣、爱好或者习惯，就更容易成为朋友了。",
+    items:[
+      {t:"朋友可以丰富我们的生活。",a:true},
+      {t:"一个脾气不好的人一定会让人讨厌。",a:false},
+      {t:"没有人喜欢跟一个总是容易生气的人在一起。",a:true},
+      {t:"只要脾气好，不用跟周围的人交流，也能交到很多朋友。",a:false},
+      {t:"如果两个人有共同的兴趣、爱好或习惯，就更容易成为朋友。",a:true}
+    ]},
+  p5:{title:"什么是真正的朋友",
+    passage:"人的一生可以什么也没有，但不能没有朋友，而且必须要有自己真正的朋友。什么是真正的朋友？不同的人会有不同的理解。有些人觉得朋友就是能和自己一起快乐的人；有些人觉得朋友应该像镜子，能帮自己看到缺点。而我的理解是：当你遇到困难的时候，真正的朋友会站出来，及时给你帮助；当你无聊或者难过的时候，真正的朋友会陪在你身边，想办法让你感到幸福。",
+    items:[
+      {t:"人的一生可以什么都没有，但不能没有朋友。",a:true},
+      {t:"所有人对“真正的朋友”的理解都是一样的。",a:false},
+      {t:"有些人认为朋友应该像镜子一样，能帮自己看到缺点。",a:true},
+      {t:"作者认为，当你遇到困难时，真正的朋友会站出来，及时给你帮助。",a:true},
+      {t:"作者认为，当你无聊或难过时，真正的朋友不会理你，让你自己冷静。",a:false}
+    ]}
+};
+
+const CONFUSABLE = [
+  {q:"A: 你在哪儿呢，怎么听不清楚？ B: 我在火车站，人太多，过会儿再跟你___吧。",options:["联系","关系","没关系"],answer:0},
+  {q:"你和她___那么好，能帮我介绍一下吗？",options:["关系","联系","没关系"],answer:0},
+  {q:"A: 你是不是太累了？ B: 我可能有点儿发烧，___，休息一下就好了。",options:["没关系","联系","关系"],answer:0},
+  {q:"李老师___六十岁了，头发都白了。",options:["差不多","专门","及时"],answer:0},
+  {q:"这件事我们班___人人都知道了。",options:["差不多","及时","专门"],answer:0},
+  {q:"今天早上起床晚了，上课___迟到了，幸好赶上了。",options:["几乎","差不多","正好"],answer:0,note:"Sự việc suýt xảy ra nhưng cuối cùng không xảy ra → dùng “几乎”。"},
+  {q:"我的房间跟这个教室___大。",options:["差不多","几乎","正好"],answer:0},
+  {q:"要不是你提醒，我___忘了咱俩见面的事。",options:["几乎","差不多","正好"],answer:0,note:"Suýt quên nhưng cuối cùng không quên → dùng “几乎”。"}
+];
+
+const SENTENCE_MC = [
+  {q:"Chọn câu đúng ngữ pháp:",
+   options:["我一下了飞机，就去了酒店。","一我下了飞机，就去了酒店。","我下了飞机一，就去了酒店。"],answer:0},
+  {q:"Chọn câu đúng ngữ pháp:",
+   options:["你想看什么看尽管，不用问我。","我家有很多书，你想看什么尽管看，不用问我。","尽管我家有很多书看，你想看什么。"],answer:1},
+  {q:"Chọn câu đúng ngữ pháp:",
+   options:["一定这不是真的吧？","这不是真的一定吧？","听说她结婚了，这一定不是真的吧？"],answer:2},
+  {q:"Chọn câu đúng ngữ pháp:",
+   options:["尽管我会做中国菜，但做得不好吃。","尽管我会做中国菜，而且做得不好吃。","我会做中国菜尽管，但做得不好吃。"],answer:0},
+  {q:"Chọn câu đúng ngữ pháp:",
+   options:["她是学法律的而，他是学新闻的。","她的男朋友是学新闻的，而她是学法律的。","而她的男朋友是学新闻的她是学法律的。"],answer:1}
+];
+
+const CLOZE = [
+  {title:"每个人都需要朋友（课文 4）",
+   text:"每个人都需要朋友，朋友可以{{1}}我们的生活。离开朋友，我们的生活一定会非常{{2}}。一个脾气不好的人虽然不一定让人{{3}}，但是{{4}}很难跟人交朋友。我们还要经常跟{{5}}的人交流。",
+   blanks:[
+     {id:1,answer:"丰富",options:["丰富","无聊","讨厌"]},
+     {id:2,answer:"无聊",options:["无聊","丰富","交流"]},
+     {id:3,answer:"讨厌",options:["讨厌","丰富","困难"]},
+     {id:4,answer:"却",options:["却","而","当"]},
+     {id:5,answer:"周围",options:["周围","镜子","友谊"]}
+   ]},
+  {title:"什么是真正的朋友（课文 5）",
+   text:"什么是真正的朋友？不同的人会有不同的{{1}}。有些人觉得朋友应该像{{2}}，能帮自己看到缺点。{{3}}我的理解是：{{4}}你遇到{{5}}的时候，真正的朋友会站出来，{{6}}给你帮助；真正的朋友会{{7}}在你身边，想办法让你感到幸福。",
+   blanks:[
+     {id:1,answer:"理解",options:["理解","友谊","交流"]},
+     {id:2,answer:"镜子",options:["镜子","短信","友谊"]},
+     {id:3,answer:"而",options:["而","当","却"]},
+     {id:4,answer:"当",options:["当","而","尽管"]},
+     {id:5,answer:"困难",options:["困难","无聊","短信"]},
+     {id:6,answer:"及时",options:["及时","专门","重新"]},
+     {id:7,answer:"陪",options:["陪","交","逛"]}
+   ]}
+];
+
+const VD_CLOZE = {
+  title:"Ôn tổng hợp — trích từ sách (xuyên suốt cả 5 phần)",
+  text:"周末一个人在家太{{1}}了，你应该找朋友出去逛逛、看看电影、吃吃饭。我刚来这儿的时候很不{{2}}，后来慢慢习惯了，也交到了很多朋友。我喜欢现在住的地方，{{3}}很方便，不像以前住的地方，一个超市都没有。小李，那个女孩儿是谁啊？应该不认识，但是{{4}}在哪儿见过。周末的同学聚会你来参加吗？当然，有几个同学毕业后就没{{5}}了，正好借这个机会见见。",
+  blanks:[
+    {id:1,answer:"无聊",options:["无聊","困难","友谊"]},
+    {id:2,answer:"适应",options:["适应","理解","交流"]},
+    {id:3,answer:"周围",options:["周围","平时","镜子"]},
+    {id:4,answer:"好像",options:["好像","重新","尽管"]},
+    {id:5,answer:"联系",options:["联系","聚会","陪"]}
+  ]
+};
+
+const JIN_GUAN_MATCH = [
+  {key:"a", left:"马克说的这件事很奇怪，", right:"玛丽还是很相信他。"},
+  {key:"b", left:"她说晚上会参加聚会，", right:"最后还是没有来。"},
+  {key:"c", left:"他生活上有很多缺点，", right:"孙悦还是非常爱他。"},
+  {key:"d", left:"他的家离学校比较远，", right:"坐地铁很方便。"},
+  {key:"e", left:"北京的冬天很干，", right:"我们已经适应了这里。"}
+];
+
+const ALL_VOCAB = [...VOCAB.p1,...VOCAB.p2,...VOCAB.p3,...VOCAB.p4,...VOCAB.p5];
+
+/* ============ HELPERS ============ */
+function shuffle(arr){ const a=[...arr]; for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function el(tag,cls,html){ const e=document.createElement(tag); if(cls) e.className=cls; if(html!==undefined) e.innerHTML=html; return e; }
+
+function renderFlashcards(container, vocab){
+  container.innerHTML='';
+  vocab.forEach(v=>{
+    const card=el('div','flip-card');
+    card.innerHTML=`<div class="flip-inner">
+      <div class="flip-front"><div class="hz hanzi">${v.h}</div><div class="py">${v.p}</div><div class="wc">${v.wc||''}</div></div>
+      <div class="flip-back"><div class="mn">${v.m}</div><div class="vd hanzi">${v.vd||''}</div></div>
+    </div>`;
+    card.addEventListener('click',()=>card.classList.toggle('flipped'));
+    container.appendChild(card);
+  });
+}
+
+function buildVocabMCQ(vocabList,pool,n){
+  const chosen=shuffle(vocabList).slice(0,n||vocabList.length);
+  return chosen.map(v=>{
+    const distract=shuffle(pool.filter(x=>x.h!==v.h)).slice(0,3).map(x=>x.m);
+    const options=shuffle([v.m,...distract]);
+    return {q:`“<span class="hanzi">${v.h}</span> (${v.p})” có nghĩa là gì?`, options, answer:options.indexOf(v.m)};
+  });
+}
+
+function renderMCQuiz(container, questions){
+  container.innerHTML='';
+  let score=0;
+  const scoreBox=el('div','quiz-score',`Điểm: <span class="score-val">0</span>/${questions.length}`);
+  container.appendChild(scoreBox);
+  questions.forEach((q,qi)=>{
+    const qBox=el('div','q-box');
+    qBox.innerHTML=`<div class="q-text"><span class="q-num">Câu ${qi+1}.</span> ${q.q}</div>`;
+    const optWrap=el('div','opt-wrap');
+    q.options.forEach((opt,oi)=>{
+      const b=el('button','opt-btn',opt);
+      b.addEventListener('click',()=>{
+        if(qBox.classList.contains('answered')) return;
+        qBox.classList.add('answered');
+        [...optWrap.children].forEach((btn,i)=>{
+          btn.disabled=true;
+          if(i===q.answer) btn.classList.add('correct');
+          else if(i===oi) btn.classList.add('wrong');
+        });
+        if(oi===q.answer){ score++; scoreBox.querySelector('.score-val').textContent=score; }
+        if(q.note) qBox.appendChild(el('div','q-note','💡 '+q.note));
+      });
+      optWrap.appendChild(b);
+    });
+    qBox.appendChild(optWrap);
+    container.appendChild(qBox);
+  });
+}
+
+function renderTF(container, items){
+  container.innerHTML='';
+  let score=0;
+  const scoreBox=el('div','quiz-score',`Điểm: <span class="score-val">0</span>/${items.length}`);
+  container.appendChild(scoreBox);
+  items.forEach((it,ii)=>{
+    const qBox=el('div','q-box');
+    qBox.innerHTML=`<div class="q-text hanzi"><span class="q-num" style="font-family:'Be Vietnam Pro',sans-serif;">Câu ${ii+1}.</span> ${it.t}</div>`;
+    const wrap=el('div','tf-wrap');
+    ['Đúng','Sai'].forEach((lbl,oi)=>{
+      const val = oi===0;
+      const b=el('button','tf-btn',lbl);
+      b.addEventListener('click',()=>{
+        if(qBox.classList.contains('answered')) return;
+        qBox.classList.add('answered');
+        [...wrap.children].forEach((btn,i)=>{
+          btn.disabled=true;
+          const bval = i===0;
+          if(bval===it.a) btn.classList.add('correct');
+          else if(bval===val && val!==it.a) btn.classList.add('wrong');
+        });
+        if(val===it.a) { score++; scoreBox.querySelector('.score-val').textContent=score; }
+      });
+      wrap.appendChild(b);
+    });
+    qBox.appendChild(wrap);
+    container.appendChild(qBox);
+  });
+}
+
+function renderMatching(container, vocabList){
+  container.innerHTML='';
+  const left=shuffle(vocabList);
+  const right=shuffle(vocabList);
+  let selectedLeft=null, matchedCount=0;
+  const wrap=el('div','match-wrap');
+  const colL=el('div','match-col');
+  const colR=el('div','match-col');
+  left.forEach(item=>{
+    const b=el('button','match-btn',`<span class="hanzi" style="font-size:18px;">${item.h}</span><span class="py-sm">${item.p}</span>`);
+    b.dataset.key=item.h;
+    b.addEventListener('click',()=>{
+      if(b.classList.contains('matched')) return;
+      [...colL.children].forEach(x=>x.classList.remove('selected'));
+      b.classList.add('selected'); selectedLeft=b;
+    });
+    colL.appendChild(b);
+  });
+  right.forEach(item=>{
+    const b=el('button','match-btn',item.m);
+    b.dataset.key=item.h;
+    b.addEventListener('click',()=>{
+      if(b.classList.contains('matched')||!selectedLeft) return;
+      if(b.dataset.key===selectedLeft.dataset.key){
+        b.classList.add('matched'); selectedLeft.classList.add('matched');
+        b.classList.remove('selected'); selectedLeft.classList.remove('selected');
+        selectedLeft=null; matchedCount++;
+        if(matchedCount===left.length) container.appendChild(el('div','match-done','🎉 Hoàn thành! Bạn đã nối đúng tất cả.'));
+      } else {
+        [b,selectedLeft].forEach(x=>{ x.classList.add('shake'); setTimeout(()=>x.classList.remove('shake'),380); });
+      }
+    });
+    colR.appendChild(b);
+  });
+  wrap.appendChild(colL); wrap.appendChild(colR);
+  container.appendChild(wrap);
+}
+
+function renderClauseMatching(container, pairs){
+  container.innerHTML='';
+  const p=el('p','fc-hint','Ghép vế "尽管..." bên trái với vế kết quả phù hợp bên phải.');
+  container.appendChild(p);
+  const left=shuffle(pairs);
+  const right=shuffle(pairs);
+  let selectedLeft=null, matchedCount=0;
+  const wrap=el('div','match-wrap');
+  const colL=el('div','match-col');
+  const colR=el('div','match-col');
+  left.forEach(item=>{
+    const b=el('button','match-btn hanzi','尽管'+item.left);
+    b.dataset.key=item.key;
+    b.addEventListener('click',()=>{
+      if(b.classList.contains('matched')) return;
+      [...colL.children].forEach(x=>x.classList.remove('selected'));
+      b.classList.add('selected'); selectedLeft=b;
+    });
+    colL.appendChild(b);
+  });
+  right.forEach(item=>{
+    const b=el('button','match-btn hanzi',item.right);
+    b.dataset.key=item.key;
+    b.addEventListener('click',()=>{
+      if(b.classList.contains('matched')||!selectedLeft) return;
+      if(b.dataset.key===selectedLeft.dataset.key){
+        b.classList.add('matched'); selectedLeft.classList.add('matched');
+        b.classList.remove('selected'); selectedLeft.classList.remove('selected');
+        selectedLeft=null; matchedCount++;
+        if(matchedCount===left.length) container.appendChild(el('div','match-done','🎉 Hoàn thành! Bạn đã nối đúng tất cả.'));
+      } else {
+        [b,selectedLeft].forEach(x=>{ x.classList.add('shake'); setTimeout(()=>x.classList.remove('shake'),380); });
+      }
+    });
+    colR.appendChild(b);
+  });
+  wrap.appendChild(colL); wrap.appendChild(colR);
+  container.appendChild(wrap);
+}
+
+function renderCloze(container, clozeItem){
+  container.innerHTML='';
+  const title=el('h4','',clozeItem.title);
+  title.style.margin='0 0 10px'; title.style.color='var(--maroon-dark)';
+  container.appendChild(title);
+  let html=clozeItem.text.replace(/\{\{(\d+)\}\}/g,(m,id)=>`<span class="blank hanzi" id="blank-${clozeItem._uid}-${id}">＿＿＿</span>`);
+  const passage=el('div','cloze-passage hanzi', html);
+  container.appendChild(passage);
+  clozeItem.blanks.forEach(bl=>{
+    const qDiv=el('div','cloze-q');
+    qDiv.appendChild(el('div','lbl',`Chỗ trống (${bl.id}):`));
+    const optWrap=el('div','cloze-opts');
+    shuffle(bl.options).forEach(opt=>{
+      const btn=el('button','',opt);
+      btn.classList.add('hanzi');
+      btn.addEventListener('click',()=>{
+        if(qDiv.classList.contains('done')) return;
+        qDiv.classList.add('done');
+        const span=document.getElementById(`blank-${clozeItem._uid}-${bl.id}`);
+        [...optWrap.children].forEach(b=>b.disabled=true);
+        if(opt===bl.answer){
+          btn.classList.add('correct'); span.textContent=bl.answer; span.classList.add('correct');
+        } else {
+          btn.classList.add('wrong'); span.textContent=bl.answer; span.classList.add('wrong');
+          [...optWrap.children].forEach(b=>{ if(b.textContent===bl.answer) b.classList.add('correct'); });
+        }
+      });
+      optWrap.appendChild(btn);
+    });
+    qDiv.appendChild(optWrap);
+    container.appendChild(qDiv);
+  });
+}
+
+/* ============ PAGE BUILDING ============ */
+const TABS=[
+  {id:'p1',label:'Phần 1'},
+  {id:'p2',label:'Phần 2'},
+  {id:'p3',label:'Phần 3'},
+  {id:'p4',label:'Phần 4'},
+  {id:'p5',label:'Phần 5'},
+  {id:'vd',label:'Vận dụng'},
+  {id:'nc',label:'Nâng cao'}
+];
+const LESSON_TITLE={
+  p1:'小夏和马克聊马克的中国朋友', p2:'小李跟小林聊同学聚会的事情',
+  p3:'孙月和王静聊她们的朋友', p4:'每个人都需要朋友', p5:'什么是真正的朋友'
+};
+
+const tabBar=document.getElementById('tabBar');
+const main=document.getElementById('mainContent');
+
+TABS.forEach((t,i)=>{
+  const b=el('button','tab-btn'+(i===0?' active':''), t.label);
+  b.dataset.tab=t.id;
+  b.addEventListener('click',()=>switchTab(t.id));
+  tabBar.appendChild(b);
+});
+
+function buildPhanPanel(pid){
+  const panel=el('section','panel',``);
+  panel.id='panel-'+pid;
+  const num = {p1:'一',p2:'二',p3:'三',p4:'四',p5:'五'}[pid];
+  panel.innerHTML=`
+    <div class="lesson-head">
+      <div class="seal hanzi">${num}</div>
+      <div><h2 class="hanzi">${LESSON_TITLE[pid]}</h2><p>Từ vựng · Ngữ pháp · Đọc hiểu — Phần ${pid.slice(1)}</p></div>
+    </div>
+    <details class="dialogue"><summary>📜 Xem lại đoạn hội thoại / đoạn văn</summary><pre class="hanzi"></pre></details>
+    <div class="card">
+      <h3><span class="dot"></span>Từ vựng mới</h3>
+      <p class="fc-hint">Nhấn vào thẻ để lật xem nghĩa.</p>
+      <div class="fc-grid"></div>
+    </div>
+    <div class="card">
+      <h3><span class="dot"></span>Trắc nghiệm từ vựng</h3>
+      <div class="btn-row"><button class="btn-main regen">🔄 Làm lại</button></div>
+      <div class="quiz-mount"></div>
+    </div>
+    <div class="card">
+      <h3><span class="dot"></span>Điểm ngữ pháp</h3>
+      <div class="g-mount"></div>
+    </div>
+    <div class="card">
+      <h3><span class="dot"></span>Bài tập ngữ pháp</h3>
+      <div class="g-quiz-mount"></div>
+    </div>
+    <div class="card">
+      <h3><span class="dot"></span>Đọc hiểu — Đúng hay Sai</h3>
+      <div class="tf-mount"></div>
+    </div>
+  `;
+  panel.querySelector('pre').textContent=READING[pid].passage;
+  renderFlashcards(panel.querySelector('.fc-grid'), VOCAB[pid]);
+
+  const quizMount=panel.querySelector('.quiz-mount');
+  const regen=()=>renderMCQuiz(quizMount, buildVocabMCQ(VOCAB[pid], ALL_VOCAB));
+  regen();
+  panel.querySelector('.regen').addEventListener('click',regen);
+
+  const gMount=panel.querySelector('.g-mount');
+  GRAMMAR[pid].forEach(g=>{
+    const item=el('div','g-item');
+    item.innerHTML=`<h4>${g.t}</h4><p>${g.e}</p><ul>${g.ex.map(x=>`<li class="hanzi">${x}</li>`).join('')}</ul>`;
+    gMount.appendChild(item);
+  });
+
+  renderMCQuiz(panel.querySelector('.g-quiz-mount'), GRAMMAR_QUIZ[pid]);
+  renderTF(panel.querySelector('.tf-mount'), READING[pid].items);
+
+  return panel;
+}
+
+function buildVanDungPanel(){
+  const panel=el('section','panel',``);
+  panel.id='panel-vd';
+  panel.innerHTML=`
+    <div class="lesson-head">
+      <div class="seal hanzi">★</div>
+      <div><h2 class="hanzi">综合练习</h2><p>Vận dụng — ôn tập tổng hợp toàn bộ 30 từ vựng của Bài 2</p></div>
+    </div>
+    <div class="card">
+      <h3><span class="dot"></span>Ôn nhanh toàn bộ từ vựng</h3>
+      <p class="fc-hint">Nhấn vào thẻ để lật xem nghĩa. (Gồm cả 5 phần)</p>
+      <div class="fc-grid-all"></div>
+    </div>
+    <div class="card">
+      <h3><span class="dot"></span>Trắc nghiệm tổng hợp (20 câu ngẫu nhiên)</h3>
+      <div class="btn-row"><button class="btn-main regen-all">🔄 Làm lại</button></div>
+      <div class="quiz-all-mount"></div>
+    </div>
+    <div class="card">
+      <h3><span class="dot"></span>Trò chơi nối từ</h3>
+      <p class="fc-hint">Chọn 1 từ Hán tự bên trái rồi chọn nghĩa tương ứng bên phải.</p>
+      <div class="btn-row"><button class="btn-main regen-match">🔀 Đổi bộ từ khác</button></div>
+      <div class="match-mount"></div>
+    </div>
+    <div class="card">
+      <h3><span class="dot"></span>Đọc hiểu điền từ — trích nguyên văn từ giáo trình</h3>
+      <div class="vd-cloze-mount"></div>
+    </div>
+  `;
+  renderFlashcards(panel.querySelector('.fc-grid-all'), ALL_VOCAB);
+
+  const quizAll=panel.querySelector('.quiz-all-mount');
+  const regenAll=()=>renderMCQuiz(quizAll, buildVocabMCQ(ALL_VOCAB, ALL_VOCAB, 20));
+  regenAll();
+  panel.querySelector('.regen-all').addEventListener('click',regenAll);
+
+  const matchMount=panel.querySelector('.match-mount');
+  const regenMatch=()=>renderMatching(matchMount, shuffle(ALL_VOCAB).slice(0,8));
+  regenMatch();
+  panel.querySelector('.regen-match').addEventListener('click',regenMatch);
+
+  VD_CLOZE._uid='vd';
+  renderCloze(panel.querySelector('.vd-cloze-mount'), VD_CLOZE);
+
+  return panel;
+}
+
+function buildNangCaoPanel(){
+  const panel=el('section','panel',``);
+  panel.id='panel-nc';
+  panel.innerHTML=`
+    <div class="lesson-head">
+      <div class="seal hanzi">✦</div>
+      <div><h2 class="hanzi">提高练习</h2><p>Nâng cao — phân biệt từ dễ nhầm, chọn câu đúng, ghép câu &amp; đọc hiểu điền từ</p></div>
+    </div>
+    <div class="card">
+      <h3><span class="dot"></span>1. Phân biệt từ dễ nhầm</h3>
+      <p class="fc-hint">联系/关系/没关系 · 差不多/几乎</p>
+      <div class="confusable-mount"></div>
+    </div>
+    <div class="card">
+      <h3><span class="dot"></span>2. Chọn câu đúng ngữ pháp</h3>
+      <div class="sentence-mount"></div>
+    </div>
+    <div class="card">
+      <h3><span class="dot"></span>3. Ghép câu với 尽管……但是……</h3>
+      <div class="jinguan-mount"></div>
+    </div>
+    <div class="card">
+      <h3><span class="dot"></span>4. Đọc hiểu — điền từ vào đoạn văn</h3>
+      <div class="cloze1-mount"></div>
+    </div>
+    <div class="card">
+      <h3><span class="dot"></span>5. Đọc hiểu — điền từ vào đoạn văn (2)</h3>
+      <div class="cloze2-mount"></div>
+    </div>
+  `;
+  renderMCQuiz(panel.querySelector('.confusable-mount'), CONFUSABLE);
+  renderMCQuiz(panel.querySelector('.sentence-mount'), SENTENCE_MC);
+  renderClauseMatching(panel.querySelector('.jinguan-mount'), JIN_GUAN_MATCH);
+  CLOZE[0]._uid='a'; CLOZE[1]._uid='b';
+  renderCloze(panel.querySelector('.cloze1-mount'), CLOZE[0]);
+  renderCloze(panel.querySelector('.cloze2-mount'), CLOZE[1]);
+  return panel;
+}
+
+['p1','p2','p3','p4','p5'].forEach(pid=> main.appendChild(buildPhanPanel(pid)) );
+main.appendChild(buildVanDungPanel());
+main.appendChild(buildNangCaoPanel());
+document.getElementById('panel-p1').classList.add('active');
+
+function switchTab(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active', b.dataset.tab===id));
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+</script>
+</body>
+</html>
