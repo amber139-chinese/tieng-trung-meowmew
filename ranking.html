@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bảng xếp hạng · Tiếng Trung Meow Meow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#6FAFC4;--dark:#3F8198;--soft:#EAF6F8;--ink:#293A40;--muted:#6A7A80;--line:#D7E9ED}
+*{box-sizing:border-box}body{margin:0;font-family:"Be Vietnam Pro",sans-serif;color:var(--ink);background:#F7FBFC}
+.wrap{width:min(980px,calc(100% - 28px));margin:auto;padding:78px 0 60px}
+.top{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+h1{font-family:"Noto Serif SC",serif;font-size:clamp(2rem,5vw,3.4rem);margin:7px 0}.muted{color:var(--muted)}
+.tabs{display:flex;gap:7px;margin:25px 0}.tab{border:1px solid var(--line);background:#fff;padding:9px 14px;border-radius:999px;cursor:pointer;font-weight:700;color:#61757C}
+.tab.active{background:var(--dark);border-color:var(--dark);color:#fff}
+.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 12px 34px rgba(55,110,125,.07)}
+.card h2{margin:0 0 5px;font-size:1.2rem}.row{display:grid;grid-template-columns:45px 1fr auto;gap:10px;align-items:center;padding:12px 0;border-top:1px solid #EDF3F5}
+.row:first-of-type{border-top:0}.rank{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--soft);color:var(--dark);font-weight:800}
+.name{font-weight:700}.small{font-size:12px;color:var(--muted)}.points{font-weight:800;color:var(--dark);text-align:right}
+.back{text-decoration:none;color:var(--dark);font-weight:700}
+@media(max-width:760px){.grid{grid-template-columns:1fr}}
+</style>
+<script defer src="meow-auth.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><div><div class="muted">MEOW MEOW 课堂</div><h1>Bảng xếp hạng</h1><div class="muted">Chỉ hiển thị tên hiển thị và thành tích học tập.</div></div><a class="back" id="backLink" href="hsk1.html">← Về khóa học</a></div>
+  <div class="tabs"><button class="tab active" data-course="hsk1">HSK1</button><button class="tab" data-course="hsk4">HSK4</button></div>
+  <div class="grid">
+    <section class="card"><h2>Thành tích</h2><div class="small">Ưu tiên số bài hoàn thành, điểm cao và quá trình luyện tập.</div><div id="leader"></div></section>
+    <section class="card"><h2>Học viên tích cực · 7 ngày</h2><div class="small">Dựa trên số ngày học và số lượt luyện gần đây.</div><div id="active"></div></section>
+  </div>
+</div>
+<script>
+let course=new URLSearchParams(location.search).get('course')||'hsk1';
+const $=s=>document.querySelector(s);
+const esc=s=>String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+
+function setTabs(){
+  document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.course===course));
+  $('#backLink').href=course==='hsk4'?'hsk4.html':'hsk1.html';
+}
+
+async function load(){
+  setTabs();
+  const c=window.meowSupabase;
+  if(!c)return;
+  const {data,error}=await c.from('course_leaderboard').select('*').eq('course',course);
+  if(error){
+    $('#leader').innerHTML='<p class="small">Chưa tải được bảng xếp hạng. Hãy chạy tracking-admin-setup.sql.</p>';
+    $('#active').innerHTML='';
+    return;
+  }
+  const rows=data||[];
+  const leader=[...rows].sort((a,b)=>b.points-a.points||b.completed_lessons-a.completed_lessons||b.avg_best_score-a.avg_best_score);
+  const active=[...rows].sort((a,b)=>b.active_days_7d-a.active_days_7d||b.attempts_7d-a.attempts_7d);
+
+  $('#leader').innerHTML=leader.length?leader.slice(0,30).map((r,i)=>`
+    <div class="row"><div class="rank">${i+1}</div><div><div class="name">${esc(r.display_name)}</div><div class="small">${r.completed_lessons} bài hoàn thành · TB cao nhất ${r.avg_best_score}/100</div></div><div class="points">${r.points}<div class="small">điểm</div></div></div>`).join(''):'<p class="small">Chưa có dữ liệu.</p>';
+
+  $('#active').innerHTML=active.length?active.slice(0,15).map((r,i)=>`
+    <div class="row"><div class="rank">${i+1}</div><div><div class="name">${esc(r.display_name)}</div><div class="small">${r.active_days_7d} ngày học · ${r.attempts_7d} lượt luyện</div></div><div class="points">${r.avg_game_score}<div class="small">điểm TB</div></div></div>`).join(''):'<p class="small">Chưa có dữ liệu.</p>';
+}
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{course=b.dataset.course;history.replaceState(null,'',`?course=${course}`);load()});
+window.addEventListener('meow-auth-ready',load,{once:true});
+</script>
+</body></html>
