@@ -178,6 +178,11 @@ a{color:inherit}
   .vocab-review-action .btn{width:100%}
 }
 
+
+.game-review{margin-top:18px;position:relative;overflow:hidden;background:linear-gradient(135deg,#FFFFFF 0%,#FFF7FA 70%,#FFF0F5 100%);border:1px solid #F0D6DF;border-radius:24px;padding:27px 28px;box-shadow:0 15px 40px rgba(157,76,107,.09);display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
+.game-review:after{content:"游戏";position:absolute;right:24px;bottom:-28px;font-family:"Noto Serif SC",serif;font-size:7.2rem;font-weight:700;color:rgba(185,79,116,.055);pointer-events:none;line-height:1}
+.game-review-copy{position:relative;z-index:1;max-width:740px}.game-review h3{margin:7px 0 7px;font-family:"Noto Serif SC","Be Vietnam Pro",serif;font-size:1.65rem;font-weight:600;color:#5D3E4A}.game-review p{margin:0;color:#7C6971;font-size:.91rem}.game-review-meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}.game-review-action{position:relative;z-index:2;min-width:185px}@media(max-width:760px){.game-review{grid-template-columns:1fr;padding:23px}.game-review-action{min-width:0}.game-review-action .btn{width:100%}}
+
 /* Hộp chat: giữ nguyên nội dung và biểu tượng, chỉ thu nhỏ */
 .chatbox{
   position:fixed;right:18px;bottom:18px;width:276px;background:#fff;border-radius:17px;
@@ -262,6 +267,7 @@ a{color:inherit}
       <a href="#cach-hoc">Cách học</a>
       <a href="#khoa-hoc">Bài học</a>
       <a href="login.html?next=hsk1-vocab.html">Ôn từ vựng</a>
+      <a href="login.html?next=game.html">Trò chơi</a>
       <a href="#lien-he">Liên hệ</a>
       <a href="login.html">Đăng nhập</a>
     </div>
@@ -393,6 +399,16 @@ a{color:inherit}
         <div class="vocab-review-action">
           <a class="btn btn-primary" href="login.html?next=hsk1-vocab.html">Bắt đầu ôn từ vựng</a>
         </div>
+      </div>
+
+      <div class="game-review">
+        <div class="game-review-copy">
+          <div class="section-kicker">TRÒ CHƠI · 游戏</div>
+          <h3>Phòng game tiếng Trung</h3>
+          <p>Sắp xếp câu theo trình độ HSK. Có chế độ cá nhân, chia đội trong lớp và bảng xếp hạng. Hiện tại đã mở bộ HSK4 từ Bài 1 đến Bài 7.</p>
+          <div class="game-review-meta"><span class="tag">HSK4</span><span class="tag">Sắp xếp câu</span><span class="tag">Chia đội</span><span class="tag">Xếp hạng</span></div>
+        </div>
+        <div class="game-review-action"><a class="btn btn-primary" href="login.html?next=game.html">Vào phòng game</a></div>
       </div>
 
       <div class="notice-card">
