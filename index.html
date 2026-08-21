@@ -151,6 +151,33 @@ a{color:inherit}
   color:#809096;font-size:.86rem;text-align:center
 }
 
+
+.vocab-review{
+  margin-top:18px;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#FFFFFF 0%,#F4FAFC 70%,#FFF8FA 100%);
+  border:1px solid var(--line);border-radius:24px;padding:27px 28px;
+  box-shadow:var(--shadow);
+  display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;
+}
+.vocab-review:after{
+  content:"词汇";position:absolute;right:24px;bottom:-28px;
+  font-family:"Noto Serif SC",serif;font-size:7.2rem;font-weight:700;
+  color:rgba(111,175,196,.065);pointer-events:none;line-height:1;
+}
+.vocab-review-copy{position:relative;z-index:1;max-width:740px}
+.vocab-review h3{
+  margin:7px 0 7px;font-family:"Noto Serif SC","Be Vietnam Pro",serif;
+  font-size:1.65rem;font-weight:600;color:#314E58;
+}
+.vocab-review p{margin:0;color:var(--muted);font-size:.91rem}
+.vocab-review-meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}
+.vocab-review-action{position:relative;z-index:2;min-width:185px}
+@media(max-width:760px){
+  .vocab-review{grid-template-columns:1fr;padding:23px}
+  .vocab-review-action{min-width:0}
+  .vocab-review-action .btn{width:100%}
+}
+
 /* Hộp chat: giữ nguyên nội dung và biểu tượng, chỉ thu nhỏ */
 .chatbox{
   position:fixed;right:18px;bottom:18px;width:276px;background:#fff;border-radius:17px;
@@ -234,6 +261,7 @@ a{color:inherit}
       <a href="#gioi-thieu">Giới thiệu</a>
       <a href="#cach-hoc">Cách học</a>
       <a href="#khoa-hoc">Bài học</a>
+      <a href="login.html?next=hsk1-vocab.html">Ôn từ vựng</a>
       <a href="#lien-he">Liên hệ</a>
       <a href="login.html">Đăng nhập</a>
     </div>
@@ -260,8 +288,8 @@ a{color:inherit}
     <div class="container">
       <div class="section-head">
         <div class="section-kicker">LỚP HỌC MEOW MEOW</div>
-        <h2>Học đi đôi với hành</h2>
-        <p></p>
+        <h2>Học rõ ràng, luyện đều đặn</h2>
+        <p>Không cần học quá nhiều trong một lần. Quan trọng là hiểu, luyện và quay lại thường xuyên.</p>
       </div>
 
       <div class="feature-strip">
@@ -316,7 +344,7 @@ a{color:inherit}
       <div class="section-head">
         <div class="section-kicker">课程</div>
         <h2>Chọn cấp độ học</h2>
-        <p></p>
+        <p>Mỗi cấp độ mở ở một trang riêng để danh sách bài học gọn và dễ tìm hơn.</p>
       </div>
 
       <div class="course-grid">
@@ -343,12 +371,28 @@ a{color:inherit}
             <div class="course-cn">汉语教程 · 中级</div>
             <p>Các bài học trung cấp với từ vựng, ngữ pháp, luyện tập và phần nâng cao.</p>
             <div class="course-meta">
-              <span class="tag">Bài 1 → Bài 6 hiện có</span>
+              <span class="tag">Bài 1 → Bài 7 hiện có</span>
               <span class="tag">Trung cấp</span>
             </div>
           </div>
           <a class="btn btn-primary" href="login.html?next=hsk4.html">Xem các bài HSK4</a>
         </article>
+      </div>
+
+      <div class="vocab-review">
+        <div class="vocab-review-copy">
+          <div class="section-kicker">ÔN TẬP · 词汇复习</div>
+          <h3>Ôn tập từ vựng HSK1</h3>
+          <p>Tra chữ Hán, pinyin, nghĩa tiếng Việt, âm Hán Việt, loại từ và câu ví dụ. Mở từng từ để xem thứ tự nét bút và luyện cách viết.</p>
+          <div class="vocab-review-meta">
+            <span class="tag">500 từ HSK1 3.0</span>
+            <span class="tag">Tìm kiếm và lọc</span>
+            <span class="tag">Thứ tự nét bút</span>
+          </div>
+        </div>
+        <div class="vocab-review-action">
+          <a class="btn btn-primary" href="login.html?next=hsk1-vocab.html">Bắt đầu ôn từ vựng</a>
+        </div>
       </div>
 
       <div class="notice-card">
