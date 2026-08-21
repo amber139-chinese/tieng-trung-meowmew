@@ -37,12 +37,71 @@ function shuffleStaticQuestion(q){
   q.o = shuffle(q.o);
   if(numericAnswer) q.a = q.o.indexOf(correct);
 }
+
+function randomizeSequenceQuestion(q){
+  if(!q || !Array.isArray(q.items) || q.items.length < 2 || !Array.isArray(q.o) || typeof q.a !== 'number') return;
+
+  // Lưu nhãn cũ (A/B/C...) và phần nội dung thực tế.
+  const original = q.items.map((item, index) => {
+    const m = String(item).match(/^\s*([A-Z])\.\s*(.*)$/);
+    return {
+      oldLabel: m ? m[1] : String.fromCharCode(65 + index),
+      text: m ? m[2] : String(item)
+    };
+  });
+
+  const correctOriginal = String(q.o[q.a] || '');
+  const letters = original.map(x => x.oldLabel);
+
+  // Xáo các mệnh đề; tránh để thứ tự đúng vẫn rơi vào A → B → C.
+  let shuffledItems, mapping, transformedCorrect;
+  let attempts = 0;
+
+  do {
+    shuffledItems = shuffle(original);
+    mapping = {};
+    shuffledItems.forEach((item, newIndex) => {
+      mapping[item.oldLabel] = String.fromCharCode(65 + newIndex);
+    });
+
+    transformedCorrect = correctOriginal.replace(/[A-Z]/g, ch => mapping[ch] || ch);
+    attempts++;
+  } while (
+    normalizeSequenceText(transformedCorrect) === 'ABC' &&
+    attempts < 20
+  );
+
+  // Gắn lại nhãn A/B/C theo thứ tự HIỂN THỊ mới.
+  q.items = shuffledItems.map((item, newIndex) =>
+    `${String.fromCharCode(65 + newIndex)}. ${item.text}`
+  );
+
+  // Đổi toàn bộ phương án A→B→C... sang hệ nhãn mới.
+  q.o = q.o.map(option =>
+    String(option).replace(/[A-Z]/g, ch => mapping[ch] || ch)
+  );
+}
+
+function normalizeSequenceText(s){
+  return String(s || '').replace(/[^A-Z]/g, '');
+}
+
 function randomizeStaticAnswers(){
   (L.fills || []).forEach(shuffleStaticQuestion);
   (L.grammarQuiz || []).forEach(shuffleStaticQuestion);
+
   if(typeof ADV_DATA !== 'undefined' && ADV_DATA){
     (ADV_DATA.mcq || []).forEach(shuffleStaticQuestion);
-    (ADV_DATA.sequence || []).forEach(shuffleStaticQuestion);
+
+    // Phần ③ Sắp xếp trình tự:
+    // 1) xáo chính các mệnh đề A/B/C,
+    // 2) đổi đáp án đúng tương ứng,
+    // 3) tiếp tục xáo vị trí 4 lựa chọn.
+    (ADV_DATA.sequence || []).forEach(q => {
+      randomizeSequenceQuestion(q);
+      shuffleStaticQuestion(q);
+    });
+
     (ADV_DATA.error || []).forEach(shuffleStaticQuestion);
     (ADV_DATA.reading || []).forEach(r => (r.qs || []).forEach(shuffleStaticQuestion));
   }
