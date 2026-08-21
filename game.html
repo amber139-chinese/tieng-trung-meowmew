@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Trò chơi HSK4 · Sắp xếp câu · Tiếng Trung Meow Meow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script defer src="meow-auth.js"></script>
+<style>
+:root{--pink:#d86f96;--pink2:#f1acc4;--pink3:#fff0f5;--ink:#4b3540;--muted:#826c76;--line:#efd6df;--green:#3f9b79;--red:#c95867;--shadow:0 16px 42px rgba(157,76,107,.12)}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:"Be Vietnam Pro",system-ui,sans-serif;color:var(--ink);background:radial-gradient(circle at 10% 5%,rgba(243,187,206,.25),transparent 24%),radial-gradient(circle at 92% 8%,rgba(255,220,231,.32),transparent 22%),linear-gradient(180deg,#fff8fb,#fff 38%,#fff7fa)}
+button,input,select{font:inherit}button{touch-action:manipulation}.container{width:min(1380px,calc(100% - 26px));margin:0 auto}
+.topbar{position:sticky;top:0;z-index:80;background:rgba(255,255,255,.94);backdrop-filter:blur(13px);border-bottom:1px solid var(--line)}.top-inner{min-height:66px;display:flex;align-items:center;justify-content:space-between;gap:14px}.brand{font-weight:800;color:#a74669;text-decoration:none;font-size:.9rem}.nav{display:flex;gap:7px;flex-wrap:wrap}.nav a{text-decoration:none;border:1px solid var(--line);border-radius:9px;padding:7px 10px;background:#fff;color:#a04d6c;font-size:.73rem;font-weight:800}
+.hero{padding:32px 0 18px}.hero-grid{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:end}.kicker{font-size:.72rem;font-weight:800;color:#b44f73;letter-spacing:.13em}.hero h1{margin:5px 0 4px;font-family:"Noto Serif SC",serif;font-weight:600;font-size:clamp(2rem,4vw,3.6rem)}.hero p{margin:0;color:var(--muted);font-size:.85rem}.level-tabs{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.level{border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 12px;color:#8a6d79;font-size:.74rem;font-weight:800}.level.active{background:linear-gradient(135deg,#d86f96,#b84e73);color:#fff;border-color:#b84e73}.level.disabled{opacity:.5}
+.setup{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:10px;margin:10px 0 14px}.field{background:#fff;border:1px solid var(--line);border-radius:15px;padding:10px 12px}.field label{display:block;font-size:.65rem;color:#9a7b87;font-weight:800;margin-bottom:5px}.field select{border:0;background:transparent;width:100%;outline:none;color:#5d4650;font-weight:700}.primary-btn{border:0;border-radius:15px;padding:10px 18px;background:linear-gradient(135deg,#d86f96,#b84e73);color:#fff;font-weight:800;cursor:pointer;box-shadow:0 9px 20px rgba(184,78,115,.18)}
+.score-strip{display:grid;grid-template-columns:repeat(4,minmax(110px,1fr));gap:8px;margin-bottom:10px}.stat{background:#fff;border:1px solid var(--line);border-radius:15px;padding:10px 13px}.stat span{display:block;font-size:.63rem;color:#a07e8b;font-weight:800}.stat b{display:block;font-size:1.1rem;margin-top:2px}
+.team-board{display:none;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:10px}body.team-mode .team-board{display:grid}.team{background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px;transition:.18s}.team.active{border-color:#d86f96;box-shadow:0 0 0 3px rgba(216,111,150,.12)}.team-name{width:100%;border:0;background:transparent;text-align:center;font-weight:800;color:#62454f;outline:none}.team-score{font-size:1.25rem;text-align:center;font-weight:800;margin:4px 0}.team-controls{display:flex;gap:5px;justify-content:center}.team-controls button{width:34px;height:30px;border:1px solid var(--line);background:#fff;border-radius:8px;color:#aa5272;font-weight:900;cursor:pointer}.team-choose{margin-top:6px;width:100%;border:0;background:#fff2f6;border-radius:8px;padding:6px;color:#a64a6b;font-size:.66rem;font-weight:800;cursor:pointer}
+.game-grid{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:12px;align-items:start}.game-panel{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);overflow:hidden}.game-head{padding:13px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.q-info{font-size:.75rem;color:#8b707b;font-weight:800}.translation{font-size:.82rem;color:#694d58;font-weight:700}.lesson-chip{border:1px solid var(--line);border-radius:999px;padding:5px 8px;font-size:.63rem;color:#a14d6d;background:#fff8fb;font-weight:800}
+.word-bank-wrap{padding:12px}.bank-title,.answer-title{font-size:.68rem;color:#9c7c88;font-weight:800;letter-spacing:.06em;margin-bottom:7px}#wordBank{height:310px;position:relative;overflow:hidden;border:1px solid #f0dce3;border-radius:20px;background:linear-gradient(rgba(255,255,255,.78),rgba(255,255,255,.78)),repeating-linear-gradient(0deg,#fff 0,#fff 31px,#f7dce6 32px)}
+.float-word,.answer-word{user-select:none;-webkit-user-select:none;touch-action:none;cursor:grab;border:1px solid #eec9d7;background:linear-gradient(180deg,#fff,#fff6f9);border-radius:13px;padding:9px 13px;font-family:"Noto Serif SC",serif;font-size:clamp(1.02rem,1.8vw,1.28rem);font-weight:700;color:#563842;box-shadow:0 7px 16px rgba(157,76,107,.10);white-space:nowrap}.float-word{position:absolute;left:0;top:0;will-change:transform}.float-word.dragging,.answer-word.dragging{cursor:grabbing;z-index:99999;box-shadow:0 16px 30px rgba(109,54,76,.22);transform:none!important}.answer-wrap{padding:0 12px 12px}#answerZone{min-height:105px;border:2px dashed #e5afc2;border-radius:19px;background:#fff8fb;padding:12px;display:flex;align-items:center;align-content:center;gap:8px;flex-wrap:wrap;transition:.15s}#answerZone.over{background:#fff0f5;border-color:#d86f96}.answer-word{position:relative}.placeholder{height:45px;min-width:62px;border:2px dashed #e4a7bc;border-radius:12px;background:#fff2f6}
+.feedback{margin:0 12px 12px;padding:0;max-height:0;overflow:hidden;border-radius:14px;transition:.22s}.feedback.show{max-height:180px;padding:10px 12px}.feedback.good{background:#effaf5;border:1px solid #c8eadb;color:#307b60}.feedback.bad{background:#fff1f3;border:1px solid #f1c9d0;color:#a84958}.correct-answer{margin-top:4px;font-family:"Noto Serif SC",serif;font-size:1rem;font-weight:700}.controls{display:flex;gap:7px;flex-wrap:wrap;padding:0 12px 14px}.btn{border:1px solid var(--line);background:#fff;color:#984c68;border-radius:11px;padding:9px 13px;font-size:.73rem;font-weight:800;cursor:pointer}.btn.primary{background:linear-gradient(135deg,#d86f96,#b84e73);color:#fff;border-color:#b84e73}.btn:disabled{opacity:.45;cursor:not-allowed}
+.side{display:grid;gap:10px}.side-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:14px;box-shadow:0 10px 28px rgba(157,76,107,.07)}.side-card h3{margin:0 0 9px;font-size:.86rem}.help{color:#7f6b74;font-size:.72rem;line-height:1.7}.rank-list{display:grid;gap:6px;max-height:390px;overflow:auto}.rank-row{display:grid;grid-template-columns:28px 1fr auto;gap:8px;align-items:center;border-top:1px solid #f1e3e8;padding:8px 0}.rank-row:first-child{border-top:0}.rank-no{font-size:.68rem;color:#ad8795;font-weight:800}.rank-name{font-size:.74rem;font-weight:800;color:#624953;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rank-score{font-size:.72rem;color:#b14f72;font-weight:800}.rank-note{font-size:.65rem;color:#98818b;margin-top:7px}.rank-refresh{width:100%;margin-top:9px}
+.finish{position:fixed;inset:0;background:rgba(65,38,49,.36);display:none;align-items:center;justify-content:center;padding:18px;z-index:10000}.finish.open{display:flex}.finish-card{width:min(520px,100%);background:#fff;border:1px solid var(--line);border-radius:25px;padding:24px;box-shadow:0 30px 70px rgba(75,42,55,.22);text-align:center}.finish-card h2{margin:0;font-family:"Noto Serif SC",serif;font-size:1.8rem}.finish-score{font-size:2.5rem;color:#b94f74;font-weight:800;margin:10px 0 2px}.finish-sub{font-size:.8rem;color:#846e77}.finish-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:17px}
+.flash-good{animation:goodPulse .55s ease}.flash-bad{animation:badPulse .55s ease}@keyframes goodPulse{0%,100%{box-shadow:var(--shadow)}50%{box-shadow:0 0 0 7px rgba(63,155,121,.13),var(--shadow)}}@keyframes badPulse{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+@media(max-width:1050px){.game-grid{grid-template-columns:1fr}.side{grid-template-columns:1fr 1fr}}@media(max-width:760px){.hero-grid{grid-template-columns:1fr}.level-tabs{justify-content:flex-start}.setup{grid-template-columns:1fr 1fr}.score-strip{grid-template-columns:1fr 1fr}.team-board{grid-template-columns:1fr 1fr}.side{grid-template-columns:1fr}#wordBank{height:360px}}@media(max-width:470px){.container{width:min(100% - 16px,1380px)}.setup{grid-template-columns:1fr}.score-strip{grid-template-columns:1fr 1fr}.team-board{grid-template-columns:1fr 1fr}#wordBank{height:390px}.float-word,.answer-word{font-size:1rem;padding:8px 10px}}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="container top-inner"><a class="brand" href="index.html">TIẾNG TRUNG MEOW MEOW · 中文课堂</a><nav class="nav"><a href="index.html">Trang chính</a><a href="hsk4.html">Bài học HSK4</a><a href="ranking.html">Xếp hạng học tập</a></nav></div></header>
+
+<main class="container">
+<section class="hero"><div class="hero-grid"><div><div class="kicker">TRÒ CHƠI · 句子排序</div><h1>Sắp xếp câu HSK4</h1><p>Bắt các cụm từ đang chuyển động, kéo xuống vùng trả lời và sắp xếp thành câu đúng.</p></div><div class="level-tabs"><button class="level disabled" type="button">HSK1 · Sắp có</button><button class="level disabled" type="button">HSK2 · Sắp có</button><button class="level disabled" type="button">HSK3 · Sắp có</button><button class="level active" type="button">HSK4</button></div></div></section>
+
+<section class="setup">
+<div class="field"><label>CHẾ ĐỘ</label><select id="mode"><option value="individual">Cá nhân</option><option value="team">Theo đội</option></select></div>
+<div class="field"><label>PHẠM VI</label><select id="lessonFilter"><option value="all">Tất cả Bài 1–7</option><option value="1">Bài 1 · 简单的爱情</option><option value="2">Bài 2 · 真正的朋友</option><option value="3">Bài 3 · 经理对我印象不错</option><option value="4">Bài 4 · 不要太着急赚钱</option><option value="5">Bài 5 · 只买对的，不买贵的</option><option value="6">Bài 6 · 一分钱一分货</option><option value="7">Bài 7 · 最好的医生是自己</option></select></div>
+<div class="field"><label>SỐ CÂU / VÒNG</label><select id="roundSize"><option value="10">10 câu ngẫu nhiên</option><option value="15">15 câu ngẫu nhiên</option><option value="all">Toàn bộ câu trong phạm vi</option></select></div>
+<button id="startRound" class="primary-btn" type="button">Bắt đầu vòng mới</button>
+</section>
+
+<section class="score-strip"><div class="stat"><span>CÂU HIỆN TẠI</span><b id="qStat">0 / 0</b></div><div class="stat"><span>ĐIỂM</span><b id="scoreStat">0</b></div><div class="stat"><span>ĐÚNG</span><b id="correctStat">0</b></div><div class="stat"><span>THỜI GIAN</span><b id="timeStat">00:00</b></div></section>
+
+<section class="team-board" id="teamBoard">
+<div class="team active" data-team="1"><input class="team-name" value="Đội 1"><div class="team-score">0</div><div class="team-controls"><button type="button" data-delta="-10">−</button><button type="button" data-delta="10">+</button></div><button class="team-choose" type="button">Chọn đội này</button></div>
+<div class="team" data-team="2"><input class="team-name" value="Đội 2"><div class="team-score">0</div><div class="team-controls"><button type="button" data-delta="-10">−</button><button type="button" data-delta="10">+</button></div><button class="team-choose" type="button">Chọn đội này</button></div>
+<div class="team" data-team="3"><input class="team-name" value="Đội 3"><div class="team-score">0</div><div class="team-controls"><button type="button" data-delta="-10">−</button><button type="button" data-delta="10">+</button></div><button class="team-choose" type="button">Chọn đội này</button></div>
+<div class="team" data-team="4"><input class="team-name" value="Đội 4"><div class="team-score">0</div><div class="team-controls"><button type="button" data-delta="-10">−</button><button type="button" data-delta="10">+</button></div><button class="team-choose" type="button">Chọn đội này</button></div>
+</section>
+
+<section class="game-grid">
+<div class="game-panel" id="gamePanel">
+<div class="game-head"><div><div class="q-info" id="questionInfo">Chọn chế độ và bắt đầu vòng mới.</div><div class="translation" id="translation">HSK4 · Bài 1–7</div></div><div class="lesson-chip" id="lessonChip">HSK4</div></div>
+<div class="word-bank-wrap"><div class="bank-title">NGÂN HÀNG TỪ · KÉO CỤM TỪ XUỐNG DƯỚI</div><div id="wordBank"></div></div>
+<div class="answer-wrap"><div class="answer-title">CÂU TRẢ LỜI · CÓ THỂ KÉO ĐỂ ĐỔI THỨ TỰ</div><div id="answerZone"></div></div>
+<div class="feedback" id="feedback"></div>
+<div class="controls"><button class="btn primary" id="checkBtn" type="button">Kiểm tra</button><button class="btn" id="resetBtn" type="button">Làm lại câu này</button><button class="btn" id="nextBtn" type="button">Câu tiếp theo</button></div>
+</div>
+
+<aside class="side">
+<div class="side-card"><h3>Cách chơi</h3><div class="help">Các cụm từ chuyển động liên tục trong khung. Kéo từng cụm vào vùng trả lời, sau đó kéo đổi vị trí nếu cần. Câu đúng được cộng 10 điểm. Trong chế độ đội, điểm đúng tự cộng cho đội đang được chọn; giáo viên vẫn có thể cộng hoặc trừ điểm thủ công.</div></div>
+<div class="side-card"><h3>Xếp hạng HSK4</h3><div class="rank-list" id="rankList"><div class="help">Đang chờ dữ liệu bảng xếp hạng...</div></div><div class="rank-note">Xếp hạng lớp sử dụng kết quả ở chế độ cá nhân. Chế độ đội dùng bảng điểm ngay trên màn hình.</div><button class="btn rank-refresh" id="refreshRank" type="button">Tải lại xếp hạng</button></div>
+</aside>
+</section>
+</main>
+
+<div class="finish" id="finish"><div class="finish-card"><h2>Hoàn thành vòng chơi</h2><div class="finish-score" id="finishScore">0/100</div><div class="finish-sub" id="finishSub"></div><div class="finish-actions"><button class="btn primary" id="playAgain" type="button">Chơi vòng mới</button><button class="btn" id="closeFinish" type="button">Đóng</button></div></div></div>
+
+<script>
+const QUESTIONS=[{"lesson":1,"lessonTitle":"简单的爱情","answer":"他们俩是在一次志愿活动中认识的","parts":["他们俩","是在","一次志愿活动中","认识的"],"translation":"Hai người họ quen nhau trong một hoạt động tình nguyện.","note":"俩 đứng sau đại từ/chủ ngữ, không thêm 个."},{"lesson":1,"lessonTitle":"简单的爱情","answer":"她不仅很幽默而且性格也很好","parts":["她","不仅很幽默","而且","性格","也很好"],"translation":"Cô ấy không những hài hước mà tính cách cũng rất tốt.","note":"不仅……而且…… nối hai đặc điểm tích cực."},{"lesson":1,"lessonTitle":"简单的爱情","answer":"我从来没有因为小事跟他生过气","parts":["我","从来没有","因为小事","跟他","生过气"],"translation":"Tôi chưa bao giờ giận anh ấy vì những chuyện nhỏ.","note":"从来没有/没 + động từ."},{"lesson":1,"lessonTitle":"简单的爱情","answer":"两个人最好学会互相理解和接受","parts":["两个人","最好","学会","互相理解","和接受"],"translation":"Hai người tốt nhất nên học cách thấu hiểu và chấp nhận lẫn nhau.","note":"最好 + VP; 互相 đứng trước động từ."},{"lesson":1,"lessonTitle":"简单的爱情","answer":"即使工作很忙他也会陪家人","parts":["即使","工作很忙","他","也会","陪家人"],"translation":"Cho dù công việc rất bận, anh ấy vẫn dành thời gian ở bên gia đình.","note":"即使……也……结构。"},{"lesson":2,"lessonTitle":"真正的朋友","answer":"我刚到这里时很不适应周围的环境","parts":["我","刚到这里时","很不适应","周围的环境"],"translation":"Khi tôi vừa đến đây, tôi rất chưa quen với môi trường xung quanh.","note":"适应 + 环境/生活。"},{"lesson":2,"lessonTitle":"真正的朋友","answer":"我们平时常常一起逛街和运动","parts":["我们","平时","常常","一起逛街","和运动"],"translation":"Bình thường chúng tôi thường cùng nhau đi mua sắm và vận động.","note":"平时 thường đứng đầu/trước trạng ngữ tần suất."},{"lesson":2,"lessonTitle":"真正的朋友","answer":"毕业以后我们一直保持联系","parts":["毕业以后","我们","一直","保持联系"],"translation":"Sau khi tốt nghiệp, chúng tôi vẫn luôn giữ liên lạc.","note":"毕业以后 + 持续动作。"},{"lesson":2,"lessonTitle":"真正的朋友","answer":"我一看到那张照片就想起大学生活","parts":["我","一看到","那张照片","就想起","大学生活"],"translation":"Vừa nhìn thấy tấm ảnh đó là tôi nhớ ngay đến cuộc sống đại học.","note":"一……就……。"},{"lesson":2,"lessonTitle":"真正的朋友","answer":"当我遇到困难的时候他总会及时帮助我","parts":["当我","遇到困难的时候","他","总会","及时帮助我"],"translation":"Khi tôi gặp khó khăn, anh ấy luôn kịp thời giúp đỡ tôi.","note":"当……的时候 + 主句。"},{"lesson":3,"lessonTitle":"经理对我印象不错","answer":"这次招聘本来是小李负责的","parts":["这次招聘","本来","是","小李","负责的"],"translation":"Đợt tuyển dụng này vốn do Tiểu Lý phụ trách.","note":"本来放在谓语前，表示原来的安排。"},{"lesson":3,"lessonTitle":"经理对我印象不错","answer":"请你通知他们下周一上午九点来办公室","parts":["请你","通知","他们","下周一上午九点","来办公室"],"translation":"Hãy thông báo cho họ thứ Hai tuần sau lúc 9 giờ sáng đến văn phòng.","note":"通知 + 人 + 时间 + 来/做某事。"},{"lesson":3,"lessonTitle":"经理对我印象不错","answer":"不管多忙他都应该准时上班","parts":["不管","多忙","他","都应该","准时上班"],"translation":"Dù bận thế nào, anh ấy cũng nên đi làm đúng giờ.","note":"不管……都……是本课重点结构。"},{"lesson":3,"lessonTitle":"经理对我印象不错","answer":"首先要准备好材料其次不要太紧张","parts":["首先","要准备好材料","其次","不要","太紧张"],"translation":"Trước hết phải chuẩn bị tốt tài liệu, tiếp theo đừng quá căng thẳng.","note":"首先……其次……用于按顺序列举。"},{"lesson":3,"lessonTitle":"经理对我印象不错","answer":"经理对我的第一印象挺好的","parts":["经理","对我的","第一印象","挺好的"],"translation":"Ấn tượng đầu tiên của giám đốc về tôi khá tốt.","note":"对 + 人/事 + 印象；挺 + 形容词 + 的。"},{"lesson":4,"lessonTitle":"不要太着急赚钱","answer":"我以为新工作会更轻松没想到更忙","parts":["我","以为","新工作","会更轻松","没想到更忙"],"translation":"Tôi tưởng công việc mới sẽ nhẹ nhàng hơn, không ngờ lại bận hơn.","note":"以为…没想到…形成 đối lập giữa tưởng tượng và thực tế。"},{"lesson":4,"lessonTitle":"不要太着急赚钱","answer":"我们按照原来的计划完成了调查","parts":["我们","按照","原来的计划","完成了","调查"],"translation":"Chúng tôi đã hoàn thành cuộc điều tra theo kế hoạch ban đầu.","note":"按照 + 计划 + 动词。"},{"lesson":4,"lessonTitle":"不要太着急赚钱","answer":"经理提醒我们一定要按时交报告","parts":["经理","提醒","我们","一定要","按时交报告"],"translation":"Giám đốc nhắc chúng tôi nhất định phải nộp báo cáo đúng hạn.","note":"提醒 + 人 + 要做的事。"},{"lesson":4,"lessonTitle":"不要太着急赚钱","answer":"为了积累经验他不得不从基础工作做起","parts":["为了","积累经验","他","不得不","从基础工作做起"],"translation":"Để tích lũy kinh nghiệm, anh ấy buộc phải bắt đầu từ công việc cơ bản.","note":"为了…，不得不…表达目的和不得已。"},{"lesson":4,"lessonTitle":"不要太着急赚钱","answer":"这次项目进行得很顺利大家都很高兴","parts":["这次项目","进行得","很顺利","大家","都很高兴"],"translation":"Dự án lần này tiến hành rất thuận lợi, mọi người đều rất vui.","note":"进行得很顺利 là collocation tự nhiên。"},{"lesson":5,"lessonTitle":"只买对的，不买贵的","answer":"这个沙发正在打折比平时便宜一千块","parts":["这个沙发","正在打折","比平时","便宜","一千块"],"translation":"Chiếc sofa này đang giảm giá, rẻ hơn bình thường 1.000 tệ.","note":"打折后可用 比…便宜… 表示价差。"},{"lesson":5,"lessonTitle":"只买对的，不买贵的","answer":"对我来说质量比价格更重要","parts":["对我来说","质量","比价格","更重要"],"translation":"Đối với tôi, chất lượng quan trọng hơn giá cả.","note":"对…来说 + 判断。"},{"lesson":5,"lessonTitle":"只买对的，不买贵的","answer":"实际上很多商品并不像广告说得那么好","parts":["实际上","很多商品","并不像","广告说得","那么好"],"translation":"Thực tế nhiều sản phẩm không tốt như quảng cáo nói.","note":"实际上 + 并不/并不像…用于纠正印象。"},{"lesson":5,"lessonTitle":"只买对的，不买贵的","answer":"这个月光买家具就花了三千多块","parts":["这个月","光买家具","就花了","三千多块"],"translation":"Tháng này chỉ riêng mua đồ nội thất đã tốn hơn 3.000 tệ.","note":"光…就…突出“仅这一项就…”。"},{"lesson":5,"lessonTitle":"只买对的，不买贵的","answer":"年轻人尤其喜欢在网上购物","parts":["年轻人","尤其喜欢","在网上","购物"],"translation":"Người trẻ đặc biệt thích mua sắm trên mạng.","note":"尤其强调某个群体/项目最突出。"},{"lesson":6,"lessonTitle":"一分钱一分货","answer":"今天的价格是昨天的两倍","parts":["今天的价格","是","昨天的","两倍"],"translation":"Giá hôm nay gấp hai lần giá hôm qua.","note":"A 是 B 的 + 倍数。"},{"lesson":6,"lessonTitle":"一分钱一分货","answer":"这个行李箱又轻又结实值得买","parts":["这个行李箱","又轻又结实","值得","买"],"translation":"Chiếc vali này vừa nhẹ vừa chắc, đáng mua.","note":"值得 + 动词。"},{"lesson":6,"lessonTitle":"一分钱一分货","answer":"在老师的支持下我们成功举办了活动","parts":["在老师的支持下","我们","成功","举办了","活动"],"translation":"Dưới sự hỗ trợ của giáo viên, chúng tôi đã tổ chức hoạt động thành công.","note":"在……下置于句首说明条件。"},{"lesson":6,"lessonTitle":"一分钱一分货","answer":"一些图书正在打折其中小说七五折","parts":["一些图书","正在打折","其中","小说","七五折"],"translation":"Một số sách đang giảm giá, trong đó tiểu thuyết giảm còn 75%.","note":"其中从前面的总范围中指出一部分。"},{"lesson":6,"lessonTitle":"一分钱一分货","answer":"购物满五百元可以免费办会员卡","parts":["购物满五百元","可以","免费","办会员卡"],"translation":"Mua sắm đủ 500 tệ có thể làm thẻ thành viên miễn phí.","note":"满 + 金额 = 达到该金额。"},{"lesson":7,"lessonTitle":"最好的医生是自己","answer":"我估计今天下午会下雨","parts":["我","估计","今天下午","会下雨"],"translation":"Tôi đoán chiều nay trời sẽ mưa.","note":"估计可作谓语，后面接判断内容。"},{"lesson":7,"lessonTitle":"最好的医生是自己","answer":"再不出门就来不及上班了","parts":["再不出门","就","来不及","上班了"],"translation":"Nếu còn không ra khỏi nhà thì sẽ không kịp đi làm.","note":"来不及 + 动词。"},{"lesson":7,"lessonTitle":"最好的医生是自己","answer":"午饭后我们去公园散散步吧","parts":["午饭后","我们","去公园","散散步","吧"],"translation":"Sau bữa trưa chúng ta ra công viên đi dạo một chút nhé.","note":"散步重叠：散散步。"},{"lesson":7,"lessonTitle":"最好的医生是自己","answer":"要是你有时间就来我家坐坐","parts":["要是你有时间","就","来我家","坐坐"],"translation":"Nếu bạn có thời gian thì đến nhà tôi chơi một lát nhé.","note":"要是……就……。"},{"lesson":7,"lessonTitle":"最好的医生是自己","answer":"散步既可以活动身体又可以减肥","parts":["散步","既可以","活动身体","又可以","减肥"],"translation":"Đi bộ vừa có thể vận động cơ thể vừa có thể giảm cân.","note":"既……又……表示并列。"}];
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const bank=$('#wordBank'),answerZone=$('#answerZone');
+let round=[],qIndex=-1,score=0,correct=0,checked=false,startTime=0,timerId=null,particles=[],rafId=0,lastTs=0,drag=null,activeTeam=1,teamScores=[0,0,0,0],audioCtx=null;
+
+function normalize(s){return String(s||'').replace(/[，。！？、,.!?\s]/g,'').trim()}
+function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function rectContains(r,x,y){return x>=r.left&&x<=r.right&&y>=r.top&&y<=r.bottom}
+function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
+function escapeHtml(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+
+function sound(type){
+ try{
+  audioCtx=audioCtx||new (window.AudioContext||window.webkitAudioContext)();
+  const now=audioCtx.currentTime,o=audioCtx.createOscillator(),g=audioCtx.createGain();o.connect(g);g.connect(audioCtx.destination);
+  if(type==='good'){o.frequency.setValueAtTime(520,now);o.frequency.exponentialRampToValueAtTime(820,now+.16)}
+  else if(type==='bad'){o.frequency.setValueAtTime(240,now);o.frequency.exponentialRampToValueAtTime(145,now+.22)}
+  else{o.frequency.setValueAtTime(360,now);o.frequency.exponentialRampToValueAtTime(430,now+.05)}
+  g.gain.setValueAtTime(.055,now);g.gain.exponentialRampToValueAtTime(.001,now+(type==='bad'?.25:.18));o.start(now);o.stop(now+(type==='bad'?.26:.19));
+ }catch(e){}
+}
+function startTimer(){clearInterval(timerId);startTime=Date.now();timerId=setInterval(()=>{const s=Math.floor((Date.now()-startTime)/1000);$('#timeStat').textContent=String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')},500)}
+function setMode(){document.body.classList.toggle('team-mode',$('#mode').value==='team')}
+
+function buildRound(){
+ const filter=$('#lessonFilter').value;let pool=QUESTIONS.filter(q=>filter==='all'||String(q.lesson)===filter);pool=shuffle(pool);
+ const n=$('#roundSize').value==='all'?pool.length:Math.min(Number($('#roundSize').value),pool.length);
+ round=pool.slice(0,n);qIndex=-1;score=0;correct=0;checked=false;teamScores=[0,0,0,0];updateTeams();setMode();startTimer();nextQuestion(true);$('#finish').classList.remove('open')
+}
+function nextQuestion(force=false){if(!force&&qIndex>=round.length-1){finishRound();return}if(qIndex<round.length-1)qIndex++;checked=false;loadQuestion()}
+function loadQuestion(){
+ stopAnimation();particles=[];bank.innerHTML='';answerZone.innerHTML='';const fb=$('#feedback');fb.className='feedback';fb.innerHTML='';
+ const q=round[qIndex];if(!q){$('#questionInfo').textContent='Không có câu trong phạm vi này.';return}
+ $('#qStat').textContent=`${qIndex+1} / ${round.length}`;$('#scoreStat').textContent=score;$('#correctStat').textContent=correct;
+ $('#questionInfo').textContent=`Sắp xếp thành câu đúng · Câu ${qIndex+1}`;$('#translation').textContent=q.translation;$('#lessonChip').textContent=`HSK4 · Bài ${q.lesson} · ${q.lessonTitle}`;
+ shuffle(q.parts).forEach((txt,i)=>{const el=document.createElement('div');el.className='float-word';el.textContent=txt;el.dataset.pid=String(i);bank.appendChild(el);el.addEventListener('pointerdown',startBankDrag)});
+ requestAnimationFrame(initParticles);sound('click')
+}
+function initParticles(){
+ const br=bank.getBoundingClientRect();particles=[];
+ $$('.float-word').forEach(el=>{
+  const w=el.offsetWidth,h=el.offsetHeight;let x=4,y=4;
+  for(let tries=0;tries<50;tries++){
+   x=Math.random()*Math.max(1,br.width-w-8)+4;y=Math.random()*Math.max(1,br.height-h-8)+4;
+   if(!particles.some(p=>x<p.x+p.w+8&&x+w+8>p.x&&y<p.y+p.h+8&&y+h+8>p.y))break;
+  }
+  const speed=.035+Math.random()*.045,a=Math.random()*Math.PI*2,p={el,x,y,w,h,vx:Math.cos(a)*speed,vy:Math.sin(a)*speed,placed:false,dragging:false};
+  particles.push(p);el.style.transform=`translate3d(${x}px,${y}px,0)`
+ });
+ lastTs=performance.now();rafId=requestAnimationFrame(animate)
+}
+function animate(ts){
+ const dt=Math.min(32,ts-lastTs||16);lastTs=ts;const br=bank.getBoundingClientRect();
+ for(const p of particles){if(p.placed||p.dragging)continue;p.x+=p.vx*dt;p.y+=p.vy*dt;
+  if(p.x<=2){p.x=2;p.vx=Math.abs(p.vx)}if(p.x+p.w>=br.width-2){p.x=Math.max(2,br.width-p.w-2);p.vx=-Math.abs(p.vx)}
+  if(p.y<=2){p.y=2;p.vy=Math.abs(p.vy)}if(p.y+p.h>=br.height-2){p.y=Math.max(2,br.height-p.h-2);p.vy=-Math.abs(p.vy)}
+  p.el.style.transform=`translate3d(${p.x}px,${p.y}px,0)`
+ }
+ for(let i=0;i<particles.length;i++)for(let j=i+1;j<particles.length;j++){const a=particles[i],b=particles[j];if(a.placed||b.placed||a.dragging||b.dragging)continue;
+  if(a.x+a.w>b.x&&a.x<b.x+b.w&&a.y+a.h>b.y&&a.y<b.y+b.h){const dx=(a.x+a.w/2)-(b.x+b.w/2),dy=(a.y+a.h/2)-(b.y+b.h/2);if(Math.abs(dx)>Math.abs(dy)){a.vx*=-1;b.vx*=-1}else{a.vy*=-1;b.vy*=-1}}
+ }
+ rafId=requestAnimationFrame(animate)
+}
+function stopAnimation(){if(rafId)cancelAnimationFrame(rafId);rafId=0}
+function findParticle(el){return particles.find(p=>p.el===el)}
+
+function startBankDrag(e){
+ if(e.button!==undefined&&e.button!==0)return;e.preventDefault();sound('click');const el=e.currentTarget,p=findParticle(el);if(!p)return;p.dragging=true;
+ const r=el.getBoundingClientRect();drag={type:'bank',el,p,dx:e.clientX-r.left,dy:e.clientY-r.top,pointerId:e.pointerId};el.classList.add('dragging');el.style.position='fixed';el.style.left='0';el.style.top='0';el.style.transform=`translate3d(${e.clientX-drag.dx}px,${e.clientY-drag.dy}px,0)`;document.body.appendChild(el);
+ window.addEventListener('pointermove',moveDrag,{passive:false});window.addEventListener('pointerup',endDrag,{once:true})
+}
+function startAnswerDrag(e){
+ if(e.button!==undefined&&e.button!==0)return;e.preventDefault();sound('click');const el=e.currentTarget,r=el.getBoundingClientRect(),ph=document.createElement('div');ph.className='placeholder';ph.style.width=r.width+'px';answerZone.insertBefore(ph,el);
+ drag={type:'answer',el,placeholder:ph,dx:e.clientX-r.left,dy:e.clientY-r.top,pointerId:e.pointerId};el.classList.add('dragging');el.style.position='fixed';el.style.left='0';el.style.top='0';el.style.width=r.width+'px';el.style.transform=`translate3d(${e.clientX-drag.dx}px,${e.clientY-drag.dy}px,0)`;document.body.appendChild(el);
+ window.addEventListener('pointermove',moveDrag,{passive:false});window.addEventListener('pointerup',endDrag,{once:true})
+}
+function moveDrag(e){
+ if(!drag)return;e.preventDefault();drag.el.style.transform=`translate3d(${e.clientX-drag.dx}px,${e.clientY-drag.dy}px,0)`;
+ const ar=answerZone.getBoundingClientRect();answerZone.classList.toggle('over',rectContains(ar,e.clientX,e.clientY));
+ if(drag.type==='answer'&&rectContains(ar,e.clientX,e.clientY)){const others=$$('.answer-word').filter(x=>x!==drag.el);let target=null,best=Infinity;
+  for(const o of others){const r=o.getBoundingClientRect(),d=Math.hypot(e.clientX-(r.left+r.width/2),e.clientY-(r.top+r.height/2));if(d<best){best=d;target=o}}
+  if(target){const r=target.getBoundingClientRect();answerZone.insertBefore(drag.placeholder,e.clientX<r.left+r.width/2?target:target.nextSibling)}
+ }
+}
+function cleanupFixed(el){el.classList.remove('dragging');el.style.position='';el.style.left='';el.style.top='';el.style.width='';el.style.transform=''}
+function endDrag(e){
+ window.removeEventListener('pointermove',moveDrag);if(!drag)return;const d=drag;drag=null;answerZone.classList.remove('over');const ar=answerZone.getBoundingClientRect(),br=bank.getBoundingClientRect();
+ if(d.type==='bank'){
+  if(rectContains(ar,e.clientX,e.clientY)){d.p.placed=true;d.p.dragging=false;cleanupFixed(d.el);d.el.className='answer-word';d.el.addEventListener('pointerdown',startAnswerDrag);answerZone.appendChild(d.el)}
+  else{bank.appendChild(d.el);cleanupFixed(d.el);d.el.className='float-word';d.el.addEventListener('pointerdown',startBankDrag);const p=d.p;p.el=d.el;p.placed=false;p.dragging=false;p.w=d.el.offsetWidth;p.h=d.el.offsetHeight;p.x=clamp(e.clientX-br.left-p.w/2,3,Math.max(3,br.width-p.w-3));p.y=clamp(e.clientY-br.top-p.h/2,3,Math.max(3,br.height-p.h-3));d.el.style.transform=`translate3d(${p.x}px,${p.y}px,0)`}
+ }else{
+  if(rectContains(br,e.clientX,e.clientY)){d.placeholder.remove();cleanupFixed(d.el);d.el.className='float-word';d.el.addEventListener('pointerdown',startBankDrag);bank.appendChild(d.el);const p=findParticle(d.el);if(p){p.placed=false;p.dragging=false;p.w=d.el.offsetWidth;p.h=d.el.offsetHeight;p.x=Math.random()*Math.max(3,br.width-p.w-5);p.y=Math.random()*Math.max(3,br.height-p.h-5)}}
+  else{cleanupFixed(d.el);d.el.className='answer-word';d.el.addEventListener('pointerdown',startAnswerDrag);d.placeholder.replaceWith(d.el)}
+ }
+}
+function resetQuestion(){if(qIndex>=0)loadQuestion()}
+function checkAnswer(){
+ if(qIndex<0||checked)return;const q=round[qIndex],current=$$('.answer-word').map(x=>x.textContent).join(''),fb=$('#feedback');checked=true;
+ if(normalize(current)===normalize(q.answer)){correct++;score+=10;$('#scoreStat').textContent=score;$('#correctStat').textContent=correct;fb.className='feedback show good';fb.innerHTML=`<b>Chính xác.</b><div class="correct-answer">${q.answer}。</div><div>${q.note||''}</div>`;$('#gamePanel').classList.add('flash-good');setTimeout(()=>$('#gamePanel').classList.remove('flash-good'),600);sound('good');if($('#mode').value==='team'){teamScores[activeTeam-1]+=10;updateTeams()}}
+ else{fb.className='feedback show bad';fb.innerHTML=`<b>Chưa đúng.</b><div class="correct-answer">Đáp án: ${q.answer}。</div><div>${q.note||''}</div>`;$('#gamePanel').classList.add('flash-bad');setTimeout(()=>$('#gamePanel').classList.remove('flash-bad'),600);sound('bad')}
+}
+function updateTeams(){$$('.team').forEach((card,i)=>{card.classList.toggle('active',i+1===activeTeam);card.querySelector('.team-score').textContent=teamScores[i]})}
+function finishRound(){
+ clearInterval(timerId);stopAnimation();const total=round.length||1,pct=Math.round(correct/total*100),seconds=Math.max(1,Math.floor((Date.now()-startTime)/1000)),mode=$('#mode').value;
+ $('#finishScore').textContent=pct+'/100';$('#finishSub').textContent=`${correct}/${total} câu đúng · ${seconds} giây${mode==='team'?' · Điểm đội được giữ trong phiên này.':''}`;$('#finish').classList.add('open');saveResult(pct,correct,total,seconds,mode)
+}
+
+async function waitAuth(){if(window.meowSupabase&&window.meowUser)return{client:window.meowSupabase,user:window.meowUser};return new Promise(resolve=>window.addEventListener('meow-auth-ready',e=>resolve({client:e.detail.client,user:e.detail.user}),{once:true}))}
+async function saveResult(roundScore,c,t,duration,mode){try{const{client,user}=await waitAuth();await client.from('game_arcade_results').insert({user_id:user.id,level:'hsk4',mode,score:roundScore,correct_count:c,total_questions:t,duration_seconds:duration});if(mode==='individual')loadLeaderboard()}catch(e){}}
+async function loadLeaderboard(){
+ const el=$('#rankList');try{const{client}=await waitAuth();const{data,error}=await client.from('game_arcade_leaderboard').select('display_name,best_score,total_points,rounds,last_played').eq('level','hsk4').order('best_score',{ascending:false}).order('total_points',{ascending:false}).limit(20);if(error)throw error;
+  if(!data?.length){el.innerHTML='<div class="help">Chưa có kết quả cá nhân nào.</div>';return}
+  el.innerHTML=data.map((r,i)=>`<div class="rank-row"><div class="rank-no">${i+1}</div><div class="rank-name">${escapeHtml(r.display_name||'Học viên')}<div class="rank-note">${r.rounds} vòng · tổng ${r.total_points} điểm</div></div><div class="rank-score">${r.best_score}/100</div></div>`).join('')
+ }catch(e){el.innerHTML='<div class="help">Bảng xếp hạng chưa được thiết lập. Game vẫn chơi bình thường; chạy file SQL đi kèm một lần để bật xếp hạng.</div>'}
+}
+
+$('#mode').addEventListener('change',setMode);$('#startRound').addEventListener('click',buildRound);$('#checkBtn').addEventListener('click',checkAnswer);$('#resetBtn').addEventListener('click',resetQuestion);$('#nextBtn').addEventListener('click',()=>nextQuestion());$('#refreshRank').addEventListener('click',loadLeaderboard);$('#playAgain').addEventListener('click',buildRound);$('#closeFinish').addEventListener('click',()=>$('#finish').classList.remove('open'));
+$$('.team').forEach((card,i)=>{card.querySelector('.team-choose').onclick=()=>{activeTeam=i+1;updateTeams();sound('click')};card.querySelectorAll('[data-delta]').forEach(btn=>btn.onclick=()=>{teamScores[i]=Math.max(0,teamScores[i]+Number(btn.dataset.delta));updateTeams();sound('click')})});
+window.addEventListener('resize',()=>{const br=bank.getBoundingClientRect();particles.forEach(p=>{if(!p.placed){p.x=clamp(p.x,2,Math.max(2,br.width-p.w-2));p.y=clamp(p.y,2,Math.max(2,br.height-p.h-2))}})});
+window.addEventListener('meow-auth-ready',loadLeaderboard,{once:true});setMode();updateTeams();
+</script>
+</body>
+</html>
