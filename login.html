@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -38,7 +39,7 @@ button.primary:hover{background:#346F84}
   <section class="side">
     <div>
       <div class="mark">喵 · Meow Meow 课堂</div>
-      <h1>Thi đua điểm số cùng meow meow nhé,<br></h1>
+      <h1>Thi đua cùng meow meow nàooo<br></h1>
       <p>Đăng nhập để lưu bài đã học và điểm luyện tập trên nhiều thiết bị.</p>
     </div>
     <div style="font-size:.78rem;opacity:.88">中文学习空间 · Tiếng Trung Meow Meow</div>
@@ -51,10 +52,10 @@ button.primary:hover{background:#346F84}
     </div>
 
     <div id="loginPane">
-      <h2>Chào mừng quay lại</h2>
+      <h2>Chào mừng quay lại với lớp học Meow meoww</h2>
       <div class="sub">Nhập tên tài khoản và mật khẩu.</div>
       <label for="loginUser">Tên tài khoản</label>
-      <input id="loginUser" autocomplete="username" placeholder="Ví dụ: giahan01">
+      <input id="loginUser" autocomplete="username" placeholder="Ví dụ: Amber">
       <label for="loginPass">Mật khẩu</label>
       <input id="loginPass" type="password" autocomplete="current-password" placeholder="Mật khẩu">
       <button class="primary" id="loginBtn">Đăng nhập</button>
@@ -67,14 +68,14 @@ button.primary:hover{background:#346F84}
       <label for="displayName">Tên hiển thị</label>
       <input id="displayName" placeholder="Ví dụ: Nguyễn Gia Hân">
       <label for="signupUser">Tên tài khoản</label>
-      <input id="signupUser" autocomplete="username" placeholder="giahan01">
+      <input id="signupUser" autocomplete="username" placeholder="Ví dụ: Amber, Hương, linh01">
       <label for="signupPass">Mật khẩu</label>
       <input id="signupPass" type="password" autocomplete="new-password" placeholder="Tối thiểu 6 ký tự">
       <label for="signupPass2">Nhập lại mật khẩu</label>
       <input id="signupPass2" type="password" autocomplete="new-password" placeholder="Nhập lại mật khẩu">
       <button class="primary" id="signupBtn">Tạo tài khoản</button>
       <div class="msg" id="signupMsg"></div>
-      <div class="note">Tên tài khoản chỉ nên dùng chữ thường không dấu, số và dấu gạch dưới. Ví dụ: <b>amber01</b>, <b>meow_meow139</b>.</div>
+      <div class="note">Có thể đặt tên tài khoản đơn giản như <b>Amber</b>, <b>Hương</b>, <b>bé na</b>, <b>linh01</b>. Hệ thống sẽ tự xử lý định dạng.</div>
     </div>
 
     <a class="back" href="index.html">← Về trang chính</a>
@@ -88,9 +89,21 @@ const SUPABASE_KEY = "sb_publishable_R5TEjUNB6lDTJuN4MNdhVQ_ANwIaKLP";
 const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const $ = id => document.getElementById(id);
-const normalizeUser = value => value.trim().toLowerCase();
-const validUser = value => /^[a-z0-9_](3, 30)$/.test(value);
-const internalEmail = username => `${username}@meowmeow.local`;
+const normalizeUser = value => {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/đ/g, "d")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, "_")
+    .replace(/[^a-z0-9_-]/g, "")
+    .replace(/_+/g, "_")
+    .replace(/^-+|-+$/g, "")
+    .replace(/^_+|_+$/g, "");
+};
+const validUser = value => normalizeUser(value).length >= 2 && normalizeUser(value).length <= 30;
+const internalEmail = username => `${normalizeUser(username)}@meowmeow.example.com`;
 const nextPage = new URLSearchParams(location.search).get("next") || "hsk1.html";
 
 function showPane(which){
@@ -109,12 +122,12 @@ $("tabSignup").onclick = () => showPane("signup");
 })();
 
 $("loginBtn").onclick = async () => {
-  const username = normalizeUser($("loginUser").value);
+  const username = $("loginUser").value.trim();
   const password = $("loginPass").value;
   const msg = $("loginMsg");
   msg.className = "msg";
   if(!validUser(username)) {
-    msg.textContent = "Tên tài khoản chưa đúng định dạng.";
+    msg.textContent = "Tên tài khoản cần ít nhất 2 ký tự.";
     return;
   }
   msg.textContent = "Đang đăng nhập...";
@@ -133,7 +146,7 @@ $("loginBtn").onclick = async () => {
 
 $("signupBtn").onclick = async () => {
   const displayName = $("displayName").value.trim();
-  const username = normalizeUser($("signupUser").value);
+  const username = $("signupUser").value.trim();
   const pass1 = $("signupPass").value;
   const pass2 = $("signupPass2").value;
   const msg = $("signupMsg");
@@ -144,7 +157,7 @@ $("signupBtn").onclick = async () => {
     return;
   }
   if(!validUser(username)) {
-    msg.textContent = "Tên tài khoản cần 3–30 ký tự: a-z, 0-9 hoặc _.";
+    msg.textContent = "Tên tài khoản cần từ 2–30 ký tự.";
     return;
   }
   if(pass1.length < 6) {
@@ -162,7 +175,7 @@ $("signupBtn").onclick = async () => {
     password: pass1,
     options: {
       data: {
-        username,
+        username: normalizeUser(username),
         display_name: displayName
       }
     }
