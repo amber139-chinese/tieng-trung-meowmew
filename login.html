@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đăng nhập · Tiếng Trung Meow Meow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#6FAFC4;--dark:#3F8198;--soft:#EAF6F8;--ink:#293A40;--muted:#6A7A80;--line:#D7E9ED;}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:22px;font-family:"Be Vietnam Pro",sans-serif;color:var(--ink);background:radial-gradient(circle at 15% 10%,rgba(140,200,214,.2),transparent 30%),linear-gradient(145deg,#F7FCFD,#fff);}
+.shell{width:min(920px,100%);display:grid;grid-template-columns:.9fr 1.1fr;background:#fff;border:1px solid var(--line);border-radius:28px;overflow:hidden;box-shadow:0 24px 70px rgba(55,110,125,.13)}
+.side{padding:46px;background:linear-gradient(155deg,#5F9FB5,#8CC8D6);color:#fff;display:flex;flex-direction:column;justify-content:space-between}
+.mark{font-family:"Noto Serif SC",serif;font-size:2rem}
+.side h1{font-family:"Noto Serif SC",serif;font-size:2.5rem;line-height:1.25;margin:18px 0 12px}
+.side p{margin:0;color:rgba(255,255,255,.9);line-height:1.8}
+.form{padding:42px}
+.tabs{display:flex;gap:7px;margin-bottom:28px;background:#F5FAFB;padding:5px;border-radius:13px}
+.tab{flex:1;border:0;background:transparent;padding:10px;border-radius:9px;font-weight:700;color:#6B7E84;cursor:pointer}
+.tab.active{background:#fff;color:var(--dark);box-shadow:0 4px 12px rgba(55,110,125,.08)}
+h2{margin:0 0 7px;font-size:1.65rem}.sub{color:var(--muted);font-size:.9rem;margin-bottom:22px}
+label{display:block;font-size:.82rem;font-weight:700;margin:13px 0 6px}
+input{width:100%;border:1px solid var(--line);border-radius:11px;padding:12px 13px;outline:0;font:inherit}
+input:focus{border-color:#8CC8D6;box-shadow:0 0 0 3px rgba(140,200,214,.14)}
+button.primary{width:100%;border:0;border-radius:11px;background:var(--dark);color:#fff;padding:12px 15px;font-weight:700;cursor:pointer;margin-top:19px}
+button.primary:hover{background:#346F84}
+.msg{min-height:24px;margin-top:13px;font-size:.84rem;color:#A04C59}.msg.ok{color:#31775F}
+.note{margin-top:18px;padding:11px 12px;border-radius:10px;background:#F7FBFC;color:#6A7A80;font-size:.78rem;line-height:1.6}
+.back{display:inline-block;margin-top:18px;color:var(--dark);text-decoration:none;font-size:.84rem;font-weight:700}
+.hidden{display:none}
+@media(max-width:720px){.shell{grid-template-columns:1fr}.side{padding:28px}.side h1{font-size:2rem}.form{padding:28px}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <section class="side">
+    <div>
+      <div class="mark">喵 · Meow Meow 课堂</div>
+      <h1>Học rồi quay lại,<br>tiến độ vẫn còn.</h1>
+      <p>Đăng nhập để lưu bài đã học và điểm luyện tập trên nhiều thiết bị.</p>
+    </div>
+    <div style="font-size:.78rem;opacity:.88">中文学习空间 · Tiếng Trung Meow Meow</div>
+  </section>
+
+  <section class="form">
+    <div class="tabs">
+      <button class="tab active" id="tabLogin">Đăng nhập</button>
+      <button class="tab" id="tabSignup">Tạo tài khoản</button>
+    </div>
+
+    <div id="loginPane">
+      <h2>Chào mừng quay lại</h2>
+      <div class="sub">Nhập tên tài khoản và mật khẩu.</div>
+      <label for="loginUser">Tên tài khoản</label>
+      <input id="loginUser" autocomplete="username" placeholder="Ví dụ: giahan01">
+      <label for="loginPass">Mật khẩu</label>
+      <input id="loginPass" type="password" autocomplete="current-password" placeholder="Mật khẩu">
+      <button class="primary" id="loginBtn">Đăng nhập</button>
+      <div class="msg" id="loginMsg"></div>
+    </div>
+
+    <div id="signupPane" class="hidden">
+      <h2>Tạo tài khoản học</h2>
+      <div class="sub">Tên tài khoản dùng để đăng nhập; tên hiển thị có thể viết tiếng Việt.</div>
+      <label for="displayName">Tên hiển thị</label>
+      <input id="displayName" placeholder="Ví dụ: Nguyễn Gia Hân">
+      <label for="signupUser">Tên tài khoản</label>
+      <input id="signupUser" autocomplete="username" placeholder="giahan01">
+      <label for="signupPass">Mật khẩu</label>
+      <input id="signupPass" type="password" autocomplete="new-password" placeholder="Tối thiểu 6 ký tự">
+      <label for="signupPass2">Nhập lại mật khẩu</label>
+      <input id="signupPass2" type="password" autocomplete="new-password" placeholder="Nhập lại mật khẩu">
+      <button class="primary" id="signupBtn">Tạo tài khoản</button>
+      <div class="msg" id="signupMsg"></div>
+      <div class="note">Tên tài khoản chỉ nên dùng chữ thường không dấu, số và dấu gạch dưới. Ví dụ: <b>giahan01</b>, <b>linh_nguyen</b>.</div>
+    </div>
+
+    <a class="back" href="index.html">← Về trang chính</a>
+  </section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = "https://xmtvmwcjjqqzscmkdlwd.supabase.co";
+const SUPABASE_KEY = "sb_publishable_R5TEjUNB6lDTJuN4MNdhVQ_ANwIaKLP";
+const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const $ = id => document.getElementById(id);
+const normalizeUser = value => value.trim().toLowerCase();
+const validUser = value => /^[a-z0-9_](3, 30)$/.test(value);
+const internalEmail = username => `${username}@meowmeow.local`;
+const nextPage = new URLSearchParams(location.search).get("next") || "hsk1.html";
+
+function showPane(which){
+  const login = which === "login";
+  $("loginPane").classList.toggle("hidden", !login);
+  $("signupPane").classList.toggle("hidden", login);
+  $("tabLogin").classList.toggle("active", login);
+  $("tabSignup").classList.toggle("active", !login);
+}
+$("tabLogin").onclick = () => showPane("login");
+$("tabSignup").onclick = () => showPane("signup");
+
+(async()=>{
+  const { data } = await db.auth.getSession();
+  if(data.session) location.replace(nextPage);
+})();
+
+$("loginBtn").onclick = async () => {
+  const username = normalizeUser($("loginUser").value);
+  const password = $("loginPass").value;
+  const msg = $("loginMsg");
+  msg.className = "msg";
+  if(!validUser(username)) {
+    msg.textContent = "Tên tài khoản chưa đúng định dạng.";
+    return;
+  }
+  msg.textContent = "Đang đăng nhập...";
+  const { error } = await db.auth.signInWithPassword({
+    email: internalEmail(username),
+    password
+  });
+  if(error) {
+    msg.textContent = "Tên tài khoản hoặc mật khẩu chưa đúng.";
+    return;
+  }
+  msg.className = "msg ok";
+  msg.textContent = "Đăng nhập thành công.";
+  setTimeout(()=>location.replace(nextPage), 350);
+};
+
+$("signupBtn").onclick = async () => {
+  const displayName = $("displayName").value.trim();
+  const username = normalizeUser($("signupUser").value);
+  const pass1 = $("signupPass").value;
+  const pass2 = $("signupPass2").value;
+  const msg = $("signupMsg");
+  msg.className = "msg";
+
+  if(displayName.length < 2) {
+    msg.textContent = "Hãy nhập tên hiển thị.";
+    return;
+  }
+  if(!validUser(username)) {
+    msg.textContent = "Tên tài khoản cần 3–30 ký tự: a-z, 0-9 hoặc _.";
+    return;
+  }
+  if(pass1.length < 6) {
+    msg.textContent = "Mật khẩu cần ít nhất 6 ký tự.";
+    return;
+  }
+  if(pass1 !== pass2) {
+    msg.textContent = "Hai lần nhập mật khẩu chưa giống nhau.";
+    return;
+  }
+
+  msg.textContent = "Đang tạo tài khoản...";
+  const { data, error } = await db.auth.signUp({
+    email: internalEmail(username),
+    password: pass1,
+    options: {
+      data: {
+        username,
+        display_name: displayName
+      }
+    }
+  });
+
+  if(error) {
+    const text = String(error.message || "");
+    if(/already|registered|exists/i.test(text)) {
+      msg.textContent = "Tên tài khoản này đã có người dùng.";
+    } else {
+      msg.textContent = "Chưa tạo được tài khoản. Vui lòng thử tên khác hoặc thử lại.";
+    }
+    return;
+  }
+
+  if(!data.session) {
+    msg.textContent = "Tài khoản đã tạo nhưng đang chờ xác nhận. Hãy kiểm tra Supabase và tắt Confirm email.";
+    return;
+  }
+
+  msg.className = "msg ok";
+  msg.textContent = "Tạo tài khoản thành công.";
+  setTimeout(()=>location.replace(nextPage), 500);
+};
+</script>
+</body>
+</html>
