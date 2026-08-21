@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Bài 12 · 昨天下雪了</title><style>
@@ -26,10 +27,42 @@ body:before{
 .sticker-layer{position:fixed;inset:0;pointer-events:none;z-index:-1}
 .sticker{position:absolute;width:68px;height:68px;border-radius:18px;background:rgba(255,255,255,.58);backdrop-filter:blur(6px);display:grid;place-items:center;font-size:34px;box-shadow:0 8px 24px rgba(128,75,90,.10);transform:rotate(var(--rot))}
 .sticker.s1{top:90px;left:2%}.sticker.s2{top:180px;right:7%}.sticker.s3{top:350px;left:6%}.sticker.s4{top:480px;right:5%}.sticker.s5{bottom:150px;left:7%}.sticker.s6{bottom:80px;right:10%}
-.snow-layer{position:fixed;inset:0;pointer-events:none;z-index:2;overflow:hidden;display:none}
+.snow-layer{position:fixed;inset:0;pointer-events:none;z-index:9998;overflow:hidden;display:none}
 body.snowing .snow-layer{display:block}
-.flake{position:absolute;top:-20px;color:#fff;font-size:14px;opacity:.9;animation:snowFall linear forwards;text-shadow:0 0 6px rgba(255,255,255,.7)}
-@keyframes snowFall{to{transform:translateY(110vh) translateX(20px);opacity:.2}}
+body.snowing .snow-layer::before{
+  content:"";
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(218,239,255,.11),rgba(255,255,255,0) 38%,rgba(225,242,255,.14));
+}
+body.snowing .snow-layer::after{
+  content:"";
+  position:absolute;left:-4%;right:-4%;bottom:-24px;height:26px;
+  background:radial-gradient(ellipse at 50% 0,#fff 0 58%,rgba(255,255,255,.78) 60%,transparent 72%);
+  filter:drop-shadow(0 -5px 10px rgba(191,222,244,.25));
+  opacity:.38;
+}
+.flake{
+  position:absolute;top:-45px;color:#fff;
+  font-size:16px;font-weight:800;opacity:.72;
+  animation:snowFall linear infinite,snowSway ease-in-out infinite alternate;
+  text-shadow:
+    0 0 2px rgba(126,181,213,.55),
+    0 0 5px rgba(76,145,187,.38),
+    0 0 9px rgba(255,255,255,.78);
+  filter:drop-shadow(0 1px 1px rgba(55,111,148,.16));
+  will-change:transform;
+}
+.flake.soft{opacity:.38;filter:blur(.35px) drop-shadow(0 1px 1px rgba(55,111,148,.12))}
+.flake.big{font-size:23px}
+@keyframes snowFall{
+  0%{transform:translate3d(0,-7vh,0) rotate(0deg);opacity:0}
+  8%{opacity:.72}
+  100%{transform:translate3d(var(--drift,35px),112vh,0) rotate(420deg);opacity:.18}
+}
+@keyframes snowSway{
+  from{margin-left:-12px}
+  to{margin-left:16px}
+}
 button,select,input{font:inherit}
 .app{max-width:1160px;margin:0 auto;padding:18px}
 .site-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
@@ -75,6 +108,21 @@ button,select,input{font:inherit}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .card{border:1px solid var(--line);border-radius:17px;padding:16px;background:#fff}
 .card h3{font-family:"Noto Serif SC","Songti SC",serif;color:var(--rose2);margin:0 0 7px}
+
+.grammar-wide{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f4faff);border-color:#d0e5f3}
+.grammar-wide h3{font-size:1.25rem}
+.grammar-wide .formula{font-weight:700;line-height:1.85}
+.grammar-wide .example{line-height:1.85}
+.weather-groups{display:grid;grid-template-columns:repeat(3,minmax(180px,1fr));gap:10px;margin-top:12px}
+.weather-groups>div{padding:12px 13px;border-radius:14px;background:#f8fcff;border:1px solid #d8e9f4;line-height:1.75}
+.weather-table-wrap{overflow-x:auto}
+.weather-table{width:100%;border-collapse:collapse;min-width:650px;font-size:.92rem}
+.weather-table th,.weather-table td{padding:9px 10px;border-bottom:1px solid #e4edf3;text-align:left}
+.weather-table th{background:#f4f9fc;color:#4d6575;font-weight:800}
+.weather-table td:first-child{font-size:1.25rem}
+.weather-example{margin-top:14px;padding:13px 14px;border-radius:14px;background:#f5fbff;border:1px solid #d9eaf5;line-height:1.9}
+@media(max-width:720px){.weather-groups{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.weather-groups{grid-template-columns:1fr}}
 .formula{margin-top:8px;background:#fff7ed;border-left:4px solid var(--gold);padding:9px 11px;border-radius:9px;font-weight:800}
 .example{margin-top:7px;background:#f9f7ff;border-left:4px solid #aaa1d7;padding:9px 11px;border-radius:9px;font-family:"Noto Serif SC","Songti SC",serif}
 .pattern-list{display:grid;gap:10px}
@@ -142,7 +190,7 @@ button,select,input{font:inherit}
 <div class="footer">Học cùng meow meow, vui quá là vui</div>
 </div>
 <div class="toast" id="toast"></div>
-<script>const DATA={"lesson":12,"title":"昨天下雪了","vi":"Hôm qua tuyết rơi rồi","vocab":[["天气","tiānqì","khí hậu, thời tiết"],["这里","zhèlǐ","ở đây"],["天","tiān","ngày"],["下雨","xià yǔ","mưa, trời mưa"],["了","le","trợ từ 了"],["雨","yǔ","mưa"],["有点儿","yǒudiǎnr","hơi, hơi…một chút"],["觉得","juéde","cảm thấy"],["冷","lěnɡ","lạnh"],["下","xià","xuống; rơi (mưa/tuyết)"],["雪","xuě","tuyết"],["来","lái","đến, tới"],["公司","ɡōnɡsī","công ty"],["生病","shēnɡbìnɡ","bị bệnh"],["看病","kànbìnɡ","đi khám"],["病","bìnɡ","bệnh, ốm"],["一点儿","yìdiǎnr","1 ít"],["药","yào","thuốc"],["回","huí","về, quay về"],["再","zài","sau đó, mới (chỉ trình tự)"],["喝","hē","uống"],["热","rè","nóng, ấm"],["水","shuǐ","nước"]],"grammar":[{"name":"非主谓句","desc":"Câu khẩu ngữ có thể chỉ gồm một từ/cụm từ mà không chia rõ chủ ngữ-vị ngữ.","formula":"词/短语 +（了）","ex":"下雨了。 / 太冷了。"},{"name":"语气助词“了（1）”","desc":"“了” cuối câu biểu thị tình hình/trạng thái đã thay đổi.","formula":"句子 + 了","ex":"这里下雨了。"},{"name":"“太……了”","desc":"Biểu thị mức độ rất/quá.","formula":"太 + Adj + 了","ex":"太冷了。"},{"name":"“有点儿”","desc":"Đứng trước tính từ để biểu thị hơi/một chút, thường mang sắc thái không như ý.","formula":"有点儿 + Adj","ex":"有点儿大。 / 有点儿冷。"}],"patterns":["今天天气怎么样？","这里下雨了。","我觉得 + 很/有点儿 + Adj。","太 + Adj + 了。","V后再 + V。"],"dialogues":[{"title":"Hội thoại 1","lines":[["王一雪","今天天气怎么样？"],["王一飞","这里的天气不太好，下雨了。"],["王一雪","雨大吗？"],["王一飞","有点儿大，我觉得很冷。"]]},{"title":"Hội thoại 2","lines":[["王一雪","昨天下雪了。"],["杨同乐","是的，太冷了。"],["王一雪","你昨天没来公司，生病了？"],["杨同乐","对，我昨天去医院看病了。"]]},{"title":"Hội thoại 3","lines":[["杨同乐","医生，我病了。"],["胡医生","我看看，你觉得怎么样？"],["杨同乐","我很冷。"],["胡医生","好的，吃一点儿药，今天休息半天吧。"],["杨同乐","好的。"],["胡医生","回家后再喝些热水。"]]}],"practice":[{"type":"Nói","prompt":"Mô tả thời tiết hôm nay và triệu chứng khi bị ốm.","required":["天气","觉得","冷"]},{"type":"Viết","prompt":"Viết hội thoại bác sĩ – bệnh nhân 6 lượt.","required":["生病","看病","药"]}],"game":{"type":"mcq","title":"Game: Bác sĩ thời tiết","desc":"Chọn phản ứng tự nhiên theo tình huống.","items":[{"q":"Trời lạnh quá","options":["太冷了。","太冷吗。","冷太很。","了冷太。"],"a":0},{"q":"“Tôi hơi lạnh”","options":["我觉得有点儿冷。","我有冷一点儿觉得。","我觉得冷有点儿了吗。","有点儿我觉得冷吗。"],"a":0},{"q":"Bác sĩ khuyên uống nước nóng sau khi về nhà","options":["回家后再喝些热水。","热水回家喝再后。","再回家热水。","喝后回家水。"],"a":0}]},"decor":["❄️","⛄","☁️","🧣","🧤","✨"],"specialEffect":"snow","games":{"mcq":[{"q":"“天气” nghĩa là gì?","options":["nóng, ấm","khí hậu, thời tiết","hơi, hơi…một chút","về, quay về"],"a":1},{"q":"“这里” nghĩa là gì?","options":["nóng, ấm","bệnh, ốm","ở đây","thuốc"],"a":2},{"q":"“天” nghĩa là gì?","options":["ngày","về, quay về","mưa, trời mưa","bị bệnh"],"a":0},{"q":"“下雨” nghĩa là gì?","options":["mưa, trời mưa","hơi, hơi…một chút","trợ từ 了","bị bệnh"],"a":0},{"q":"“了” nghĩa là gì?","options":["trợ từ 了","1 ít","mưa, trời mưa","nóng, ấm"],"a":0},{"q":"“雨” nghĩa là gì?","options":["mưa","sau đó, mới (chỉ trình tự)","cảm thấy","ngày"],"a":0}],"pinyin":[{"prompt":"tiānqì · khí hậu, thời tiết","answer":"天气"},{"prompt":"zhèlǐ · ở đây","answer":"这里"},{"prompt":"tiān · ngày","answer":"天"},{"prompt":"xià yǔ · mưa, trời mưa","answer":"下雨"},{"prompt":"le · trợ từ 了","answer":"了"},{"prompt":"yǔ · mưa","answer":"雨"}],"dialogueOrder":[{"speaker":"王一雪","text":"今天天气怎么样","parts":["今天","天气","怎么","样"]},{"speaker":"王一飞","text":"这里的天气不太好下雨了","parts":["这里","的","天气","不太","好","下雨","了"]},{"speaker":"王一飞","text":"有点儿大我觉得很冷","parts":["有点儿","大我","觉得","很冷"]},{"speaker":"王一雪","text":"昨天下雪了","parts":["昨天","下雪","了"]}],"match":[{"cn":"天气","vi":"khí hậu, thời tiết"},{"cn":"这里","vi":"ở đây"},{"cn":"天","vi":"ngày"},{"cn":"下雨","vi":"mưa, trời mưa"},{"cn":"了","vi":"trợ từ 了"},{"cn":"雨","vi":"mưa"}],"sentenceBuild":[{"source":"Mẫu câu","answer":"今天天气怎么样","parts":["今天","天气","怎么","样"]},{"source":"Mẫu câu","answer":"这里下雨了","parts":["这里","下雨","了"]},{"source":"Hội thoại · 王一雪","answer":"今天天气怎么样","parts":["今天","天气","怎么","样"]},{"source":"Hội thoại · 王一飞","answer":"这里的天气不太好下雨了","parts":["这里","的","天气","不太","好","下雨","了"]}],"sentencePractice":[{"answer":"今天这里下雨了","parts":["今天","这里","下雨","了"],"note":[["今天","jīntiān","hôm nay"]]},{"answer":"我觉得有点儿冷","parts":["我","觉得","有点儿","冷"],"note":[["我","wǒ","tôi"]]},{"answer":"天气太热了","parts":["天气","太","热","了"],"note":[["太","tài","quá"]]},{"answer":"生病了要多喝热水","parts":["生病","了","要","多","喝","热","水"],"note":[["要","yào","cần/phải"],["多","duō","nhiều"]]}],"situationPractice":[{"answer":"明天可能下雪","parts":["明天","可能","下","雪"],"note":[["明天","míngtiān","ngày mai"],["可能","kěnéng","có thể, có khả năng"]]},{"answer":"看病后我回公司","parts":["看病","后","我","回","公司"],"note":[["后","hòu","sau"],["我","wǒ","tôi"]]},{"answer":"医生给我一点儿药","parts":["医生","给","我","一点儿","药"],"note":[["医生","yīshēng","bác sĩ"],["给","gěi","cho/đưa"],["我","wǒ","tôi"]]},{"answer":"下雪天很冷","parts":["下","雪","天","很","冷"],"note":[["很","hěn","rất"]]}]},"gameTitle":"Game thời tiết","customGame":{"type":"weather","title":"⑥ Nghe thời tiết – chọn tranh","desc":"Bấm nghe rồi chọn biểu tượng thời tiết phù hợp.","items":[{"speech":"今天下雨了","q":"Nghe thời tiết 1","o":["🌧️ 下雨","❄️ 下雪","☀️ 很热","🌤️ 晴天"],"a":0},{"speech":"昨天下雪了","q":"Nghe thời tiết 2","o":["🌧️ 下雨","❄️ 下雪","☀️ 很热","🌬️ 大风"],"a":1},{"speech":"我觉得有点儿冷","q":"Nghe cảm giác thời tiết","o":["🥶 冷","🥵 热","😊 高兴","🍵 茶"],"a":0}]}};
+<script>const DATA={"lesson":12,"title":"昨天下雪了","vi":"Hôm qua tuyết rơi rồi","vocab":[["天气","tiānqì","khí hậu, thời tiết"],["这里","zhèlǐ","ở đây"],["天","tiān","ngày"],["下雨","xià yǔ","mưa, trời mưa"],["了","le","trợ từ 了"],["雨","yǔ","mưa"],["有点儿","yǒudiǎnr","hơi, hơi…một chút"],["觉得","juéde","cảm thấy"],["冷","lěnɡ","lạnh"],["下","xià","xuống; rơi (mưa/tuyết)"],["雪","xuě","tuyết"],["来","lái","đến, tới"],["公司","ɡōnɡsī","công ty"],["生病","shēnɡbìnɡ","bị bệnh"],["看病","kànbìnɡ","đi khám"],["病","bìnɡ","bệnh, ốm"],["一点儿","yìdiǎnr","1 ít"],["药","yào","thuốc"],["回","huí","về, quay về"],["再","zài","sau đó, mới (chỉ trình tự)"],["喝","hē","uống"],["热","rè","nóng, ấm"],["水","shuǐ","nước"],["晴天","qíngtiān","trời nắng, trời quang"],["阴天","yīntiān","trời âm u"],["多云","duōyún","nhiều mây"],["刮风","guāfēng","có gió, gió thổi"],["风","fēng","gió"],["大风","dàfēng","gió lớn"],["下雪","xiàxuě","tuyết rơi"],["小雨","xiǎoyǔ","mưa nhỏ"],["大雨","dàyǔ","mưa lớn"],["温度","wēndù","nhiệt độ"],["度","dù","độ (nhiệt độ)"],["暖和","nuǎnhuo","ấm áp"],["凉快","liángkuai","mát mẻ"],["春天","chūntiān","mùa xuân"],["夏天","xiàtiān","mùa hè"],["秋天","qiūtiān","mùa thu"],["冬天","dōngtiān","mùa đông"],["天气预报","tiānqì yùbào","dự báo thời tiết"],["雾","wù","sương mù"],["雷","léi","sấm"],["闪电","shǎndiàn","chớp, tia chớp"]],"grammar":[{"name":"非主谓句","desc":"Câu khẩu ngữ có thể chỉ gồm một từ/cụm từ mà không chia rõ chủ ngữ-vị ngữ.","formula":"词/短语 +（了）","ex":"下雨了。 / 太冷了。"},{"name":"语气助词“了（1）”","desc":"“了” cuối câu biểu thị tình hình/trạng thái đã thay đổi.","formula":"句子 + 了","ex":"这里下雨了。"},{"name":"“太……了”","desc":"Biểu thị mức độ rất/quá.","formula":"太 + Adj + 了","ex":"太冷了。"},{"name":"“有点儿”","desc":"Đứng trước tính từ để biểu thị hơi/một chút, thường mang sắc thái không như ý.","formula":"有点儿 + Adj","ex":"有点儿大。 / 有点儿冷。"},{"name":"天气表达扩展 · Mở rộng cách nói về thời tiết","wide":true,"desc":"\n<div style=\"line-height:1.9\">\nNgoài <b>下雨、下雪、冷、热</b>, học sinh nên nhớ thêm các nhóm từ thời tiết thường gặp để có thể mô tả một ngày đầy đủ hơn.\n</div>\n<div class=\"weather-groups\">\n  <div><b>☀️ Trời quang</b><br>晴天 qíngtiān — trời nắng<br>暖和 nuǎnhuo — ấm áp<br>热 rè — nóng</div>\n  <div><b>☁️ Mây / âm u</b><br>多云 duōyún — nhiều mây<br>阴天 yīntiān — trời âm u<br>凉快 liángkuai — mát mẻ</div>\n  <div><b>🌧️ Mưa</b><br>下雨 xiàyǔ — trời mưa<br>小雨 xiǎoyǔ — mưa nhỏ<br>大雨 dàyǔ — mưa lớn</div>\n  <div><b>❄️ Tuyết / lạnh</b><br>下雪 xiàxuě — tuyết rơi<br>雪 xuě — tuyết<br>冷 lěng — lạnh</div>\n  <div><b>🌬️ Gió</b><br>刮风 guāfēng — có gió<br>风 fēng — gió<br>大风 dàfēng — gió lớn</div>\n  <div><b>🌫️ Hiện tượng khác</b><br>雾 wù — sương mù<br>雷 léi — sấm<br>闪电 shǎndiàn — chớp</div>\n</div>\n","formula":"\n<div style=\"line-height:1.95\">\n<b>Mẫu 1 — hỏi thời tiết:</b><br>\n今天天气怎么样？— Hôm nay thời tiết thế nào?<br><br>\n\n<b>Mẫu 2 — nói hiện tượng thời tiết:</b><br>\n今天下雨了。— Hôm nay trời mưa rồi.<br>\n昨天下雪了。— Hôm qua tuyết rơi rồi.<br>\n今天刮风了。— Hôm nay có gió rồi.<br><br>\n\n<b>Mẫu 3 — nói cảm nhận:</b><br>\n我觉得有点儿冷。— Tôi cảm thấy hơi lạnh.<br>\n今天很凉快。— Hôm nay rất mát.<br>\n夏天太热了。— Mùa hè nóng quá.<br><br>\n\n<b>Mẫu 4 — nhiệt độ:</b><br>\n今天二十五度。— Hôm nay 25 độ.<br>\n今天只有五度，很冷。— Hôm nay chỉ có 5 độ, rất lạnh.\n</div>\n","ex":"\n<div class=\"weather-table-wrap\">\n<table class=\"weather-table\">\n<thead><tr><th>Thời tiết</th><th>Tiếng Trung</th><th>Tiếng Việt</th></tr></thead>\n<tbody>\n<tr><td>☀️</td><td>今天天气很好，是晴天。</td><td>Hôm nay thời tiết rất đẹp, trời nắng.</td></tr>\n<tr><td>☁️</td><td>今天多云，有点儿凉快。</td><td>Hôm nay nhiều mây, hơi mát.</td></tr>\n<tr><td>🌧️</td><td>今天下大雨了。</td><td>Hôm nay mưa lớn rồi.</td></tr>\n<tr><td>❄️</td><td>昨天下雪了，今天太冷了。</td><td>Hôm qua tuyết rơi, hôm nay lạnh quá.</td></tr>\n<tr><td>🌬️</td><td>外面刮大风了。</td><td>Bên ngoài đang có gió lớn.</td></tr>\n<tr><td>🌫️</td><td>今天有雾，开车要小心。</td><td>Hôm nay có sương mù, lái xe phải cẩn thận.</td></tr>\n</tbody>\n</table>\n</div>\n\n<div class=\"weather-example\">\n<b>Ví dụ nói thành đoạn:</b><br>\n今天是阴天，有点儿冷。下午可能下雨，晚上还会刮风。\n我觉得冬天的天气很冷，但是下雪的时候很漂亮。<br><br>\n<b>Dịch:</b> Hôm nay trời âm u, hơi lạnh. Buổi chiều có thể mưa, buổi tối còn có gió.\nTôi cảm thấy thời tiết mùa đông rất lạnh, nhưng lúc tuyết rơi thì rất đẹp.\n</div>\n"}],"patterns":["今天天气怎么样？","这里下雨了。","我觉得 + 很/有点儿 + Adj。","太 + Adj + 了。","V后再 + V。","今天 + 晴天/阴天/多云。","今天 + 下雨/下雪/刮风 + 了。","今天 + 数字 + 度。","春天/夏天/秋天/冬天 + 很 + Adj。"],"dialogues":[{"title":"Hội thoại 1","lines":[["王一雪","今天天气怎么样？"],["王一飞","这里的天气不太好，下雨了。"],["王一雪","雨大吗？"],["王一飞","有点儿大，我觉得很冷。"]]},{"title":"Hội thoại 2","lines":[["王一雪","昨天下雪了。"],["杨同乐","是的，太冷了。"],["王一雪","你昨天没来公司，生病了？"],["杨同乐","对，我昨天去医院看病了。"]]},{"title":"Hội thoại 3","lines":[["杨同乐","医生，我病了。"],["胡医生","我看看，你觉得怎么样？"],["杨同乐","我很冷。"],["胡医生","好的，吃一点儿药，今天休息半天吧。"],["杨同乐","好的。"],["胡医生","回家后再喝些热水。"]]}],"practice":[{"type":"Nói","prompt":"Mô tả thời tiết hôm nay và triệu chứng khi bị ốm.","required":["天气","觉得","冷"]},{"type":"Viết","prompt":"Viết hội thoại bác sĩ – bệnh nhân 6 lượt.","required":["生病","看病","药"]}],"game":{"type":"mcq","title":"Game: Bác sĩ thời tiết","desc":"Chọn phản ứng tự nhiên theo tình huống.","items":[{"q":"Trời lạnh quá","options":["太冷了。","太冷吗。","冷太很。","了冷太。"],"a":0},{"q":"“Tôi hơi lạnh”","options":["我觉得有点儿冷。","我有冷一点儿觉得。","我觉得冷有点儿了吗。","有点儿我觉得冷吗。"],"a":0},{"q":"Bác sĩ khuyên uống nước nóng sau khi về nhà","options":["回家后再喝些热水。","热水回家喝再后。","再回家热水。","喝后回家水。"],"a":0}]},"decor":["❄️","⛄","☁️","🧣","🧤","✨"],"specialEffect":"snow","games":{"mcq":[{"q":"“天气” nghĩa là gì?","options":["nóng, ấm","khí hậu, thời tiết","hơi, hơi…một chút","về, quay về"],"a":1},{"q":"“这里” nghĩa là gì?","options":["nóng, ấm","bệnh, ốm","ở đây","thuốc"],"a":2},{"q":"“天” nghĩa là gì?","options":["ngày","về, quay về","mưa, trời mưa","bị bệnh"],"a":0},{"q":"“下雨” nghĩa là gì?","options":["mưa, trời mưa","hơi, hơi…một chút","trợ từ 了","bị bệnh"],"a":0},{"q":"“了” nghĩa là gì?","options":["trợ từ 了","1 ít","mưa, trời mưa","nóng, ấm"],"a":0},{"q":"“雨” nghĩa là gì?","options":["mưa","sau đó, mới (chỉ trình tự)","cảm thấy","ngày"],"a":0}],"pinyin":[{"prompt":"tiānqì · khí hậu, thời tiết","answer":"天气"},{"prompt":"zhèlǐ · ở đây","answer":"这里"},{"prompt":"tiān · ngày","answer":"天"},{"prompt":"xià yǔ · mưa, trời mưa","answer":"下雨"},{"prompt":"le · trợ từ 了","answer":"了"},{"prompt":"yǔ · mưa","answer":"雨"}],"dialogueOrder":[{"speaker":"王一雪","text":"今天天气怎么样","parts":["今天","天气","怎么","样"]},{"speaker":"王一飞","text":"这里的天气不太好下雨了","parts":["这里","的","天气","不太","好","下雨","了"]},{"speaker":"王一飞","text":"有点儿大我觉得很冷","parts":["有点儿","大我","觉得","很冷"]},{"speaker":"王一雪","text":"昨天下雪了","parts":["昨天","下雪","了"]}],"match":[{"cn":"天气","vi":"khí hậu, thời tiết"},{"cn":"这里","vi":"ở đây"},{"cn":"天","vi":"ngày"},{"cn":"下雨","vi":"mưa, trời mưa"},{"cn":"了","vi":"trợ từ 了"},{"cn":"雨","vi":"mưa"}],"sentenceBuild":[{"source":"Mẫu câu","answer":"今天天气怎么样","parts":["今天","天气","怎么","样"]},{"source":"Mẫu câu","answer":"这里下雨了","parts":["这里","下雨","了"]},{"source":"Hội thoại · 王一雪","answer":"今天天气怎么样","parts":["今天","天气","怎么","样"]},{"source":"Hội thoại · 王一飞","answer":"这里的天气不太好下雨了","parts":["这里","的","天气","不太","好","下雨","了"]}],"sentencePractice":[{"answer":"今天这里下雨了","parts":["今天","这里","下雨","了"],"note":[["今天","jīntiān","hôm nay"]]},{"answer":"我觉得有点儿冷","parts":["我","觉得","有点儿","冷"],"note":[["我","wǒ","tôi"]]},{"answer":"天气太热了","parts":["天气","太","热","了"],"note":[["太","tài","quá"]]},{"answer":"生病了要多喝热水","parts":["生病","了","要","多","喝","热","水"],"note":[["要","yào","cần/phải"],["多","duō","nhiều"]]}],"situationPractice":[{"answer":"明天可能下雪","parts":["明天","可能","下","雪"],"note":[["明天","míngtiān","ngày mai"],["可能","kěnéng","có thể, có khả năng"]]},{"answer":"看病后我回公司","parts":["看病","后","我","回","公司"],"note":[["后","hòu","sau"],["我","wǒ","tôi"]]},{"answer":"医生给我一点儿药","parts":["医生","给","我","一点儿","药"],"note":[["医生","yīshēng","bác sĩ"],["给","gěi","cho/đưa"],["我","wǒ","tôi"]]},{"answer":"下雪天很冷","parts":["下","雪","天","很","冷"],"note":[["很","hěn","rất"]]}]},"gameTitle":"Game thời tiết","customGame":{"type":"weather","title":"⑥ Nghe thời tiết – chọn tranh","desc":"Bấm nghe rồi chọn biểu tượng thời tiết phù hợp.","items":[{"speech":"今天下雨了","q":"Nghe thời tiết 1","o":["🌧️ 下雨","❄️ 下雪","☀️ 很热","🌤️ 晴天"],"a":0},{"speech":"昨天下雪了","q":"Nghe thời tiết 2","o":["🌧️ 下雨","❄️ 下雪","☀️ 很热","🌬️ 大风"],"a":1},{"speech":"我觉得有点儿冷","q":"Nghe cảm giác thời tiết","o":["🥶 冷","🥵 热","😊 高兴","🍵 茶"],"a":0}]}};
 const D = DATA;
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const state = {tab:'vocab',flash:0,mask:false};
@@ -175,7 +223,23 @@ function speakDialogue(d){
 function initDecor(){
   const layer=$('#stickers');
   layer.innerHTML=D.decor.map((x,i)=>`<div class="sticker s${i+1}" style="--rot:${[-10,8,-7,10,-5,7][i]}deg">${x}</div>`).join('');
-  if(D.specialEffect==='snow'){document.body.classList.add('snowing');const snow=$('#snow');for(let i=0;i<36;i++){const f=document.createElement('div');f.className='flake';f.textContent='❄';f.style.left=(Math.random()*100)+'%';f.style.animationDuration=(6+Math.random()*7)+'s';f.style.animationDelay=(Math.random()*6)+'s';f.style.fontSize=(10+Math.random()*14)+'px';snow.appendChild(f)}}
+  if(D.specialEffect==='snow'){
+    document.body.classList.add('snowing');
+    const snow=$('#snow');
+    const flakes=['❄','❅','❆','•'];
+    for(let i=0;i<44;i++){
+      const f=document.createElement('div');
+      const r=Math.random();
+      f.className='flake'+(r<.10?' big':'')+(r>.68?' soft':'');
+      f.textContent=flakes[Math.floor(Math.random()*flakes.length)];
+      f.style.left=(Math.random()*100)+'%';
+      f.style.setProperty('--drift',(-55+Math.random()*110)+'px');
+      f.style.animationDuration=(5.5+Math.random()*8)+'s, '+(1.8+Math.random()*3.2)+'s';
+      f.style.animationDelay=(-Math.random()*13)+'s, '+(-Math.random()*3)+'s';
+      f.style.fontSize=(r<.1?20+Math.random()*8:10+Math.random()*13)+'px';
+      snow.appendChild(f);
+    }
+  }
 }
 function init(){
   document.title=`Bài ${D.lesson} · ${D.title} · Tiếng Trung Meow Meow`;
@@ -211,7 +275,7 @@ function renderVocab(c){
 }
 function renderGrammar(c){
   c.innerHTML=intro('Điểm ngữ pháp','Các điểm ngữ pháp được tổng hợp theo chính nội dung từng PDF.')
-    +`<div class="grid">${D.grammar.map(g=>`<div class="card"><h3>${g.name}</h3><div>${g.desc}</div><div class="formula">${g.formula}</div><div class="example">${g.ex}</div></div>`).join('')}</div>`;
+    +`<div class="grid">${D.grammar.map(g=>`<div class="card ${g.wide?'grammar-wide':''}"><h3>${g.name}</h3><div>${g.desc}</div><div class="formula">${g.formula}</div><div class="example">${g.ex}</div></div>`).join('')}</div>`;
 }
 function renderPatterns(c){
   c.innerHTML=intro('Mẫu câu & cấu trúc','Các khung câu để học sinh thay từ và luyện nói nhanh.')
