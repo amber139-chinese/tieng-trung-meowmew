@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="vi">
 <head>
@@ -5,42 +6,411 @@
 <title>Bảng xếp hạng · Tiếng Trung Meow Meow</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--blue:#6FAFC4;--dark:#3F8198;--soft:#EAF6F8;--ink:#293A40;--muted:#6A7A80;--line:#D7E9ED}
-*{box-sizing:border-box}body{margin:0;font-family:"Be Vietnam Pro",sans-serif;color:var(--ink);background:#F7FBFC}
-.wrap{width:min(980px,calc(100% - 28px));margin:auto;padding:78px 0 60px}
-.top{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
-h1{font-family:"Noto Serif SC",serif;font-size:clamp(2rem,5vw,3.4rem);margin:7px 0}.muted{color:var(--muted)}
-.tabs{display:flex;gap:7px;margin:25px 0}.tab{border:1px solid var(--line);background:#fff;padding:9px 14px;border-radius:999px;cursor:pointer;font-weight:700;color:#61757C}
-.tab.active{background:var(--dark);border-color:var(--dark);color:#fff}
-.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}
-.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 12px 34px rgba(55,110,125,.07)}
-.card h2{margin:0 0 5px;font-size:1.2rem}.row{display:grid;grid-template-columns:45px 1fr auto;gap:10px;align-items:center;padding:12px 0;border-top:1px solid #EDF3F5}
-.row:first-of-type{border-top:0}.rank{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--soft);color:var(--dark);font-weight:800}
-.name{font-weight:700}.small{font-size:12px;color:var(--muted)}.points{font-weight:800;color:var(--dark);text-align:right}
-.back{text-decoration:none;color:var(--dark);font-weight:700}
-@media(max-width:760px){.grid{grid-template-columns:1fr}}
+:root{
+  --blue:#6FAFC4;
+  --dark:#3F8198;
+  --soft:#EAF6F8;
+  --ink:#293A40;
+  --muted:#6A7A80;
+  --line:#D7E9ED;
+  --pink:#FCEFF4;
+  --yellow:#FFF4CC;
+  --mint:#EAF8F1;
+  --lav:#F1EEFF;
+}
+*{box-sizing:border-box}
+html,body{min-height:100%}
+body{
+  margin:0;
+  font-family:"Be Vietnam Pro",sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 10% 10%, rgba(255,219,235,.75), transparent 20%),
+    radial-gradient(circle at 85% 15%, rgba(208,238,247,.95), transparent 22%),
+    radial-gradient(circle at 20% 85%, rgba(253,241,204,.55), transparent 18%),
+    linear-gradient(180deg,#F9FCFD 0%,#F7FBFC 50%,#F3FAFB 100%);
+  overflow-x:hidden;
+}
+body::before, body::after{
+  content:"";
+  position:fixed;
+  z-index:0;
+  border-radius:50%;
+  filter:blur(10px);
+  pointer-events:none;
+}
+body::before{
+  width:220px;height:220px;left:-70px;top:120px;
+  background:rgba(255,231,240,.8);
+}
+body::after{
+  width:300px;height:300px;right:-100px;top:200px;
+  background:rgba(220,242,248,.9);
+}
+.wrap{
+  position:relative;
+  z-index:1;
+  width:min(1120px,calc(100% - 28px));
+  margin:auto;
+  padding:78px 0 60px;
+}
+.hero{
+  position:relative;
+  overflow:hidden;
+  background:rgba(255,255,255,.82);
+  border:1px solid rgba(215,233,237,.95);
+  border-radius:30px;
+  box-shadow:0 18px 40px rgba(55,110,125,.08);
+  padding:32px 34px 26px;
+  backdrop-filter: blur(10px);
+}
+.hero::before{
+  content:"🏆";
+  position:absolute;
+  right:32px;
+  top:18px;
+  font-size:68px;
+  opacity:.14;
+  transform:rotate(-8deg);
+}
+.hero::after{
+  content:"✨";
+  position:absolute;
+  right:96px;
+  top:84px;
+  font-size:28px;
+  opacity:.35;
+}
+.top{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  align-items:flex-start;
+  flex-wrap:wrap;
+}
+.hi{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:13px;
+  color:var(--dark);
+  background:var(--soft);
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:8px 12px;
+  font-weight:700;
+}
+h1{
+  font-family:"Noto Serif SC",serif;
+  font-size:clamp(2.2rem,5vw,4rem);
+  line-height:1.08;
+  margin:12px 0 10px;
+}
+.muted{color:var(--muted)}
+.sub{
+  max-width:700px;
+  font-size:1.03rem;
+  line-height:1.7;
+}
+.back{
+  align-self:center;
+  text-decoration:none;
+  color:var(--dark);
+  font-weight:800;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:12px 16px;
+  transition:.2s ease;
+}
+.back:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(55,110,125,.10)}
+.pills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:18px;
+}
+.pill{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 14px;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:700;
+  color:#536970;
+  background:#fff;
+  border:1px solid var(--line);
+}
+.tabs{
+  display:flex;
+  gap:10px;
+  margin:24px 0 18px;
+}
+.tab{
+  border:1px solid var(--line);
+  background:#fff;
+  padding:11px 18px;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:800;
+  color:#61757C;
+  box-shadow:0 8px 22px rgba(55,110,125,.05);
+}
+.tab.active{
+  background:linear-gradient(135deg,#5F9FB4,#3F8198);
+  border-color:#4B8DA4;
+  color:#fff;
+}
+.grid{
+  display:grid;
+  grid-template-columns:1.06fr .94fr;
+  gap:18px;
+}
+.card{
+  background:rgba(255,255,255,.88);
+  border:1px solid rgba(215,233,237,.95);
+  border-radius:26px;
+  padding:22px;
+  box-shadow:0 16px 38px rgba(55,110,125,.08);
+  backdrop-filter: blur(8px);
+}
+.card-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:8px;
+}
+.title-wrap{display:flex;align-items:center;gap:12px}
+.icon-box{
+  width:52px;height:52px;border-radius:18px;display:grid;place-items:center;
+  font-size:1.45rem;border:1px solid var(--line);
+}
+.icon-achieve{background:linear-gradient(135deg,#FFF8DB,#FFF1B6)}
+.icon-active{background:linear-gradient(135deg,#EAF8F1,#D7F0E3)}
+.card h2{margin:0 0 4px;font-size:1.28rem}
+.small{font-size:12px;color:var(--muted)}
+.list{margin-top:14px}
+.row{
+  display:grid;
+  grid-template-columns:56px 1fr auto;
+  gap:12px;
+  align-items:center;
+  padding:14px 0;
+  border-top:1px dashed #E4EFF2;
+}
+.row:first-child{border-top:0}
+.rank{
+  width:44px;height:44px;border-radius:15px;
+  display:grid;place-items:center;
+  background:#F7FCFD;
+  color:var(--dark);
+  font-weight:900;
+  border:1px solid var(--line);
+  font-size:1rem;
+}
+.rank.top1{background:linear-gradient(135deg,#FFF7D4,#FFE79A);color:#9A6A00}
+.rank.top2{background:linear-gradient(135deg,#F3F6FA,#DCE6F2);color:#5D6C7D}
+.rank.top3{background:linear-gradient(135deg,#FFE7D9,#F8C7A7);color:#8D5431}
+.medal{
+  display:block;
+  font-size:1.15rem;
+  line-height:1;
+}
+.name{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-weight:800;
+  font-size:1.04rem;
+}
+.spark{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:24px;height:24px;border-radius:50%;
+  background:#F4FBFC;border:1px solid var(--line);
+  font-size:.85rem;
+}
+.meta{
+  margin-top:5px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.meta-chip{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:#F7FBFC;
+  border:1px solid #E6F1F4;
+  font-size:11px;
+  color:#62747B;
+  font-weight:700;
+}
+.points{
+  text-align:right;
+  min-width:92px;
+}
+.points b{
+  display:block;
+  font-size:1.7rem;
+  line-height:1;
+  color:var(--dark);
+}
+.points span{
+  font-size:11px;
+  color:var(--muted);
+  font-weight:700;
+}
+.empty{
+  padding:14px 0 6px;
+  color:var(--muted);
+}
+.foot-note{
+  margin-top:16px;
+  text-align:center;
+  font-size:13px;
+  color:#77919A;
+}
+@media(max-width:860px){
+  .grid{grid-template-columns:1fr}
+  .hero{padding:26px 20px 22px}
+  .hero::before{font-size:54px;right:20px}
+  .row{grid-template-columns:50px 1fr auto}
+  .points b{font-size:1.45rem}
+}
+@media(max-width:540px){
+  .row{
+    grid-template-columns:48px 1fr;
+  }
+  .points{
+    grid-column:2;
+    text-align:left;
+    min-width:0;
+    margin-top:4px;
+  }
+}
 </style>
 <script defer src="meow-auth.js"></script>
 </head>
 <body>
 <div class="wrap">
-  <div class="top"><div><div class="muted">MEOW MEOW 课堂</div><h1>Bảng xếp hạng</h1><div class="muted">Chỉ hiển thị tên hiển thị và thành tích học tập.</div></div><a class="back" id="backLink" href="hsk1.html">← Về khóa học</a></div>
-  <div class="tabs"><button class="tab active" data-course="hsk1">HSK1</button><button class="tab" data-course="hsk4">HSK4</button></div>
-  <div class="grid">
-    <section class="card"><h2>Thành tích</h2><div class="small">Ưu tiên số bài hoàn thành, điểm cao và quá trình luyện tập.</div><div id="leader"></div></section>
-    <section class="card"><h2>Học viên tích cực · 7 ngày</h2><div class="small">Dựa trên số ngày học và số lượt luyện gần đây.</div><div id="active"></div></section>
+  <section class="hero">
+    <div class="top">
+      <div>
+        <div class="hi">🎓 MEOW MEOW 课堂</div>
+        <h1>Bảng xếp hạng</h1>
+        <div class="muted sub">Cùng xem ai đang học đều nhất, ai có thành tích nổi bật nhất và ai đang cực kỳ chăm chỉ trong tuần này nhé.</div>
+        <div class="pills">
+          <span class="pill">🏅 Thành tích nổi bật</span>
+          <span class="pill">🔥 Học viên tích cực</span>
+        </div>
+      </div>
+      <a class="back" id="backLink" href="hsk1.html">← Về khóa học</a>
+    </div>
+  </section>
+
+  <div class="tabs">
+    <button class="tab active" data-course="hsk1">HSK1</button>
+    <button class="tab" data-course="hsk4">HSK4</button>
   </div>
+
+  <div class="grid">
+    <section class="card">
+      <div class="card-head">
+        <div class="title-wrap">
+          <div class="icon-box icon-achieve">🏆</div>
+          <div>
+            <h2>Thành tích</h2>
+            <div class="small">Ưu tiên số bài hoàn thành, điểm cao và quá trình luyện tập.</div>
+          </div>
+        </div>
+      </div>
+      <div id="leader" class="list"></div>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <div class="title-wrap">
+          <div class="icon-box icon-active">🔥</div>
+          <div>
+            <h2>Học viên tích cực · 7 ngày</h2>
+            <div class="small">Dựa trên số ngày học và số lượt luyện gần đây.</div>
+          </div>
+        </div>
+      </div>
+      <div id="active" class="list"></div>
+    </section>
+  </div>
+
+  <div class="foot-note">Học cùng meow meow, vui quá là vui ✨</div>
 </div>
+
 <script>
 let course=new URLSearchParams(location.search).get('course')||'hsk1';
 const $=s=>document.querySelector(s);
 const esc=s=>String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
 
+function rankClass(i){
+  if(i===0) return 'top1';
+  if(i===1) return 'top2';
+  if(i===2) return 'top3';
+  return '';
+}
+function rankIcon(i){
+  if(i===0) return '🥇';
+  if(i===1) return '🥈';
+  if(i===2) return '🥉';
+  return i+1;
+}
+function profileSpark(i){
+  if(i===0) return '👑';
+  if(i===1) return '⭐';
+  if(i===2) return '✨';
+  return '🌸';
+}
+
 function setTabs(){
   document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.course===course));
   $('#backLink').href=course==='hsk4'?'hsk4.html':'hsk1.html';
+}
+
+function renderLeaderRow(r,i){
+  return `
+    <div class="row">
+      <div class="rank ${rankClass(i)}">${typeof rankIcon(i)==='number'?rankIcon(i):`<span class="medal">${rankIcon(i)}</span>`}</div>
+      <div>
+        <div class="name"><span class="spark">${profileSpark(i)}</span> ${esc(r.display_name)}</div>
+        <div class="meta">
+          <span class="meta-chip">📚 ${r.completed_lessons} bài hoàn thành</span>
+          <span class="meta-chip">🎯 TB cao nhất ${r.avg_best_score}/100</span>
+          <span class="meta-chip">🧩 ${r.game_attempts} lượt luyện</span>
+        </div>
+      </div>
+      <div class="points"><b>${r.points}</b><span>điểm</span></div>
+    </div>`;
+}
+
+function renderActiveRow(r,i){
+  return `
+    <div class="row">
+      <div class="rank ${rankClass(i)}">${typeof rankIcon(i)==='number'?rankIcon(i):`<span class="medal">${rankIcon(i)}</span>`}</div>
+      <div>
+        <div class="name"><span class="spark">${i===0?'🔥':i===1?'🌟':i===2?'💫':'🍀'}</span> ${esc(r.display_name)}</div>
+        <div class="meta">
+          <span class="meta-chip">🗓️ ${r.active_days_7d} ngày học</span>
+          <span class="meta-chip">🎮 ${r.attempts_7d} lượt luyện</span>
+          <span class="meta-chip">📈 TB game ${r.avg_game_score}/100</span>
+        </div>
+      </div>
+      <div class="points"><b>${r.avg_game_score}</b><span>điểm TB</span></div>
+    </div>`;
 }
 
 async function load(){
@@ -49,21 +419,25 @@ async function load(){
   if(!c)return;
   const {data,error}=await c.from('course_leaderboard').select('*').eq('course',course);
   if(error){
-    $('#leader').innerHTML='<p class="small">Chưa tải được bảng xếp hạng. Hãy chạy tracking-admin-setup.sql.</p>';
-    $('#active').innerHTML='';
+    $('#leader').innerHTML='<p class="empty">Chưa tải được bảng xếp hạng. Hãy chạy tracking-admin-setup.sql.</p>';
+    $('#active').innerHTML='<p class="empty">Chưa tải được dữ liệu hoạt động.</p>';
     return;
   }
+
   const rows=data||[];
   const leader=[...rows].sort((a,b)=>b.points-a.points||b.completed_lessons-a.completed_lessons||b.avg_best_score-a.avg_best_score);
-  const active=[...rows].sort((a,b)=>b.active_days_7d-a.active_days_7d||b.attempts_7d-a.attempts_7d);
+  const active=[...rows].sort((a,b)=>b.active_days_7d-a.active_days_7d||b.attempts_7d-a.attempts_7d||b.avg_game_score-a.avg_game_score);
 
-  $('#leader').innerHTML=leader.length?leader.slice(0,30).map((r,i)=>`
-    <div class="row"><div class="rank">${i+1}</div><div><div class="name">${esc(r.display_name)}</div><div class="small">${r.completed_lessons} bài hoàn thành · TB cao nhất ${r.avg_best_score}/100</div></div><div class="points">${r.points}<div class="small">điểm</div></div></div>`).join(''):'<p class="small">Chưa có dữ liệu.</p>';
+  $('#leader').innerHTML=leader.length
+    ? leader.slice(0,30).map(renderLeaderRow).join('')
+    : '<p class="empty">Chưa có dữ liệu thành tích.</p>';
 
-  $('#active').innerHTML=active.length?active.slice(0,15).map((r,i)=>`
-    <div class="row"><div class="rank">${i+1}</div><div><div class="name">${esc(r.display_name)}</div><div class="small">${r.active_days_7d} ngày học · ${r.attempts_7d} lượt luyện</div></div><div class="points">${r.avg_game_score}<div class="small">điểm TB</div></div></div>`).join(''):'<p class="small">Chưa có dữ liệu.</p>';
+  $('#active').innerHTML=active.length
+    ? active.slice(0,15).map(renderActiveRow).join('')
+    : '<p class="empty">Chưa có dữ liệu hoạt động.</p>';
 }
 document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{course=b.dataset.course;history.replaceState(null,'',`?course=${course}`);load()});
 window.addEventListener('meow-auth-ready',load,{once:true});
 </script>
-</body></html>
+</body>
+</html>
