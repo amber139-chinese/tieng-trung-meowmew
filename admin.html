@@ -143,7 +143,7 @@ async function loadAdmin(detail){
   const completed=progress.filter(x=>x.status==='completed').length;
 
   $('#app').innerHTML=`
-    <div class="top"><div><div class="muted">MEOW MEOW 课堂 · QUẢN LÝ</div><h1>Tổng quan lớp học</h1><div class="muted">Theo dõi HSK1 và HSK4 trong cùng một trang.</div></div><div><a class="btn" href="index.html">Trang chính</a></div></div>
+    <div class="top"><div><div class="muted">MEOW MEOW 课堂 · QUẢN LÝ</div><h1>Tổng quan lớp học</h1><div class="muted"></div></div><div><a class="btn" href="index.html">Trang chính</a></div></div>
     <div class="kpis">
       <div class="kpi"><b>${profiles.length}</b><span>Tổng học viên</span></div>
       <div class="kpi"><b>${activeToday}</b><span>Học hôm nay</span></div>
