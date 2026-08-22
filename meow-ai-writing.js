@@ -222,7 +222,7 @@
     button.disabled = true;
     button.textContent = "Đang chấm...";
     resultBox.className = "ai-result loading";
-    resultBox.innerHTML = `<span class="ai-spinner"></span>Meow Meow đang đọc đề và chấm bài nè... Nếu hệ thống chính đang bận, Meow Meow sẽ tự thử hệ thống dự phòng cho bạn nha 🐱`;
+    resultBox.innerHTML = `<span class="ai-spinner"></span>Meow Meow đang đọc đề và chấm bài nè, đợi Meow Meow iu chút nha 🐱`;
 
     try {
       const { client } = await getAuth();
