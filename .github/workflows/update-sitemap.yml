@@ -1,4 +1,3 @@
-
 name: Auto update sitemap
 
 on:
@@ -32,7 +31,7 @@ jobs:
       - name: Commit sitemap if changed
         shell: bash
         run: |
-          if git diff --quiet -- sitemap.xml; then
+          if [ -z "$(git status --porcelain -- sitemap.xml)" ]; then
             echo "sitemap.xml is already up to date."
             exit 0
           fi
