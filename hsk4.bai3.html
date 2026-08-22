@@ -36,11 +36,12 @@ button,select,input,textarea{font:inherit}.app{max-width:1120px;margin:0 auto;pa
 
 </style><script defer src="meow-auth.js"></script>
 <script defer src="meow-tracking.js"></script>
+<script defer src="meow-ai-writing.js"></script>
 </head>
 <body><div class="app"><div class="site-top"><div class="brand"><span class="catdot"></span><span>Tiếng Trung Meow Meow · HSK4</span></div><nav class="lesson-nav" id="lessonNav"></nav></div>
 <header class="hero"><div class="eyebrow">HSK 4 · Ôn tập tương tác</div><h1><span id="lessonNo"></span> · <span id="lessonTitle"></span></h1><div class="vi" id="lessonVi"></div><div class="theme" id="theme"></div><div class="hero-meta"><span class="pill" id="vocabCount"></span></div><div class="progressbox"><div class="progressText" id="progressText"></div><div class="progressline"><i id="progressBar"></i></div></div></header>
 <main class="panel"><nav class="tabs" id="tabs"></nav><section class="content" id="content"></section></main>
-<div class="footer">Học cùng meow meow, vui quá là vui</div></div><div class="toast" id="toast"></div>
+</div><div class="toast" id="toast"></div>
 <script>const DATA={"title":"经理对我印象不错","vi":"Giám đốc có ấn tượng tốt về tôi","theme":"","vocab":[["挺","tǐng","rất"],["紧张","jǐnzhāng","hồi hộp, căng thẳng"],["信心","xìnxīn","lòng tin, sự tự tin"],["能力","nénglì","năng lực, khả năng"],["招聘","zhāopìn","tuyển dụng"],["提供","tígōng","cung cấp"],["负责","fùzé","phụ trách, chịu trách nhiệm"],["本来","běnlái","vốn dĩ, lúc đầu"],["应聘","yìngpìn","ứng tuyển, xin việc"],["材料","cáiliào","tài liệu"],["符合","fúhé","phù hợp, đáp ứng"],["通知","tōngzhī","thông báo"],["律师","lǜshī","luật sư"],["专业","zhuānyè","chuyên ngành, chuyên môn"],["另外","lìngwài","ngoài ra; một/những ... khác"],["收入","shōurù","thu nhập"],["咱们","zánmen","chúng ta, chúng mình"],["安排","ānpái","sắp xếp"],["首先","shǒuxiān","trước hết, trước tiên"],["正式","zhèngshì","chính thức, trang trọng"],["留","liú","để lại, lưu lại"],["其次","qícì","thứ hai, sau đó"],["诚实","chéngshí","thành thật"],["改变","gǎibiàn","thay đổi"],["感觉","gǎnjué","cảm giác, cảm nghĩ"],["判断","pànduàn","phán đoán, nhận xét"],["顾客","gùkè","khách hàng"],["准时","zhǔnshí","đúng giờ"],["不管","bùguǎn","bất kể, bất luận"],["与","yǔ","với, và"],["约会","yuēhuì","hẹn gặp, hẹn hò"]],"grammar":[["挺……的","<div class=\"g-lead\">挺 là phó từ mức độ, nghĩa gần với “khá/rất”. Mẫu 挺……的 rất thường gặp trong khẩu ngữ.</div><div class=\"g-rule\"><b>Cách dùng / cấu trúc</b><div>• <b>S + 挺 + Adj + 的</b>.</div><div>• 的 cuối câu làm sắc thái đánh giá tự nhiên hơn.</div></div>","<div class=\"g-examples\"><div class=\"g-line\"><b>他们问的问题都挺容易的。</b><span>Những câu họ hỏi đều khá dễ.</span></div><div class=\"g-line\"><b>这家店的东西挺好的。</b><span>Đồ ở cửa hàng này khá tốt.</span></div><div class=\"g-line\"><b>我挺喜欢这个地方的。</b><span>Tôi khá thích nơi này.</span></div></div>"],["本来","<div class=\"g-lead\">本来 có nghĩa “vốn dĩ/lúc đầu/đáng lẽ”, thường nhấn mạnh tình huống ban đầu rồi sau đó có thay đổi.</div><div class=\"g-rule\"><b>Cách dùng / cấu trúc</b><div>• <b>本来 + 就/应该/想/是……</b>.</div><div>• Có thể nói điều vốn như vậy hoặc điều đáng lẽ phải như vậy.</div></div>","<div class=\"g-examples\"><div class=\"g-line\"><b>这件事本来应该听他的。</b><span>Việc này vốn dĩ nên nghe anh ấy.</span></div><div class=\"g-line\"><b>我本来不会开车，现在开得很好。</b><span>Ban đầu tôi không biết lái xe, giờ lái rất tốt.</span></div><div class=\"g-line\"><b>这次招聘本来是小李负责的。</b><span>Đợt tuyển dụng này vốn do Tiểu Lý phụ trách.</span></div></div>"],["另外：đại từ / phó từ / liên từ","<div class=\"g-lead\">另外 có ba chức năng nổi bật trong PDF.</div><div class=\"g-rule\"><b>Cách dùng / cấu trúc</b><div>• Đại từ: <b>另外（的）+ số lượng + danh từ</b> / <b>另外的 + danh từ</b>.</div><div>• Phó từ: biểu thị làm thêm một việc khác, thường đi với 还、再、又.</div><div>• Liên từ: đứng đầu vế/câu với nghĩa “ngoài ra”.</div></div>","<div class=\"g-examples\"><div class=\"g-line\"><b>你试试另外的那件吧。</b><span>Bạn thử cái khác kia đi.</span></div><div class=\"g-line\"><b>咱们另外再买一个吧。</b><span>Chúng ta mua thêm một cái khác nhé.</span></div><div class=\"g-line\"><b>另外，收入也不错。</b><span>Ngoài ra, thu nhập cũng khá tốt.</span></div></div>"],["另外 / 另","<div class=\"g-lead\">Cả 另外 và 另 đều có thể chỉ “khác/thêm”, nhưng cấu trúc khác nhau.</div><div class=\"g-rule\"><b>Cách dùng / cấu trúc</b><div>• 另外（的）+ 数量 + N; 另外的 + N.</div><div>• <b>另 + 数量 + N</b>, không thêm 的.</div><div>• Khi làm phó từ, 另 thường chỉ bổ nghĩa cho động từ một âm tiết; 另外 linh hoạt hơn.</div><div>• 另外 có thể làm liên từ; 另 thì không.</div></div>","<div class=\"g-examples\"><div class=\"g-line\"><b>你骑另外的一辆吧。</b><span>Bạn đi chiếc khác đi.</span></div><div class=\"g-line\"><b>你骑另一辆吧。</b><span>Bạn đi một chiếc khác đi.</span></div><div class=\"g-line\"><b>最近小雨太忙了，你还是另找别人吧。</b><span>Gần đây Tiểu Vũ quá bận, bạn nên tìm người khác.</span></div></div>"],["首先……其次……","<div class=\"g-lead\">Dùng để trình bày theo thứ tự logic: “trước hết…, tiếp theo/thứ hai…”.</div><div class=\"g-rule\"><b>Cách dùng / cấu trúc</b><div>• <b>首先 + ý 1，其次 + ý 2</b>.</div><div>• Rất phù hợp trong bài nói/viết cần trình bày các bước.</div></div>","<div class=\"g-examples\"><div class=\"g-line\"><b>首先应该明白为什么做，其次要知道怎么做。</b><span>Trước hết cần hiểu tại sao làm, tiếp theo phải biết làm thế nào.</span></div><div class=\"g-line\"><b>首先要穿正式的衣服，其次不要紧张。</b><span>Trước hết phải mặc trang phục trang trọng, tiếp theo đừng căng thẳng.</span></div></div>"],["首先：phó từ","<div class=\"g-lead\">首先 cũng có thể đứng riêng làm phó từ, nghĩa là “đầu tiên/trước tiên”.</div><div class=\"g-rule\"><b>Cách dùng / cấu trúc</b><div>• <b>S + 首先 + V</b>.</div></div>","<div class=\"g-examples\"><div class=\"g-line\"><b>遇到不明白的地方，很多人首先想到上网查。</b><span>Gặp chỗ không hiểu, nhiều người đầu tiên nghĩ đến việc tra mạng.</span></div><div class=\"g-line\"><b>不管做什么工作，你首先应该有一个好身体。</b><span>Dù làm công việc gì, trước hết bạn nên có sức khỏe tốt.</span></div></div>"],["……时 = ……的时候","<div class=\"g-lead\">时 có thể dùng sau động từ/cụm động từ để rút gọn 的时候, thường mang sắc thái gọn và hơi thiên về văn viết.</div><div class=\"g-rule\"><b>Cách dùng / cấu trúc</b><div>• <b>V/VP + 时，……</b> = <b>V/VP + 的时候，……</b>.</div></div>","<div class=\"g-examples\"><div class=\"g-line\"><b>跟他在一起时，总是感觉时间过得很快。</b><span>Khi ở bên anh ấy, luôn cảm thấy thời gian trôi rất nhanh.</span></div><div class=\"g-line\"><b>回答问题时，不要说得太快。</b><span>Khi trả lời câu hỏi, đừng nói quá nhanh.</span></div></div>"],["不管……（都）……","<div class=\"g-lead\">Cấu trúc vô điều kiện: bất kể điều kiện thay đổi thế nào thì kết quả vẫn giữ nguyên.</div><div class=\"g-rule\"><b>Cách dùng / cấu trúc</b><div>• <b>不管 + 疑问词/正反结构/是A还是B，……都……</b>.</div><div>• Các kiểu: 不管做什么、不管忙不忙、不管是A还是B.</div></div>","<div class=\"g-examples\"><div class=\"g-line\"><b>不管多累，下班后我都去锻炼。</b><span>Dù mệt thế nào, tan làm tôi cũng đi tập.</span></div><div class=\"g-line\"><b>她不管做什么事都很认真。</b><span>Bất kể làm việc gì cô ấy cũng rất nghiêm túc.</span></div><div class=\"g-line\"><b>不管是上课还是上班，准时都很重要。</b><span>Dù đi học hay đi làm, đúng giờ đều rất quan trọng.</span></div></div>"]],"fills":[{"s":"参加面试的时候别太____，要对自己有信心。","a":"紧张","o":["紧张","正式","准时","收入"]},{"s":"这次招聘本来是小李____的，但是他突然生病了。","a":"负责","o":["负责","提供","判断","改变"]},{"s":"这两个人的能力都比较____我们的要求。","a":"符合","o":["符合","应聘","通知","安排"]},{"s":"请你____他们下周一上午九点来办公室。","a":"通知","o":["通知","材料","收入","另外"]},{"s":"她大学学的是法律____，毕业后去上海当律师。","a":"专业","o":["专业","能力","材料","顾客"]},{"s":"我今天晚上____有安排，我们明天再一起吃饭吧。","a":"另外","o":["另外","本来","首先","其次"]},{"s":"面试时，____要穿正式的衣服；____，回答问题不要太快。","a":"首先 / 其次","o":["首先 / 其次","本来 / 另外","不管 / 都","与 / 约会"]},{"s":"____是上课、上班，还是与别人约会，准时都非常重要。","a":"不管","o":["不管","另外","本来","挺"]}],"grammarQuiz":[{"q":"Chọn câu dùng 本来 đúng nhất.","o":["我本来应该昨天给你打电话。","我本来很以后去。","本来我另外一杯茶。","我本来地准时。"],"a":0,"e":"本来 diễn tả điều vốn dĩ/đáng lẽ."},{"q":"Điền: ____多忙，他每天都锻炼身体。","o":["不管","另外","其次","与"],"a":0,"e":"不管多忙……都……"},{"q":"Câu nào phù hợp cấu trúc 首先……其次……?","o":["首先准备材料，其次准时到。","首先很收入，其次律师。","首先不管，其次与。","首先的正式，其次的诚实。"],"a":0,"e":"Hai từ dùng để liệt kê thứ tự."},{"q":"“回答问题时” gần nghĩa nhất với…","o":["回答问题的时候","回答问题以后一定","回答问题另外","回答问题不管"],"a":0,"e":"……时 = ……的时候"},{"q":"Điền: 衬衫没问题，但是裤子颜色不太好，你____换一条吧。","o":["另","与","本来","挺"],"a":0,"e":"另 + động từ một âm tiết: 另换。"},{"q":"“这家店的东西挺好的” dùng 挺 để…","o":["nhấn mạnh mức độ khá/rất","chỉ thời gian","chỉ nguyên nhân","phủ định"],"a":0,"e":"挺 + tính từ + 的."}],"apply":["Mô phỏng phỏng vấn 8–10 lượt thoại. Bắt buộc dùng ít nhất 6 từ: 招聘、应聘、信心、能力、负责、符合、通知、正式、诚实、准时。","Viết 80–100 chữ: 你认为第一印象重要吗？ Hãy dùng 不管……都…… và ít nhất 5 từ mới của bài.","Lập checklist 5 bước chuẩn bị phỏng vấn bằng tiếng Trung, dùng 首先、其次、另外 và 至少 3 từ mới."],"advanced":[{"q":"Sửa lỗi: 不管很忙，他都准时来上班。","hint":"Dùng 不管 + 多(么)+Adj hoặc Adj不Adj.","sample":"不管多忙，他都准时来上班。 / 不管忙不忙，他都准时来上班。"},{"q":"Viết lại bằng 另外: 除了工资，我还很重视工作环境。","hint":"Dùng 另外 + 还/也…","sample":"我很重视工资，另外，我也很重视工作环境。"},{"q":"Tình huống: Bạn là HR. Hãy viết thông báo 60–80 chữ cho 2 ứng viên đã 符合要求, nêu thời gian đến văn phòng và nhắc đúng giờ.","hint":"Dùng 通知、符合、材料、准时、安排.","sample":"开放题：重点检查信息是否完整、用词是否自然。"}],"summary":"5 phần bài khóa xoay quanh phỏng vấn, tuyển dụng, công việc của 王静, cách tạo ấn tượng tốt khi phỏng vấn và tầm quan trọng của ấn tượng đầu tiên/đúng giờ."};const ADV_DATA={"mcq":[{"q":"面试的时候，小王有点儿紧张。朋友最合适的建议是：","o":["别紧张，要对自己有信心。","你应该马上改变专业。","你最好不要准备材料。","收入越低越好。"],"a":0,"e":"紧张、信心都是本课面试主题词。"},{"q":"这次招聘____是小李负责的，但是他突然生病了。","o":["本来","另外","其次","不管"],"a":0,"e":"本来表示原先的安排或本来如此。"},{"q":"这两位应聘者的能力都____公司的要求。","o":["符合","提供","判断","留"],"a":0,"e":"符合要求 = đáp ứng/phù hợp yêu cầu。"},{"q":"____多忙，他每天都准时到公司。","o":["不管","首先","本来","另外"],"a":0,"e":"不管多忙……都……表示条件变化而结果不变。"},{"q":"哪一句最适合用来补充第二个信息？","o":["这份工作收入不错，另外，工作环境也很好。","这份工作另外很收入。","另外这份工作本来。","收入其次另外工作。"],"a":0,"e":"另外可作连接成分，补充另一条信息。"}],"reorder":[{"parts":["这次招聘","本来","是","小李","负责的"],"answer":"这次招聘本来是小李负责的","e":"本来放在谓语前，表示原来的安排。"},{"parts":["请你","通知","他们","下周一上午九点","来办公室"],"answer":"请你通知他们下周一上午九点来办公室","e":"通知 + 人 + 时间 + 来/做某事。"},{"parts":["不管","多忙","他","都应该","准时上班"],"answer":"不管多忙他都应该准时上班","e":"不管……都……是本课重点结构。"},{"parts":["首先","要准备好材料","其次","不要","太紧张"],"answer":"首先要准备好材料其次不要太紧张","e":"首先……其次……用于按顺序列举。"},{"parts":["经理","对我的","第一印象","挺好的"],"answer":"经理对我的第一印象挺好的","e":"对 + 人/事 + 印象；挺 + 形容词 + 的。"}],"sequence":[{"q":"Sắp xếp quy trình chuẩn bị phỏng vấn hợp lý nhất:","items":["A. 准备应聘材料","B. 穿正式的衣服并准时到达","C. 回答问题时保持诚实和自信"],"o":["A → B → C","B → A → C","C → A → B","A → C → B"],"a":0,"e":"Chuẩn bị tài liệu → đến đúng giờ, trang trọng → trả lời tự tin/thành thật."},{"q":"Sắp xếp quy trình tuyển dụng:","items":["A. 公司发布招聘信息","B. 应聘者参加面试","C. 公司通知符合要求的人"],"o":["A → B → C","C → B → A","B → A → C","A → C → B"],"a":0,"e":"招聘 → 应聘/面试 → 通知符合要求的人。"},{"q":"Sắp xếp quá trình hình thành ấn tượng:","items":["A. 第一次见面","B. 对对方产生感觉","C. 根据表现作出判断"],"o":["A → B → C","C → A → B","B → C → A","B → A → C"],"a":0,"e":"见面后先形成感觉，再逐渐判断。"}],"error":[{"q":"Chọn câu đúng với cấu trúc 不管……都……","o":["不管多忙，他都准时来上班。","不管很忙，他都准时来上班。","不管多忙，他准时来上班都。","不管他都多忙，准时来上班。"],"a":0,"e":"不管 + 多 + Adj，主语 + 都 + VP。"},{"q":"Chọn câu dùng 另外 tự nhiên nhất:","o":["我想了解工资，另外，我也想了解工作时间。","我另外很了解工资。","另外我工资其次。","我想另外的了解工资。"],"a":0,"e":"另外 thường nối thêm một thông tin/mệnh đề khác。"},{"q":"Chọn câu dùng 首先……其次…… đúng:","o":["首先准备材料，其次了解公司的情况。","首先材料，其次很公司。","首先不管，其次本来。","首先准备，其次地公司。"],"a":0,"e":"首先、其次 phải dẫn vào hai hành động/ý theo thứ tự。"},{"q":"“回答问题时，说得不要太快。” 中的 “时” 可以换成：","o":["的时候","另外","本来","不管"],"a":0,"e":"……时 = ……的时候。"}],"reading":[{"text":"陈雨准备应聘一家设计公司的工作。收到面试通知后，她先认真看招聘要求，又准备好自己的材料。面试那天，她穿得很正式，提前十分钟到公司。回答问题时，她有一点紧张，但是仍然诚实地介绍自己的能力，也说了自己需要继续学习的地方。经理觉得她很准时，也很有信心，对她的第一印象挺不错。几天后，公司通知她参加第二次面试。","qs":[{"q":"陈雨收到通知后先做了什么？","o":["看招聘要求并准备材料","马上要求提高收入","先去买家具","决定不参加面试"],"a":0,"e":"她先看招聘要求，并准备应聘材料。"},{"q":"经理为什么对陈雨的第一印象不错？","o":["她准时、有信心，而且回答诚实","她说自己什么都会","她迟到了但工资要求低","她没有准备材料"],"a":0,"e":"文中强调准时、信心和诚实。"},{"q":"几天以后发生了什么？","o":["公司通知她参加第二次面试","她马上成了经理","她改变了专业","公司取消了招聘"],"a":0,"e":"结尾说公司通知她参加第二次面试。"}]}]};const RULES={"apply":[{"criteria":[{"type":"line_count","label":"8–10 lượt thoại","weight":20,"min":8,"max":10},{"type":"keywords","label":"Dùng ≥6 từ bắt buộc","weight":35,"words":["招聘","应聘","信心","能力","负责","符合","通知","正式","诚实","准时"],"min":6},{"type":"keywords","label":"Đúng chủ đề phỏng vấn","weight":20,"words":["面试","工作","公司","经理","应聘","招聘"],"min":2},{"type":"hanzi_min","label":"Có nội dung tiếng Trung đủ dài","weight":15,"min":45},{"type":"punctuation","label":"Câu/ý được tách rõ","weight":10,"min":5}]},{"criteria":[{"type":"hanzi_length","label":"Độ dài 80–100 chữ Hán","weight":20,"min":80,"max":100},{"type":"combo","label":"Dùng cấu trúc 不管……都……","weight":25,"groups":[["不管","都"]]},{"type":"vocab_hits","label":"Dùng ≥5 từ mới Bài 3","weight":30,"min":5},{"type":"keywords","label":"Bàn đúng về 第一印象","weight":15,"words":["第一印象","印象","重要","感觉","判断","诚实","准时"],"min":2},{"type":"punctuation","label":"Có ít nhất 4 câu/ý","weight":10,"min":4}]},{"criteria":[{"type":"line_count","label":"Checklist đủ ≥5 bước","weight":25,"min":5},{"type":"keywords","label":"Có 首先、其次、另外","weight":30,"words":["首先","其次","另外"],"min":3},{"type":"vocab_hits","label":"Dùng ≥3 từ mới Bài 3","weight":25,"min":3},{"type":"keywords","label":"Nội dung chuẩn bị phỏng vấn","weight":10,"words":["面试","材料","正式","准时","信心","诚实"],"min":2},{"type":"hanzi_min","label":"Có nội dung tiếng Trung","weight":10,"min":30}]}],"advanced":[{"criteria":[{"type":"combo","label":"Mẫu 不管多忙/忙不忙…都…","weight":55,"groups":[["不管","都"]]},{"type":"keywords","label":"Giữ ý “bận nhưng vẫn đúng giờ”","weight":30,"words":["忙","准时","上班"],"min":3},{"type":"forbidden","label":"Không dùng lỗi “不管很忙”","weight":15,"words":["不管很忙"]}]},{"criteria":[{"type":"keywords","label":"Dùng 另外","weight":40,"words":["另外"],"min":1},{"type":"keywords","label":"Giữ đủ 2 ý lương + môi trường","weight":40,"words":["工资","工作环境"],"min":2},{"type":"hanzi_min","label":"Câu hoàn chỉnh","weight":20,"min":12}]},{"criteria":[{"type":"hanzi_length","label":"Độ dài 60–80 chữ Hán","weight":20,"min":60,"max":80},{"type":"keywords","label":"Dùng từ khóa HR","weight":35,"words":["通知","符合","材料","准时","安排"],"min":4},{"type":"keywords","label":"Có thông tin thời gian/văn phòng","weight":20,"words":["办公室","上午","下午","下周","点","星期"],"min":2},{"type":"keywords","label":"Nêu rõ ứng viên/đến làm thủ tục","weight":15,"words":["应聘","候选人","两位","来","参加"],"min":2},{"type":"punctuation","label":"Thông báo có ít nhất 3 câu/ý","weight":10,"min":3}]}]};
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const el=(tag,cls,txt)=>{const x=document.createElement(tag);if(cls)x.className=cls;if(txt!==undefined)x.textContent=txt;return x};
@@ -49,6 +50,14 @@ const state={tab:'flash',flashIndex:0,flashMask:false,quiz:[],quizAns:{},fillAns
 const tabs=[["flash", "Từ vựng"], ["quiz", "Trắc nghiệm"], ["fill", "Điền từ"], ["grammar", "Ngữ pháp"], ["apply", "Vận dụng"], ["advanced", "Nâng cao"]];
 const lesson="3";
 const L=DATA;
+window.MEOW_WRITING_CONTEXT={
+  course:'hsk4',
+  level:'HSK4',
+  lesson:3,
+  lessonTitle:L.title,
+  lessonTheme:L.theme,
+  grammarFocus:(L.grammar||[]).map(g=>Array.isArray(g)?g[0]:String(g))
+};
 function shuffleStaticQuestion(q){
   if(!q || !Array.isArray(q.o) || !q.o.length) return;
   const numericAnswer = typeof q.a === 'number';
@@ -181,7 +190,89 @@ html+=`<section class="adv-section"><div class="adv-section-head"><div><h3>⑤ �
 function gradeChoiceQuestion(q,key){const chosen=state.advChoice[key];const card=document.querySelector(`[data-cardkey="${key}"]`);const opts=card?card.querySelectorAll('.adv-opt'):[];opts.forEach(x=>x.classList.remove('good','bad'));if(opts[q.a])opts[q.a].classList.add('good');if(chosen!==undefined&&chosen!==q.a&&opts[chosen])opts[chosen].classList.add('bad');const ok=chosen===q.a;card?.classList.remove('unanswered','correct','incorrect');card?.classList.add(chosen===undefined?'unanswered':ok?'correct':'incorrect');const fb=card?.querySelector('.adv-feedback');if(fb){fb.classList.add('show');fb.innerHTML=chosen===undefined?`⚠ Chưa chọn đáp án. Đáp án đúng: <b>${String.fromCharCode(65+q.a)}</b>. ${q.e}`:`${ok?'✓ Đúng':'✗ Chưa đúng'} · Đáp án: <b>${String.fromCharCode(65+q.a)}</b>. ${q.e}`};return ok?1:0}
 function gradeAdvanced(c){const A=ADV_DATA;let correct=0,total=0;A.mcq.forEach((q,i)=>{total++;correct+=gradeChoiceQuestion(q,`mcq-${i}`)});A.reorder.forEach((q,i)=>{total++;const card=document.querySelector(`#adv-reorder-${i}`),ans=card.querySelector('.order-answer'),txt=[...ans.querySelectorAll('.word-chip')].map(x=>x.textContent).join('');const ok=normalizeAdv(txt)===normalizeAdv(q.answer);ans.classList.remove('good','bad');ans.classList.add(ok?'good':'bad');card.classList.remove('unanswered','correct','incorrect');card.classList.add(!txt?'unanswered':ok?'correct':'incorrect');const fb=card.querySelector('.adv-feedback');fb.classList.add('show');fb.innerHTML=!txt?`⚠ Chưa sắp xếp. Đáp án: <b>${q.answer}。</b> ${q.e}`:`${ok?'✓ Đúng':'✗ Chưa đúng'} · Đáp án: <b>${q.answer}。</b> ${q.e}`;if(ok)correct++});A.sequence.forEach((q,i)=>{total++;correct+=gradeChoiceQuestion(q,`sequence-${i}`)});A.error.forEach((q,i)=>{total++;correct+=gradeChoiceQuestion(q,`error-${i}`)});A.reading.forEach((r,ri)=>r.qs.forEach((q,qi)=>{total++;correct+=gradeChoiceQuestion(q,`reading-${ri}-${qi}`)}));const score=Math.round(correct/total*100),verdict=score>=90?'Xuất sắc':score>=80?'Rất tốt':score>=70?'Đạt':score>=50?'Cần ôn thêm':'Nên làm lại';$('#advScore').textContent=`${score}/100 · ${correct}/${total} câu đúng · ${verdict}`;bump(true);toast(`Bài nâng cao: ${score}/100`)}
 
-function renderOpenTasks(c,type){const arr=L[type];const rules=RULES[type];const isAdv=type==='advanced';c.innerHTML=intro(isAdv?'Bài nâng cao':'Bài vận dụng',isAdv?'Sửa lỗi, viết lại và case nâng cao. Có chấm tự động theo rubric.':'Bài viết/hội thoại có nút Chấm bài. Điểm là điểm luyện tập tự động, không phải điểm giáo viên.','<button class="btn" onclick="window.print()">In phần này</button><button class="btn primary" id="gradeAll">Chấm toàn bộ</button>')+`<div class="overall"></div><div class="task-list" id="tasks"></div><div id="overallScore" style="margin-top:14px"></div>`;const w=$('#tasks');arr.forEach((item,i)=>{const q=typeof item==='string'?item:item.q;const t=el('div','task');t.innerHTML=`<h3>${i+1}. ${q}</h3><textarea placeholder="Nhập câu trả lời bằng tiếng Trung..."></textarea><div class="actions" style="margin-top:9px"><button class="btn save">Lưu</button><button class="btn primary grade">Chấm bài</button>${isAdv?'<button class="btn soft hintbtn">Gợi ý / đáp án mẫu</button>':''}</div><div class="grader"></div>${isAdv?`<div class="hintbox"><b>Gợi ý:</b> ${item.hint}<br><b>Mẫu:</b> ${item.sample}</div>`:''}`;const ta=t.querySelector('textarea');ta.value=localStorage.getItem(taskKey(type,i))||'';t.querySelector('.save').onclick=()=>{localStorage.setItem(taskKey(type,i),ta.value);toast('Đã lưu bài trên trình duyệt')};t.querySelector('.grade').onclick=()=>{localStorage.setItem(taskKey(type,i),ta.value);const res=gradeText(ta.value,rules[i]);const box=t.querySelector('.grader');box.innerHTML=gradeBlockHTML(res);box.classList.add('show');bump(true)};if(isAdv)t.querySelector('.hintbtn').onclick=()=>t.querySelector('.hintbox').classList.toggle('show');w.appendChild(t)});$('#gradeAll').onclick=()=>{let sum=0,n=0;[...w.children].forEach((t,i)=>{const ta=t.querySelector('textarea'),res=gradeText(ta.value,rules[i]);localStorage.setItem(taskKey(type,i),ta.value);const box=t.querySelector('.grader');box.innerHTML=gradeBlockHTML(res);box.classList.add('show');sum+=res.score;n++});$('#overallScore').innerHTML=`<div class="score">Điểm trung bình phần ${isAdv?'Nâng cao':'Vận dụng'}: ${Math.round(sum/n)}/100</div>`;bump(true)}}
+function renderOpenTasks(c,type){
+  const arr=L[type];
+  const rules=RULES[type];
+  const isAdv=type==='advanced';
+
+  if(!isAdv){
+    c.innerHTML=intro(
+      'Bài vận dụng · AI chấm bài',
+      '',
+      '<button class="btn" onclick="window.print()">In phần này</button>'
+    )+`<div class="task-list" id="tasks"></div>`;
+
+    const w=$('#tasks');
+    arr.forEach((item,i)=>{
+      const q=typeof item==='string'?item:item.q;
+      const t=el('div','task');
+      t.setAttribute('data-ai-writing','');
+      t.innerHTML=`<h3>${i+1}. ${q}</h3>
+        <textarea class="writing-answer" placeholder="Nhập bài viết bằng tiếng Trung..."></textarea>
+        <div class="actions" style="margin-top:9px">
+          <button class="btn save">Lưu</button>
+          <button class="btn primary ai-grade-btn">Gửi AI chấm bài</button>
+        </div>
+        <div class="ai-result"></div>`;
+      const ta=t.querySelector('textarea');
+      ta.value=localStorage.getItem(taskKey(type,i))||'';
+      t.querySelector('.save').onclick=()=>{
+        localStorage.setItem(taskKey(type,i),ta.value);
+        toast('Đã lưu bài trên trình duyệt');
+      };
+      w.appendChild(t);
+    });
+    return;
+  }
+
+  c.innerHTML=intro(
+    'Bài nâng cao',
+    'Sửa lỗi, viết lại và case nâng cao. Phần này vẫn giữ chấm tự động theo rubric nội bộ của bài học.',
+    '<button class="btn" onclick="window.print()">In phần này</button><button class="btn primary" id="gradeAll">Chấm toàn bộ</button>'
+  )+`<div class="overall"></div><div class="task-list" id="tasks"></div><div id="overallScore" style="margin-top:14px"></div>`;
+
+  const w=$('#tasks');
+  arr.forEach((item,i)=>{
+    const q=typeof item==='string'?item:item.q;
+    const t=el('div','task');
+    t.innerHTML=`<h3>${i+1}. ${q}</h3><textarea placeholder="Nhập câu trả lời bằng tiếng Trung..."></textarea><div class="actions" style="margin-top:9px"><button class="btn save">Lưu</button><button class="btn primary grade">Chấm bài</button><button class="btn soft hintbtn">Gợi ý / đáp án mẫu</button></div><div class="grader"></div><div class="hintbox"><b>Gợi ý:</b> ${item.hint}<br><b>Mẫu:</b> ${item.sample}</div>`;
+    const ta=t.querySelector('textarea');
+    ta.value=localStorage.getItem(taskKey(type,i))||'';
+    t.querySelector('.save').onclick=()=>{
+      localStorage.setItem(taskKey(type,i),ta.value);
+      toast('Đã lưu bài trên trình duyệt');
+    };
+    t.querySelector('.grade').onclick=()=>{
+      localStorage.setItem(taskKey(type,i),ta.value);
+      const res=gradeText(ta.value,rules[i]);
+      const box=t.querySelector('.grader');
+      box.innerHTML=gradeBlockHTML(res);
+      box.classList.add('show');
+      bump(true);
+    };
+    t.querySelector('.hintbtn').onclick=()=>t.querySelector('.hintbox').classList.toggle('show');
+    w.appendChild(t);
+  });
+
+  $('#gradeAll').onclick=()=>{
+    let sum=0,n=0;
+    [...w.children].forEach((t,i)=>{
+      const ta=t.querySelector('textarea'),res=gradeText(ta.value,rules[i]);
+      localStorage.setItem(taskKey(type,i),ta.value);
+      const box=t.querySelector('.grader');
+      box.innerHTML=gradeBlockHTML(res);
+      box.classList.add('show');
+      sum+=res.score;n++;
+    });
+    $('#overallScore').innerHTML=`<div class="score">Điểm trung bình phần Nâng cao: ${Math.round(sum/n)}/100</div>`;
+    bump(true);
+  };
+}
+window.addEventListener('meow-ai-writing-graded',e=>{
+  if(e.detail?.course==='hsk4' && Number(e.detail?.lesson)===3){
+    toast(`AI đã chấm: ${e.detail.score}/100`);
+  }
+});
 init();
 </script>
 <script>
@@ -197,4 +288,6 @@ init();
 })();
 </script>
 
+
+<div class="footer">Học cùng meow meow, vui quá là vui</div>
 </body></html>
