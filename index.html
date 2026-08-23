@@ -283,6 +283,89 @@ a{color:inherit}
 .back-link{text-decoration:none;color:var(--blue-dark);font-weight:700;font-size:.9rem}
 .empty-card{opacity:.62}
 
+
+.vocab-section{
+  margin-top:24px;
+  padding-top:8px;
+}
+.vocab-section-head{
+  margin-bottom:18px;
+}
+.vocab-section-head h3{
+  margin:4px 0 6px;
+  font-size:1.45rem;
+  color:var(--ink);
+}
+.vocab-section-head p{
+  margin:0;
+  color:var(--muted);
+  font-size:.94rem;
+}
+.vocab-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+}
+.vocab-card{
+  position:relative;
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:linear-gradient(145deg,#fff 0%,#fff8fa 100%);
+  padding:22px;
+  box-shadow:0 10px 28px rgba(92,52,64,.06);
+}
+.vocab-card:after{
+  content:"词";
+  position:absolute;
+  right:-2px;
+  bottom:-30px;
+  font-family:"Noto Serif SC",serif;
+  font-size:112px;
+  font-weight:700;
+  color:rgba(194,83,116,.055);
+  pointer-events:none;
+}
+.vocab-level{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:#fff1f5;
+  color:#9f3f5d;
+  font-size:.78rem;
+  font-weight:800;
+  letter-spacing:.02em;
+}
+.vocab-card h4{
+  position:relative;
+  z-index:1;
+  margin:14px 0 8px;
+  font-size:1.28rem;
+}
+.vocab-card p{
+  position:relative;
+  z-index:1;
+  margin:0;
+  color:var(--muted);
+  font-size:.9rem;
+  line-height:1.7;
+}
+.vocab-card .course-meta{
+  position:relative;
+  z-index:1;
+  margin-top:14px;
+}
+.vocab-card .btn{
+  position:relative;
+  z-index:1;
+  margin-top:18px;
+}
+@media(max-width:760px){
+  .vocab-grid{grid-template-columns:1fr}
+}
+
 @media(max-width:850px){
   .feature-strip,.course-grid,.about-grid,.lesson-grid{grid-template-columns:1fr}
   .feature-item{border-right:0;border-bottom:1px solid var(--line)}
@@ -309,7 +392,7 @@ a{color:inherit}
       <a href="#gioi-thieu">Giới thiệu</a>
       <a href="#cach-hoc">Cách học</a>
       <a href="#khoa-hoc">Bài học</a>
-      <a href="login.html?next=hsk1-vocab.html">Ôn từ vựng</a>
+      <a href="#on-tu-vung">Ôn từ vựng</a>
       <a href="login.html?next=game.html">Trò chơi</a>
       <a href="#lien-he">Liên hệ</a>
       <a href="login.html">Đăng nhập</a>
@@ -420,29 +503,46 @@ a{color:inherit}
             <div class="course-cn">汉语教程 · 中级</div>
             <p>Các bài học trung cấp với từ vựng, ngữ pháp, luyện tập và phần nâng cao.</p>
             <div class="course-meta">
-              <span class="tag">Bài 1 → Bài 7 hiện có</span>
+              <span class="tag">Bài 1 → Bài 20</span>
               <span class="tag">Trung cấp</span>
             </div>
           </div>
           <a class="btn btn-primary" href="login.html?next=hsk4.html">Xem các bài HSK4</a>
         </article>
       </div>
-
-      <div class="vocab-review">
-        <div class="vocab-review-copy">
+      <section class="vocab-section" id="on-tu-vung">
+        <div class="vocab-section-head">
           <div class="section-kicker">ÔN TẬP · 词汇复习</div>
-          <h3>Ôn tập từ vựng HSK1</h3>
-          <p>Tra chữ Hán, pinyin, nghĩa tiếng Việt, âm Hán Việt, loại từ và câu ví dụ. Mở từng từ để xem thứ tự nét bút và luyện cách viết.</p>
-          <div class="vocab-review-meta">
-            <span class="tag">500 từ HSK1 3.0</span>
-            <span class="tag">Tìm kiếm và lọc</span>
-            <span class="tag">Thứ tự nét bút</span>
-          </div>
+          <h3>Ôn tập từ vựng</h3>
+          <p>Chọn cấp độ muốn ôn. Mở vào từng bộ để xem danh sách từ, thẻ từ vựng, nghe phát âm và luyện viết chữ Hán.</p>
         </div>
-        <div class="vocab-review-action">
-          <a class="btn btn-primary" href="login.html?next=hsk1-vocab.html">Bắt đầu ôn từ vựng</a>
+
+        <div class="vocab-grid">
+          <article class="vocab-card">
+            <div class="vocab-level">HSK1 · 初级</div>
+            <h4>Ôn từ vựng HSK1</h4>
+            <p>Bộ từ vựng nền tảng dành cho HSK1, có tra chữ Hán, pinyin, nghĩa tiếng Việt, âm Hán Việt và thẻ ôn tập.</p>
+            <div class="course-meta">
+              <span class="tag">500 từ HSK1 3.0</span>
+              <span class="tag">Flashcard</span>
+              <span class="tag">Nét chữ</span>
+            </div>
+            <a class="btn btn-primary" href="login.html?next=hsk1-vocab.html">Mở từ vựng HSK1</a>
+          </article>
+
+          <article class="vocab-card">
+            <div class="vocab-level">HSK4 · 中级</div>
+            <h4>Ôn từ vựng HSK4</h4>
+            <p>Từ vựng HSK4 theo Bài 1–20 của giáo trình lớp đang học, có thể lọc riêng từng bài và ôn bằng thẻ từ vựng.</p>
+            <div class="course-meta">
+              <span class="tag">621 mục từ</span>
+              <span class="tag">Bài 1 → Bài 20</span>
+              <span class="tag">Flashcard</span>
+            </div>
+            <a class="btn btn-primary" href="login.html?next=hsk4-vocab.html">Mở từ vựng HSK4</a>
+          </article>
         </div>
-      </div>
+      </section>
 
       <div class="game-review">
         <div class="game-review-copy">
