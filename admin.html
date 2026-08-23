@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="vi">
 <head>
@@ -106,7 +107,7 @@ function renderStudents(){
 
   $('#students').innerHTML=rows.map(x=>`<tr class="person" data-id="${x.p.id}">
     <td><b>${esc(x.p.display_name)}</b><div class="small">${esc(x.p.username)}</div></td>
-    <td>${x.a.completed}/15</td><td>${x.b.completed}/7</td>
+    <td>${x.a.completed}/15</td><td>${x.b.completed}/20</td>
     <td>${x.a.attempts+x.b.attempts}</td>
     <td>${avg(games.filter(g=>g.user_id===x.p.id).map(g=>g.score))}/100</td>
     <td>${fmtDate(x.last)}</td></tr>`).join('');
