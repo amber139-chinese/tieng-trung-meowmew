@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ôn tập từ vựng HSK4 · Bài 1–20 · Tiếng Trung Meow Meow</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script defer src="meow-auth.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js"></script>
+
+<style>
+:root{
+  --blue:#EAA0B8;
+  --blue-2:#F4BDD0;
+  --blue-dark:#B94F74;
+  --blue-soft:#FFF0F5;
+  --blue-pale:#FFF8FA;
+  --rose:#C55D81;
+  --rose-soft:#FFF3F7;
+  --ink:#4B3640;
+  --muted:#7C6971;
+  --line:#F0D6DF;
+  --white:#fff;
+  --shadow:0 15px 40px rgba(157,76,107,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  color:var(--ink);
+  line-height:1.7;
+  background:
+    radial-gradient(circle at 12% 8%,rgba(242,186,205,.26),transparent 25%),
+    radial-gradient(circle at 88% 13%,rgba(255,223,233,.34),transparent 23%),
+    linear-gradient(180deg,#FFF8FB,#fff 38%,#FFF7FA);
+}
+button,input,select{font:inherit}
+a{color:inherit}
+.container{width:min(1160px,calc(100% - 32px));margin:0 auto}
+
+.topbar{
+  position:sticky;top:0;z-index:80;
+  background:rgba(255,255,255,.94);
+  border-bottom:1px solid rgba(240,214,223,.94);
+  backdrop-filter:blur(14px);
+}
+.topbar-inner{
+  min-height:66px;display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.brand{text-decoration:none;font-weight:800;color:#A74669;letter-spacing:.01em}
+.top-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.top-actions a{
+  text-decoration:none;border:1px solid var(--line);border-radius:10px;
+  padding:8px 11px;color:var(--blue-dark);font-size:.82rem;font-weight:700;background:#fff;
+}
+
+.hero{padding:72px 0 34px;position:relative;overflow:hidden}
+.hero::after{
+  content:"词汇";
+  position:absolute;right:4vw;top:18px;
+  font-family:"Noto Serif SC",serif;font-size:clamp(8rem,18vw,14rem);
+  color:rgba(185,79,116,.060);pointer-events:none;line-height:1;
+}
+.kicker{font-size:.8rem;font-weight:800;color:var(--blue-dark);letter-spacing:.13em}
+.hero h1{
+  margin:9px 0 12px;
+  font-family:"Noto Serif SC","Be Vietnam Pro",serif;
+  font-size:clamp(2.25rem,5vw,4.35rem);line-height:1.14;font-weight:600;
+}
+.hero p{max-width:780px;margin:0;color:var(--muted);font-size:.98rem}
+.hero-note{
+  margin-top:17px;display:inline-block;padding:8px 11px;border-radius:10px;
+  background:rgba(255,255,255,.78);border:1px solid var(--line);
+  color:#61747B;font-size:.78rem;
+}
+
+.toolbar-shell{position:sticky;top:66px;z-index:60;padding:10px 0;background:rgba(255,248,251,.94);backdrop-filter:blur(10px)}
+.toolbar{
+  padding:14px;background:#fff;border:1px solid var(--line);
+  border-radius:20px;box-shadow:0 10px 28px rgba(157,76,107,.07);
+}
+.search-row{display:grid;grid-template-columns:minmax(260px,1fr) 220px 150px;gap:10px}
+.search-input,.filter-select{
+  width:100%;border:1px solid var(--line);border-radius:12px;background:#fff;
+  padding:11px 13px;outline:none;color:var(--ink);
+}
+.search-input:focus,.filter-select:focus{border-color:#E4A3BA;box-shadow:0 0 0 3px rgba(228,163,186,.16)}
+.count-box{
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--line);border-radius:12px;background:var(--blue-pale);
+  color:var(--blue-dark);font-size:.82rem;font-weight:800;padding:9px;
+}
+.letters{display:flex;gap:5px;flex-wrap:wrap;margin-top:11px}
+.letter{
+  border:1px solid var(--line);background:#fff;color:#657980;border-radius:8px;
+  min-width:31px;height:31px;padding:0 8px;cursor:pointer;font-size:.73rem;font-weight:800;
+}
+.letter.active{background:var(--blue-dark);border-color:var(--blue-dark);color:#fff}
+
+.content-area{padding:15px 0 68px}
+.loading,.empty,.error-box{
+  background:#fff;border:1px solid var(--line);border-radius:18px;
+  padding:24px;color:var(--muted);text-align:center;box-shadow:var(--shadow);
+}
+.error-box{color:#8D5364;background:#FFF9FB;border-color:#ECD5DE}
+
+.word-list{display:grid;gap:10px}
+.word-card{
+  background:#fff;border:1px solid var(--line);border-radius:18px;
+  overflow:hidden;box-shadow:0 8px 24px rgba(157,76,107,.055);
+}
+.word-card.open{border-color:#EDBCD0;box-shadow:0 13px 30px rgba(157,76,107,.10)}
+.word-summary{
+  width:100%;border:0;background:transparent;cursor:pointer;text-align:left;
+  display:grid;grid-template-columns:54px 210px minmax(220px,1fr) 185px 150px 90px;
+  gap:12px;align-items:center;padding:15px 17px;color:inherit;
+}
+.no{font-size:.72rem;color:#8A9A9F;font-weight:800}
+.hanzi{
+  display:block;font-family:"Noto Serif SC",serif;font-size:1.75rem;
+  font-weight:600;line-height:1.2;color:#563A46;
+}
+.pinyin{display:block;margin-top:3px;color:var(--rose);font-size:.84rem;font-weight:700}
+.meaning{font-size:.88rem;color:#53676F}
+.hanviet{font-size:.78rem;color:#5A7078;font-weight:800;letter-spacing:.025em}
+.pos-list{display:flex;gap:5px;flex-wrap:wrap}
+.pos-tag{
+  display:inline-block;border-radius:999px;background:#F7FBFC;border:1px solid var(--line);
+  color:#64777E;font-size:.68rem;font-weight:700;padding:4px 7px;
+}
+.detail-text{font-size:.72rem;color:var(--blue-dark);font-weight:800;text-align:right}
+
+.word-detail{
+  display:none;border-top:1px solid #E8F0F2;
+  padding:18px;background:linear-gradient(180deg,#FCFEFF,#fff);
+}
+.word-card.open .word-detail{display:block}
+.sense{
+  display:grid;grid-template-columns:140px 1fr;gap:16px;
+  padding:12px 0;border-top:1px dashed #E5EEF0;
+}
+.sense:first-child{border-top:0;padding-top:0}
+.sense-label{font-size:.76rem;color:#71848A;font-weight:800}
+.sense-main b{font-size:.88rem;color:#5B3D49}
+.example-zh{
+  margin-top:7px;font-family:"Noto Serif SC",serif;font-size:1.07rem;color:#543944;
+}
+.example-pinyin{font-size:.79rem;color:var(--rose);margin-top:2px}
+.example-vi{font-size:.82rem;color:#687A80;margin-top:2px}
+.detail-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.action-btn{
+  border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--blue-dark);
+  font-size:.76rem;font-weight:800;padding:8px 11px;cursor:pointer;
+}
+.action-btn.primary{background:var(--blue-dark);border-color:var(--blue-dark);color:#fff}
+
+.pagination{
+  display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin-top:22px;
+}
+.page-btn{
+  border:1px solid var(--line);background:#fff;color:#5B7077;border-radius:9px;
+  min-width:36px;height:36px;padding:0 10px;cursor:pointer;font-size:.76rem;font-weight:800;
+}
+.page-btn.active{background:var(--blue-dark);border-color:var(--blue-dark);color:#fff}
+.page-btn:disabled{opacity:.42;cursor:not-allowed}
+
+.source-note{
+  margin-top:26px;border-top:1px solid var(--line);padding-top:18px;
+  color:#819096;font-size:.74rem;line-height:1.7;
+}
+
+/* modal nét bút */
+.modal{
+  position:fixed;inset:0;z-index:100000;background:rgba(25,46,54,.38);
+  display:none;align-items:center;justify-content:center;padding:18px;
+}
+.modal.open{display:flex}
+.modal-card{
+  width:min(880px,100%);max-height:90vh;overflow:auto;background:#fff;
+  border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:0 28px 75px rgba(32,66,78,.22);
+}
+.modal-head{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}
+.modal-head h2{margin:0;font-family:"Noto Serif SC",serif;font-size:1.65rem}
+.modal-head p{margin:4px 0 0;color:var(--muted);font-size:.8rem}
+.close-btn{
+  border:1px solid var(--line);background:#fff;border-radius:9px;padding:7px 11px;
+  font-size:.75rem;color:#5D7077;font-weight:800;cursor:pointer;
+}
+.writer-grid{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;margin:22px 0}
+.writer-item{text-align:center}
+.writer-box{
+  width:142px;height:142px;border:1px solid #D7E3E7;border-radius:9px;overflow:hidden;
+  background:
+    linear-gradient(to right,transparent 49.5%,rgba(190,205,210,.45) 49.5%,rgba(190,205,210,.45) 50.5%,transparent 50.5%),
+    linear-gradient(to bottom,transparent 49.5%,rgba(190,205,210,.45) 49.5%,rgba(190,205,210,.45) 50.5%,transparent 50.5%),
+    #fff;
+}
+.writer-char{margin-top:5px;font-family:"Noto Serif SC",serif;font-weight:700;color:#754C5D}
+.writer-actions{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.writer-msg{text-align:center;color:var(--muted);font-size:.78rem}
+
+@media(max-width:980px){
+  .word-summary{grid-template-columns:45px 180px 1fr 140px 80px}
+  .hanviet{display:none}
+}
+@media(max-width:760px){
+  .search-row{grid-template-columns:1fr}
+  .toolbar-shell{position:static}
+  .word-summary{grid-template-columns:42px 1fr 80px;padding:13px}
+  .meaning{grid-column:2/-1}
+  .hanviet{display:block;grid-column:2/-1}
+  .pos-list{grid-column:2}
+  .detail-text{grid-column:3;grid-row:1;text-align:right}
+  .sense{grid-template-columns:1fr;gap:5px}
+}
+@media(max-width:520px){
+  .container{width:min(100% - 20px,1160px)}
+  .hero{padding-top:54px}
+  .hero-note{font-size:.7rem}
+  .writer-box{width:124px;height:124px}
+}
+
+.study-tabs-shell{padding:0 0 10px}
+.study-tabs{
+  display:flex;gap:8px;align-items:center;flex-wrap:wrap;
+  background:#fff;border:1px solid var(--line);border-radius:17px;padding:7px;
+  box-shadow:0 8px 24px rgba(157,76,107,.055);
+}
+.study-tab{
+  border:0;background:transparent;color:#876B76;border-radius:11px;
+  padding:10px 16px;cursor:pointer;font-size:.82rem;font-weight:800;
+  transition:.18s ease;
+}
+.study-tab:hover{background:#FFF7FA;color:var(--blue-dark)}
+.study-tab.active{
+  background:linear-gradient(135deg,#D96F95,#B94F74);color:#fff;
+  box-shadow:0 7px 18px rgba(185,79,116,.18);
+}
+
+.panel[hidden]{display:none!important}
+
+.flash-shell{padding:4px 0 10px}
+.flash-top{
+  display:flex;justify-content:space-between;align-items:center;gap:14px;
+  margin-bottom:14px;flex-wrap:wrap;
+}
+.flash-info{color:#7A646D;font-size:.8rem}
+.flash-info b{color:var(--blue-dark)}
+.flash-tools{display:flex;gap:8px;flex-wrap:wrap}
+.flash-tool{
+  border:1px solid var(--line);background:#fff;color:var(--blue-dark);
+  border-radius:10px;padding:8px 11px;font-size:.74rem;font-weight:800;cursor:pointer;
+}
+.flash-stage{perspective:1200px;max-width:770px;margin:0 auto}
+.flashcard{
+  min-height:430px;position:relative;cursor:pointer;
+  transform-style:preserve-3d;transition:transform .55s cubic-bezier(.2,.7,.2,1);
+}
+.flashcard.flipped{transform:rotateY(180deg)}
+.flash-face{
+  position:absolute;inset:0;backface-visibility:hidden;
+  border:1px solid var(--line);border-radius:30px;
+  background:linear-gradient(145deg,#fff 0%,#FFF7FA 100%);
+  box-shadow:0 22px 55px rgba(157,76,107,.13);
+  padding:34px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;overflow:auto;
+}
+.flash-front::before,.flash-back::before{
+  content:"";position:absolute;width:180px;height:180px;border-radius:50%;
+  background:rgba(239,166,190,.13);top:-70px;right:-55px;pointer-events:none;
+}
+.flash-front::after{
+  content:"词";position:absolute;left:24px;bottom:-10px;
+  font-family:"Noto Serif SC",serif;font-size:7rem;color:rgba(185,79,116,.045);line-height:1;
+}
+.flash-back{transform:rotateY(180deg);align-items:stretch;text-align:left}
+.flash-number{
+  position:absolute;top:22px;left:24px;font-size:.72rem;font-weight:800;color:#B58A99;
+}
+.flash-hanzi{
+  font-family:"Noto Serif SC",serif;font-size:clamp(4.1rem,11vw,7.6rem);
+  line-height:1.08;color:#573743;font-weight:600;letter-spacing:.04em;
+}
+.flash-hint{margin-top:22px;color:#A77D8C;font-size:.76rem;font-weight:700}
+.flash-pinyin{text-align:center;color:var(--blue-dark);font-size:1.28rem;font-weight:800}
+.flash-meaning{
+  text-align:center;font-family:"Noto Serif SC","Be Vietnam Pro",serif;
+  font-size:1.38rem;color:#4D3941;font-weight:600;margin-top:7px;
+}
+.flash-meta{
+  display:flex;justify-content:center;gap:7px;flex-wrap:wrap;margin:12px 0 17px;
+}
+.flash-hv{
+  border:1px solid #EECEDA;background:#fff;color:#9F5270;
+  border-radius:999px;padding:5px 9px;font-size:.72rem;font-weight:800;
+}
+.flash-example{
+  width:100%;margin-top:5px;padding:16px 17px;border-radius:17px;
+  background:#fff;border:1px solid #F0D9E1;
+}
+.flash-example .zh{
+  font-family:"Noto Serif SC",serif;font-size:1.18rem;color:#543A44;font-weight:600;
+}
+.flash-example .py{margin-top:4px;color:#C26586;font-size:.8rem}
+.flash-example .vi{margin-top:4px;color:#7B6970;font-size:.82rem}
+.flash-back-actions{
+  display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:17px;
+}
+.flash-nav{
+  display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin-top:18px;
+}
+.flash-nav-btn{
+  min-width:120px;border:1px solid var(--line);background:#fff;color:var(--blue-dark);
+  border-radius:12px;padding:10px 13px;font-size:.78rem;font-weight:800;cursor:pointer;
+}
+.flash-nav-btn.main{
+  background:linear-gradient(135deg,#D96F95,#B94F74);border-color:#B94F74;color:#fff;
+}
+.flash-progress{min-width:115px;text-align:center;color:#8A707A;font-size:.76rem;font-weight:800}
+.flash-empty{
+  background:#fff;border:1px solid var(--line);border-radius:22px;padding:28px;
+  text-align:center;color:#826B74;
+}
+.known-row{
+  display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:11px;
+}
+.known-btn{
+  border:1px solid var(--line);border-radius:10px;background:#fff;
+  color:#82586A;padding:8px 11px;font-size:.72rem;font-weight:800;cursor:pointer;
+}
+.known-btn.active{background:#FFF0F5;border-color:#E9AFC3;color:#A84469}
+.known-summary{text-align:center;margin-top:10px;color:#927986;font-size:.73rem}
+
+@media(max-width:760px){
+  .flashcard{min-height:445px}
+  .flash-face{padding:26px 20px}
+  .flash-back{justify-content:flex-start;padding-top:52px}
+}
+
+</style>
+</head>
+
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="index.html">TIẾNG TRUNG MEOW MEOW · 中文课堂</a>
+    <div class="top-actions">
+      <a href="hsk4.html">HSK4</a>
+      <a href="index.html#on-tu-vung">Ôn từ vựng</a>
+      <a href="index.html">Trang chính</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <div class="kicker">HSK4 · 词汇复习</div>
+      <h1>Ôn tập từ vựng HSK4</h1>
+      <p>Ôn tập từ vựng HSK4 Bài 1–20: tra chữ Hán, pinyin, nghĩa tiếng Việt và âm Hán Việt. Có danh sách từ, flashcard, nghe cách đọc và xem thứ tự nét bút.</p>
+      <div class="hero-note">Bộ 621 mục từ của HSK4 Bài 1–20 theo giáo trình lớp đang sử dụng. Có thể lọc riêng từng bài để ôn tập.</div>
+    </div>
+  </section>
+
+
+  <div class="study-tabs-shell">
+    <div class="container">
+      <div class="study-tabs" role="tablist" aria-label="Chế độ ôn tập">
+        <button class="study-tab active" id="tabList" type="button" data-tab="list">Danh sách từ</button>
+        <button class="study-tab" id="tabFlash" type="button" data-tab="flash">Flashcard</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toolbar-shell">
+    <div class="container">
+      <div class="toolbar">
+        <div class="search-row">
+          <input id="search" class="search-input" placeholder="Tìm chữ Hán, pinyin, nghĩa, âm Hán Việt hoặc số bài..." autocomplete="off">
+          <select id="lessonFilter" class="filter-select">
+            <option value="">Tất cả Bài 1–20</option>
+          </select>
+          <div class="count-box" id="countBox">Đang tải dữ liệu...</div>
+        </div>
+        <div class="letters" id="letters"></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="content-area">
+    <div class="container">
+      <div id="status" class="loading">Đang chuẩn bị danh sách từ vựng HSK4...</div>
+
+      <div id="listPanel" class="panel">
+        <div id="wordList" class="word-list" hidden></div>
+        <div id="pagination" class="pagination"></div>
+      </div>
+
+      <div id="flashPanel" class="panel" hidden>
+        <div class="flash-shell">
+          <div class="flash-top">
+            <div class="flash-info">
+              Dùng cùng bộ lọc phía trên. Bấm vào thẻ để lật mặt.
+              <b id="flashDeckCount"></b>
+            </div>
+            <div class="flash-tools">
+              <button class="flash-tool" id="shuffleFlash" type="button">Xáo trộn</button>
+              <button class="flash-tool" id="resetFlash" type="button">Về từ đầu</button>
+            </div>
+          </div>
+
+          <div id="flashEmpty" class="flash-empty" hidden>Không có từ phù hợp với bộ lọc hiện tại.</div>
+
+          <div id="flashStudy">
+            <div class="flash-stage">
+              <div class="flashcard" id="flashcard" tabindex="0" role="button" aria-label="Lật flashcard">
+                <div class="flash-face flash-front">
+                  <div class="flash-number" id="flashNumber"></div>
+                  <div class="flash-hanzi" id="flashHanzi"></div>
+                  <div class="flash-hint">Bấm vào thẻ để xem đáp án</div>
+                </div>
+
+                <div class="flash-face flash-back">
+                  <div class="flash-number" id="flashNumberBack"></div>
+                  <div class="flash-pinyin" id="flashPinyin"></div>
+                  <div class="flash-meaning" id="flashMeaning"></div>
+                  <div class="flash-meta">
+                    <span class="flash-hv" id="flashHanViet"></span>
+                    <span class="flash-hv" id="flashPos"></span>
+                  </div>
+                  <div class="flash-example" id="flashExample"></div>
+                  <div class="flash-back-actions">
+                    <button class="action-btn" id="flashSpeak" type="button">Nghe từ</button>
+                    <button class="action-btn primary" id="flashStroke" type="button">Xem thứ tự nét</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="known-row">
+              <button class="known-btn" id="markReview" type="button">Cần ôn lại</button>
+              <button class="known-btn" id="markKnown" type="button">Đã nhớ</button>
+            </div>
+            <div class="known-summary" id="knownSummary"></div>
+
+            <div class="flash-nav">
+              <button class="flash-nav-btn" id="flashPrev" type="button">Từ trước</button>
+              <div class="flash-progress" id="flashProgress"></div>
+              <button class="flash-nav-btn main" id="flashFlip" type="button">Lật thẻ</button>
+              <button class="flash-nav-btn" id="flashNext" type="button">Từ tiếp</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="source-note">
+        Dữ liệu Hán tự, pinyin và nghĩa tiếng Việt được tổng hợp theo HSK4 Bài 1–20 của giáo trình lớp đang sử dụng. Âm Hán Việt được ghép theo dữ liệu kVietnamese của Unicode Unihan. Phần thứ tự nét sử dụng Hanzi Writer.
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="modal" id="strokeModal" aria-hidden="true">
+  <div class="modal-card">
+    <div class="modal-head">
+      <div>
+        <h2 id="strokeTitle">Thứ tự nét</h2>
+        <p id="strokeSub">Xem thứ tự viết từng chữ Hán.</p>
+      </div>
+      <button class="close-btn" id="closeStroke" type="button">Đóng</button>
+    </div>
+
+    <div class="writer-grid" id="writerGrid"></div>
+    <div class="writer-actions">
+      <button class="action-btn primary" id="replayStroke" type="button">Phát lại nét bút</button>
+      <button class="action-btn" id="practiceStroke" type="button">Luyện viết</button>
+    </div>
+    <div class="writer-msg" id="writerMsg"></div>
+  </div>
+</div>
+
+<script>
+const HANVIET_URL = 'https://dahlia.github.io/unihan-json/12.1.0/kVietnamese.json';
+const PAGE_SIZE = 30;
+const RAW_WORDS = [{"id":1,"lesson":1,"sourceNo":1,"hanzi":"法律","pinyin":"fǎlǜ","meaning":"pháp luật, luật"},{"id":2,"lesson":1,"sourceNo":2,"hanzi":"俩","pinyin":"liǎ","meaning":"hai (người/vật, khẩu ngữ)"},{"id":3,"lesson":1,"sourceNo":3,"hanzi":"印象","pinyin":"yìnxiàng","meaning":"ấn tượng"},{"id":4,"lesson":1,"sourceNo":4,"hanzi":"深","pinyin":"shēn","meaning":"sâu, sâu sắc"},{"id":5,"lesson":1,"sourceNo":5,"hanzi":"熟悉","pinyin":"shúxī","meaning":"quen thuộc, hiểu rõ"},{"id":6,"lesson":1,"sourceNo":6,"hanzi":"不仅","pinyin":"bùjǐn","meaning":"không những"},{"id":7,"lesson":1,"sourceNo":7,"hanzi":"性格","pinyin":"xìnggé","meaning":"tính cách"},{"id":8,"lesson":1,"sourceNo":8,"hanzi":"最好","pinyin":"zuìhǎo","meaning":"tốt nhất; nên"},{"id":9,"lesson":1,"sourceNo":9,"hanzi":"从来","pinyin":"cónglái","meaning":"từ trước đến nay"},{"id":10,"lesson":1,"sourceNo":10,"hanzi":"游戏","pinyin":"yóuxì","meaning":"trò chơi"},{"id":11,"lesson":1,"sourceNo":11,"hanzi":"开玩笑","pinyin":"kāi wánxiào","meaning":"nói đùa"},{"id":12,"lesson":1,"sourceNo":12,"hanzi":"幸福","pinyin":"xìngfú","meaning":"hạnh phúc"},{"id":13,"lesson":1,"sourceNo":13,"hanzi":"适合","pinyin":"shìhé","meaning":"phù hợp với"},{"id":14,"lesson":1,"sourceNo":14,"hanzi":"共同","pinyin":"gòngtóng","meaning":"chung, cùng"},{"id":15,"lesson":1,"sourceNo":15,"hanzi":"接受","pinyin":"jiēshòu","meaning":"chấp nhận"},{"id":16,"lesson":1,"sourceNo":16,"hanzi":"缺点","pinyin":"quēdiǎn","meaning":"khuyết điểm"},{"id":17,"lesson":1,"sourceNo":17,"hanzi":"够","pinyin":"gòu","meaning":"đủ"},{"id":18,"lesson":1,"sourceNo":18,"hanzi":"浪漫","pinyin":"làngmàn","meaning":"lãng mạn"},{"id":19,"lesson":1,"sourceNo":19,"hanzi":"刚","pinyin":"gāng","meaning":"vừa, vừa mới"},{"id":20,"lesson":1,"sourceNo":20,"hanzi":"生活","pinyin":"shēnghuó","meaning":"cuộc sống; sống"},{"id":21,"lesson":1,"sourceNo":21,"hanzi":"即使","pinyin":"jíshǐ","meaning":"cho dù, ngay cả khi"},{"id":22,"lesson":1,"sourceNo":22,"hanzi":"星星","pinyin":"xīngxing","meaning":"ngôi sao"},{"id":23,"lesson":1,"sourceNo":23,"hanzi":"爱情","pinyin":"àiqíng","meaning":"tình yêu"},{"id":24,"lesson":1,"sourceNo":24,"hanzi":"羡慕","pinyin":"xiànmù","meaning":"ngưỡng mộ, ghen tị"},{"id":25,"lesson":1,"sourceNo":25,"hanzi":"感动","pinyin":"gǎndòng","meaning":"cảm động, làm xúc động"},{"id":26,"lesson":1,"sourceNo":26,"hanzi":"亮","pinyin":"liàng","meaning":"sáng; chiếu sáng"},{"id":27,"lesson":1,"sourceNo":27,"hanzi":"加班","pinyin":"jiābān","meaning":"tăng ca, làm thêm giờ"},{"id":28,"lesson":1,"sourceNo":28,"hanzi":"互相","pinyin":"hùxiāng","meaning":"lẫn nhau"},{"id":29,"lesson":1,"sourceNo":29,"hanzi":"原因","pinyin":"yuányīn","meaning":"nguyên nhân"},{"id":30,"lesson":1,"sourceNo":30,"hanzi":"自然","pinyin":"zìrán","meaning":"tự nhiên; đương nhiên"},{"id":31,"lesson":1,"sourceNo":31,"hanzi":"脾气","pinyin":"píqi","meaning":"tính khí"},{"id":32,"lesson":1,"sourceNo":32,"hanzi":"幽默","pinyin":"yōumò","meaning":"hóm hỉnh"},{"id":33,"lesson":1,"sourceNo":33,"hanzi":"吸引","pinyin":"xīyǐn","meaning":"thu hút"},{"id":34,"lesson":2,"sourceNo":1,"hanzi":"适应","pinyin":"shìyìng","meaning":"thích nghi"},{"id":35,"lesson":2,"sourceNo":2,"hanzi":"交","pinyin":"jiāo","meaning":"kết giao; giao/nộp"},{"id":36,"lesson":2,"sourceNo":3,"hanzi":"平时","pinyin":"píngshí","meaning":"ngày thường, bình thường"},{"id":37,"lesson":2,"sourceNo":4,"hanzi":"逛","pinyin":"guàng","meaning":"đi dạo, đi mua sắm"},{"id":38,"lesson":2,"sourceNo":5,"hanzi":"短信","pinyin":"duǎnxìn","meaning":"tin nhắn"},{"id":39,"lesson":2,"sourceNo":6,"hanzi":"正好","pinyin":"zhènghǎo","meaning":"vừa đúng, đúng lúc"},{"id":40,"lesson":2,"sourceNo":7,"hanzi":"聚会","pinyin":"jùhuì","meaning":"tụ họp, buổi họp mặt"},{"id":41,"lesson":2,"sourceNo":8,"hanzi":"联系","pinyin":"liánxì","meaning":"liên hệ"},{"id":42,"lesson":2,"sourceNo":9,"hanzi":"差不多","pinyin":"chàbuduō","meaning":"gần như, xấp xỉ, gần giống"},{"id":43,"lesson":2,"sourceNo":10,"hanzi":"专门","pinyin":"zhuānmén","meaning":"đặc biệt, riêng để"},{"id":44,"lesson":2,"sourceNo":11,"hanzi":"毕业","pinyin":"bìyè","meaning":"tốt nghiệp"},{"id":45,"lesson":2,"sourceNo":12,"hanzi":"麻烦","pinyin":"máfan","meaning":"phiền, làm phiền"},{"id":46,"lesson":2,"sourceNo":13,"hanzi":"好像","pinyin":"hǎoxiàng","meaning":"dường như, giống như"},{"id":47,"lesson":2,"sourceNo":14,"hanzi":"重新","pinyin":"chóngxīn","meaning":"lại, làm lại"},{"id":48,"lesson":2,"sourceNo":15,"hanzi":"尽管","pinyin":"jǐnguǎn","meaning":"mặc dù; cứ việc"},{"id":49,"lesson":2,"sourceNo":16,"hanzi":"真正","pinyin":"zhēnzhèng","meaning":"chân chính, thực sự"},{"id":50,"lesson":2,"sourceNo":17,"hanzi":"友谊","pinyin":"yǒuyì","meaning":"tình bạn"},{"id":51,"lesson":2,"sourceNo":18,"hanzi":"丰富","pinyin":"fēngfù","meaning":"phong phú; làm phong phú"},{"id":52,"lesson":2,"sourceNo":19,"hanzi":"无聊","pinyin":"wúliáo","meaning":"nhàm chán"},{"id":53,"lesson":2,"sourceNo":20,"hanzi":"讨厌","pinyin":"tǎoyàn","meaning":"ghét, không thích"},{"id":54,"lesson":2,"sourceNo":21,"hanzi":"却","pinyin":"què","meaning":"nhưng, lại"},{"id":55,"lesson":2,"sourceNo":22,"hanzi":"周围","pinyin":"zhōuwéi","meaning":"xung quanh"},{"id":56,"lesson":2,"sourceNo":23,"hanzi":"交流","pinyin":"jiāoliú","meaning":"giao lưu, trao đổi"},{"id":57,"lesson":2,"sourceNo":24,"hanzi":"理解","pinyin":"lǐjiě","meaning":"hiểu, thấu hiểu"},{"id":58,"lesson":2,"sourceNo":25,"hanzi":"镜子","pinyin":"jìngzi","meaning":"gương"},{"id":59,"lesson":2,"sourceNo":26,"hanzi":"而","pinyin":"ér","meaning":"mà, trong khi đó"},{"id":60,"lesson":2,"sourceNo":27,"hanzi":"当","pinyin":"dāng","meaning":"khi"},{"id":61,"lesson":2,"sourceNo":28,"hanzi":"困难","pinyin":"kùnnan","meaning":"khó khăn"},{"id":62,"lesson":2,"sourceNo":29,"hanzi":"及时","pinyin":"jíshí","meaning":"kịp thời"},{"id":63,"lesson":2,"sourceNo":30,"hanzi":"陪","pinyin":"péi","meaning":"đi cùng, ở bên"},{"id":64,"lesson":3,"sourceNo":1,"hanzi":"挺","pinyin":"tǐng","meaning":"rất"},{"id":65,"lesson":3,"sourceNo":2,"hanzi":"紧张","pinyin":"jǐnzhāng","meaning":"hồi hộp, căng thẳng"},{"id":66,"lesson":3,"sourceNo":3,"hanzi":"信心","pinyin":"xìnxīn","meaning":"lòng tin, sự tự tin"},{"id":67,"lesson":3,"sourceNo":4,"hanzi":"能力","pinyin":"nénglì","meaning":"năng lực, khả năng"},{"id":68,"lesson":3,"sourceNo":5,"hanzi":"招聘","pinyin":"zhāopìn","meaning":"tuyển dụng"},{"id":69,"lesson":3,"sourceNo":6,"hanzi":"提供","pinyin":"tígōng","meaning":"cung cấp"},{"id":70,"lesson":3,"sourceNo":7,"hanzi":"负责","pinyin":"fùzé","meaning":"phụ trách, chịu trách nhiệm"},{"id":71,"lesson":3,"sourceNo":8,"hanzi":"本来","pinyin":"běnlái","meaning":"vốn dĩ, lúc đầu"},{"id":72,"lesson":3,"sourceNo":9,"hanzi":"应聘","pinyin":"yìngpìn","meaning":"ứng tuyển, xin việc"},{"id":73,"lesson":3,"sourceNo":10,"hanzi":"材料","pinyin":"cáiliào","meaning":"tài liệu"},{"id":74,"lesson":3,"sourceNo":11,"hanzi":"符合","pinyin":"fúhé","meaning":"phù hợp, đáp ứng"},{"id":75,"lesson":3,"sourceNo":12,"hanzi":"通知","pinyin":"tōngzhī","meaning":"thông báo"},{"id":76,"lesson":3,"sourceNo":13,"hanzi":"律师","pinyin":"lǜshī","meaning":"luật sư"},{"id":77,"lesson":3,"sourceNo":14,"hanzi":"专业","pinyin":"zhuānyè","meaning":"chuyên ngành, chuyên môn"},{"id":78,"lesson":3,"sourceNo":15,"hanzi":"另外","pinyin":"lìngwài","meaning":"ngoài ra; một/những ... khác"},{"id":79,"lesson":3,"sourceNo":16,"hanzi":"收入","pinyin":"shōurù","meaning":"thu nhập"},{"id":80,"lesson":3,"sourceNo":17,"hanzi":"咱们","pinyin":"zánmen","meaning":"chúng ta, chúng mình"},{"id":81,"lesson":3,"sourceNo":18,"hanzi":"安排","pinyin":"ānpái","meaning":"sắp xếp"},{"id":82,"lesson":3,"sourceNo":19,"hanzi":"首先","pinyin":"shǒuxiān","meaning":"trước hết, trước tiên"},{"id":83,"lesson":3,"sourceNo":20,"hanzi":"正式","pinyin":"zhèngshì","meaning":"chính thức, trang trọng"},{"id":84,"lesson":3,"sourceNo":21,"hanzi":"留","pinyin":"liú","meaning":"để lại, lưu lại"},{"id":85,"lesson":3,"sourceNo":22,"hanzi":"其次","pinyin":"qícì","meaning":"thứ hai, sau đó"},{"id":86,"lesson":3,"sourceNo":23,"hanzi":"诚实","pinyin":"chéngshí","meaning":"thành thật"},{"id":87,"lesson":3,"sourceNo":24,"hanzi":"改变","pinyin":"gǎibiàn","meaning":"thay đổi"},{"id":88,"lesson":3,"sourceNo":25,"hanzi":"感觉","pinyin":"gǎnjué","meaning":"cảm giác, cảm nghĩ"},{"id":89,"lesson":3,"sourceNo":26,"hanzi":"判断","pinyin":"pànduàn","meaning":"phán đoán, nhận xét"},{"id":90,"lesson":3,"sourceNo":27,"hanzi":"顾客","pinyin":"gùkè","meaning":"khách hàng"},{"id":91,"lesson":3,"sourceNo":28,"hanzi":"准时","pinyin":"zhǔnshí","meaning":"đúng giờ"},{"id":92,"lesson":3,"sourceNo":29,"hanzi":"不管","pinyin":"bùguǎn","meaning":"bất kể, bất luận"},{"id":93,"lesson":3,"sourceNo":30,"hanzi":"与","pinyin":"yǔ","meaning":"với, và"},{"id":94,"lesson":3,"sourceNo":31,"hanzi":"约会","pinyin":"yuēhuì","meaning":"hẹn gặp, hẹn hò"},{"id":95,"lesson":4,"sourceNo":1,"hanzi":"提","pinyin":"tí","meaning":"nhắc đến"},{"id":96,"lesson":4,"sourceNo":2,"hanzi":"以为","pinyin":"yǐwéi","meaning":"tưởng rằng, cho rằng"},{"id":97,"lesson":4,"sourceNo":3,"hanzi":"份","pinyin":"fèn","meaning":"lượng từ: phần/bản/công việc"},{"id":98,"lesson":4,"sourceNo":4,"hanzi":"完全","pinyin":"wánquán","meaning":"hoàn toàn"},{"id":99,"lesson":4,"sourceNo":5,"hanzi":"赚","pinyin":"zhuàn","meaning":"kiếm (tiền)"},{"id":100,"lesson":4,"sourceNo":6,"hanzi":"调查","pinyin":"diàochá","meaning":"điều tra, khảo sát"},{"id":101,"lesson":4,"sourceNo":7,"hanzi":"原来","pinyin":"yuánlái","meaning":"ban đầu, trước đây; hóa ra"},{"id":102,"lesson":4,"sourceNo":8,"hanzi":"计划","pinyin":"jìhuà","meaning":"kế hoạch; lập kế hoạch"},{"id":103,"lesson":4,"sourceNo":9,"hanzi":"提前","pinyin":"tíqián","meaning":"trước thời hạn, làm sớm"},{"id":104,"lesson":4,"sourceNo":10,"hanzi":"保证","pinyin":"bǎozhèng","meaning":"bảo đảm, cam đoan"},{"id":105,"lesson":4,"sourceNo":11,"hanzi":"提醒","pinyin":"tíxǐng","meaning":"nhắc nhở"},{"id":106,"lesson":4,"sourceNo":12,"hanzi":"乱","pinyin":"luàn","meaning":"lộn xộn, rối"},{"id":107,"lesson":4,"sourceNo":13,"hanzi":"生意","pinyin":"shēngyi","meaning":"việc kinh doanh, buôn bán"},{"id":108,"lesson":4,"sourceNo":14,"hanzi":"谈","pinyin":"tán","meaning":"nói chuyện, bàn bạc"},{"id":109,"lesson":4,"sourceNo":15,"hanzi":"并","pinyin":"bìng","meaning":"dùng trước phủ định để nhấn mạnh"},{"id":110,"lesson":4,"sourceNo":16,"hanzi":"积累","pinyin":"jīlěi","meaning":"tích lũy"},{"id":111,"lesson":4,"sourceNo":17,"hanzi":"经验","pinyin":"jīngyàn","meaning":"kinh nghiệm"},{"id":112,"lesson":4,"sourceNo":18,"hanzi":"一切","pinyin":"yíqiè","meaning":"tất cả"},{"id":113,"lesson":4,"sourceNo":19,"hanzi":"按照","pinyin":"ànzhào","meaning":"theo, dựa theo"},{"id":114,"lesson":4,"sourceNo":20,"hanzi":"成功","pinyin":"chénggōng","meaning":"thành công"},{"id":115,"lesson":4,"sourceNo":21,"hanzi":"顺利","pinyin":"shùnlì","meaning":"thuận lợi, suôn sẻ"},{"id":116,"lesson":4,"sourceNo":22,"hanzi":"感谢","pinyin":"gǎnxiè","meaning":"cảm ơn"},{"id":117,"lesson":4,"sourceNo":23,"hanzi":"消息","pinyin":"xiāoxi","meaning":"tin tức"},{"id":118,"lesson":4,"sourceNo":24,"hanzi":"按时","pinyin":"ànshí","meaning":"đúng hạn"},{"id":119,"lesson":4,"sourceNo":25,"hanzi":"奖金","pinyin":"jiǎngjīn","meaning":"tiền thưởng"},{"id":120,"lesson":4,"sourceNo":26,"hanzi":"工资","pinyin":"gōngzī","meaning":"tiền lương"},{"id":121,"lesson":4,"sourceNo":27,"hanzi":"方法","pinyin":"fāngfǎ","meaning":"phương pháp"},{"id":122,"lesson":4,"sourceNo":28,"hanzi":"知识","pinyin":"zhīshi","meaning":"kiến thức"},{"id":123,"lesson":4,"sourceNo":29,"hanzi":"不得不","pinyin":"bùdébù","meaning":"buộc phải, không thể không"},{"id":124,"lesson":4,"sourceNo":30,"hanzi":"甚至","pinyin":"shènzhì","meaning":"thậm chí"},{"id":125,"lesson":4,"sourceNo":31,"hanzi":"责任","pinyin":"zérèn","meaning":"trách nhiệm"},{"id":126,"lesson":5,"sourceNo":1,"hanzi":"家具","pinyin":"jiājù","meaning":"đồ nội thất"},{"id":127,"lesson":5,"sourceNo":2,"hanzi":"沙发","pinyin":"shāfā","meaning":"ghế sofa"},{"id":128,"lesson":5,"sourceNo":3,"hanzi":"打折","pinyin":"dǎzhé","meaning":"giảm giá"},{"id":129,"lesson":5,"sourceNo":4,"hanzi":"价格","pinyin":"jiàgé","meaning":"giá cả"},{"id":130,"lesson":5,"sourceNo":5,"hanzi":"质量","pinyin":"zhìliàng","meaning":"chất lượng"},{"id":131,"lesson":5,"sourceNo":6,"hanzi":"肯定","pinyin":"kěndìng","meaning":"chắc chắn, nhất định"},{"id":132,"lesson":5,"sourceNo":7,"hanzi":"流行","pinyin":"liúxíng","meaning":"thịnh hành, được ưa chuộng"},{"id":133,"lesson":5,"sourceNo":8,"hanzi":"顺便","pinyin":"shùnbiàn","meaning":"nhân tiện"},{"id":134,"lesson":5,"sourceNo":9,"hanzi":"台","pinyin":"tái","meaning":"lượng từ cho máy móc"},{"id":135,"lesson":5,"sourceNo":10,"hanzi":"光","pinyin":"guāng","meaning":"chỉ, chỉ riêng"},{"id":136,"lesson":5,"sourceNo":11,"hanzi":"实在","pinyin":"shízài","meaning":"quả thực, thật sự"},{"id":137,"lesson":5,"sourceNo":12,"hanzi":"制冷","pinyin":"zhìlěng","meaning":"làm lạnh"},{"id":138,"lesson":5,"sourceNo":13,"hanzi":"效果","pinyin":"xiàoguǒ","meaning":"hiệu quả"},{"id":139,"lesson":5,"sourceNo":14,"hanzi":"现金","pinyin":"xiànjīn","meaning":"tiền mặt"},{"id":140,"lesson":5,"sourceNo":15,"hanzi":"邀请","pinyin":"yāoqǐng","meaning":"mời"},{"id":141,"lesson":5,"sourceNo":16,"hanzi":"葡萄","pinyin":"pútao","meaning":"quả nho"},{"id":142,"lesson":5,"sourceNo":17,"hanzi":"艺术","pinyin":"yìshù","meaning":"nghệ thuật; có tính nghệ thuật"},{"id":143,"lesson":5,"sourceNo":18,"hanzi":"广告","pinyin":"guǎnggào","meaning":"quảng cáo"},{"id":144,"lesson":5,"sourceNo":19,"hanzi":"味道","pinyin":"wèidào","meaning":"mùi vị"},{"id":145,"lesson":5,"sourceNo":20,"hanzi":"优点","pinyin":"yōudiǎn","meaning":"ưu điểm"},{"id":146,"lesson":5,"sourceNo":21,"hanzi":"实际","pinyin":"shíjì","meaning":"thực tế"},{"id":147,"lesson":5,"sourceNo":22,"hanzi":"考虑","pinyin":"kǎolǜ","meaning":"cân nhắc, suy xét"},{"id":148,"lesson":5,"sourceNo":23,"hanzi":"标准","pinyin":"biāozhǔn","meaning":"tiêu chuẩn"},{"id":149,"lesson":5,"sourceNo":24,"hanzi":"样子","pinyin":"yàngzi","meaning":"kiểu dáng, hình dáng"},{"id":150,"lesson":5,"sourceNo":25,"hanzi":"年龄","pinyin":"niánlíng","meaning":"tuổi"},{"id":151,"lesson":5,"sourceNo":26,"hanzi":"浪费","pinyin":"làngfèi","meaning":"lãng phí"},{"id":152,"lesson":5,"sourceNo":27,"hanzi":"购物","pinyin":"gòuwù","meaning":"mua sắm"},{"id":153,"lesson":5,"sourceNo":28,"hanzi":"尤其","pinyin":"yóuqí","meaning":"đặc biệt là, nhất là"},{"id":154,"lesson":5,"sourceNo":29,"hanzi":"受到","pinyin":"shòudào","meaning":"nhận/chịu (ảnh hưởng, sự yêu thích...)"},{"id":155,"lesson":5,"sourceNo":30,"hanzi":"任何","pinyin":"rènhé","meaning":"bất kỳ, bất cứ"},{"id":156,"lesson":5,"sourceNo":31,"hanzi":"寄","pinyin":"jì","meaning":"gửi"},{"id":157,"lesson":6,"sourceNo":1,"hanzi":"果汁","pinyin":"guǒzhī","meaning":"nước trái cây"},{"id":158,"lesson":6,"sourceNo":2,"hanzi":"售货员","pinyin":"shòuhuòyuán","meaning":"nhân viên bán hàng"},{"id":159,"lesson":6,"sourceNo":3,"hanzi":"袜子","pinyin":"wàzi","meaning":"tất, vớ"},{"id":160,"lesson":6,"sourceNo":4,"hanzi":"打扰","pinyin":"dǎrǎo","meaning":"làm phiền, quấy rầy"},{"id":161,"lesson":6,"sourceNo":5,"hanzi":"竟然","pinyin":"jìngrán","meaning":"không ngờ, vậy mà"},{"id":162,"lesson":6,"sourceNo":6,"hanzi":"西红柿","pinyin":"xīhóngshì","meaning":"cà chua"},{"id":163,"lesson":6,"sourceNo":7,"hanzi":"百分之","pinyin":"bǎifēnzhī","meaning":"phần trăm"},{"id":164,"lesson":6,"sourceNo":8,"hanzi":"倍","pinyin":"bèi","meaning":"lần, gấp"},{"id":165,"lesson":6,"sourceNo":9,"hanzi":"皮肤","pinyin":"pífū","meaning":"da"},{"id":166,"lesson":6,"sourceNo":10,"hanzi":"好处","pinyin":"hǎochù","meaning":"lợi ích"},{"id":167,"lesson":6,"sourceNo":11,"hanzi":"尝","pinyin":"cháng","meaning":"nếm, thưởng thức"},{"id":168,"lesson":6,"sourceNo":12,"hanzi":"轻","pinyin":"qīng","meaning":"nhẹ"},{"id":169,"lesson":6,"sourceNo":13,"hanzi":"方面","pinyin":"fāngmiàn","meaning":"khía cạnh, phương diện"},{"id":170,"lesson":6,"sourceNo":14,"hanzi":"值得","pinyin":"zhídé","meaning":"đáng"},{"id":171,"lesson":6,"sourceNo":15,"hanzi":"活动","pinyin":"huódòng","meaning":"hoạt động"},{"id":172,"lesson":6,"sourceNo":16,"hanzi":"内","pinyin":"nèi","meaning":"trong, bên trong"},{"id":173,"lesson":6,"sourceNo":17,"hanzi":"免费","pinyin":"miǎnfèi","meaning":"miễn phí"},{"id":174,"lesson":6,"sourceNo":18,"hanzi":"修理","pinyin":"xiūlǐ","meaning":"sửa chữa"},{"id":175,"lesson":6,"sourceNo":19,"hanzi":"支持","pinyin":"zhīchí","meaning":"ủng hộ"},{"id":176,"lesson":6,"sourceNo":20,"hanzi":"举行","pinyin":"jǔxíng","meaning":"tổ chức (hội họp/hoạt động)"},{"id":177,"lesson":6,"sourceNo":21,"hanzi":"满","pinyin":"mǎn","meaning":"đủ, đạt đến mức"},{"id":178,"lesson":6,"sourceNo":22,"hanzi":"其中","pinyin":"qízhōng","meaning":"trong đó"},{"id":179,"lesson":6,"sourceNo":23,"hanzi":"小说","pinyin":"xiǎoshuō","meaning":"tiểu thuyết"},{"id":180,"lesson":6,"sourceNo":24,"hanzi":"会员卡","pinyin":"huìyuánkǎ","meaning":"thẻ hội viên"},{"id":181,"lesson":6,"sourceNo":25,"hanzi":"所有","pinyin":"suǒyǒu","meaning":"tất cả, toàn bộ"},{"id":182,"lesson":6,"sourceNo":26,"hanzi":"获得","pinyin":"huòdé","meaning":"nhận được, đạt được"},{"id":183,"lesson":6,"sourceNo":27,"hanzi":"情况","pinyin":"qíngkuàng","meaning":"tình hình, trường hợp"},{"id":184,"lesson":6,"sourceNo":28,"hanzi":"例如","pinyin":"lìrú","meaning":"ví dụ"},{"id":185,"lesson":6,"sourceNo":29,"hanzi":"举办","pinyin":"jǔbàn","meaning":"tổ chức, tiến hành"},{"id":186,"lesson":6,"sourceNo":30,"hanzi":"各","pinyin":"gè","meaning":"các, mỗi"},{"id":187,"lesson":6,"sourceNo":31,"hanzi":"降低","pinyin":"jiàngdī","meaning":"giảm, hạ"},{"id":188,"lesson":7,"sourceNo":1,"hanzi":"流血","pinyin":"liúxiě","meaning":"chảy máu"},{"id":189,"lesson":7,"sourceNo":2,"hanzi":"擦","pinyin":"cā","meaning":"lau, chùi"},{"id":190,"lesson":7,"sourceNo":3,"hanzi":"气候","pinyin":"qìhòu","meaning":"khí hậu"},{"id":191,"lesson":7,"sourceNo":4,"hanzi":"估计","pinyin":"gūjì","meaning":"đoán chừng, dự đoán"},{"id":192,"lesson":7,"sourceNo":5,"hanzi":"咳嗽","pinyin":"késou","meaning":"ho"},{"id":193,"lesson":7,"sourceNo":6,"hanzi":"严重","pinyin":"yánzhòng","meaning":"nghiêm trọng"},{"id":194,"lesson":7,"sourceNo":7,"hanzi":"窗户","pinyin":"chuānghu","meaning":"cửa sổ"},{"id":195,"lesson":7,"sourceNo":8,"hanzi":"空气","pinyin":"kōngqì","meaning":"không khí"},{"id":196,"lesson":7,"sourceNo":9,"hanzi":"抽烟","pinyin":"chōuyān","meaning":"hút thuốc"},{"id":197,"lesson":7,"sourceNo":10,"hanzi":"动作","pinyin":"dòngzuò","meaning":"động tác, hành động"},{"id":198,"lesson":7,"sourceNo":11,"hanzi":"帅","pinyin":"shuài","meaning":"đẹp trai, ngầu"},{"id":199,"lesson":7,"sourceNo":12,"hanzi":"出现","pinyin":"chūxiàn","meaning":"xuất hiện, nảy sinh"},{"id":200,"lesson":7,"sourceNo":13,"hanzi":"后悔","pinyin":"hòuhuǐ","meaning":"hối hận, ân hận"},{"id":201,"lesson":7,"sourceNo":14,"hanzi":"来不及","pinyin":"láibují","meaning":"không kịp"},{"id":202,"lesson":7,"sourceNo":15,"hanzi":"反对","pinyin":"fǎnduì","meaning":"phản đối"},{"id":203,"lesson":7,"sourceNo":16,"hanzi":"大夫","pinyin":"dàifu","meaning":"bác sĩ"},{"id":204,"lesson":7,"sourceNo":17,"hanzi":"植物","pinyin":"zhíwù","meaning":"thực vật, cây xanh"},{"id":205,"lesson":7,"sourceNo":18,"hanzi":"研究","pinyin":"yánjiū","meaning":"nghiên cứu"},{"id":206,"lesson":7,"sourceNo":19,"hanzi":"超过","pinyin":"chāoguò","meaning":"vượt quá"},{"id":207,"lesson":7,"sourceNo":20,"hanzi":"散步","pinyin":"sànbù","meaning":"đi dạo"},{"id":208,"lesson":7,"sourceNo":21,"hanzi":"指","pinyin":"zhǐ","meaning":"chỉ, nói đến"},{"id":209,"lesson":7,"sourceNo":22,"hanzi":"精神","pinyin":"jīngshén","meaning":"tinh thần"},{"id":210,"lesson":7,"sourceNo":23,"hanzi":"教授","pinyin":"jiàoshòu","meaning":"giáo sư"},{"id":211,"lesson":7,"sourceNo":24,"hanzi":"数字","pinyin":"shùzì","meaning":"con số"},{"id":212,"lesson":7,"sourceNo":25,"hanzi":"说明","pinyin":"shuōmíng","meaning":"giải thích, nói rõ"},{"id":213,"lesson":7,"sourceNo":26,"hanzi":"要是","pinyin":"yàoshi","meaning":"nếu, nếu như"},{"id":214,"lesson":7,"sourceNo":27,"hanzi":"既","pinyin":"jì","meaning":"vừa… vừa… / đã… lại…"},{"id":215,"lesson":7,"sourceNo":28,"hanzi":"减肥","pinyin":"jiǎnféi","meaning":"giảm cân"},{"id":216,"lesson":7,"sourceNo":29,"hanzi":"辛苦","pinyin":"xīnkǔ","meaning":"vất vả, cực nhọc"},{"id":217,"lesson":7,"sourceNo":30,"hanzi":"肚子","pinyin":"dùzi","meaning":"bụng"},{"id":218,"lesson":7,"sourceNo":31,"hanzi":"感情","pinyin":"gǎnqíng","meaning":"tình cảm"},{"id":219,"lesson":7,"sourceNo":32,"hanzi":"烦恼","pinyin":"fánnǎo","meaning":"phiền muộn, buồn phiền"},{"id":220,"lesson":7,"sourceNo":33,"hanzi":"掉","pinyin":"diào","meaning":"mất, đi, hết; bổ ngữ kết quả"},{"id":221,"lesson":8,"sourceNo":1,"hanzi":"巧克力","pinyin":"qiǎokèlì","meaning":"sô-cô-la"},{"id":222,"lesson":8,"sourceNo":2,"hanzi":"亲戚","pinyin":"qīnqi","meaning":"họ hàng, thân thích"},{"id":223,"lesson":8,"sourceNo":3,"hanzi":"伤心","pinyin":"shāngxīn","meaning":"đau lòng, buồn"},{"id":224,"lesson":8,"sourceNo":4,"hanzi":"使","pinyin":"shǐ","meaning":"khiến, làm cho"},{"id":225,"lesson":8,"sourceNo":5,"hanzi":"心情","pinyin":"xīnqíng","meaning":"tâm trạng"},{"id":226,"lesson":8,"sourceNo":6,"hanzi":"愉快","pinyin":"yúkuài","meaning":"vui vẻ, thoải mái"},{"id":227,"lesson":8,"sourceNo":7,"hanzi":"景色","pinyin":"jǐngsè","meaning":"phong cảnh, cảnh vật"},{"id":228,"lesson":8,"sourceNo":8,"hanzi":"放松","pinyin":"fàngsōng","meaning":"thư giãn, thả lỏng"},{"id":229,"lesson":8,"sourceNo":9,"hanzi":"压力","pinyin":"yālì","meaning":"áp lực"},{"id":230,"lesson":8,"sourceNo":10,"hanzi":"回忆","pinyin":"huíyì","meaning":"hồi tưởng, ký ức"},{"id":231,"lesson":8,"sourceNo":11,"hanzi":"发生","pinyin":"fāshēng","meaning":"xảy ra"},{"id":232,"lesson":8,"sourceNo":12,"hanzi":"成为","pinyin":"chéngwéi","meaning":"trở thành"},{"id":233,"lesson":8,"sourceNo":13,"hanzi":"只要","pinyin":"zhǐyào","meaning":"chỉ cần, miễn là"},{"id":234,"lesson":8,"sourceNo":14,"hanzi":"师傅","pinyin":"shīfu","meaning":"sư phụ; cách gọi kính trọng người có tay nghề"},{"id":235,"lesson":8,"sourceNo":15,"hanzi":"大使馆","pinyin":"dàshǐguǎn","meaning":"đại sứ quán"},{"id":236,"lesson":8,"sourceNo":16,"hanzi":"堵车","pinyin":"dǔchē","meaning":"kẹt xe, tắc đường"},{"id":237,"lesson":8,"sourceNo":17,"hanzi":"距离","pinyin":"jùlí","meaning":"khoảng cách"},{"id":238,"lesson":8,"sourceNo":18,"hanzi":"耐心","pinyin":"nàixīn","meaning":"lòng kiên nhẫn"},{"id":239,"lesson":8,"sourceNo":19,"hanzi":"生命","pinyin":"shēngmìng","meaning":"sự sống, sinh mệnh"},{"id":240,"lesson":8,"sourceNo":20,"hanzi":"缺少","pinyin":"quēshǎo","meaning":"thiếu, thiếu hụt"},{"id":241,"lesson":8,"sourceNo":21,"hanzi":"到处","pinyin":"dàochù","meaning":"khắp nơi, đâu đâu"},{"id":242,"lesson":8,"sourceNo":22,"hanzi":"态度","pinyin":"tàidu","meaning":"thái độ"},{"id":243,"lesson":8,"sourceNo":23,"hanzi":"因此","pinyin":"yīncǐ","meaning":"vì vậy, do đó"},{"id":244,"lesson":8,"sourceNo":24,"hanzi":"科学","pinyin":"kēxué","meaning":"khoa học"},{"id":245,"lesson":8,"sourceNo":25,"hanzi":"证明","pinyin":"zhèngmíng","meaning":"chứng minh"},{"id":246,"lesson":8,"sourceNo":26,"hanzi":"往往","pinyin":"wǎngwǎng","meaning":"thường thường, thường hay"},{"id":247,"lesson":8,"sourceNo":27,"hanzi":"阳光","pinyin":"yángguāng","meaning":"ánh nắng; lạc quan, tươi sáng"},{"id":248,"lesson":8,"sourceNo":28,"hanzi":"积极","pinyin":"jījí","meaning":"tích cực"},{"id":249,"lesson":8,"sourceNo":29,"hanzi":"特点","pinyin":"tèdiǎn","meaning":"đặc điểm"},{"id":250,"lesson":9,"sourceNo":1,"hanzi":"饼干","pinyin":"bǐnggān","meaning":"bánh quy"},{"id":251,"lesson":9,"sourceNo":2,"hanzi":"难道","pinyin":"nándào","meaning":"lẽ nào, chẳng lẽ"},{"id":252,"lesson":9,"sourceNo":3,"hanzi":"得","pinyin":"děi","meaning":"phải, cần phải"},{"id":253,"lesson":9,"sourceNo":4,"hanzi":"坚持","pinyin":"jiānchí","meaning":"kiên trì, duy trì"},{"id":254,"lesson":9,"sourceNo":5,"hanzi":"放弃","pinyin":"fàngqì","meaning":"từ bỏ"},{"id":255,"lesson":9,"sourceNo":6,"hanzi":"主意","pinyin":"zhǔyi","meaning":"ý định, ý kiến"},{"id":256,"lesson":9,"sourceNo":7,"hanzi":"网球","pinyin":"wǎngqiú","meaning":"quần vợt"},{"id":257,"lesson":9,"sourceNo":8,"hanzi":"国际","pinyin":"guójì","meaning":"quốc tế"},{"id":258,"lesson":9,"sourceNo":9,"hanzi":"轻松","pinyin":"qīngsōng","meaning":"nhẹ nhàng, thoải mái, dễ dàng"},{"id":259,"lesson":9,"sourceNo":10,"hanzi":"赢","pinyin":"yíng","meaning":"thắng"},{"id":260,"lesson":9,"sourceNo":11,"hanzi":"随便","pinyin":"suíbiàn","meaning":"tùy tiện, tùy ý"},{"id":261,"lesson":9,"sourceNo":12,"hanzi":"汗","pinyin":"hàn","meaning":"mồ hôi"},{"id":262,"lesson":9,"sourceNo":13,"hanzi":"通过","pinyin":"tōngguò","meaning":"thông qua, nhờ vào; đi qua; vượt qua"},{"id":263,"lesson":9,"sourceNo":14,"hanzi":"篇","pinyin":"piān","meaning":"lượng từ cho bài viết, thiên"},{"id":264,"lesson":9,"sourceNo":15,"hanzi":"作家","pinyin":"zuòjiā","meaning":"nhà văn"},{"id":265,"lesson":9,"sourceNo":16,"hanzi":"当时","pinyin":"dāngshí","meaning":"lúc đó, khi ấy"},{"id":266,"lesson":9,"sourceNo":17,"hanzi":"可是","pinyin":"kěshì","meaning":"nhưng, thế nhưng"},{"id":267,"lesson":9,"sourceNo":18,"hanzi":"正确","pinyin":"zhèngquè","meaning":"đúng, chính xác"},{"id":268,"lesson":9,"sourceNo":19,"hanzi":"理想","pinyin":"lǐxiǎng","meaning":"lý tưởng"},{"id":269,"lesson":9,"sourceNo":20,"hanzi":"勇敢","pinyin":"yǒnggǎn","meaning":"dũng cảm"},{"id":270,"lesson":9,"sourceNo":21,"hanzi":"结果","pinyin":"jiéguǒ","meaning":"kết quả; kết cục"},{"id":271,"lesson":9,"sourceNo":22,"hanzi":"失败","pinyin":"shībài","meaning":"thất bại"},{"id":272,"lesson":9,"sourceNo":23,"hanzi":"过程","pinyin":"guòchéng","meaning":"quá trình"},{"id":273,"lesson":9,"sourceNo":24,"hanzi":"至少","pinyin":"zhìshǎo","meaning":"ít nhất"},{"id":274,"lesson":9,"sourceNo":25,"hanzi":"总结","pinyin":"zǒngjié","meaning":"tổng kết"},{"id":275,"lesson":9,"sourceNo":26,"hanzi":"取","pinyin":"qǔ","meaning":"lấy, giành, đạt được"},{"id":276,"lesson":9,"sourceNo":27,"hanzi":"经历","pinyin":"jīnglì","meaning":"trải qua; kinh nghiệm đã trải qua"},{"id":277,"lesson":9,"sourceNo":28,"hanzi":"许多","pinyin":"xǔduō","meaning":"rất nhiều"},{"id":278,"lesson":9,"sourceNo":29,"hanzi":"区别","pinyin":"qūbié","meaning":"khác biệt, phân biệt"},{"id":279,"lesson":9,"sourceNo":30,"hanzi":"暂时","pinyin":"zànshí","meaning":"tạm thời"},{"id":280,"lesson":9,"sourceNo":31,"hanzi":"面对","pinyin":"miànduì","meaning":"đối mặt"},{"id":281,"lesson":10,"sourceNo":1,"hanzi":"礼拜天","pinyin":"lǐbàitiān","meaning":"chủ nhật"},{"id":282,"lesson":10,"sourceNo":2,"hanzi":"空儿","pinyin":"kòngr","meaning":"thời gian rỗi"},{"id":283,"lesson":10,"sourceNo":3,"hanzi":"母亲","pinyin":"mǔqīn","meaning":"mẹ, mẫu thân"},{"id":284,"lesson":10,"sourceNo":4,"hanzi":"不过","pinyin":"búguò","meaning":"nhưng, tuy nhiên; chỉ, chẳng qua"},{"id":285,"lesson":10,"sourceNo":5,"hanzi":"永远","pinyin":"yǒngyuǎn","meaning":"mãi mãi, vĩnh viễn"},{"id":286,"lesson":10,"sourceNo":6,"hanzi":"方向","pinyin":"fāngxiàng","meaning":"phương hướng, định hướng"},{"id":287,"lesson":10,"sourceNo":7,"hanzi":"优秀","pinyin":"yōuxiù","meaning":"ưu tú, xuất sắc"},{"id":288,"lesson":10,"sourceNo":8,"hanzi":"硕士","pinyin":"shuòshì","meaning":"thạc sĩ"},{"id":289,"lesson":10,"sourceNo":9,"hanzi":"翻译","pinyin":"fānyì","meaning":"phiên dịch, biên dịch"},{"id":290,"lesson":10,"sourceNo":10,"hanzi":"确实","pinyin":"quèshí","meaning":"thật sự, quả thực"},{"id":291,"lesson":10,"sourceNo":11,"hanzi":"兴奋","pinyin":"xīngfèn","meaning":"hưng phấn, phấn khởi"},{"id":292,"lesson":10,"sourceNo":12,"hanzi":"拉","pinyin":"lā","meaning":"kéo, lôi, dắt"},{"id":293,"lesson":10,"sourceNo":13,"hanzi":"建议","pinyin":"jiànyì","meaning":"đề nghị, kiến nghị, lời khuyên"},{"id":294,"lesson":10,"sourceNo":14,"hanzi":"职业","pinyin":"zhíyè","meaning":"nghề nghiệp"},{"id":295,"lesson":10,"sourceNo":15,"hanzi":"关键","pinyin":"guānjiàn","meaning":"mấu chốt, điều quan trọng"},{"id":296,"lesson":10,"sourceNo":16,"hanzi":"将来","pinyin":"jiānglái","meaning":"tương lai"},{"id":297,"lesson":10,"sourceNo":17,"hanzi":"发展","pinyin":"fāzhǎn","meaning":"phát triển"},{"id":298,"lesson":10,"sourceNo":18,"hanzi":"躺","pinyin":"tǎng","meaning":"nằm"},{"id":299,"lesson":10,"sourceNo":19,"hanzi":"困","pinyin":"kùn","meaning":"buồn ngủ"},{"id":300,"lesson":10,"sourceNo":20,"hanzi":"经济","pinyin":"jīngjì","meaning":"kinh tế"},{"id":301,"lesson":10,"sourceNo":21,"hanzi":"条件","pinyin":"tiáojiàn","meaning":"điều kiện"},{"id":302,"lesson":10,"sourceNo":22,"hanzi":"富","pinyin":"fù","meaning":"giàu"},{"id":303,"lesson":10,"sourceNo":23,"hanzi":"穷","pinyin":"qióng","meaning":"nghèo"},{"id":304,"lesson":10,"sourceNo":24,"hanzi":"等","pinyin":"děng","meaning":"vân vân, các loại như…"},{"id":305,"lesson":10,"sourceNo":25,"hanzi":"由于","pinyin":"yóuyú","meaning":"do, bởi vì"},{"id":306,"lesson":10,"sourceNo":26,"hanzi":"比如","pinyin":"bǐrú","meaning":"ví dụ, chẳng hạn"},{"id":307,"lesson":10,"sourceNo":27,"hanzi":"橡皮","pinyin":"xiàngpí","meaning":"cục tẩy, gôm"},{"id":308,"lesson":10,"sourceNo":28,"hanzi":"糖","pinyin":"táng","meaning":"kẹo; đường"},{"id":309,"lesson":10,"sourceNo":29,"hanzi":"低","pinyin":"dī","meaning":"thấp"},{"id":310,"lesson":10,"sourceNo":30,"hanzi":"答案","pinyin":"dá'àn","meaning":"đáp án, câu trả lời"},{"id":311,"lesson":11,"sourceNo":1,"hanzi":"流利","pinyin":"liúlì","meaning":"lưu loát, trôi chảy"},{"id":312,"lesson":11,"sourceNo":2,"hanzi":"厉害","pinyin":"lìhai","meaning":"lợi hại, giỏi"},{"id":313,"lesson":11,"sourceNo":3,"hanzi":"语法","pinyin":"yǔfǎ","meaning":"ngữ pháp"},{"id":314,"lesson":11,"sourceNo":4,"hanzi":"准确","pinyin":"zhǔnquè","meaning":"chính xác, đúng"},{"id":315,"lesson":11,"sourceNo":5,"hanzi":"词语","pinyin":"cíyǔ","meaning":"từ ngữ, cách diễn đạt"},{"id":316,"lesson":11,"sourceNo":6,"hanzi":"连","pinyin":"lián","meaning":"ngay cả, đến cả"},{"id":317,"lesson":11,"sourceNo":7,"hanzi":"阅读","pinyin":"yuèdú","meaning":"đọc"},{"id":318,"lesson":11,"sourceNo":8,"hanzi":"来得及","pinyin":"láidejí","meaning":"kịp, còn kịp"},{"id":319,"lesson":11,"sourceNo":9,"hanzi":"复杂","pinyin":"fùzá","meaning":"phức tạp, rắc rối"},{"id":320,"lesson":11,"sourceNo":10,"hanzi":"只好","pinyin":"zhǐhǎo","meaning":"đành phải, buộc phải"},{"id":321,"lesson":11,"sourceNo":11,"hanzi":"填空","pinyin":"tiánkòng","meaning":"điền vào chỗ trống"},{"id":322,"lesson":11,"sourceNo":12,"hanzi":"猜","pinyin":"cāi","meaning":"đoán"},{"id":323,"lesson":11,"sourceNo":13,"hanzi":"否则","pinyin":"fǒuzé","meaning":"nếu không thì, bằng không"},{"id":324,"lesson":11,"sourceNo":14,"hanzi":"客厅","pinyin":"kètīng","meaning":"phòng khách"},{"id":325,"lesson":11,"sourceNo":15,"hanzi":"无论","pinyin":"wúlùn","meaning":"bất kể, dù"},{"id":326,"lesson":11,"sourceNo":16,"hanzi":"杂志","pinyin":"zázhì","meaning":"tạp chí"},{"id":327,"lesson":11,"sourceNo":17,"hanzi":"著名","pinyin":"zhùmíng","meaning":"nổi tiếng"},{"id":328,"lesson":11,"sourceNo":18,"hanzi":"页","pinyin":"yè","meaning":"trang (lượng từ)"},{"id":329,"lesson":11,"sourceNo":19,"hanzi":"增加","pinyin":"zēngjiā","meaning":"tăng thêm"},{"id":330,"lesson":11,"sourceNo":20,"hanzi":"文章","pinyin":"wénzhāng","meaning":"bài văn, bài báo"},{"id":331,"lesson":11,"sourceNo":21,"hanzi":"之","pinyin":"zhī","meaning":"trợ từ văn viết nối bổ nghĩa"},{"id":332,"lesson":11,"sourceNo":22,"hanzi":"内容","pinyin":"nèiróng","meaning":"nội dung"},{"id":333,"lesson":11,"sourceNo":23,"hanzi":"然而","pinyin":"rán'ér","meaning":"tuy nhiên, nhưng"},{"id":334,"lesson":11,"sourceNo":24,"hanzi":"看法","pinyin":"kànfǎ","meaning":"quan điểm, cách nhìn"},{"id":335,"lesson":11,"sourceNo":25,"hanzi":"相同","pinyin":"xiāngtóng","meaning":"giống nhau, như nhau"},{"id":336,"lesson":11,"sourceNo":26,"hanzi":"顺序","pinyin":"shùnxù","meaning":"thứ tự, trật tự"},{"id":337,"lesson":11,"sourceNo":27,"hanzi":"表示","pinyin":"biǎoshì","meaning":"biểu thị, có nghĩa"},{"id":338,"lesson":11,"sourceNo":28,"hanzi":"养成","pinyin":"yǎngchéng","meaning":"hình thành, tạo thói quen"},{"id":339,"lesson":11,"sourceNo":29,"hanzi":"同时","pinyin":"tóngshí","meaning":"đồng thời"},{"id":340,"lesson":11,"sourceNo":30,"hanzi":"精彩","pinyin":"jīngcǎi","meaning":"tuyệt vời, đặc sắc"},{"id":341,"lesson":12,"sourceNo":1,"hanzi":"规定","pinyin":"guīdìng","meaning":"quy định"},{"id":342,"lesson":12,"sourceNo":2,"hanzi":"死","pinyin":"sǐ","meaning":"cố định, cứng nhắc"},{"id":343,"lesson":12,"sourceNo":3,"hanzi":"可惜","pinyin":"kěxī","meaning":"đáng tiếc"},{"id":344,"lesson":12,"sourceNo":4,"hanzi":"全部","pinyin":"quánbù","meaning":"toàn bộ, tất cả"},{"id":345,"lesson":12,"sourceNo":5,"hanzi":"也许","pinyin":"yěxǔ","meaning":"có lẽ"},{"id":346,"lesson":12,"sourceNo":6,"hanzi":"商量","pinyin":"shāngliang","meaning":"thương lượng, bàn bạc"},{"id":347,"lesson":12,"sourceNo":7,"hanzi":"并且","pinyin":"bìngqiě","meaning":"đồng thời, và"},{"id":348,"lesson":12,"sourceNo":8,"hanzi":"盐","pinyin":"yán","meaning":"muối"},{"id":349,"lesson":12,"sourceNo":9,"hanzi":"勺（子）","pinyin":"sháo(zi)","meaning":"cái muôi, cái thìa"},{"id":350,"lesson":12,"sourceNo":10,"hanzi":"保护","pinyin":"bǎohù","meaning":"bảo vệ"},{"id":351,"lesson":12,"sourceNo":11,"hanzi":"作用","pinyin":"zuòyòng","meaning":"tác dụng"},{"id":352,"lesson":12,"sourceNo":12,"hanzi":"无法","pinyin":"wúfǎ","meaning":"không thể, không có cách"},{"id":353,"lesson":12,"sourceNo":13,"hanzi":"节","pinyin":"jié","meaning":"lượng từ: tiết/bài"},{"id":354,"lesson":12,"sourceNo":14,"hanzi":"详细","pinyin":"xiángxì","meaning":"chi tiết, tỉ mỉ"},{"id":355,"lesson":12,"sourceNo":15,"hanzi":"解释","pinyin":"jiěshì","meaning":"giải thích"},{"id":356,"lesson":12,"sourceNo":16,"hanzi":"对于","pinyin":"duìyú","meaning":"đối với"},{"id":357,"lesson":12,"sourceNo":17,"hanzi":"叶子","pinyin":"yèzi","meaning":"lá cây"},{"id":358,"lesson":12,"sourceNo":18,"hanzi":"教育","pinyin":"jiàoyù","meaning":"giáo dục, dạy dỗ"},{"id":359,"lesson":12,"sourceNo":19,"hanzi":"使用","pinyin":"shǐyòng","meaning":"sử dụng"},{"id":360,"lesson":12,"sourceNo":20,"hanzi":"语言","pinyin":"yǔyán","meaning":"ngôn ngữ"},{"id":361,"lesson":12,"sourceNo":21,"hanzi":"直接","pinyin":"zhíjiē","meaning":"trực tiếp, thẳng"},{"id":362,"lesson":12,"sourceNo":22,"hanzi":"引起","pinyin":"yǐnqǐ","meaning":"gây ra, dẫn đến"},{"id":363,"lesson":12,"sourceNo":23,"hanzi":"误会","pinyin":"wùhuì","meaning":"hiểu lầm"},{"id":364,"lesson":12,"sourceNo":24,"hanzi":"友好","pinyin":"yǒuhǎo","meaning":"thân thiện"},{"id":365,"lesson":12,"sourceNo":25,"hanzi":"事半功倍","pinyin":"shìbàngōngbèi","meaning":"ít công nhiều quả, hiệu quả gấp đôi"},{"id":366,"lesson":12,"sourceNo":26,"hanzi":"节约","pinyin":"jiéyuē","meaning":"tiết kiệm"},{"id":367,"lesson":12,"sourceNo":27,"hanzi":"力气","pinyin":"lìqi","meaning":"sức lực, hơi sức"},{"id":368,"lesson":12,"sourceNo":28,"hanzi":"相反","pinyin":"xiāngfǎn","meaning":"trái lại, ngược lại"},{"id":369,"lesson":12,"sourceNo":29,"hanzi":"任务","pinyin":"rènwu","meaning":"nhiệm vụ"},{"id":370,"lesson":12,"sourceNo":30,"hanzi":"意见","pinyin":"yìjiàn","meaning":"ý kiến"},{"id":371,"lesson":12,"sourceNo":31,"hanzi":"仔细","pinyin":"zǐxì","meaning":"cẩn thận, kỹ lưỡng"},{"id":372,"lesson":12,"sourceNo":32,"hanzi":"达到","pinyin":"dádào","meaning":"đạt được"},{"id":373,"lesson":13,"sourceNo":1,"hanzi":"京剧","pinyin":"jīngjù","meaning":"Kinh kịch"},{"id":374,"lesson":13,"sourceNo":2,"hanzi":"演员","pinyin":"yǎnyuán","meaning":"diễn viên"},{"id":375,"lesson":13,"sourceNo":3,"hanzi":"观众","pinyin":"guānzhòng","meaning":"khán giả"},{"id":376,"lesson":13,"sourceNo":4,"hanzi":"厚","pinyin":"hòu","meaning":"dày, sâu nặng"},{"id":377,"lesson":13,"sourceNo":5,"hanzi":"演出","pinyin":"yǎnchū","meaning":"biểu diễn"},{"id":378,"lesson":13,"sourceNo":6,"hanzi":"大概","pinyin":"dàgài","meaning":"khoảng chừng, có lẽ"},{"id":379,"lesson":13,"sourceNo":7,"hanzi":"来自","pinyin":"láizì","meaning":"đến từ"},{"id":380,"lesson":13,"sourceNo":8,"hanzi":"遍","pinyin":"biàn","meaning":"lượt, lần (trọn vẹn)"},{"id":381,"lesson":13,"sourceNo":9,"hanzi":"偶尔","pinyin":"ǒu'ěr","meaning":"thỉnh thoảng"},{"id":382,"lesson":13,"sourceNo":10,"hanzi":"吃惊","pinyin":"chījīng","meaning":"kinh ngạc"},{"id":383,"lesson":13,"sourceNo":11,"hanzi":"基础","pinyin":"jīchǔ","meaning":"nền tảng, căn bản"},{"id":384,"lesson":13,"sourceNo":12,"hanzi":"表演","pinyin":"biǎoyǎn","meaning":"biểu diễn, trình diễn"},{"id":385,"lesson":13,"sourceNo":13,"hanzi":"正常","pinyin":"zhèngcháng","meaning":"bình thường"},{"id":386,"lesson":13,"sourceNo":14,"hanzi":"申请","pinyin":"shēnqǐng","meaning":"xin, đăng ký"},{"id":387,"lesson":13,"sourceNo":15,"hanzi":"有趣","pinyin":"yǒuqù","meaning":"thú vị"},{"id":388,"lesson":13,"sourceNo":16,"hanzi":"开心","pinyin":"kāixīn","meaning":"vui vẻ"},{"id":389,"lesson":13,"sourceNo":17,"hanzi":"继续","pinyin":"jìxù","meaning":"tiếp tục"},{"id":390,"lesson":13,"sourceNo":18,"hanzi":"由","pinyin":"yóu","meaning":"do, bởi"},{"id":391,"lesson":13,"sourceNo":19,"hanzi":"讨论","pinyin":"tǎolùn","meaning":"thảo luận"},{"id":392,"lesson":13,"sourceNo":20,"hanzi":"大约","pinyin":"dàyuē","meaning":"khoảng chừng, ước chừng"},{"id":393,"lesson":13,"sourceNo":21,"hanzi":"餐厅","pinyin":"cāntīng","meaning":"nhà hàng"},{"id":394,"lesson":13,"sourceNo":22,"hanzi":"纸袋","pinyin":"zhǐdài","meaning":"túi giấy"},{"id":395,"lesson":13,"sourceNo":23,"hanzi":"互联网","pinyin":"hùliánwǎng","meaning":"Internet"},{"id":396,"lesson":13,"sourceNo":24,"hanzi":"进行","pinyin":"jìnxíng","meaning":"tiến hành, thực hiện"},{"id":397,"lesson":13,"sourceNo":25,"hanzi":"错误","pinyin":"cuòwù","meaning":"sai, sai lầm"},{"id":398,"lesson":13,"sourceNo":26,"hanzi":"随着","pinyin":"suízhe","meaning":"cùng với, theo"},{"id":399,"lesson":13,"sourceNo":27,"hanzi":"十分","pinyin":"shífēn","meaning":"rất, vô cùng"},{"id":400,"lesson":13,"sourceNo":28,"hanzi":"普遍","pinyin":"pǔbiàn","meaning":"phổ biến"},{"id":401,"lesson":13,"sourceNo":29,"hanzi":"部分","pinyin":"bùfen","meaning":"bộ phận, phần"},{"id":402,"lesson":13,"sourceNo":30,"hanzi":"稍微","pinyin":"shāowēi","meaning":"hơi, một chút"},{"id":403,"lesson":13,"sourceNo":31,"hanzi":"苦","pinyin":"kǔ","meaning":"đắng"},{"id":404,"lesson":13,"sourceNo":32,"hanzi":"省","pinyin":"shěng","meaning":"tỉnh"},{"id":405,"lesson":14,"sourceNo":1,"hanzi":"出差","pinyin":"chūchāi","meaning":"đi công tác"},{"id":406,"lesson":14,"sourceNo":2,"hanzi":"毛巾","pinyin":"máojīn","meaning":"khăn lau"},{"id":407,"lesson":14,"sourceNo":3,"hanzi":"牙膏","pinyin":"yágāo","meaning":"kem đánh răng"},{"id":408,"lesson":14,"sourceNo":4,"hanzi":"重","pinyin":"zhòng","meaning":"nặng"},{"id":409,"lesson":14,"sourceNo":5,"hanzi":"行","pinyin":"xíng","meaning":"được, đồng ý, ổn"},{"id":410,"lesson":14,"sourceNo":6,"hanzi":"省","pinyin":"shěng","meaning":"tiết kiệm"},{"id":411,"lesson":14,"sourceNo":7,"hanzi":"污染","pinyin":"wūrǎn","meaning":"ô nhiễm, làm ô nhiễm"},{"id":412,"lesson":14,"sourceNo":8,"hanzi":"卫生间","pinyin":"wèishēngjiān","meaning":"nhà vệ sinh"},{"id":413,"lesson":14,"sourceNo":9,"hanzi":"脏","pinyin":"zāng","meaning":"bẩn"},{"id":414,"lesson":14,"sourceNo":10,"hanzi":"抱歉","pinyin":"bàoqiàn","meaning":"xin lỗi"},{"id":415,"lesson":14,"sourceNo":11,"hanzi":"空","pinyin":"kōng","meaning":"trống, rỗng"},{"id":416,"lesson":14,"sourceNo":12,"hanzi":"盒子","pinyin":"hézi","meaning":"hộp"},{"id":417,"lesson":14,"sourceNo":13,"hanzi":"扔","pinyin":"rēng","meaning":"ném, vứt"},{"id":418,"lesson":14,"sourceNo":14,"hanzi":"以","pinyin":"yǐ","meaning":"dùng, lấy, bằng"},{"id":419,"lesson":14,"sourceNo":15,"hanzi":"速度","pinyin":"sùdù","meaning":"tốc độ"},{"id":420,"lesson":14,"sourceNo":16,"hanzi":"地球","pinyin":"dìqiú","meaning":"Trái Đất"},{"id":421,"lesson":14,"sourceNo":17,"hanzi":"既然","pinyin":"jìrán","meaning":"vì, đã… thì…"},{"id":422,"lesson":14,"sourceNo":18,"hanzi":"停","pinyin":"tíng","meaning":"dừng, ngừng"},{"id":423,"lesson":14,"sourceNo":19,"hanzi":"得意","pinyin":"déyì","meaning":"đắc ý"},{"id":424,"lesson":14,"sourceNo":20,"hanzi":"目的","pinyin":"mùdì","meaning":"mục đích"},{"id":425,"lesson":14,"sourceNo":21,"hanzi":"暖","pinyin":"nuǎn","meaning":"ấm"},{"id":426,"lesson":14,"sourceNo":22,"hanzi":"塑料袋","pinyin":"sùliàodài","meaning":"túi nhựa"},{"id":427,"lesson":14,"sourceNo":23,"hanzi":"于是","pinyin":"yúshì","meaning":"thế là, vì vậy"},{"id":428,"lesson":14,"sourceNo":24,"hanzi":"鼓励","pinyin":"gǔlì","meaning":"khuyến khích"},{"id":429,"lesson":14,"sourceNo":25,"hanzi":"拒绝","pinyin":"jùjué","meaning":"từ chối"},{"id":430,"lesson":14,"sourceNo":26,"hanzi":"减少","pinyin":"jiǎnshǎo","meaning":"giảm bớt"},{"id":431,"lesson":14,"sourceNo":27,"hanzi":"数量","pinyin":"shùliàng","meaning":"số lượng"},{"id":432,"lesson":14,"sourceNo":28,"hanzi":"温度","pinyin":"wēndù","meaning":"nhiệt độ"},{"id":433,"lesson":14,"sourceNo":29,"hanzi":"乘坐","pinyin":"chéngzuò","meaning":"đi bằng xe/tàu"},{"id":434,"lesson":14,"sourceNo":30,"hanzi":"丢","pinyin":"diū","meaning":"ném, vứt, đánh mất"},{"id":435,"lesson":14,"sourceNo":31,"hanzi":"垃圾桶","pinyin":"lājītǒng","meaning":"thùng rác"},{"id":436,"lesson":14,"sourceNo":32,"hanzi":"美丽","pinyin":"měilì","meaning":"đẹp"},{"id":437,"lesson":15,"sourceNo":1,"hanzi":"弹钢琴","pinyin":"tán gāngqín","meaning":"chơi đàn dương cầm"},{"id":438,"lesson":15,"sourceNo":2,"hanzi":"棒","pinyin":"bàng","meaning":"tuyệt, giỏi"},{"id":439,"lesson":15,"sourceNo":3,"hanzi":"孙子","pinyin":"sūnzi","meaning":"cháu nội trai"},{"id":440,"lesson":15,"sourceNo":4,"hanzi":"寒假","pinyin":"hánjià","meaning":"kỳ nghỉ đông"},{"id":441,"lesson":15,"sourceNo":5,"hanzi":"父亲","pinyin":"fùqīn","meaning":"cha, bố"},{"id":442,"lesson":15,"sourceNo":6,"hanzi":"闹钟","pinyin":"nàozhōng","meaning":"đồng hồ báo thức"},{"id":443,"lesson":15,"sourceNo":7,"hanzi":"响","pinyin":"xiǎng","meaning":"reo, vang lên"},{"id":444,"lesson":15,"sourceNo":8,"hanzi":"醒","pinyin":"xǐng","meaning":"thức dậy, tỉnh dậy"},{"id":445,"lesson":15,"sourceNo":9,"hanzi":"赶","pinyin":"gǎn","meaning":"vội, gấp rút"},{"id":446,"lesson":15,"sourceNo":10,"hanzi":"厕所","pinyin":"cèsuǒ","meaning":"nhà vệ sinh"},{"id":447,"lesson":15,"sourceNo":11,"hanzi":"批评","pinyin":"pīpíng","meaning":"phê bình"},{"id":448,"lesson":15,"sourceNo":12,"hanzi":"弄","pinyin":"nòng","meaning":"làm, xử lý"},{"id":449,"lesson":15,"sourceNo":13,"hanzi":"管理","pinyin":"guǎnlǐ","meaning":"quản lý"},{"id":450,"lesson":15,"sourceNo":14,"hanzi":"打针","pinyin":"dǎzhēn","meaning":"tiêm"},{"id":451,"lesson":15,"sourceNo":15,"hanzi":"护士","pinyin":"hùshi","meaning":"y tá"},{"id":452,"lesson":15,"sourceNo":16,"hanzi":"表扬","pinyin":"biǎoyáng","meaning":"khen ngợi, biểu dương"},{"id":453,"lesson":15,"sourceNo":17,"hanzi":"千万","pinyin":"qiānwàn","meaning":"nhất thiết, tuyệt đối"},{"id":454,"lesson":15,"sourceNo":18,"hanzi":"怀疑","pinyin":"huáiyí","meaning":"nghi ngờ, hoài nghi"},{"id":455,"lesson":15,"sourceNo":19,"hanzi":"故意","pinyin":"gùyì","meaning":"cố ý, cố tình"},{"id":456,"lesson":15,"sourceNo":20,"hanzi":"敲","pinyin":"qiāo","meaning":"gõ"},{"id":457,"lesson":15,"sourceNo":21,"hanzi":"整理","pinyin":"zhěnglǐ","meaning":"thu dọn, sắp xếp"},{"id":458,"lesson":15,"sourceNo":22,"hanzi":"合适","pinyin":"héshì","meaning":"phù hợp"},{"id":459,"lesson":15,"sourceNo":23,"hanzi":"骗","pinyin":"piàn","meaning":"lừa"},{"id":460,"lesson":15,"sourceNo":24,"hanzi":"儿童","pinyin":"értóng","meaning":"trẻ em"},{"id":461,"lesson":15,"sourceNo":25,"hanzi":"假","pinyin":"jiǎ","meaning":"giả, không thật"},{"id":462,"lesson":15,"sourceNo":26,"hanzi":"左右","pinyin":"zuǒyòu","meaning":"khoảng, khoảng chừng"},{"id":463,"lesson":15,"sourceNo":27,"hanzi":"懒","pinyin":"lǎn","meaning":"lười"},{"id":464,"lesson":15,"sourceNo":28,"hanzi":"笨","pinyin":"bèn","meaning":"ngốc, đần"},{"id":465,"lesson":15,"sourceNo":29,"hanzi":"粗心","pinyin":"cūxīn","meaning":"cẩu thả"},{"id":466,"lesson":15,"sourceNo":30,"hanzi":"骄傲","pinyin":"jiāo'ào","meaning":"kiêu ngạo, tự hào"},{"id":467,"lesson":15,"sourceNo":31,"hanzi":"害羞","pinyin":"hàixiū","meaning":"ngượng ngùng, thẹn thùng"},{"id":468,"lesson":16,"sourceNo":1,"hanzi":"博士","pinyin":"bóshì","meaning":"tiến sĩ"},{"id":469,"lesson":16,"sourceNo":2,"hanzi":"签证","pinyin":"qiānzhèng","meaning":"thị thực, visa"},{"id":470,"lesson":16,"sourceNo":3,"hanzi":"报名","pinyin":"bàomíng","meaning":"ghi danh, đăng ký"},{"id":471,"lesson":16,"sourceNo":4,"hanzi":"表格","pinyin":"biǎogé","meaning":"biểu mẫu"},{"id":472,"lesson":16,"sourceNo":5,"hanzi":"传真","pinyin":"chuánzhēn","meaning":"fax, gửi fax"},{"id":473,"lesson":16,"sourceNo":6,"hanzi":"号码","pinyin":"hàomǎ","meaning":"số"},{"id":474,"lesson":16,"sourceNo":7,"hanzi":"参观","pinyin":"cānguān","meaning":"tham quan"},{"id":475,"lesson":16,"sourceNo":8,"hanzi":"激动","pinyin":"jīdòng","meaning":"xúc động"},{"id":476,"lesson":16,"sourceNo":9,"hanzi":"小伙子","pinyin":"xiǎohuǒzi","meaning":"chàng trai"},{"id":477,"lesson":16,"sourceNo":10,"hanzi":"记者","pinyin":"jìzhě","meaning":"phóng viên"},{"id":478,"lesson":16,"sourceNo":11,"hanzi":"代表","pinyin":"dàibiǎo","meaning":"đại diện, thay mặt"},{"id":479,"lesson":16,"sourceNo":12,"hanzi":"恐怕","pinyin":"kǒngpà","meaning":"e rằng, có lẽ"},{"id":480,"lesson":16,"sourceNo":13,"hanzi":"失望","pinyin":"shīwàng","meaning":"thất vọng"},{"id":481,"lesson":16,"sourceNo":14,"hanzi":"郊区","pinyin":"jiāoqū","meaning":"ngoại ô"},{"id":482,"lesson":16,"sourceNo":15,"hanzi":"到底","pinyin":"dàodǐ","meaning":"rốt cuộc"},{"id":483,"lesson":16,"sourceNo":16,"hanzi":"呀","pinyin":"ya","meaning":"trợ từ ngữ khí"},{"id":484,"lesson":16,"sourceNo":17,"hanzi":"导游","pinyin":"dǎoyóu","meaning":"hướng dẫn viên"},{"id":485,"lesson":16,"sourceNo":18,"hanzi":"礼貌","pinyin":"lǐmào","meaning":"lịch sự"},{"id":486,"lesson":16,"sourceNo":19,"hanzi":"原谅","pinyin":"yuánliàng","meaning":"tha thứ"},{"id":487,"lesson":16,"sourceNo":20,"hanzi":"挂","pinyin":"guà","meaning":"treo, móc"},{"id":488,"lesson":16,"sourceNo":21,"hanzi":"同情","pinyin":"tóngqíng","meaning":"thông cảm"},{"id":489,"lesson":16,"sourceNo":22,"hanzi":"推","pinyin":"tuī","meaning":"đẩy; hoãn"},{"id":490,"lesson":16,"sourceNo":23,"hanzi":"预习","pinyin":"yùxí","meaning":"chuẩn bị bài"},{"id":491,"lesson":16,"sourceNo":24,"hanzi":"重点","pinyin":"zhòngdiǎn","meaning":"trọng điểm"},{"id":492,"lesson":16,"sourceNo":25,"hanzi":"马虎","pinyin":"mǎhu","meaning":"cẩu thả"},{"id":493,"lesson":16,"sourceNo":26,"hanzi":"自信","pinyin":"zìxìn","meaning":"tự tin"},{"id":494,"lesson":16,"sourceNo":27,"hanzi":"冷静","pinyin":"lěngjìng","meaning":"bình tĩnh"},{"id":495,"lesson":16,"sourceNo":28,"hanzi":"输","pinyin":"shū","meaning":"thua"},{"id":496,"lesson":16,"sourceNo":29,"hanzi":"重视","pinyin":"zhòngshì","meaning":"coi trọng"},{"id":497,"lesson":16,"sourceNo":30,"hanzi":"敢","pinyin":"gǎn","meaning":"dám"},{"id":498,"lesson":16,"sourceNo":31,"hanzi":"尊重","pinyin":"zūnzhòng","meaning":"tôn trọng"},{"id":499,"lesson":17,"sourceNo":1,"hanzi":"凉快","pinyin":"liángkuai","meaning":"mát mẻ"},{"id":500,"lesson":17,"sourceNo":2,"hanzi":"热闹","pinyin":"rènao","meaning":"náo nhiệt"},{"id":501,"lesson":17,"sourceNo":3,"hanzi":"云","pinyin":"yún","meaning":"mây"},{"id":502,"lesson":17,"sourceNo":4,"hanzi":"广播","pinyin":"guǎngbō","meaning":"phát thanh, truyền hình"},{"id":503,"lesson":17,"sourceNo":5,"hanzi":"照","pinyin":"zhào","meaning":"chụp ảnh"},{"id":504,"lesson":17,"sourceNo":6,"hanzi":"倒","pinyin":"dào","meaning":"nhưng/lại; đảo, đổ tùy cách đọc"},{"id":505,"lesson":17,"sourceNo":7,"hanzi":"毛","pinyin":"máo","meaning":"lông"},{"id":506,"lesson":17,"sourceNo":8,"hanzi":"抱","pinyin":"bào","meaning":"ôm, bế"},{"id":507,"lesson":17,"sourceNo":9,"hanzi":"干","pinyin":"gàn","meaning":"làm"},{"id":508,"lesson":17,"sourceNo":10,"hanzi":"严格","pinyin":"yángé","meaning":"nghiêm khắc"},{"id":509,"lesson":17,"sourceNo":11,"hanzi":"难受","pinyin":"nánshòu","meaning":"khó chịu, buồn"},{"id":510,"lesson":17,"sourceNo":12,"hanzi":"趟","pinyin":"tàng","meaning":"lượt, chuyến"},{"id":511,"lesson":17,"sourceNo":13,"hanzi":"放暑假","pinyin":"fàng shǔjià","meaning":"nghỉ hè"},{"id":512,"lesson":17,"sourceNo":14,"hanzi":"老虎","pinyin":"lǎohǔ","meaning":"hổ"},{"id":513,"lesson":17,"sourceNo":15,"hanzi":"入口","pinyin":"rùkǒu","meaning":"lối vào"},{"id":514,"lesson":17,"sourceNo":16,"hanzi":"排队","pinyin":"páiduì","meaning":"xếp hàng"},{"id":515,"lesson":17,"sourceNo":17,"hanzi":"活泼","pinyin":"huópo","meaning":"hoạt bát"},{"id":516,"lesson":17,"sourceNo":18,"hanzi":"社会","pinyin":"shèhuì","meaning":"xã hội"},{"id":517,"lesson":17,"sourceNo":19,"hanzi":"竞争","pinyin":"jìngzhēng","meaning":"cạnh tranh"},{"id":518,"lesson":17,"sourceNo":20,"hanzi":"森林","pinyin":"sēnlín","meaning":"rừng"},{"id":519,"lesson":17,"sourceNo":21,"hanzi":"剩","pinyin":"shèng","meaning":"còn lại"},{"id":520,"lesson":17,"sourceNo":22,"hanzi":"暖和","pinyin":"nuǎnhuo","meaning":"ấm áp"},{"id":521,"lesson":17,"sourceNo":23,"hanzi":"海洋","pinyin":"hǎiyáng","meaning":"đại dương"},{"id":522,"lesson":17,"sourceNo":24,"hanzi":"底","pinyin":"dǐ","meaning":"đáy"},{"id":523,"lesson":17,"sourceNo":25,"hanzi":"美人鱼","pinyin":"měirényú","meaning":"người cá"},{"id":524,"lesson":17,"sourceNo":26,"hanzi":"公里","pinyin":"gōnglǐ","meaning":"kilômét"},{"id":525,"lesson":17,"sourceNo":27,"hanzi":"仍然","pinyin":"réngrán","meaning":"vẫn"},{"id":526,"lesson":17,"sourceNo":28,"hanzi":"排列","pinyin":"páiliè","meaning":"sắp xếp theo thứ tự"},{"id":527,"lesson":17,"sourceNo":29,"hanzi":"梦","pinyin":"mèng","meaning":"giấc mơ"},{"id":528,"lesson":18,"sourceNo":1,"hanzi":"降落","pinyin":"jiàngluò","meaning":"đáp xuống, hạ cánh"},{"id":529,"lesson":18,"sourceNo":2,"hanzi":"火","pinyin":"huǒ","meaning":"lửa; cháy, dữ dội"},{"id":530,"lesson":18,"sourceNo":3,"hanzi":"作者","pinyin":"zuòzhě","meaning":"tác giả"},{"id":531,"lesson":18,"sourceNo":4,"hanzi":"交通","pinyin":"jiāotōng","meaning":"giao thông"},{"id":532,"lesson":18,"sourceNo":5,"hanzi":"技术","pinyin":"jìshù","meaning":"kỹ thuật, công nghệ"},{"id":533,"lesson":18,"sourceNo":6,"hanzi":"是否","pinyin":"shìfǒu","meaning":"có hay không"},{"id":534,"lesson":18,"sourceNo":7,"hanzi":"秒","pinyin":"miǎo","meaning":"giây"},{"id":535,"lesson":18,"sourceNo":8,"hanzi":"方式","pinyin":"fāngshì","meaning":"phương thức, cách thức"},{"id":536,"lesson":18,"sourceNo":9,"hanzi":"受不了","pinyin":"shòubuliǎo","meaning":"chịu không nổi"},{"id":537,"lesson":18,"sourceNo":10,"hanzi":"日记","pinyin":"rìjì","meaning":"nhật ký"},{"id":538,"lesson":18,"sourceNo":11,"hanzi":"安全","pinyin":"ānquán","meaning":"an toàn"},{"id":539,"lesson":18,"sourceNo":12,"hanzi":"密码","pinyin":"mìmǎ","meaning":"mật mã"},{"id":540,"lesson":18,"sourceNo":13,"hanzi":"允许","pinyin":"yǔnxǔ","meaning":"cho phép"},{"id":541,"lesson":18,"sourceNo":14,"hanzi":"座","pinyin":"zuò","meaning":"lượng từ cho cầu/núi/tòa"},{"id":542,"lesson":18,"sourceNo":15,"hanzi":"桥","pinyin":"qiáo","meaning":"cầu"},{"id":543,"lesson":18,"sourceNo":16,"hanzi":"危险","pinyin":"wēixiǎn","meaning":"nguy hiểm"},{"id":544,"lesson":18,"sourceNo":17,"hanzi":"接着","pinyin":"jiēzhe","meaning":"tiếp theo, ngay sau đó"},{"id":545,"lesson":18,"sourceNo":18,"hanzi":"警察","pinyin":"jǐngchá","meaning":"cảnh sát"},{"id":546,"lesson":18,"sourceNo":19,"hanzi":"抓","pinyin":"zhuā","meaning":"bắt, tóm"},{"id":547,"lesson":18,"sourceNo":20,"hanzi":"咸","pinyin":"xián","meaning":"mặn"},{"id":548,"lesson":18,"sourceNo":21,"hanzi":"矿泉水","pinyin":"kuàngquánshuǐ","meaning":"nước suối"},{"id":549,"lesson":18,"sourceNo":22,"hanzi":"付款","pinyin":"fùkuǎn","meaning":"trả tiền"},{"id":550,"lesson":18,"sourceNo":23,"hanzi":"举","pinyin":"jǔ","meaning":"nêu, đưa ra, giơ"},{"id":551,"lesson":18,"sourceNo":24,"hanzi":"迷路","pinyin":"mílù","meaning":"lạc đường"},{"id":552,"lesson":18,"sourceNo":25,"hanzi":"地址","pinyin":"dìzhǐ","meaning":"địa chỉ"},{"id":553,"lesson":18,"sourceNo":26,"hanzi":"地点","pinyin":"dìdiǎn","meaning":"địa điểm"},{"id":554,"lesson":18,"sourceNo":27,"hanzi":"世纪","pinyin":"shìjì","meaning":"thế kỷ"},{"id":555,"lesson":18,"sourceNo":28,"hanzi":"邮局","pinyin":"yóujú","meaning":"bưu điện"},{"id":556,"lesson":18,"sourceNo":29,"hanzi":"收","pinyin":"shōu","meaning":"nhận"},{"id":557,"lesson":18,"sourceNo":30,"hanzi":"信封","pinyin":"xìnfēng","meaning":"phong thư, bì thư"},{"id":558,"lesson":18,"sourceNo":31,"hanzi":"网站","pinyin":"wǎngzhàn","meaning":"trang web"},{"id":559,"lesson":18,"sourceNo":32,"hanzi":"信息","pinyin":"xìnxī","meaning":"thông tin"},{"id":560,"lesson":19,"sourceNo":1,"hanzi":"学期","pinyin":"xuéqī","meaning":"học kỳ"},{"id":561,"lesson":19,"sourceNo":2,"hanzi":"出生","pinyin":"chūshēng","meaning":"ra đời, sinh ra"},{"id":562,"lesson":19,"sourceNo":3,"hanzi":"性别","pinyin":"xìngbié","meaning":"giới tính"},{"id":563,"lesson":19,"sourceNo":4,"hanzi":"道歉","pinyin":"dàoqiàn","meaning":"xin lỗi"},{"id":564,"lesson":19,"sourceNo":5,"hanzi":"打印","pinyin":"dǎyìn","meaning":"in"},{"id":565,"lesson":19,"sourceNo":6,"hanzi":"复印","pinyin":"fùyìn","meaning":"photocopy, sao chụp"},{"id":566,"lesson":19,"sourceNo":7,"hanzi":"饺子","pinyin":"jiǎozi","meaning":"bánh chẻo"},{"id":567,"lesson":19,"sourceNo":8,"hanzi":"刀","pinyin":"dāo","meaning":"dao"},{"id":568,"lesson":19,"sourceNo":9,"hanzi":"破","pinyin":"pò","meaning":"rách, vỡ, bị hỏng"},{"id":569,"lesson":19,"sourceNo":10,"hanzi":"脱","pinyin":"tuō","meaning":"cởi"},{"id":570,"lesson":19,"sourceNo":11,"hanzi":"理发","pinyin":"lǐfà","meaning":"cắt tóc"},{"id":571,"lesson":19,"sourceNo":12,"hanzi":"包子","pinyin":"bāozi","meaning":"bánh bao"},{"id":572,"lesson":19,"sourceNo":13,"hanzi":"零钱","pinyin":"língqián","meaning":"tiền lẻ"},{"id":573,"lesson":19,"sourceNo":14,"hanzi":"打招呼","pinyin":"dǎzhāohu","meaning":"chào hỏi"},{"id":574,"lesson":19,"sourceNo":15,"hanzi":"戴","pinyin":"dài","meaning":"đeo, đội"},{"id":575,"lesson":19,"sourceNo":16,"hanzi":"眼镜","pinyin":"yǎnjìng","meaning":"kính mắt"},{"id":576,"lesson":19,"sourceNo":17,"hanzi":"舞蹈","pinyin":"wǔdǎo","meaning":"điệu múa"},{"id":577,"lesson":19,"sourceNo":18,"hanzi":"国籍","pinyin":"guójí","meaning":"quốc tịch"},{"id":578,"lesson":19,"sourceNo":19,"hanzi":"抬","pinyin":"tái","meaning":"giơ, nâng lên"},{"id":579,"lesson":19,"sourceNo":20,"hanzi":"胳膊","pinyin":"gēbo","meaning":"cánh tay"},{"id":580,"lesson":19,"sourceNo":21,"hanzi":"转","pinyin":"zhuǎn","meaning":"quay, xoay"},{"id":581,"lesson":19,"sourceNo":22,"hanzi":"租","pinyin":"zū","meaning":"thuê, cho thuê"},{"id":582,"lesson":19,"sourceNo":23,"hanzi":"吵","pinyin":"chǎo","meaning":"ồn ào, cãi"},{"id":583,"lesson":19,"sourceNo":24,"hanzi":"厨房","pinyin":"chúfáng","meaning":"bếp"},{"id":584,"lesson":19,"sourceNo":25,"hanzi":"房东","pinyin":"fángdōng","meaning":"chủ nhà"},{"id":585,"lesson":19,"sourceNo":26,"hanzi":"占线","pinyin":"zhànxiàn","meaning":"máy bận, đường dây bận"},{"id":586,"lesson":19,"sourceNo":27,"hanzi":"功夫","pinyin":"gōngfu","meaning":"võ thuật, công phu"},{"id":587,"lesson":19,"sourceNo":28,"hanzi":"乒乓球","pinyin":"pīngpāngqiú","meaning":"bóng bàn"},{"id":588,"lesson":19,"sourceNo":29,"hanzi":"羽毛球","pinyin":"yǔmáoqiú","meaning":"cầu lông"},{"id":589,"lesson":19,"sourceNo":30,"hanzi":"场","pinyin":"chǎng","meaning":"lượng từ trận/sân"},{"id":590,"lesson":19,"sourceNo":31,"hanzi":"禁止","pinyin":"jìnzhǐ","meaning":"cấm"},{"id":591,"lesson":19,"sourceNo":32,"hanzi":"座位","pinyin":"zuòwèi","meaning":"chỗ ngồi"},{"id":592,"lesson":20,"sourceNo":1,"hanzi":"加油站","pinyin":"jiāyóuzhàn","meaning":"trạm xăng"},{"id":593,"lesson":20,"sourceNo":2,"hanzi":"航班","pinyin":"hángbān","meaning":"chuyến bay"},{"id":594,"lesson":20,"sourceNo":3,"hanzi":"推迟","pinyin":"tuīchí","meaning":"hoãn lại"},{"id":595,"lesson":20,"sourceNo":4,"hanzi":"高速公路","pinyin":"gāosù gōnglù","meaning":"đường cao tốc"},{"id":596,"lesson":20,"sourceNo":5,"hanzi":"登机牌","pinyin":"dēngjīpái","meaning":"thẻ lên máy bay"},{"id":597,"lesson":20,"sourceNo":6,"hanzi":"首都","pinyin":"shǒudū","meaning":"thủ đô"},{"id":598,"lesson":20,"sourceNo":7,"hanzi":"旅行","pinyin":"lǚxíng","meaning":"du lịch"},{"id":599,"lesson":20,"sourceNo":8,"hanzi":"怪","pinyin":"guài","meaning":"rất; lạ, trách tùy ngữ cảnh"},{"id":600,"lesson":20,"sourceNo":9,"hanzi":"可怜","pinyin":"kělián","meaning":"đáng thương"},{"id":601,"lesson":20,"sourceNo":10,"hanzi":"对面","pinyin":"duìmiàn","meaning":"đối diện"},{"id":602,"lesson":20,"sourceNo":11,"hanzi":"烤鸭","pinyin":"kǎoyā","meaning":"vịt quay"},{"id":603,"lesson":20,"sourceNo":12,"hanzi":"祝贺","pinyin":"zhùhè","meaning":"chúc mừng"},{"id":604,"lesson":20,"sourceNo":13,"hanzi":"合格","pinyin":"hégé","meaning":"đạt yêu cầu"},{"id":605,"lesson":20,"sourceNo":14,"hanzi":"干杯","pinyin":"gānbēi","meaning":"cạn ly"},{"id":606,"lesson":20,"sourceNo":15,"hanzi":"民族","pinyin":"mínzú","meaning":"dân tộc"},{"id":607,"lesson":20,"sourceNo":16,"hanzi":"打扮","pinyin":"dǎban","meaning":"trang điểm, ăn diện"},{"id":608,"lesson":20,"sourceNo":17,"hanzi":"笑话","pinyin":"xiàohua","meaning":"truyện cười"},{"id":609,"lesson":20,"sourceNo":18,"hanzi":"存","pinyin":"cún","meaning":"gửi, giữ, lưu"},{"id":610,"lesson":20,"sourceNo":19,"hanzi":"钥匙","pinyin":"yàoshi","meaning":"chìa khóa"},{"id":611,"lesson":20,"sourceNo":20,"hanzi":"究竟","pinyin":"jiūjìng","meaning":"rốt cuộc"},{"id":612,"lesson":20,"sourceNo":21,"hanzi":"棵","pinyin":"kē","meaning":"lượng từ cho cây"},{"id":613,"lesson":20,"sourceNo":22,"hanzi":"汤","pinyin":"tāng","meaning":"canh, súp"},{"id":614,"lesson":20,"sourceNo":23,"hanzi":"对话","pinyin":"duìhuà","meaning":"đối thoại"},{"id":615,"lesson":20,"sourceNo":24,"hanzi":"普通话","pinyin":"pǔtōnghuà","meaning":"tiếng Phổ thông"},{"id":616,"lesson":20,"sourceNo":25,"hanzi":"小吃","pinyin":"xiǎochī","meaning":"món ăn vặt"},{"id":617,"lesson":20,"sourceNo":26,"hanzi":"收拾","pinyin":"shōushi","meaning":"thu dọn"},{"id":618,"lesson":20,"sourceNo":27,"hanzi":"出发","pinyin":"chūfā","meaning":"xuất phát"},{"id":619,"lesson":20,"sourceNo":28,"hanzi":"辣","pinyin":"là","meaning":"cay"},{"id":620,"lesson":20,"sourceNo":29,"hanzi":"香","pinyin":"xiāng","meaning":"thơm"},{"id":621,"lesson":20,"sourceNo":30,"hanzi":"酸","pinyin":"suān","meaning":"chua"}];
+
+let WORDS = [];
+let FILTERED = [];
+let HANVIET = {};
+let currentPage = 1;
+let activeLetter = '';
+let currentStrokeWord = '';
+let strokeWriters = [];
+let activeStudyTab = 'list';
+let flashDeck = [];
+let flashIndex = 0;
+let flashKnown = new Set();
+let flashReview = new Set();
+
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+
+function escapeHtml(s){
+  return String(s||'').replace(/[&<>"']/g,m=>({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'
+  }[m]));
+}
+function norm(s){
+  return String(s||'')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g,'')
+    .replace(/ü/g,'u')
+    .replace(/\s+/g,' ')
+    .trim();
+}
+function hanChars(word){
+  const first = String(word||'').split(/[|｜／]/)[0];
+  return [...first].filter(ch=>/[\u3400-\u9fff\uf900-\ufaff]/.test(ch));
+}
+function hanVietOf(word){
+  const chars = hanChars(word);
+  if(!chars.length) return '—';
+  const parts = chars.map(ch=>{
+    let v = HANVIET[ch];
+    if(Array.isArray(v)) v = v[0];
+    if(typeof v === 'string' && v.trim()){
+      const first = v.trim().split(/[ ,;/]/)[0];
+      return first.toLocaleUpperCase('vi-VN');
+    }
+    return '';
+  }).filter(Boolean);
+  return parts.length ? parts.join(' ') : '—';
+}
+
+async function loadHanViet(){
+  try{
+    const r = await fetch(HANVIET_URL,{cache:'force-cache'});
+    if(!r.ok) throw new Error('Không tải được Unihan');
+    HANVIET = await r.json();
+  }catch(e){
+    HANVIET = {};
+  }
+}
+
+function prepareWords(){
+  WORDS = RAW_WORDS.map(w=>({
+    ...w,
+    hanviet:hanVietOf(w.hanzi),
+    positions:[`Bài ${w.lesson}`],
+    meanings:w.meaning,
+    senses:[{pos:`Bài ${w.lesson}`,meaning:w.meaning}],
+    initial:norm(w.pinyin).charAt(0).toUpperCase()
+  }));
+  WORDS.forEach(w=>{
+    w.searchText=norm([w.hanzi,w.pinyin,w.hanviet,w.meaning,`bài ${w.lesson}`,`bai ${w.lesson}`].join(' '));
+  });
+  initFilters();
+  applyFilters();
+  $('#status').hidden=true;
+  $('#wordList').hidden=false;
+}
+
+function showError(msg){
+  const s=$('#status');
+  s.hidden=false;
+  s.className='error-box';
+  s.textContent=msg;
+  $('#wordList').hidden=true;
+  $('#countBox').textContent='Chưa tải được';
+}
+
+function initFilters(){
+  $('#lessonFilter').innerHTML =
+    '<option value="">Tất cả Bài 1–20</option>' +
+    Array.from({length:20},(_,i)=>`<option value="${i+1}">Bài ${i+1}</option>`).join('');
+
+  const initials=[...new Set(WORDS.map(w=>w.initial).filter(x=>/^[A-Z]$/.test(x)))].sort();
+  $('#letters').innerHTML =
+    `<button class="letter active" data-letter="">Tất cả</button>` +
+    initials.map(x=>`<button class="letter" data-letter="${x}">${x}</button>`).join('');
+
+  $$('.letter').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      activeLetter=btn.dataset.letter;
+      $$('.letter').forEach(x=>x.classList.toggle('active',x===btn));
+      currentPage=1;
+      applyFilters();
+    });
+  });
+}
+
+function applyFilters(){
+  const q=norm($('#search').value);
+  const lesson=$('#lessonFilter').value;
+
+  FILTERED=WORDS.filter(w=>{
+    if(q && !w.searchText.includes(q)) return false;
+    if(lesson && String(w.lesson)!==String(lesson)) return false;
+    if(activeLetter && w.initial!==activeLetter) return false;
+    return true;
+  });
+
+  currentPage=Math.min(currentPage,Math.max(1,Math.ceil(FILTERED.length/PAGE_SIZE)));
+  $('#countBox').textContent=`${FILTERED.length} / ${WORDS.length} từ`;
+  renderWords();
+  renderPagination();
+  resetFlashDeck(false);
+}
+
+function senseHtml(s){
+  return `
+    <div class="sense">
+      <div class="sense-label">${escapeHtml(s.pos || 'Bài học')}</div>
+      <div class="sense-main">
+        <b>${escapeHtml(s.meaning || '—')}</b>
+      </div>
+    </div>`;
+}
+
+function sourceLabel(w){
+  return `B${w.lesson} · ${String(w.sourceNo).padStart(2,'0')}`;
+}
+
+function renderWords(){
+  const start=(currentPage-1)*PAGE_SIZE;
+  const page=FILTERED.slice(start,start+PAGE_SIZE);
+
+  if(!page.length){
+    $('#wordList').innerHTML='<div class="empty">Không tìm thấy từ phù hợp.</div>';
+    return;
+  }
+
+  $('#wordList').innerHTML=page.map(w=>`
+    <article class="word-card" data-id="${w.id}">
+      <button class="word-summary" type="button" aria-expanded="false">
+        <span class="no">${sourceLabel(w)}</span>
+        <span>
+          <span class="hanzi">${escapeHtml(w.hanzi)}</span>
+          <span class="pinyin">${escapeHtml(w.pinyin)}</span>
+        </span>
+        <span class="meaning">${escapeHtml(w.meanings || '—')}</span>
+        <span class="hanviet">${escapeHtml(w.hanviet)}</span>
+        <span class="pos-list"><span class="pos-tag">Bài ${w.lesson}</span></span>
+        <span class="detail-text">Mở chi tiết</span>
+      </button>
+
+      <div class="word-detail">
+        ${w.senses.map(senseHtml).join('')}
+        <div class="detail-actions">
+          <button class="action-btn speak-word" type="button">Nghe từ</button>
+          <button class="action-btn primary stroke-word" type="button">Xem thứ tự nét</button>
+        </div>
+      </div>
+    </article>
+  `).join('');
+
+  $$('.word-summary').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const card=btn.closest('.word-card');
+      const open=card.classList.toggle('open');
+      btn.setAttribute('aria-expanded',open?'true':'false');
+      card.querySelector('.detail-text').textContent=open?'Thu gọn':'Mở chi tiết';
+    });
+  });
+
+  $$('.speak-word').forEach(btn=>{
+    btn.addEventListener('click',e=>{
+      e.stopPropagation();
+      const id=Number(btn.closest('.word-card').dataset.id);
+      const w=WORDS.find(x=>x.id===id);
+      if(w) speak(w.hanzi.split(/[|｜／]/)[0].trim());
+    });
+  });
+
+  $$('.stroke-word').forEach(btn=>{
+    btn.addEventListener('click',e=>{
+      e.stopPropagation();
+      const id=Number(btn.closest('.word-card').dataset.id);
+      const w=WORDS.find(x=>x.id===id);
+      if(w) openStroke(w);
+    });
+  });
+}
+
+function renderPagination(){
+  const total=Math.ceil(FILTERED.length/PAGE_SIZE);
+  const el=$('#pagination');
+  if(total<=1){el.innerHTML='';return;}
+  let pages=[];
+  for(let p=1;p<=total;p++) if(p===1||p===total||Math.abs(p-currentPage)<=2) pages.push(p);
+  pages=[...new Set(pages)];
+  let out=`<button class="page-btn" data-page="${currentPage-1}" ${currentPage===1?'disabled':''}>Trước</button>`;
+  let prev=0;
+  pages.forEach(p=>{
+    if(prev&&p-prev>1) out+=`<span class="page-btn" style="display:grid;place-items:center;cursor:default">…</span>`;
+    out+=`<button class="page-btn ${p===currentPage?'active':''}" data-page="${p}">${p}</button>`;
+    prev=p;
+  });
+  out+=`<button class="page-btn" data-page="${currentPage+1}" ${currentPage===total?'disabled':''}>Sau</button>`;
+  el.innerHTML=out;
+  $$('.page-btn[data-page]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      if(btn.disabled)return;
+      const p=Number(btn.dataset.page);
+      if(p>=1&&p<=total){
+        currentPage=p;
+        renderWords();
+        renderPagination();
+        window.scrollTo({top:$('.toolbar-shell').offsetTop-8,behavior:'smooth'});
+      }
+    });
+  });
+}
+
+function switchStudyTab(tab){
+  activeStudyTab=tab;
+  $('#tabList').classList.toggle('active',tab==='list');
+  $('#tabFlash').classList.toggle('active',tab==='flash');
+  $('#listPanel').hidden=tab!=='list';
+  $('#flashPanel').hidden=tab!=='flash';
+  if(tab==='flash')renderFlashcard();
+}
+
+function resetFlashDeck(shuffle=false){
+  flashDeck=[...FILTERED];
+  if(shuffle){
+    for(let i=flashDeck.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [flashDeck[i],flashDeck[j]]=[flashDeck[j],flashDeck[i]];
+    }
+  }
+  flashIndex=0;
+  renderFlashcard();
+}
+function currentFlashWord(){
+  return flashDeck.length?flashDeck[Math.max(0,Math.min(flashIndex,flashDeck.length-1))]:null;
+}
+function renderFlashcard(){
+  const empty=$('#flashEmpty'),study=$('#flashStudy');
+  if(!flashDeck.length){
+    if(empty)empty.hidden=false;
+    if(study)study.hidden=true;
+    if($('#flashDeckCount'))$('#flashDeckCount').textContent='0 từ';
+    return;
+  }
+  if(empty)empty.hidden=true;
+  if(study)study.hidden=false;
+  flashIndex=Math.max(0,Math.min(flashIndex,flashDeck.length-1));
+  const w=currentFlashWord(); if(!w)return;
+  $('#flashcard').classList.remove('flipped');
+  $('#flashNumber').textContent=sourceLabel(w);
+  $('#flashNumberBack').textContent=sourceLabel(w);
+  $('#flashHanzi').textContent=w.hanzi;
+  $('#flashPinyin').textContent=w.pinyin||'—';
+  $('#flashMeaning').textContent=w.meanings||'—';
+  $('#flashHanViet').textContent=`Hán Việt: ${w.hanviet||'—'}`;
+  $('#flashPos').textContent=`HSK4 · Bài ${w.lesson}`;
+  $('#flashExample').innerHTML=`<div class="vi">Từ số ${w.sourceNo} trong Bài ${w.lesson} · dùng nút “Nghe từ” hoặc “Xem thứ tự nét” để ôn thêm.</div>`;
+  $('#flashProgress').textContent=`${flashIndex+1} / ${flashDeck.length}`;
+  $('#flashDeckCount').textContent=`${flashDeck.length} từ trong bộ hiện tại`;
+  $('#flashPrev').disabled=flashIndex===0;
+  $('#flashNext').disabled=flashIndex===flashDeck.length-1;
+  $('#markKnown').classList.toggle('active',flashKnown.has(w.id));
+  $('#markReview').classList.toggle('active',flashReview.has(w.id));
+  $('#knownSummary').textContent=`Đã nhớ: ${flashKnown.size} · Cần ôn lại: ${flashReview.size}`;
+}
+function flipFlash(){if(flashDeck.length)$('#flashcard').classList.toggle('flipped');}
+function goFlash(step){
+  if(!flashDeck.length)return;
+  flashIndex=Math.max(0,Math.min(flashDeck.length-1,flashIndex+step));
+  renderFlashcard();
+}
+function markFlash(kind){
+  const w=currentFlashWord(); if(!w)return;
+  if(kind==='known'){flashKnown.add(w.id);flashReview.delete(w.id);}
+  else{flashReview.add(w.id);flashKnown.delete(w.id);}
+  renderFlashcard();
+  if(flashIndex<flashDeck.length-1){flashIndex++;renderFlashcard();}
+}
+function speak(text){
+  if(!('speechSynthesis'in window))return;
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='zh-CN';u.rate=.78;speechSynthesis.speak(u);
+}
+
+function openStroke(w){
+  if(typeof HanziWriter==='undefined'){alert('Chưa tải được dữ liệu nét bút. Hãy kiểm tra kết nối mạng.');return;}
+  currentStrokeWord=w.hanzi;
+  const chars=hanChars(w.hanzi); if(!chars.length)return;
+  $('#strokeTitle').textContent=`Thứ tự nét · ${w.hanzi}`;
+  $('#strokeSub').textContent=`${w.pinyin} · ${w.hanviet} · Bài ${w.lesson}`;
+  $('#writerGrid').innerHTML=chars.map((ch,i)=>`
+    <div class="writer-item">
+      <div class="writer-box" id="writer-${i}"></div>
+      <div class="writer-char">${ch}</div>
+    </div>`).join('');
+  $('#writerMsg').textContent='Đang tải dữ liệu nét bút...';
+  $('#strokeModal').classList.add('open');
+  $('#strokeModal').setAttribute('aria-hidden','false');
+  strokeWriters=chars.map((ch,i)=>HanziWriter.create(`writer-${i}`,ch,{
+    width:140,height:140,padding:10,showOutline:true,showCharacter:false,
+    strokeColor:'#6E4052',outlineColor:'#E6D8DE',drawingColor:'#B94F74',
+    highlightColor:'#EAA0B8',strokeAnimationSpeed:1.15,delayBetweenStrokes:250
+  }));
+  setTimeout(()=>animateWriters(),500);
+}
+async function animateWriters(){
+  $('#writerMsg').textContent='Đang phát thứ tự nét...';
+  try{
+    for(const w of strokeWriters){w.hideCharacter({duration:0});await w.animateCharacter();}
+    $('#writerMsg').textContent='Đã phát xong. Có thể bấm “Phát lại nét bút” hoặc “Luyện viết”.';
+  }catch(e){$('#writerMsg').textContent='Không tải được dữ liệu nét của một ký tự.';}
+}
+function practiceWriters(){
+  $('#writerMsg').textContent='Dùng chuột hoặc ngón tay để viết theo đúng thứ tự nét.';
+  strokeWriters.forEach(w=>{w.hideCharacter({duration:0});w.quiz({showHintAfterMisses:2,highlightOnComplete:true});});
+}
+function closeStroke(){
+  $('#strokeModal').classList.remove('open');
+  $('#strokeModal').setAttribute('aria-hidden','true');
+  $('#writerGrid').innerHTML='';strokeWriters=[];
+}
+
+$('#tabList').addEventListener('click',()=>switchStudyTab('list'));
+$('#tabFlash').addEventListener('click',()=>switchStudyTab('flash'));
+$('#flashcard').addEventListener('click',flipFlash);
+$('#flashcard').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();flipFlash();}});
+$('#flashFlip').addEventListener('click',e=>{e.stopPropagation();flipFlash();});
+$('#flashPrev').addEventListener('click',e=>{e.stopPropagation();goFlash(-1);});
+$('#flashNext').addEventListener('click',e=>{e.stopPropagation();goFlash(1);});
+$('#shuffleFlash').addEventListener('click',()=>resetFlashDeck(true));
+$('#resetFlash').addEventListener('click',()=>resetFlashDeck(false));
+$('#markKnown').addEventListener('click',()=>markFlash('known'));
+$('#markReview').addEventListener('click',()=>markFlash('review'));
+$('#flashSpeak').addEventListener('click',e=>{e.stopPropagation();const w=currentFlashWord();if(w)speak(w.hanzi.split(/[|｜／]/)[0].trim());});
+$('#flashStroke').addEventListener('click',e=>{e.stopPropagation();const w=currentFlashWord();if(w)openStroke(w);});
+$('#search').addEventListener('input',()=>{currentPage=1;applyFilters();});
+$('#lessonFilter').addEventListener('change',()=>{currentPage=1;applyFilters();});
+$('#closeStroke').addEventListener('click',closeStroke);
+$('#replayStroke').addEventListener('click',animateWriters);
+$('#practiceStroke').addEventListener('click',practiceWriters);
+$('#strokeModal').addEventListener('click',e=>{if(e.target===$('#strokeModal'))closeStroke();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#strokeModal').classList.contains('open'))closeStroke();});
+
+(async()=>{
+  await loadHanViet();
+  prepareWords();
+})();
+</script>
+</body>
+</html>
