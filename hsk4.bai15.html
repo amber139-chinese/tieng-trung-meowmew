@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HSK4 Bài 15 · 教育孩子的艺术</title><style>
+:root{--pink:#f7d6df;--pink2:#fcecf1;--rose:#bd5b76;--rose2:#963f5a;--cream:#fffaf5;--paper:rgba(255,255,255,.92);--ink:#3b3135;--muted:#7e6f75;--line:#efd6de;--gold:#d5a45a;--green:#2f7d62;--bad:#b54c55;--shadow:0 16px 40px rgba(128,75,90,.12)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI","Noto Sans","Microsoft YaHei",Arial,sans-serif;line-height:1.58;background:linear-gradient(180deg,rgba(255,248,250,.95),rgba(252,238,243,.95)),radial-gradient(circle at 15% 12%,#ffdce8 0 12%,transparent 36%),radial-gradient(circle at 90% 18%,#fbe6c9 0 10%,transparent 32%);min-height:100vh;position:relative}
+body:before{content:"喵  中文  HSK4  学习  加油  ✿  喵  中文  HSK4  学习  加油  ✿";position:fixed;inset:0;z-index:-2;pointer-events:none;font-family:"Noto Serif SC","Songti SC",serif;font-size:44px;line-height:3.4;letter-spacing:22px;color:rgba(184,86,114,.045);transform:rotate(-8deg) scale(1.15);transform-origin:center;white-space:pre-wrap;word-break:break-all;padding:40px}
+body:after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(circle at 10% 20%,rgba(255,255,255,.85) 0 2px,transparent 3px),radial-gradient(circle at 75% 35%,rgba(255,255,255,.7) 0 3px,transparent 4px);background-size:80px 80px,120px 120px}
+button,select,input,textarea{font:inherit}.app{max-width:1120px;margin:0 auto;padding:20px}.site-top{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}.brand{display:flex;align-items:center;gap:10px;font-weight:900;color:var(--rose2)}.catdot{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#f39ab2,#f7cf9e);display:grid;place-items:center;box-shadow:0 8px 22px rgba(181,83,111,.18)}.catdot:before{content:"喵";color:white;font-family:"Noto Serif SC",serif;font-weight:900}.lesson-nav{display:flex;gap:7px;flex-wrap:wrap}.lesson-nav a{text-decoration:none;color:#79555f;background:rgba(255,255,255,.8);border:1px solid var(--line);padding:7px 11px;border-radius:999px;font-size:13px;font-weight:800}.lesson-nav a.current{background:var(--rose);color:#fff;border-color:var(--rose)}
+.hero{background:linear-gradient(135deg,rgba(255,255,255,.96),rgba(255,243,247,.94));border:1px solid var(--line);border-radius:28px;padding:27px;box-shadow:var(--shadow);position:relative;overflow:hidden}.hero:after{content:"学";position:absolute;right:20px;bottom:-48px;font-family:"Noto Serif SC",serif;font-size:175px;color:rgba(181,83,111,.07)}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.14em;font-weight:900;color:var(--rose)}.hero h1{margin:6px 0 5px;font-family:"Noto Serif SC","Songti SC",serif;font-size:clamp(30px,4.2vw,50px);line-height:1.15}.hero .vi{color:var(--muted);font-size:17px}.hero .theme{margin-top:12px;color:#66555b;max-width:760px}.hero-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.pill{background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 11px;font-size:12px;color:#775d66;font-weight:700}.pill:empty{display:none}.progressbox{margin-top:16px;max-width:420px}.progressline{height:8px;background:#f1dfe5;border-radius:999px;overflow:hidden}.progressline i{display:block;height:100%;width:0;background:linear-gradient(90deg,#e988a5,#c35e7b);transition:.25s}.progressText{font-size:12px;color:var(--muted);margin-bottom:5px}
+.panel{margin-top:18px;background:var(--paper);border:1px solid var(--line);border-radius:25px;box-shadow:var(--shadow);overflow:hidden;backdrop-filter:blur(10px)}.tabs{display:flex;gap:5px;padding:10px 12px;border-bottom:1px solid var(--line);overflow:auto;background:rgba(255,247,249,.9)}.tab{border:0;background:transparent;padding:10px 14px;border-radius:12px;white-space:nowrap;color:#755f66;font-weight:800;cursor:pointer}.tab.active{background:#fff;color:var(--rose2);box-shadow:0 3px 12px rgba(140,82,98,.1)}.content{padding:25px}.section-intro{display:flex;gap:14px;justify-content:space-between;align-items:flex-start;margin-bottom:18px}.section-intro h2{font-size:24px;margin:0 0 5px}.section-intro p{margin:0;color:var(--muted);max-width:720px}.actions{display:flex;gap:8px;flex-wrap:wrap}.btn{border:1px solid var(--line);background:#fff;color:#624d54;border-radius:12px;padding:9px 13px;font-weight:800;cursor:pointer}.btn.primary{background:var(--rose);color:#fff;border-color:var(--rose)}.btn.soft{background:#fff3f6}.btn:hover{filter:brightness(.985)}
+.flash-wrap{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:18px}.flashcard{min-height:330px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,#fff,#fff4f7);display:grid;place-items:center;text-align:center;padding:30px;cursor:pointer;position:relative}.flashcard .cn{font-family:"Noto Serif SC","Songti SC",serif;font-size:64px;font-weight:900}.flashcard .py{font-size:21px;color:var(--rose2);margin:5px 0}.flashcard .vi{font-size:22px;color:#56474c}.flashcard .hint{position:absolute;bottom:13px;color:#a18b92;font-size:12px}.flashcard.mask .py,.flashcard.mask .vi{filter:blur(9px);opacity:.24}.vocab-list{max-height:330px;overflow:auto;border:1px solid var(--line);border-radius:18px;padding:7px;background:#fff}.vrow{display:grid;grid-template-columns:38px 1fr;gap:8px;padding:8px;border-radius:10px;cursor:pointer}.vrow:hover{background:#fff3f6}.vrow .n{color:#b6a4aa;font-size:12px;padding-top:4px}.vrow b{font-family:"Noto Serif SC","Songti SC",serif}.vrow small{display:block;color:var(--muted)}
+.quiz-grid,.task-list{display:grid;gap:12px}.qcard,.task,.gcard{border:1px solid var(--line);border-radius:17px;padding:16px;background:#fff}.qtitle,.task h3{font-weight:850;margin:0 0 11px}.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.opt{border:1px solid #ead7de;border-radius:12px;padding:10px 12px;background:#fff;text-align:left;cursor:pointer}.opt.selected{border-color:var(--rose);background:#fff3f6}.opt.good{border-color:#70a68f;background:#eff9f5}.opt.bad{border-color:#d57880;background:#fff0f1}.feedback{font-size:13px;color:var(--muted);margin-top:8px}.score{display:inline-block;background:#fff3f6;border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-weight:900}.grammar-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.gcard h3{font-family:"Noto Serif SC","Songti SC",serif;color:var(--rose2);margin:0 0 6px}.example{background:#fff8ed;border-left:4px solid var(--gold);padding:9px 11px;border-radius:8px;margin-top:8px;font-family:"Noto Serif SC","Songti SC",serif}
+.task textarea{width:100%;min-height:145px;border:1px solid #e8d5dc;border-radius:13px;padding:12px;background:#fffdfd;resize:vertical;outline:none}.task textarea:focus{border-color:#cf8096;box-shadow:0 0 0 3px rgba(207,128,150,.12)}.grader{margin-top:12px;border-radius:14px;padding:13px;background:#fff7f9;border:1px dashed #e7b8c5;display:none}.grader.show{display:block}.grade-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:8px}.grade-big{font-size:26px;font-weight:950;color:var(--rose2)}.criterion{display:flex;justify-content:space-between;gap:12px;border-top:1px solid #f0dce2;padding:7px 0;font-size:13px}.criterion:first-of-type{border-top:0}.criterion.good{color:var(--green)}.criterion.bad{color:var(--bad)}.criterion.partial{color:#9b721e}.grade-note{margin-top:9px;color:#806b72;font-size:12px}.hintbox{margin-top:9px;background:#fffaf0;border:1px solid #eddcb9;padding:10px;border-radius:10px;display:none}.hintbox.show{display:block}.overall{margin-bottom:14px;background:linear-gradient(135deg,#fff7f9,#fff);border:1px solid var(--line);border-radius:16px;padding:14px}.overall b{color:var(--rose2)}.footer{padding:20px 5px 8px;text-align:center;color:#8d7880;font-size:12px}.toast{position:fixed;right:18px;bottom:18px;background:#4b3b40;color:#fff;padding:10px 13px;border-radius:11px;opacity:0;transform:translateY(8px);transition:.2s;pointer-events:none}.toast.show{opacity:1;transform:none}
+@media(max-width:820px){.app{padding:12px}.content{padding:17px}.flash-wrap{grid-template-columns:1fr}.grammar-grid,.opts{grid-template-columns:1fr}.section-intro{display:block}.section-intro .actions{margin-top:10px}.hero{padding:22px}.site-top{align-items:flex-start}}
+@media print{.site-top,.tabs,.actions,.footer,.toast,.grader{display:none!important}.app{max-width:none;padding:0}.panel,.hero{box-shadow:none}.panel{border:0}.task{break-inside:avoid}}
+
+/* Advanced HSK-style exercise board */
+.adv-board{display:grid;gap:18px}.adv-section{border:1px solid var(--line);background:rgba(255,255,255,.94);border-radius:20px;padding:18px}.adv-section-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:12px}.adv-section h3{margin:0;font-size:20px}.adv-section .desc{color:var(--muted);font-size:13px;margin-top:3px}.adv-num{min-width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:#fff0f4;color:var(--rose2);font-weight:900;border:1px solid var(--line)}.adv-card{border:1px solid var(--line);border-radius:16px;padding:15px;margin-top:11px;background:#fff}.adv-q{font-weight:800;margin-bottom:10px}.adv-options{display:grid;gap:8px}.adv-opt{width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:11px;padding:10px 12px;cursor:pointer;color:var(--ink)}.adv-opt:hover{background:#fff7f9}.adv-opt.selected{border-color:var(--rose);background:#fff0f4}.adv-opt.good{border-color:var(--green);background:#eef8f3}.adv-opt.bad{border-color:var(--bad);background:#fff0f1}.adv-feedback{display:none;margin-top:9px;padding:9px 11px;border-radius:10px;background:#faf6f7;color:#6d5c62;font-size:13px}.adv-feedback.show{display:block}.order-bank,.order-answer{display:flex;gap:8px;flex-wrap:wrap;padding:11px;border-radius:12px}.order-bank{background:#fff7f9;border:1px solid var(--line)}.order-answer{min-height:52px;margin-top:8px;border:2px dashed #ead0d9;background:#fff}.word-chip{border:1px solid #e8cbd5;background:#fff;border-radius:999px;padding:7px 10px;cursor:pointer;font-weight:800}.word-chip.used{opacity:.28;pointer-events:none}.order-answer .word-chip{background:#fff0f4}.order-answer.good{border-color:var(--green);background:#eef8f3}.order-answer.bad{border-color:var(--bad);background:#fff2f3}.sequence-items{background:#fff8fa;border-left:3px solid #e6a2b5;padding:9px 12px;border-radius:8px;margin:8px 0 11px}.sequence-items div{margin:3px 0}.reading-text{padding:14px 16px;background:#fff8f5;border:1px solid #f0dfd6;border-radius:13px;font-size:16px;line-height:1.8;margin-bottom:12px}.adv-scorebar{position:sticky;bottom:12px;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 14px;margin-top:16px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.96);box-shadow:0 10px 28px rgba(128,75,90,.13);backdrop-filter:blur(8px)}.adv-scorebar .scoretxt{font-weight:900;color:var(--rose2)}.adv-note{background:#fff8ee;border:1px solid #efdcc0;padding:10px 12px;border-radius:12px;color:#725f48;font-size:13px}.adv-card.unanswered{border-color:#e1b55f}.adv-card.correct{border-color:#8bbda9}.adv-card.incorrect{border-color:#d9969b}
+
+
+/* Bản ngữ pháp chi tiết theo PDF */
+.grammar-grid{grid-template-columns:1fr!important}
+.gcard{padding:18px!important}
+.gcard h3{font-size:1.18rem;margin-bottom:10px!important}
+.g-lead{line-height:1.85;color:#5f4c53}
+.g-rule,.g-note{margin-top:10px;padding:11px 13px;border-radius:11px;line-height:1.8}
+.g-rule{background:#fff7fa;border:1px solid #efd7df}
+.g-note{background:#fffaf0;border:1px solid #eddcb9}
+.g-rule b,.g-note b{display:block;margin-bottom:3px;color:#98566a}
+.g-examples{display:grid;gap:7px}
+.g-line{display:grid;grid-template-columns:minmax(260px,.9fr) 1.1fr;gap:12px;border-top:1px solid rgba(180,140,100,.16);padding-top:7px}
+.g-line:first-child{border-top:0;padding-top:0}
+.g-line b{font-family:"Noto Serif SC","Songti SC",serif;color:#4e3940}
+.g-line span{font-family:"Be Vietnam Pro",system-ui,sans-serif;color:#7f6b72;font-size:.88rem}
+@media(max-width:700px){.g-line{grid-template-columns:1fr;gap:2px}}
+
+</style><script defer src="meow-auth.js"></script>
+<script defer src="meow-tracking.js"></script>
+<script defer src="meow-ai-writing.js"></script>
+</head>
+<body><div class="app"><div class="site-top"><div class="brand"><span class="catdot"></span><span>Tiếng Trung Meow Meow · HSK4</span></div><nav class="lesson-nav" id="lessonNav"></nav></div>
+<header class="hero"><div class="eyebrow">HSK 4 · Ôn tập tương tác</div><h1><span id="lessonNo"></span> · <span id="lessonTitle"></span></h1><div class="vi" id="lessonVi"></div><div class="theme" id="theme"></div><div class="hero-meta"><span class="pill" id="vocabCount"></span></div><div class="progressbox"><div class="progressText" id="progressText"></div><div class="progressline"><i id="progressBar"></i></div></div></header>
+<main class="panel"><nav class="tabs" id="tabs"></nav><section class="content" id="content"></section></main>
+<div class="footer">Học cùng meow meow, vui quá là vui</div></div><div class="toast" id="toast"></div>
+<script>const DATA={"title":"教育孩子的艺术","vi":"Nghệ thuật giáo dục con cái","theme":"Giáo dục · gia đình · khen ngợi · thói quen","vocab":[["弹钢琴","tán gāngqín","chơi đàn dương cầm"],["棒","bàng","tuyệt, giỏi"],["孙子","sūnzi","cháu nội trai"],["寒假","hánjià","kỳ nghỉ đông"],["父亲","fùqīn","cha, bố"],["闹钟","nàozhōng","đồng hồ báo thức"],["响","xiǎng","reo, vang lên"],["醒","xǐng","thức dậy, tỉnh dậy"],["赶","gǎn","vội, gấp rút"],["厕所","cèsuǒ","nhà vệ sinh"],["批评","pīpíng","phê bình"],["弄","nòng","làm, xử lý"],["管理","guǎnlǐ","quản lý"],["打针","dǎzhēn","tiêm"],["护士","hùshi","y tá"],["表扬","biǎoyáng","khen ngợi, biểu dương"],["千万","qiānwàn","nhất thiết, tuyệt đối"],["怀疑","huáiyí","nghi ngờ, hoài nghi"],["故意","gùyì","cố ý, cố tình"],["敲","qiāo","gõ"],["整理","zhěnglǐ","thu dọn, sắp xếp"],["合适","héshì","phù hợp"],["骗","piàn","lừa"],["儿童","értóng","trẻ em"],["假","jiǎ","giả, không thật"],["左右","zuǒyòu","khoảng, khoảng chừng"],["懒","lǎn","lười"],["笨","bèn","ngốc, đần"],["粗心","cūxīn","cẩu thả"],["骄傲","jiāo'ào","kiêu ngạo, tự hào"],["害羞","hàixiū","ngượng ngùng, thẹn thùng"]],"grammar":[["想起来","<div class=\"g-lead\">想起来 là bổ ngữ xu hướng mở rộng, nghĩa “nhớ ra/nghĩ ra”.</div><div class=\"g-rule\"><b>Cách dùng / cấu trúc</b><div>• Mẫu: 想起来 + nội dung; 我突然想起来……</div><div>• Khác 想: 想 chỉ “nghĩ/muốn”, 想起来 nhấn mạnh từ chưa nhớ → nhớ ra.</div><div>• Có thể nói 想不起来 = không nhớ ra.</div></div>","<div class=\"g-examples\"><div class=\"g-line\"><b>我突然想起来今天要带孩子看医生。</b><span>Tôi chợt nhớ ra hôm nay phải đưa con đi bác sĩ.</span></div><div class=\"g-line\"><b>这个名字我一时想不起来。</b><span>Tên này nhất thời tôi không nhớ ra.</span></div><div class=\"g-line\"><b>说到教育，我想起来小时候的一件事。</b><span>Nói đến giáo dục, tôi nhớ ra một chuyện hồi nhỏ.</span></div></div>"],["弄","<div class=\"g-lead\">弄 thường thay cho một động từ cụ thể khi hành động đã rõ trong ngữ cảnh.</div><div class=\"g-rule\"><b>Cách dùng / cấu trúc</b><div>• Các kết hợp rất hay: 弄好、弄坏、弄清楚、弄明白、弄干净.</div><div>• Không nên lạm dụng khi cần động từ chính xác trong văn trang trọng.</div><div>• Nghĩa thay đổi theo bổ ngữ sau nó.</div></div>","<div class=\"g-examples\"><div class=\"g-line\"><b>请先把房间弄干净。</b><span>Hãy làm phòng sạch trước.</span></div><div class=\"g-line\"><b>我还没弄明白这个问题。</b><span>Tôi vẫn chưa hiểu rõ vấn đề này.</span></div><div class=\"g-line\"><b>别把孩子的玩具弄坏了。</b><span>Đừng làm hỏng đồ chơi của trẻ.</span></div></div>"],["千万","<div class=\"g-lead\">千万 = “nhất định/tuyệt đối”, thường dùng trong lời dặn.</div><div class=\"g-rule\"><b>Cách dùng / cấu trúc</b><div>• Mẫu rất thường: 千万要…… / 千万别…… / 千万不要……</div><div>• Không dùng để nói số lượng “mười triệu” trong cách dùng phó từ này.</div><div>• Sắc thái mạnh hơn 一定 trong lời cảnh báo.</div></div>","<div class=\"g-examples\"><div class=\"g-line\"><b>教育孩子时千万别只批评。</b><span>Khi giáo dục trẻ tuyệt đối đừng chỉ phê bình.</span></div><div class=\"g-line\"><b>出门前千万要检查门窗。</b><span>Trước khi ra ngoài nhất định phải kiểm tra cửa.</span></div><div class=\"g-line\"><b>你千万不要骗孩子。</b><span>Bạn tuyệt đối đừng lừa trẻ.</span></div></div>"],["来（表方式/目的）","<div class=\"g-lead\">来 có thể đứng trước động từ để nêu hành động dùng nhằm đạt mục đích nào đó.</div><div class=\"g-rule\"><b>Cách dùng / cấu trúc</b><div>• Mẫu thường: 用 + N + 来 + V; 通过……来……</div><div>• 来 ở đây không mang nghĩa “đến”.</div><div>• Phần sau 来 thường là hành động/mục đích chính.</div></div>","<div class=\"g-examples\"><div class=\"g-line\"><b>父母可以用表扬来鼓励孩子。</b><span>Cha mẹ có thể dùng lời khen để khuyến khích trẻ.</span></div><div class=\"g-line\"><b>我们用游戏来帮助孩子学习。</b><span>Chúng ta dùng trò chơi để giúp trẻ học.</span></div><div class=\"g-line\"><b>老师通过提问来了解学生。</b><span>Giáo viên thông qua đặt câu hỏi để hiểu học sinh.</span></div></div>"],["左右","<div class=\"g-lead\">左右 đặt sau số lượng, nghĩa “khoảng/chừng”.</div><div class=\"g-rule\"><b>Cách dùng / cấu trúc</b><div>• Mẫu: số lượng + 左右.</div><div>• Thường không dùng đồng thời với 大约/大概 trước số trong cùng một cụm vì bị trùng nghĩa.</div><div>• Có thể dùng cho thời gian, tuổi, khoảng cách, số người…</div></div>","<div class=\"g-examples\"><div class=\"g-line\"><b>孩子每天睡十个小时左右。</b><span>Trẻ ngủ khoảng 10 tiếng mỗi ngày.</span></div><div class=\"g-line\"><b>会议大概有三十人左右。</b><span>Câu này thường tránh vì 大概 và 左右 trùng nghĩa; nên chọn một trong hai.</span></div><div class=\"g-line\"><b>他五十岁左右。</b><span>Anh ấy khoảng 50 tuổi.</span></div></div>"]],"fills":[{"s":"Chọn từ phù hợp với nghĩa “chơi đàn dương cầm”: ____。","a":"弹钢琴","o":["敲","醒","弹钢琴","打针"]},{"s":"Chọn từ phù hợp với nghĩa “tuyệt, giỏi”: ____。","a":"棒","o":["护士","棒","整理","赶"]},{"s":"Chọn từ phù hợp với nghĩa “cháu nội trai”: ____。","a":"孙子","o":["孙子","合适","表扬","厕所"]},{"s":"Chọn từ phù hợp với nghĩa “kỳ nghỉ đông”: ____。","a":"寒假","o":["批评","千万","寒假","骗"]},{"s":"Chọn từ phù hợp với nghĩa “cha, bố”: ____。","a":"父亲","o":["弄","父亲","怀疑","儿童"]},{"s":"Chọn từ phù hợp với nghĩa “đồng hồ báo thức”: ____。","a":"闹钟","o":["管理","假","故意","闹钟"]},{"s":"Chọn từ phù hợp với nghĩa “reo, vang lên”: ____。","a":"响","o":["敲","响","左右","打针"]},{"s":"Chọn từ phù hợp với nghĩa “thức dậy, tỉnh dậy”: ____。","a":"醒","o":["懒","护士","整理","醒"]},{"s":"Chọn từ phù hợp với nghĩa “vội, gấp rút”: ____。","a":"赶","o":["表扬","赶","笨","合适"]},{"s":"Chọn từ phù hợp với nghĩa “nhà vệ sinh”: ____。","a":"厕所","o":["千万","厕所","粗心","骗"]}],"grammarQuiz":[{"q":"我突然____老师昨天说的话。","o":["想起来","弄","千万","左右"],"a":0,"e":"想起来: đột nhiên nhớ ra/nghĩ ra."},{"q":"这个问题我还没____清楚。","o":["弄","千万","左右","想起来"],"a":0,"e":"弄: động từ khái quát “làm/xử lý”, nghĩa cụ thể do bổ ngữ quyết định."},{"q":"教育孩子时____不要只批评。","o":["千万","左右","弄","来"],"a":0,"e":"千万: nhấn mạnh lời khuyên/cảnh báo rất mạnh."},{"q":"父母可以用表扬____鼓励孩子。","o":["来","千万","弄","左右"],"a":0,"e":"来（表方式/目的）: nối phương thức với hành động/mục đích phía sau."},{"q":"这个班有二十个学生____。","o":["左右","千万","来","弄"],"a":0,"e":"左右: diễn đạt số lượng xấp xỉ."}],"apply":["Viết 100–120 chữ: 你小时候父母是怎么教育你的？Dùng 父亲/父母、批评、表扬、管理、想起来.","Viết 100–130 chữ: 你认为表扬和批评哪一个更有效？Dùng 弄、千万、合适、故意、骄傲.","Viết 110–140 chữ: 给第一次当父母的人三条教育建议。Dùng 用……来……、儿童、粗心、害羞、左右."],"advanced":[{"q":"Viết 3 câu riêng, lần lượt dùng 想起来、弄、千万.","hint":"Mỗi câu cần thể hiện đúng chức năng ngữ pháp, không chỉ chèn từ khóa.","sample":"开放题：mỗi cấu trúc một câu, chú ý vị trí của thành phần ngữ pháp."},{"q":"Viết một đoạn 80–100 chữ dùng ít nhất 4 điểm ngữ pháp của Bài 15.","hint":"Kết nối các câu thành một đoạn có chủ đề, tránh liệt kê rời rạc.","sample":"开放题：ưu tiên sự mạch lạc và dùng đúng cấu trúc."},{"q":"Tự đặt một tình huống thực tế liên quan đến chủ đề “Giáo dục · gia đình · khen ngợi · thói quen”, viết 100–130 chữ và dùng ít nhất 6 từ mới của bài.","hint":"Mở đầu bối cảnh → vấn đề/trải nghiệm → kết quả/quan điểm.","sample":"开放题：dùng từ mới tự nhiên, không cần nhồi tất cả vào một câu."}],"summary":"Bài 15 · 教育孩子的艺术 tập trung vào chủ đề giáo dục · gia đình · khen ngợi · thói quen và luyện các điểm ngôn ngữ: 想起来、弄、千万、来（表方式/目的）、左右."};const ADV_DATA={"mcq":[{"q":"我突然____老师昨天说的话。","o":["想起来","弄","千万","左右"],"a":0,"e":"想起来: đột nhiên nhớ ra/nghĩ ra."},{"q":"这个问题我还没____清楚。","o":["弄","千万","左右","想起来"],"a":0,"e":"弄: động từ khái quát “làm/xử lý”, nghĩa cụ thể do bổ ngữ quyết định."},{"q":"教育孩子时____不要只批评。","o":["千万","左右","弄","来"],"a":0,"e":"千万: nhấn mạnh lời khuyên/cảnh báo rất mạnh."},{"q":"父母可以用表扬____鼓励孩子。","o":["来","千万","弄","左右"],"a":0,"e":"来（表方式/目的）: nối phương thức với hành động/mục đích phía sau."},{"q":"这个班有二十个学生____。","o":["左右","千万","来","弄"],"a":0,"e":"左右: diễn đạt số lượng xấp xỉ."}],"reorder":[{"parts":["我突然想起来今","天要带孩子看医生"],"answer":"我突然想起来今天要带孩子看医生","e":"Dùng đúng cấu trúc 想起来."},{"parts":["请先把房","间弄干净"],"answer":"请先把房间弄干净","e":"Dùng đúng cấu trúc 弄."},{"parts":["教育孩子时","千万别只批评"],"answer":"教育孩子时千万别只批评","e":"Dùng đúng cấu trúc 千万."},{"parts":["父母可以用表","扬来鼓励孩子"],"answer":"父母可以用表扬来鼓励孩子","e":"Dùng đúng cấu trúc 来（表方式/目的）."},{"parts":["孩子每天睡","十个小时左右"],"answer":"孩子每天睡十个小时左右","e":"Dùng đúng cấu trúc 左右."}],"sequence":[{"q":"Sắp xếp một quy trình hợp lý theo chủ đề bài học:","items":["A. 先了解孩子的问题","B. 选择合适的教育方式","C. 观察效果并及时调整"],"o":["A → B → C","B → C → A","C → A → B","A → C → B"],"a":0,"e":"Đi từ chuẩn bị/nhận diện → thực hiện → kết quả/điều chỉnh."},{"q":"Sắp xếp quá trình giải quyết một nhiệm vụ:","items":["A. 先了解情况","B. 再选择合适的方法","C. 最后检查结果"],"o":["A → B → C","B → A → C","C → B → A","A → C → B"],"a":0,"e":"Hiểu tình huống → chọn cách → kiểm tra kết quả."},{"q":"Sắp xếp một đoạn trình bày có logic:","items":["A. 先说明自己的观点","B. 举一个具体例子","C. 最后总结理由"],"o":["A → B → C","C → A → B","B → C → A","B → A → C"],"a":0,"e":"Quan điểm → ví dụ → kết luận."}],"error":[{"q":"Chọn câu dùng 想起来 tự nhiên nhất:","o":["我突然想起来今天要带孩子看医生。","想起来的这个句子不完整。","我很想起来所以的。","这个想起来但是因为。"],"a":0,"e":"Câu A thể hiện đúng chức năng của 想起来."},{"q":"Chọn câu dùng 弄 tự nhiên nhất:","o":["请先把房间弄干净。","弄的这个句子不完整。","我很弄所以的。","这个弄但是因为。"],"a":0,"e":"Câu A thể hiện đúng chức năng của 弄."},{"q":"Chọn câu dùng 千万 tự nhiên nhất:","o":["教育孩子时千万别只批评。","千万的这个句子不完整。","我很千万所以的。","这个千万但是因为。"],"a":0,"e":"Câu A thể hiện đúng chức năng của 千万."},{"q":"Chọn câu dùng 来（表方式/目的） tự nhiên nhất:","o":["父母可以用表扬来鼓励孩子。","来（表方式/目的）的这个句子不完整。","我很来（表方式/目的）所以的。","这个来（表方式/目的）但是因为。"],"a":0,"e":"Câu A thể hiện đúng chức năng của 来（表方式/目的）."}],"reading":[{"text":"小雨小时候很粗心，做作业常常忘记检查。父亲没有天天批评她，而是让她自己整理书包，并在她做得好的时候及时表扬。慢慢地，小雨养成了检查的习惯。她长大后才想起来，父亲用耐心来帮助她，比简单地骂她更有效。","qs":[{"q":"小雨小时候有什么问题？","o":["很粗心","很害羞","很骄傲","不会说话"],"a":0,"e":"Đáp án dựa trực tiếp vào đoạn đọc."},{"q":"父亲怎么帮助她？","o":["让她整理并及时表扬","天天骂她","替她写作业","不管她"],"a":0,"e":"Đáp án dựa trực tiếp vào đoạn đọc."},{"q":"小雨后来明白什么？","o":["耐心教育更有效","批评越多越好","不用养成习惯","父亲骗她"],"a":0,"e":"Đáp án dựa trực tiếp vào đoạn đọc."}]}]};const RULES={"apply":[{"criteria":[{"type":"hanzi_min","label":"Nội dung đủ tiếng Trung","weight":35,"min":70},{"type":"keywords","label":"Có từ/cấu trúc trọng tâm","weight":40,"words":["想起来","弄","千万","来（表方式/目的）","左右","弹钢琴","棒","孙子","寒假","父亲","闹钟","响","醒","赶","厕所","批评","弄"],"min":4},{"type":"punctuation","label":"Có nhiều câu/ý","weight":25,"min":4}]},{"criteria":[{"type":"hanzi_min","label":"Nội dung đủ tiếng Trung","weight":35,"min":70},{"type":"keywords","label":"Có từ/cấu trúc trọng tâm","weight":40,"words":["想起来","弄","千万","来（表方式/目的）","左右","弹钢琴","棒","孙子","寒假","父亲","闹钟","响","醒","赶","厕所","批评","弄"],"min":4},{"type":"punctuation","label":"Có nhiều câu/ý","weight":25,"min":4}]},{"criteria":[{"type":"hanzi_min","label":"Nội dung đủ tiếng Trung","weight":35,"min":70},{"type":"keywords","label":"Có từ/cấu trúc trọng tâm","weight":40,"words":["想起来","弄","千万","来（表方式/目的）","左右","弹钢琴","棒","孙子","寒假","父亲","闹钟","响","醒","赶","厕所","批评","弄"],"min":4},{"type":"punctuation","label":"Có nhiều câu/ý","weight":25,"min":4}]}],"advanced":[{"criteria":[{"type":"hanzi_min","label":"Nội dung đủ","weight":30,"min":45},{"type":"keywords","label":"Dùng điểm ngôn ngữ/từ mới","weight":45,"words":["想起来","弄","千万","来（表方式/目的）","左右","弹钢琴","棒","孙子","寒假","父亲","闹钟","响","醒","赶","厕所","批评","弄","管理","打针","护士"],"min":3},{"type":"punctuation","label":"Có câu hoàn chỉnh","weight":25,"min":3}]},{"criteria":[{"type":"hanzi_min","label":"Nội dung đủ","weight":30,"min":45},{"type":"keywords","label":"Dùng điểm ngôn ngữ/từ mới","weight":45,"words":["想起来","弄","千万","来（表方式/目的）","左右","弹钢琴","棒","孙子","寒假","父亲","闹钟","响","醒","赶","厕所","批评","弄","管理","打针","护士"],"min":3},{"type":"punctuation","label":"Có câu hoàn chỉnh","weight":25,"min":3}]},{"criteria":[{"type":"hanzi_min","label":"Nội dung đủ","weight":30,"min":45},{"type":"keywords","label":"Dùng điểm ngôn ngữ/từ mới","weight":45,"words":["想起来","弄","千万","来（表方式/目的）","左右","弹钢琴","棒","孙子","寒假","父亲","闹钟","响","醒","赶","厕所","批评","弄","管理","打针","护士"],"min":3},{"type":"punctuation","label":"Có câu hoàn chỉnh","weight":25,"min":3}]}]};const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const el=(tag,cls,txt)=>{const x=document.createElement(tag);if(cls)x.className=cls;if(txt!==undefined)x.textContent=txt;return x};
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const state={tab:'flash',flashIndex:0,flashMask:false,quiz:[],quizAns:{},fillAns:{},grammarAns:{},advChoice:{},done:0};
+const tabs=[["flash", "Từ vựng"], ["quiz", "Trắc nghiệm"], ["fill", "Điền từ"], ["grammar", "Ngữ pháp"], ["apply", "Vận dụng"], ["advanced", "Nâng cao"]];
+const lesson="15";
+const L=DATA;
+window.MEOW_WRITING_CONTEXT={
+  course:'hsk4',
+  level:'HSK4',
+  lesson:15,
+  lessonTitle:L.title,
+  lessonTheme:L.theme,
+  grammarFocus:(L.grammar||[]).map(g=>Array.isArray(g)?g[0]:String(g))
+};
+function shuffleStaticQuestion(q){
+  if(!q || !Array.isArray(q.o) || !q.o.length) return;
+  const numericAnswer = typeof q.a === 'number';
+  const correct = numericAnswer ? q.o[q.a] : q.a;
+  q.o = shuffle(q.o);
+  if(numericAnswer) q.a = q.o.indexOf(correct);
+}
+
+function randomizeSequenceQuestion(q){
+  if(!q || !Array.isArray(q.items) || q.items.length < 2 || !Array.isArray(q.o) || typeof q.a !== 'number') return;
+
+  // Lưu nhãn cũ (A/B/C...) và phần nội dung thực tế.
+  const original = q.items.map((item, index) => {
+    const m = String(item).match(/^\s*([A-Z])\.\s*(.*)$/);
+    return {
+      oldLabel: m ? m[1] : String.fromCharCode(65 + index),
+      text: m ? m[2] : String(item)
+    };
+  });
+
+  const correctOriginal = String(q.o[q.a] || '');
+  const letters = original.map(x => x.oldLabel);
+
+  // Xáo các mệnh đề; tránh để thứ tự đúng vẫn rơi vào A → B → C.
+  let shuffledItems, mapping, transformedCorrect;
+  let attempts = 0;
+
+  do {
+    shuffledItems = shuffle(original);
+    mapping = {};
+    shuffledItems.forEach((item, newIndex) => {
+      mapping[item.oldLabel] = String.fromCharCode(65 + newIndex);
+    });
+
+    transformedCorrect = correctOriginal.replace(/[A-Z]/g, ch => mapping[ch] || ch);
+    attempts++;
+  } while (
+    normalizeSequenceText(transformedCorrect) === 'ABC' &&
+    attempts < 20
+  );
+
+  // Gắn lại nhãn A/B/C theo thứ tự HIỂN THỊ mới.
+  q.items = shuffledItems.map((item, newIndex) =>
+    `${String.fromCharCode(65 + newIndex)}. ${item.text}`
+  );
+
+  // Đổi toàn bộ phương án A→B→C... sang hệ nhãn mới.
+  q.o = q.o.map(option =>
+    String(option).replace(/[A-Z]/g, ch => mapping[ch] || ch)
+  );
+}
+
+function normalizeSequenceText(s){
+  return String(s || '').replace(/[^A-Z]/g, '');
+}
+
+function randomizeStaticAnswers(){
+  (L.fills || []).forEach(shuffleStaticQuestion);
+  (L.grammarQuiz || []).forEach(shuffleStaticQuestion);
+
+  if(typeof ADV_DATA !== 'undefined' && ADV_DATA){
+    (ADV_DATA.mcq || []).forEach(shuffleStaticQuestion);
+
+    // Phần ③ Sắp xếp trình tự:
+    // 1) xáo chính các mệnh đề A/B/C,
+    // 2) đổi đáp án đúng tương ứng,
+    // 3) tiếp tục xáo vị trí 4 lựa chọn.
+    (ADV_DATA.sequence || []).forEach(q => {
+      randomizeSequenceQuestion(q);
+      shuffleStaticQuestion(q);
+    });
+
+    (ADV_DATA.error || []).forEach(shuffleStaticQuestion);
+    (ADV_DATA.reading || []).forEach(r => (r.qs || []).forEach(shuffleStaticQuestion));
+  }
+}
+randomizeStaticAnswers();
+
+function toast(t){const x=$('#toast');x.textContent=t;x.classList.add('show');setTimeout(()=>x.classList.remove('show'),1400)}
+function saveState(){localStorage.setItem(`hsk4_bai${lesson}_state`,JSON.stringify({done:state.done}))}
+function loadState(){try{const x=JSON.parse(localStorage.getItem(`hsk4_bai${lesson}_state`)||'{}');state.done=x.done||0}catch(e){}}
+function bump(ok){state.done++;saveState();updateProgress()}
+function updateProgress(){const pct=Math.min(100,Math.round(state.done/35*100));$('#progressText').textContent=`Tiến độ luyện tập: ${state.done} lượt đã chấm`;$('#progressBar').style.width=pct+'%'}
+function intro(title,sub,actions=''){return `<div class="section-intro"><div><h2>${title}</h2><p>${sub}</p></div><div class="actions">${actions}</div></div>`}
+function init(){loadState();document.title=`HSK4 Bài ${lesson} · ${L.title}`;$('#lessonNo').textContent=`Bài ${lesson}`;$('#lessonTitle').textContent=L.title;$('#lessonVi').textContent=L.vi;$('#theme').textContent=L.theme;$('#vocabCount').textContent=`${L.vocab.length} từ mới`;const nav=$('#lessonNav');[11,12,13,14,15,16,17,18,19,20].forEach(n=>{const a=el('a',String(n)===String(lesson)?'current':'',`Bài ${n}`);a.href=`hsk4.bai${n}.html`;nav.appendChild(a)});renderTabs();updateProgress();renderContent()}
+function renderTabs(){const w=$('#tabs');w.innerHTML='';tabs.forEach(([id,name])=>{const b=el('button','tab'+(state.tab===id?' active':''),name);b.onclick=()=>{state.tab=id;state.quiz=[];state.quizAns={};state.fillAns={};state.grammarAns={};renderTabs();renderContent()};w.appendChild(b)})}
+function renderContent(){const c=$('#content');if(state.tab==='flash')renderFlash(c);else if(state.tab==='quiz')renderQuiz(c);else if(state.tab==='fill')renderFill(c);else if(state.tab==='grammar')renderGrammar(c);else if(state.tab==='apply')renderOpenTasks(c,'apply');else if(state.tab==='advanced')renderAdvanced(c)}
+function renderFlash(c){const v=L.vocab[state.flashIndex];c.innerHTML=intro(`Từ vựng · ${L.vocab.length} từ`,`Bấm vào thẻ để ẩn/hiện pinyin và nghĩa.`,`<button class="btn" id="prev">← Trước</button><button class="btn" id="random">Ngẫu nhiên</button><button class="btn" id="next">Sau →</button>`)+`<div class="flash-wrap"><div class="flashcard ${state.flashMask?'mask':''}" id="fc"><div><div class="cn">${v[0]}</div><div class="py">${v[1]}</div><div class="vi">${v[2]}</div></div><div class="hint">Từ ${state.flashIndex+1}/${L.vocab.length} · bấm để che/hiện</div></div><div class="vocab-list" id="vlist"></div></div>`;const list=$('#vlist');L.vocab.forEach((x,i)=>{const r=el('div','vrow');r.innerHTML=`<div class="n">${String(i+1).padStart(2,'0')}</div><div><b>${x[0]}</b><small>${x[1]} · ${x[2]}</small></div>`;r.onclick=()=>{state.flashIndex=i;renderFlash(c)};list.appendChild(r)});$('#fc').onclick=()=>{state.flashMask=!state.flashMask;renderFlash(c)};$('#prev').onclick=()=>{state.flashIndex=(state.flashIndex-1+L.vocab.length)%L.vocab.length;renderFlash(c)};$('#next').onclick=()=>{state.flashIndex=(state.flashIndex+1)%L.vocab.length;renderFlash(c)};$('#random').onclick=()=>{state.flashIndex=Math.floor(Math.random()*L.vocab.length);renderFlash(c)}}
+function makeVocabQuiz(vocab,n=10){return shuffle(vocab.map((v,i)=>({v,i}))).slice(0,n).map(({v,i})=>{const reverse=Math.random()<.45;const pool=shuffle(vocab.filter((_,j)=>j!==i)).slice(0,3);const options=shuffle([v,...pool]);return reverse?{q:`Chọn từ Hán đúng với nghĩa: “${v[2]}”`,options:options.map(x=>x[0]),ans:options.findIndex(x=>x[0]===v[0]),exp:`${v[0]} · ${v[1]} = ${v[2]}`}:{q:`${v[0]} · ${v[1]} có nghĩa là gì?`,options:options.map(x=>x[2]),ans:options.findIndex(x=>x[0]===v[0]),exp:`${v[0]} = ${v[2]}`}})}
+function renderQuiz(c){if(!state.quiz.length)state.quiz=makeVocabQuiz(L.vocab,10);c.innerHTML=intro('Trắc nghiệm từ vựng','','<button class="btn" id="newQuiz">Tạo bộ mới</button><button class="btn primary" id="checkQuiz">Chấm điểm</button>')+'<div class="quiz-grid" id="qgrid"></div><div id="qscore" style="margin-top:14px"></div>';const g=$('#qgrid');state.quiz.forEach((q,qi)=>{const card=el('div','qcard');card.innerHTML=`<div class="qtitle">${qi+1}. ${q.q}</div><div class="opts"></div><div class="feedback"></div>`;q.options.forEach((o,oi)=>{const b=el('button','opt'+(state.quizAns[qi]===oi?' selected':''),o);b.onclick=()=>{state.quizAns[qi]=oi;renderQuiz(c)};card.querySelector('.opts').appendChild(b)});g.appendChild(card)});$('#newQuiz').onclick=()=>{state.quiz=makeVocabQuiz(L.vocab,10);state.quizAns={};renderQuiz(c)};$('#checkQuiz').onclick=()=>{let s=0;state.quiz.forEach((q,qi)=>{const card=g.children[qi],bs=card.querySelectorAll('.opt'),ch=state.quizAns[qi];bs[q.ans]?.classList.add('good');if(ch!==undefined&&ch!==q.ans)bs[ch]?.classList.add('bad');const ok=ch===q.ans;if(ok)s++;card.querySelector('.feedback').textContent=(ok?'✓ Đúng. ':'✗ ')+q.exp;bump(ok)});$('#qscore').innerHTML=`<div class="score">Kết quả: ${s}/${state.quiz.length}</div>`}}
+function renderBankQuiz(c,items,bagName,title,sub){const bag=state[bagName];c.innerHTML=intro(title,sub,'<button class="btn" id="resetBank">Làm lại</button><button class="btn primary" id="checkBank">Chấm điểm</button>')+'<div class="quiz-grid" id="bankgrid"></div><div id="bankscore" style="margin-top:14px"></div>';const g=$('#bankgrid');items.forEach((q,qi)=>{const card=el('div','qcard');card.innerHTML=`<div class="qtitle">${qi+1}. ${q.q||q.s}</div><div class="opts"></div><div class="feedback"></div>`;q.o.forEach((o,oi)=>{const val=typeof q.a==='number'?oi:o;const b=el('button','opt'+(bag[qi]===val?' selected':''),o);b.onclick=()=>{bag[qi]=val;renderBankQuiz(c,items,bagName,title,sub)};card.querySelector('.opts').appendChild(b)});g.appendChild(card)});$('#resetBank').onclick=()=>{state[bagName]={};renderBankQuiz(c,items,bagName,title,sub)};$('#checkBank').onclick=()=>{let score=0;items.forEach((q,qi)=>{const card=g.children[qi],btns=card.querySelectorAll('.opt'),ansVal=q.a,chosen=bag[qi],ansIndex=typeof ansVal==='number'?ansVal:q.o.indexOf(ansVal),chosenIndex=typeof chosen==='number'&&typeof ansVal==='number'?chosen:q.o.indexOf(chosen);btns[ansIndex]?.classList.add('good');if(chosen!==undefined&&chosen!==ansVal)btns[chosenIndex]?.classList.add('bad');const ok=chosen===ansVal;if(ok)score++;card.querySelector('.feedback').textContent=ok?'✓ Đúng':`✗ Đáp án: ${typeof ansVal==='number'?q.o[ansVal]:ansVal}`;bump(ok)});$('#bankscore').innerHTML=`<div class="score">Kết quả: ${score}/${items.length}</div>`}}
+function renderFill(c){renderBankQuiz(c,L.fills,'fillAns','Điền từ theo ngữ cảnh','Các câu bám từ vựng và tình huống của bài học.')}
+function renderGrammar(c){c.innerHTML=intro('Ngữ pháp & điểm ngôn ngữ theo PDF','')+'<div class="grammar-grid">'+L.grammar.map(g=>`<div class="gcard"><h3>${g[0]}</h3><div>${g[1]}</div><div class="example">${g[2]}</div></div>`).join('')+'</div><div style="height:20px"></div><div id="gquiz"></div>';renderGrammarQuiz($('#gquiz'))}
+function renderGrammarQuiz(c){const items=L.grammarQuiz;c.innerHTML=intro('Kiểm tra ngữ pháp','Chọn đáp án phù hợp.','<button class="btn" id="resetG">Làm lại</button><button class="btn primary" id="checkG">Chấm điểm</button>')+'<div class="quiz-grid" id="gg"></div><div id="gs"></div>';const g=$('#gg');items.forEach((q,qi)=>{const card=el('div','qcard');card.innerHTML=`<div class="qtitle">${qi+1}. ${q.q}</div><div class="opts"></div><div class="feedback"></div>`;q.o.forEach((o,oi)=>{const b=el('button','opt'+(state.grammarAns[qi]===oi?' selected':''),o);b.onclick=()=>{state.grammarAns[qi]=oi;renderGrammarQuiz(c)};card.querySelector('.opts').appendChild(b)});g.appendChild(card)});$('#resetG').onclick=()=>{state.grammarAns={};renderGrammarQuiz(c)};$('#checkG').onclick=()=>{let s=0;items.forEach((q,qi)=>{const card=g.children[qi],bs=card.querySelectorAll('.opt'),ch=state.grammarAns[qi];bs[q.a]?.classList.add('good');if(ch!==undefined&&ch!==q.a)bs[ch]?.classList.add('bad');const ok=ch===q.a;if(ok)s++;card.querySelector('.feedback').textContent=(ok?'✓ ':'✗ ')+q.e;bump(ok)});$('#gs').innerHTML=`<div class="score" style="margin-top:14px">Kết quả: ${s}/${items.length}</div>`}}
+function taskKey(type,i){return `hsk4_bai${lesson}_${type}_${i}`}
+function cleanText(t){return (t||'').replace(/\r/g,'').trim()}
+function countHanzi(t){return (t.match(/[\u3400-\u9fff]/g)||[]).length}
+function countLines(t){return t.split(/\n+/).map(x=>x.trim()).filter(Boolean).length}
+function countSentences(t){const p=(t.match(/[。！？!?；;]/g)||[]).length;return Math.max(p,countLines(t))}
+function timeMarkers(t){return (t.match(/(?:\d{1,2}[:：点时]|上午|下午|早上|晚上|中午|星期|周[一二三四五六日天]|今天|明天|后天)/g)||[]).length}
+function numberMarkers(t){return (t.match(/\d+(?:\.\d+)?|[一二两三四五六七八九十百千万]+块?/g)||[]).length}
+function discountCount(t){const a=t.match(/\d+(?:\.\d+)?折|[一二三四五六七八九十]+折|百分之\s*\d+/g)||[];return new Set(a).size}
+function evalCriterion(c,t){let ratio=0,detail='';const han=countHanzi(t);if(c.type==='hanzi_length'){if(han>=c.min&&han<=c.max)ratio=1;else if(han>0){const dist=han<c.min?c.min-han:han-c.max;ratio=Math.max(0,1-dist/Math.max(20,c.max-c.min+20))}detail=`${han} chữ Hán`}
+else if(c.type==='hanzi_min'){ratio=Math.min(1,han/c.min);detail=`${han}/${c.min} chữ Hán`}
+else if(c.type==='line_count'){const n=countLines(t);ratio=n>=c.min&&(!c.max||n<=c.max)?1:Math.min(1,n/c.min);if(c.max&&n>c.max)ratio=Math.max(.7,1-(n-c.max)*.08);detail=`${n} lượt/dòng`}
+else if(c.type==='sentence_count'){const n=countSentences(t);ratio=n>=c.min&&(!c.max||n<=c.max)?1:Math.min(1,n/c.min);if(c.max&&n>c.max)ratio=Math.max(.75,1-(n-c.max)*.05);detail=`${n} câu/ý`}
+else if(c.type==='punctuation'){const n=countSentences(t);ratio=Math.min(1,n/c.min);detail=`${n}/${c.min} câu/ý`}
+else if(c.type==='keywords'){const base=c.words||[];const hits=base.filter(w=>t.includes(w));let extra=0;if(c.anyWords&&c.anyWords.some(w=>t.includes(w)))extra=1;const need=c.min||base.length;const got=hits.length+extra;ratio=Math.min(1,got/need);const miss=base.filter(w=>!t.includes(w));detail=`đạt ${got}/${need}${miss.length?' · thiếu: '+miss.slice(0,5).join('、'):''}${c.anyWords&&!extra?' · cần một trong: '+c.anyWords.join('/') : ''}`}
+else if(c.type==='vocab_hits'){const words=L.vocab.map(x=>x[0]);const hits=words.filter(w=>t.includes(w));ratio=Math.min(1,hits.length/c.min);detail=`${hits.length}/${c.min} từ: ${hits.slice(0,8).join('、')||'chưa có'}`}
+else if(c.type==='combo'){const ok=(c.groups||[]).some(g=>g.every(w=>t.includes(w)));ratio=ok?1:0;detail=ok?'đã dùng':'chưa thấy cấu trúc yêu cầu'}
+else if(c.type==='forbidden'){const bad=(c.words||[]).filter(w=>t.includes(w));ratio=bad.length?0:1;detail=bad.length?'còn lỗi: '+bad.join('、'):'không còn lỗi mục tiêu'}
+else if(c.type==='time_markers'){const n=timeMarkers(t);ratio=Math.min(1,n/c.min);detail=`${n}/${c.min} mốc thời gian`}
+else if(c.type==='number_markers'){const n=numberMarkers(t);ratio=Math.min(1,n/c.min);detail=`${n}/${c.min} số/giá`}
+else if(c.type==='discount_count'){const n=discountCount(t);ratio=Math.min(1,n/c.min);detail=`${n}/${c.min} mức ưu đãi`}
+else if(c.type==='speaker_lines'){const n=t.split(/\n+/).filter(x=>/[：:]/.test(x)).length;ratio=Math.min(1,n/c.min);detail=`${n}/${c.min} dòng có người nói`}
+return {ratio:Math.max(0,Math.min(1,ratio)),detail}}
+function gradeText(text,rule){text=cleanText(text);if(!text)return {score:0,rows:[{label:'Chưa có bài làm',weight:100,ratio:0,detail:'Hãy nhập câu trả lời trước.'}]};let total=0;const rows=(rule.criteria||[]).map(c=>{const r=evalCriterion(c,text);const pts=r.ratio*c.weight;total+=pts;return {...c,...r,pts}});return {score:Math.round(total),rows}}
+function gradeBlockHTML(res){const verdict=res.score>=85?'Rất tốt':res.score>=70?'Đạt':res.score>=50?'Cần bổ sung':'Chưa đạt';return `<div class="grade-head"><div><b>Chấm tự động theo rubric</b><div style="font-size:12px;color:var(--muted)">${verdict}</div></div><div class="grade-big">${res.score}/100</div></div>`+res.rows.map(r=>`<div class="criterion ${r.ratio>=.99?'good':r.ratio>=.55?'partial':'bad'}"><span>${r.label}<br><small>${r.detail||''}</small></span><b>${Math.round(r.pts||0)}/${r.weight}</b></div>`).join('')+`<div class="grade-note">Điểm này do trình duyệt chấm theo tiêu chí có thể đo được (độ dài, từ khóa, cấu trúc, hình thức). Nó không đánh giá đầy đủ độ tự nhiên, lập luận hay lỗi ngữ pháp tinh tế như giáo viên/AI.</div>`}
+
+function normalizeAdv(s){return String(s||'').replace(/[\s，。！？、；：,.!?;:]/g,'')}
+function advChoiceHTML(q,key){const chosen=state.advChoice[key];return `<div class="adv-options">${q.o.map((o,oi)=>`<button class="adv-opt ${chosen===oi?'selected':''}" data-advkey="${key}" data-choice="${oi}">${String.fromCharCode(65+oi)}. ${o}</button>`).join('')}</div><div class="adv-feedback" data-feedback="${key}"></div>`}
+function bindAdvOptions(){document.querySelectorAll('.adv-opt').forEach(b=>b.onclick=()=>{const key=b.dataset.advkey,choice=Number(b.dataset.choice);state.advChoice[key]=choice;b.closest('.adv-options').querySelectorAll('.adv-opt').forEach(x=>x.classList.remove('selected','good','bad'));b.classList.add('selected');const fb=document.querySelector(`[data-feedback="${key}"]`);if(fb){fb.classList.remove('show');fb.textContent=''};b.closest('.adv-card')?.classList.remove('unanswered','correct','incorrect')})}
+function bindOrderCards(){document.querySelectorAll('.order-card').forEach(card=>{const bank=card.querySelector('.order-bank'),ans=card.querySelector('.order-answer');bank.querySelectorAll('.word-chip').forEach(ch=>ch.onclick=()=>{if(ch.classList.contains('used'))return;ch.classList.add('used');const x=document.createElement('button');x.className='word-chip';x.textContent=ch.textContent;x.dataset.source=ch.dataset.source;x.onclick=()=>{const original=bank.querySelector(`[data-source="${x.dataset.source}"]`);if(original)original.classList.remove('used');x.remove();ans.classList.remove('good','bad');card.classList.remove('unanswered','correct','incorrect')};ans.appendChild(x);ans.classList.remove('good','bad')})})}
+function renderAdvanced(c){const A=ADV_DATA;state.advChoice=state.advChoice||{};let n=1;let html=intro('Bài nâng cao · dạng HSK tương tác','','<button class="btn" id="resetAdv">Làm lại</button><button class="btn primary" id="gradeAdv">Chấm toàn bộ</button>');html+=`<div class="adv-note"><b>Mỗi câu = 5 điểm.</b></div><div class="adv-board">`;
+html+=`<section class="adv-section"><div class="adv-section-head"><div><h3>① Chọn từ / cấu trúc phù hợp</h3><div class="desc">5 câu vận dụng từ vựng và ngữ pháp của bài.</div></div><div class="adv-num">25đ</div></div>`;A.mcq.forEach((q,i)=>{const key=`mcq-${i}`;html+=`<div class="adv-card" data-cardkey="${key}"><div class="adv-q">${n++}. ${q.q}</div>${advChoiceHTML(q,key)}</div>`});html+=`</section>`;
+html+=`<section class="adv-section"><div class="adv-section-head"><div><h3>② Sắp xếp từ thành câu</h3><div class="desc">Bấm từng cụm từ theo thứ tự để tạo câu hoàn chỉnh.</div></div><div class="adv-num">25đ</div></div>`;A.reorder.forEach((q,i)=>{html+=`<div class="adv-card order-card" id="adv-reorder-${i}" data-cardkey="reorder-${i}"><div class="adv-q">${n++}. Sắp xếp thành câu đúng:</div><div class="order-bank">${shuffle(q.parts.map((p,j)=>({p,j}))).map(x=>`<button class="word-chip" data-source="${x.j}">${x.p}</button>`).join('')}</div><div class="order-answer" aria-label="Câu trả lời"></div><div class="adv-feedback" data-feedback="reorder-${i}"></div></div>`});html+=`</section>`;
+html+=`<section class="adv-section"><div class="adv-section-head"><div><h3>③ Sắp xếp trình tự</h3><div class="desc">Chọn thứ tự A–B–C hợp lý nhất theo ngữ cảnh.</div></div><div class="adv-num">15đ</div></div>`;A.sequence.forEach((q,i)=>{const key=`sequence-${i}`;html+=`<div class="adv-card" data-cardkey="${key}"><div class="adv-q">${n++}. ${q.q}</div><div class="sequence-items">${q.items.map(x=>`<div>${x}</div>`).join('')}</div>${advChoiceHTML(q,key)}</div>`});html+=`</section>`;
+html+=`<section class="adv-section"><div class="adv-section-head"><div><h3>④ Chọn câu đúng / sửa lỗi</h3><div class="desc">4 câu tập trung vào lỗi cấu trúc dễ nhầm.</div></div><div class="adv-num">20đ</div></div>`;A.error.forEach((q,i)=>{const key=`error-${i}`;html+=`<div class="adv-card" data-cardkey="${key}"><div class="adv-q">${n++}. ${q.q}</div>${advChoiceHTML(q,key)}</div>`});html+=`</section>`;
+html+=`<section class="adv-section"><div class="adv-section-head"><div><h3>⑤ Đọc hiểu mini</h3><div class="desc">Đọc đoạn ngắn mới, sau đó trả lời 3 câu.</div></div><div class="adv-num">15đ</div></div>`;A.reading.forEach((r,ri)=>{html+=`<div class="reading-text">${r.text}</div>`;r.qs.forEach((q,qi)=>{const key=`reading-${ri}-${qi}`;html+=`<div class="adv-card" data-cardkey="${key}"><div class="adv-q">${n++}. ${q.q}</div>${advChoiceHTML(q,key)}</div>`})});html+=`</section></div><div class="adv-scorebar"><div><div class="scoretxt" id="advScore">Chưa chấm · 20 câu / 100 điểm</div><div style="font-size:12px;color:var(--muted)">Đáp án và giải thích hiện sau khi chấm.</div></div><div class="actions"><button class="btn" id="resetAdv2">Làm lại</button><button class="btn primary" id="gradeAdv2">Chấm toàn bộ</button></div></div>`;c.innerHTML=html;bindAdvOptions();bindOrderCards();$('#resetAdv').onclick=$('#resetAdv2').onclick=()=>{state.advChoice={};renderAdvanced(c);toast('Đã làm mới bài nâng cao')};$('#gradeAdv').onclick=$('#gradeAdv2').onclick=()=>gradeAdvanced(c)}
+function gradeChoiceQuestion(q,key){const chosen=state.advChoice[key];const card=document.querySelector(`[data-cardkey="${key}"]`);const opts=card?card.querySelectorAll('.adv-opt'):[];opts.forEach(x=>x.classList.remove('good','bad'));if(opts[q.a])opts[q.a].classList.add('good');if(chosen!==undefined&&chosen!==q.a&&opts[chosen])opts[chosen].classList.add('bad');const ok=chosen===q.a;card?.classList.remove('unanswered','correct','incorrect');card?.classList.add(chosen===undefined?'unanswered':ok?'correct':'incorrect');const fb=card?.querySelector('.adv-feedback');if(fb){fb.classList.add('show');fb.innerHTML=chosen===undefined?`⚠ Chưa chọn đáp án. Đáp án đúng: <b>${String.fromCharCode(65+q.a)}</b>. ${q.e}`:`${ok?'✓ Đúng':'✗ Chưa đúng'} · Đáp án: <b>${String.fromCharCode(65+q.a)}</b>. ${q.e}`};return ok?1:0}
+function gradeAdvanced(c){const A=ADV_DATA;let correct=0,total=0;A.mcq.forEach((q,i)=>{total++;correct+=gradeChoiceQuestion(q,`mcq-${i}`)});A.reorder.forEach((q,i)=>{total++;const card=document.querySelector(`#adv-reorder-${i}`),ans=card.querySelector('.order-answer'),txt=[...ans.querySelectorAll('.word-chip')].map(x=>x.textContent).join('');const ok=normalizeAdv(txt)===normalizeAdv(q.answer);ans.classList.remove('good','bad');ans.classList.add(ok?'good':'bad');card.classList.remove('unanswered','correct','incorrect');card.classList.add(!txt?'unanswered':ok?'correct':'incorrect');const fb=card.querySelector('.adv-feedback');fb.classList.add('show');fb.innerHTML=!txt?`⚠ Chưa sắp xếp. Đáp án: <b>${q.answer}。</b> ${q.e}`:`${ok?'✓ Đúng':'✗ Chưa đúng'} · Đáp án: <b>${q.answer}。</b> ${q.e}`;if(ok)correct++});A.sequence.forEach((q,i)=>{total++;correct+=gradeChoiceQuestion(q,`sequence-${i}`)});A.error.forEach((q,i)=>{total++;correct+=gradeChoiceQuestion(q,`error-${i}`)});A.reading.forEach((r,ri)=>r.qs.forEach((q,qi)=>{total++;correct+=gradeChoiceQuestion(q,`reading-${ri}-${qi}`)}));const score=Math.round(correct/total*100),verdict=score>=90?'Xuất sắc':score>=80?'Rất tốt':score>=70?'Đạt':score>=50?'Cần ôn thêm':'Nên làm lại';$('#advScore').textContent=`${score}/100 · ${correct}/${total} câu đúng · ${verdict}`;bump(true);toast(`Bài nâng cao: ${score}/100`)}
+
+function renderOpenTasks(c,type){
+  const arr=L[type];
+  const rules=RULES[type];
+  const isAdv=type==='advanced';
+
+  if(!isAdv){
+    c.innerHTML=intro(
+      'Bài vận dụng · AI chấm bài',
+      '',
+      '<button class="btn" onclick="window.print()">In phần này</button>'
+    )+`<div class="task-list" id="tasks"></div>`;
+
+    const w=$('#tasks');
+    arr.forEach((item,i)=>{
+      const q=typeof item==='string'?item:item.q;
+      const t=el('div','task');
+      t.setAttribute('data-ai-writing','');
+      t.innerHTML=`<h3>${i+1}. ${q}</h3>
+        <textarea class="writing-answer" placeholder="Nhập bài viết bằng tiếng Trung..."></textarea>
+        <div class="actions" style="margin-top:9px">
+          <button class="btn save">Lưu</button>
+          <button class="btn primary ai-grade-btn">Gửi AI chấm bài</button>
+        </div>
+        <div class="ai-result"></div>`;
+      const ta=t.querySelector('textarea');
+      ta.value=localStorage.getItem(taskKey(type,i))||'';
+      t.querySelector('.save').onclick=()=>{
+        localStorage.setItem(taskKey(type,i),ta.value);
+        toast('Đã lưu bài trên trình duyệt');
+      };
+      w.appendChild(t);
+    });
+    return;
+  }
+
+  c.innerHTML=intro(
+    'Bài nâng cao',
+    'Sửa lỗi, viết lại và case nâng cao. Phần này vẫn giữ chấm tự động theo rubric nội bộ của bài học.',
+    '<button class="btn" onclick="window.print()">In phần này</button><button class="btn primary" id="gradeAll">Chấm toàn bộ</button>'
+  )+`<div class="overall"></div><div class="task-list" id="tasks"></div><div id="overallScore" style="margin-top:14px"></div>`;
+
+  const w=$('#tasks');
+  arr.forEach((item,i)=>{
+    const q=typeof item==='string'?item:item.q;
+    const t=el('div','task');
+    t.innerHTML=`<h3>${i+1}. ${q}</h3><textarea placeholder="Nhập câu trả lời bằng tiếng Trung..."></textarea><div class="actions" style="margin-top:9px"><button class="btn save">Lưu</button><button class="btn primary grade">Chấm bài</button><button class="btn soft hintbtn">Gợi ý / đáp án mẫu</button></div><div class="grader"></div><div class="hintbox"><b>Gợi ý:</b> ${item.hint}<br><b>Mẫu:</b> ${item.sample}</div>`;
+    const ta=t.querySelector('textarea');
+    ta.value=localStorage.getItem(taskKey(type,i))||'';
+    t.querySelector('.save').onclick=()=>{
+      localStorage.setItem(taskKey(type,i),ta.value);
+      toast('Đã lưu bài trên trình duyệt');
+    };
+    t.querySelector('.grade').onclick=()=>{
+      localStorage.setItem(taskKey(type,i),ta.value);
+      const res=gradeText(ta.value,rules[i]);
+      const box=t.querySelector('.grader');
+      box.innerHTML=gradeBlockHTML(res);
+      box.classList.add('show');
+      bump(true);
+    };
+    t.querySelector('.hintbtn').onclick=()=>t.querySelector('.hintbox').classList.toggle('show');
+    w.appendChild(t);
+  });
+
+  $('#gradeAll').onclick=()=>{
+    let sum=0,n=0;
+    [...w.children].forEach((t,i)=>{
+      const ta=t.querySelector('textarea'),res=gradeText(ta.value,rules[i]);
+      localStorage.setItem(taskKey(type,i),ta.value);
+      const box=t.querySelector('.grader');
+      box.innerHTML=gradeBlockHTML(res);
+      box.classList.add('show');
+      sum+=res.score;n++;
+    });
+    $('#overallScore').innerHTML=`<div class="score">Điểm trung bình phần Nâng cao: ${Math.round(sum/n)}/100</div>`;
+    bump(true);
+  };
+}
+window.addEventListener('meow-ai-writing-graded',e=>{
+  if(e.detail?.course==='hsk4' && Number(e.detail?.lesson)===15){
+    toast(`AI đã chấm: ${e.detail.score}/100`);
+  }
+});
+init();
+</script>
+<script>
+(function(){
+  const boot=()=>{
+    if(window.MeowTracking){
+      MeowTracking.openLesson('hsk4', 15);
+      MeowTracking.startAutoScoreTracking('hsk4', 15);
+    }
+  };
+  if(window.meowUser && window.MeowTracking) boot();
+  else window.addEventListener('meow-auth-ready',boot,{once:true});
+})();
+</script>
+
+</body></html>

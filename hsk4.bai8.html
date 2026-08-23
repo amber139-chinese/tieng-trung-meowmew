@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HSK4 Bài 7</title><style>
+:root{--pink:#f7d6df;--pink2:#fcecf1;--rose:#bd5b76;--rose2:#963f5a;--cream:#fffaf5;--paper:rgba(255,255,255,.92);--ink:#3b3135;--muted:#7e6f75;--line:#efd6de;--gold:#d5a45a;--green:#2f7d62;--bad:#b54c55;--shadow:0 16px 40px rgba(128,75,90,.12)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI","Noto Sans","Microsoft YaHei",Arial,sans-serif;line-height:1.58;background:linear-gradient(180deg,rgba(255,248,250,.95),rgba(252,238,243,.95)),radial-gradient(circle at 15% 12%,#ffdce8 0 12%,transparent 36%),radial-gradient(circle at 90% 18%,#fbe6c9 0 10%,transparent 32%);min-height:100vh;position:relative}
+body:before{content:"喵  中文  HSK4  学习  加油  ✿  喵  中文  HSK4  学习  加油  ✿";position:fixed;inset:0;z-index:-2;pointer-events:none;font-family:"Noto Serif SC","Songti SC",serif;font-size:44px;line-height:3.4;letter-spacing:22px;color:rgba(184,86,114,.045);transform:rotate(-8deg) scale(1.15);transform-origin:center;white-space:pre-wrap;word-break:break-all;padding:40px}
+body:after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(circle at 10% 20%,rgba(255,255,255,.85) 0 2px,transparent 3px),radial-gradient(circle at 75% 35%,rgba(255,255,255,.7) 0 3px,transparent 4px);background-size:80px 80px,120px 120px}
+button,select,input,textarea{font:inherit}.app{max-width:1120px;margin:0 auto;padding:20px}.site-top{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}.brand{display:flex;align-items:center;gap:10px;font-weight:900;color:var(--rose2)}.catdot{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#f39ab2,#f7cf9e);display:grid;place-items:center;box-shadow:0 8px 22px rgba(181,83,111,.18)}.catdot:before{content:"喵";color:white;font-family:"Noto Serif SC",serif;font-weight:900}.lesson-nav{display:flex;gap:7px;flex-wrap:wrap}.lesson-nav a{text-decoration:none;color:#79555f;background:rgba(255,255,255,.8);border:1px solid var(--line);padding:7px 11px;border-radius:999px;font-size:13px;font-weight:800}.lesson-nav a.current{background:var(--rose);color:#fff;border-color:var(--rose)}
+.hero{background:linear-gradient(135deg,rgba(255,255,255,.96),rgba(255,243,247,.94));border:1px solid var(--line);border-radius:28px;padding:27px;box-shadow:var(--shadow);position:relative;overflow:hidden}.hero:after{content:"学";position:absolute;right:20px;bottom:-48px;font-family:"Noto Serif SC",serif;font-size:175px;color:rgba(181,83,111,.07)}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.14em;font-weight:900;color:var(--rose)}.hero h1{margin:6px 0 5px;font-family:"Noto Serif SC","Songti SC",serif;font-size:clamp(30px,4.2vw,50px);line-height:1.15}.hero .vi{color:var(--muted);font-size:17px}.hero .theme{margin-top:12px;color:#66555b;max-width:760px}.hero-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.pill{background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 11px;font-size:12px;color:#775d66;font-weight:700}.pill:empty{display:none}.progressbox{margin-top:16px;max-width:420px}.progressline{height:8px;background:#f1dfe5;border-radius:999px;overflow:hidden}.progressline i{display:block;height:100%;width:0;background:linear-gradient(90deg,#e988a5,#c35e7b);transition:.25s}.progressText{font-size:12px;color:var(--muted);margin-bottom:5px}
+.panel{margin-top:18px;background:var(--paper);border:1px solid var(--line);border-radius:25px;box-shadow:var(--shadow);overflow:hidden;backdrop-filter:blur(10px)}.tabs{display:flex;gap:5px;padding:10px 12px;border-bottom:1px solid var(--line);overflow:auto;background:rgba(255,247,249,.9)}.tab{border:0;background:transparent;padding:10px 14px;border-radius:12px;white-space:nowrap;color:#755f66;font-weight:800;cursor:pointer}.tab.active{background:#fff;color:var(--rose2);box-shadow:0 3px 12px rgba(140,82,98,.1)}.content{padding:25px}.section-intro{display:flex;gap:14px;justify-content:space-between;align-items:flex-start;margin-bottom:18px}.section-intro h2{font-size:24px;margin:0 0 5px}.section-intro p{margin:0;color:var(--muted);max-width:720px}.actions{display:flex;gap:8px;flex-wrap:wrap}.btn{border:1px solid var(--line);background:#fff;color:#624d54;border-radius:12px;padding:9px 13px;font-weight:800;cursor:pointer}.btn.primary{background:var(--rose);color:#fff;border-color:var(--rose)}.btn.soft{background:#fff3f6}.btn:hover{filter:brightness(.985)}
+.flash-wrap{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:18px}.flashcard{min-height:330px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,#fff,#fff4f7);display:grid;place-items:center;text-align:center;padding:30px;cursor:pointer;position:relative}.flashcard .cn{font-family:"Noto Serif SC","Songti SC",serif;font-size:64px;font-weight:900}.flashcard .py{font-size:21px;color:var(--rose2);margin:5px 0}.flashcard .vi{font-size:22px;color:#56474c}.flashcard .hint{position:absolute;bottom:13px;color:#a18b92;font-size:12px}.flashcard.mask .py,.flashcard.mask .vi{filter:blur(9px);opacity:.24}.vocab-list{max-height:330px;overflow:auto;border:1px solid var(--line);border-radius:18px;padding:7px;background:#fff}.vrow{display:grid;grid-template-columns:38px 1fr;gap:8px;padding:8px;border-radius:10px;cursor:pointer}.vrow:hover{background:#fff3f6}.vrow .n{color:#b6a4aa;font-size:12px;padding-top:4px}.vrow b{font-family:"Noto Serif SC","Songti SC",serif}.vrow small{display:block;color:var(--muted)}
+.quiz-grid,.task-list{display:grid;gap:12px}.qcard,.task,.gcard{border:1px solid var(--line);border-radius:17px;padding:16px;background:#fff}.qtitle,.task h3{font-weight:850;margin:0 0 11px}.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.opt{border:1px solid #ead7de;border-radius:12px;padding:10px 12px;background:#fff;text-align:left;cursor:pointer}.opt.selected{border-color:var(--rose);background:#fff3f6}.opt.good{border-color:#70a68f;background:#eff9f5}.opt.bad{border-color:#d57880;background:#fff0f1}.feedback{font-size:13px;color:var(--muted);margin-top:8px}.score{display:inline-block;background:#fff3f6;border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-weight:900}.grammar-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.gcard h3{font-family:"Noto Serif SC","Songti SC",serif;color:var(--rose2);margin:0 0 6px}.example{background:#fff8ed;border-left:4px solid var(--gold);padding:9px 11px;border-radius:8px;margin-top:8px;font-family:"Noto Serif SC","Songti SC",serif}
+.task textarea{width:100%;min-height:145px;border:1px solid #e8d5dc;border-radius:13px;padding:12px;background:#fffdfd;resize:vertical;outline:none}.task textarea:focus{border-color:#cf8096;box-shadow:0 0 0 3px rgba(207,128,150,.12)}.grader{margin-top:12px;border-radius:14px;padding:13px;background:#fff7f9;border:1px dashed #e7b8c5;display:none}.grader.show{display:block}.grade-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:8px}.grade-big{font-size:26px;font-weight:950;color:var(--rose2)}.criterion{display:flex;justify-content:space-between;gap:12px;border-top:1px solid #f0dce2;padding:7px 0;font-size:13px}.criterion:first-of-type{border-top:0}.criterion.good{color:var(--green)}.criterion.bad{color:var(--bad)}.criterion.partial{color:#9b721e}.grade-note{margin-top:9px;color:#806b72;font-size:12px}.hintbox{margin-top:9px;background:#fffaf0;border:1px solid #eddcb9;padding:10px;border-radius:10px;display:none}.hintbox.show{display:block}.overall{margin-bottom:14px;background:linear-gradient(135deg,#fff7f9,#fff);border:1px solid var(--line);border-radius:16px;padding:14px}.overall b{color:var(--rose2)}.footer{padding:20px 5px 8px;text-align:center;color:#8d7880;font-size:12px}.toast{position:fixed;right:18px;bottom:18px;background:#4b3b40;color:#fff;padding:10px 13px;border-radius:11px;opacity:0;transform:translateY(8px);transition:.2s;pointer-events:none}.toast.show{opacity:1;transform:none}
+@media(max-width:820px){.app{padding:12px}.content{padding:17px}.flash-wrap{grid-template-columns:1fr}.grammar-grid,.opts{grid-template-columns:1fr}.section-intro{display:block}.section-intro .actions{margin-top:10px}.hero{padding:22px}.site-top{align-items:flex-start}}
+@media print{.site-top,.tabs,.actions,.footer,.toast,.grader{display:none!important}.app{max-width:none;padding:0}.panel,.hero{box-shadow:none}.panel{border:0}.task{break-inside:avoid}}
+
+/* Advanced HSK-style exercise board */
+.adv-board{display:grid;gap:18px}.adv-section{border:1px solid var(--line);background:rgba(255,255,255,.94);border-radius:20px;padding:18px}.adv-section-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:12px}.adv-section h3{margin:0;font-size:20px}.adv-section .desc{color:var(--muted);font-size:13px;margin-top:3px}.adv-num{min-width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:#fff0f4;color:var(--rose2);font-weight:900;border:1px solid var(--line)}.adv-card{border:1px solid var(--line);border-radius:16px;padding:15px;margin-top:11px;background:#fff}.adv-q{font-weight:800;margin-bottom:10px}.adv-options{display:grid;gap:8px}.adv-opt{width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:11px;padding:10px 12px;cursor:pointer;color:var(--ink)}.adv-opt:hover{background:#fff7f9}.adv-opt.selected{border-color:var(--rose);background:#fff0f4}.adv-opt.good{border-color:var(--green);background:#eef8f3}.adv-opt.bad{border-color:var(--bad);background:#fff0f1}.adv-feedback{display:none;margin-top:9px;padding:9px 11px;border-radius:10px;background:#faf6f7;color:#6d5c62;font-size:13px}.adv-feedback.show{display:block}.order-bank,.order-answer{display:flex;gap:8px;flex-wrap:wrap;padding:11px;border-radius:12px}.order-bank{background:#fff7f9;border:1px solid var(--line)}.order-answer{min-height:52px;margin-top:8px;border:2px dashed #ead0d9;background:#fff}.word-chip{border:1px solid #e8cbd5;background:#fff;border-radius:999px;padding:7px 10px;cursor:pointer;font-weight:800}.word-chip.used{opacity:.28;pointer-events:none}.order-answer .word-chip{background:#fff0f4}.order-answer.good{border-color:var(--green);background:#eef8f3}.order-answer.bad{border-color:var(--bad);background:#fff2f3}.sequence-items{background:#fff8fa;border-left:3px solid #e6a2b5;padding:9px 12px;border-radius:8px;margin:8px 0 11px}.sequence-items div{margin:3px 0}.reading-text{padding:14px 16px;background:#fff8f5;border:1px solid #f0dfd6;border-radius:13px;font-size:16px;line-height:1.8;margin-bottom:12px}.adv-scorebar{position:sticky;bottom:12px;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 14px;margin-top:16px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.96);box-shadow:0 10px 28px rgba(128,75,90,.13);backdrop-filter:blur(8px)}.adv-scorebar .scoretxt{font-weight:900;color:var(--rose2)}.adv-note{background:#fff8ee;border:1px solid #efdcc0;padding:10px 12px;border-radius:12px;color:#725f48;font-size:13px}.adv-card.unanswered{border-color:#e1b55f}.adv-card.correct{border-color:#8bbda9}.adv-card.incorrect{border-color:#d9969b}
+
+
+/* Bản ngữ pháp chi tiết theo PDF */
+.grammar-grid{grid-template-columns:1fr!important}
+.gcard{padding:18px!important}
+.gcard h3{font-size:1.18rem;margin-bottom:10px!important}
+.g-lead{line-height:1.85;color:#5f4c53}
+.g-rule,.g-note{margin-top:10px;padding:11px 13px;border-radius:11px;line-height:1.8}
+.g-rule{background:#fff7fa;border:1px solid #efd7df}
+.g-note{background:#fffaf0;border:1px solid #eddcb9}
+.g-rule b,.g-note b{display:block;margin-bottom:3px;color:#98566a}
+.g-examples{display:grid;gap:7px}
+.g-line{display:grid;grid-template-columns:minmax(260px,.9fr) 1.1fr;gap:12px;border-top:1px solid rgba(180,140,100,.16);padding-top:7px}
+.g-line:first-child{border-top:0;padding-top:0}
+.g-line b{font-family:"Noto Serif SC","Songti SC",serif;color:#4e3940}
+.g-line span{font-family:"Be Vietnam Pro",system-ui,sans-serif;color:#7f6b72;font-size:.88rem}
+@media(max-width:700px){.g-line{grid-template-columns:1fr;gap:2px}}
+
+</style><script defer src="meow-auth.js"></script>
+<script defer src="meow-tracking.js"></script>
+<script defer src="meow-ai-writing.js"></script>
+</head>
+<body><div class="app"><div class="site-top"><div class="brand"><span class="catdot"></span><span>Tiếng Trung Meow Meow · HSK4</span></div><nav class="lesson-nav" id="lessonNav"></nav></div>
+<header class="hero"><div class="eyebrow">HSK 4 · Ôn tập tương tác</div><h1><span id="lessonNo"></span> · <span id="lessonTitle"></span></h1><div class="vi" id="lessonVi"></div><div class="theme" id="theme"></div><div class="hero-meta"><span class="pill" id="vocabCount"></span></div><div class="progressbox"><div class="progressText" id="progressText"></div><div class="progressline"><i id="progressBar"></i></div></div></header>
+<main class="panel"><nav class="tabs" id="tabs"></nav><section class="content" id="content"></section></main>
+<div class="footer">Học cùng meow meow, vui quá là vui</div></div><div class="toast" id="toast"></div>
+<script>const DATA={"title":"生活中不缺少美","vi":"Cuộc sống không thiếu cái đẹp","theme":"Cái đẹp trong cuộc sống · tâm trạng · thái độ tích cực · màu sắc","vocab":[["巧克力","qiǎokèlì","sô-cô-la"],["亲戚","qīnqi","họ hàng, thân thích"],["伤心","shāngxīn","đau lòng, buồn"],["使","shǐ","khiến, làm cho"],["心情","xīnqíng","tâm trạng"],["愉快","yúkuài","vui vẻ, thoải mái"],["景色","jǐngsè","phong cảnh, cảnh vật"],["放松","fàngsōng","thư giãn, thả lỏng"],["压力","yālì","áp lực"],["回忆","huíyì","hồi tưởng, ký ức"],["发生","fāshēng","xảy ra"],["成为","chéngwéi","trở thành"],["只要","zhǐyào","chỉ cần, miễn là"],["师傅","shīfu","sư phụ; cách gọi kính trọng người có tay nghề"],["大使馆","dàshǐguǎn","đại sứ quán"],["堵车","dǔchē","kẹt xe, tắc đường"],["距离","jùlí","khoảng cách"],["耐心","nàixīn","lòng kiên nhẫn"],["生命","shēngmìng","sự sống, sinh mệnh"],["缺少","quēshǎo","thiếu, thiếu hụt"],["到处","dàochù","khắp nơi, đâu đâu"],["态度","tàidu","thái độ"],["因此","yīncǐ","vì vậy, do đó"],["科学","kēxué","khoa học"],["证明","zhèngmíng","chứng minh"],["往往","wǎngwǎng","thường thường, thường hay"],["阳光","yángguāng","ánh nắng; lạc quan, tươi sáng"],["积极","jījí","tích cực"],["特点","tèdiǎn","đặc điểm"]],"grammar":[["使","<div class=\"g-lead\">使 là động từ mang nghĩa “khiến/làm cho”, thường dùng để biểu thị một sự vật hay tình huống làm nảy sinh kết quả hoặc thay đổi ở người/vật khác.</div><div class=\"g-rule\"><b>Cách dùng / cấu trúc</b><div>• <b>A + 使 + B + vị ngữ/kết quả</b>.</div><div>• Sau 使 thường là người/vật chịu tác động rồi đến trạng thái, hành động hoặc kết quả.</div><div>• Sắc thái hơi trang trọng hơn 让 trong nhiều ngữ cảnh.</div></div>","<div class=\"g-examples\"><div class=\"g-line\"><b>怎么样才能使她喜欢我呢？</b><span>Làm thế nào mới có thể khiến cô ấy thích tôi?</span></div><div class=\"g-line\"><b>在中国生活的三年使他在音乐方面有了很多新的想法。</b><span>Ba năm sống ở Trung Quốc khiến anh ấy có nhiều ý tưởng mới về âm nhạc.</span></div><div class=\"g-line\"><b>吃块儿巧克力还能使人的心情变得愉快。</b><span>Ăn một miếng sô-cô-la còn có thể khiến tâm trạng trở nên vui vẻ.</span></div></div>"],["只要……就……","<div class=\"g-lead\">只要……就…… nêu một điều kiện tương đối đủ: chỉ cần điều kiện ở vế trước được đáp ứng thì kết quả ở vế sau có thể xảy ra.</div><div class=\"g-rule\"><b>Cách dùng / cấu trúc</b><div>• <b>只要 + điều kiện，就 + kết quả</b>.</div><div>• Vế 只要 nhấn mạnh điều kiện cốt lõi; vế 就 nêu kết quả tương ứng.</div><div>• Có thể dùng với 能、会、可以… ở vế sau.</div></div>","<div class=\"g-examples\"><div class=\"g-line\"><b>只要这次你好好儿准备，一定能把比赛踢好。</b><span>Chỉ cần lần này bạn chuẩn bị kỹ, nhất định có thể thi đấu tốt.</span></div><div class=\"g-line\"><b>只要你用心，就会发现生活中到处都有美。</b><span>Chỉ cần để tâm, bạn sẽ phát hiện cái đẹp có ở khắp nơi trong cuộc sống.</span></div><div class=\"g-line\"><b>只要能做自己喜欢的事，就是幸福。</b><span>Chỉ cần được làm việc mình thích thì đó là hạnh phúc.</span></div></div>"],["可不是 / 可不","<div class=\"g-lead\">可不是 thường dùng như một câu đáp độc lập để tỏ ý đồng tình mạnh với điều người trước vừa nói, gần với “đúng thế còn gì / chứ còn gì nữa”.</div><div class=\"g-rule\"><b>Cách dùng / cấu trúc</b><div>• Thường đứng độc lập sau lời nhận xét của người khác: <b>—…… —可不是！</b></div><div>• Có thể dùng dạng rút gọn khẩu ngữ <b>可不</b>.</div><div>• Không dùng như một phủ định thông thường của 是.</div></div>","<div class=\"g-examples\"><div class=\"g-line\"><b>没想到咱们毕业已经十年了。—可不是！时间过得太快了。</b><span>Không ngờ chúng ta tốt nghiệp đã mười năm. — Đúng thế! Thời gian trôi nhanh thật.</span></div><div class=\"g-line\"><b>遇到堵车，心情也“堵”。—可不是！</b><span>Gặp tắc đường thì tâm trạng cũng “tắc”. — Chuẩn luôn!</span></div></div>"],["因此","<div class=\"g-lead\">因此 là liên từ biểu thị quan hệ nguyên nhân - kết quả, nghĩa là “vì vậy / do đó”. Sắc thái thường trang trọng hơn 所以.</div><div class=\"g-rule\"><b>Cách dùng / cấu trúc</b><div>• <b>Nguyên nhân / tình huống， 因此 + kết quả</b>.</div><div>• Không ghép thành mẫu <b>因为……因此……</b> trong cách dùng chuẩn thông thường.</div><div>• Thường dùng để nối hai mệnh đề hoặc hai câu có quan hệ logic rõ.</div></div>","<div class=\"g-examples\"><div class=\"g-line\"><b>我认识他很多年，因此很了解他的性格。</b><span>Tôi quen anh ấy nhiều năm, vì vậy rất hiểu tính cách của anh ấy.</span></div><div class=\"g-line\"><b>每个学生的性格、能力不同，因此老师要用不同的方法。</b><span>Tính cách và năng lực mỗi học sinh khác nhau, vì vậy giáo viên cần dùng phương pháp khác nhau.</span></div><div class=\"g-line\"><b>生活的态度要自己选择，因此遇到烦恼时应该想办法走出来。</b><span>Thái độ sống do mình lựa chọn, vì vậy khi phiền muộn nên tìm cách bước ra khỏi tâm trạng đó.</span></div></div>"],["往往","<div class=\"g-lead\">往往 là phó từ chỉ một tình huống thường lặp lại theo quy luật hoặc kinh nghiệm đã quan sát được, gần nghĩa “thường thường”.</div><div class=\"g-rule\"><b>Cách dùng / cấu trúc</b><div>• <b>Chủ ngữ + 往往 + vị ngữ</b>.</div><div>• Hay dùng khi nói một quy luật, xu hướng hoặc kết quả thường xuất hiện trong những điều kiện nhất định.</div><div>• Không thiên về ý định/chủ quan của người nói.</div></div>","<div class=\"g-examples\"><div class=\"g-line\"><b>女孩子对衣服颜色的选择往往与她们的性格有关。</b><span>Việc con gái chọn màu quần áo thường có liên quan đến tính cách.</span></div><div class=\"g-line\"><b>有经验的出租车司机往往对道路情况很熟悉。</b><span>Tài xế taxi có kinh nghiệm thường rất quen tình hình đường sá.</span></div><div class=\"g-line\"><b>父母往往只叫孩子的小名。</b><span>Cha mẹ thường chỉ gọi tên ở nhà của con.</span></div></div>"],["往往 / 经常","<div class=\"g-lead\">Cả 往往 và 经常 đều có thể dịch là “thường”, nhưng trọng tâm khác nhau.</div><div class=\"g-rule\"><b>Cách dùng / cấu trúc</b><div>• <b>往往</b>: nhấn mạnh quy luật/xu hướng thường quan sát được trong các tình huống tương tự.</div><div>• <b>经常</b>: chỉ tần suất hành động xảy ra nhiều lần, có thể dùng cho thói quen hoặc dự định tương lai.</div><div>• 经常 có thể gần với 常; 往往 không rút gọn thành 往.</div></div>","<div class=\"g-examples\"><div class=\"g-line\"><b>下雨天这里往往会堵车。</b><span>Ngày mưa ở đây thường hay tắc đường (mang tính quy luật).</span></div><div class=\"g-line\"><b>我经常坐地铁上班。</b><span>Tôi thường xuyên đi tàu điện ngầm đi làm (thói quen).</span></div><div class=\"g-line\"><b>以后我会经常来看你。</b><span>Sau này tôi sẽ thường xuyên đến thăm bạn.</span></div></div>"]],"fills":[{"s":"吃块儿巧克力能使我的____变得愉快。","a":"心情","o":["心情","景色","距离","生命"]},{"s":"春天这里的____特别美。","a":"景色","o":["景色","压力","态度","回忆"]},{"s":"工作太多给他带来了很大的____。","a":"压力","o":["压力","距离","特点","阳光"]},{"s":"这些老照片让我想起很多美好的____。","a":"回忆","o":["回忆","科学","态度","亲戚"]},{"s":"____你认真观察，就会发现生活中到处都有美。","a":"只要","o":["只要","因此","往往","使"]},{"s":"今天路上一直____，所以我们迟到了。","a":"堵车","o":["堵车","证明","放松","成为"]},{"s":"这个师傅对客人很有____。","a":"耐心","o":["耐心","压力","景色","特点"]},{"s":"每个人对生活的____都不一样。","a":"态度","o":["态度","距离","心情","大使馆"]},{"s":"科学研究____积极的心情对健康有帮助。","a":"证明","o":["证明","缺少","发生","成为"]},{"s":"她很____，遇到困难也会想办法解决。","a":"积极","o":["积极","伤心","愉快","科学"]}],"grammarQuiz":[{"q":"Điền: 这件事____我想起了小时候。","o":["使","往往","因此","只要"],"a":0,"e":"使 + người/vật + kết quả = khiến/làm cho."},{"q":"Điền: ____你用心观察，____会发现身边有很多美。","o":["只要 / 就","因此 / 就","往往 / 就","使 / 就"],"a":0,"e":"只要……就…… nêu điều kiện đủ."},{"q":"A nói “今天又堵车了。” B muốn đồng tình mạnh, đáp tự nhiên nhất là…","o":["可不是！","只要！","因此！","往往！"],"a":0,"e":"可不是 dùng để tỏ ý đồng tình mạnh với lời vừa nói."},{"q":"Câu nào dùng 因此 đúng?","o":["他很有耐心，因此大家都喜欢和他聊天。","因为他很有耐心，因此大家都喜欢他。","他因此因为有耐心。","因此他因为很有耐心。"],"a":0,"e":"因此 nối nguyên nhân với kết quả; không dùng theo cặp 因为……因此……."},{"q":"Câu nào hợp với 往往 nhất?","o":["下雨天这里往往会堵车。","明天我往往去看你。","我想往往去旅行一次。","请你往往等一下。"],"a":0,"e":"往往 diễn tả quy luật/xu hướng thường lặp lại."},{"q":"Khác biệt đúng giữa 往往 và 经常 là…","o":["往往 thiên về quy luật; 经常 thiên về tần suất/thói quen.","Hai từ hoàn toàn giống nhau trong mọi ngữ cảnh.","经常 không dùng cho hành động lặp lại.","往往 thường dùng cho dự định tương lai chủ quan."],"a":0,"e":"Đây là điểm so sánh chính trong phần chú thích của bài."}],"apply":["Viết đoạn 90–110 chữ về màu sắc và tâm trạng của bạn. Dùng 颜色、心情、阳光、积极、特点 và ít nhất một trong 往往 / 因此.","Viết hội thoại 8–10 lượt: một người đang buồn hoặc áp lực, người kia khuyên cách thư giãn. Dùng 放松、压力、愉快、只要……就…… và 使.","Viết đoạn 100–130 chữ với chủ đề “生活中不缺少美”. Nêu ví dụ cụ thể về cái đẹp quanh bạn và thái độ sống; dùng 生命、缺少、到处、态度、因此 và 可不是 hoặc 往往."],"advanced":[{"q":"Sửa câu và giải thích ngắn: 因为每个人的性格不同，因此老师要用不同的方法。","hint":"Trong bài, 因此 là liên từ kết quả; tránh dùng nó như cặp cố định với 因为.","sample":"每个人的性格不同，因此老师要用不同的方法。 / 因为每个人的性格不同，所以老师要用不同的方法。"},{"q":"Viết 3 câu để phân biệt 往往 và 经常: ít nhất 1 câu dùng 往往 và 2 câu dùng 经常.","hint":"往往 = xu hướng/quy luật; 经常 = tần suất/thói quen, có thể nói về tương lai.","sample":"下雨天这里往往堵车。我经常坐地铁上班。以后我会经常来看你。"},{"q":"Case: bạn của bạn gặp tắc đường, áp lực công việc và tâm trạng xấu. Viết 110–140 chữ khuyên bạn ấy thay đổi thái độ, bắt buộc dùng 使、只要…就…、因此、往往、放松 và 积极.","hint":"Nêu tình huống → ảnh hưởng đến tâm trạng → cách thư giãn → thái độ tích cực.","sample":"开放题：kiểm tra việc dùng đúng cấu trúc và lời khuyên có logic."}],"summary":"Bài 8 xoay quanh tâm trạng, cách nhìn cái đẹp trong cuộc sống, thái độ tích cực, màu sắc và cách ứng xử khi gặp áp lực/tắc đường."};const ADV_DATA={"mcq":[{"q":"这张老照片____我想起小时候。","o":["使","往往","因此","只要"],"a":0,"e":"使 = khiến/làm cho."},{"q":"____你认真观察，____能发现生活中的美。","o":["只要 / 就","往往 / 因此","因此 / 可是","可不是 / 就"],"a":0,"e":"只要……就……。"},{"q":"“今天又堵车了！” “____！”","o":["可不是","只要","因此","往往"],"a":0,"e":"可不是 biểu thị đồng tình mạnh."},{"q":"每个人的特点不同，____解决问题的方法也不同。","o":["因此","只要","使","可不是"],"a":0,"e":"因此 nối nguyên nhân - kết quả."},{"q":"下雨天这里____堵车。","o":["往往","明天","只要","使"],"a":0,"e":"往往 diễn tả quy luật thường xảy ra."}],"reorder":[{"parts":["这首歌","使","我的心情","变得愉快"],"answer":"这首歌使我的心情变得愉快","e":"A + 使 + B + kết quả."},{"parts":["只要你用心","就会发现","生活中","到处都有美"],"answer":"只要你用心就会发现生活中到处都有美","e":"只要……就……。"},{"parts":["我认识他很多年","因此","很了解","他的性格"],"answer":"我认识他很多年因此很了解他的性格","e":"因此 nối nguyên nhân với kết quả."},{"parts":["下雨天","这里","往往","会堵车"],"answer":"下雨天这里往往会堵车","e":"往往 đứng trước vị ngữ."},{"parts":["遇到烦恼时","应该","想办法","让自己放松"],"answer":"遇到烦恼时应该想办法让自己放松","e":"Cấu trúc lời khuyên tự nhiên."}],"sequence":[{"q":"Sắp xếp logic xử lý tâm trạng xấu:","items":["A. 发现自己压力很大","B. 找到适合自己的放松方法","C. 心情慢慢变得愉快"],"o":["A → B → C","B → A → C","C → A → B","A → C → B"],"a":0,"e":"Nhận ra vấn đề → tìm cách thư giãn → tâm trạng cải thiện."},{"q":"Sắp xếp logic của “生活中不缺少美”:","items":["A. 用心观察生活","B. 发现身边很多小事很美","C. 形成更积极的生活态度"],"o":["A → B → C","C → A → B","B → C → A","B → A → C"],"a":0,"e":"Quan sát → phát hiện → thay đổi thái độ."},{"q":"Sắp xếp tình huống tắc đường:","items":["A. 路上堵车","B. 司机很有耐心","C. 最后安全到达目的地"],"o":["A → B → C","B → A → C","C → B → A","A → C → B"],"a":0,"e":"Tắc đường là tình huống, kiên nhẫn là cách xử lý, sau đó tới nơi."}],"error":[{"q":"Chọn câu đúng với 使:","o":["这件事使我很伤心。","这件事使很我伤心。","我使这件事伤心。","这件事使伤心我。"],"a":0,"e":"使 + đối tượng + trạng thái/kết quả."},{"q":"Chọn câu đúng với 只要……就……:","o":["只要你努力，就会有进步。","只要你努力，因此有进步。","因此你努力，就有进步。","只要就你努力有进步。"],"a":0,"e":"Mẫu điều kiện 只要……就……."},{"q":"Chọn câu đúng với 因此:","o":["天气不好，因此比赛取消了。","因为天气不好，因此比赛取消了。","天气因此因为不好。","因此天气因为不好。"],"a":0,"e":"因此 dùng nối nguyên nhân - kết quả."},{"q":"Chọn câu tự nhiên với 往往:","o":["有经验的司机往往很有耐心。","我明天往往去学校。","请你往往坐下。","我想往往买一本书。"],"a":0,"e":"往往 = thường có tính quy luật."}],"reading":[{"text":"小林最近工作压力很大，每天回家都觉得很累，心情也不好。周末，朋友带他去公园散步。公园的景色很好，阳光也很舒服。朋友告诉他，只要愿意放松一下，就会发现生活中到处都有值得高兴的小事。后来小林开始经常运动，也更积极地面对工作。他发现，积极的态度往往能使自己更有耐心。","qs":[{"q":"小林最近为什么心情不好？","o":["工作压力很大","没有亲戚","不喜欢阳光","大使馆太远"],"a":0,"e":"Đoạn đầu nói áp lực công việc rất lớn."},{"q":"朋友带他去做什么？","o":["去公园散步","去买巧克力","去大使馆","去开车"],"a":0,"e":"Bạn dẫn anh ấy đi dạo trong công viên."},{"q":"后来小林有什么变化？","o":["更积极地面对工作","每天都很伤心","不再运动","越来越没有耐心"],"a":0,"e":"Anh ấy vận động và đối diện công việc tích cực hơn."}]}]};const RULES={"apply":[{"criteria":[{"type":"hanzi_length","label":"Độ dài 90–110 chữ Hán","weight":20,"min":90,"max":110},{"type":"keywords","label":"Có từ chủ đề màu sắc/tâm trạng","weight":35,"words":["颜色","心情","阳光","积极","特点"],"min":4},{"type":"keywords","label":"Có 往往 hoặc 因此","weight":20,"words":["往往","因此"],"min":1},{"type":"punctuation","label":"Có ít nhất 4 câu/ý","weight":15,"min":4},{"type":"hanzi_min","label":"Nội dung đủ tiếng Trung","weight":10,"min":70}]},{"criteria":[{"type":"line_count","label":"Hội thoại ≥8 lượt","weight":20,"min":8},{"type":"keywords","label":"Có từ khóa bắt buộc","weight":35,"words":["放松","压力","愉快","只要","使"],"min":4},{"type":"keywords","label":"Có 只要…就…","weight":20,"words":["只要","就"],"min":2},{"type":"keywords","label":"Có lời khuyên cụ thể","weight":15,"words":["应该","可以","最好","不要"],"min":2},{"type":"hanzi_min","label":"Nội dung tiếng Trung đủ","weight":10,"min":50}]},{"criteria":[{"type":"hanzi_length","label":"Độ dài 100–130 chữ Hán","weight":20,"min":100,"max":130},{"type":"keywords","label":"Có từ chủ đề","weight":35,"words":["生命","缺少","到处","态度","因此"],"min":4},{"type":"keywords","label":"Có 可不是 hoặc 往往","weight":15,"words":["可不是","往往"],"min":1},{"type":"punctuation","label":"Có ít nhất 5 câu/ý","weight":15,"min":5},{"type":"hanzi_min","label":"Nội dung đủ tiếng Trung","weight":15,"min":80}]}],"advanced":[{"criteria":[{"type":"sentence_count","label":"Có câu sửa hoàn chỉnh","weight":25,"min":1},{"type":"forbidden","label":"Không dùng 因为…因此…","weight":30,"words":["因为因此"]},{"type":"keywords","label":"Có 因此 hoặc 因为…所以…","weight":30,"words":["因此","因为","所以"],"min":1},{"type":"hanzi_min","label":"Có giải thích/ngữ liệu đủ","weight":15,"min":20}]},{"criteria":[{"type":"sentence_count","label":"Có ít nhất 3 câu","weight":25,"min":3},{"type":"keywords","label":"Có 往往","weight":30,"words":["往往"],"min":1},{"type":"keywords","label":"Có 经常","weight":30,"words":["经常"],"min":2},{"type":"punctuation","label":"Dấu câu rõ","weight":15,"min":3}]},{"criteria":[{"type":"hanzi_length","label":"Độ dài 110–140 chữ Hán","weight":20,"min":110,"max":140},{"type":"keywords","label":"Dùng đủ từ/cấu trúc","weight":45,"words":["使","只要","就","因此","往往","放松","积极"],"min":6},{"type":"keywords","label":"Có tình huống áp lực/tắc đường","weight":15,"words":["压力","堵车","心情"],"min":2},{"type":"punctuation","label":"Có ít nhất 5 câu/ý","weight":20,"min":5}]}]};
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const el=(tag,cls,txt)=>{const x=document.createElement(tag);if(cls)x.className=cls;if(txt!==undefined)x.textContent=txt;return x};
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const state={tab:'flash',flashIndex:0,flashMask:false,quiz:[],quizAns:{},fillAns:{},grammarAns:{},advChoice:{},done:0};
+const tabs=[["flash", "Từ vựng"], ["quiz", "Trắc nghiệm"], ["fill", "Điền từ"], ["grammar", "Ngữ pháp"], ["apply", "Vận dụng"], ["advanced", "Nâng cao"]];
+const lesson="8";
+const L=DATA;
+window.MEOW_WRITING_CONTEXT={
+  course:'hsk4',
+  level:'HSK4',
+  lesson:7,
+  lessonTitle:L.title,
+  lessonTheme:L.theme,
+  grammarFocus:(L.grammar||[]).map(g=>Array.isArray(g)?g[0]:String(g))
+};
+function shuffleStaticQuestion(q){
+  if(!q || !Array.isArray(q.o) || !q.o.length) return;
+  const numericAnswer = typeof q.a === 'number';
+  const correct = numericAnswer ? q.o[q.a] : q.a;
+  q.o = shuffle(q.o);
+  if(numericAnswer) q.a = q.o.indexOf(correct);
+}
+
+function randomizeSequenceQuestion(q){
+  if(!q || !Array.isArray(q.items) || q.items.length < 2 || !Array.isArray(q.o) || typeof q.a !== 'number') return;
+
+  // Lưu nhãn cũ (A/B/C...) và phần nội dung thực tế.
+  const original = q.items.map((item, index) => {
+    const m = String(item).match(/^\s*([A-Z])\.\s*(.*)$/);
+    return {
+      oldLabel: m ? m[1] : String.fromCharCode(65 + index),
+      text: m ? m[2] : String(item)
+    };
+  });
+
+  const correctOriginal = String(q.o[q.a] || '');
+  const letters = original.map(x => x.oldLabel);
+
+  // Xáo các mệnh đề; tránh để thứ tự đúng vẫn rơi vào A → B → C.
+  let shuffledItems, mapping, transformedCorrect;
+  let attempts = 0;
+
+  do {
+    shuffledItems = shuffle(original);
+    mapping = {};
+    shuffledItems.forEach((item, newIndex) => {
+      mapping[item.oldLabel] = String.fromCharCode(65 + newIndex);
+    });
+
+    transformedCorrect = correctOriginal.replace(/[A-Z]/g, ch => mapping[ch] || ch);
+    attempts++;
+  } while (
+    normalizeSequenceText(transformedCorrect) === 'ABC' &&
+    attempts < 20
+  );
+
+  // Gắn lại nhãn A/B/C theo thứ tự HIỂN THỊ mới.
+  q.items = shuffledItems.map((item, newIndex) =>
+    `${String.fromCharCode(65 + newIndex)}. ${item.text}`
+  );
+
+  // Đổi toàn bộ phương án A→B→C... sang hệ nhãn mới.
+  q.o = q.o.map(option =>
+    String(option).replace(/[A-Z]/g, ch => mapping[ch] || ch)
+  );
+}
+
+function normalizeSequenceText(s){
+  return String(s || '').replace(/[^A-Z]/g, '');
+}
+
+function randomizeStaticAnswers(){
+  (L.fills || []).forEach(shuffleStaticQuestion);
+  (L.grammarQuiz || []).forEach(shuffleStaticQuestion);
+
+  if(typeof ADV_DATA !== 'undefined' && ADV_DATA){
+    (ADV_DATA.mcq || []).forEach(shuffleStaticQuestion);
+
+    // Phần ③ Sắp xếp trình tự:
+    // 1) xáo chính các mệnh đề A/B/C,
+    // 2) đổi đáp án đúng tương ứng,
+    // 3) tiếp tục xáo vị trí 4 lựa chọn.
+    (ADV_DATA.sequence || []).forEach(q => {
+      randomizeSequenceQuestion(q);
+      shuffleStaticQuestion(q);
+    });
+
+    (ADV_DATA.error || []).forEach(shuffleStaticQuestion);
+    (ADV_DATA.reading || []).forEach(r => (r.qs || []).forEach(shuffleStaticQuestion));
+  }
+}
+randomizeStaticAnswers();
+
+function toast(t){const x=$('#toast');x.textContent=t;x.classList.add('show');setTimeout(()=>x.classList.remove('show'),1400)}
+function saveState(){localStorage.setItem(`hsk4_bai${lesson}_state`,JSON.stringify({done:state.done}))}
+function loadState(){try{const x=JSON.parse(localStorage.getItem(`hsk4_bai${lesson}_state`)||'{}');state.done=x.done||0}catch(e){}}
+function bump(ok){state.done++;saveState();updateProgress()}
+function updateProgress(){const pct=Math.min(100,Math.round(state.done/35*100));$('#progressText').textContent=`Tiến độ luyện tập: ${state.done} lượt đã chấm`;$('#progressBar').style.width=pct+'%'}
+function intro(title,sub,actions=''){return `<div class="section-intro"><div><h2>${title}</h2><p>${sub}</p></div><div class="actions">${actions}</div></div>`}
+function init(){loadState();document.title=`HSK4 Bài ${lesson} · ${L.title}`;$('#lessonNo').textContent=`Bài ${lesson}`;$('#lessonTitle').textContent=L.title;$('#lessonVi').textContent=L.vi;$('#theme').textContent=L.theme;$('#vocabCount').textContent=`${L.vocab.length} từ mới`;const nav=$('#lessonNav');[5,6,7,8,9,10].forEach(n=>{const a=el('a',String(n)===String(lesson)?'current':'',`Bài ${n}`);a.href=`hsk4.bai${n}.html`;nav.appendChild(a)});renderTabs();updateProgress();renderContent()}
+function renderTabs(){const w=$('#tabs');w.innerHTML='';tabs.forEach(([id,name])=>{const b=el('button','tab'+(state.tab===id?' active':''),name);b.onclick=()=>{state.tab=id;state.quiz=[];state.quizAns={};state.fillAns={};state.grammarAns={};renderTabs();renderContent()};w.appendChild(b)})}
+function renderContent(){const c=$('#content');if(state.tab==='flash')renderFlash(c);else if(state.tab==='quiz')renderQuiz(c);else if(state.tab==='fill')renderFill(c);else if(state.tab==='grammar')renderGrammar(c);else if(state.tab==='apply')renderOpenTasks(c,'apply');else if(state.tab==='advanced')renderAdvanced(c)}
+function renderFlash(c){const v=L.vocab[state.flashIndex];c.innerHTML=intro(`Từ vựng · ${L.vocab.length} từ`,`Bấm vào thẻ để ẩn/hiện pinyin và nghĩa.`,`<button class="btn" id="prev">← Trước</button><button class="btn" id="random">Ngẫu nhiên</button><button class="btn" id="next">Sau →</button>`)+`<div class="flash-wrap"><div class="flashcard ${state.flashMask?'mask':''}" id="fc"><div><div class="cn">${v[0]}</div><div class="py">${v[1]}</div><div class="vi">${v[2]}</div></div><div class="hint">Từ ${state.flashIndex+1}/${L.vocab.length} · bấm để che/hiện</div></div><div class="vocab-list" id="vlist"></div></div>`;const list=$('#vlist');L.vocab.forEach((x,i)=>{const r=el('div','vrow');r.innerHTML=`<div class="n">${String(i+1).padStart(2,'0')}</div><div><b>${x[0]}</b><small>${x[1]} · ${x[2]}</small></div>`;r.onclick=()=>{state.flashIndex=i;renderFlash(c)};list.appendChild(r)});$('#fc').onclick=()=>{state.flashMask=!state.flashMask;renderFlash(c)};$('#prev').onclick=()=>{state.flashIndex=(state.flashIndex-1+L.vocab.length)%L.vocab.length;renderFlash(c)};$('#next').onclick=()=>{state.flashIndex=(state.flashIndex+1)%L.vocab.length;renderFlash(c)};$('#random').onclick=()=>{state.flashIndex=Math.floor(Math.random()*L.vocab.length);renderFlash(c)}}
+function makeVocabQuiz(vocab,n=10){return shuffle(vocab.map((v,i)=>({v,i}))).slice(0,n).map(({v,i})=>{const reverse=Math.random()<.45;const pool=shuffle(vocab.filter((_,j)=>j!==i)).slice(0,3);const options=shuffle([v,...pool]);return reverse?{q:`Chọn từ Hán đúng với nghĩa: “${v[2]}”`,options:options.map(x=>x[0]),ans:options.findIndex(x=>x[0]===v[0]),exp:`${v[0]} · ${v[1]} = ${v[2]}`}:{q:`${v[0]} · ${v[1]} có nghĩa là gì?`,options:options.map(x=>x[2]),ans:options.findIndex(x=>x[0]===v[0]),exp:`${v[0]} = ${v[2]}`}})}
+function renderQuiz(c){if(!state.quiz.length)state.quiz=makeVocabQuiz(L.vocab,10);c.innerHTML=intro('Trắc nghiệm từ vựng','','<button class="btn" id="newQuiz">Tạo bộ mới</button><button class="btn primary" id="checkQuiz">Chấm điểm</button>')+'<div class="quiz-grid" id="qgrid"></div><div id="qscore" style="margin-top:14px"></div>';const g=$('#qgrid');state.quiz.forEach((q,qi)=>{const card=el('div','qcard');card.innerHTML=`<div class="qtitle">${qi+1}. ${q.q}</div><div class="opts"></div><div class="feedback"></div>`;q.options.forEach((o,oi)=>{const b=el('button','opt'+(state.quizAns[qi]===oi?' selected':''),o);b.onclick=()=>{state.quizAns[qi]=oi;renderQuiz(c)};card.querySelector('.opts').appendChild(b)});g.appendChild(card)});$('#newQuiz').onclick=()=>{state.quiz=makeVocabQuiz(L.vocab,10);state.quizAns={};renderQuiz(c)};$('#checkQuiz').onclick=()=>{let s=0;state.quiz.forEach((q,qi)=>{const card=g.children[qi],bs=card.querySelectorAll('.opt'),ch=state.quizAns[qi];bs[q.ans]?.classList.add('good');if(ch!==undefined&&ch!==q.ans)bs[ch]?.classList.add('bad');const ok=ch===q.ans;if(ok)s++;card.querySelector('.feedback').textContent=(ok?'✓ Đúng. ':'✗ ')+q.exp;bump(ok)});$('#qscore').innerHTML=`<div class="score">Kết quả: ${s}/${state.quiz.length}</div>`}}
+function renderBankQuiz(c,items,bagName,title,sub){const bag=state[bagName];c.innerHTML=intro(title,sub,'<button class="btn" id="resetBank">Làm lại</button><button class="btn primary" id="checkBank">Chấm điểm</button>')+'<div class="quiz-grid" id="bankgrid"></div><div id="bankscore" style="margin-top:14px"></div>';const g=$('#bankgrid');items.forEach((q,qi)=>{const card=el('div','qcard');card.innerHTML=`<div class="qtitle">${qi+1}. ${q.q||q.s}</div><div class="opts"></div><div class="feedback"></div>`;q.o.forEach((o,oi)=>{const val=typeof q.a==='number'?oi:o;const b=el('button','opt'+(bag[qi]===val?' selected':''),o);b.onclick=()=>{bag[qi]=val;renderBankQuiz(c,items,bagName,title,sub)};card.querySelector('.opts').appendChild(b)});g.appendChild(card)});$('#resetBank').onclick=()=>{state[bagName]={};renderBankQuiz(c,items,bagName,title,sub)};$('#checkBank').onclick=()=>{let score=0;items.forEach((q,qi)=>{const card=g.children[qi],btns=card.querySelectorAll('.opt'),ansVal=q.a,chosen=bag[qi],ansIndex=typeof ansVal==='number'?ansVal:q.o.indexOf(ansVal),chosenIndex=typeof chosen==='number'&&typeof ansVal==='number'?chosen:q.o.indexOf(chosen);btns[ansIndex]?.classList.add('good');if(chosen!==undefined&&chosen!==ansVal)btns[chosenIndex]?.classList.add('bad');const ok=chosen===ansVal;if(ok)score++;card.querySelector('.feedback').textContent=ok?'✓ Đúng':`✗ Đáp án: ${typeof ansVal==='number'?q.o[ansVal]:ansVal}`;bump(ok)});$('#bankscore').innerHTML=`<div class="score">Kết quả: ${score}/${items.length}</div>`}}
+function renderFill(c){renderBankQuiz(c,L.fills,'fillAns','Điền từ theo ngữ cảnh','Các câu bám từ vựng và tình huống của bài học.')}
+function renderGrammar(c){c.innerHTML=intro('Ngữ pháp & điểm ngôn ngữ theo PDF','')+'<div class="grammar-grid">'+L.grammar.map(g=>`<div class="gcard"><h3>${g[0]}</h3><div>${g[1]}</div><div class="example">${g[2]}</div></div>`).join('')+'</div><div style="height:20px"></div><div id="gquiz"></div>';renderGrammarQuiz($('#gquiz'))}
+function renderGrammarQuiz(c){const items=L.grammarQuiz;c.innerHTML=intro('Kiểm tra ngữ pháp','Chọn đáp án phù hợp.','<button class="btn" id="resetG">Làm lại</button><button class="btn primary" id="checkG">Chấm điểm</button>')+'<div class="quiz-grid" id="gg"></div><div id="gs"></div>';const g=$('#gg');items.forEach((q,qi)=>{const card=el('div','qcard');card.innerHTML=`<div class="qtitle">${qi+1}. ${q.q}</div><div class="opts"></div><div class="feedback"></div>`;q.o.forEach((o,oi)=>{const b=el('button','opt'+(state.grammarAns[qi]===oi?' selected':''),o);b.onclick=()=>{state.grammarAns[qi]=oi;renderGrammarQuiz(c)};card.querySelector('.opts').appendChild(b)});g.appendChild(card)});$('#resetG').onclick=()=>{state.grammarAns={};renderGrammarQuiz(c)};$('#checkG').onclick=()=>{let s=0;items.forEach((q,qi)=>{const card=g.children[qi],bs=card.querySelectorAll('.opt'),ch=state.grammarAns[qi];bs[q.a]?.classList.add('good');if(ch!==undefined&&ch!==q.a)bs[ch]?.classList.add('bad');const ok=ch===q.a;if(ok)s++;card.querySelector('.feedback').textContent=(ok?'✓ ':'✗ ')+q.e;bump(ok)});$('#gs').innerHTML=`<div class="score" style="margin-top:14px">Kết quả: ${s}/${items.length}</div>`}}
+function taskKey(type,i){return `hsk4_bai${lesson}_${type}_${i}`}
+function cleanText(t){return (t||'').replace(/\r/g,'').trim()}
+function countHanzi(t){return (t.match(/[\u3400-\u9fff]/g)||[]).length}
+function countLines(t){return t.split(/\n+/).map(x=>x.trim()).filter(Boolean).length}
+function countSentences(t){const p=(t.match(/[。！？!?；;]/g)||[]).length;return Math.max(p,countLines(t))}
+function timeMarkers(t){return (t.match(/(?:\d{1,2}[:：点时]|上午|下午|早上|晚上|中午|星期|周[一二三四五六日天]|今天|明天|后天)/g)||[]).length}
+function numberMarkers(t){return (t.match(/\d+(?:\.\d+)?|[一二两三四五六七八九十百千万]+块?/g)||[]).length}
+function discountCount(t){const a=t.match(/\d+(?:\.\d+)?折|[一二三四五六七八九十]+折|百分之\s*\d+/g)||[];return new Set(a).size}
+function evalCriterion(c,t){let ratio=0,detail='';const han=countHanzi(t);if(c.type==='hanzi_length'){if(han>=c.min&&han<=c.max)ratio=1;else if(han>0){const dist=han<c.min?c.min-han:han-c.max;ratio=Math.max(0,1-dist/Math.max(20,c.max-c.min+20))}detail=`${han} chữ Hán`}
+else if(c.type==='hanzi_min'){ratio=Math.min(1,han/c.min);detail=`${han}/${c.min} chữ Hán`}
+else if(c.type==='line_count'){const n=countLines(t);ratio=n>=c.min&&(!c.max||n<=c.max)?1:Math.min(1,n/c.min);if(c.max&&n>c.max)ratio=Math.max(.7,1-(n-c.max)*.08);detail=`${n} lượt/dòng`}
+else if(c.type==='sentence_count'){const n=countSentences(t);ratio=n>=c.min&&(!c.max||n<=c.max)?1:Math.min(1,n/c.min);if(c.max&&n>c.max)ratio=Math.max(.75,1-(n-c.max)*.05);detail=`${n} câu/ý`}
+else if(c.type==='punctuation'){const n=countSentences(t);ratio=Math.min(1,n/c.min);detail=`${n}/${c.min} câu/ý`}
+else if(c.type==='keywords'){const base=c.words||[];const hits=base.filter(w=>t.includes(w));let extra=0;if(c.anyWords&&c.anyWords.some(w=>t.includes(w)))extra=1;const need=c.min||base.length;const got=hits.length+extra;ratio=Math.min(1,got/need);const miss=base.filter(w=>!t.includes(w));detail=`đạt ${got}/${need}${miss.length?' · thiếu: '+miss.slice(0,5).join('、'):''}${c.anyWords&&!extra?' · cần một trong: '+c.anyWords.join('/') : ''}`}
+else if(c.type==='vocab_hits'){const words=L.vocab.map(x=>x[0]);const hits=words.filter(w=>t.includes(w));ratio=Math.min(1,hits.length/c.min);detail=`${hits.length}/${c.min} từ: ${hits.slice(0,8).join('、')||'chưa có'}`}
+else if(c.type==='combo'){const ok=(c.groups||[]).some(g=>g.every(w=>t.includes(w)));ratio=ok?1:0;detail=ok?'đã dùng':'chưa thấy cấu trúc yêu cầu'}
+else if(c.type==='forbidden'){const bad=(c.words||[]).filter(w=>t.includes(w));ratio=bad.length?0:1;detail=bad.length?'còn lỗi: '+bad.join('、'):'không còn lỗi mục tiêu'}
+else if(c.type==='time_markers'){const n=timeMarkers(t);ratio=Math.min(1,n/c.min);detail=`${n}/${c.min} mốc thời gian`}
+else if(c.type==='number_markers'){const n=numberMarkers(t);ratio=Math.min(1,n/c.min);detail=`${n}/${c.min} số/giá`}
+else if(c.type==='discount_count'){const n=discountCount(t);ratio=Math.min(1,n/c.min);detail=`${n}/${c.min} mức ưu đãi`}
+else if(c.type==='speaker_lines'){const n=t.split(/\n+/).filter(x=>/[：:]/.test(x)).length;ratio=Math.min(1,n/c.min);detail=`${n}/${c.min} dòng có người nói`}
+return {ratio:Math.max(0,Math.min(1,ratio)),detail}}
+function gradeText(text,rule){text=cleanText(text);if(!text)return {score:0,rows:[{label:'Chưa có bài làm',weight:100,ratio:0,detail:'Hãy nhập câu trả lời trước.'}]};let total=0;const rows=(rule.criteria||[]).map(c=>{const r=evalCriterion(c,text);const pts=r.ratio*c.weight;total+=pts;return {...c,...r,pts}});return {score:Math.round(total),rows}}
+function gradeBlockHTML(res){const verdict=res.score>=85?'Rất tốt':res.score>=70?'Đạt':res.score>=50?'Cần bổ sung':'Chưa đạt';return `<div class="grade-head"><div><b>Chấm tự động theo rubric</b><div style="font-size:12px;color:var(--muted)">${verdict}</div></div><div class="grade-big">${res.score}/100</div></div>`+res.rows.map(r=>`<div class="criterion ${r.ratio>=.99?'good':r.ratio>=.55?'partial':'bad'}"><span>${r.label}<br><small>${r.detail||''}</small></span><b>${Math.round(r.pts||0)}/${r.weight}</b></div>`).join('')+`<div class="grade-note">Điểm này do trình duyệt chấm theo tiêu chí có thể đo được (độ dài, từ khóa, cấu trúc, hình thức). Nó không đánh giá đầy đủ độ tự nhiên, lập luận hay lỗi ngữ pháp tinh tế như giáo viên/AI.</div>`}
+
+function normalizeAdv(s){return String(s||'').replace(/[\s，。！？、；：,.!?;:]/g,'')}
+function advChoiceHTML(q,key){const chosen=state.advChoice[key];return `<div class="adv-options">${q.o.map((o,oi)=>`<button class="adv-opt ${chosen===oi?'selected':''}" data-advkey="${key}" data-choice="${oi}">${String.fromCharCode(65+oi)}. ${o}</button>`).join('')}</div><div class="adv-feedback" data-feedback="${key}"></div>`}
+function bindAdvOptions(){document.querySelectorAll('.adv-opt').forEach(b=>b.onclick=()=>{const key=b.dataset.advkey,choice=Number(b.dataset.choice);state.advChoice[key]=choice;b.closest('.adv-options').querySelectorAll('.adv-opt').forEach(x=>x.classList.remove('selected','good','bad'));b.classList.add('selected');const fb=document.querySelector(`[data-feedback="${key}"]`);if(fb){fb.classList.remove('show');fb.textContent=''};b.closest('.adv-card')?.classList.remove('unanswered','correct','incorrect')})}
+function bindOrderCards(){document.querySelectorAll('.order-card').forEach(card=>{const bank=card.querySelector('.order-bank'),ans=card.querySelector('.order-answer');bank.querySelectorAll('.word-chip').forEach(ch=>ch.onclick=()=>{if(ch.classList.contains('used'))return;ch.classList.add('used');const x=document.createElement('button');x.className='word-chip';x.textContent=ch.textContent;x.dataset.source=ch.dataset.source;x.onclick=()=>{const original=bank.querySelector(`[data-source="${x.dataset.source}"]`);if(original)original.classList.remove('used');x.remove();ans.classList.remove('good','bad');card.classList.remove('unanswered','correct','incorrect')};ans.appendChild(x);ans.classList.remove('good','bad')})})}
+function renderAdvanced(c){const A=ADV_DATA;state.advChoice=state.advChoice||{};let n=1;let html=intro('Bài nâng cao · dạng HSK tương tác','','<button class="btn" id="resetAdv">Làm lại</button><button class="btn primary" id="gradeAdv">Chấm toàn bộ</button>');html+=`<div class="adv-note"><b>Mỗi câu = 5 điểm.</b></div><div class="adv-board">`;
+html+=`<section class="adv-section"><div class="adv-section-head"><div><h3>① Chọn từ / cấu trúc phù hợp</h3><div class="desc">5 câu vận dụng từ vựng và ngữ pháp của bài.</div></div><div class="adv-num">25đ</div></div>`;A.mcq.forEach((q,i)=>{const key=`mcq-${i}`;html+=`<div class="adv-card" data-cardkey="${key}"><div class="adv-q">${n++}. ${q.q}</div>${advChoiceHTML(q,key)}</div>`});html+=`</section>`;
+html+=`<section class="adv-section"><div class="adv-section-head"><div><h3>② Sắp xếp từ thành câu</h3><div class="desc">Bấm từng cụm từ theo thứ tự để tạo câu hoàn chỉnh.</div></div><div class="adv-num">25đ</div></div>`;A.reorder.forEach((q,i)=>{html+=`<div class="adv-card order-card" id="adv-reorder-${i}" data-cardkey="reorder-${i}"><div class="adv-q">${n++}. Sắp xếp thành câu đúng:</div><div class="order-bank">${shuffle(q.parts.map((p,j)=>({p,j}))).map(x=>`<button class="word-chip" data-source="${x.j}">${x.p}</button>`).join('')}</div><div class="order-answer" aria-label="Câu trả lời"></div><div class="adv-feedback" data-feedback="reorder-${i}"></div></div>`});html+=`</section>`;
+html+=`<section class="adv-section"><div class="adv-section-head"><div><h3>③ Sắp xếp trình tự</h3><div class="desc">Chọn thứ tự A–B–C hợp lý nhất theo ngữ cảnh.</div></div><div class="adv-num">15đ</div></div>`;A.sequence.forEach((q,i)=>{const key=`sequence-${i}`;html+=`<div class="adv-card" data-cardkey="${key}"><div class="adv-q">${n++}. ${q.q}</div><div class="sequence-items">${q.items.map(x=>`<div>${x}</div>`).join('')}</div>${advChoiceHTML(q,key)}</div>`});html+=`</section>`;
+html+=`<section class="adv-section"><div class="adv-section-head"><div><h3>④ Chọn câu đúng / sửa lỗi</h3><div class="desc">4 câu tập trung vào lỗi cấu trúc dễ nhầm.</div></div><div class="adv-num">20đ</div></div>`;A.error.forEach((q,i)=>{const key=`error-${i}`;html+=`<div class="adv-card" data-cardkey="${key}"><div class="adv-q">${n++}. ${q.q}</div>${advChoiceHTML(q,key)}</div>`});html+=`</section>`;
+html+=`<section class="adv-section"><div class="adv-section-head"><div><h3>⑤ Đọc hiểu mini</h3><div class="desc">Đọc đoạn ngắn mới, sau đó trả lời 3 câu.</div></div><div class="adv-num">15đ</div></div>`;A.reading.forEach((r,ri)=>{html+=`<div class="reading-text">${r.text}</div>`;r.qs.forEach((q,qi)=>{const key=`reading-${ri}-${qi}`;html+=`<div class="adv-card" data-cardkey="${key}"><div class="adv-q">${n++}. ${q.q}</div>${advChoiceHTML(q,key)}</div>`})});html+=`</section></div><div class="adv-scorebar"><div><div class="scoretxt" id="advScore">Chưa chấm · 20 câu / 100 điểm</div><div style="font-size:12px;color:var(--muted)">Đáp án và giải thích hiện sau khi chấm.</div></div><div class="actions"><button class="btn" id="resetAdv2">Làm lại</button><button class="btn primary" id="gradeAdv2">Chấm toàn bộ</button></div></div>`;c.innerHTML=html;bindAdvOptions();bindOrderCards();$('#resetAdv').onclick=$('#resetAdv2').onclick=()=>{state.advChoice={};renderAdvanced(c);toast('Đã làm mới bài nâng cao')};$('#gradeAdv').onclick=$('#gradeAdv2').onclick=()=>gradeAdvanced(c)}
+function gradeChoiceQuestion(q,key){const chosen=state.advChoice[key];const card=document.querySelector(`[data-cardkey="${key}"]`);const opts=card?card.querySelectorAll('.adv-opt'):[];opts.forEach(x=>x.classList.remove('good','bad'));if(opts[q.a])opts[q.a].classList.add('good');if(chosen!==undefined&&chosen!==q.a&&opts[chosen])opts[chosen].classList.add('bad');const ok=chosen===q.a;card?.classList.remove('unanswered','correct','incorrect');card?.classList.add(chosen===undefined?'unanswered':ok?'correct':'incorrect');const fb=card?.querySelector('.adv-feedback');if(fb){fb.classList.add('show');fb.innerHTML=chosen===undefined?`⚠ Chưa chọn đáp án. Đáp án đúng: <b>${String.fromCharCode(65+q.a)}</b>. ${q.e}`:`${ok?'✓ Đúng':'✗ Chưa đúng'} · Đáp án: <b>${String.fromCharCode(65+q.a)}</b>. ${q.e}`};return ok?1:0}
+function gradeAdvanced(c){const A=ADV_DATA;let correct=0,total=0;A.mcq.forEach((q,i)=>{total++;correct+=gradeChoiceQuestion(q,`mcq-${i}`)});A.reorder.forEach((q,i)=>{total++;const card=document.querySelector(`#adv-reorder-${i}`),ans=card.querySelector('.order-answer'),txt=[...ans.querySelectorAll('.word-chip')].map(x=>x.textContent).join('');const ok=normalizeAdv(txt)===normalizeAdv(q.answer);ans.classList.remove('good','bad');ans.classList.add(ok?'good':'bad');card.classList.remove('unanswered','correct','incorrect');card.classList.add(!txt?'unanswered':ok?'correct':'incorrect');const fb=card.querySelector('.adv-feedback');fb.classList.add('show');fb.innerHTML=!txt?`⚠ Chưa sắp xếp. Đáp án: <b>${q.answer}。</b> ${q.e}`:`${ok?'✓ Đúng':'✗ Chưa đúng'} · Đáp án: <b>${q.answer}。</b> ${q.e}`;if(ok)correct++});A.sequence.forEach((q,i)=>{total++;correct+=gradeChoiceQuestion(q,`sequence-${i}`)});A.error.forEach((q,i)=>{total++;correct+=gradeChoiceQuestion(q,`error-${i}`)});A.reading.forEach((r,ri)=>r.qs.forEach((q,qi)=>{total++;correct+=gradeChoiceQuestion(q,`reading-${ri}-${qi}`)}));const score=Math.round(correct/total*100),verdict=score>=90?'Xuất sắc':score>=80?'Rất tốt':score>=70?'Đạt':score>=50?'Cần ôn thêm':'Nên làm lại';$('#advScore').textContent=`${score}/100 · ${correct}/${total} câu đúng · ${verdict}`;bump(true);toast(`Bài nâng cao: ${score}/100`)}
+
+function renderOpenTasks(c,type){
+  const arr=L[type];
+  const rules=RULES[type];
+  const isAdv=type==='advanced';
+
+  if(!isAdv){
+    c.innerHTML=intro(
+      'Bài vận dụng · AI chấm bài',
+      '',
+      '<button class="btn" onclick="window.print()">In phần này</button>'
+    )+`<div class="task-list" id="tasks"></div>`;
+
+    const w=$('#tasks');
+    arr.forEach((item,i)=>{
+      const q=typeof item==='string'?item:item.q;
+      const t=el('div','task');
+      t.setAttribute('data-ai-writing','');
+      t.innerHTML=`<h3>${i+1}. ${q}</h3>
+        <textarea class="writing-answer" placeholder="Nhập bài viết bằng tiếng Trung..."></textarea>
+        <div class="actions" style="margin-top:9px">
+          <button class="btn save">Lưu</button>
+          <button class="btn primary ai-grade-btn">Gửi AI chấm bài</button>
+        </div>
+        <div class="ai-result"></div>`;
+      const ta=t.querySelector('textarea');
+      ta.value=localStorage.getItem(taskKey(type,i))||'';
+      t.querySelector('.save').onclick=()=>{
+        localStorage.setItem(taskKey(type,i),ta.value);
+        toast('Đã lưu bài trên trình duyệt');
+      };
+      w.appendChild(t);
+    });
+    return;
+  }
+
+  c.innerHTML=intro(
+    'Bài nâng cao',
+    'Sửa lỗi, viết lại và case nâng cao. Phần này vẫn giữ chấm tự động theo rubric nội bộ của bài học.',
+    '<button class="btn" onclick="window.print()">In phần này</button><button class="btn primary" id="gradeAll">Chấm toàn bộ</button>'
+  )+`<div class="overall"></div><div class="task-list" id="tasks"></div><div id="overallScore" style="margin-top:14px"></div>`;
+
+  const w=$('#tasks');
+  arr.forEach((item,i)=>{
+    const q=typeof item==='string'?item:item.q;
+    const t=el('div','task');
+    t.innerHTML=`<h3>${i+1}. ${q}</h3><textarea placeholder="Nhập câu trả lời bằng tiếng Trung..."></textarea><div class="actions" style="margin-top:9px"><button class="btn save">Lưu</button><button class="btn primary grade">Chấm bài</button><button class="btn soft hintbtn">Gợi ý / đáp án mẫu</button></div><div class="grader"></div><div class="hintbox"><b>Gợi ý:</b> ${item.hint}<br><b>Mẫu:</b> ${item.sample}</div>`;
+    const ta=t.querySelector('textarea');
+    ta.value=localStorage.getItem(taskKey(type,i))||'';
+    t.querySelector('.save').onclick=()=>{
+      localStorage.setItem(taskKey(type,i),ta.value);
+      toast('Đã lưu bài trên trình duyệt');
+    };
+    t.querySelector('.grade').onclick=()=>{
+      localStorage.setItem(taskKey(type,i),ta.value);
+      const res=gradeText(ta.value,rules[i]);
+      const box=t.querySelector('.grader');
+      box.innerHTML=gradeBlockHTML(res);
+      box.classList.add('show');
+      bump(true);
+    };
+    t.querySelector('.hintbtn').onclick=()=>t.querySelector('.hintbox').classList.toggle('show');
+    w.appendChild(t);
+  });
+
+  $('#gradeAll').onclick=()=>{
+    let sum=0,n=0;
+    [...w.children].forEach((t,i)=>{
+      const ta=t.querySelector('textarea'),res=gradeText(ta.value,rules[i]);
+      localStorage.setItem(taskKey(type,i),ta.value);
+      const box=t.querySelector('.grader');
+      box.innerHTML=gradeBlockHTML(res);
+      box.classList.add('show');
+      sum+=res.score;n++;
+    });
+    $('#overallScore').innerHTML=`<div class="score">Điểm trung bình phần Nâng cao: ${Math.round(sum/n)}/100</div>`;
+    bump(true);
+  };
+}
+window.addEventListener('meow-ai-writing-graded',e=>{
+  if(e.detail?.course==='hsk4' && Number(e.detail?.lesson)===8){
+    toast(`AI đã chấm: ${e.detail.score}/100`);
+  }
+});
+init();
+</script>
+<script>
+(function(){
+  const boot=()=>{
+    if(window.MeowTracking){
+      MeowTracking.openLesson('hsk4', 8);
+      MeowTracking.startAutoScoreTracking('hsk4', 8);
+    }
+  };
+  if(window.meowUser && window.MeowTracking) boot();
+  else window.addEventListener('meow-auth-ready',boot,{once:true});
+})();
+</script>
+
+</body></html>
