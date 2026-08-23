@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#6FAFC4">
+<title>Meow Meow · Mất kết nối</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;
+  font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  color:#27373D;background:linear-gradient(180deg,#F8FCFD,#FFFFFF);
+}
+.card{
+  width:min(520px,100%);padding:28px;border:1px solid #D7E9ED;border-radius:22px;
+  background:#fff;box-shadow:0 16px 42px rgba(52,101,116,.10);text-align:center;
+}
+.mark{
+  width:54px;height:54px;margin:0 auto 16px;border-radius:16px;display:grid;place-items:center;
+  background:#6FAFC4;color:#fff;font-size:26px;font-weight:800;
+}
+h1{font-size:1.45rem;margin:0 0 10px;color:#315F6E}
+p{margin:0;color:#6A7A80;line-height:1.7}
+button{
+  margin-top:18px;border:0;border-radius:12px;background:#3F8198;color:#fff;
+  padding:11px 16px;font:inherit;font-weight:700;cursor:pointer;
+}
+</style>
+</head>
+<body>
+  <main class="card">
+    <div class="mark">喵</div>
+    <h1>Meow Meow đang chờ mạng nè</h1>
+    <p>Trang này chưa có sẵn để mở khi mất mạng. Kết nối lại Internet rồi thử lại nha.</p>
+    <button type="button" onclick="location.reload()">Thử lại</button>
+  </main>
+</body>
+</html>
