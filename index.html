@@ -129,6 +129,72 @@ a{color:inherit}
   max-width:690px;margin:0;color:var(--muted);font-size:1.04rem;
 }
 .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+
+.hero-layout{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 210px;
+  align-items:center;
+  gap:38px;
+}
+.hero-copy{
+  min-width:0;
+}
+.hero-sticker{
+  width:210px;
+  height:190px;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  justify-self:end;
+  transform:rotate(2.5deg);
+  filter:drop-shadow(0 14px 20px rgba(91,67,72,.14));
+}
+.hero-sticker img{
+  display:block;
+  width:308px;
+  max-width:none;
+  height:auto;
+  flex:0 0 auto;
+}
+.hero-sticker:hover{
+  transform:rotate(0deg) translateY(-3px);
+  transition:transform .2s ease;
+}
+
+@media(max-width:850px){
+  .hero-layout{
+    grid-template-columns:minmax(0,1fr) 150px;
+    gap:22px;
+  }
+  .hero-sticker{
+    width:150px;
+    height:140px;
+  }
+  .hero-sticker img{
+    width:220px;
+  }
+}
+
+@media(max-width:620px){
+  .hero-layout{
+    grid-template-columns:1fr;
+    gap:24px;
+  }
+  .hero-sticker{
+    width:112px;
+    height:102px;
+    justify-self:center;
+    margin-top:2px;
+    transform:rotate(2deg);
+  }
+  .hero-sticker img{
+    width:164px;
+  }
+}
+
 .btn{
   display:inline-flex;align-items:center;justify-content:center;
   min-height:44px;padding:10px 17px;border-radius:12px;
@@ -372,11 +438,144 @@ a{color:inherit}
   .feature-item:last-child{border-bottom:0}
   .quote-card{grid-template-columns:90px 1fr}.quote-card img{width:90px;height:126px}
 }
-@media(max-width:600px){
-  .nav{display:none}.hero{padding:72px 0 52px}.section{padding:48px 0}
-  .container{width:min(100% - 24px,1120px)}
-  .chatbox{right:10px;bottom:10px;width:calc(100% - 20px)}
-  .chat-mini{right:12px;bottom:12px}
+.mobile-menu-btn,
+.mobile-nav{
+  display:none;
+}
+
+@media(max-width:760px){
+  .topbar-inner{
+    min-height:64px;
+    gap:12px;
+  }
+
+  .logo{
+    min-width:0;
+    font-size:.78rem;
+    line-height:1.3;
+  }
+
+  .logo > span:last-child{
+    min-width:0;
+  }
+
+  .nav{
+    display:none;
+  }
+
+  .mobile-menu-btn{
+    display:inline-flex;
+    flex:0 0 auto;
+    align-items:center;
+    justify-content:center;
+    min-height:38px;
+    padding:7px 14px;
+    border:1px solid var(--line);
+    border-radius:11px;
+    background:#fff;
+    color:var(--blue-dark);
+    font:inherit;
+    font-size:.86rem;
+    font-weight:700;
+    cursor:pointer;
+  }
+
+  .mobile-menu-btn:hover,
+  .mobile-menu-btn:focus-visible{
+    background:var(--blue-soft);
+    outline:none;
+  }
+
+  .mobile-nav{
+    display:none;
+    position:absolute;
+    left:0;
+    right:0;
+    top:100%;
+    background:rgba(255,255,255,.98);
+    border-bottom:1px solid var(--line);
+    box-shadow:0 18px 30px rgba(52,101,116,.12);
+    backdrop-filter:blur(14px);
+  }
+
+  .mobile-nav.is-open{
+    display:block;
+  }
+
+  .mobile-nav-inner{
+    width:min(100% - 24px,1120px);
+    margin:0 auto;
+    padding:10px 0 14px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:6px;
+  }
+
+  .mobile-nav a{
+    text-decoration:none;
+    color:#536970;
+    font-size:.88rem;
+    font-weight:650;
+    padding:11px 12px;
+    border-radius:10px;
+    background:#F8FCFD;
+    border:1px solid transparent;
+  }
+
+  .mobile-nav a:hover,
+  .mobile-nav a:focus-visible{
+    color:var(--blue-dark);
+    background:var(--blue-soft);
+    border-color:var(--line);
+    outline:none;
+  }
+
+  body.mobile-menu-open{
+    overflow:hidden;
+  }
+
+  .hero{
+    padding:72px 0 52px;
+  }
+
+  .section{
+    padding:48px 0;
+  }
+
+  .container{
+    width:min(100% - 24px,1120px);
+  }
+
+  .chatbox{
+    right:10px;
+    bottom:10px;
+    width:calc(100% - 20px);
+  }
+
+  .chat-mini{
+    right:12px;
+    bottom:12px;
+  }
+}
+
+@media(max-width:430px){
+  .mobile-nav-inner{
+    grid-template-columns:1fr;
+  }
+
+  .logo{
+    font-size:.72rem;
+  }
+
+  .logo-mark{
+    width:34px;
+    height:34px;
+    flex:0 0 34px;
+  }
+
+  .mobile-menu-btn{
+    padding:7px 12px;
+  }
 }
 </style>
 </head>
@@ -397,20 +596,48 @@ a{color:inherit}
       <a href="#lien-he">Liên hệ</a>
       <a href="login.html">Đăng nhập</a>
     </div>
+
+    <button
+      class="mobile-menu-btn"
+      id="mobileMenuBtn"
+      type="button"
+      aria-expanded="false"
+      aria-controls="mobileNav"
+    >Menu</button>
   </div>
+
+  <nav class="mobile-nav" id="mobileNav" aria-label="Menu trên điện thoại">
+    <div class="mobile-nav-inner">
+      <a href="#gioi-thieu">Giới thiệu</a>
+      <a href="#cach-hoc">Cách học</a>
+      <a href="#khoa-hoc">Bài học</a>
+      <a href="#on-tu-vung">Ôn từ vựng</a>
+      <a href="login.html?next=game.html">Trò chơi</a>
+      <a href="#lien-he">Liên hệ</a>
+      <a href="login.html">Đăng nhập</a>
+    </div>
+  </nav>
 </div>
 
 <header class="hero">
   <div class="container">
-    <div class="hero-kicker">MEOW MEOW 课堂</div>
-    <h1 aria-label="Tiếng Trung Meow Meow - Học tiếng Trung theo từng bước nhỏ">Học tiếng Trung theo <span>từng bước nhỏ</span></h1>
-    <p>
-      Từ phát âm, từ vựng, ngữ pháp đến hội thoại và bài tập tương tác.
-      Học theo từng bài, ôn lại thường xuyên và tiến bộ theo nhịp của riêng bạn.
-    </p>
-    <div class="hero-actions">
-      <a class="btn btn-primary" href="#khoa-hoc">Xem bài học</a>
-      <a class="btn btn-light" href="#gioi-thieu">Về lớp học</a>
+    <div class="hero-layout">
+      <div class="hero-copy">
+        <div class="hero-kicker">MEOW MEOW 课堂</div>
+        <h1 aria-label="Tiếng Trung Meow Meow - Cùng Meow Meow chinh phục tiếng Trung">Cùng Meow Meow <span>chinh phục tiếng Trung</span></h1>
+        <p>
+          Học từng bài cho chắc: từ mới, ngữ pháp, nghe nói rồi làm bài.
+          Không cần vội, cứ học đều và quay lại ôn khi cần.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#khoa-hoc">Bắt đầu học</a>
+          <a class="btn btn-light" href="#gioi-thieu">Tìm hiểu lớp</a>
+        </div>
+      </div>
+
+      <div class="hero-sticker" aria-hidden="true">
+        <img src="meow-meow-sticker.png" alt="">
+      </div>
     </div>
   </div>
 </header>
@@ -419,23 +646,23 @@ a{color:inherit}
   <section class="section" id="gioi-thieu">
     <div class="container">
       <div class="section-head">
-        <div class="section-kicker">LỚP HỌC MEOW MEOW</div>
-        <h2>Học rõ ràng, luyện đều đặn</h2>
-        <p>Không cần học quá nhiều trong một lần. Quan trọng là hiểu, luyện và quay lại thường xuyên.</p>
+        <div class="section-kicker">HỌC CÙNG MEOW MEOW</div>
+        <h2>Học tới đâu, chắc tới đó</h2>
+        <p>Mỗi bài đều có phần để học, phần để luyện và chỗ quay lại ôn. Không cần chạy nhanh, hiểu thật rồi mình đi tiếp.</p>
       </div>
 
       <div class="feature-strip">
         <div class="feature-item">
-          <b>Học kiến thức</b>
-          <p>Từ vựng, pinyin, ngữ pháp và mẫu câu được sắp xếp theo từng bài.</p>
+          <b>Hiểu bài trước</b>
+          <p>Từ mới, pinyin, ngữ pháp và mẫu câu được gom theo từng bài để học tới đâu dễ nhìn lại tới đó.</p>
         </div>
         <div class="feature-item">
-          <b>Luyện nghe và nói</b>
-          <p>Hội thoại, câu mẫu và âm thanh giúp làm quen với cách dùng thực tế.</p>
+          <b>Nghe và nói thành tiếng</b>
+          <p>Có câu mẫu, hội thoại và phát âm để không chỉ nhìn chữ mà còn quen tai, quen miệng.</p>
         </div>
         <div class="feature-item">
-          <b>Ôn bằng bài tập</b>
-          <p>Trắc nghiệm, sắp xếp câu, ghép từ và các hoạt động tương tác.</p>
+          <b>Làm bài để nhớ lâu</b>
+          <p>Trắc nghiệm, sắp xếp câu và game giúp kiểm tra xem mình đã thật sự nhớ bài chưa.</p>
         </div>
       </div>
     </div>
@@ -445,8 +672,8 @@ a{color:inherit}
     <div class="container">
       <div class="section-head">
         <div class="section-kicker">学习方法</div>
-        <h2>Một trình tự học đơn giản</h2>
-        <p>Từ mới → Ngữ pháp → Mẫu câu → Hội thoại → Bài tập → Ôn lại.</p>
+        <h2>Học theo một nhịp, mỗi ngày sẽ kịp</h2>
+        <p>Từ mới → Ngữ pháp → Mẫu câu → Hội thoại → Bài tập → Ôn lại. Cứ đi theo thứ tự này là được.</p>
       </div>
 
       <div class="about-grid">
@@ -462,8 +689,8 @@ a{color:inherit}
         </div>
 
         <div class="teacher-card" id="lien-he">
-          <div class="section-kicker">THÔNG TIN LỚP HỌC</div>
-          <h3>Giáo viên: Nguyễn Thu Hương</h3>
+          <div class="section-kicker">GIÁO VIÊN · 联系方式</div>
+          <h3>Cô Nguyễn Thu Hương</h3>
           <p>Số điện thoại: <a href="tel:0905878295">0905.878.295</a></p>
           <p>Email: <a href="mailto:ngthuhuong139@gmail.com">ngthuhuong139@gmail.com</a></p>
         </div>
@@ -475,8 +702,8 @@ a{color:inherit}
     <div class="container">
       <div class="section-head">
         <div class="section-kicker">课程</div>
-        <h2>Chọn cấp độ học</h2>
-        <p>Mỗi cấp độ mở ở một trang riêng để danh sách bài học gọn và dễ tìm hơn.</p>
+        <h2>Chọn bài phù hợp với bạn</h2>
+        <p>Mới bắt đầu thì vào HSK1. Đang học trung cấp thì sang HSK4. Mỗi cấp độ có trang riêng để tìm bài cho nhanh.</p>
       </div>
 
       <div class="course-grid">
@@ -486,13 +713,13 @@ a{color:inherit}
             <div class="course-label">HSK1 · 初级</div>
             <h3>HSK1 3.0</h3>
             <div class="course-cn">汉语教程 · 初级</div>
-            <p>15 bài học nền tảng: phát âm, từ vựng, mẫu câu, hội thoại và bài tập tương tác.</p>
+            <p>Dành cho lúc mới bắt đầu: học phát âm, từ vựng cơ bản, mẫu câu và hội thoại qua 15 bài.</p>
             <div class="course-meta">
               <span class="tag">Bài 1 → Bài 15</span>
               <span class="tag">Cơ bản</span>
             </div>
           </div>
-          <a class="btn btn-primary" href="login.html?next=hsk1.html">Xem các bài HSK1</a>
+          <a class="btn btn-primary" href="login.html?next=hsk1.html">Vào học HSK1</a>
         </article>
 
         <article class="course-card">
@@ -501,66 +728,66 @@ a{color:inherit}
             <div class="course-label">HSK4 · 中级</div>
             <h3>HSK4 2.0</h3>
             <div class="course-cn">汉语教程 · 中级</div>
-            <p>Các bài học trung cấp với từ vựng, ngữ pháp, luyện tập và phần nâng cao.</p>
+            <p>20 bài trung cấp đi sâu hơn vào từ vựng, ngữ pháp, đọc hiểu và phần vận dụng có AI chấm bài.</p>
             <div class="course-meta">
               <span class="tag">Bài 1 → Bài 20</span>
               <span class="tag">Trung cấp</span>
             </div>
           </div>
-          <a class="btn btn-primary" href="login.html?next=hsk4.html">Xem các bài HSK4</a>
+          <a class="btn btn-primary" href="login.html?next=hsk4.html">Vào học HSK4</a>
         </article>
       </div>
       <section class="vocab-section" id="on-tu-vung">
         <div class="vocab-section-head">
-          <div class="section-kicker">ÔN TẬP · 词汇复习</div>
+          <div class="section-kicker">ÔN TỪ VỰNG · 词汇复习</div>
           <h3>Ôn tập từ vựng</h3>
-          <p>Chọn cấp độ muốn ôn. Mở vào từng bộ để xem danh sách từ, thẻ từ vựng, nghe phát âm và luyện viết chữ Hán.</p>
+          <p>Chọn HSK1 hoặc HSK4 rồi ôn theo cách bạn thích: xem danh sách từ, lật flashcard, nghe phát âm hoặc luyện viết chữ Hán.</p>
         </div>
 
         <div class="vocab-grid">
           <article class="vocab-card">
             <div class="vocab-level">HSK1 · 初级</div>
             <h4>Ôn từ vựng HSK1</h4>
-            <p>Bộ từ vựng nền tảng dành cho HSK1, có tra chữ Hán, pinyin, nghĩa tiếng Việt, âm Hán Việt và thẻ ôn tập.</p>
+            <p>Ôn lại từ cơ bản bằng chữ Hán, pinyin, nghĩa tiếng Việt, âm Hán Việt và flashcard.</p>
             <div class="course-meta">
               <span class="tag">500 từ HSK1 3.0</span>
               <span class="tag">Flashcard</span>
               <span class="tag">Nét chữ</span>
             </div>
-            <a class="btn btn-primary" href="login.html?next=hsk1-vocab.html">Mở từ vựng HSK1</a>
+            <a class="btn btn-primary" href="login.html?next=hsk1-vocab.html">Ôn HSK1</a>
           </article>
 
           <article class="vocab-card">
             <div class="vocab-level">HSK4 · 中级</div>
             <h4>Ôn từ vựng HSK4</h4>
-            <p>Từ vựng HSK4 theo Bài 1–20 của giáo trình lớp đang học, có thể lọc riêng từng bài và ôn bằng thẻ từ vựng.</p>
+            <p>621 mục từ từ Bài 1–20, có ví dụ ngữ cảnh, pinyin, nghĩa tiếng Việt và flashcard để ôn theo từng bài.</p>
             <div class="course-meta">
               <span class="tag">621 mục từ</span>
               <span class="tag">Bài 1 → Bài 20</span>
               <span class="tag">Flashcard</span>
             </div>
-            <a class="btn btn-primary" href="login.html?next=hsk4-vocab.html">Mở từ vựng HSK4</a>
+            <a class="btn btn-primary" href="login.html?next=hsk4-vocab.html">Ôn HSK4</a>
           </article>
         </div>
       </section>
 
       <div class="game-review">
         <div class="game-review-copy">
-          <div class="section-kicker">TRÒ CHƠI · 游戏</div>
+          <div class="section-kicker">CHƠI MÀ HỌC · 游戏</div>
           <h3>Phòng game tiếng Trung</h3>
-          <p>Sắp xếp câu theo trình độ HSK. Có chế độ cá nhân, chia đội trong lớp và bảng xếp hạng.</p>
-          <div class="game-review-meta"><span class="tag">HSK4</span><span class="tag">Sắp xếp câu</span><span class="tag">Chia đội</span><span class="tag">Xếp hạng</span></div>
+          <p>Sắp xếp câu để xem mình nhớ tới đâu. Chơi một mình cũng được, chia đội trong lớp cũng vui, điểm cao thì lên bảng xếp hạng.</p>
+          <div class="game-review-meta"><span class="tag">HSK1 &amp; HSK4</span><span class="tag">Sắp xếp câu</span><span class="tag">Chia đội</span><span class="tag">Xếp hạng</span></div>
         </div>
-        <div class="game-review-action"><a class="btn btn-primary" href="login.html?next=game.html">Vào phòng game</a></div>
+        <div class="game-review-action"><a class="btn btn-primary" href="login.html?next=game.html">Chơi ngay</a></div>
       </div>
 
       <div class="notice-card">
-        <div class="section-kicker">LƯU Ý CHO HỌC VIÊN</div>
+        <div class="section-kicker">TIPS HỌC ĐẾN TỪ NHÀ MEOW MEOW</div>
         <ul class="notice-list">
-          <li>Học từ mới và đọc to pinyin trước khi làm bài tập.</li>
-          <li>Ưu tiên nghe và nói thành tiếng.</li>
-          <li>Ôn lại bài cũ trước khi chuyển sang bài mới.</li>
-          <li>Có thể quay lại các bài học bất cứ lúc nào.</li>
+          <li>Đừng cố học quá nhiều một lúc, ngày một ít - cần cù sẽ bù thông minh!!!</li>
+          <li>Gặp từ mới thì viết ra giấy, kèm ví dụ, vận dụng vào thực tế.</li>
+          <li>Học xong bài nào, lên ngay website Meow Meow xem lại bài cũ rồi cùng ôn luyện nàooo.</li>
+          <li>Mệt quá thì làm cốc nước cam, tiếng Trung vẫn khó nhưng có sức học hơn.</li>
         </ul>
       </div>
     </div>
@@ -568,7 +795,7 @@ a{color:inherit}
 </main>
 
 <div class="footer">
-  <div class="container">中文学习空间 · Trang lớp học Tiếng Trung Meow Meow</div>
+  <div class="container">Học cùng Meow Meow, vui quá là vui · 中文学习空间</div>
 </div>
 
 
@@ -609,6 +836,40 @@ function openChat(){
   document.getElementById("chatbox").classList.remove("hidden");
   document.getElementById("chatMini").style.display="none";
 }
+</script>
+
+
+<script>
+(function(){
+  const btn = document.getElementById('mobileMenuBtn');
+  const nav = document.getElementById('mobileNav');
+  if(!btn || !nav) return;
+
+  function setMenu(open){
+    nav.classList.toggle('is-open', open);
+    btn.setAttribute('aria-expanded', String(open));
+    btn.textContent = open ? 'Đóng' : 'Menu';
+    document.body.classList.toggle('mobile-menu-open', open);
+  }
+
+  btn.addEventListener('click', function(){
+    setMenu(!nav.classList.contains('is-open'));
+  });
+
+  nav.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', function(){
+      setMenu(false);
+    });
+  });
+
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') setMenu(false);
+  });
+
+  window.addEventListener('resize', function(){
+    if(window.innerWidth > 760) setMenu(false);
+  });
+})();
 </script>
 
 </body>
