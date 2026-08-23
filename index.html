@@ -5,6 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#6FAFC4">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Meow Meow">
+<link rel="apple-touch-icon" href="icon-192.png">
 <title>Tiếng Trung Meow Meow | Học tiếng Trung HSK Online</title>
 
 <meta name="description" content="Tiếng Trung Meow Meow - học tiếng Trung HSK online với từ vựng, ngữ pháp, hội thoại, bài tập tương tác, trò chơi và luyện viết cùng AI.">
@@ -78,9 +85,11 @@ body{
     radial-gradient(circle at 86% 16%,rgba(232,184,74,.11),transparent 23%),
     linear-gradient(180deg,#F8FCFD 0%,#FFFFFF 38%,#F7FBFC 100%);
   line-height:1.7;
+  overflow-x:hidden;
 }
 a{color:inherit}
 .container{width:min(1120px,calc(100% - 36px));margin:0 auto}
+.topbar,.hero,.section,.footer,.chatbox,.chat-mini{position:relative;z-index:1}
 .topbar{
   position:sticky;top:0;z-index:50;
   background:rgba(255,255,255,.88);
@@ -133,65 +142,56 @@ a{color:inherit}
 .hero-layout{
   position:relative;
   z-index:1;
-  display:grid;
-  grid-template-columns:minmax(0,1fr) 210px;
-  align-items:center;
-  gap:38px;
+  display:block;
 }
 .hero-copy{
   min-width:0;
 }
-.hero-sticker{
-  width:210px;
-  height:190px;
+
+.sticker-fall-layer{
+  position:fixed;
+  inset:0;
   overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:flex-start;
-  justify-self:end;
-  transform:rotate(2.5deg);
-  filter:drop-shadow(0 14px 20px rgba(91,67,72,.14));
+  pointer-events:none;
+  z-index:0;
 }
-.hero-sticker img{
-  display:block;
-  width:308px;
-  max-width:none;
-  height:auto;
-  flex:0 0 auto;
+.sticker-fall-layer .falling-sticker{
+  position:absolute;
+  top:-20vh;
+  left:var(--left,50%);
+  width:var(--size,64px);
+  height:var(--size,64px);
+  opacity:var(--opacity,.22);
+  background-image:url('meow-meow-sticker.png');
+  background-size:contain;
+  background-repeat:no-repeat;
+  background-position:center;
+  filter:blur(var(--blur,1.4px)) drop-shadow(0 0 10px rgba(255,255,255,.40)) drop-shadow(0 0 18px rgba(255,216,232,.33));
+  transform:translate3d(0,-16vh,0) rotate(0deg) scale(var(--scale,1));
+  transform-origin:center;
+  animation:
+    stickerFall var(--duration,18s) linear var(--delay,0s) infinite,
+    stickerSway var(--sway-duration,6s) ease-in-out var(--delay,0s) infinite alternate,
+    stickerGlow var(--glow-duration,3.8s) ease-in-out var(--delay,0s) infinite;
+  will-change:transform,opacity,filter;
 }
-.hero-sticker:hover{
-  transform:rotate(0deg) translateY(-3px);
-  transition:transform .2s ease;
+@keyframes stickerFall{
+  0%{transform:translate3d(0,-18vh,0) rotate(0deg) scale(var(--scale,1));opacity:0}
+  8%{opacity:var(--opacity,.22)}
+  100%{transform:translate3d(var(--drift,18px),118vh,0) rotate(var(--rotate,360deg)) scale(var(--scale,1));opacity:0}
+}
+@keyframes stickerSway{
+  from{margin-left:-14px}
+  to{margin-left:14px}
+}
+@keyframes stickerGlow{
+  0%,100%{filter:blur(var(--blur,1.4px)) drop-shadow(0 0 10px rgba(255,255,255,.34)) drop-shadow(0 0 16px rgba(255,216,232,.28))}
+  50%{filter:blur(calc(var(--blur,1.4px) * .92)) drop-shadow(0 0 14px rgba(255,255,255,.58)) drop-shadow(0 0 26px rgba(255,216,232,.46))}
 }
 
-@media(max-width:850px){
-  .hero-layout{
-    grid-template-columns:minmax(0,1fr) 150px;
-    gap:22px;
-  }
-  .hero-sticker{
-    width:150px;
-    height:140px;
-  }
-  .hero-sticker img{
-    width:220px;
-  }
-}
-
-@media(max-width:620px){
-  .hero-layout{
-    grid-template-columns:1fr;
-    gap:24px;
-  }
-  .hero-sticker{
-    width:112px;
-    height:102px;
-    justify-self:center;
-    margin-top:2px;
-    transform:rotate(2deg);
-  }
-  .hero-sticker img{
-    width:164px;
+@media(max-width:760px){
+  .sticker-fall-layer .falling-sticker{
+    filter:blur(var(--blur,1.6px)) drop-shadow(0 0 8px rgba(255,255,255,.34)) drop-shadow(0 0 12px rgba(255,216,232,.24));
   }
 }
 
@@ -417,6 +417,7 @@ a{color:inherit}
   color:var(--muted);
   font-size:.9rem;
   line-height:1.7;
+  overflow-x:hidden;
 }
 .vocab-card .course-meta{
   position:relative;
@@ -577,9 +578,86 @@ a{color:inherit}
     padding:7px 12px;
   }
 }
+
+.pwa-install-card{
+  position:fixed;
+  left:16px;
+  bottom:16px;
+  width:min(350px,calc(100% - 32px));
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:rgba(255,255,255,.96);
+  box-shadow:0 16px 38px rgba(52,101,116,.16);
+  backdrop-filter:blur(14px);
+  z-index:9997;
+}
+.pwa-install-card[hidden]{display:none!important}
+.pwa-install-title{
+  margin:0 0 5px;
+  color:#315F6E;
+  font-size:.94rem;
+  font-weight:800;
+}
+.pwa-install-text{
+  margin:0;
+  color:#667A82;
+  font-size:.79rem;
+  line-height:1.55;
+}
+.pwa-install-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:12px;
+}
+.pwa-install-actions button{
+  border:1px solid var(--line);
+  border-radius:10px;
+  min-height:38px;
+  padding:8px 12px;
+  font:inherit;
+  font-size:.78rem;
+  font-weight:700;
+  cursor:pointer;
+  background:#fff;
+  color:var(--blue-dark);
+}
+.pwa-install-actions .pwa-install-primary{
+  background:var(--blue-dark);
+  border-color:var(--blue-dark);
+  color:#fff;
+}
+.pwa-ios-steps{
+  display:none;
+  margin-top:10px;
+  padding-top:10px;
+  border-top:1px solid var(--line);
+  color:#667A82;
+  font-size:.76rem;
+  line-height:1.6;
+}
+.pwa-ios-steps.is-open{display:block}
+@media(max-width:760px){
+  .pwa-install-card{
+    left:10px;
+    bottom:70px;
+    width:calc(100% - 20px);
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .falling-sticker{display:none!important}
+  *,*::before,*::after{
+    scroll-behavior:auto!important;
+    animation-duration:.001ms!important;
+    animation-iteration-count:1!important;
+  }
+}
+
 </style>
 </head>
 <body>
+<div class="sticker-fall-layer" id="stickerFallLayer" aria-hidden="true"></div>
 
 <div class="topbar">
   <div class="container topbar-inner">
@@ -634,10 +712,6 @@ a{color:inherit}
           <a class="btn btn-light" href="#gioi-thieu">Tìm hiểu lớp</a>
         </div>
       </div>
-
-      <div class="hero-sticker" aria-hidden="true">
-        <img src="meow-meow-sticker.png" alt="">
-      </div>
     </div>
   </div>
 </header>
@@ -690,7 +764,7 @@ a{color:inherit}
 
         <div class="teacher-card" id="lien-he">
           <div class="section-kicker">GIÁO VIÊN · 联系方式</div>
-          <h3>Nguyễn Thu Hương</h3>
+          <h3>Cô Nguyễn Thu Hương</h3>
           <p>Số điện thoại: <a href="tel:0905878295">0905.878.295</a></p>
           <p>Email: <a href="mailto:ngthuhuong139@gmail.com">ngthuhuong139@gmail.com</a></p>
         </div>
@@ -799,6 +873,21 @@ a{color:inherit}
 </div>
 
 
+
+<div class="pwa-install-card" id="pwaInstallCard" hidden>
+  <div class="pwa-install-title">Cài Meow Meow lên điện thoại</div>
+  <p class="pwa-install-text" id="pwaInstallText">
+    Mở bài học nhanh hơn ngay từ màn hình chính.
+  </p>
+  <div class="pwa-install-actions">
+    <button class="pwa-install-primary" id="pwaInstallBtn" type="button">Cài ngay</button>
+    <button id="pwaInstallLater" type="button">Để sau</button>
+  </div>
+  <div class="pwa-ios-steps" id="pwaIosSteps">
+    Trên iPhone/iPad: mở trang này bằng Safari → chọn Chia sẻ → Thêm vào Màn hình chính.
+  </div>
+</div>
+
 <div class="chatbox" id="chatbox">
   <div class="chatbox-header">
     <div class="chat-avatar">🐱</div>
@@ -868,6 +957,126 @@ function openChat(){
 
   window.addEventListener('resize', function(){
     if(window.innerWidth > 760) setMenu(false);
+  });
+})();
+</script>
+
+<script>
+(function(){
+  const layer = document.getElementById('stickerFallLayer');
+  if(!layer) return;
+
+  const isMobile = window.matchMedia('(max-width: 760px)').matches;
+  const count = isMobile ? 14 : 22;
+
+  function random(min, max){
+    return Math.random() * (max - min) + min;
+  }
+
+  const frag = document.createDocumentFragment();
+  for(let i = 0; i < count; i++) {
+    const item = document.createElement('span');
+    item.className = 'falling-sticker';
+
+    const size = isMobile ? random(26, 56) : random(34, 74);
+    const opacity = random(0.10, 0.26).toFixed(2);
+    const blur = random(0.8, 2.6).toFixed(2) + 'px';
+    const delay = random(-18, 0).toFixed(2) + 's';
+    const duration = random(14, 26).toFixed(2) + 's';
+    const swayDuration = random(4.8, 8.6).toFixed(2) + 's';
+    const glowDuration = random(2.8, 5.2).toFixed(2) + 's';
+    const left = random(0, 100).toFixed(2) + '%';
+    const drift = random(-80, 80).toFixed(0) + 'px';
+    const rotate = random(140, 420).toFixed(0) + 'deg';
+    const scale = random(0.75, 1.15).toFixed(2);
+
+    item.style.setProperty('--size', size + 'px');
+    item.style.setProperty('--opacity', opacity);
+    item.style.setProperty('--blur', blur);
+    item.style.setProperty('--delay', delay);
+    item.style.setProperty('--duration', duration);
+    item.style.setProperty('--sway-duration', swayDuration);
+    item.style.setProperty('--glow-duration', glowDuration);
+    item.style.setProperty('--left', left);
+    item.style.setProperty('--drift', drift);
+    item.style.setProperty('--rotate', rotate);
+    item.style.setProperty('--scale', scale);
+
+    frag.appendChild(item);
+  }
+
+  layer.innerHTML = '';
+  layer.appendChild(frag);
+})();
+</script>
+
+<script>
+(function(){
+  if('serviceWorker' in navigator){
+    window.addEventListener('load', function(){
+      navigator.serviceWorker.register('./service-worker.js').catch(function(){});
+    });
+  }
+
+  const card = document.getElementById('pwaInstallCard');
+  const installBtn = document.getElementById('pwaInstallBtn');
+  const laterBtn = document.getElementById('pwaInstallLater');
+  const text = document.getElementById('pwaInstallText');
+  const iosSteps = document.getElementById('pwaIosSteps');
+  if(!card || !installBtn || !laterBtn) return;
+
+  const isStandalone =
+    window.matchMedia('(display-mode: standalone)').matches ||
+    window.navigator.standalone === true;
+
+  if(isStandalone) return;
+
+  const dismissedAt = Number(localStorage.getItem('meowPwaInstallDismissedAt') || 0);
+  const dismissedRecently = Date.now() - dismissedAt < 7 * 24 * 60 * 60 * 1000;
+
+  const ua = navigator.userAgent || '';
+  const isIOS = /iphone|ipad|ipod/i.test(ua);
+  let deferredPrompt = null;
+
+  function showCard(){
+    if(!dismissedRecently) card.hidden = false;
+  }
+
+  window.addEventListener('beforeinstallprompt', function(event){
+    event.preventDefault();
+    deferredPrompt = event;
+    installBtn.textContent = 'Cài ngay';
+    showCard();
+  });
+
+  if(isIOS){
+    installBtn.textContent = 'Xem cách cài';
+    text.textContent = 'Thêm Meow Meow vào màn hình chính để mở bài nhanh hơn.';
+    showCard();
+
+    installBtn.addEventListener('click', function(){
+      iosSteps.classList.toggle('is-open');
+    });
+  }else{
+    installBtn.addEventListener('click', async function(){
+      if(!deferredPrompt) return;
+      deferredPrompt.prompt();
+      try{
+        const choice = await deferredPrompt.userChoice;
+        if(choice && choice.outcome === 'accepted') card.hidden = true;
+      }catch(e){}
+      deferredPrompt = null;
+    });
+  }
+
+  laterBtn.addEventListener('click', function(){
+    localStorage.setItem('meowPwaInstallDismissedAt', String(Date.now()));
+    card.hidden = true;
+  });
+
+  window.addEventListener('appinstalled', function(){
+    card.hidden = true;
+    deferredPrompt = null;
   });
 })();
 </script>
