@@ -639,6 +639,26 @@ a{color:inherit}
   }
 }
 
+
+.mock-review{
+  margin-top:18px;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#FFFFFF 0%,#F2F7FC 65%,#EAF3FA 100%);
+  border:1px solid #D5E3EF;border-radius:24px;padding:27px 28px;
+  box-shadow:0 15px 40px rgba(51,92,130,.09);
+  display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;
+}
+.mock-review:after{
+  content:"考";position:absolute;right:28px;bottom:-31px;
+  font-family:"Noto Serif SC",serif;font-size:7.6rem;font-weight:700;
+  color:rgba(41,74,122,.05);pointer-events:none;line-height:1;
+}
+.mock-review-copy{position:relative;z-index:1;max-width:760px}
+.mock-review h3{margin:7px 0 7px;font-family:"Noto Serif SC","Be Vietnam Pro",serif;font-size:1.65rem;font-weight:600;color:#344F69}
+.mock-review p{margin:0;color:#687783;font-size:.91rem;line-height:1.7}
+.mock-review-meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}
+.mock-review-action{position:relative;z-index:2;min-width:185px}
+@media(max-width:760px){.mock-review{grid-template-columns:1fr;padding:23px}.mock-review-action{min-width:0}.mock-review-action .btn{width:100%}}
+
 </style>
 </head>
 <body>
@@ -659,6 +679,7 @@ a{color:inherit}
       <a href="#khoa-hoc">Bài học</a>
       <a href="#on-tu-vung">Ôn từ vựng</a>
       <a href="#luyen-noi">Luyện nói</a>
+      <a href="#thi-thu">Thi thử</a>
       <a href="login.html?next=game.html">Trò chơi</a>
       <a href="#lien-he">Liên hệ</a>
       <a href="login.html">Đăng nhập</a>
@@ -680,6 +701,7 @@ a{color:inherit}
       <a href="#khoa-hoc">Bài học</a>
       <a href="#on-tu-vung">Ôn từ vựng</a>
       <a href="#luyen-noi">Luyện nói</a>
+      <a href="#thi-thu">Thi thử</a>
       <a href="login.html?next=game.html">Trò chơi</a>
       <a href="#lien-he">Liên hệ</a>
       <a href="login.html">Đăng nhập</a>
@@ -850,6 +872,24 @@ a{color:inherit}
         </div>
         <div class="speaking-review-action">
           <a class="btn btn-primary" href="login.html?next=speaking.html">Luyện nói ngay</a>
+        </div>
+      </div>
+
+      
+      <div class="mock-review" id="thi-thu">
+        <div class="mock-review-copy">
+          <div class="section-kicker">THI THỬ · 模拟考试</div>
+          <h3>Phòng thi thử HSK Meow Meow</h3>
+          <p>Cùng Meow Meow chinh chiến HSK nhé</p>
+          <div class="mock-review-meta">
+            <span class="tag">HSK1 → HSK4</span>
+            <span class="tag">HSK4 có 10 đề</span>
+            <span class="tag">100 câu / đề</span>
+            <span class="tag">Đếm giờ</span>
+          </div>
+        </div>
+        <div class="mock-review-action">
+          <a class="btn btn-primary" href="login.html?next=mock-test-v5.html">Vào phòng thi</a>
         </div>
       </div>
 
