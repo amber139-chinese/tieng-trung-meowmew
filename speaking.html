@@ -164,7 +164,7 @@ Nào cùng bắt chước Meow Meow học tiếng Trung nha các bây bi ơiii
       <ul id="phonemeIssues"></ul>
     </section>
   </div>
-  <div class="tech-note" id="techNote" hidden></div>
+ 
 </div></section><div class="demo-note"></div><div class="next-row"><button class="btn primary" id="nextBtn">Random câu khác</button></div>
 <section class="ranking-wrap" id="speakingRanking">
   <div class="ranking-head">
@@ -607,8 +607,6 @@ function render(j){
     [...(d.initials?.issues||[]),...(d.finals?.issues||[])]
   );
 
-  $('techNote').hidden=false;
-  $('techNote').textContent=j.capabilities?.note||'';
 
   $('resultPanel').classList.add('show');
   $('resultPanel').scrollIntoView({
