@@ -114,7 +114,7 @@ body{
 .voice-select{min-height:40px;max-width:100%;padding:8px 11px;border:1px solid #ead2db;border-radius:11px;background:#fff;color:#5d3e4a;font:inherit;font-size:.84rem;font-weight:700}
 .voice-note{margin-top:8px;color:#8b737c;font-size:.74rem;line-height:1.55}
 </style></head><body>
-<div class="container top"><a class="back" href="index.html">← Về trang chủ</a></div><header class="hero container"><div class="kicker">跟读练习 · LUYỆN NÓI</div><h1>Khu chúng mình cùng luyện nói với Meow Meow</h1><p></p><div class="filters"><button class="chip active" data-level="ALL">Tất cả</button><button class="chip" data-level="HSK1">HSK1</button><button class="chip" data-level="HSK4">HSK4</button></div></header>
+<div class="container top"><a class="back" href="index.html">← Về trang chủ</a></div><header class="hero container"><div class="kicker">跟读练习 · LUYỆN NÓI</div><h1>Khu chúng mình cùng luyện nói với Meow Meow</h1><p>Random một câu từ chính các bài HSK1 và HSK4. Nghe mẫu, đọc lại, nghe giọng của mình rồi xem chỗ nào cần luyện thêm.</p><div class="filters"><button class="chip active" data-level="ALL">Tất cả</button><button class="chip" data-level="HSK1">HSK1</button><button class="chip" data-level="HSK4">HSK4</button></div></header>
 <main class="container"><section class="card"><div class="source"><span id="sourceLabel"></span><span id="bankCount"></span></div><div class="cn" id="sentenceCn"></div><div class="pinyin" id="sentencePinyin"></div><div class="vi" id="sentenceVi"></div><div class="voice-box">
 <div class="voice-box-title">GIỌNG MẪU MEOW MEOW</div>
 <div class="voice-note">
@@ -164,7 +164,7 @@ Nào cùng bắt chước Meow Meow học tiếng Trung nha các bây bi ơiii
       <ul id="phonemeIssues"></ul>
     </section>
   </div>
- 
+  <div class="tech-note" id="techNote" hidden></div>
 </div></section><div class="demo-note"></div><div class="next-row"><button class="btn primary" id="nextBtn">Random câu khác</button></div>
 <section class="ranking-wrap" id="speakingRanking">
   <div class="ranking-head">
@@ -421,7 +421,7 @@ async function toWav16k(blob){
   return new Blob([ab],{type:'audio/wav'});
 }
 
-function cls(n){return n>=80?'ok':n>=60?'warn':'bad'}
+function cls(n){return !Number.isFinite(Number(n))?'warn':n>=80?'ok':n>=60?'warn':'bad'}
 
 function issues(id,a){
   $(id).innerHTML=(a||[])
@@ -472,6 +472,17 @@ function intScore(v){
 
 async function saveSpeakingResult(j){
   if(savedAttemptId===recordAttemptId)return;
+
+  if(!j?.valid){
+    $('saveStatus').textContent='Lần ghi âm này chưa hợp lệ nên không lưu vào bảng xếp hạng.';
+    return;
+  }
+
+  if(!j?.rankEligible || !Number.isFinite(Number(j?.pronunciation?.PronScore))){
+    $('saveStatus').textContent='Lần đọc này chưa đủ điều kiện để lưu ranking. Đọc đủ câu và rõ hơn rồi thử lại nha.';
+    return;
+  }
+
   const auth=await waitForMeowClient();
   if(!auth || !current)return;
 
@@ -482,10 +493,10 @@ async function saveSpeakingResult(j){
     level:current.level,
     lesson_no:Number(current.lesson)||1,
     sentence:current.cn,
-    pron_score:intScore(p.PronScore)??0,
-    accuracy_score:intScore(p.AccuracyScore)??0,
-    fluency_score:intScore(p.FluencyScore)??0,
-    completeness_score:intScore(p.CompletenessScore)??0,
+    pron_score:intScore(p.PronScore),
+    accuracy_score:intScore(p.AccuracyScore),
+    fluency_score:intScore(p.FluencyScore),
+    completeness_score:intScore(p.CompletenessScore),
     tone_score:intScore(d.tones?.score),
     intonation_score:intScore(d.intonation?.score),
     pause_score:intScore(d.pauses?.score),
@@ -549,7 +560,7 @@ async function loadSpeakingRanking(){
   }
 
   if(!data?.length){
-    listEl.innerHTML='<div class="rank-empty">Bảng xếp hạng đang chờ chủ nhân đầu tiên nè 😸 Cùng thử sức thôi nào!</div>';
+    listEl.innerHTML='<div class="rank-empty">Chưa có điểm nào. Người đầu tiên lên bảng có thể là m đó 😼</div>';
     return;
   }
 
@@ -574,6 +585,25 @@ async function loadSpeakingRanking(){
 
 function render(j){
   const p=j.pronunciation||{};
+  if(j?.valid===false){
+    $('pronScore').textContent='--';
+    $('accuracyScore').textContent='--';
+    $('fluencyScore').textContent='--';
+    $('completenessScore').textContent='--';
+    $('wordResults').innerHTML='';
+    $('feedback').textContent=j.summary?.message||'Bản ghi chưa đủ điều kiện để chấm.';
+    ['initial','final','tone','intonation','pause'].forEach(prefix=>{
+      $(prefix+'Score').textContent='--';
+      $(prefix+'Feedback').textContent='Chưa đủ dữ liệu để chấm.';
+      issues(prefix+'Issues',[]);
+    });
+    $('phonemeScore').textContent='--';
+    $('phonemeFeedback').textContent='Chưa đủ dữ liệu để chấm phần âm nhỏ.';
+    issues('phonemeIssues',[]);
+    $('resultPanel').classList.add('show');
+    $('resultPanel').scrollIntoView({behavior:'smooth',block:'nearest'});
+    return;
+  }
 
   $('pronScore').textContent=Math.round(p.PronScore||0);
   $('accuracyScore').textContent=Math.round(p.AccuracyScore||0);
@@ -581,7 +611,7 @@ function render(j){
   $('completenessScore').textContent=Math.round(p.CompletenessScore||0);
 
   $('wordResults').innerHTML=(j.words||[])
-    .map(w=>`<span class="word ${cls(w.accuracy)}">${w.word}<small>${Math.round(w.accuracy)}/100</small></span>`)
+    .map(w=>`<span class="word ${cls(w.accuracy)}">${w.word}<small>${Number.isFinite(Number(w.accuracy))?Math.round(Number(w.accuracy))+'/100':'--'}</small></span>`)
     .join('');
 
   $('feedback').textContent=j.summary?.message||'';
@@ -607,6 +637,8 @@ function render(j){
     [...(d.initials?.issues||[]),...(d.finals?.issues||[])]
   );
 
+  $('techNote').hidden=false;
+  $('techNote').textContent=j.capabilities?.note||'';
 
   $('resultPanel').classList.add('show');
   $('resultPanel').scrollIntoView({
