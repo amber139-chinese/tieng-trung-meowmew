@@ -61,6 +61,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+  .brand-title{
+  display:flex;
+  flex-direction:column;
+  line-height:1.25;
+}
+
+.brand-cn{
+  margin-top:3px;
+  font-size:.82em;
+  font-weight:600;
+}
 :root{
   --blue:#6FAFC4;
   --blue-2:#8CC8D6;
@@ -634,8 +645,14 @@ a{color:inherit}
   <div class="container topbar-inner">
     <a class="logo" href="index.html" aria-label="Tiếng Trung Meow Meow">
       <span class="logo-mark">喵</span>
-      <span>TIẾNG TRUNG MEOW MEOW ·
-        中文课堂</span>
+
+      <div class="brand-title">
+        <span>TIẾNG TRUNG MEOW MEOW ·</span>
+        <span class="brand-cn">中文课堂</span>
+      </div>
+    </a>
+  </div>
+</div>
     </a>
     <div class="nav">
       <a href="#gioi-thieu">Giới thiệu</a>
