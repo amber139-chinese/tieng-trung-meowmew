@@ -1,4 +1,4 @@
-window.MEOW_SENTENCE_BANK = [
+[
   {
     "level": "HSK1",
     "lesson": 1,
@@ -1087,4 +1087,4 @@ window.MEOW_SENTENCE_BANK = [
     "source": "HSK4 · Bài 20",
     "audio": "audio/speaking/0136.mp3"
   }
-];
+]
