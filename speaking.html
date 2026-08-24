@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Khu chúng mình cùng luyện nói với Meow Meow</title><meta name="theme-color" content="#F5A9C2"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -61,9 +62,22 @@ body{
 @media(max-width:720px){.detail-grid{grid-template-columns:1fr}}
 @media(max-width:640px){.hero{padding-top:24px}.card{border-radius:22px}.scores{grid-template-columns:repeat(2,1fr)}.toolbar>.btn{flex:1 1 46%}.source{align-items:flex-start}.cn{margin-top:24px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important}}
+
+.voice-box{margin:16px 0 12px;padding:14px;border:1px solid #f0d6df;border-radius:16px;background:linear-gradient(135deg,#fff,#fff7fa)}
+.voice-box-title{font-size:.78rem;font-weight:800;color:#9f3f5d;letter-spacing:.05em;margin-bottom:9px}
+.voice-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.voice-select{min-height:40px;max-width:100%;padding:8px 11px;border:1px solid #ead2db;border-radius:11px;background:#fff;color:#5d3e4a;font:inherit;font-size:.84rem;font-weight:700}
+.voice-note{margin-top:8px;color:#8b737c;font-size:.74rem;line-height:1.55}
 </style></head><body>
 <div class="container top"><a class="back" href="index.html">← Về trang chủ</a></div><header class="hero container"><div class="kicker">跟读练习 · LUYỆN NÓI</div><h1>Khu chúng mình cùng luyện nói với Meow Meow</h1><p>Random một câu từ chính các bài HSK1 và HSK4. Nghe mẫu, đọc lại, nghe giọng của mình rồi xem chỗ nào cần luyện thêm.</p><div class="filters"><button class="chip active" data-level="ALL">Tất cả</button><button class="chip" data-level="HSK1">HSK1</button><button class="chip" data-level="HSK4">HSK4</button></div></header>
-<main class="container"><section class="card"><div class="source"><span id="sourceLabel"></span><span id="bankCount"></span></div><div class="cn" id="sentenceCn"></div><div class="pinyin" id="sentencePinyin"></div><div class="vi" id="sentenceVi"></div><div class="toolbar"><button class="btn primary" id="listenBtn">Nghe câu mẫu</button><div class="speed"><button class="btn on" data-speed="0.82">0.8x</button><button class="btn" data-speed="1">1x</button></div><button class="btn" id="togglePinyin">Ẩn pinyin</button><button class="btn record" id="recordBtn">Bắt đầu ghi âm</button></div><div class="record-panel"><div class="record-status" id="recordStatus">Bấm “Bắt đầu ghi âm”, đọc câu trên rồi bấm dừng.</div><audio id="myAudio" controls hidden></audio><div style="margin-top:12px"><button class="btn primary" id="gradeBtn" disabled>Chấm phát âm</button></div></div><div class="result" id="resultPanel">
+<main class="container"><section class="card"><div class="source"><span id="sourceLabel"></span><span id="bankCount"></span></div><div class="cn" id="sentenceCn"></div><div class="pinyin" id="sentencePinyin"></div><div class="vi" id="sentenceVi"></div><div class="voice-box">
+<div class="voice-box-title">GIỌNG MẪU MEOW MEOW</div>
+<div class="voice-note">
+Cùng bắt chước tiếng Meow Meow học tiếng Trung nha các bây bi ơi
+</div>
+<audio id="sampleAudio" preload="none"></audio>
+</div>
+<div class="toolbar"><button class="btn primary" id="listenBtn">Nghe câu mẫu</button><div class="speed"><button class="btn on" data-speed="0.85">0.85x</button><button class="btn" data-speed="1">1x</button></div><button class="btn" id="togglePinyin">Ẩn pinyin</button><button class="btn record" id="recordBtn">Bắt đầu ghi âm</button></div><div class="record-panel"><div class="record-status" id="recordStatus">Bấm “Bắt đầu ghi âm”, đọc câu trên rồi bấm dừng.</div><audio id="myAudio" controls hidden></audio><div style="margin-top:12px"><button class="btn primary" id="gradeBtn" disabled>Chấm phát âm</button></div></div><div class="result" id="resultPanel">
   <h2 class="result-title">Meow Meow nghe xong rồi nè</h2>
   <div class="scores">
     <div class="score"><strong id="pronScore">--</strong><span>Tổng điểm</span></div>
@@ -106,92 +120,355 @@ body{
     </section>
   </div>
   <div class="tech-note" id="techNote" hidden></div>
-</div></section><div class="demo-note">Bản V1: Azure chấm phát âm theo từ/phoneme; Meow Meow phân tích thêm thanh mẫu, vận mẫu, thanh điệu, ngữ điệu và ngắt nghỉ để đưa nhận xét cụ thể.</div><div class="next-row"><button class="btn primary" id="nextBtn">Random câu khác</button></div></main><div class="toast" id="toast"></div>
-<script src="https://cdn.jsdelivr.net/npm/pinyin-pro@3.26.0/dist/index.js"></script><script src="sentence-bank.js"></script><script src="meow-auth.js" onerror="console.info('Meow auth chưa có')"></script><script src="meow-speaking-analyzer.js"></script>
+</div></section><div class="demo-note">Giọng mẫu neural được tạo sẵn; phần chấm phát âm chạy trực tiếp trên trình duyệt, không cần Azure và không có phí theo lượt.</div><div class="next-row"><button class="btn primary" id="nextBtn">Random câu khác</button></div></main><div class="toast" id="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/pinyin-pro@3.26.0/dist/index.js"></script><script src="sentence-bank.js"></script><script src="meow-auth.js" onerror="console.info('Meow auth chưa có')"></script><script src="meow-speaking-free-analyzer.js"></script>
+
 <script>
-const SUPABASE_URL='https://xmtvmwcjjqqzscmkdlwd.supabase.co',TTS_URL=SUPABASE_URL+'/functions/v1/speech-tts',ASSESS_URL=SUPABASE_URL+'/functions/v1/pronunciation-assessment';let selectedLevel='ALL',current=null,lastKey='',speed=.82,recordedBlob=null,wavBlob=null,mediaRecorder=null,chunks=[];const $=id=>document.getElementById(id);function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600)}function list(){return(window.MEOW_SENTENCE_BANK||[]).filter(x=>selectedLevel==='ALL'||x.level===selectedLevel)}function resetResult(){$('resultPanel').classList.remove('show');$('wordResults').innerHTML='';$('feedback').textContent='';['initialIssues','finalIssues','toneIssues','intonationIssues','pauseIssues','phonemeIssues'].forEach(id=>$(id).innerHTML='');['initialScore','finalScore','toneScore','intonationScore','pauseScore','phonemeScore'].forEach(id=>$(id).textContent='--');$('techNote').hidden=true;$('techNote').textContent=''}function resetRecording(){recordedBlob=null;wavBlob=null;$('myAudio').hidden=true;$('myAudio').removeAttribute('src');$('gradeBtn').disabled=true;$('recordStatus').textContent='Bấm “Bắt đầu ghi âm”, đọc câu trên rồi bấm dừng.'}function renderRandom(){const arr=list();if(!arr.length)return;let item=arr[Math.floor(Math.random()*arr.length)];if(arr.length>1){while(item.level+'-'+item.lesson+'-'+item.cn===lastKey)item=arr[Math.floor(Math.random()*arr.length)]}current=item;lastKey=item.level+'-'+item.lesson+'-'+item.cn;$('sourceLabel').textContent=item.source;$('bankCount').textContent=arr.length+' câu';$('sentenceCn').textContent=item.cn;try{$('sentencePinyin').textContent=window.pinyinPro.pinyin(item.cn,{toneType:'symbol',type:'string'});}catch(e){$('sentencePinyin').textContent=''}$('sentenceVi').textContent=item.vi||'';resetRecording();resetResult()}function browserSpeak(){speakText(current.cn,speed)}async function speakText(text,rate=.82){try{const headers=await authHeaders();headers['Content-Type']='application/json';const r=await fetch(TTS_URL,{method:'POST',headers,body:JSON.stringify({text,rate})});if(r.ok){const b=await r.blob();new Audio(URL.createObjectURL(b)).play();return}}catch(e){}if(!('speechSynthesis'in window)){toast('Thiết bị này chưa hỗ trợ giọng đọc.');return}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='zh-CN';u.rate=rate;const voices=speechSynthesis.getVoices(),zh=voices.find(v=>/^zh-CN/i.test(v.lang))||voices.find(v=>/^zh/i.test(v.lang));if(zh)u.voice=zh;speechSynthesis.speak(u)}async function authHeaders(){try{if(window.meowSupabase){const{data}=await window.meowSupabase.auth.getSession();if(data?.session)return{'Authorization':'Bearer '+data.session.access_token}}}catch(e){}return{}}async function listenAzure(){const btn=$('listenBtn');btn.disabled=true;btn.textContent='Đang lấy giọng...';try{await speakText(current.cn,speed)}finally{btn.disabled=false;btn.textContent='Nghe câu mẫu'}}async function startRecord(){if(!navigator.mediaDevices?.getUserMedia){toast('Trình duyệt chưa cho phép ghi âm.');return}try{const stream=await navigator.mediaDevices.getUserMedia({audio:true});const mime=['audio/webm;codecs=opus','audio/mp4','audio/webm'].find(x=>MediaRecorder.isTypeSupported(x))||'';mediaRecorder=new MediaRecorder(stream,mime?{mimeType:mime}:undefined);chunks=[];mediaRecorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};mediaRecorder.onstop=async()=>{stream.getTracks().forEach(t=>t.stop());recordedBlob=new Blob(chunks,{type:mediaRecorder.mimeType||'audio/webm'});$('myAudio').src=URL.createObjectURL(recordedBlob);$('myAudio').hidden=false;$('recordStatus').textContent='Đã ghi xong. Nghe lại giọng của mình hoặc bấm “Chấm phát âm”.';try{wavBlob=await toWav16k(recordedBlob);$('gradeBtn').disabled=false}catch(e){toast('Không chuyển được audio để chấm trên thiết bị này.')}};mediaRecorder.start();$('recordBtn').textContent='Dừng ghi âm';$('recordBtn').classList.add('is-recording');$('recordStatus').textContent='Đang ghi... đọc câu trên một lần tự nhiên nha.'}catch(e){toast('Cần cho phép micro để ghi âm.')}}function stopRecord(){if(mediaRecorder&&mediaRecorder.state==='recording')mediaRecorder.stop();$('recordBtn').textContent='Bắt đầu ghi âm';$('recordBtn').classList.remove('is-recording')}async function toWav16k(blob){const buf=await blob.arrayBuffer(),ctx=new(window.AudioContext||window.webkitAudioContext)(),audio=await ctx.decodeAudioData(buf.slice(0)),offline=new OfflineAudioContext(1,Math.ceil(audio.duration*16000),16000),src=offline.createBufferSource();src.buffer=audio;src.connect(offline.destination);src.start();const rendered=await offline.startRendering();await ctx.close();const data=rendered.getChannelData(0),ab=new ArrayBuffer(44+data.length*2),v=new DataView(ab),ws=(o,s)=>{for(let i=0;i<s.length;i++)v.setUint8(o+i,s.charCodeAt(i))};ws(0,'RIFF');v.setUint32(4,36+data.length*2,true);ws(8,'WAVE');ws(12,'fmt ');v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,16000,true);v.setUint32(28,32000,true);v.setUint16(32,2,true);v.setUint16(34,16,true);ws(36,'data');v.setUint32(40,data.length*2,true);let o=44;for(let i=0;i<data.length;i++,o+=2){const s=Math.max(-1,Math.min(1,data[i]));v.setInt16(o,s<0?s*0x8000:s*0x7fff,true)}return new Blob([ab],{type:'audio/wav'})}function scoreClass(n){return n>=80?'ok':n>=60?'warn':'bad'}function issueList(id,items){const el=$(id);el.innerHTML=(items||[]).slice(0,5).map(x=>`<li>${x}</li>`).join('')}
-function setDetail(prefix,data,fallback){const score=$(prefix+'Score'),fb=$(prefix+'Feedback');if(data&&Number.isFinite(Number(data.score)))score.textContent=Math.round(Number(data.score))+'/100';else score.textContent='--';fb.textContent=(data&&data.message)||fallback;issueList(prefix+'Issues',(data&&data.issues)||[])}
-function renderResult(j){
+let selectedLevel='ALL',current=null,lastKey='',speed=.85;
+let recordedBlob=null,wavBlob=null,mediaRecorder=null,chunks=[],recognizedText='',recognition=null;
+
+const $=id=>document.getElementById(id);
+
+function toast(m){
+  const t=$('toast');
+  t.textContent=m;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2600);
+}
+
+function list(){
+  return (window.MEOW_SENTENCE_BANK||[]).filter(
+    x=>selectedLevel==='ALL'||x.level===selectedLevel
+  );
+}
+
+function resetResult(){
+  $('resultPanel').classList.remove('show');
+  $('wordResults').innerHTML='';
+  $('feedback').textContent='';
+  ['initialIssues','finalIssues','toneIssues','intonationIssues','pauseIssues','phonemeIssues']
+    .forEach(id=>$(id).innerHTML='');
+  ['initialScore','finalScore','toneScore','intonationScore','pauseScore','phonemeScore']
+    .forEach(id=>$(id).textContent='--');
+  $('techNote').hidden=true;
+}
+
+function resetRecording(){
+  recordedBlob=null;
+  wavBlob=null;
+  recognizedText='';
+  $('myAudio').hidden=true;
+  $('myAudio').removeAttribute('src');
+  $('gradeBtn').disabled=true;
+  $('recordStatus').textContent='Bấm “Bắt đầu ghi âm”, đọc câu trên rồi bấm dừng.';
+}
+
+function prepareSampleAudio(){
+  const a=$('sampleAudio');
+  a.pause();
+  a.removeAttribute('src');
+  a.playbackRate=speed;
+  if(current?.audio) a.src=current.audio;
+}
+
+function randomSentence(){
+  const a=list();
+  if(!a.length)return;
+
+  let x=a[Math.floor(Math.random()*a.length)];
+  if(a.length>1){
+    while(x.level+'-'+x.lesson+'-'+x.cn===lastKey){
+      x=a[Math.floor(Math.random()*a.length)];
+    }
+  }
+
+  current=x;
+  lastKey=x.level+'-'+x.lesson+'-'+x.cn;
+  $('sourceLabel').textContent=x.source;
+  $('bankCount').textContent=a.length+' câu';
+  $('sentenceCn').textContent=x.cn;
+
+  try{
+    $('sentencePinyin').textContent=pinyinPro.pinyin(
+      x.cn,{toneType:'symbol',type:'string'}
+    );
+  }catch(e){
+    $('sentencePinyin').textContent='';
+  }
+
+  $('sentenceVi').textContent=x.vi||'';
+  prepareSampleAudio();
+  resetRecording();
+  resetResult();
+}
+
+async function playSample(){
+  if(!current?.audio){
+    toast('Câu này chưa có file giọng mẫu.');
+    return;
+  }
+
+  const a=$('sampleAudio');
+  if(!a.src) a.src=current.audio;
+  a.playbackRate=speed;
+  a.currentTime=0;
+
+  try{
+    await a.play();
+  }catch(e){
+    toast('Chưa có audio câu này. Chạy workflow Generate Speaking Audio trước nha.');
+  }
+}
+
+function makeRecognition(){
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR)return null;
+
+  const r=new SR();
+  r.lang='zh-CN';
+  r.continuous=false;
+  r.interimResults=false;
+  r.maxAlternatives=1;
+
+  r.onresult=e=>{
+    recognizedText=Array.from(e.results)
+      .map(x=>x[0]?.transcript||'')
+      .join('');
+
+    if(recognizedText){
+      $('recordStatus').textContent=
+        `Trình duyệt nghe được: “${recognizedText}”. Giờ bấm Chấm phát âm.`;
+    }
+  };
+  r.onerror=()=>{};
+  return r;
+}
+
+async function startRecord(){
+  try{
+    const stream=await navigator.mediaDevices.getUserMedia({
+      audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true}
+    });
+
+    const mime=[
+      'audio/webm;codecs=opus',
+      'audio/mp4',
+      'audio/webm'
+    ].find(x=>MediaRecorder.isTypeSupported(x))||'';
+
+    mediaRecorder=new MediaRecorder(
+      stream,mime?{mimeType:mime}:undefined
+    );
+
+    chunks=[];
+    recognizedText='';
+    recognition=makeRecognition();
+    try{recognition?.start()}catch(e){}
+
+    mediaRecorder.ondataavailable=e=>{
+      if(e.data.size)chunks.push(e.data);
+    };
+
+    mediaRecorder.onstop=async()=>{
+      stream.getTracks().forEach(t=>t.stop());
+      try{recognition?.stop()}catch(e){}
+
+      recordedBlob=new Blob(
+        chunks,{type:mediaRecorder.mimeType||'audio/webm'}
+      );
+
+      $('myAudio').src=URL.createObjectURL(recordedBlob);
+      $('myAudio').hidden=false;
+
+      if(!recognizedText){
+        $('recordStatus').textContent=
+          'Đã ghi xong. Bấm Chấm phát âm để xem thanh điệu, ngữ điệu và nhịp câu.';
+      }
+
+      try{
+        wavBlob=await toWav16k(recordedBlob);
+        $('gradeBtn').disabled=false;
+      }catch(e){
+        toast('Không chuyển được audio trên thiết bị này.');
+      }
+    };
+
+    mediaRecorder.start();
+    $('recordBtn').textContent='Dừng ghi âm';
+    $('recordBtn').classList.add('is-recording');
+    $('recordStatus').textContent='Đang ghi... đọc một lần tự nhiên nha.';
+  }catch(e){
+    toast('Cần cho phép micro để ghi âm.');
+  }
+}
+
+function stopRecord(){
+  if(mediaRecorder?.state==='recording')mediaRecorder.stop();
+  $('recordBtn').textContent='Bắt đầu ghi âm';
+  $('recordBtn').classList.remove('is-recording');
+}
+
+async function toWav16k(blob){
+  const buf=await blob.arrayBuffer();
+  const ctx=new(window.AudioContext||window.webkitAudioContext)();
+  const audio=await ctx.decodeAudioData(buf.slice(0));
+  const offline=new OfflineAudioContext(
+    1,Math.ceil(audio.duration*16000),16000
+  );
+
+  const src=offline.createBufferSource();
+  src.buffer=audio;
+  src.connect(offline.destination);
+  src.start();
+
+  const rendered=await offline.startRendering();
+  await ctx.close();
+
+  const data=rendered.getChannelData(0);
+  const ab=new ArrayBuffer(44+data.length*2);
+  const v=new DataView(ab);
+
+  const ws=(o,s)=>{
+    for(let i=0;i<s.length;i++)v.setUint8(o+i,s.charCodeAt(i));
+  };
+
+  ws(0,'RIFF');
+  v.setUint32(4,36+data.length*2,true);
+  ws(8,'WAVE');
+  ws(12,'fmt ');
+  v.setUint32(16,16,true);
+  v.setUint16(20,1,true);
+  v.setUint16(22,1,true);
+  v.setUint32(24,16000,true);
+  v.setUint32(28,32000,true);
+  v.setUint16(32,2,true);
+  v.setUint16(34,16,true);
+  ws(36,'data');
+  v.setUint32(40,data.length*2,true);
+
+  for(let i=0,o=44;i<data.length;i++,o+=2){
+    const s=Math.max(-1,Math.min(1,data[i]));
+    v.setInt16(o,s<0?s*0x8000:s*0x7fff,true);
+  }
+
+  return new Blob([ab],{type:'audio/wav'});
+}
+
+function cls(n){return n>=80?'ok':n>=60?'warn':'bad'}
+
+function issues(id,a){
+  $(id).innerHTML=(a||[])
+    .slice(0,5)
+    .map(x=>'<li>'+x+'</li>')
+    .join('');
+}
+
+function detail(prefix,d,fallback){
+  $(prefix+'Score').textContent=
+    d&&Number.isFinite(Number(d.score))
+      ? Math.round(d.score)+'/100'
+      : '--';
+
+  $(prefix+'Feedback').textContent=d?.message||fallback;
+  issues(prefix+'Issues',d?.issues||[]);
+}
+
+function render(j){
   const p=j.pronunciation||{};
-  $('pronScore').textContent=Math.round(p.PronScore??0);
-  $('accuracyScore').textContent=Math.round(p.AccuracyScore??0);
-  $('fluencyScore').textContent=Math.round(p.FluencyScore??0);
-  $('completenessScore').textContent=Math.round(p.CompletenessScore??0);
-  const words=j.words||[];
-  $('wordResults').innerHTML=words.map((w,i)=>{const s=Math.round(w.accuracy??0),err=w.errorType||'None';return`<button class="word ${scoreClass(s)}" data-word-index="${i}" title="Bấm để nghe từ này · ${err}">${w.word}<small>${s}/100</small></button>`}).join('');
-  $('wordResults').querySelectorAll('[data-word-index]').forEach(btn=>btn.addEventListener('click',()=>{const w=words[Number(btn.dataset.wordIndex)];if(w?.word) speakText(w.word,0.78)}));
-  const weak=words.filter(w=>(w.accuracy??100)<70).sort((a,b)=>a.accuracy-b.accuracy);
-  $('feedback').textContent=(j.summary&&j.summary.message)|| (weak.length?`Meow Meow nghe thấy ${weak.slice(0,3).map(w=>'“'+w.word+'”').join(', ')} chưa thật chắc. Mình xem từng mục bên dưới rồi đọc lại một lần nha.`:'Câu này khá ổn đó! Mình thử thêm một câu khác để giữ nhịp nha.');
+
+  $('pronScore').textContent=Math.round(p.PronScore||0);
+  $('accuracyScore').textContent=Math.round(p.AccuracyScore||0);
+  $('fluencyScore').textContent=Math.round(p.FluencyScore||0);
+  $('completenessScore').textContent=Math.round(p.CompletenessScore||0);
+
+  $('wordResults').innerHTML=(j.words||[])
+    .map(w=>`<span class="word ${cls(w.accuracy)}">${w.word}<small>${Math.round(w.accuracy)}/100</small></span>`)
+    .join('');
+
+  $('feedback').textContent=j.summary?.message||'';
 
   const d=j.detailedFeedback||{};
-  setDetail('initial',d.initials,'Chưa đủ dữ liệu để kết luận thanh mẫu. Khi bộ phân tích Mandarin hoạt động, Meow Meow sẽ chỉ đúng âm đầu cần sửa.');
-  setDetail('final',d.finals,'Chưa đủ dữ liệu để kết luận vận mẫu. Meow Meow sẽ tách phần vần và đánh dấu chỗ chưa chuẩn.');
-  setDetail('tone',d.tones,'Thanh điệu cần phân tích đường cao độ riêng; Meow Meow sẽ không đoán chỉ từ điểm phát âm chung.');
-  setDetail('intonation',d.intonation,'Ngữ điệu tiếng Trung sẽ được phân tích riêng bằng cao độ, tốc độ và nhịp câu.');
-  setDetail('pause',d.pauses,'Meow Meow sẽ dùng thời gian từng từ để phát hiện dừng quá lâu hoặc ngắt sai chỗ.');
+  detail('initial',d.initials,'Chưa đủ dữ liệu thanh mẫu.');
+  detail('final',d.finals,'Chưa đủ dữ liệu vận mẫu.');
+  detail('tone',d.tones,'Chưa đủ dữ liệu thanh điệu.');
+  detail('intonation',d.intonation,'Chưa đủ dữ liệu ngữ điệu.');
+  detail('pause',d.pauses,'Chưa đủ dữ liệu ngắt nghỉ.');
 
-  const lowPhones=[];
-  words.forEach(w=>(w.phonemes||[]).forEach(ph=>{if((ph.accuracy??100)<70)lowPhones.push(`${w.word}: ${ph.phoneme} (${Math.round(ph.accuracy||0)}/100)`)}));
-  const avgPhone=(()=>{const arr=[];words.forEach(w=>(w.phonemes||[]).forEach(ph=>arr.push(Number(ph.accuracy||0))));return arr.length?arr.reduce((a,b)=>a+b,0)/arr.length:null})();
-  $('phonemeScore').textContent=avgPhone==null?'--':Math.round(avgPhone)+'/100';
-  $('phonemeFeedback').textContent=lowPhones.length?'Có vài âm nhỏ đang kéo điểm xuống. Bấm nghe mẫu rồi luyện riêng các âm này trước sẽ dễ sửa hơn.':'Chưa thấy âm nào có điểm thấp rõ rệt.';
-  issueList('phonemeIssues',lowPhones);
+  const a=[d.initials?.score,d.finals?.score].filter(Number.isFinite);
+  $('phonemeScore').textContent=
+    a.length?Math.round(a.reduce((x,y)=>x+y,0)/a.length)+'/100':'--';
 
-  if(j.capabilities&&j.capabilities.note){$('techNote').hidden=false;$('techNote').textContent=j.capabilities.note}
+  $('phonemeFeedback').textContent=
+    a.length
+      ? 'Tổng hợp thanh mẫu + vận mẫu từ nhận dạng Mandarin của trình duyệt.'
+      : 'Chưa có transcript Mandarin nên chưa chấm phần âm nhỏ.';
+
+  issues(
+    'phonemeIssues',
+    [...(d.initials?.issues||[]),...(d.finals?.issues||[])]
+  );
+
+  $('techNote').hidden=false;
+  $('techNote').textContent=j.capabilities?.note||'';
+
   $('resultPanel').classList.add('show');
-  $('resultPanel').scrollIntoView({behavior:'smooth',block:'nearest'});
+  $('resultPanel').scrollIntoView({
+    behavior:'smooth',
+    block:'nearest'
+  });
 }
+
 async function grade(){
   if(!wavBlob)return;
-  const btn=$('gradeBtn');
-  btn.disabled=true;
-  btn.textContent='Meow Meow đang nghe...';
-  try{
-    const fd=new FormData();
-    fd.append('audio',wavBlob,'speech.wav');
-    fd.append('referenceText',current.cn);
-    const headers=await authHeaders();
-    const r=await fetch(ASSESS_URL,{method:'POST',headers,body:fd});
-    const j=await r.json().catch(()=>({}));
-    if(!r.ok)throw new Error(j.error||'Azure chưa được cấu hình');
 
-    let combined=j;
-    if(window.MeowSpeakingAnalyzer?.analyze){
-      try{
-        btn.textContent='Đang xem thanh điệu...';
-        const local=await window.MeowSpeakingAnalyzer.analyze({
-          wavBlob,
-          sentence:current.cn,
-          words:j.words||[],
-          timingGaps:j.timingGaps||[]
-        });
-        combined={
-          ...j,
-          summary:local.summary||j.summary,
-          detailedFeedback:{
-            ...(j.detailedFeedback||{}),
-            ...(local.detailedFeedback||{})
-          },
-          diagnostics:local.diagnostics,
-          capabilities:{
-            ...(j.capabilities||{}),
-            note:local.note||j.capabilities?.note
-          }
-        };
-      }catch(localError){
-        console.warn('Mandarin analyzer:',localError);
-      }
-    }
-    renderResult(combined);
+  const b=$('gradeBtn');
+  b.disabled=true;
+  b.textContent='Meow Meow đang nghe...';
+
+  try{
+    render(await MeowFreePronunciation.analyze({
+      wavBlob,
+      sentence:current.cn,
+      recognizedText
+    }));
   }catch(e){
-    $('resultPanel').classList.add('show');
-    $('feedback').textContent='Giao diện và bộ phân tích Mandarin đã sẵn sàng, nhưng Azure Speech chưa được kết nối nên Meow Meow chưa thể chấm điểm thật.';
-    $('techNote').hidden=false;
-    $('techNote').textContent='Cần cấu hình AZURE_SPEECH_KEY + AZURE_SPEECH_REGION và deploy 2 Edge Functions trong gói này. Sau đó Azure chấm từ/phoneme; bộ Mandarin Analyzer mới phân tích thêm thanh điệu, ngữ điệu và ngắt nghỉ.';
-    toast('Chưa kết nối Azure Speech.');
+    console.error(e);
+    toast('Chưa phân tích được bản ghi này.');
   }finally{
-    btn.disabled=false;
-    btn.textContent='Chấm phát âm';
+    b.disabled=false;
+    b.textContent='Chấm phát âm';
   }
-}document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');selectedLevel=b.dataset.level;renderRandom()});document.querySelectorAll('[data-speed]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-speed]').forEach(x=>x.classList.remove('on'));b.classList.add('on');speed=Number(b.dataset.speed)});$('listenBtn').onclick=listenAzure;$('nextBtn').onclick=renderRandom;$('recordBtn').onclick=()=>mediaRecorder&&mediaRecorder.state==='recording'?stopRecord():startRecord();$('gradeBtn').onclick=grade;$('togglePinyin').onclick=()=>{const p=$('sentencePinyin'),hide=p.style.visibility!=='hidden';p.style.visibility=hide?'hidden':'visible';$('togglePinyin').textContent=hide?'Hiện pinyin':'Ẩn pinyin'};window.addEventListener('load',renderRandom);
-</script></body></html>
+}
+
+document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.chip')
+    .forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  selectedLevel=b.dataset.level;
+  randomSentence();
+});
+
+document.querySelectorAll('[data-speed]').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('[data-speed]')
+    .forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');
+  speed=Number(b.dataset.speed);
+  $('sampleAudio').playbackRate=speed;
+});
+
+$('listenBtn').onclick=playSample;
+$('nextBtn').onclick=randomSentence;
+$('recordBtn').onclick=()=>
+  mediaRecorder?.state==='recording'?stopRecord():startRecord();
+$('gradeBtn').onclick=grade;
+
+$('togglePinyin').onclick=()=>{
+  const p=$('sentencePinyin');
+  const h=p.style.visibility!=='hidden';
+  p.style.visibility=h?'hidden':'visible';
+  $('togglePinyin').textContent=h?'Hiện pinyin':'Ẩn pinyin';
+};
+
+window.addEventListener('load',randomSentence);
+</script>
+</body></html>
