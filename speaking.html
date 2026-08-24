@@ -1,4 +1,5 @@
 
+
 <!doctype html>
 <html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Khu chúng mình cùng luyện nói với Meow Meow</title><meta name="theme-color" content="#F5A9C2"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -57,7 +58,7 @@ body{
 .result-title{text-align:center;margin:0 0 16px;font-size:1.18rem;color:#7E4056}.scores{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.score{background:#FFF8FB;border:1px solid var(--line);border-radius:16px;padding:14px;text-align:center}.score strong{display:block;font-size:1.45rem;color:#9D4966}.score span{font-size:.72rem;color:var(--muted)}
 .word-results{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin-top:22px}.word{border-radius:12px;padding:9px 11px;border:1px solid var(--line);background:#fff;font-family:"Noto Serif SC",serif;font-size:1.06rem}.word small{display:block;font-family:"Be Vietnam Pro",sans-serif;font-size:.66rem;margin-top:2px}.word.ok{border-color:#bfe2d2;background:#f1fbf6;color:var(--ok)}.word.warn{border-color:#eed9af;background:#fff9ed;color:var(--warn)}.word.bad{border-color:#f0c5c9;background:#fff3f4;color:var(--bad)}
 .feedback-summary{margin-top:18px;padding:15px 16px;border-radius:16px;background:#FFF3F7;border:1px solid #F3D4DE;color:#73495A;font-size:.88rem}
-.detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}.detail-card{border:1px solid var(--line);background:#fff;border-radius:18px;padding:16px}.detail-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:8px}.detail-head b{color:#7E4056;font-size:.92rem}.detail-score{font-weight:800;color:var(--pink-dark);font-size:.82rem}.detail-card p{margin:0;color:var(--muted);font-size:.82rem;line-height:1.65}.detail-card ul{margin:9px 0 0;padding-left:18px;color:#6E5962;font-size:.8rem}.detail-card li+li{margin-top:5px}.tech-note{margin-top:14px;padding:12px 14px;border-radius:14px;background:#FFF9EE;border:1px solid #F0E0B6;color:#775F2E;font-size:.76rem;line-height:1.6}
+.detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}.detail-card{border:1px solid var(--line);background:#fff;border-radius:18px;padding:16px}.detail-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:8px}.detail-head b{color:#7E4056;font-size:.92rem}.detail-score{font-weight:800;color:var(--pink-dark);font-size:.82rem}.detail-card p{margin:0;color:var(--muted);font-size:.82rem;line-height:1.65}.detail-card ul{margin:9px 0 0;padding-left:18px;color:#6E5962;font-size:.8rem}.detail-card li+li{margin-top:5px}
 .demo-note{margin:18px auto 0;max-width:780px;color:#8A757D;font-size:.77rem;text-align:center}.next-row{display:flex;justify-content:center;margin:20px 0 55px}.toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:#6E3E50;color:#fff;padding:10px 14px;border-radius:12px;font-size:.78rem;display:none;z-index:50}.toast.show{display:block}
 @media(max-width:720px){.detail-grid{grid-template-columns:1fr}}
 @media(max-width:640px){.hero{padding-top:24px}.card{border-radius:22px}.scores{grid-template-columns:repeat(2,1fr)}.toolbar>.btn{flex:1 1 46%}.source{align-items:flex-start}.cn{margin-top:24px}}
@@ -164,7 +165,7 @@ Nào cùng bắt chước Meow Meow học tiếng Trung nha các bây bi ơiii
       <ul id="phonemeIssues"></ul>
     </section>
   </div>
-  <div class="tech-note" id="techNote" hidden></div>
+  
 </div></section><div class="demo-note"></div><div class="next-row"><button class="btn primary" id="nextBtn">Random câu khác</button></div>
 <section class="ranking-wrap" id="speakingRanking">
   <div class="ranking-head">
@@ -185,7 +186,7 @@ Nào cùng bắt chước Meow Meow học tiếng Trung nha các bây bi ơiii
 </section>
 
 </main><div class="toast" id="toast"></div>
-<script src="https://cdn.jsdelivr.net/npm/pinyin-pro@3.26.0/dist/index.js"></script><script src="sentence-bank.js"></script><script src="meow-auth.js" onerror="console.info('Meow auth chưa có')"></script><script src="meow-speaking-free-analyzer.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pinyin-pro@3.26.0/dist/index.js"></script><script src="sentence-bank.js"></script><script src="meow-auth.js" onerror="console.info('Meow auth chưa có')"></script><script src="meow-speaking-free-analyzer.js?v=strict-v3-custom-20260824"></script>
 
 <script>
 let selectedLevel='ALL',current=null,lastKey='',speed=.75;
@@ -215,7 +216,6 @@ function resetResult(){
     .forEach(id=>$(id).innerHTML='');
   ['initialScore','finalScore','toneScore','intonationScore','pauseScore','phonemeScore']
     .forEach(id=>$(id).textContent='--');
-  $('techNote').hidden=true;
 }
 
 function resetRecording(){
@@ -560,7 +560,7 @@ async function loadSpeakingRanking(){
   }
 
   if(!data?.length){
-    listEl.innerHTML='<div class="rank-empty">Chưa có điểm nào. Người đầu tiên lên bảng có thể là m đó 😼</div>';
+    listEl.innerHTML='<div class="rank-empty">Chưa có điểm nào. Hãy là người đầu tiên xuất hiện trên bảng xếp hạng nhé 😸</div>';
     return;
   }
 
@@ -605,10 +605,10 @@ function render(j){
     return;
   }
 
-  $('pronScore').textContent=Math.round(p.PronScore||0);
-  $('accuracyScore').textContent=Math.round(p.AccuracyScore||0);
-  $('fluencyScore').textContent=Math.round(p.FluencyScore||0);
-  $('completenessScore').textContent=Math.round(p.CompletenessScore||0);
+  $('pronScore').textContent=Number.isFinite(Number(p.PronScore))?Math.round(Number(p.PronScore)):'--';
+  $('accuracyScore').textContent=Number.isFinite(Number(p.AccuracyScore))?Math.round(Number(p.AccuracyScore)):'--';
+  $('fluencyScore').textContent=Number.isFinite(Number(p.FluencyScore))?Math.round(Number(p.FluencyScore)):'--';
+  $('completenessScore').textContent=Number.isFinite(Number(p.CompletenessScore))?Math.round(Number(p.CompletenessScore)):'--';
 
   $('wordResults').innerHTML=(j.words||[])
     .map(w=>`<span class="word ${cls(w.accuracy)}">${w.word}<small>${Number.isFinite(Number(w.accuracy))?Math.round(Number(w.accuracy))+'/100':'--'}</small></span>`)
@@ -637,8 +637,6 @@ function render(j){
     [...(d.initials?.issues||[]),...(d.finals?.issues||[])]
   );
 
-  $('techNote').hidden=false;
-  $('techNote').textContent=j.capabilities?.note||'';
 
   $('resultPanel').classList.add('show');
   $('resultPanel').scrollIntoView({
