@@ -1,4 +1,4 @@
-const CACHE_NAME = 'meow-meow-pwa-v1';
+const CACHE_NAME = 'meow-meow-pwa-v2';
 
 const CORE_ASSETS = [
   './',
@@ -6,8 +6,7 @@ const CORE_ASSETS = [
   './manifest.webmanifest',
   './offline.html',
   './icon-192.png',
-  './icon-512.png',
-  './meow-meow-sticker.png'
+  './icon-512.png'
 ];
 
 const NETWORK_ONLY_PATHS = [
