@@ -1,4 +1,4 @@
-const CACHE_NAME = 'meow-meow-pwa-v2';
+const CACHE_NAME = 'meow-meow-pwa-v3';
 
 const CORE_ASSETS = [
   './',
@@ -67,7 +67,23 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Same-origin static assets: cache first, refresh in the background.
+  // JS/CSS: network first so scoring logic and UI fixes update immediately.
+  if(url.pathname.endsWith('.js') || url.pathname.endsWith('.css')){
+    event.respondWith(
+      fetch(request)
+        .then(response => {
+          if(response && response.ok){
+            const copy = response.clone();
+            caches.open(CACHE_NAME).then(cache => cache.put(request, copy));
+          }
+          return response;
+        })
+        .catch(() => caches.match(request))
+    );
+    return;
+  }
+
+  // Other same-origin static assets: cache first, refresh in background.
   event.respondWith(
     caches.match(request).then(cached => {
       const networkFetch = fetch(request)
