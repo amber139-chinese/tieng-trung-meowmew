@@ -7,10 +7,16 @@ on:
     paths:
       - "**/*.html"
       - "scripts/generate-sitemap.py"
+
   workflow_dispatch:
 
 permissions:
   contents: write
+
+# Không cho nhiều workflow sitemap chạy đè lên nhau
+concurrency:
+  group: auto-update-sitemap
+  cancel-in-progress: true
 
 jobs:
   update-sitemap:
@@ -19,6 +25,16 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Sync latest main
+        shell: bash
+        run: |
+          git fetch origin main
+          git checkout main
+          git reset --hard origin/main
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -41,4 +57,6 @@ jobs:
 
           git add sitemap.xml
           git commit -m "Auto update sitemap"
-          git push
+
+          git pull --rebase origin main
+          git push origin main
