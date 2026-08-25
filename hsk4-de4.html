@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>HSK4 · Đề 4 | Meow Meow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#294A7A;--navy2:#3A5F92;--pale:#EEF4FB;--bg:#F5F7FA;--ink:#20262D;--muted:#69737D;--line:#E2E7ED;--done:#6FAFC4;--current:#294A7A;--warn:#C58B36;--white:#fff;--shadow:0 12px 32px rgba(30,55,90,.08)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);font-family:"Be Vietnam Pro",system-ui,sans-serif;color:var(--ink);line-height:1.6}
+button,input,textarea,select{font:inherit}.topbar{position:sticky;top:0;z-index:30;background:rgba(245,247,250,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}.top-inner{width:min(1400px,calc(100% - 28px));margin:auto;min-height:66px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px}.back{justify-self:start;text-decoration:none;color:#232B33;font-weight:700}.title{font-size:1.18rem;font-weight:800}.submit{justify-self:end;border:0;background:var(--navy);color:white;border-radius:14px;padding:10px 17px;font-weight:800;cursor:pointer}
+.stagebar{width:min(1400px,calc(100% - 28px));margin:14px auto 0;display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:16px}.stage-card,.timer-card{background:#E4EEF9;border-radius:22px;min-height:72px;display:flex;align-items:center;padding:16px 20px}.stage-card{justify-content:space-between;gap:12px}.stage-main{font-weight:800;font-size:1.02rem}.stage-sub{font-size:.76rem;color:#627184;margin-top:2px}.stage-steps{display:flex;gap:7px;flex-wrap:wrap}.stage-step{border:1px solid rgba(41,74,122,.18);background:rgba(255,255,255,.65);padding:6px 10px;border-radius:999px;font-weight:700;font-size:.74rem;color:#58708B}.stage-step.active{background:var(--navy);color:#fff}.timer-card{justify-content:space-between}.time{font-size:1.18rem;font-weight:800}.timer-card span{font-size:.73rem;color:#647386}
+.layout{width:min(1400px,calc(100% - 28px));margin:16px auto 60px;display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:16px;align-items:start}.maincol{min-width:0}.audio-bar{position:sticky;top:82px;z-index:15;background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px 14px;box-shadow:var(--shadow);display:flex;align-items:center;gap:12px;margin-bottom:14px}.audio-bar audio{width:100%;height:38px}.audio-hint{font-size:.74rem;color:var(--muted);min-width:130px}
+.part-title{padding:10px 3px 5px;color:#465463;font-size:.8rem;font-weight:800;letter-spacing:.08em}.question{background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px 22px;margin:12px 0;box-shadow:var(--shadow);scroll-margin-top:155px}.qhead{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:16px}.qno{font-weight:800;font-size:1rem}.listen-one{border:1px solid var(--line);background:#fff;border-radius:11px;padding:7px 10px;font-weight:700;font-size:.76rem;cursor:pointer;color:var(--navy)}.listen-one.playing{background:var(--navy);color:#fff}.qtext{font-family:system-ui,-apple-system,"Segoe UI","Noto Sans SC",sans-serif;font-size:1.15rem;white-space:pre-line;margin:8px 0 16px}.passage{font-family:system-ui,-apple-system,"Segoe UI","Noto Sans SC",sans-serif;font-size:1rem;white-space:pre-line;background:#F8FAFC;border-radius:14px;padding:14px 15px;margin-bottom:12px}.stem{font-family:system-ui,-apple-system,"Segoe UI","Noto Sans SC",sans-serif;font-weight:700;margin:8px 0 13px}
+.options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.opt{border:1px solid var(--line);background:#F8F9FB;border-radius:13px;padding:11px 13px;text-align:left;cursor:pointer;min-height:46px}.opt.selected{border-color:var(--navy);background:#EDF3FA;color:#1D3C68;font-weight:800}.tf{grid-template-columns:repeat(2,minmax(130px,180px));justify-content:end}.tf .opt{text-align:center;font-size:1.2rem}.bank{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:13px}.bank span{background:#F3F6F9;border:1px solid var(--line);padding:6px 9px;border-radius:9px;font-family:system-ui,-apple-system,"Segoe UI","Noto Sans SC",sans-serif;font-size:.9rem}.select-answer,.order-select{width:min(320px,100%);padding:10px 12px;border:1px solid var(--line);border-radius:11px;background:#fff}.order-lines{display:grid;gap:8px;margin-bottom:12px}.order-line{padding:10px 12px;border-radius:11px;background:#F8FAFC;border:1px solid var(--line);font-family:system-ui,-apple-system,"Segoe UI","Noto Sans SC",sans-serif}.tokens{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.token{border:1px solid #D3DEE7;background:#F6FAFC;color:#344B59;border-radius:11px;padding:8px 11px;cursor:pointer}.token.used{opacity:.35}.built{min-height:48px;border:1px dashed #AFC6D5;border-radius:12px;padding:10px 12px;background:#FBFDFE;font-family:system-ui,-apple-system,"Segoe UI","Noto Sans SC",sans-serif;margin-bottom:8px}.reset-build{border:0;background:transparent;color:var(--navy);font-size:.76rem;font-weight:700;cursor:pointer}.image-q{display:grid;grid-template-columns:190px 1fr;gap:18px;align-items:center}.image-q img{width:100%;max-height:180px;object-fit:contain;background:#fff;border-radius:12px}.keyword{font-family:system-ui,-apple-system,"Segoe UI","Noto Sans SC",sans-serif;color:var(--navy);font-size:1.35rem;font-weight:700;margin-bottom:8px}.writebox{width:100%;min-height:90px;border:1px solid var(--line);border-radius:12px;padding:11px 12px;resize:vertical}
+.navcard{position:sticky;top:82px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:var(--shadow);max-height:calc(100vh - 100px);overflow:auto}.navtitle{font-weight:800;font-size:1rem;margin-bottom:12px}.navpart{font-weight:800;font-size:.8rem;margin:14px 0 7px;color:#465463}.nums{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.num{width:42px;height:42px;border-radius:50%;border:1px solid transparent;background:#E8EBEE;cursor:pointer;font-weight:700;color:#30363C}.num.answered{background:var(--done);color:#fff}.num.current{outline:3px solid rgba(41,74,122,.22);background:var(--current);color:#fff}.legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:15px;padding-top:12px;border-top:1px solid var(--line);font-size:.7rem;color:var(--muted)}.dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:#E8EBEE;margin-right:4px}.dot.done{background:var(--done)}.dot.cur{background:var(--current)}
+.section-actions{display:flex;justify-content:space-between;gap:10px;margin:18px 0 0}.next,.prev{border:0;border-radius:13px;padding:11px 16px;font-weight:800;cursor:pointer}.next{background:var(--navy);color:#fff;margin-left:auto}.prev{background:#fff;color:var(--navy);border:1px solid var(--line)}
+.modal{position:fixed;inset:0;background:rgba(20,30,45,.55);display:none;align-items:center;justify-content:center;padding:18px;z-index:100}.modal.show{display:flex}.modalbox{width:min(620px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:24px;padding:24px;box-shadow:0 24px 70px rgba(0,0,0,.22)}.modalbox h2{margin:0 0 8px;color:var(--navy)}.scoregrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}.scorebox{background:#F3F7FB;border-radius:14px;padding:14px;text-align:center}.scorebox b{display:block;font-size:1.35rem;color:var(--navy)}.modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}.modal-actions button,.modal-actions a{border:0;border-radius:12px;padding:10px 14px;text-decoration:none;font-weight:800;cursor:pointer}.closem{background:#EFF3F6;color:#40515F}.retrybtn{background:#F6D6E1;color:#7C2F4D}.homebtn{background:var(--navy);color:#fff}
+@media(max-width:950px){.stagebar,.layout{grid-template-columns:1fr}.navcard{position:relative;top:auto;max-height:none;order:-1}.nums{grid-template-columns:repeat(10,1fr)}.num{width:100%;aspect-ratio:1/1;height:auto;max-width:42px}.audio-bar{top:70px}}
+@media(max-width:640px){.top-inner{grid-template-columns:auto 1fr auto}.title{font-size:.9rem;text-align:center}.back{font-size:0}.back:after{content:"←";font-size:1.2rem}.submit{padding:9px 12px}.stagebar{width:calc(100% - 20px);margin-top:10px}.stage-card{align-items:flex-start;flex-direction:column}.timer-card{min-height:58px}.layout{width:calc(100% - 20px);margin-top:10px}.question{padding:16px}.options{grid-template-columns:1fr}.tf{grid-template-columns:1fr 1fr}.nums{grid-template-columns:repeat(8,1fr);gap:6px}.image-q{grid-template-columns:1fr}.image-q img{max-height:150px}.scoregrid{grid-template-columns:1fr}.audio-bar{flex-direction:column;align-items:stretch}.audio-hint{min-width:0}}
+
+/* ===== Meow Meow review UI v2: pink + larger exam text ===== */
+:root{
+  --navy:#B64F73;--navy2:#C96888;--pale:#FFF0F5;--bg:#FFF4F7;
+  --ink:#2E2730;--muted:#7B6570;--line:#F0CDD9;--done:#D983A0;
+  --current:#B64F73;--warn:#C58B36;--white:#fff;--shadow:0 12px 32px rgba(145,65,96,.09);
+  --wrong:#C73E4D;--wrong-soft:#FFF0F1;--correct:#2F7D5A;--correct-soft:#ECF8F1;
+}
+body{background:linear-gradient(180deg,#FFF1F5 0%,#FFF8FA 38%,#FFF3F7 100%)}
+.topbar{background:rgba(255,247,250,.96);border-bottom-color:#F1D5DE}
+.stage-card,.timer-card{background:#FADDE7}
+.stage-step{border-color:rgba(182,79,115,.20);background:rgba(255,255,255,.72);color:#986078}
+.audio-bar,.question,.navcard{border-color:#F0D2DC}
+.question{background:#FFFDFE;padding:25px 27px}
+.part-title{color:#8E5269;font-size:.9rem}
+.qno{font-size:1.08rem;color:#7D3A55}
+.qtext{font-size:1.32rem;line-height:1.95;margin:10px 0 18px}
+.passage{font-size:1.36rem;line-height:2.05;background:#FFF7FA;border:1px solid #F4D8E1;border-radius:18px;padding:20px 22px;margin-bottom:18px;color:#2B252B}
+.stem{font-size:1.25rem;line-height:1.8;margin:10px 0 16px}
+.options{gap:12px}
+.opt{font-family:system-ui,-apple-system,"Segoe UI","Noto Sans SC",sans-serif;font-size:1.12rem;line-height:1.65;padding:14px 16px;min-height:56px;background:#FFF8FA;border-color:#EFCFD9}
+.opt b{font-family:"Be Vietnam Pro",sans-serif;font-size:1.03rem;margin-right:7px}
+.opt.selected{border-color:#B64F73;background:#FCE6ED;color:#7B2947}
+.tf{grid-template-columns:repeat(2,minmax(120px,170px));gap:14px;justify-content:start}
+.tf .opt{display:grid;place-items:center;text-align:center;min-height:66px;padding:10px;font-family:"Be Vietnam Pro",sans-serif}
+.tf-symbol{font-size:1.75rem!important;line-height:1;margin:0!important}
+.bank span,.order-line,.token,.built,.select-answer,.order-select,.writebox{font-size:1.08rem}
+.bank span{padding:8px 11px;background:#FFF7FA;border-color:#F0D2DC}
+.order-line{line-height:1.75;background:#FFF7FA;border-color:#F0D2DC}
+.keyword{color:#A94468;font-size:1.55rem}
+.writebox{line-height:1.75;min-height:110px}
+.num{background:#F2E8EC;color:#55434B}
+.num.answered{background:#D983A0;color:#fff}.num.current{background:#B64F73;color:#fff;outline-color:rgba(182,79,115,.22)}
+.num.wrong{background:var(--wrong)!important;color:#fff!important;border-color:var(--wrong)!important}
+.num.correct{background:var(--correct)!important;color:#fff!important}
+.question.review-wrong{border:2px solid var(--wrong);background:var(--wrong-soft);box-shadow:0 10px 26px rgba(199,62,77,.10)}
+.question.review-correct{border-color:#B9DEC9}
+.question.review-wrong .opt.selected{border-color:var(--wrong);background:#FFE1E4;color:#9E2432}
+.opt.correct-answer{border-color:var(--correct)!important;background:var(--correct-soft)!important;color:#235E44!important;font-weight:800}
+.answer-review{margin-top:18px;border-radius:15px;padding:14px 16px;display:grid;grid-template-columns:auto 1fr;gap:11px;align-items:start;font-family:system-ui,-apple-system,"Segoe UI","Noto Sans SC",sans-serif;font-size:1.1rem;line-height:1.75}
+.answer-review.correct{background:var(--correct-soft);border:1px solid #B8DEC8;color:#245B43}
+.answer-review.wrong{background:#FFE9EB;border:1px solid #E9A9B0;color:#8F2632}
+.answer-review.reference{background:#FFF0F5;border:1px solid #EDC6D4;color:#78354F}
+.answer-label{font-family:"Be Vietnam Pro",sans-serif;font-size:.78rem;font-weight:800;border-radius:999px;padding:5px 9px;white-space:nowrap;background:rgba(255,255,255,.75)}
+.answer-main b{font-family:"Be Vietnam Pro",sans-serif}
+.review-note{font-family:"Be Vietnam Pro",sans-serif;font-size:.78rem;opacity:.82;margin-top:3px}
+.submit:disabled{opacity:.72;cursor:default}
+@media(max-width:640px){
+  .question{padding:18px 16px}.qtext{font-size:1.2rem}.passage{font-size:1.2rem;line-height:1.95;padding:16px}.stem{font-size:1.16rem}.opt{font-size:1.06rem;padding:13px 14px}.tf .opt{min-height:60px}.answer-review{grid-template-columns:1fr;font-size:1.02rem}.nums{grid-template-columns:repeat(8,1fr)}
+}
+
+
+/* ===== Meow Meow review UI v3: softer pink, shared readings, transcript review ===== */
+:root{
+  --navy:#A95F78;--navy2:#B8758C;--pale:#FBF3F6;--bg:#F8F7F9;
+  --ink:#2D2B2E;--muted:#746E72;--line:#E8DDE1;--done:#C88CA0;
+  --current:#A95F78;--wrong:#B85F6B;--wrong-soft:#FFF8F9;--correct:#338563;--correct-soft:#F2FBF6;
+  --shadow:0 10px 28px rgba(84,66,74,.07);
+}
+body{background:linear-gradient(180deg,#FAF8F9 0%,#F8F7F9 48%,#FBF9FA 100%)}
+.topbar{background:rgba(250,248,249,.96);border-bottom-color:#E9DFE3}
+.stage-card,.timer-card{background:#F4ECEF}
+.stage-step{border-color:rgba(169,95,120,.16);background:rgba(255,255,255,.82);color:#886A75}
+.audio-bar,.question,.navcard{border-color:#E8DDE1}
+.question{background:#FFFFFF}
+.opt{background:#FAF9FA;border-color:#E7DFE2}
+.opt.selected{background:#F3E8EC;border-color:#C999A9;color:#74485A}
+.passsage,.passage{background:#FAF9FA;border-color:#E8E0E3}
+.question.review-wrong{border:1.5px solid #DBAEB6;background:var(--wrong-soft);box-shadow:0 8px 22px rgba(184,95,107,.07)}
+.question.review-wrong .opt.selected{border-color:#D39AA4;background:#FCEAEC;color:#9A4753}
+.num.wrong{background:#D98994!important;color:white!important}
+.answer-review.wrong{background:#FFF7F8;border-color:#E8BCC3;color:#894852}
+.answer-review.correct{background:#F4FBF7;border-color:#C7E7D6;color:#28684F}
+.answer-review.reference{background:#FAF8F4;border-color:#E9E0D4;color:#6E6255}
+.shared-passage{background:#fff;border:1px solid var(--line);border-radius:24px;padding:24px 28px;margin:12px 0 15px;box-shadow:var(--shadow)}
+.shared-passage-title{font-weight:800;font-size:1.18rem;margin-bottom:14px;color:#332F31}
+.shared-passage-text{font-family:system-ui,-apple-system,"Segoe UI","Noto Sans SC",sans-serif;font-size:1.42rem;line-height:2.08;white-space:pre-line;color:#272427}
+.transcript-card{margin-top:16px;border:1px solid #E4DDE0;border-radius:16px;background:#FAF9FA;padding:14px 16px}
+.transcript-title{font-size:.83rem;font-weight:800;color:#775C66;margin-bottom:7px;letter-spacing:.02em}
+.transcript-text{font-family:system-ui,-apple-system,"Segoe UI","Noto Sans SC",sans-serif;font-size:1.08rem;line-height:1.85;color:#3D373B;white-space:pre-line}
+.transcript-empty{font-size:.88rem;color:#8C8589;font-style:italic}
+.review-note{font-weight:600}
+@media(max-width:640px){.shared-passage{padding:18px 16px}.shared-passage-text{font-size:1.22rem;line-height:1.95}.transcript-text{font-size:1rem}}
+
+
+/* ===== Listening example · shared master rule for Đề 1–10 ===== */
+.listening-example{background:#fff;border:1px solid var(--line);border-radius:24px;padding:24px 28px;margin:12px 0 18px;box-shadow:var(--shadow)}
+.listening-example .ex-section-title{font-family:system-ui,-apple-system,"Segoe UI","Noto Sans SC",sans-serif;font-size:1.35rem;font-weight:800;margin-bottom:18px;color:#292629}
+.listening-example .ex-label{font-weight:800;font-size:.86rem;color:#82636f;margin-bottom:9px;letter-spacing:.03em}
+.listening-example .ex-text{font-family:system-ui,-apple-system,"Segoe UI","Noto Sans SC",sans-serif;font-size:1.38rem;line-height:2.02;color:#292629;white-space:pre-line}
+.listening-example .ex-statement{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;margin-top:12px;padding:13px 15px;border-radius:16px;background:#FAF9FA;font-family:system-ui,-apple-system,"Segoe UI","Noto Sans SC",sans-serif;font-size:1.3rem;line-height:1.75}
+.listening-example .ex-star{font-size:1.05em}.listening-example .ex-mark{font-family:"Be Vietnam Pro",sans-serif;font-size:1.7rem;font-weight:800;min-width:42px;text-align:center}.listening-example .ex-mark.ok{color:#338563}.listening-example .ex-mark.no{color:#B85F6B}
+.listening-example .ex-divider{height:1px;background:#EEE7EA;margin:22px 0}
+/* Reading and writing text are intentionally larger for classroom readability. */
+.shared-passage-text{font-size:1.55rem!important;line-height:2.08!important}.passage{font-size:1.48rem!important;line-height:2.02!important}.stem{font-size:1.36rem!important;line-height:1.85!important}
+.tokens .token,.built,.writebox,.order-line,.bank span,.select-answer,.order-select{font-size:1.18rem!important}.writebox{line-height:1.9!important;min-height:125px!important}
+@media(max-width:640px){.listening-example{padding:18px 16px}.listening-example .ex-section-title{font-size:1.2rem}.listening-example .ex-text{font-size:1.2rem;line-height:1.95}.listening-example .ex-statement{font-size:1.15rem;grid-template-columns:auto 1fr auto}.shared-passage-text{font-size:1.32rem!important}.passage{font-size:1.28rem!important}.stem{font-size:1.22rem!important}}
+
+
+/* Chinese font synced with hsk4-green-v6 */
+.qtext,.passage,.stem,.opt,.bank span,.order-line,.built,.keyword,
+.shared-passage-text,.transcript-text,.answer-review,
+.listening-example .ex-section-title,.listening-example .ex-text,.listening-example .ex-statement,
+.token,.writebox,.select-answer,.order-select{
+  font-family:system-ui,-apple-system,"Segoe UI","Noto Sans SC",sans-serif!important;
+}
+</style>
+</head><body>
+<header class="topbar"><div class="top-inner"><a class="back" href="mock-test-v5.html">← Trở về</a><div class="title" id="examTitle">HSK4</div><button class="submit" id="submitBtn">Nộp bài</button></div></header>
+<div class="stagebar">
+<div class="stage-card"><div><div class="stage-main" id="stageName">Nghe · 45 câu</div><div class="stage-sub" id="stageSub">Phần 1 · Phần 2 · Phần 3</div></div><div class="stage-steps"><span class="stage-step active" data-s="listening">Nghe</span><span class="stage-step" data-s="reading">Đọc</span><span class="stage-step" data-s="writing">Viết</span></div></div>
+<div class="timer-card"><div><span>Thời gian còn lại</span><div class="time" id="timer">01:45:00</div></div><div id="progressText">0/100</div></div>
+</div>
+<div class="layout">
+<main class="maincol">
+<div class="audio-bar" id="audioBar"><div class="audio-hint"><b>Audio phần nghe</b><br>Transcript sẽ hiện sau khi nộp bài.</div><audio id="examAudio" controls preload="metadata"></audio></div>
+<div id="questions"></div>
+<div class="section-actions"><button class="prev" id="prevSection" hidden>← Phần trước</button><button class="next" id="nextSection">Hoàn thành phần Nghe → Sang phần Đọc</button></div>
+</main>
+<aside class="navcard"><div class="navtitle" id="navTitle">Nghe</div><div id="questionNav"></div><div class="legend"><span><i class="dot"></i>Chưa làm</span><span><i class="dot done"></i>Đã làm</span><span><i class="dot cur"></i>Đang xem</span></div></aside>
+</div>
+<div class="modal" id="resultModal"><div class="modalbox"><h2>Kết quả bài thi HSK4</h2><p id="resultText"></p><div class="scoregrid"><div class="scorebox"><b id="listenScore">0/45</b><span>Nghe</span></div><div class="scorebox"><b id="readScore">0/40</b><span>Đọc</span></div><div class="scorebox"><b id="writeScore">0/10</b><span>Viết 86–95</span></div></div><p style="color:#69737D;font-size:.82rem">Sau khi nộp bài, đáp án được hiển thị ngay dưới từng câu. Câu làm sai được đánh dấu đỏ. Câu 96–100 hiển thị câu tham khảo để đối chiếu. Bạn có thể bấm “Làm lại đề” bất cứ lúc nào để bắt đầu một lượt mới.</p><div id="writingRefs"></div><div class="modal-actions"><button class="closem" id="closeModal">Xem lại bài</button><button class="retrybtn" id="retryExam">Làm lại đề</button><a class="homebtn" href="mock-test-v5.html">Về phòng thi</a></div></div></div>
+<script>
+window.MEOW_MOCK_TESTS={"1":{"questions":[{"n":1,"type":"tf","text":"现代年轻人的婚姻更尊重自己的感觉。","answer":"√","transcript":"现代年轻人的婚姻是跟着感觉走，父母的意见已经不那么重要了。即使是通过朋友介绍，如果对对方不“感冒”，也可以马上走人，或者只是吃个饭就分手。\n★ 现代年轻人的婚姻更尊重自己的感觉。"},{"n":2,"type":"tf","text":"飞机起降声使我心情变坏。","answer":"×","transcript":"我住的地方离机场很近，飞机起飞降落时我都能听到巨大的声音。每当我心情不好时，我就会对着飞过的飞机大叫，等飞机飞走了，我的坏心情也被飞机带走了。\n★ 飞机起降声使我心情变坏。"},{"n":3,"type":"tf","text":"起床后别马上吃早餐。","answer":"√","transcript":"很多习惯早起的人起床后会马上吃早餐，认为这样能及时补充身体所需的营养。事实上，这样做对健康没有好处。专家指出，为了补充睡眠中失去的水分，起床后先喝点儿水，20到30分钟后再吃早餐比较合适。\n★ 起床后别马上吃早餐。"},{"n":4,"type":"tf","text":"儿童不要使用成人牙膏。","answer":"√","transcript":"成人牙膏一般口味比较重，刺激性也比较强，儿童使用后会影响对味道的感觉；而且由于成人牙膏硬度比较高，因此更容易损伤儿童牙齿。\n★ 儿童不要使用成人牙膏。"},{"n":5,"type":"tf","text":"懒人体内盐分不足。","answer":"×","transcript":"据报道，只要稍微调整一下自己的饮食习惯，就可以改变身体的内在规律。比如在饮食中增加含盐食物，减少含糖食物，就可以使生物钟变快，使懒人变得勤快起来；而红葡萄酒则相反，可以使生物钟变慢。\n★ 懒人体内盐分不足。"},{"n":6,"type":"tf","text":"过度购物易引起心理疾病。","answer":"×","transcript":"在日常生活中，有些人面对名牌或打折商品时，即使对自己来说是没什么用处的东西，也会马上买下来。但买到的不一定就是适合自己的，所以事后又常常感到很后悔。心理医生说，这种行为其实是对商品的病态占有欲造成的。\n★ 过度购物易引起心理疾病。"},{"n":7,"type":"tf","text":"说假话时眼睛会向右转。","answer":"√","transcript":"对大多数人来说，当回忆某件真实存在的事情时，眼睛会先向上、再向左转动。而当一个人尝试去“构建”一个不存在的情况时，眼球的运动正好相反，会先向上、再向右转动。\n★ 说假话时眼睛会向右转。"},{"n":8,"type":"tf","text":"人犯错时才会脸红。","answer":"×","transcript":"科学家研究发现，脸红是只有人类才有的身体反应。通过脸红，我们可以告诉别人我们已经认识到自己做得不对了，而这时看到我们脸红的人则可以了解我们在这一时刻所经历的不快感受。脸红也许就是我们对所犯错误表示歉意的身体语言。\n★ 人犯错时才会脸红。"},{"n":9,"type":"tf","text":"人越胖越容易得心脏病。","answer":"×","transcript":"看起来比较瘦，但没有运动习惯的人，虽然脂肪没有胖人多，但是心脏病的发病风险和胖人没什么不同，因为心脏病与脂肪的多少没有关系。就是说，胖人不一定就会得心脏病，瘦人也不一定不得心脏病。\n★ 人越胖越容易得心脏病。"},{"n":10,"type":"tf","text":"夏季喝冰凉饮料最解渴。","answer":"×","transcript":"科学家对在炎热的夏天喝温热饮料和冰凉饮料的人的皮肤进行测试后发现，温热饮料能降低皮肤温度1到2度，而冰凉饮料只能使口腔周围变冷。同时，喝饮料的人自己的感觉也不同，喝温热饮料者觉得清凉舒服，渴的感觉消失了；而喝冰凉饮料的人则感觉越喝越渴。\n★ 夏季喝冰凉饮料最解渴。"},{"n":11,"type":"mcq","options":["害羞","谦虚","得意","感激"],"answer":"C","transcript":"女：还是你有办法。\n男：你也不看看我是谁！\n问：男的是什么语气？"},{"n":12,"type":"mcq","options":["失眠","哭了","生病","工作"],"answer":"D","transcript":"男：看看你这熊猫眼，又熬了一夜吧？\n女：时间紧，任务急，没办法呀！\n问：女的昨晚怎么了？"},{"n":13,"type":"mcq","options":["很伤心","很紧张","很无奈","很激动"],"answer":"C","transcript":"女：下一步打算怎么办？\n男：还能怎么办？走一步算一步吧。\n问：男的现在心情怎么样？"},{"n":14,"type":"mcq","options":["送礼物","请吃饭","喝饮料","谈生意"],"answer":"A","transcript":"女：我最喜欢这个牌子了。又让你破费了！\n男：你喜欢就好，这个味道很适合你这样的职业女性。\n问：男的正在干什么？"},{"n":15,"type":"mcq","options":["看笑话","很着急","想帮忙","很同情"],"answer":"A","transcript":"女：瞧瞧，我说什么来着？\n男：你不帮忙可以，请不要阴一句阳一句的！\n问：女的是什么心态？"},{"n":16,"type":"mcq","options":["很辛苦","长得帅","很危险","很勇敢"],"answer":"D","transcript":"男：这小伙子可真是好样的，不顾危险，跳进河里救起了两个落水儿童。\n女：是啊，这时候河水可够凉的！\n问：他们觉得这个小伙子怎么样？"},{"n":17,"type":"mcq","options":["要求高","不漂亮","个子高","很优秀"],"answer":"A","transcript":"女：我看你跟英子挺合适的，要不阿姨帮你说说？\n男：人家英子眼光高，看不上我！\n问：男的说英子怎么样？"},{"n":18,"type":"mcq","options":["收拾房间","帮妈妈忙","清洗碗筷","负责做菜"],"answer":"B","transcript":"男：你真厉害，还会做菜！跟谁学的这一手？\n女：每次家里来了客人，我都给妈妈打下手，慢慢儿就学了一点儿。\n问：家里来客人时，女的一般会做什么？"},{"n":19,"type":"mcq","options":["头脑不聪明","文化水平低","说话太直接","打伤了别人"],"answer":"C","transcript":"女：小娟就是个直脾气，说话不知深浅，您千万别往心里去！\n男：我倒没什么，只是直来直去容易伤人哪！\n问：根据对话，可以知道小娟怎么样？"},{"n":20,"type":"mcq","options":["听不懂老师的课","不想听父母的话","对学习没有兴趣","觉得内容太简单"],"answer":"C","transcript":"女：你为什么上课总不注意听呢？有什么事吗？\n男：听不进去呗！我本来就不是学习的料，可我爸妈就是不听。\n问：根据对话，可以知道男的怎么样？"},{"n":21,"type":"mcq","options":["在村里住下来","按时赶到店里","快点儿作决定","到农村做生意"],"answer":"C","transcript":"男：这笔钱不是小数目，你让我再想想！\n女：还想呢？生意都送上门来了，过了这个村可没这个店了！\n问：女的希望男的怎么做？"},{"n":22,"type":"mcq","options":["不想留校当老师","终于等到这一天","消息并不是真的","已经接到通知了"],"answer":"C","transcript":"男：文丽，听说你留校当老师了，得请客啊！\n女：别听风就是雨，没影儿的事！\n问：女的是什么意思？"},{"n":23,"type":"mcq","options":["找不到地铁站了","想买图书馆地图","不熟悉这个地方","请女的帮忙带路"],"answer":"C","transcript":"男：你能告诉我，我在地图上的什么位置吗？我想去国家图书馆。\n女：你看，这是地铁站，你正好走反了。我也去那个方向，我给你带路吧。\n问：根据对话，可以知道男的怎么了？"},{"n":24,"type":"mcq","options":["做事不能总依靠别人","别人的话别放在心上","做事不是给别人看的","应该重视别人的评价"],"answer":"C","transcript":"男：我一定要做出个样子来，给这些人看看！\n女：如果只是为了面子这样做，还真没这个必要。\n问：女的是什么意思？"},{"n":25,"type":"mcq","options":["只要请客他准答应","好好儿说老周会吃的","豆腐最适合老年人","老周心软，同情弱者"],"answer":"D","transcript":"男：要是老周软硬不吃怎么办？\n女：不会的，他吃软不吃硬。你说点儿软话，他准答应！\n问：女的是什么意思？"},{"n":26,"type":"mcq","options":["兴奋","同情","后悔","激动"],"answer":"C","transcript":"女：你太让老师失望了！你怎么能跟老师顶嘴呢？\n男：我当时也是头脑一热，就说了不该说的话。现在怎么办？\n女：你呀你，让我说什么好呢！\n男：你说他不会放弃我，从此不管我了吧？\n问：男的现在是什么心情？"},{"n":27,"type":"mcq","options":["同学","恋人","同事","夫妻"],"answer":"B","transcript":"男：我家最近出了点儿状况，可能一时半会儿买不了房子，你看……\n女：我看上的是你的人，又不是你的房子！我们可以先租房。\n男：兰兰，你真好！\n女：行了，瞧你这点儿出息！\n问：他们最可能是什么关系？"},{"n":28,"type":"mcq","options":["需要帮助","缺乏耐心","遇到麻烦","打错电话"],"answer":"B","transcript":"女：您好，请帮我找一下赵明。\n男：赵明？你打错了，我们这里没有这个人。\n女：不可能吧？我昨天还跟他通过电话呢。我是……\n男：你最好弄清楚再打！\n女：喂……\n问：根据对话，可以知道男的怎么样？"},{"n":29,"type":"mcq","options":["注意身体","遇事动脑","按时打针","别犯错误"],"answer":"D","transcript":"男：别人的钱再多，那也是人家的，不能动别的心思！\n女：你这是说什么呢？我动什么心思了？\n男：我只是给你打个预防针！\n女：你这是哪儿跟哪儿呀！当我是什么人了！\n问：男的提醒女的什么？"},{"n":30,"type":"mcq","options":["应受到重视","不需要帮助","想离开公司","不值得同情"],"answer":"D","transcript":"女：听说钟元弄丢了一份重要材料，老板要停他的职。\n男：活该！他要是把玩儿游戏的劲头儿用在工作上，哪会有今天？\n女：怎么说我们也是朋友，不能看着他丢掉工作吧？\n男：你爱帮你帮，我才懒得管他的闲事呢！\n问：男的觉得钟元怎么样？"},{"n":31,"type":"mcq","options":["生活压力很大","正给家人做饭","身体不是很好","家里人口很多"],"answer":"A","transcript":"男：这上有老下有小的日子真够你受的，你也得注意身体呀！\n女：唉，慢慢儿熬吧。\n男：也快，等小静大学毕业，你就能松口气了。\n女：可她才上大学呀！\n问：根据对话，可以知道女的怎么样？"},{"n":32,"type":"mcq","options":["妻子和丈夫","医生和病人","领导和职员","母亲和儿子"],"answer":"B","transcript":"女：老孔，我的话你可别不当回事儿！真出事就晚了！\n男：那你总不能让我天天躺在床上吧？\n女：能那样更好。其实，我今天就该把你留下来作全面检查！\n男：别，别！厂里一堆事等着我呢，我保证每周都来还不行吗？\n女：老孔，你得说话算数！\n问：他们最可能是什么关系？"},{"n":33,"type":"mcq","options":["应该搞好同事关系","不应该太相信别人","钱不能让别人管理","别让亲戚进入公司"],"answer":"B","transcript":"男：你觉得我不应该向郭经理汇报孙月的经济问题？\n女：你想想啊，他们是亲戚，还能不互相帮忙？\n男：不会吧，亲戚是亲戚，工作是工作，再说我也是为公司好啊！\n女：你呀，还是小心点儿好，别让人卖了还帮人家数钱！\n问：女的想提醒男的什么？"},{"n":34,"type":"mcq","options":["货物数量不够","双方协商不成","货物包装不当","买方名誉受损"],"answer":"B","transcript":"男：我们之间没什么好谈的，等着律师跟你们谈吧。\n女：何必弄得这么不愉快呢？有什么问题我们可以商量解决呀！\n男：你来看看这些货物，数量不够不说，大部分都被海水弄湿了，完全是因为包装不合格而造成的。由于你们的过错，我们的信誉受到了巨大损失，这个损失由谁来承担？\n女：发生这样的事我也很抱歉，我完全能理解你们的心情，我们愿意承担你们的损失。不过，您看能不能不通过法律手段解决这件事？\n问：对话中没有提到什么问题？"},{"n":35,"type":"mcq","options":["免费送货安装","改变家具尺寸","免费以旧换新","更新家具样式"],"answer":"C","transcript":"男：你们的家具比别的厂家都贵，我想知道你们的家具跟其他公司的有什么不同。\n女：一分钱一分货。您看看我们所用的材料和家具的样子就知道了。时尚的设计、一流的材料，都是现在最流行的。\n男：现在流行不代表永远流行，总有过时的时候吧？\n女：说得太对了！我们公司还提供以旧换新业务，要是过几年您不喜欢这个样子了，可以来换新家具，只要补些差价就行。这样您的家具永远是最新、最时尚的。\n男：听起来倒很不错。家具的大小可以改变吗？\n女：当然可以，我们可以根据您的要求在合理的范围内调整大小，而且我们还提供免费送货上门安装的服务。\n问：下列哪项不是家具公司所提供的服务？"},{"n":36,"type":"mcq","options":["心理压力太大","身体状态不好","技术不够熟练","客观环境不好"],"answer":"A","transcript":"第36到37题是根据下面一段话：\n他是一个非常著名的高空表演者，在一次重大的表演中不幸出了事故，摔死了。事后他的妻子说：“我知道他这次一定会出事的，因为他上场前总是不停地说：‘这次太重要了，不能失败，一定不能失败！’”而以前每次成功的表演，他只是想着表演这件事，而不去管这件事可能带来的结果。\n36. 他为什么会出事？\n37. 这个故事告诉我们什么？"},{"n":37,"type":"mcq","options":["做事应该全面考虑","不应该做危险的事","应专注于事情本身","外界对人影响很大"],"answer":"C","transcript":"第36到37题是根据下面一段话：\n他是一个非常著名的高空表演者，在一次重大的表演中不幸出了事故，摔死了。事后他的妻子说：“我知道他这次一定会出事的，因为他上场前总是不停地说：‘这次太重要了，不能失败，一定不能失败！’”而以前每次成功的表演，他只是想着表演这件事，而不去管这件事可能带来的结果。\n36. 他为什么会出事？\n37. 这个故事告诉我们什么？"},{"n":38,"type":"mcq","options":["产品质量问题使他不安","发现卖价高出同类产品","因数量过多而计算错误","顾客要求退还产品差价"],"answer":"B","transcript":"第38到39题是根据下面一段话：\n有一个专门卖厨房用具的年轻人在半个月内跟二十多位顾客做成了生意，但是后来他发现自己卖的刀具比别的商店的同类产品价格高，这让他很不安。经过考虑，他决定向这二十多位顾客说明情况，并主动提出把多收的钱退给顾客。他的这种做法感动了顾客，他们不但没接受退款，反而又买了很多刀具，这使他的销售量一下子提高了很多，并因此得到了公司的奖励。\n38. 这个年轻人为什么要退钱给顾客？\n39. 他凭什么得到了顾客的信任？"},{"n":39,"type":"mcq","options":["服务热情","产品质量","诚实坦白","产品价格"],"answer":"C","transcript":"第38到39题是根据下面一段话：\n有一个专门卖厨房用具的年轻人在半个月内跟二十多位顾客做成了生意，但是后来他发现自己卖的刀具比别的商店的同类产品价格高，这让他很不安。经过考虑，他决定向这二十多位顾客说明情况，并主动提出把多收的钱退给顾客。他的这种做法感动了顾客，他们不但没接受退款，反而又买了很多刀具，这使他的销售量一下子提高了很多，并因此得到了公司的奖励。\n38. 这个年轻人为什么要退钱给顾客？\n39. 他凭什么得到了顾客的信任？"},{"n":40,"type":"mcq","options":["影响员工工作热情","促使员工更加努力","致使员工停止工作","员工要求离开公司"],"answer":"A","transcript":"第40到41题是根据下面一段话：\n我们常听到“公司的成绩是全体员工努力的结果”之类的话，表面看起来，管理者非常尊重企业员工，但当员工的利益以个体方式出现时，企业管理者会以维护全体员工的利益为理由拒绝少数员工的要求，他们会说“我们不可能只考虑你的利益”或者“你不想干可以走，我们不担心找不到人”，这时员工就会觉得“重视员工的价值和需求”只是一句漂亮话，没有什么实际意义。很显然，如果管理者不重视员工的感受，不尊重员工，就会大大降低员工的工作积极性，使他们只是为了得到工资而工作。\n40. 如果公司不重视员工感受，结果会怎样？\n41. 这段话的主要内容是什么？"},{"n":41,"type":"mcq","options":["公司成绩是员工努力的结果","员工工作仅仅是为了获得钱","管理者应重视公司员工感受","员工不该只是为了钱而工作"],"answer":"C","transcript":"第40到41题是根据下面一段话：\n我们常听到“公司的成绩是全体员工努力的结果”之类的话，表面看起来，管理者非常尊重企业员工，但当员工的利益以个体方式出现时，企业管理者会以维护全体员工的利益为理由拒绝少数员工的要求，他们会说“我们不可能只考虑你的利益”或者“你不想干可以走，我们不担心找不到人”，这时员工就会觉得“重视员工的价值和需求”只是一句漂亮话，没有什么实际意义。很显然，如果管理者不重视员工的感受，不尊重员工，就会大大降低员工的工作积极性，使他们只是为了得到工资而工作。\n40. 如果公司不重视员工感受，结果会怎样？\n41. 这段话的主要内容是什么？"},{"n":42,"type":"mcq","options":["玉器相碰后发出的声音","请专家用仪器进行判定","看玉器产品价格的高低","看玉器撞击后的坚硬度"],"answer":"A","transcript":"第42到43题是根据下面一段话：\n据说通过声音可以来判断用玉做成的产品的质量好坏。把两个玉制品轻轻相碰，能发出清脆好听的声音的就是好产品。有一个人就用这种方法去商店买玉器。但他总是不满意，他觉得这家商店没有一件好玉器，甚至价格很贵的玉器质量也不好。原来，他用质地很差的玉器做检验的标准，结果所有的玉器都发不出清脆好听的声音。\n42. 这个人用什么方法判断玉制品质量的好坏？\n43. 他为什么总是不满意？"},{"n":43,"type":"mcq","options":["检验的标准错了","他对玉器要求高","店里没有好玉器","店里玉器卖价低"],"answer":"A","transcript":"第42到43题是根据下面一段话：\n据说通过声音可以来判断用玉做成的产品的质量好坏。把两个玉制品轻轻相碰，能发出清脆好听的声音的就是好产品。有一个人就用这种方法去商店买玉器。但他总是不满意，他觉得这家商店没有一件好玉器，甚至价格很贵的玉器质量也不好。原来，他用质地很差的玉器做检验的标准，结果所有的玉器都发不出清脆好听的声音。\n42. 这个人用什么方法判断玉制品质量的好坏？\n43. 他为什么总是不满意？"},{"n":44,"type":"mcq","options":["分不清钱的价值","被别人给利用了","是个很笨的傻子","头脑聪明会赚钱"],"answer":"D","transcript":"第44到45题是根据下面一段话：\n有一个小孩，大家都说他很傻，因为如果有人同时给他5毛钱和1块钱，他总是选择5毛钱，而不要1块钱。有人觉得很奇怪，就去问那个孩子：“难道你分不清5毛钱和1块钱的价值吗？”孩子小声说：“当然分得清楚！可是如果我选择了1块钱，下次你就不会跟我玩儿这种游戏了。”\n这就是小孩的聪明之处。确实，如果他选择了1块钱，就没有人愿意继续跟他玩儿了，而他得到的也只有1块钱。但是他拿5毛钱，别人就会把他当成傻子继续跟他玩儿，时间越长，他拿得就越多。\n44. 关于这个孩子，正确的是哪一项？\n45. 这个故事告诉我们什么？"},{"n":45,"type":"mcq","options":["傻子总能得到帮助","知道满足才能够快乐","孩子智力比大人高","不满足才能得到更多"],"answer":"B","transcript":"第44到45题是根据下面一段话：\n有一个小孩，大家都说他很傻，因为如果有人同时给他5毛钱和1块钱，他总是选择5毛钱，而不要1块钱。有人觉得很奇怪，就去问那个孩子：“难道你分不清5毛钱和1块钱的价值吗？”孩子小声说：“当然分得清楚！可是如果我选择了1块钱，下次你就不会跟我玩儿这种游戏了。”\n这就是小孩的聪明之处。确实，如果他选择了1块钱，就没有人愿意继续跟他玩儿了，而他得到的也只有1块钱。但是他拿5毛钱，别人就会把他当成傻子继续跟他玩儿，时间越长，他拿得就越多。\n44. 关于这个孩子，正确的是哪一项？\n45. 这个故事告诉我们什么？"},{"n":46,"type":"bank","text":"没有任何一种食物能（ ）人体需要的全部营养。","bank":{"A":"按时","B":"距离","C":"耐心","D":"培养","E":"包含","F":"坚持"},"answer":"E"},{"n":47,"type":"bank","text":"如果白天不（ ）吃饭而晚上大吃一顿，那么很容易发胖。","bank":{"A":"按时","B":"距离","C":"耐心","D":"培养","E":"包含","F":"坚持"},"answer":"A"},{"n":48,"type":"bank","text":"无论是关系多么亲密的朋友，也要保持一定的（ ），给彼此留一些空间。","bank":{"A":"按时","B":"距离","C":"耐心","D":"培养","E":"包含","F":"坚持"},"answer":"B"},{"n":49,"type":"bank","text":"企业要求员工具有（ ）、细致的性格以及良好的职业素质。","bank":{"A":"按时","B":"距离","C":"耐心","D":"培养","E":"包含","F":"坚持"},"answer":"C"},{"n":50,"type":"bank","text":"积极的心态和把握机会的能力是需要我们慢慢（ ）的。","bank":{"A":"按时","B":"距离","C":"耐心","D":"培养","E":"包含","F":"坚持"},"answer":"D"},{"n":51,"type":"bank","text":"A：（ ）有没有好办法解决记生词的问题呢？\nB：根据语言环境发挥你的想象力，记生词就不那么难了。","bank":{"A":"节约","B":"湿润","C":"到底","D":"规定","E":"关键","F":"温度"},"answer":"C"},{"n":52,"type":"bank","text":"A：你们公司有上班时不允许私自外出的（ ）吗？\nB：当然有了，不请假就外出是要扣工资的。","bank":{"A":"节约","B":"湿润","C":"到底","D":"规定","E":"关键","F":"温度"},"answer":"D"},{"n":53,"type":"bank","text":"A：坐飞机去西藏考察不是可以（ ）很多时间吗？\nB：谁说不是呢？可是钱谁出呀？","bank":{"A":"节约","B":"湿润","C":"到底","D":"规定","E":"关键","F":"温度"},"answer":"A"},{"n":54,"type":"bank","text":"A：吃什么水果能让皮肤变得更（ ）呢？\nB：苹果呀，长期吃苹果还能减肥呢。","bank":{"A":"节约","B":"湿润","C":"到底","D":"规定","E":"关键","F":"温度"},"answer":"B"},{"n":55,"type":"bank","text":"A：我们班身高差了点儿，比赛有把握吗？\nB：比赛不仅要看身高，技术也是获得胜利的（ ）。","bank":{"A":"节约","B":"湿润","C":"到底","D":"规定","E":"关键","F":"温度"},"answer":"E"},{"n":56,"type":"order","items":{"A":"总得有点儿精气神","B":"这样企业才能保持活力","C":"一个企业就像一个人"},"answer":"CAB"},{"n":57,"type":"order","items":{"A":"把奶奶送到了医院","B":"幸亏邻居及时发现","C":"否则后果会很严重"},"answer":"BAC"},{"n":58,"type":"order","items":{"A":"孤单没有大家想得那么可怕","B":"是每个人都会有的感觉","C":"其实它只是一种感觉"},"answer":"ACB"},{"n":59,"type":"order","items":{"A":"几乎每过两分钟就有一次射门","B":"可惜的是，到最后都没能进球","C":"比赛双方的进攻速度都很快"},"answer":"CAB"},{"n":60,"type":"order","items":{"A":"大学生专业水平还不够","B":"所以家教是打工的首选","C":"而且没有多少社会经验"},"answer":"ACB"},{"n":61,"type":"order","items":{"A":"喜欢那种被称赞的感觉","B":"每个人都愿意听好话","C":"即使那些话并不是真的"},"answer":"BAC"},{"n":62,"type":"order","items":{"A":"我还会作这样的决定","B":"如果有机会再来一次","C":"我并不认为我做错了"},"answer":"CBA"},{"n":63,"type":"order","items":{"A":"如果讲话人讲得确实有道理","B":"甚至有意让对方和自己争论","C":"他就会鼓励对方一直说下去"},"answer":"ACB"},{"n":64,"type":"order","items":{"A":"早晚会到达你向往的终点","B":"而跑得慢的人只要一直跑","C":"跑得快的人往往会停下来"},"answer":"CBA"},{"n":65,"type":"order","items":{"A":"让大家跟我受批评","B":"是我把事情办砸了","C":"我因此感到很不安"},"answer":"BAC"},{"n":66,"type":"reading_mcq","passage":"一位乘客上了一辆出租车。司机问：“先生，您要走最短的路还是最快的路？”“最短的路难道不是最快的路吗？”乘客奇怪地问。“当然不是，现在是上下班高峰，人多车多，最短的路交通拥挤，说不定还会堵车。”可见，此时绕道是最好的选择。","stem":"这个故事告诉我们：","options":["面对有些问题可以绕道而行","选择最短的路才能最快到达","司机总是想办法绕远道赚钱","最快的路一定就是最短的路"],"answer":"A"},{"n":67,"type":"reading_mcq","passage":"最近一项中国城市居民幸福感调查显示：70%以上的被调查者认为自己很幸福，女性、老年人、大学本科以上学历者以及公司负责人群体的幸福感相对较高，其中公务员感到最幸福。此外，收入分配是否公平合理已成为影响幸福的重要因素。","stem":"对幸福感有重要影响的是：","options":["是否受过大学教育","收入分配是否合理","是否担任单位领导","家庭成员关系如何"],"answer":"B"},{"n":68,"type":"reading_mcq","passage":"豆腐是西汉时期刘安发明的绿色食品，流传到今天已经有两千多年的历史了。最近市场上流行的彩色豆腐与传统豆腐一样，都是把大豆作为主要生产原料的。不同的是，彩色豆腐在制作中加入了新鲜的蔬菜果汁，形成了天然的颜色，既有豆腐的口感又保存了蔬菜的营养，对人体消化、吸收很有好处。","stem":"关于彩色豆腐，正确的一项是：","options":["已有两千多年的历史","把蔬菜作为主要原料","加入了天然蔬菜果汁","是绿色的豆腐食品"],"answer":"C"},{"n":69,"type":"reading_mcq","passage":"冬天天气寒冷，非常容易引起血压的变化，所以专家建议，有心脏病的人感到不舒服时应该及时到医院作进一步的检查。另外，这样的病人更要注意早睡晚起，早上起床时最好先喝杯热水，身体感觉暖和一点儿以后再起床，去室外锻炼也应该改在中午以后。","stem":"天气寒冷时，心脏病病人应该怎么做？","options":["起床以后先喝热水","养成早起运动的习惯","冬季最好不要运动","养成早睡早起的习惯"],"answer":"A"},{"n":70,"type":"reading_mcq","passage":"很多人都知道这样一个实验：把一只青蛙扔到100℃的开水里，青蛙能马上跳出来，从而活下来。但是，如果把青蛙放在温水里慢慢加热，等到它感觉危险来临时，已经没有力量跳出来了。在职场中也有这样的“温水青蛙”，他们每天重复着那些熟悉的工作，一天又一天、一年又一年，对压力已经没有太多的感觉，慢慢等着“安乐死”。","stem":"职场上的“温水青蛙”指：","options":["工作环境舒服的人","带病坚持工作的人","感觉不到危机的人","工作没有压力的人"],"answer":"C"},{"n":71,"type":"reading_mcq","passage":"每个孩子都会犯这样那样的错误，而孩子正是在不断犯错误、改正错误的过程中成长起来的。所以说，重要的不是孩子是否犯错误，而是父母采取什么态度让孩子认识并改正错误。能在孩子的错误中发现优点，用欣赏的态度去教育孩子改正错误，比严肃的批评和打骂更有效果。","stem":"孩子犯错误时，父母应该怎么做？","options":["必要时可以打骂","进行严厉的批评","帮孩子认识错误","让孩子别犯错误"],"answer":"C"},{"n":72,"type":"reading_mcq","passage":"在城市发展的过程中，由于利益原因，一些地方出现了“贵族化”的发展趋势，追求繁荣、豪华的发展模式，“城市名片”几乎完全一样，到处都是高楼，教育、医疗等公共服务行业也出现了高端化、贵族化的倾向。与此相伴的是大拆大建，普通百姓觉得生活很不方便，生存空间越来越小。","stem":"这段话提到的“贵族化”是指：","options":["增加普通百姓收入","追求高端发展模式","提高百姓生活水平","促进服务业的发展"],"answer":"B"},{"n":73,"type":"reading_mcq","passage":"现在，自然资源问题越来越突出，人们已经认识到，自然资源总有一天会用完的。因此世界各国对能源的关注也普遍上升，维护国家能源安全成为世界各国面临的重要课题，无论是发达国家还是发展中国家，都把保障本国能源安全作为国家发展的首要目标。","stem":"这段话的主要内容是：","options":["能源成为各国关注的重点","世界自然资源已经用完了","开发新资源成为关注重点","保护国家安全成为大问题"],"answer":"A"},{"n":74,"type":"reading_mcq","passage":"许多人都希望找到一份有保障的工作，它能保证你工作到退休，而你愿意用永远的忠诚作为交换。直到今天，仍有很多老师、父母还鼓励这种愿望。然而，如果到了现在还抱着这种希望，这就意味着你已经完全跟不上这个时代，只剩下美好的幻想了。早在几年以前，传统的工作就已经没有了。你不要抱怨任何人，而应该怪自己有这样不合实际的想法。","stem":"这段话的主要内容是：","options":["不该对工作抱有太多不满","永远的保障已经不存在了","能工作到退休才是好工作","忠于企业才能换来保障"],"answer":"B"},{"n":75,"type":"reading_mcq","passage":"冰激凌文学把定位放在“好看”的休闲功能上，是能满足读者娱乐需求的文化商品。它好像冰激凌一样，包装精美，色彩鲜艳，很受年轻人喜爱。这些作品通常风格幽默轻松，故事内容吸引人，情感表达以温馨欢乐为主，一般以喜剧结尾。故事总是简单而温暖的，语言总是活泼而俏皮的，读者很容易被故事内容所感动。","stem":"下列符合这段话内容的一项是：","options":["冰激凌是很受欢迎的新食品","冰激凌文学很阳光","冰激凌文学是新的喜剧形式","读者都喜欢冰激凌"],"answer":"B"},{"n":76,"type":"reading_mcq","passage":"汽车颜色不仅仅是汽车的外衣和车型特征的标志，而且还能反映出车主的性格和情感。一般选择不起眼车身颜色的人，工作欲望比较强；相反，选择明亮颜色的人，一般都喜欢享受生活乐趣。关于汽车安全方面，专家对五种颜色汽车的安全性从高到低进行了排名，依次是：白色、银灰色、蓝色、绿色和黑色。","stem":"下列符合这段话内容的一项是：","options":["浅色车事故发生率较高","开车的人工作欲望较强","选择黑色汽车最为安全","汽车颜色反映人的性格"],"answer":"D"},{"n":77,"type":"reading_mcq","passage":"增加体内维生素C的含量不仅是保证营养平衡的基础，也是提高身体防病能力、防止冬季感冒的最简单办法。面对我们每天都吃的含有维生素C的蔬菜，怎么做才能让蔬菜中的维生素C不被浪费呢？实际上很简单：吃菜时加点儿醋，这样就能促进蔬菜中维生素C的吸收。","stem":"下列符合这段话内容的一项是：","options":["喝醋可以防止冬季感冒","醋中维生素C含量最多","醋可以促进营养的吸收","做菜时加醋可增加营养"],"answer":"C"},{"n":78,"type":"reading_mcq","passage":"随着网上购物越来越多地进入普通百姓的生活，一种新兴职业也随之产生，网友们送给专门为网店做模特儿的人一个昵称：“网络麻豆”。一些网店主人为了使自己的商品卖得更好，会请来专业摄影师和模特儿，让模特儿们穿上不同的服装来拍片，摄影师和“麻豆们”都可以得到收入。","stem":"“网络麻豆”指的是：","options":["在网上开店的人","职业网络模特儿","拍照片的摄影师","网站的促销人员"],"answer":"B"},{"n":79,"type":"reading_mcq","passage":"传说唐代大诗人李白小时候特别不爱学习，很喜欢玩儿。有一天，他又偷偷跑出去玩儿，在河边看见一个老奶奶手里拿着一根很粗的铁棒在石头上一遍一遍地用力磨。李白很好奇，就问：“您在干什么？”老奶奶回答：“我要把铁棒磨成一根针。”李白又问：“这么粗的铁棒怎么可能磨成很细的针呢？”老奶奶说：“只要一直这样磨下去，总有一天会磨成针的。”李白听了，觉得很惭愧，回去后开始努力学习，后来终于成为唐代最有名的诗人。","stem":"这个故事告诉我们：","options":["做事应该懂得方法","多学习能减少错误","做事坚持才能成功","应该勇敢面对困难"],"answer":"C"},{"n":80,"type":"reading_mcq","passage":"现在很多年轻人在碰到自己不了解的问题时，首先想到的是去网上找，如果找不到，就在网上提问，希望得到热心网友的帮助。有这种“搜索依赖症”的人主要是80后和职业白领。互联网的方便快速可以帮助人们在获得大量信息的同时节省不少时间，但过分的依赖容易导致人情绪上的懒惰，造成一部分年轻人不主动记忆、思考问题。","stem":"当遇到问题时，很多年轻人会怎么做？","options":["自己独立思考","找明白人帮忙","上网寻找答案","去向朋友求助"],"answer":"C"},{"n":81,"type":"reading_mcq","passage":"现在很多年轻人在碰到自己不了解的问题时，首先想到的是去网上找，如果找不到，就在网上提问，希望得到热心网友的帮助。有这种“搜索依赖症”的人主要是80后和职业白领。互联网的方便快速可以帮助人们在获得大量信息的同时节省不少时间，但过分的依赖容易导致人情绪上的懒惰，造成一部分年轻人不主动记忆、思考问题。","stem":"这段话主要谈了年轻人哪方面的问题？","options":["能有效利用互联网","凡事依赖上网搜索","对别人的事很热心","好奇心求知欲很强"],"answer":"B"},{"n":82,"type":"reading_mcq","passage":"我们不难发现，在乘坐电梯时一般人习惯向上看。实际上，这种行为与我们的“私人空间”有着很大的关系。所谓私人空间，是指我们身体周围一定的空间，一旦有人闯入我们的私人空间，我们就会感觉不舒服、不自在。私人空间的大小每个人都不一样，调查显示，女性的私人空间比男性的大。在拥挤的公共汽车中我们会感觉不自在，就是因为有人进入了我们的私人空间。\n电梯是一个非常狭小的空间。在电梯里，人与人互相感觉到对方进入了自己的私人空间，所以会感到不舒服，都想赶紧离开电梯这个狭小的空间，向上看正是这种心理的表现。","stem":"人们在电梯里为什么感觉不舒服？","options":["有人进入了私人空间","快速运行造成不适","空气较少，呼吸困难","空间太小、人太多"],"answer":"A"},{"n":83,"type":"reading_mcq","passage":"我们不难发现，在乘坐电梯时一般人习惯向上看。实际上，这种行为与我们的“私人空间”有着很大的关系。所谓私人空间，是指我们身体周围一定的空间，一旦有人闯入我们的私人空间，我们就会感觉不舒服、不自在。私人空间的大小每个人都不一样，调查显示，女性的私人空间比男性的大。在拥挤的公共汽车中我们会感觉不自在，就是因为有人进入了我们的私人空间。\n电梯是一个非常狭小的空间。在电梯里，人与人互相感觉到对方进入了自己的私人空间，所以会感到不舒服，都想赶紧离开电梯这个狭小的空间，向上看正是这种心理的表现。","stem":"人们乘电梯时为什么常向上看？","options":["没事可做，打发时间","怕错过要去的楼层","保持直立的自然状态","想快点儿离开电梯"],"answer":"D"},{"n":84,"type":"reading_mcq","passage":"“地球之船”是一种可以自我满足需要的环保住房，每个“地球之船”都是独一无二的。因为每一座都是由主人自己设计并亲手建成的，所以每一座“地球之船”都有独特的外观。不但大小、建筑材料不同，外形也是千变万化，这一切都由建造者决定。值得一提的是，这些房子都有很好的温度控制功能，无论是在炎热的夏天还是在寒冷的冬天，居住在这里都能享受到家的温暖和舒适，因为这些房屋在设计和建造时将地热、风、空气、太阳能、水等天然资源完美地结合了起来，可以达到很好的温度控制效果，就连房屋正面的朝向都十分讲究。","stem":"“地球之船”的设计由什么决定？","options":["建造者的愿望","当地气候情况","建筑所需材料","当地天然资源"],"answer":"A"},{"n":85,"type":"reading_mcq","passage":"“地球之船”是一种可以自我满足需要的环保住房，每个“地球之船”都是独一无二的。因为每一座都是由主人自己设计并亲手建成的，所以每一座“地球之船”都有独特的外观。不但大小、建筑材料不同，外形也是千变万化，这一切都由建造者决定。值得一提的是，这些房子都有很好的温度控制功能，无论是在炎热的夏天还是在寒冷的冬天，居住在这里都能享受到家的温暖和舒适，因为这些房屋在设计和建造时将地热、风、空气、太阳能、水等天然资源完美地结合了起来，可以达到很好的温度控制效果，就连房屋正面的朝向都十分讲究。","stem":"关于“地球之船”，不正确的一项是：","options":["由设计者亲手建成","能控制房内的温度","设计环保而有个性","房屋正面朝向太阳"],"answer":"D"},{"n":86,"type":"arrange","tokens":["从来","戴","的","习惯","哥哥","没有","手表"],"answer":"哥哥从来没有戴手表的习惯。"},{"n":87,"type":"arrange","tokens":["冬季","注意","干燥","得","皮肤","保护","的"],"answer":"干燥的冬季得注意保护皮肤。"},{"n":88,"type":"arrange","tokens":["长大","人","孤单","为什么","越……越……","觉得","呢"],"answer":"人为什么越长大越觉得孤单呢？"},{"n":89,"type":"arrange","tokens":["都","对","负责","工作","应该","认真","每个人"],"answer":"每个人都应该对工作认真负责。"},{"n":90,"type":"arrange","tokens":["是","复习","保证","方法","效果","的","重要","学习"],"answer":"复习是保证学习效果的重要方法。"},{"n":91,"type":"arrange","tokens":["公司","标准","管理者","谁","决定","工资","由","来","的"],"answer":"公司管理者的工资标准由谁来决定？"},{"n":92,"type":"arrange","tokens":["学过","应该","起来","把","的","知识","你","学会","联系"],"answer":"你应该学会把学过的知识联系起来。"},{"n":93,"type":"arrange","tokens":["希望","将来","姐姐","合格的","能","一名","翻译","成为"],"answer":"姐姐希望将来能成为一名合格的翻译。"},{"n":94,"type":"arrange","tokens":["幽默的","他","风格","欢迎","受到了","主持","观众","的"],"answer":"他幽默的主持风格受到了观众的欢迎。"},{"n":95,"type":"arrange","tokens":["以","她","心情","愉快的","新的","每天","工作","开始"],"answer":"她每天以愉快的心情开始新的工作。"},{"n":96,"type":"image_write","keyword":"越……越……","image":"hsk4-de4-q96.png","reference":"人越胖越应该运动。"},{"n":97,"type":"image_write","keyword":"遇到","image":"hsk4-de4-q97.png","reference":"王阿姨在路上遇到了老邻居。"},{"n":98,"type":"image_write","keyword":"沙发","image":"hsk4-de4-q98.png","reference":"奶奶正坐在沙发上看报纸。"},{"n":99,"type":"image_write","keyword":"允许","image":"hsk4-de4-q99.png","reference":"加油站不允许使用手机。"},{"n":100,"type":"image_write","keyword":"至少","image":"hsk4-de4-q100.png","reference":"爬到山顶至少得两个小时。"}],"transcripts":{"1":"现代年轻人的婚姻是跟着感觉走，父母的意见已经不那么重要了。即使是通过朋友介绍，如果对对方不“感冒”，也可以马上走人，或者只是吃个饭就分手。\n★ 现代年轻人的婚姻更尊重自己的感觉。","2":"我住的地方离机场很近，飞机起飞降落时我都能听到巨大的声音。每当我心情不好时，我就会对着飞过的飞机大叫，等飞机飞走了，我的坏心情也被飞机带走了。\n★ 飞机起降声使我心情变坏。","3":"很多习惯早起的人起床后会马上吃早餐，认为这样能及时补充身体所需的营养。事实上，这样做对健康没有好处。专家指出，为了补充睡眠中失去的水分，起床后先喝点儿水，20到30分钟后再吃早餐比较合适。\n★ 起床后别马上吃早餐。","4":"成人牙膏一般口味比较重，刺激性也比较强，儿童使用后会影响对味道的感觉；而且由于成人牙膏硬度比较高，因此更容易损伤儿童牙齿。\n★ 儿童不要使用成人牙膏。","5":"据报道，只要稍微调整一下自己的饮食习惯，就可以改变身体的内在规律。比如在饮食中增加含盐食物，减少含糖食物，就可以使生物钟变快，使懒人变得勤快起来；而红葡萄酒则相反，可以使生物钟变慢。\n★ 懒人体内盐分不足。","6":"在日常生活中，有些人面对名牌或打折商品时，即使对自己来说是没什么用处的东西，也会马上买下来。但买到的不一定就是适合自己的，所以事后又常常感到很后悔。心理医生说，这种行为其实是对商品的病态占有欲造成的。\n★ 过度购物易引起心理疾病。","7":"对大多数人来说，当回忆某件真实存在的事情时，眼睛会先向上、再向左转动。而当一个人尝试去“构建”一个不存在的情况时，眼球的运动正好相反，会先向上、再向右转动。\n★ 说假话时眼睛会向右转。","8":"科学家研究发现，脸红是只有人类才有的身体反应。通过脸红，我们可以告诉别人我们已经认识到自己做得不对了，而这时看到我们脸红的人则可以了解我们在这一时刻所经历的不快感受。脸红也许就是我们对所犯错误表示歉意的身体语言。\n★ 人犯错时才会脸红。","9":"看起来比较瘦，但没有运动习惯的人，虽然脂肪没有胖人多，但是心脏病的发病风险和胖人没什么不同，因为心脏病与脂肪的多少没有关系。就是说，胖人不一定就会得心脏病，瘦人也不一定不得心脏病。\n★ 人越胖越容易得心脏病。","10":"科学家对在炎热的夏天喝温热饮料和冰凉饮料的人的皮肤进行测试后发现，温热饮料能降低皮肤温度1到2度，而冰凉饮料只能使口腔周围变冷。同时，喝饮料的人自己的感觉也不同，喝温热饮料者觉得清凉舒服，渴的感觉消失了；而喝冰凉饮料的人则感觉越喝越渴。\n★ 夏季喝冰凉饮料最解渴。","11":"女：还是你有办法。\n男：你也不看看我是谁！\n问：男的是什么语气？","12":"男：看看你这熊猫眼，又熬了一夜吧？\n女：时间紧，任务急，没办法呀！\n问：女的昨晚怎么了？","13":"女：下一步打算怎么办？\n男：还能怎么办？走一步算一步吧。\n问：男的现在心情怎么样？","14":"女：我最喜欢这个牌子了。又让你破费了！\n男：你喜欢就好，这个味道很适合你这样的职业女性。\n问：男的正在干什么？","15":"女：瞧瞧，我说什么来着？\n男：你不帮忙可以，请不要阴一句阳一句的！\n问：女的是什么心态？","16":"男：这小伙子可真是好样的，不顾危险，跳进河里救起了两个落水儿童。\n女：是啊，这时候河水可够凉的！\n问：他们觉得这个小伙子怎么样？","17":"女：我看你跟英子挺合适的，要不阿姨帮你说说？\n男：人家英子眼光高，看不上我！\n问：男的说英子怎么样？","18":"男：你真厉害，还会做菜！跟谁学的这一手？\n女：每次家里来了客人，我都给妈妈打下手，慢慢儿就学了一点儿。\n问：家里来客人时，女的一般会做什么？","19":"女：小娟就是个直脾气，说话不知深浅，您千万别往心里去！\n男：我倒没什么，只是直来直去容易伤人哪！\n问：根据对话，可以知道小娟怎么样？","20":"女：你为什么上课总不注意听呢？有什么事吗？\n男：听不进去呗！我本来就不是学习的料，可我爸妈就是不听。\n问：根据对话，可以知道男的怎么样？","21":"男：这笔钱不是小数目，你让我再想想！\n女：还想呢？生意都送上门来了，过了这个村可没这个店了！\n问：女的希望男的怎么做？","22":"男：文丽，听说你留校当老师了，得请客啊！\n女：别听风就是雨，没影儿的事！\n问：女的是什么意思？","23":"男：你能告诉我，我在地图上的什么位置吗？我想去国家图书馆。\n女：你看，这是地铁站，你正好走反了。我也去那个方向，我给你带路吧。\n问：根据对话，可以知道男的怎么了？","24":"男：我一定要做出个样子来，给这些人看看！\n女：如果只是为了面子这样做，还真没这个必要。\n问：女的是什么意思？","25":"男：要是老周软硬不吃怎么办？\n女：不会的，他吃软不吃硬。你说点儿软话，他准答应！\n问：女的是什么意思？","26":"女：你太让老师失望了！你怎么能跟老师顶嘴呢？\n男：我当时也是头脑一热，就说了不该说的话。现在怎么办？\n女：你呀你，让我说什么好呢！\n男：你说他不会放弃我，从此不管我了吧？\n问：男的现在是什么心情？","27":"男：我家最近出了点儿状况，可能一时半会儿买不了房子，你看……\n女：我看上的是你的人，又不是你的房子！我们可以先租房。\n男：兰兰，你真好！\n女：行了，瞧你这点儿出息！\n问：他们最可能是什么关系？","28":"女：您好，请帮我找一下赵明。\n男：赵明？你打错了，我们这里没有这个人。\n女：不可能吧？我昨天还跟他通过电话呢。我是……\n男：你最好弄清楚再打！\n女：喂……\n问：根据对话，可以知道男的怎么样？","29":"男：别人的钱再多，那也是人家的，不能动别的心思！\n女：你这是说什么呢？我动什么心思了？\n男：我只是给你打个预防针！\n女：你这是哪儿跟哪儿呀！当我是什么人了！\n问：男的提醒女的什么？","30":"女：听说钟元弄丢了一份重要材料，老板要停他的职。\n男：活该！他要是把玩儿游戏的劲头儿用在工作上，哪会有今天？\n女：怎么说我们也是朋友，不能看着他丢掉工作吧？\n男：你爱帮你帮，我才懒得管他的闲事呢！\n问：男的觉得钟元怎么样？","31":"男：这上有老下有小的日子真够你受的，你也得注意身体呀！\n女：唉，慢慢儿熬吧。\n男：也快，等小静大学毕业，你就能松口气了。\n女：可她才上大学呀！\n问：根据对话，可以知道女的怎么样？","32":"女：老孔，我的话你可别不当回事儿！真出事就晚了！\n男：那你总不能让我天天躺在床上吧？\n女：能那样更好。其实，我今天就该把你留下来作全面检查！\n男：别，别！厂里一堆事等着我呢，我保证每周都来还不行吗？\n女：老孔，你得说话算数！\n问：他们最可能是什么关系？","33":"男：你觉得我不应该向郭经理汇报孙月的经济问题？\n女：你想想啊，他们是亲戚，还能不互相帮忙？\n男：不会吧，亲戚是亲戚，工作是工作，再说我也是为公司好啊！\n女：你呀，还是小心点儿好，别让人卖了还帮人家数钱！\n问：女的想提醒男的什么？","34":"男：我们之间没什么好谈的，等着律师跟你们谈吧。\n女：何必弄得这么不愉快呢？有什么问题我们可以商量解决呀！\n男：你来看看这些货物，数量不够不说，大部分都被海水弄湿了，完全是因为包装不合格而造成的。由于你们的过错，我们的信誉受到了巨大损失，这个损失由谁来承担？\n女：发生这样的事我也很抱歉，我完全能理解你们的心情，我们愿意承担你们的损失。不过，您看能不能不通过法律手段解决这件事？\n问：对话中没有提到什么问题？","35":"男：你们的家具比别的厂家都贵，我想知道你们的家具跟其他公司的有什么不同。\n女：一分钱一分货。您看看我们所用的材料和家具的样子就知道了。时尚的设计、一流的材料，都是现在最流行的。\n男：现在流行不代表永远流行，总有过时的时候吧？\n女：说得太对了！我们公司还提供以旧换新业务，要是过几年您不喜欢这个样子了，可以来换新家具，只要补些差价就行。这样您的家具永远是最新、最时尚的。\n男：听起来倒很不错。家具的大小可以改变吗？\n女：当然可以，我们可以根据您的要求在合理的范围内调整大小，而且我们还提供免费送货上门安装的服务。\n问：下列哪项不是家具公司所提供的服务？","36":"第36到37题是根据下面一段话：\n他是一个非常著名的高空表演者，在一次重大的表演中不幸出了事故，摔死了。事后他的妻子说：“我知道他这次一定会出事的，因为他上场前总是不停地说：‘这次太重要了，不能失败，一定不能失败！’”而以前每次成功的表演，他只是想着表演这件事，而不去管这件事可能带来的结果。\n36. 他为什么会出事？\n37. 这个故事告诉我们什么？","37":"第36到37题是根据下面一段话：\n他是一个非常著名的高空表演者，在一次重大的表演中不幸出了事故，摔死了。事后他的妻子说：“我知道他这次一定会出事的，因为他上场前总是不停地说：‘这次太重要了，不能失败，一定不能失败！’”而以前每次成功的表演，他只是想着表演这件事，而不去管这件事可能带来的结果。\n36. 他为什么会出事？\n37. 这个故事告诉我们什么？","38":"第38到39题是根据下面一段话：\n有一个专门卖厨房用具的年轻人在半个月内跟二十多位顾客做成了生意，但是后来他发现自己卖的刀具比别的商店的同类产品价格高，这让他很不安。经过考虑，他决定向这二十多位顾客说明情况，并主动提出把多收的钱退给顾客。他的这种做法感动了顾客，他们不但没接受退款，反而又买了很多刀具，这使他的销售量一下子提高了很多，并因此得到了公司的奖励。\n38. 这个年轻人为什么要退钱给顾客？\n39. 他凭什么得到了顾客的信任？","39":"第38到39题是根据下面一段话：\n有一个专门卖厨房用具的年轻人在半个月内跟二十多位顾客做成了生意，但是后来他发现自己卖的刀具比别的商店的同类产品价格高，这让他很不安。经过考虑，他决定向这二十多位顾客说明情况，并主动提出把多收的钱退给顾客。他的这种做法感动了顾客，他们不但没接受退款，反而又买了很多刀具，这使他的销售量一下子提高了很多，并因此得到了公司的奖励。\n38. 这个年轻人为什么要退钱给顾客？\n39. 他凭什么得到了顾客的信任？","40":"第40到41题是根据下面一段话：\n我们常听到“公司的成绩是全体员工努力的结果”之类的话，表面看起来，管理者非常尊重企业员工，但当员工的利益以个体方式出现时，企业管理者会以维护全体员工的利益为理由拒绝少数员工的要求，他们会说“我们不可能只考虑你的利益”或者“你不想干可以走，我们不担心找不到人”，这时员工就会觉得“重视员工的价值和需求”只是一句漂亮话，没有什么实际意义。很显然，如果管理者不重视员工的感受，不尊重员工，就会大大降低员工的工作积极性，使他们只是为了得到工资而工作。\n40. 如果公司不重视员工感受，结果会怎样？\n41. 这段话的主要内容是什么？","41":"第40到41题是根据下面一段话：\n我们常听到“公司的成绩是全体员工努力的结果”之类的话，表面看起来，管理者非常尊重企业员工，但当员工的利益以个体方式出现时，企业管理者会以维护全体员工的利益为理由拒绝少数员工的要求，他们会说“我们不可能只考虑你的利益”或者“你不想干可以走，我们不担心找不到人”，这时员工就会觉得“重视员工的价值和需求”只是一句漂亮话，没有什么实际意义。很显然，如果管理者不重视员工的感受，不尊重员工，就会大大降低员工的工作积极性，使他们只是为了得到工资而工作。\n40. 如果公司不重视员工感受，结果会怎样？\n41. 这段话的主要内容是什么？","42":"第42到43题是根据下面一段话：\n据说通过声音可以来判断用玉做成的产品的质量好坏。把两个玉制品轻轻相碰，能发出清脆好听的声音的就是好产品。有一个人就用这种方法去商店买玉器。但他总是不满意，他觉得这家商店没有一件好玉器，甚至价格很贵的玉器质量也不好。原来，他用质地很差的玉器做检验的标准，结果所有的玉器都发不出清脆好听的声音。\n42. 这个人用什么方法判断玉制品质量的好坏？\n43. 他为什么总是不满意？","43":"第42到43题是根据下面一段话：\n据说通过声音可以来判断用玉做成的产品的质量好坏。把两个玉制品轻轻相碰，能发出清脆好听的声音的就是好产品。有一个人就用这种方法去商店买玉器。但他总是不满意，他觉得这家商店没有一件好玉器，甚至价格很贵的玉器质量也不好。原来，他用质地很差的玉器做检验的标准，结果所有的玉器都发不出清脆好听的声音。\n42. 这个人用什么方法判断玉制品质量的好坏？\n43. 他为什么总是不满意？","44":"第44到45题是根据下面一段话：\n有一个小孩，大家都说他很傻，因为如果有人同时给他5毛钱和1块钱，他总是选择5毛钱，而不要1块钱。有人觉得很奇怪，就去问那个孩子：“难道你分不清5毛钱和1块钱的价值吗？”孩子小声说：“当然分得清楚！可是如果我选择了1块钱，下次你就不会跟我玩儿这种游戏了。”\n这就是小孩的聪明之处。确实，如果他选择了1块钱，就没有人愿意继续跟他玩儿了，而他得到的也只有1块钱。但是他拿5毛钱，别人就会把他当成傻子继续跟他玩儿，时间越长，他拿得就越多。\n44. 关于这个孩子，正确的是哪一项？\n45. 这个故事告诉我们什么？","45":"第44到45题是根据下面一段话：\n有一个小孩，大家都说他很傻，因为如果有人同时给他5毛钱和1块钱，他总是选择5毛钱，而不要1块钱。有人觉得很奇怪，就去问那个孩子：“难道你分不清5毛钱和1块钱的价值吗？”孩子小声说：“当然分得清楚！可是如果我选择了1块钱，下次你就不会跟我玩儿这种游戏了。”\n这就是小孩的聪明之处。确实，如果他选择了1块钱，就没有人愿意继续跟他玩儿了，而他得到的也只有1块钱。但是他拿5毛钱，别人就会把他当成傻子继续跟他玩儿，时间越长，他拿得就越多。\n44. 关于这个孩子，正确的是哪一项？\n45. 这个故事告诉我们什么？"},"id":"MEOW_HSK4_04_EXACT","title":"Meow Meow HSK4 · Đề 4","cues":{},"audio":"hsk4-de4-audio.mp3"}};
+</script>
+<script>
+if(!window.MEOW_MOCK_TESTS){
+  document.getElementById('questions').innerHTML =
+    '<div class="question"><b>Không tải được dữ liệu đề thi.</b><br>Vui lòng tải lại trang.</div>';
+  throw new Error('MEOW_MOCK_TESTS missing');
+}
+const params=new URLSearchParams(location.search), testNo=params.get('test')||'1';
+const TEST=window.MEOW_MOCK_TESTS?.[testNo]||window.MEOW_MOCK_TESTS?.['1'];
+const STORAGE='meow_mock_'+TEST.id;
+const state=JSON.parse(localStorage.getItem(STORAGE)||'{}');
+state.answers=state.answers||{};
+state.section=state.section||'listening';
+state.startedAt=state.startedAt||Date.now();
+let currentQ=null, cueStop=null, submitted=false, reviewMode=false;
+const $=id=>document.getElementById(id);
+$('examTitle').textContent=TEST.title;
+$('examAudio').src=TEST.audio;
+
+const sections={
+ listening:{name:'Nghe',range:[1,45],parts:[['Phần 1',1,10],['Phần 2',11,25],['Phần 3',26,45]],next:'reading'},
+ reading:{name:'Đọc',range:[46,85],parts:[['Phần 1',46,55],['Phần 2',56,65],['Phần 3',66,85]],next:'writing'},
+ writing:{name:'Viết',range:[86,100],parts:[['Phần 1',86,95],['Phần 2',96,100]],next:null}
+};
+const sectionOrder=['listening','reading','writing'];
+function save(){localStorage.setItem(STORAGE,JSON.stringify(state))}
+function getQ(n){return TEST.questions.find(x=>x.n===n)}
+function answer(n,v){state.answers[n]=v;save();updateNav();updateProgress()}
+function answered(n){const v=state.answers[n];return Array.isArray(v)?v.length>0:String(v??'').trim().length>0}
+function updateProgress(){const c=Object.keys(state.answers).filter(n=>answered(Number(n))).length;$('progressText').textContent=c+'/100'}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function isAutoGradable(n){return n<=95}
+function isCorrect(n){
+ const item=getQ(n); if(!item||!isAutoGradable(n))return null;
+ if(n<=85)return state.answers[n]===item.answer;
+ const arr=Array.isArray(state.answers[n])?state.answers[n]:[];
+ const built=arr.map(i=>item.tokens[i]).join('');
+ return normalize(built)===normalize(item.answer);
+}
+function displayTf(v){return v==='√'?'✓':v==='×'?'✕':v}
+function correctAnswerText(item){
+ if(item.type==='tf') return displayTf(item.answer);
+ if(item.type==='mcq'||item.type==='reading_mcq'){
+   const i=['A','B','C','D'].indexOf(item.answer); return `${item.answer}. ${item.options[i]||''}`;
+ }
+ if(item.type==='bank') return `${item.answer}. ${item.bank[item.answer]||''}`;
+ if(item.type==='order'){
+   const joined=item.answer.split('').map(k=>item.items[k]).join(' → '); return `${item.answer} · ${joined}`;
+ }
+ if(item.type==='arrange') return item.answer;
+ if(item.type==='image_write') return item.reference;
+ return String(item.answer||'');
+}
+function transcriptBlock(item){
+ if(!reviewMode || item.n>45) return '';
+ const tx=(item.transcript || (TEST.transcripts&&TEST.transcripts[String(item.n)]) || '').trim();
+ return `<div class="transcript-card"><div class="transcript-title">Transcript · 听力原文</div>${tx?`<div class="transcript-text">${esc(tx)}</div>`:`<div class="transcript-empty">Transcript của câu này sẽ được gắn từ audio gốc trong bản hoàn chỉnh.</div>`}</div>`;
+}
+function reviewBlock(item){
+ if(!reviewMode)return '';
+ const auto=isAutoGradable(item.n), ok=isCorrect(item.n);
+ const cls=!auto?'reference':ok?'correct':'wrong';
+ const label=!auto?'Meow gợi ý':ok?'Đáp án ✓':'Đáp án';
+ const note=!auto?'Meow gợi ý bạn làm vậy nha':ok?'Bạn giỏi lắm, Meow Meow iu iu 💗':'Bạn iu làm chưa đúng rùi, làm lại giúp Meow nha';
+ return `${transcriptBlock(item)}<div class="answer-review ${cls}"><span class="answer-label">${label}</span><div class="answer-main">${esc(correctAnswerText(item))}<div class="review-note">${note}</div></div></div>`;
+}
+function optionButtons(item,choices){
+ const val=state.answers[item.n];
+ return '<div class="options '+(item.type==='tf'?'tf':'')+'">'+choices.map(([k,label])=>{
+   const selected=val===k?'selected':'';
+   const correct=reviewMode&&item.answer===k?'correct-answer':'';
+   const disabled=reviewMode?'disabled':'';
+   if(item.type==='tf') return `<button class="opt ${selected} ${correct}" data-answer="${k}" data-n="${item.n}" ${disabled}><b class="tf-symbol">${displayTf(k)}</b></button>`;
+   return `<button class="opt ${selected} ${correct}" data-answer="${k}" data-n="${item.n}" ${disabled}><b>${esc(k)}</b> ${esc(label)}</button>`;
+ }).join('')+'</div>'
+}
+function renderQuestion(item,opts={}){
+ let body=''; const dis=reviewMode?'disabled':'';
+ if(item.type==='tf'){
+   body=`<div class="qtext">★ ${esc(item.text)}</div>`+optionButtons(item,[['√',''],['×','']]);
+ }else if(item.type==='mcq'){
+   body=optionButtons(item,['A','B','C','D'].map((k,i)=>[k,item.options[i]]));
+ }else if(item.type==='bank'){
+   body=`<div class="bank">${Object.entries(item.bank).map(([k,v])=>`<span><b>${k}</b> ${esc(v)}</span>`).join('')}</div><div class="qtext">${esc(item.text)}</div><select class="select-answer" data-select="${item.n}" ${dis}><option value="">Chọn đáp án</option>${Object.entries(item.bank).map(([k,v])=>`<option value="${k}" ${state.answers[item.n]===k?'selected':''}>${k} · ${esc(v)}</option>`).join('')}</select>`;
+ }else if(item.type==='order'){
+   body=`<div class="order-lines">${Object.entries(item.items).map(([k,v])=>`<div class="order-line"><b>${k}</b> · ${esc(v)}</div>`).join('')}</div><select class="order-select" data-select="${item.n}" ${dis}><option value="">Chọn thứ tự</option>${['ABC','ACB','BAC','BCA','CAB','CBA'].map(x=>`<option value="${x}" ${state.answers[item.n]===x?'selected':''}>${x}</option>`).join('')}</select>`;
+ }else if(item.type==='reading_mcq'){
+   body=`${opts.hidePassage?'':`<div class="passage">${esc(item.passage)}</div>`}<div class="stem">★ ${esc(item.stem)}</div>`+optionButtons(item,['A','B','C','D'].map((k,i)=>[k,item.options[i]]));
+ }else if(item.type==='arrange'){
+   const built=Array.isArray(state.answers[item.n])?state.answers[item.n]:[];
+   body=`<div class="tokens">${item.tokens.map((t,i)=>`<button class="token ${built.includes(i)?'used':''}" data-token="${item.n}:${i}" ${dis}>${esc(t)}</button>`).join('')}</div><div class="built">${built.length?built.map(i=>esc(item.tokens[i])).join(' '):'Bấm vào các cụm từ theo đúng thứ tự...'}</div><button class="reset-build" data-reset="${item.n}" ${dis}>Làm lại câu này</button>`;
+ }else if(item.type==='image_write'){
+   body=`<div class="image-q"><img src="${item.image}" alt="Hình câu ${item.n}"><div><div class="keyword">${esc(item.keyword)}</div><textarea class="writebox" data-write="${item.n}" placeholder="Viết một câu có từ ${esc(item.keyword)}" ${dis}>${esc(state.answers[item.n]||'')}</textarea></div></div>`;
+ }
+ const listen=(item.n<=45 && TEST.cues && (TEST.cues[String(item.n)]||TEST.cues[item.n]))?`<button class="listen-one" data-listen="${item.n}">Nghe câu ${item.n}</button>`:'';
+ const verdict=reviewMode&&isAutoGradable(item.n)?(isCorrect(item.n)?'review-correct':'review-wrong'):'';
+ return `<article class="question ${verdict}" id="q${item.n}" data-q="${item.n}"><div class="qhead"><div class="qno">Câu ${item.n}</div>${listen}</div>${body}${reviewBlock(item)}</article>`;
+}
+function listeningExampleBlock(){
+ return `<section class="listening-example" aria-label="Ví dụ phần nghe">
+   <div class="ex-section-title">第 1–10 题：判断对错。</div>
+   <div class="ex-label">Ví dụ · 例如</div>
+   <div class="ex-text">我想去办个信用卡，今天下午你有时间吗？陪我去一趟银行？</div>
+   <div class="ex-statement"><span class="ex-star">★</span><span>他打算下午去银行。</span><span class="ex-mark ok">✓</span></div>
+   <div class="ex-divider"></div>
+   <div class="ex-text">现在我很少看电视，其中一个原因是广告太多了，只要你打开电视，不管什么时间，也不管什么节目，总能看到那么多的广告，浪费我的时间。</div>
+   <div class="ex-statement"><span class="ex-star">★</span><span>他喜欢看电视广告。</span><span class="ex-mark no">✕</span></div>
+ </section>`;
+}
+function render(){
+ const sec=sections[state.section], [a,b]=sec.range;
+ $('stageName').textContent=`${sec.name} · ${b-a+1} câu`;
+ $('stageSub').textContent=sec.parts.map(x=>x[0]).join(' · ');
+ $('navTitle').textContent=reviewMode?'100 câu · Xem lại bài':sec.name;
+ $('audioBar').style.display=state.section==='listening'?'flex':'none';
+ document.querySelectorAll('.stage-step').forEach(x=>x.classList.toggle('active',x.dataset.s===state.section));
+ let html='';
+ for(const [pname,start,end] of sec.parts){
+   html+=`<div class="part-title">${pname} · Câu ${start}–${end}</div>`;
+   if(state.section==='listening' && start===1) html+=listeningExampleBlock();
+   if(state.section==='reading' && start>=66){
+     let n=start;
+     while(n<=end){
+       const item=getQ(n);
+       if(item?.type==='reading_mcq'){
+         let groupEnd=n;
+         while(groupEnd+1<=end){
+           const nx=getQ(groupEnd+1);
+           if(nx?.type==='reading_mcq' && nx.passage===item.passage) groupEnd++; else break;
+         }
+         if(groupEnd>n){
+           html+=`<section class="shared-passage"><div class="shared-passage-title">Câu ${n}–${groupEnd}</div><div class="shared-passage-text">${esc(item.passage)}</div></section>`;
+           for(let qn=n;qn<=groupEnd;qn++) html+=renderQuestion(getQ(qn),{hidePassage:true});
+           n=groupEnd+1; continue;
+         }
+       }
+       html+=renderQuestion(item); n++;
+     }
+   }else{
+     for(let n=start;n<=end;n++)html+=renderQuestion(getQ(n));
+   }
+ }
+ $('questions').innerHTML=html;
+ $('prevSection').hidden=state.section==='listening'; $('submitBtn').textContent=reviewMode?'Làm lại đề':'Nộp bài'; $('submitBtn').disabled=false;
+ $('nextSection').textContent=state.section==='listening'?'Hoàn thành phần Nghe → Sang phần Đọc':state.section==='reading'?'Hoàn thành phần Đọc → Sang phần Viết':'Nộp bài';
+ buildNav();bind();updateProgress();window.scrollTo({top:0,behavior:'smooth'});
+}
+function sectionForQuestion(n){return n<=45?'listening':n<=85?'reading':'writing'}
+function buildNav(){
+ let html='';
+ for(const sKey of sectionOrder){
+   const sec=sections[sKey];
+   html+=`<div class="navpart">${sec.name}</div>`;
+   for(const [name,start,end] of sec.parts){
+     html+=`<div class="navpart" style="font-size:.68rem;margin:8px 0 5px;opacity:.78">${name}</div><div class="nums">`;
+     for(let n=start;n<=end;n++){
+       const verdict=reviewMode&&isAutoGradable(n)?(isCorrect(n)?'correct':'wrong'):'';
+       html+=`<button class="num ${answered(n)?'answered':''} ${currentQ===n?'current':''} ${verdict}" data-goto="${n}">${n}</button>`;
+     }
+     html+='</div>';
+   }
+ }
+ $('questionNav').innerHTML=html;
+ document.querySelectorAll('[data-goto]').forEach(b=>b.onclick=()=>goTo(Number(b.dataset.goto)));
+}
+function updateNav(){buildNav()}
+function goTo(n){
+ currentQ=n; const target=sectionForQuestion(n);
+ if(state.section!==target){state.section=target;save();render();setTimeout(()=>{currentQ=n;buildNav();document.getElementById('q'+n)?.scrollIntoView({behavior:'smooth',block:'start'})},80);return}
+ buildNav();document.getElementById('q'+n)?.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function bind(){
+ if(!reviewMode){
+  document.querySelectorAll('[data-answer]').forEach(b=>b.onclick=()=>{answer(Number(b.dataset.n),b.dataset.answer);renderSelection(Number(b.dataset.n))});
+  document.querySelectorAll('[data-select]').forEach(s=>s.onchange=()=>answer(Number(s.dataset.select),s.value));
+  document.querySelectorAll('[data-write]').forEach(t=>t.oninput=()=>answer(Number(t.dataset.write),t.value));
+  document.querySelectorAll('[data-token]').forEach(b=>b.onclick=()=>{const [n0,i0]=b.dataset.token.split(':').map(Number);let arr=Array.isArray(state.answers[n0])?[...state.answers[n0]]:[];if(!arr.includes(i0))arr.push(i0);answer(n0,arr);renderOne(n0)});
+  document.querySelectorAll('[data-reset]').forEach(b=>b.onclick=()=>{answer(Number(b.dataset.reset),[]);renderOne(Number(b.dataset.reset))});
+ }
+ document.querySelectorAll('[data-listen]').forEach(b=>b.onclick=()=>playQuestion(Number(b.dataset.listen),b));
+ setupObserver();
+}
+function renderSelection(n){
+ const el=$('q'+n);const val=state.answers[n];el?.querySelectorAll('[data-answer]').forEach(b=>b.classList.toggle('selected',b.dataset.answer===val));
+}
+function renderOne(n){const old=$('q'+n),item=getQ(n);if(!old)return;const wrap=document.createElement('div');wrap.innerHTML=renderQuestion(item);old.replaceWith(wrap.firstElementChild);bind()}
+function playQuestion(n,btn){
+ const cue=TEST.cues[String(n)]||TEST.cues[n];if(!cue)return;
+ const a=$('examAudio');clearInterval(cueStop);document.querySelectorAll('.listen-one').forEach(x=>x.classList.remove('playing'));btn?.classList.add('playing');
+ a.currentTime=cue.start;a.play();
+ cueStop=setInterval(()=>{if(a.currentTime>=cue.end){a.pause();clearInterval(cueStop);btn?.classList.remove('playing')}},120);
+}
+let observer;
+function setupObserver(){
+ observer?.disconnect();
+ observer=new IntersectionObserver(entries=>{const vis=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];if(vis){currentQ=Number(vis.target.dataset.q);buildNav()}},{rootMargin:'-120px 0px -55% 0px',threshold:[.1,.35,.6]});
+ document.querySelectorAll('.question').forEach(x=>observer.observe(x));
+}
+$('nextSection').onclick=()=>{
+ if(state.section==='writing'){submitExam();return}
+ state.section=sections[state.section].next;save();render();
+};
+$('prevSection').onclick=()=>{
+ const i=sectionOrder.indexOf(state.section);if(i>0){state.section=sectionOrder[i-1];save();render()}
+};
+function normalize(s){return String(s||'').replace(/[，。！？；：、,.!?;:\s]/g,'')}
+function submitExam(){
+ if(submitted)return;submitted=true;reviewMode=true;
+ let ls=0,rs=0,ws=0;
+ for(let n=1;n<=45;n++)if(isCorrect(n))ls++;
+ for(let n=46;n<=85;n++)if(isCorrect(n))rs++;
+ for(let n=86;n<=95;n++)if(isCorrect(n))ws++;
+ $('listenScore').textContent=ls+'/45';$('readScore').textContent=rs+'/40';$('writeScore').textContent=ws+'/10';
+ const done=Object.keys(state.answers).filter(n=>answered(Number(n))).length;
+ $('resultText').textContent=`Bạn đã làm ${done}/100 câu. Các câu chưa đúng sẽ được đánh dấu hồng đỏ nhẹ; đóng bảng điểm để xem đáp án, lời nhắn của Meow và transcript phần nghe ngay dưới từng câu.`;
+ $('writingRefs').innerHTML='<p style="margin:12px 0 0;color:#7B6570;font-size:.84rem">Câu 96–100 được hiển thị câu tham khảo trực tiếp bên dưới từng câu hỏi.</p>';
+ render();
+ $('resultModal').classList.add('show');
+}
+function resetExam(){
+ clearInterval(cueStop);cueStop=null;
+ const a=$('examAudio');try{a.pause();a.currentTime=0}catch(e){}
+ state.answers={};
+ state.section='listening';
+ state.startedAt=Date.now();
+ currentQ=null;
+ submitted=false;
+ reviewMode=false;
+ save();
+ $('resultModal').classList.remove('show');
+ render();
+ tick();
+ setTimeout(()=>document.getElementById('q1')?.scrollIntoView({behavior:'smooth',block:'start'}),80);
+}
+$('submitBtn').onclick=()=>reviewMode?resetExam():submitExam();
+$('closeModal').onclick=()=>{$('resultModal').classList.remove('show')};
+$('retryExam').onclick=resetExam;
+const TOTAL=105*60*1000;
+function tick(){const left=Math.max(0,TOTAL-(Date.now()-state.startedAt));const s=Math.floor(left/1000),h=Math.floor(s/3600),m=Math.floor((s%3600)/60),ss=s%60;$('timer').textContent=[h,m,ss].map(x=>String(x).padStart(2,'0')).join(':');if(left<=0)submitExam()}
+setInterval(tick,1000);tick();render();
+</script>
+</body></html>
