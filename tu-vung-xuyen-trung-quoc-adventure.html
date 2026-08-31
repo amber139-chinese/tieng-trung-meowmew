@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -304,12 +305,12 @@ button,input{font:inherit}
 #stationIllustration{display:none}
 .scene::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.02) 42%, rgba(255,244,226,.18) 100%);pointer-events:none;z-index:0}
 .scene > *{position:relative;z-index:1}
-.scene-caption{background:rgba(255,252,246,.88);backdrop-filter:blur(8px);box-shadow:0 14px 30px rgba(122,85,53,.12)}
+.scene-caption{z-index:6;background:rgba(255,252,246,.88);backdrop-filter:blur(8px);box-shadow:0 14px 30px rgba(122,85,53,.12)}
 .ground{background:linear-gradient(180deg, rgba(246,216,170,.78), rgba(231,193,147,.86))}
 .track1,.track2{background:rgba(138,108,89,.9)}
 .sleepers{background:repeating-linear-gradient(90deg, rgba(138,105,84,.92) 0 24px, transparent 24px 42px)}
-.scene-train{left:34px;bottom:42px;transform:scale(1.06);transform-origin:left bottom}
-.scene-guide{position:absolute;left:40px;bottom:92px;width:190px;display:flex;align-items:flex-end;justify-content:center;filter:drop-shadow(0 12px 20px rgba(0,0,0,.16))}
+.scene-train{left:34px;bottom:42px;z-index:3;transform:scale(1.06);transform-origin:left bottom}
+.scene-guide{position:absolute;left:auto;right:36px;bottom:92px;z-index:5;width:176px;display:flex;align-items:flex-end;justify-content:center;filter:drop-shadow(0 12px 20px rgba(0,0,0,.16))}
 .scene-guide img{display:block;width:100%;height:auto;object-fit:contain}
 .scene-guide .speech{position:absolute;right:18px;top:-6px;background:#fff;color:#d3665f;border:1px solid #f1d3b0;border-radius:999px;padding:6px 12px;font-weight:900;font-size:1rem;box-shadow:0 10px 24px rgba(0,0,0,.08)}
 .character-card{background:linear-gradient(180deg,#fffaf4,#fff);min-height:250px;box-shadow:0 12px 24px rgba(184,142,103,.08)}
@@ -317,6 +318,17 @@ button,input{font:inherit}
 .image-avatar img{display:block;max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 10px 18px rgba(0,0,0,.12))}
 .image-avatar .speech{right:-10px;top:-4px;padding:6px 10px;font-size:.82rem}
 .characters{align-items:stretch}
+
+@media (max-width:760px){
+  .scene-caption{max-width:calc(100% - 150px)}
+  .scene-guide{right:10px;bottom:88px;width:126px}
+  .scene-guide .speech{right:0;top:-2px;padding:4px 8px;font-size:.78rem}
+}
+@media (max-width:560px){
+  .scene-caption{left:12px;top:12px;max-width:calc(100% - 124px);padding:10px 12px}
+  .scene-caption span{font-size:.78rem;line-height:1.5}
+  .scene-guide{right:4px;bottom:84px;width:108px}
+}
 
 </style>
 </head>
