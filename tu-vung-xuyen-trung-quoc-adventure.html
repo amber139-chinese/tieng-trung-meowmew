@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>中国词汇列车 · Chuyến tàu xuyên Trung Quốc HSK7-9</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f8f2e9;
+  --panel:rgba(255,251,246,.94);
+  --card:#fff;
+  --line:#ead8c5;
+  --ink:#5a3d2c;
+  --muted:#866d5d;
+  --gold:#d6a059;
+  --orange:#df8d57;
+  --red:#d36d66;
+  --teal:#4e8f8a;
+  --teal-2:#77b3ae;
+  --green:#87b37b;
+  --blue:#82a9d8;
+  --shadow:0 16px 40px rgba(109,74,40,.12);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:"Be Vietnam Pro",system-ui,-apple-system,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,.65), transparent 20%),
+    radial-gradient(circle at top right, rgba(255,223,180,.35), transparent 25%),
+    linear-gradient(180deg,#fbf5ed 0%, #f3eadc 100%);
+}
+button,input{font:inherit}
+.app{
+  width:min(1460px,96vw);
+  margin:18px auto 24px;
+  display:grid;
+  grid-template-columns:340px 1fr;
+  gap:18px;
+}
+.panel{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:30px;
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(12px);
+}
+.sidebar{padding:18px;display:flex;flex-direction:column;gap:14px}
+.main{padding:18px;display:flex;flex-direction:column;gap:16px}
+.brand{
+  display:flex;justify-content:space-between;align-items:flex-start;gap:10px;
+  padding:4px 6px 10px;
+}
+.brand h1{margin:0;font-size:1.35rem;line-height:1.25;font-weight:800}
+.brand h1 span{display:block;margin-top:4px;font-size:.96rem;color:#3e7a72}
+.brand p{margin:8px 0 0;color:var(--muted);font-size:.88rem;line-height:1.55}
+.back-link,.small-btn,.icon-btn,.btn{
+  border:0;cursor:pointer;transition:.18s ease;text-decoration:none;
+}
+.back-link,.small-btn,.icon-btn{
+  background:#fff;border:1px solid var(--line);color:#6c5a4b;
+}
+.back-link{padding:10px 14px;border-radius:999px;font-weight:700;font-size:.92rem;white-space:nowrap}
+.btn{
+  border-radius:18px;padding:14px 16px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+}
+.btn:hover,.back-link:hover,.small-btn:hover,.icon-btn:hover{transform:translateY(-2px)}
+.btn-primary{background:linear-gradient(180deg,#e3aa58,#cc873f);color:#fff;box-shadow:0 10px 20px rgba(204,135,63,.22)}
+.btn-soft{background:#fff;color:#6c5a4b;border:1px solid var(--line)}
+.icon-btn{width:44px;height:44px;border-radius:14px;font-size:1rem}
+.control-row{display:flex;gap:10px;flex-wrap:wrap}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px 14px}
+.stat-card b{display:block;font-size:1.2rem}
+.stat-card span{display:block;margin-top:4px;font-size:.83rem;color:var(--muted)}
+
+.side-story{padding:14px;border:1px dashed #e0c39e;border-radius:24px;background:linear-gradient(180deg,#fffdf8,#fff7eb)}
+.side-story .eyebrow{font-size:.82rem;letter-spacing:.08em;font-weight:800;color:#9a6f3d}
+.side-story .title{font-family:"Noto Serif SC",serif;font-size:1.18rem;font-weight:700;margin:8px 0 10px}
+.side-story p{margin:0;color:#7a6657;font-size:.92rem;line-height:1.7}
+.characters{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.character-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:12px;display:flex;flex-direction:column;gap:10px;align-items:center;text-align:center;min-height:210px}
+.character-card h4{margin:0;font-size:1rem}
+.character-card p{margin:0;color:#877264;font-size:.83rem;line-height:1.55}
+.avatar{
+  position:relative;width:122px;height:122px;flex:0 0 auto;
+}
+.avatar .glow{position:absolute;inset:18px;border-radius:50%;background:radial-gradient(circle, rgba(255,214,143,.55), rgba(255,214,143,0));filter:blur(10px)}
+.avatar .head{position:absolute;left:31px;top:18px;width:60px;height:60px;background:#f7d7bd;border-radius:50%;z-index:3}
+.avatar .hair{position:absolute;left:24px;top:10px;width:74px;height:54px;border-radius:48px 48px 28px 28px;background:var(--hair,#533625);z-index:2}
+.avatar .bang{position:absolute;left:34px;top:28px;width:54px;height:26px;background:var(--hair,#533625);border-radius:0 0 30px 30px;z-index:4}
+.avatar .eye{position:absolute;top:48px;width:8px;height:8px;background:#2b2522;border-radius:50%;z-index:5}
+.avatar .eye.left{left:48px}.avatar .eye.right{right:48px}
+.avatar .blush{position:absolute;top:58px;width:12px;height:9px;background:#f3a6ad;border-radius:50%;opacity:.8;z-index:5}
+.avatar .blush.left{left:36px}.avatar .blush.right{right:36px}
+.avatar .mouth{position:absolute;left:50%;top:69px;transform:translateX(-50%);width:22px;height:10px;border-bottom:4px solid #cb7170;border-radius:0 0 20px 20px;z-index:5}
+.avatar .body{position:absolute;left:22px;bottom:12px;width:78px;height:62px;background:var(--robe,#6c98c8);border-radius:28px 28px 18px 18px;z-index:1}
+.avatar .collar{position:absolute;left:46px;bottom:54px;width:30px;height:18px;background:#fff7ef;clip-path:polygon(0 0,100% 0,50% 100%);z-index:4}
+.avatar .arm{position:absolute;bottom:28px;width:20px;height:38px;background:var(--robe,#6c98c8);border-radius:18px;z-index:0}
+.avatar .arm.left{left:16px;transform:rotate(28deg)}
+.avatar .arm.right{right:16px;transform:rotate(-28deg)}
+.avatar .hat{position:absolute;left:44px;top:0;width:34px;height:20px;background:var(--hat,#d3a85a);border-radius:16px 16px 6px 6px;z-index:1}
+.avatar .tray{position:absolute;left:24px;bottom:14px;width:74px;height:20px;border-radius:999px;background:#d3a05a;border:6px solid #b6772e;z-index:3}
+.avatar .ticket{position:absolute;left:38px;bottom:18px;width:48px;height:22px;border-radius:8px;background:#f8f0da;border:2px solid #d1b17e;z-index:3}
+.avatar .speech{position:absolute;right:-4px;top:2px;background:#fff;border:1px solid var(--line);padding:4px 8px;border-radius:999px;font-weight:800;font-size:.76rem;color:#c05f5b;box-shadow:0 8px 18px rgba(0,0,0,.06);z-index:10}
+.character-card.passenger .avatar{--robe:#d97f72;--hair:#553525;--hat:#d9a75b}
+.character-card.staff .avatar{--robe:#4b928e;--hair:#493022;--hat:#e0b55b}
+
+.passport{background:#fff;border:1px solid var(--line);border-radius:22px;padding:14px}
+.passport h4{margin:0 0 10px;font-size:1rem}
+.stamp-list{display:grid;grid-template-columns:1fr;gap:8px}
+.stamp{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid #f0e1cf;background:#fffaf3;padding:10px 12px;border-radius:16px}
+.stamp-name b{display:block;font-size:.92rem}
+.stamp-name span{display:block;margin-top:4px;color:#8b7668;font-size:.8rem}
+.stamp-badge{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#f3e7d8;color:#b58a62;font-weight:800;border:1px dashed #d7c2aa}
+.stamp.done .stamp-badge{background:linear-gradient(180deg,#eebd73,#d98d4f);color:#fff;border-style:solid;border-color:#c77d3e}
+
+.topbar{display:grid;grid-template-columns:2.2fr repeat(5,1fr);gap:12px}
+.top-pill{background:#fff;border:1px solid var(--line);border-radius:24px;padding:16px 18px;box-shadow:0 10px 25px rgba(109,74,40,.07)}
+.top-pill .label{font-size:.8rem;color:var(--muted);font-weight:700;letter-spacing:.05em}
+.top-pill .value{margin-top:7px;font-size:1.6rem;font-weight:800}
+
+.route-card{padding:18px 20px}
+.route-card h2{margin:0;font-family:"Noto Serif SC",serif;font-size:1.85rem;line-height:1.28}
+.route-card p{margin:10px 0 0;color:#816c5f;line-height:1.7}
+.route-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.tag{padding:7px 12px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:.84rem;font-weight:700;color:#6c5a4b}
+.route-line-wrap{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px}
+.route-node{display:flex;align-items:center;gap:8px}
+.route-node .dot{width:18px;height:18px;border-radius:50%;background:#ebddd1;border:3px solid #fff;box-shadow:0 0 0 1px #dac2aa}
+.route-node.active .dot{background:#d36d66;box-shadow:0 0 0 6px rgba(211,109,102,.13)}
+.route-node.done .dot{background:#4e8f8a;box-shadow:0 0 0 6px rgba(78,143,138,.13)}
+.route-node b{display:block;font-size:.95rem}
+.route-node span{display:block;font-size:.76rem;color:#8a7568;margin-top:2px}
+.route-seg{width:34px;height:4px;border-radius:999px;background:#e6d4c0}
+
+.scene{position:relative;overflow:hidden;border-radius:30px;border:1px solid #e5d2ba;min-height:360px;background:linear-gradient(180deg,#9fd3ff 0%,#fff0d7 100%)}
+.scene::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 0%, rgba(255,255,255,.15) 54%, rgba(255,244,226,.22) 100%);pointer-events:none}
+.sky-cloud{position:absolute;background:rgba(255,255,255,.95);border-radius:999px;height:26px;width:110px;filter:blur(.2px)}
+.sky-cloud::before,.sky-cloud::after{content:"";position:absolute;background:rgba(255,255,255,.95);border-radius:50%}
+.sky-cloud::before{width:38px;height:38px;left:16px;top:-14px}
+.sky-cloud::after{width:44px;height:44px;left:54px;top:-18px}
+.cloud1{top:36px;left:72px;animation:cloudDrift 20s linear infinite}
+.cloud2{top:70px;right:90px;transform:scale(.9);animation:cloudDrift2 26s linear infinite}
+.cloud3{top:118px;left:35%;transform:scale(.75);animation:cloudDrift3 24s linear infinite}
+.sun{position:absolute;right:34px;top:22px;width:56px;height:56px;border-radius:50%;background:#ffd977;box-shadow:0 0 0 14px rgba(255,217,119,.2)}
+.kite{position:absolute;top:62px;width:20px;height:20px;background:#ffb867;transform:rotate(45deg);border-radius:2px;opacity:.9;animation:floatKite 9s ease-in-out infinite}
+.kite::after{content:"";position:absolute;left:9px;top:18px;width:1px;height:54px;background:rgba(121,84,55,.5)}
+.k1{left:44%;background:#f7c96e}.k2{left:53%;top:84px;background:#8cc4d1;animation-delay:1.2s}.k3{left:60%;top:46px;background:#ec8b84;animation-delay:2.3s}
+.far-hill,.mid-hill,.near-hill{position:absolute;bottom:84px;border-radius:48% 48% 0 0}
+.far-hill{left:-50px;width:380px;height:150px;background:rgba(126,183,136,.38)}
+.far-hill.h2{left:240px;width:420px;background:rgba(120,175,130,.43)}
+.far-hill.h3{right:-80px;left:auto;width:340px;background:rgba(111,165,122,.38)}
+.mid-hill{left:-40px;width:300px;height:118px;background:#9eca8e}
+.mid-hill.h2{left:240px;width:360px;background:#8fbc82}
+.mid-hill.h3{right:-10px;left:auto;width:260px;background:#84b177}
+.ground{position:absolute;left:0;right:0;bottom:0;height:130px;background:linear-gradient(180deg,#f6d8aa,#e7c193)}
+.track1,.track2{position:absolute;left:0;right:0;height:10px;background:#8b6c59;box-shadow:0 2px 0 rgba(255,255,255,.18) inset}
+.track1{bottom:64px}.track2{bottom:38px}
+.sleepers{position:absolute;left:0;right:0;bottom:26px;height:48px;background:repeating-linear-gradient(90deg,#8a6954 0 24px, transparent 24px 42px)}
+.scene-caption{position:absolute;left:18px;top:18px;max-width:380px;background:rgba(255,251,246,.9);border:1px solid var(--line);border-radius:18px;padding:14px 15px;box-shadow:0 12px 25px rgba(109,74,40,.08)}
+.scene-caption b{display:block;font-size:1.06rem;color:#925d35}
+.scene-caption span{display:block;margin-top:6px;color:#7a6657;font-size:.89rem;line-height:1.65}
+.station-illustration{position:absolute;left:50%;bottom:102px;transform:translateX(-50%);pointer-events:none;opacity:.97}
+.decor-layer{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.leaf,.spark{position:absolute;opacity:.8}
+.leaf{top:-30px;width:16px;height:10px;border-radius:16px 2px 16px 2px;background:#ed9a56;animation:fall 10s linear infinite}
+.leaf.alt{background:#8fc36f}.leaf.pink{background:#ed8ea3}
+.spark{width:10px;height:10px;border-radius:50%;background:rgba(255,235,171,.95);box-shadow:0 0 12px rgba(255,235,171,.95);animation:twinkle 2.4s ease-in-out infinite}
+.scene-train{position:absolute;left:24px;bottom:46px;display:flex;align-items:flex-end;gap:6px;transition:transform 1.1s ease}
+.scene-train.depart{transform:translateX(82vw)}
+.engine,.wagon{position:relative;border-radius:22px 22px 14px 14px}
+.engine{width:152px;height:92px;background:#d96b5f;border:5px solid #9f473f}
+.engine::before{content:"";position:absolute;right:-26px;bottom:0;width:28px;height:40px;background:#c25b50;border-radius:0 12px 12px 0;border:5px solid #9f473f;border-left:0}
+.engine::after{content:"";position:absolute;left:18px;top:-34px;width:22px;height:32px;background:#5f4130;border-radius:8px 8px 0 0}
+.window{position:absolute;top:14px;left:16px;width:46px;height:28px;border-radius:10px;background:#fff4cb}
+.window.small{left:70px;width:34px}
+.engine-front{position:absolute;right:12px;top:34px;width:24px;height:24px;border-radius:50%;background:#fff2c4;border:4px solid #efb34f;box-shadow:0 0 16px rgba(255,215,138,.8)}
+.wagon{width:118px;height:74px;background:#4e8f8a;border:5px solid #356c68;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.28rem;text-align:center;padding:0 8px}
+.wagon:nth-child(3){background:#d7a85c;border-color:#b9873c}
+.wagon:nth-child(4){background:#7ea7d7;border-color:#5c7dab}
+.wagon small{display:block;font-size:.72rem;opacity:.85;margin-top:4px}
+.wheel{position:absolute;bottom:-16px;width:24px;height:24px;border-radius:50%;background:#49372d;border:4px solid #ead7c2}
+.wheel.left{left:16px}.wheel.right{right:16px}
+.smoke{position:absolute;left:18px;top:16px;display:flex;gap:4px}
+.smoke span{display:block;border-radius:50%;background:rgba(255,255,255,.82);animation:smoke 2.8s ease-in infinite}
+.smoke span:nth-child(1){width:10px;height:10px}.smoke span:nth-child(2){width:14px;height:14px;animation-delay:.3s}.smoke span:nth-child(3){width:18px;height:18px;animation-delay:.6s}
+.conductor-cat{position:absolute;left:90px;bottom:118px;width:78px;height:82px;animation:bob 3s ease-in-out infinite}
+.conductor-cat .head{position:absolute;left:10px;top:8px;width:52px;height:46px;background:#ffcc8f;border-radius:50%}
+.conductor-cat .ear{position:absolute;top:0;width:18px;height:18px;background:#f39a5c;clip-path:polygon(50% 0, 0 100%, 100% 100%)}
+.conductor-cat .ear.left{left:8px}.conductor-cat .ear.right{right:8px}
+.conductor-cat .body{position:absolute;left:16px;bottom:8px;width:46px;height:38px;background:#49a19a;border-radius:22px 22px 16px 16px}
+.conductor-cat .tail{position:absolute;left:0;bottom:18px;width:24px;height:12px;border:6px solid #f39a5c;border-top:none;border-left:none;border-radius:0 0 18px 0;transform:rotate(24deg)}
+.conductor-cat .eye{position:absolute;top:28px;width:6px;height:8px;background:#222;border-radius:50%}
+.conductor-cat .eye.left{left:25px}.conductor-cat .eye.right{left:40px}
+.conductor-cat .mouth{position:absolute;left:29px;top:38px;width:10px;height:6px;border-bottom:3px solid #b85e5a;border-radius:0 0 10px 10px}
+.conductor-cat .speech{position:absolute;left:44px;top:-4px;background:#fff;border:1px solid var(--line);padding:4px 8px;border-radius:999px;font-size:.78rem;font-weight:800;color:#d1605b;box-shadow:0 8px 18px rgba(0,0,0,.06)}
+
+.mission-card{padding:18px;border-radius:30px;background:linear-gradient(180deg,rgba(255,252,247,.94),rgba(255,247,237,.9));border:1px solid var(--line);display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
+.mission-head .eyebrow{font-size:.82rem;letter-spacing:.08em;color:#4e8f8a;font-weight:800}
+.mission-head h3{margin:8px 0 10px;font-size:2rem;line-height:1.28;font-family:"Noto Serif SC",serif}
+.mission-head p{margin:0;color:#7d6a5b;line-height:1.72}
+.prompt-panel{margin-top:14px;background:#fff;border:1px solid #efdeca;border-radius:24px;padding:18px;min-height:170px}
+.prompt-cap{font-size:.8rem;font-weight:800;color:#9a7041;letter-spacing:.08em}
+.prompt-main{margin-top:8px;font-size:1.42rem;font-weight:800;line-height:1.45}
+.prompt-sub{margin-top:10px;color:#7c695b;line-height:1.75;white-space:pre-line}
+.answer-tools{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.fill-side{display:flex;flex-direction:column;gap:12px}
+.npc-dialogue{background:#fff;border:1px solid var(--line);border-radius:24px;padding:16px}
+.npc-dialogue h4{margin:0 0 8px;font-size:1rem}
+.npc-dialogue p{margin:0;color:#7b6858;line-height:1.72;white-space:pre-line}
+.target-slot{background:linear-gradient(180deg,#fff9ef,#fff);border:1px dashed #ddbb8f;border-radius:24px;padding:18px;min-height:118px;display:flex;align-items:center;justify-content:center;text-align:center}
+.target-slot.ready{border-style:solid;border-color:#8fbba8;background:linear-gradient(180deg,#f0faf5,#fff)}
+.target-slot .big{font-size:1.9rem;font-weight:800}
+.target-slot .small{margin-top:8px;color:#7c695b;line-height:1.65}
+.meter{background:#fff;border:1px solid var(--line);border-radius:22px;padding:14px 16px}
+.meter b{display:block}
+.bar{height:10px;border-radius:999px;background:#f1e1cf;overflow:hidden;margin-top:10px}
+.bar-fill{height:100%;width:0;background:linear-gradient(90deg,#5fac8e,#88c7a8)}
+.story-banner{background:linear-gradient(135deg,#fff7ef,#fff);border:1px solid #efdac0;border-radius:22px;padding:14px 16px;color:#816b5d;line-height:1.72}
+
+.choice-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.choice-card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:18px 16px;min-height:172px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 12px 28px rgba(109,74,40,.06);cursor:pointer;transition:.18s}
+.choice-card:hover{transform:translateY(-4px);box-shadow:0 18px 32px rgba(109,74,40,.1)}
+.choice-card.disabled{pointer-events:none;opacity:.68}
+.choice-card.correct{background:linear-gradient(180deg,#effaf3,#fff);border-color:#8cbda8}
+.choice-card.wrong{background:linear-gradient(180deg,#fff0ef,#fff);border-color:#e2a29b}
+.choice-card .hanzi{font-family:"Noto Serif SC",serif;font-size:2rem;font-weight:700;line-height:1.2}
+.choice-card .pinyin{margin-top:10px;font-size:1rem;font-weight:700;color:#61707a}
+.choice-card .meaning{margin-top:8px;font-size:.96rem;color:#866f61;line-height:1.6}
+.choice-card .type{margin-top:8px;font-size:.78rem;color:#ad8a6c;font-weight:700;letter-spacing:.08em}
+
+.type-panel{background:#fff;border:1px solid var(--line);border-radius:24px;padding:18px;display:flex;flex-direction:column;gap:12px}
+.type-panel input{width:100%;border:1px solid #e5d2bc;border-radius:16px;padding:14px 16px;font-size:1.15rem;background:#fffdf9;color:#5a3d2c}
+.type-actions{display:flex;gap:10px;flex-wrap:wrap}
+.hint-box{background:#fff8ef;border:1px dashed #ddbe97;border-radius:16px;padding:12px 14px;color:#856f60;font-size:.9rem;line-height:1.65}
+.feedback{background:#fff;border:1px solid var(--line);border-radius:24px;padding:16px 18px;display:grid;grid-template-columns:1fr auto;gap:14px;align-items:start}
+.feedback b{display:block;font-size:1.08rem}
+.feedback p{margin:8px 0 0;color:#7d695b;line-height:1.75;white-space:pre-line}
+
+.log-card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:16px}
+.log-card h4{margin:0 0 10px}
+.log-list{display:grid;gap:8px;max-height:210px;overflow:auto;padding-right:4px}
+.log-item{padding:10px 12px;border-radius:16px;background:#fffaf3;border:1px solid #f0dfcb;font-size:.9rem;color:#7d695b;line-height:1.65}
+.log-item strong{color:#5b3f2e}
+
+.overlay{position:fixed;inset:0;background:rgba(60,43,33,.38);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:18px;z-index:50}
+.overlay.show{display:flex}
+.modal{width:min(760px,94vw);background:#fffaf5;border:1px solid var(--line);border-radius:30px;box-shadow:0 28px 60px rgba(40,26,18,.22);padding:22px}
+.modal h3{margin:0;font-size:1.7rem;font-family:"Noto Serif SC",serif}
+.modal p{margin:12px 0 0;color:#7d695b;line-height:1.8}
+.modal .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.modal .postcard{margin-top:16px;background:linear-gradient(135deg,#fff,#fff6ec);border:1px dashed #e2c7a4;border-radius:22px;padding:16px;display:grid;grid-template-columns:1fr 240px;gap:16px;align-items:center}
+.modal .mini-scene{min-height:150px;border-radius:20px;overflow:hidden;border:1px solid #ebd7c0;background:linear-gradient(180deg,#aed7ff,#fff0d5);position:relative}
+.modal .mini-scene .train{position:absolute;left:18px;bottom:20px;width:120px;height:26px;background:#d36d66;border-radius:10px;border:3px solid #9f473f}
+.modal .mini-scene .wagon{position:absolute;left:138px;bottom:20px;width:56px;height:26px;background:#4e8f8a;border-radius:10px;border:3px solid #356c68}
+.modal .mini-scene .sun{position:absolute;right:18px;top:18px;width:32px;height:32px;border-radius:50%;background:#ffd977;box-shadow:0 0 0 10px rgba(255,217,119,.22)}
+.hidden{display:none !important}
+
+@keyframes cloudDrift{0%,100%{transform:translateX(0)}50%{transform:translateX(26px)}}
+@keyframes cloudDrift2{0%,100%{transform:translateX(0) scale(.9)}50%{transform:translateX(-34px) scale(.9)}}
+@keyframes cloudDrift3{0%,100%{transform:translateX(0) scale(.75)}50%{transform:translateX(30px) scale(.75)}}
+@keyframes floatKite{0%,100%{transform:translateY(0) rotate(45deg)}50%{transform:translateY(-16px) rotate(50deg)}}
+@keyframes smoke{0%{transform:translateY(0) scale(.85);opacity:0}20%{opacity:.8}100%{transform:translateY(-34px) scale(1.36);opacity:0}}
+@keyframes fall{0%{transform:translateY(-14px) translateX(0) rotate(0deg);opacity:0}8%{opacity:.85}100%{transform:translateY(410px) translateX(52px) rotate(240deg);opacity:0}}
+@keyframes twinkle{0%,100%{opacity:.35;transform:scale(.7)}50%{opacity:1;transform:scale(1.1)}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+
+@media (max-width:1180px){
+  .app{grid-template-columns:1fr}
+  .topbar{grid-template-columns:repeat(3,1fr)}
+  .mission-card{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  .app{width:100%;margin:0;gap:0}
+  .panel{border-radius:0;border-left:0;border-right:0}
+  .sidebar,.main{padding:14px}
+  .topbar{grid-template-columns:repeat(2,1fr)}
+  .characters{grid-template-columns:1fr 1fr}
+  .choice-grid{grid-template-columns:1fr 1fr}
+  .feedback{grid-template-columns:1fr}
+  .modal .postcard{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .choice-grid{grid-template-columns:1fr}
+  .characters{grid-template-columns:1fr}
+  .scene{min-height:320px}
+  .topbar{grid-template-columns:1fr 1fr}
+  .scene-train{left:8px;transform:scale(.84);transform-origin:left bottom}
+}
+
+/* === V22 visual upgrade === */
+.scene{
+  background-position:center center;
+  background-size:cover;
+  background-repeat:no-repeat;
+  box-shadow:inset 0 -120px 120px rgba(255,240,214,.18);
+}
+.sun,.sky-cloud,.kite,.far-hill,.mid-hill{display:none}
+#stationIllustration{display:none}
+.scene::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.02) 42%, rgba(255,244,226,.18) 100%);pointer-events:none;z-index:0}
+.scene > *{position:relative;z-index:1}
+.scene-caption{background:rgba(255,252,246,.88);backdrop-filter:blur(8px);box-shadow:0 14px 30px rgba(122,85,53,.12)}
+.ground{background:linear-gradient(180deg, rgba(246,216,170,.78), rgba(231,193,147,.86))}
+.track1,.track2{background:rgba(138,108,89,.9)}
+.sleepers{background:repeating-linear-gradient(90deg, rgba(138,105,84,.92) 0 24px, transparent 24px 42px)}
+.scene-train{left:34px;bottom:42px;transform:scale(1.06);transform-origin:left bottom}
+.scene-guide{position:absolute;left:40px;bottom:92px;width:190px;display:flex;align-items:flex-end;justify-content:center;filter:drop-shadow(0 12px 20px rgba(0,0,0,.16))}
+.scene-guide img{display:block;width:100%;height:auto;object-fit:contain}
+.scene-guide .speech{position:absolute;right:18px;top:-6px;background:#fff;color:#d3665f;border:1px solid #f1d3b0;border-radius:999px;padding:6px 12px;font-weight:900;font-size:1rem;box-shadow:0 10px 24px rgba(0,0,0,.08)}
+.character-card{background:linear-gradient(180deg,#fffaf4,#fff);min-height:250px;box-shadow:0 12px 24px rgba(184,142,103,.08)}
+.image-avatar{position:relative;width:168px;height:168px;display:flex;align-items:center;justify-content:center;border-radius:28px;padding:10px;background:radial-gradient(circle at 50% 35%, #fffdfa 0%, #fff6ea 52%, #ffeed7 100%);box-shadow:inset 0 0 0 1px #efdac4, 0 14px 24px rgba(189,146,103,.12);overflow:visible}
+.image-avatar img{display:block;max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 10px 18px rgba(0,0,0,.12))}
+.image-avatar .speech{right:-10px;top:-4px;padding:6px 10px;font-size:.82rem}
+.characters{align-items:stretch}
+
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="panel sidebar">
+    <div class="brand">
+      <div>
+        <h1>TIẾNG TRUNG MEOW MEOW <span>🚂 中国词汇列车 · HSK7–9</span></h1>
+        <p>Biến bộ từ vựng HSK7–9 thành một hành trình phiêu lưu qua nhiều ga lớn của Trung Quốc.</p>
+      </div>
+      <a class="back-link" href="index.html">Trang chủ</a>
+    </div>
+
+    <div class="control-row">
+      <button class="btn btn-primary" id="startBtn">Bắt đầu mới</button>
+      <button class="btn btn-soft" id="continueBtn">Tiếp tục</button>
+    </div>
+    <div class="control-row">
+      <button class="small-btn btn-soft btn" id="resetBtn">Chơi lại từ đầu</button>
+      <button class="icon-btn" id="musicBtn" title="Bật/tắt nhạc">🎵</button>
+      <button class="icon-btn" id="soundBtn" title="Bật/tắt hiệu ứng âm thanh">🔊</button>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card"><b id="wordsCount">0</b><span>Từ đã nhúng</span></div>
+      <div class="stat-card"><b id="bestScore">0</b><span>Điểm cao nhất</span></div>
+      <div class="stat-card"><b id="unlockedStat">1 / 5</b><span>Ga mở khóa</span></div>
+      <div class="stat-card"><b id="livesStat">❤ 3</b><span>Số tim còn lại</span></div>
+    </div>
+
+    <div class="side-story">
+      <div class="eyebrow">CỐT TRUYỆN · 剧情任务</div>
+      <div class="title" id="stationStoryTitle">Chuyến tàu đang chờ khởi hành</div>
+      <p id="stationStoryText">Mỗi ga sẽ có một nhiệm vụ khác nhau: giúp hành khách giải câu đố, hỗ trợ nhân viên nhà ga, điền từ vào câu, chọn nghĩa, gõ đúng chữ Hán và nhiều dạng biến thể khác.</p>
+      <div class="characters">
+        <div class="character-card passenger">
+          <div class="avatar image-avatar" id="passengerAvatar">
+            <img id="passengerAvatarImg" src="assets/characters/beijing-passenger.png" alt="Hành khách hoạt hình" />
+            <div class="speech" id="passengerSpeech">救命~</div>
+          </div>
+          <h4 id="passengerName">Hành khách</h4>
+          <p id="passengerLine">Mỗi ga sẽ có một hành khách cần bạn trợ giúp.</p>
+        </div>
+        <div class="character-card staff">
+          <div class="avatar image-avatar" id="staffAvatar">
+            <img id="staffAvatarImg" src="assets/characters/beijing-staff.png" alt="Nhân viên nhà ga hoạt hình" />
+            <div class="speech" id="staffSpeech">加油!</div>
+          </div>
+          <h4 id="staffName">Trưởng ga</h4>
+          <p id="staffLine">Nhân viên sẽ giao nhiệm vụ để tàu được phép tiếp tục.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="passport">
+      <h4>Hộ chiếu hành trình · 打卡护照</h4>
+      <div class="stamp-list" id="stampList"></div>
+    </div>
+  </aside>
+
+  <main class="panel main">
+    <section class="topbar">
+      <div class="top-pill"><div class="label">NHÀ GA HIỆN TẠI</div><div class="value" id="currentStationBox">Chưa khởi hành</div></div>
+      <div class="top-pill"><div class="label">ĐIỂM</div><div class="value" id="scoreBox">0</div></div>
+      <div class="top-pill"><div class="label">COMBO</div><div class="value" id="comboBox">0</div></div>
+      <div class="top-pill"><div class="label">TIM</div><div class="value" id="livesBox">❤❤❤</div></div>
+      <div class="top-pill"><div class="label">VÒNG TẠI GA</div><div class="value" id="stationRoundBox">0 / 5</div></div>
+      <div class="top-pill"><div class="label">KIỂU NHIỆM VỤ</div><div class="value" id="taskTypeBox">Đa dạng</div></div>
+    </section>
+
+    <section class="panel route-card">
+      <h2>Chuyến tàu xuyên Trung Quốc · 中国词汇列车</h2>
+      <p>Không chỉ chọn từ đơn điệu nữa: mỗi ga là một mini-game khác nhau. Có ga phải <b>chọn từ Hán theo nghĩa</b>, có ga <b>chọn nghĩa theo từ Hán</b>, có ga <b>điền vào câu</b>, có ga <b>gõ chính tả chữ Hán</b>, và ga cuối là một thử thách tổng hợp để giúp tàu tới đích.</p>
+      <div class="route-tags">
+        <span class="tag">HSK7–9</span>
+        <span class="tag">1998 từ</span>
+        <span class="tag">5 nhà ga</span>
+        <span class="tag">Nhiều dạng câu đố</span>
+        <span class="tag">Lưu tiến trình</span>
+      </div>
+      <div class="route-line-wrap" id="routeLine"></div>
+    </section>
+
+    <section class="scene" id="scene">
+      <div class="sun"></div>
+      <div class="sky-cloud cloud1"></div>
+      <div class="sky-cloud cloud2"></div>
+      <div class="sky-cloud cloud3"></div>
+      <div class="kite k1"></div><div class="kite k2"></div><div class="kite k3"></div>
+      <div class="far-hill"></div><div class="far-hill h2"></div><div class="far-hill h3"></div>
+      <div class="mid-hill"></div><div class="mid-hill h2"></div><div class="mid-hill h3"></div>
+      <div class="scene-caption"><b id="sceneTitle">Sẵn sàng lên tàu</b><span id="sceneDesc">Bấm “Bắt đầu mới” hoặc “Tiếp tục” để Meow Meow dẫn bạn vào hành trình qua 5 ga lớn của Trung Quốc.</span></div>
+      <div class="station-illustration" id="stationIllustration"></div>
+      <div class="decor-layer" id="decorLayer"></div>
+      <div class="scene-guide" id="sceneGuide">
+        <img id="sceneGuideImg" src="assets/characters/meow-conductor.png" alt="Mèo hướng dẫn hoạt hình" />
+        <div class="speech">喵!</div>
+      </div>
+      <div class="ground"></div><div class="track1"></div><div class="track2"></div><div class="sleepers"></div>
+      <div class="scene-train" id="sceneTrain">
+        <div class="engine"><div class="smoke"><span></span><span></span><span></span></div><div class="window"></div><div class="window small"></div><div class="engine-front"></div><div class="wheel left"></div><div class="wheel right"></div></div>
+        <div class="wagon" id="wagon1">待装<div class="wheel left"></div><div class="wheel right"></div></div>
+        <div class="wagon" id="wagon2">待装<div class="wheel left"></div><div class="wheel right"></div></div>
+        <div class="wagon" id="wagon3">待装<div class="wheel left"></div><div class="wheel right"></div></div>
+      </div>
+    </section>
+
+    <section class="mission-card">
+      <div class="mission-head">
+        <div class="eyebrow">NHIỆM VỤ CỦA GA · 站台任务</div>
+        <h3 id="missionTitle">Hành trình nhiều biến thể đang chờ bạn</h3>
+        <p id="missionIntro">Ở mỗi ga, bạn sẽ giải một kiểu câu đố khác nhau để giúp hành khách và đáp ứng yêu cầu của nhân viên nhà ga.</p>
+        <div class="prompt-panel">
+          <div class="prompt-cap" id="promptCap">MANH MỐI · 线索</div>
+          <div class="prompt-main" id="promptMain">Nhấn bắt đầu để nhận thử thách đầu tiên</div>
+          <div class="prompt-sub" id="promptSub">Từ vựng HSK7–9 đã được nhúng sẵn. Khi có thử thách mới, gợi ý sẽ xuất hiện ở đây.</div>
+          <div class="answer-tools" id="answerTools"></div>
+        </div>
+      </div>
+      <div class="fill-side">
+        <div class="npc-dialogue">
+          <h4 id="dialogueTitle">Lời nhắn trong ga</h4>
+          <p id="dialogueText">“Khi tàu dừng ở ga mới, bạn sẽ nghe lời nhắn từ hành khách hoặc trưởng ga.”</p>
+        </div>
+        <div class="target-slot" id="targetSlot">
+          <div>
+            <div class="big" id="targetBig">待命</div>
+            <div class="small" id="targetSmall">Khoang nhiệm vụ đang chờ bạn giải câu đố.</div>
+          </div>
+        </div>
+        <div class="meter">
+          <b>Tiến độ ga hiện tại</b>
+          <div id="progressText" style="margin-top:8px;color:#7d695b;font-size:.92rem">Chưa khởi hành</div>
+          <div class="bar"><div class="bar-fill" id="progressFill"></div></div>
+        </div>
+        <div class="story-banner" id="miniBanner">Mẹo: ga sau sẽ khó hơn ga trước một chút. Đặc biệt ga 4 và ga 5 có cả nhiệm vụ gõ chữ Hán.</div>
+      </div>
+    </section>
+
+    <section id="taskArea"></section>
+
+    <section class="feedback">
+      <div>
+        <b id="feedbackTitle">Meow Meow đang soát vé...</b>
+        <p id="feedbackText">Hãy bắt đầu chuyến tàu để học theo cách vui hơn nhé.</p>
+      </div>
+      <div class="route-tags" style="margin-top:0">
+        <span class="tag" id="feedbackTag1">pinyin</span>
+        <span class="tag" id="feedbackTag2">汉字</span>
+        <span class="tag" id="feedbackTag3">nhiệm vụ</span>
+      </div>
+    </section>
+
+    <section class="log-card">
+      <h4>Nhật ký hành trình · 旅行日志</h4>
+      <div class="log-list" id="logList"></div>
+    </section>
+  </main>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <h3 id="modalTitle">Chào mừng đến nhà ga</h3>
+    <p id="modalText">Mỗi ga sẽ có câu chuyện và thử thách riêng.</p>
+    <div class="postcard">
+      <div>
+        <div class="tag" id="modalTag">Nhiệm vụ mới</div>
+        <p id="modalMission">Bắt đầu ngay khi bạn sẵn sàng.</p>
+      </div>
+      <div class="mini-scene"><div class="sun"></div><div class="train"></div><div class="wagon"></div></div>
+    </div>
+    <div class="row">
+      <button class="btn btn-primary" id="modalContinueBtn">Vào ga</button>
+      <button class="btn btn-soft" id="modalCloseBtn">Để sau</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const WORDS = [{"hanzi":"阿拉伯语","pinyin":"ālābóyǔ","meaning":"tiếng Ả Rập"},{"hanzi":"哎","pinyin":"āi","meaning":"ôi, chao ôi (tỏ ý kinh ngạc hoặc không hài lòng)"},{"hanzi":"哎呀","pinyin":"āiyā","meaning":"ái chà, ôi chao"},{"hanzi":"哀求","pinyin":"āiqiú","meaning":"cầu xin, cầu khẩn"},{"hanzi":"挨家挨户","pinyin":"āijiā-āihù","meaning":"lần lượt từng nhà, từng nhà từng hộ"},{"hanzi":"癌","pinyin":"ái","meaning":"ung thư"},{"hanzi":"癌症","pinyin":"áizhèng","meaning":"ung thư"},{"hanzi":"艾滋病","pinyin":"àizībìng","meaning":"AIDS"},{"hanzi":"唉","pinyin":"āi","meaning":"ấy, được (tiếng đáp nhận lời)"},{"hanzi":"爱不释手","pinyin":"àibùshìshǒu","meaning":"quyến luyến không rời, thích mê"},{"hanzi":"爱理不理","pinyin":"àilǐ-bùlǐ","meaning":"không muốn đáp lại"},{"hanzi":"爱面子","pinyin":"ài miànzi","meaning":"sĩ diện, thể diện"},{"hanzi":"爱惜","pinyin":"àixī","meaning":"yêu quý"},{"hanzi":"碍事","pinyin":"ài shì","meaning":"cản trở"},{"hanzi":"安定","pinyin":"āndìng","meaning":"yên ổn, ổn định"},{"hanzi":"安抚","pinyin":"ānfǔ","meaning":"vỗ về, động viên"},{"hanzi":"安眠药","pinyin":"ānmiányào","meaning":"thuốc ngủ"},{"hanzi":"安宁","pinyin":"ānníng","meaning":"yên tĩnh"},{"hanzi":"安稳","pinyin":"ānwěn","meaning":"vững chắc, chắc chắn"},{"hanzi":"安心","pinyin":"ānxīn","meaning":"an tâm, yên tâm"},{"hanzi":"安逸","pinyin":"ānyì","meaning":"an nhàn, nhàn hạ"},{"hanzi":"按键","pinyin":"ànjiàn","meaning":"nhấn phím, ấn phím"},{"hanzi":"按理说","pinyin":"ànlǐ shuō","meaning":"theo lý mà nói"},{"hanzi":"按说","pinyin":"ànshuō","meaning":"thông thường, theo lý"},{"hanzi":"案件","pinyin":"ànjiàn","meaning":"trường hợp, vụ án"},{"hanzi":"暗地里","pinyin":"àndì lǐ","meaning":"thầm, lén, lén lút"},{"hanzi":"暗杀","pinyin":"ànshā","meaning":"ám sát"},{"hanzi":"暗中","pinyin":"ànzhōng","meaning":"trong bóng tối, trong bí mật"},{"hanzi":"昂贵","pinyin":"ángguì","meaning":"đắt đỏ, đắt tiền"},{"hanzi":"凹","pinyin":"āo","meaning":"lõm, chìm, trũng"},{"hanzi":"熬","pinyin":"áo","meaning":"hầm, ninh; chịu đựng"},{"hanzi":"熬夜","pinyin":"áo yè","meaning":"thức đêm, thức khuya"},{"hanzi":"傲","pinyin":"ào","meaning":"tự hào, kiêu ngạo"},{"hanzi":"傲慢","pinyin":"àomàn","meaning":"ngạo mạn"},{"hanzi":"奥秘","pinyin":"àomì","meaning":"huyền bí, bí ẩn"},{"hanzi":"奥运会","pinyin":"àoyùnhuì","meaning":"thế vận hội Ô-lym-pic"},{"hanzi":"八卦","pinyin":"bāguà","meaning":"bát quái"},{"hanzi":"巴不得","pinyin":"bābùdé","meaning":"chỉ mong sao, ước gì"},{"hanzi":"扒","pinyin":"bā","meaning":"víu, mắc, gãy, hất"},{"hanzi":"芭蕾","pinyin":"bālěi","meaning":"múa ba lê"},{"hanzi":"把柄","pinyin":"bǎbǐng","meaning":"chuôi, cán"},{"hanzi":"把关","pinyin":"bǎ guān","meaning":"trấn, giữ cửa ải"},{"hanzi":"把手","pinyin":"bǎshǒu","meaning":"tay nắm (cửa)"},{"hanzi":"靶子","pinyin":"bǎzi","meaning":"bia, mục tiêu"},{"hanzi":"坝","pinyin":"bà","meaning":"con đập, đập chắn nước"},{"hanzi":"罢免","pinyin":"bàmiǎn","meaning":"thu hồi, hủy bỏ"},{"hanzi":"罢休","pinyin":"bàxiū","meaning":"nghỉ, dừng"},{"hanzi":"霸占","pinyin":"bàzhàn","meaning":"chiếm đóng, bá chiếm"},{"hanzi":"掰","pinyin":"bāi","meaning":"tẽ, tách"},{"hanzi":"白白","pinyin":"báibái","meaning":"vô ích"},{"hanzi":"百分比","pinyin":"bǎifēnbǐ","meaning":"tỉ lệ phần trăm"},{"hanzi":"百合","pinyin":"bǎihé","meaning":"hoa bách hợp"},{"hanzi":"百科全书","pinyin":"bǎikē quánshū","meaning":"bách khoa toàn thư"},{"hanzi":"柏树","pinyin":"bǎishù","meaning":"cây bách"},{"hanzi":"摆放","pinyin":"bǎifàng","meaning":"đặt, để"},{"hanzi":"摆平","pinyin":"bǎi píng","meaning":"công bằng"},{"hanzi":"摆设","pinyin":"bǎishe","meaning":"sắp xếp"},{"hanzi":"拜会","pinyin":"bàihuì","meaning":"tiếp, hội kiến (nay thường dùng trong các cuộc viếng thăm chính thức về ngoại giao)"},{"hanzi":"拜见","pinyin":"bàijiàn","meaning":"bái kiến, chào, ra mắt, đến chào (phía khách nói) (nay thường dùng trong các buổi gặp gỡ ngoại giao long trọng)"},{"hanzi":"拜年","pinyin":"bài nián","meaning":"chúc tết"},{"hanzi":"拜托","pinyin":"bài tuō","meaning":"kính nhờ (lời nói kính trọng), làm ơn"},{"hanzi":"扳","pinyin":"bān","meaning":"bám víu, vin; nhổ vả"},{"hanzi":"颁布","pinyin":"bānbù","meaning":"ban bố, ban hành (chính phủ ban bố sắc lệnh)"},{"hanzi":"颁发","pinyin":"bānfā","meaning":"công bố, ban hành, ra chỉ thị"},{"hanzi":"颁奖","pinyin":"bān jiǎng","meaning":"trao giải, trao giải thưởng"},{"hanzi":"斑点","pinyin":"bāndiǎn","meaning":"nốt đóm, lấm tấm"},{"hanzi":"搬迁","pinyin":"bānqiān","meaning":"xe dịch, dời chỗ"},{"hanzi":"板块","pinyin":"bǎnkuài","meaning":"khối, tảng"},{"hanzi":"办不到","pinyin":"bàn bu dào","meaning":"không thể"},{"hanzi":"半边天","pinyin":"bànbiāntiān","meaning":"nửa bầu trời (ví với giới phụ nữ thời đại mới)"},{"hanzi":"半场","pinyin":"bànchǎng","meaning":"nửa đấu trận, nửa đầu của trận đấu"},{"hanzi":"半岛","pinyin":"bàndǎo","meaning":"bán đảo"},{"hanzi":"半路","pinyin":"bànlù","meaning":"nửa đường"},{"hanzi":"半数","pinyin":"bànshù","meaning":"một nửa, nửa số"},{"hanzi":"半途而废","pinyin":"bàntú'érfèi","meaning":"nửa chừng bỏ dở"},{"hanzi":"半信半疑","pinyin":"bànxìn-bànyí","meaning":"nửa tin nửa ngờ"},{"hanzi":"半真半假","pinyin":"bànzhēn-bànjiǎ","meaning":"nửa thật nửa giả"},{"hanzi":"扮","pinyin":"bàn","meaning":"hóa trang"},{"hanzi":"伴","pinyin":"bàn","meaning":"bầu bạn, kết bạn"},{"hanzi":"伴侣","pinyin":"bànlǚ","meaning":"bạn đồng hành, bạn đời"},{"hanzi":"伴随","pinyin":"bànsuí","meaning":"đi đôi với, cùng với"},{"hanzi":"伴奏","pinyin":"bànzòu","meaning":"nhạc đệm"},{"hanzi":"拌","pinyin":"bàn","meaning":"trộn, trộn lẫn"},{"hanzi":"帮手","pinyin":"bāngshou","meaning":"người giúp đỡ"},{"hanzi":"绑","pinyin":"bǎng","meaning":"trói, buộc, quấn"},{"hanzi":"绑架","pinyin":"bǎngjià","meaning":"bắt cóc"},{"hanzi":"榜样","pinyin":"bǎngyàng","meaning":"tấm gương, gương tốt"},{"hanzi":"棒球","pinyin":"bàngqiú","meaning":"bóng chày"},{"hanzi":"磅","pinyin":"bàng","meaning":"đơn vị đo trọng lượng pound"},{"hanzi":"包袱","pinyin":"bāofu","meaning":"gánh nặng"},{"hanzi":"包容","pinyin":"bāoróng","meaning":"bao dung"},{"hanzi":"包扎","pinyin":"bāozā","meaning":"bao gói"},{"hanzi":"剥","pinyin":"bāo","meaning":"bóc, lột, gọt"},{"hanzi":"煲","pinyin":"bāo","meaning":"nồi"},{"hanzi":"饱和","pinyin":"bǎohé","meaning":"bão hoà"},{"hanzi":"饱满","pinyin":"bǎomǎn","meaning":"sung túc, phong phú"},{"hanzi":"宝库","pinyin":"bǎokù","meaning":"kho tàng, nơi cất giấu những vật quý (thường dùng để nói ví von)"},{"hanzi":"宝藏","pinyin":"bǎozàng","meaning":"kho báu, kho tàng"},{"hanzi":"保管","pinyin":"bǎoguǎn","meaning":"bảo quản"},{"hanzi":"保姆","pinyin":"bǎomǔ","meaning":"bảo mẫu, vú em"},{"hanzi":"保暖","pinyin":"bǎo nuǎn","meaning":"giữ ấm, hâm nóng"},{"hanzi":"保鲜","pinyin":"bǎoxiān","meaning":"giữ cho tươi"},{"hanzi":"保修","pinyin":"bǎoxiū","meaning":"bảo hành"},{"hanzi":"保佑","pinyin":"bǎoyòu","meaning":"phù hộ, ban phúc"},{"hanzi":"保障","pinyin":"bǎozhàng","meaning":"bảo đảm, bảo hộ (không để bị xâm phạm hoặc hư hại)"},{"hanzi":"保质期","pinyin":"bǎozhìqī","meaning":"hạn sử dụng"},{"hanzi":"保重","pinyin":"bǎozhòng","meaning":"chú ý giữ gìn sức khoẻ"},{"hanzi":"堡垒","pinyin":"bǎolěi","meaning":"lô-cốt, công sự (công trình kiến trúc kiên cố dùng phòng thủ về quân sự)"},{"hanzi":"报","pinyin":"bào","meaning":"báo, báo cáo"},{"hanzi":"报仇","pinyin":"bào chóu","meaning":"báo thù, trả thù"},{"hanzi":"报酬","pinyin":"bàochou","meaning":"thù lao"},{"hanzi":"报废","pinyin":"bào fèi","meaning":"báo hỏng, báo hư"},{"hanzi":"报复","pinyin":"bào fù","meaning":"trả thù, phục thù"},{"hanzi":"报社","pinyin":"bào shè","meaning":"toà soạn, toà báo"},{"hanzi":"报亭","pinyin":"bào tíng","meaning":"tiệm bán báo, sạp (bán) báo"},{"hanzi":"报销","pinyin":"bào xiāo","meaning":"thanh toán"},{"hanzi":"抱负","pinyin":"bǎo fù","meaning":"hoài bão, tham vọng"},{"hanzi":"豹","pinyin":"bào","meaning":"con báo"},{"hanzi":"暴风骤雨","pinyin":"bàofēng-zhòuyǔ","meaning":"mưa to gió lớn"},{"hanzi":"暴利","pinyin":"bào lì","meaning":"lãi khủng"},{"hanzi":"暴躁","pinyin":"bào zào","meaning":"nóng nảy, bộp chộp"},{"hanzi":"曝光","pinyin":"bào guāng","meaning":"phơi bày"},{"hanzi":"爆冷门","pinyin":"bào lěngmén","meaning":"kết quả bất ngờ"},{"hanzi":"爆满","pinyin":"bào mǎn","meaning":"chật ních"},{"hanzi":"爆竹","pinyin":"bào zhú","meaning":"pháo, pháo ném"},{"hanzi":"卑鄙","pinyin":"bēi bǐ","meaning":"đê tiện, hèn hạ"},{"hanzi":"悲哀","pinyin":"bēi āi","meaning":"xót xa, bi ai"},{"hanzi":"悲观","pinyin":"bēi guān","meaning":"bi quan"},{"hanzi":"悲欢离合","pinyin":"bēi huān-lí hé","meaning":"vui buồn lẫn lộn"},{"hanzi":"悲痛","pinyin":"bēi tòng","meaning":"đau buồn, bi thương"},{"hanzi":"碑","pinyin":"bēi","meaning":"bia đá"},{"hanzi":"贝壳","pinyin":"bèi ké","meaning":"vỏ sò, vỏ ốc"},{"hanzi":"备课","pinyin":"bèi kè","meaning":"soạn bài, soạn giáo án, chuẩn bị bài giảng"},{"hanzi":"备受","pinyin":"bèi shòu","meaning":"chịu"},{"hanzi":"备用","pinyin":"bèi yòng","meaning":"dự phòng, dự trữ"},{"hanzi":"背面","pinyin":"bèi miàn","meaning":"mặt trái, mặt sau"},{"hanzi":"背叛","pinyin":"bèi pàn","meaning":"phản bội, làm trái, đi ngược lại"},{"hanzi":"背诵","pinyin":"bèi sòng","meaning":"đọc thuộc lòng, học thuộc"},{"hanzi":"被捕","pinyin":"bèi bǔ","meaning":"bị bắt, bị tóm"},{"hanzi":"奔波","pinyin":"bēn bō","meaning":"bôn ba"},{"hanzi":"奔赴","pinyin":"bēn fù","meaning":"nhắm tới, xông lên"},{"hanzi":"本分","pinyin":"běn fèn","meaning":"bổn phận"},{"hanzi":"本能","pinyin":"běn néng","meaning":"bản năng"},{"hanzi":"本钱","pinyin":"běn qián","meaning":"tiền vốn"},{"hanzi":"本色","pinyin":"běn sè","meaning":"bản sắc, diện mạo vốn có"},{"hanzi":"本性","pinyin":"běn xìng","meaning":"bản tính"},{"hanzi":"本意","pinyin":"běnyì","meaning":"ý định ban đầu"},{"hanzi":"本着","pinyin":"běnzhe","meaning":"căn cứ, dựa trên"},{"hanzi":"奔","pinyin":"bēn","meaning":"đến thẳng, lao đến"},{"hanzi":"笨蛋","pinyin":"bèndàn","meaning":"ngu ngốc, đần độn"},{"hanzi":"笨重","pinyin":"bènzhòng","meaning":"nặng nề cồng kềnh"},{"hanzi":"崩溃","pinyin":"bēngkuì","meaning":"sụp đổ, tan vỡ"},{"hanzi":"绷","pinyin":"bēng","meaning":"kéo căng, chặt, khít"},{"hanzi":"绷带","pinyin":"bēngdài","meaning":"băng gạc, vải băng"},{"hanzi":"蹦","pinyin":"bèng","meaning":"nhảy"},{"hanzi":"逼近","pinyin":"bījìn","meaning":"tiếp cận, đến gần"},{"hanzi":"逼迫","pinyin":"bīpò","meaning":"ép buộc, cưỡng ép"},{"hanzi":"逼真","pinyin":"bīzhēn","meaning":"giống y như thật"},{"hanzi":"鼻涕","pinyin":"bítì","meaning":"nước mũi"},{"hanzi":"比比皆是","pinyin":"bǐbǐ-jiēshì","meaning":"khắp nơi đều có, đâu đâu cũng có"},{"hanzi":"比不上","pinyin":"bǐ bu shàng","meaning":"thua kém"},{"hanzi":"比起","pinyin":"bǐqǐ","meaning":"so sánh với"},{"hanzi":"比试","pinyin":"bǐshì","meaning":"so tài"},{"hanzi":"比喻","pinyin":"bǐyù","meaning":"ví dụ, thí dụ"},{"hanzi":"鄙视","pinyin":"bǐshì","meaning":"xem thường, khinh bỉ"},{"hanzi":"必不可少","pinyin":"bìbùkěshǎo","meaning":"thiết yếu, không thể thiếu"},{"hanzi":"必定","pinyin":"bìdìng","meaning":"nhất định, chắc chắn"},{"hanzi":"碧绿","pinyin":"bìlǜ","meaning":"xanh biếc"},{"hanzi":"弊病","pinyin":"bìbìng","meaning":"tệ nạn, tai hại"},{"hanzi":"弊端","pinyin":"bìduān","meaning":"tệ nạn, tai hại"},{"hanzi":"壁画","pinyin":"bìhuà","meaning":"tranh tường"},{"hanzi":"避难","pinyin":"bìnàn","meaning":"lánh nạn, tránh nạn"},{"hanzi":"避暑","pinyin":"bì shǔ","meaning":"nghỉ mát, tránh nóng"},{"hanzi":"边疆","pinyin":"biānjiāng","meaning":"biên cương, bờ cõi"},{"hanzi":"边界","pinyin":"biānjiè","meaning":"biên giới"},{"hanzi":"边远","pinyin":"biānyuǎn","meaning":"xa xôi, xa xăm"},{"hanzi":"编号","pinyin":"biānhào","meaning":"đánh số, ghi số"},{"hanzi":"编剧","pinyin":"biānjù","meaning":"biên kịch"},{"hanzi":"编排","pinyin":"biānpái","meaning":"bố trí, sắp xếp"},{"hanzi":"编写","pinyin":"biānxiě","meaning":"biên soạn"},{"hanzi":"编造","pinyin":"biānzào","meaning":"lập (bảng, biểu), sáng tạo (truyện)"},{"hanzi":"鞭策","pinyin":"biāncè","meaning":"thúc giục"},{"hanzi":"鞭炮","pinyin":"biānpào","meaning":"pháo hoa"},{"hanzi":"贬值","pinyin":"biǎnzhí","meaning":"sụt giá, mất giá"},{"hanzi":"变革","pinyin":"biàngé","meaning":"biến đổi, thay đổi (bản chất của sự vật)"},{"hanzi":"变幻莫测","pinyin":"biànhuàn-mòcè","meaning":"biến hóa thất thường, thay đổi thất thường"},{"hanzi":"变迁","pinyin":"biànqiān","meaning":"biến đổi, đổi thay"},{"hanzi":"变异","pinyin":"biànyì","meaning":"biến dị, khác thường"},{"hanzi":"变质","pinyin":"biàn zhì","meaning":"biến chất"},{"hanzi":"便道","pinyin":"biàndào","meaning":"đường tắt, vỉa hè"},{"hanzi":"便饭","pinyin":"biànfàn","meaning":"cơm bữa, cơm thường"},{"hanzi":"便捷","pinyin":"biànjié","meaning":"nhanh gọn, tiện lợi, dễ dàng"},{"hanzi":"便利店","pinyin":"biànlìdiàn","meaning":"cửa hàng tiện lợi"},{"hanzi":"遍布","pinyin":"biànbù","meaning":"lan bố, rải rác"},{"hanzi":"辨别","pinyin":"biànbié","meaning":"phân rõ, phân biệt"},{"hanzi":"辨认","pinyin":"biànrèn","meaning":"nhận rõ, nhận ra, phân biệt"},{"hanzi":"辩","pinyin":"biàn","meaning":"biện luận, tranh luận"},{"hanzi":"辩护","pinyin":"biànhù","meaning":"biện hộ"},{"hanzi":"辩解","pinyin":"biànjiě","meaning":"biện giải"},{"hanzi":"辫子","pinyin":"biànzi","meaning":"bím tóc"},{"hanzi":"标","pinyin":"biāo","meaning":"đánh dấu"},{"hanzi":"标榜","pinyin":"biāobǎng","meaning":"quảng cáo rùm beng"},{"hanzi":"标本","pinyin":"biāoběn","meaning":"tiêu bản"},{"hanzi":"标签","pinyin":"biāoqiān","meaning":"nhãn, nhãn hiệu"},{"hanzi":"标示","pinyin":"biāoshì","meaning":"biểu thị, biểu lộ"},{"hanzi":"标语","pinyin":"biāoyǔ","meaning":"khẩu hiệu, biểu ngữ"},{"hanzi":"标致","pinyin":"biāozhì","meaning":"xinh xắn, xinh đẹp"},{"hanzi":"飙升","pinyin":"biāoshēng","meaning":"tăng nhanh, tăng vọt"},{"hanzi":"表白","pinyin":"biǎobái","meaning":"tỏ tình"},{"hanzi":"表决","pinyin":"biǎojué","meaning":"biểu quyết, bầu"},{"hanzi":"表述","pinyin":"biǎoshù","meaning":"thuyết minh, nói rõ"},{"hanzi":"表率","pinyin":"biǎoshuài","meaning":"gương tốt, tấm gương sáng, mẫu mực"},{"hanzi":"表态","pinyin":"biǎotài","meaning":"tỏ thái độ, bày tỏ thái độ"},{"hanzi":"表彰","pinyin":"biǎozhāng","meaning":"khen ngợi, tuyên dương"},{"hanzi":"憋","pinyin":"biē","meaning":"bít, nín, kim nén"},{"hanzi":"别具匠心","pinyin":"biéjù-jiàngxīn","meaning":"ý nghĩ sáng tạo"},{"hanzi":"别看","pinyin":"biékàn","meaning":"đừng thấy"},{"hanzi":"别墅","pinyin":"biéshù","meaning":"biệt thự"},{"hanzi":"别说","pinyin":"biéshuō","meaning":"đừng nói"},{"hanzi":"别提了","pinyin":"biétí le","meaning":"đừng nhắc đến, đừng đề cập đến nữa"},{"hanzi":"别致","pinyin":"biézhì","meaning":"độc đáo, mới mẻ"},{"hanzi":"别扭","pinyin":"bièniu","meaning":"khó chịu, khó tính"},{"hanzi":"彬彬有礼","pinyin":"bīnbīn-yǒulǐ","meaning":"nho nhã lễ phép"},{"hanzi":"滨海","pinyin":"bīn hǎi","meaning":"ven biển"},{"hanzi":"缤纷","pinyin":"bīnfēn","meaning":"rực rỡ, sặc sỡ"},{"hanzi":"冰棍儿","pinyin":"bīnggùnr","meaning":"que kem"},{"hanzi":"冰山","pinyin":"bīngshān","meaning":"núi băng"},{"hanzi":"丙","pinyin":"bǐng","meaning":"3, C"},{"hanzi":"秉承","pinyin":"bǐngchéng","meaning":"tuân theo"},{"hanzi":"并非","pinyin":"bìngfēi","meaning":"không phải"},{"hanzi":"并购","pinyin":"bìnggòu","meaning":"mua lại"},{"hanzi":"并列","pinyin":"bìngliè","meaning":"ngang hàng, song song"},{"hanzi":"并行","pinyin":"bìngxíng","meaning":"song hành, đi song song"},{"hanzi":"病床","pinyin":"bìngchuáng","meaning":"giường bệnh"},{"hanzi":"病症","pinyin":"bìngzhèng","meaning":"chứng bệnh, bệnh tật"},{"hanzi":"拨","pinyin":"bō","meaning":"đẩy, gẩy"},{"hanzi":"拨款","pinyin":"bōkuǎn","meaning":"chi tiền, phát tiền"},{"hanzi":"拨通","pinyin":"bōtōng","meaning":"nối máy"},{"hanzi":"波及","pinyin":"bōjí","meaning":"ảnh hưởng đến, tác động đến"},{"hanzi":"波澜","pinyin":"bōlán","meaning":"sóng lớn, sóng dậy"},{"hanzi":"波涛","pinyin":"bōtāo","meaning":"sóng lớn (thường chỉ cảnh hùng tráng, mạo hiểm, dùng cả trong văn nói lẫn văn viết)"},{"hanzi":"波折","pinyin":"bōzhé","meaning":"trắc trở, khó khăn"},{"hanzi":"剥夺","pinyin":"bōduó","meaning":"cướp đoạt, lấy đi"},{"hanzi":"剥削","pinyin":"bōxuè","meaning":"bóc lột, lợi dụng"},{"hanzi":"伯伯","pinyin":"bóbo","meaning":"bác trai, bác"},{"hanzi":"伯父","pinyin":"bófù","meaning":"bác trai (anh của bố)"},{"hanzi":"伯母","pinyin":"bómǔ","meaning":"bác gái"},{"hanzi":"驳回","pinyin":"bóhuí","meaning":"bác bỏ, gạt bỏ"},{"hanzi":"脖子","pinyin":"bózi","meaning":"cái cổ, cổ"},{"hanzi":"搏斗","pinyin":"bódòu","meaning":"vật lộn, đọ sức"},{"hanzi":"不定","pinyin":"bùdìng","meaning":"chưa chắc"},{"hanzi":"不见得","pinyin":"bùjiàn-dé","meaning":"chưa chắc, không chừng"},{"hanzi":"不利于","pinyin":"bùlì yú","meaning":"gây hại cho"},{"hanzi":"不慎","pinyin":"bùshèn","meaning":"vô ý, sơ suất"},{"hanzi":"不适","pinyin":"bùshì","meaning":"khó chịu, khó ở"},{"hanzi":"不算","pinyin":"bù suàn","meaning":"không tính"},{"hanzi":"不像话","pinyin":"bùxiànghuà","meaning":"quá đáng"},{"hanzi":"不屑","pinyin":"bùxiè","meaning":"không thèm, coi nhẹ, xem thường"},{"hanzi":"不懈","pinyin":"bùxiè","meaning":"không lơ là, bền bỉ"},{"hanzi":"不亚于","pinyin":"bùyàyú","meaning":"không ít hơn, không dưới"},{"hanzi":"不亦乐乎","pinyin":"bùyìlèhū","meaning":"chết đi được, dễ sợ"},{"hanzi":"不翼而飞","pinyin":"bùyì’érfēi","meaning":"không cánh mà bay"},{"hanzi":"不用说","pinyin":"bùyòngshuō","meaning":"không cần nói"},{"hanzi":"不正之风","pinyin":"bùzhèngzhīfēng","meaning":"xu hướng không lành mạnh"},{"hanzi":"补给","pinyin":"bǔjǐ","meaning":"tiếp tế, tiếp viện"},{"hanzi":"补救","pinyin":"bǔjiù","meaning":"cứu vãn"},{"hanzi":"捕捉","pinyin":"bǔzhuō","meaning":"bắt, tóm"},{"hanzi":"哺育","pinyin":"bǔyù","meaning":"cho ăn, bón"},{"hanzi":"不耻下问","pinyin":"bùchǐ-xiàwèn","meaning":"không ngại học hỏi người dưới, kẻ kém cỏi hơn mình"},{"hanzi":"不辞而别","pinyin":"bùcí’érbié","meaning":"ra đi không từ biệt, không từ mà biệt"},{"hanzi":"不得而知","pinyin":"bùdé’érzhī","meaning":"không tìm ra, không biết"},{"hanzi":"不得已","pinyin":"bùdéyǐ","meaning":"bất đắc dĩ, không thể không như vậy"},{"hanzi":"不妨","pinyin":"bùfáng","meaning":"có thể làm, không có gì trở ngại"},{"hanzi":"不服","pinyin":"bùfú","meaning":"không phục, không thuận theo"},{"hanzi":"不服气","pinyin":"bù fúqì","meaning":"không phục, ấm ức"},{"hanzi":"不假思索","pinyin":"bùjiǎ-sīsǔo","meaning":"không cần nghĩ ngợi, ngay lập tức"},{"hanzi":"不解","pinyin":"bùjiě","meaning":"không hiểu nổi"},{"hanzi":"不经意","pinyin":"bùjīngyì","meaning":"không chú ý, vô ý, thiếu thận trọng"},{"hanzi":"不景气","pinyin":"bùjǐngqì","meaning":"kinh tế đình trệ, buồn bán ế ẩm"},{"hanzi":"不堪","pinyin":"bùkān","meaning":"không chịu nổi, chịu không thấu"},{"hanzi":"不可避免","pinyin":"bùkě-bìmiǎn","meaning":"không thể tránh khỏi"},{"hanzi":"不可思议","pinyin":"bùkě-sīyì","meaning":"không thể tưởng tượng"},{"hanzi":"不肯","pinyin":"bù kěn","meaning":"không chịu, không muốn"},{"hanzi":"不理","pinyin":"bù lǐ","meaning":"phớt lờ, lờ đi"},{"hanzi":"不了了之","pinyin":"bùliǎo-liǎozhī","meaning":"sống chết mặc bây, vô trách nhiệm"},{"hanzi":"不难","pinyin":"bù nán","meaning":"không khó"},{"hanzi":"不平","pinyin":"bùpíng","meaning":"không công bằng, bất công"},{"hanzi":"不显眼","pinyin":"bùxiǎnyǎn","meaning":"không có gì khác thường, tầm thường"},{"hanzi":"不容","pinyin":"bùróng","meaning":"không tha thứ"},{"hanzi":"不如说","pinyin":"bùrú shuō","meaning":"chỉ bằng nói, chẳng bằng nói"},{"hanzi":"不同寻常","pinyin":"bùtóng-xúncháng","meaning":"khác thường"},{"hanzi":"不为人知","pinyin":"bùwéirénzhī","meaning":"không để người biết, người khác không biết được"},{"hanzi":"不惜","pinyin":"bùxī","meaning":"không tiếc"},{"hanzi":"不相上下","pinyin":"bùxiāng-shàngxià","meaning":"ngang tài, ngang sức"},{"hanzi":"不宜","pinyin":"bùyí","meaning":"không thích hợp, không hợp"},{"hanzi":"不已","pinyin":"bùyǐ","meaning":"không thôi, không dứt"},{"hanzi":"不以为然","pinyin":"bùyǐwéirán","meaning":"không cho là đúng"},{"hanzi":"不由得","pinyin":"bùyóude","meaning":"đành phải, buộc phải"},{"hanzi":"不由自主","pinyin":"bùyóuzìzhǔ","meaning":"không kiềm chế được"},{"hanzi":"不予","pinyin":"bù yǔ","meaning":"từ chối"},{"hanzi":"不约而同","pinyin":"bùyuē’értóng","meaning":"không hẹn mà gặp"},{"hanzi":"不知","pinyin":"bùzhī","meaning":"không biết, vô tình"},{"hanzi":"不知不觉","pinyin":"bùzhī-bùjué","meaning":"bất giác"},{"hanzi":"不准","pinyin":"bù zhǔn","meaning":"không cho phép, không được"},{"hanzi":"布局","pinyin":"bùjú","meaning":"bố cục"},{"hanzi":"步伐","pinyin":"bùfá","meaning":"nhịp bước"},{"hanzi":"步入","pinyin":"bùrù","meaning":"bước vào, tiến vào"},{"hanzi":"步骤","pinyin":"bùzhòu","meaning":"trình tự (tiến hành công việc)"},{"hanzi":"部件","pinyin":"bùjiàn","meaning":"linh kiện, bộ phận lắp ráp"},{"hanzi":"部署","pinyin":"bùshǔ","meaning":"sắp xếp, bố trí, an bài (nhân lực, nhiệm vụ)"},{"hanzi":"猜谜","pinyin":"cāi mí","meaning":"giải đố, đoán câu đố"},{"hanzi":"猜想","pinyin":"cāixiǎng","meaning":"suy đoán"},{"hanzi":"才华","pinyin":"cáihuá","meaning":"tài hoa, giỏi giang"},{"hanzi":"财经","pinyin":"cáijīng","meaning":"kinh tế tài chính"},{"hanzi":"财力","pinyin":"cáilì","meaning":"tài lực, khả năng kinh tế"},{"hanzi":"财务","pinyin":"cáiwù","meaning":"tài chính, tài vụ"},{"hanzi":"财物","pinyin":"cáiwù","meaning":"tài chính, kế toán"},{"hanzi":"财政","pinyin":"cáizhèng","meaning":"tài chính (hoạt động quản lý thu chi tiền của vật chất của quốc gia)"},{"hanzi":"裁","pinyin":"cāi","meaning":"cắt xén, cắt bỏ, cắt giảm"},{"hanzi":"裁定","pinyin":"cáidìng","meaning":"quyết định, xét định"},{"hanzi":"裁决","pinyin":"cáijué","meaning":"cân nhắc quyết định, xem xét quyết định"},{"hanzi":"采","pinyin":"cǎi","meaning":"ngắt, hái"},{"hanzi":"采集","pinyin":"cǎijí","meaning":"thu thập, sưu tầm"},{"hanzi":"采矿","pinyin":"cǎi kuàng","meaning":"lấy quặng, khai thác quặng"},{"hanzi":"彩电","pinyin":"cǎidiàn","meaning":"ti vi màu"},{"hanzi":"彩虹","pinyin":"cǎihóng","meaning":"cầu vồng"},{"hanzi":"彩霞","pinyin":"cǎixiá","meaning":"ráng màu, ráng ngũ sắc"},{"hanzi":"菜市场","pinyin":"càishìchǎng","meaning":"chợ bán thức ăn"},{"hanzi":"参见","pinyin":"cānjiàn","meaning":"tham khảo, xem thêm"},{"hanzi":"参军","pinyin":"cānjūn","meaning":"tòng quân, tham gia quân đội"},{"hanzi":"参谋","pinyin":"cānmóu","meaning":"tham mưu"},{"hanzi":"参照","pinyin":"cānzhào","meaning":"bắt chước, phỏng theo"},{"hanzi":"餐桌","pinyin":"cānzhuō","meaning":"bàn ăn"},{"hanzi":"残","pinyin":"cán","meaning":"thiếu, khuyết, tàn, phế"},{"hanzi":"残留","pinyin":"cánliú","meaning":"tàn lưu, còn sót lại"},{"hanzi":"残缺","pinyin":"cánquē","meaning":"không đủ, thiếu khuyết"},{"hanzi":"残忍","pinyin":"cánrěn","meaning":"tàn nhẫn"},{"hanzi":"惭愧","pinyin":"cánkuì","meaning":"xấu hổ, hổ thẹn"},{"hanzi":"苍白","pinyin":"cāngbái","meaning":"âm đạm, nhợt nhạt, phờ phạc"},{"hanzi":"苍凉","pinyin":"cāngliáng","meaning":"đau đớn, đau thương"},{"hanzi":"沧重","pinyin":"cāngzhòng","meaning":"nặng nề, vô cùng nghiêm trọng (tổn thất)"},{"hanzi":"灿烂","pinyin":"cànlàn","meaning":"xán lạn, rực rỡ"},{"hanzi":"苍蝇","pinyin":"cāngyíng","meaning":"con ruồi"},{"hanzi":"沧桑","pinyin":"cāngsāng","meaning":"thay đổi lớn lao trong cuộc đời, bãi bể nương dâu"},{"hanzi":"舱","pinyin":"cāng","meaning":"khoang, buồng"},{"hanzi":"藏匿","pinyin":"cángnì","meaning":"giấu kín"},{"hanzi":"藏品","pinyin":"cángpǐn","meaning":"đồ cất giữ, đồ cổ"},{"hanzi":"藏身","pinyin":"cángshēn","meaning":"ẩn náu, náu mình"},{"hanzi":"操控","pinyin":"cāokòng","meaning":"kiểm soát"},{"hanzi":"操劳","pinyin":"cāoláo","meaning":"làm lụng vất vả, chịu khó làm việc"},{"hanzi":"操心","pinyin":"cāo xīn","meaning":"bận tâm, nhọc lòng, lo nghĩ"},{"hanzi":"槽","pinyin":"cáo","meaning":"máng, rãnh"},{"hanzi":"草案","pinyin":"cǎo'àn","meaning":"bản dự thảo, bản phác thảo"},{"hanzi":"草坪","pinyin":"cǎopíng","meaning":"sân cỏ, bãi cỏ"},{"hanzi":"侧面","pinyin":"cèmiàn","meaning":"mặt bên"},{"hanzi":"侧重","pinyin":"cèzhòng","meaning":"thiên về, nghiêng về"},{"hanzi":"测算","pinyin":"cèsuàn","meaning":"tính toán"},{"hanzi":"测验","pinyin":"cèyàn","meaning":"kiểm nghiệm, đo lường"},{"hanzi":"层出不穷","pinyin":"céngchū-bùqióng","meaning":"nhiều vô kể, tầng tầng lớp lớp"},{"hanzi":"蹭","pinyin":"cèng","meaning":"cọ xát, quẹt"},{"hanzi":"差错","pinyin":"chācuò","meaning":"sai lầm"},{"hanzi":"差额","pinyin":"chā'é","meaning":"mức thiếu hụt"},{"hanzi":"插手","pinyin":"chā shǒu","meaning":"nhúng tay, chen"},{"hanzi":"插图","pinyin":"chātú","meaning":"hình minh họa"},{"hanzi":"插嘴","pinyin":"chā zuǐ","meaning":"nói leo, chõ miệng"},{"hanzi":"茶道","pinyin":"chádào","meaning":"trà đạo"},{"hanzi":"茶馆儿","pinyin":"cháguǎnr","meaning":"tiệm trà"},{"hanzi":"查处","pinyin":"cháchǔ","meaning":"xét xử"},{"hanzi":"查明","pinyin":"chámíng","meaning":"điều tra rõ"},{"hanzi":"查找","pinyin":"cházhǎo","meaning":"tìm kiếm"},{"hanzi":"察觉","pinyin":"chájué","meaning":"nhận ra, nhận thấy"},{"hanzi":"察看","pinyin":"chákàn","meaning":"xem xét, xem kỹ"},{"hanzi":"诧异","pinyin":"chàyì","meaning":"ngạc nhiên, kinh ngạc"},{"hanzi":"搀","pinyin":"chān","meaning":"trộn lẫn"},{"hanzi":"掺","pinyin":"chān","meaning":"trộn lẫn"},{"hanzi":"馋","pinyin":"chán","meaning":"thèm ăn, tham ăn"},{"hanzi":"禅杖","pinyin":"chánzhàng","meaning":"thiền trượng, gậy"},{"hanzi":"缠","pinyin":"chán","meaning":"quấn, vướng víu"},{"hanzi":"产","pinyin":"chǎn","meaning":"sinh, sinh ra, sản xuất"},{"hanzi":"产地","pinyin":"chǎndì","meaning":"nơi sản xuất"},{"hanzi":"产物","pinyin":"chǎnwù","meaning":"sản vật"},{"hanzi":"产值","pinyin":"chǎnzhí","meaning":"giá trị sản lượng"},{"hanzi":"铲","pinyin":"chǎn","meaning":"xẻng"},{"hanzi":"铲子","pinyin":"chǎnzi","meaning":"cái xẻng"},{"hanzi":"阐述","pinyin":"chǎnshù","meaning":"trình bày, nêu rõ"},{"hanzi":"颤抖","pinyin":"chàndǒu","meaning":"run rẩy"},{"hanzi":"狂狂","pinyin":"chángkuáng","meaning":"điên cuồng"},{"hanzi":"长达","pinyin":"cháng dá","meaning":"kéo dài"},{"hanzi":"长期以来","pinyin":"chángqī yǐlái","meaning":"từ rất lâu rồi"},{"hanzi":"长效","pinyin":"chángxiào","meaning":"có hiệu quả trong một thời gian dài"},{"hanzi":"长征","pinyin":"chángzhēng","meaning":"chuyến đi xa"},{"hanzi":"长足","pinyin":"chángzú","meaning":"nhảy vọt, bước tiến dài"},{"hanzi":"常理","pinyin":"chánglǐ","meaning":"lý luận chung"},{"hanzi":"常人","pinyin":"chángrén","meaning":"người thường, người bình thường"},{"hanzi":"常态","pinyin":"chángtài","meaning":"trạng thái bình thường"},{"hanzi":"常温","pinyin":"chángwēn","meaning":"nhiệt độ bình thường"},{"hanzi":"偿还","pinyin":"chánghuán","meaning":"bồi hoàn, trả nợ"},{"hanzi":"嫦娥","pinyin":"Cháng'é","meaning":"hằng nga"},{"hanzi":"厂家","pinyin":"chǎngjiā","meaning":"công xưởng, nhà máy"},{"hanzi":"敞开","pinyin":"chǎngkāi","meaning":"mở rộng"},{"hanzi":"畅谈","pinyin":"chàngtán","meaning":"tâm sự"},{"hanzi":"畅销","pinyin":"chàngxiāo","meaning":"bán chạy (hàng hoá)"},{"hanzi":"倡议","pinyin":"chàngyì","meaning":"đề xướng, đề xuất"},{"hanzi":"抄袭","pinyin":"chāoxí","meaning":"đạo văn"},{"hanzi":"钞票","pinyin":"chāopiào","meaning":"tiền giấy"},{"hanzi":"超标","pinyin":"chāo biāo","meaning":"vượt quá tiêu chuẩn"},{"hanzi":"超车","pinyin":"chāo chē","meaning":"vượt xe"},{"hanzi":"超前","pinyin":"chāoqián","meaning":"vượt mức quy định"},{"hanzi":"超速","pinyin":"chāosù","meaning":"vượt quá tốc độ"},{"hanzi":"朝代","pinyin":"cháodài","meaning":"triều đại"},{"hanzi":"朝着","pinyin":"cháozhe","meaning":"hướng tới, đối mặt"},{"hanzi":"嘲弄","pinyin":"cháonòng","meaning":"giễu cợt"},{"hanzi":"嘲笑","pinyin":"cháoxiào","meaning":"chế cười, chế nhạo"},{"hanzi":"吵嘴","pinyin":"chǎo zuǐ","meaning":"cãi cọ, tranh cãi"},{"hanzi":"车道","pinyin":"chēdào","meaning":"làn xe"},{"hanzi":"车祸","pinyin":"chēhuò","meaning":"tai nạn xe cộ"},{"hanzi":"车间","pinyin":"chējiān","meaning":"phân xưởng"},{"hanzi":"车轮","pinyin":"chēlún","meaning":"bánh xe"},{"hanzi":"车速","pinyin":"chēsù","meaning":"tốc độ xe"},{"hanzi":"车位","pinyin":"chēwèi","meaning":"chỗ để xe"},{"hanzi":"车厢","pinyin":"chēxiāng","meaning":"toa hành khách, thùng xe"},{"hanzi":"车型","pinyin":"chēxíng","meaning":"mẫu xe"},{"hanzi":"车轴","pinyin":"chēzhóu","meaning":"trục xe"},{"hanzi":"扯","pinyin":"chě","meaning":"kéo, lôi, tán gẫu"},{"hanzi":"彻夜","pinyin":"chèyè","meaning":"suốt đêm, cả đêm"},{"hanzi":"撤","pinyin":"chè","meaning":"loại bỏ, triệt, thu lại"},{"hanzi":"撤换","pinyin":"chèhuàn","meaning":"cải tổ, thay thế"},{"hanzi":"沉甸甸","pinyin":"chéndiàndiān","meaning":"nặng trịch"},{"hanzi":"沉淀","pinyin":"chéndiàn","meaning":"lắng đọng, kết tủa, lắng xuống"},{"hanzi":"沉浸","pinyin":"chénjìn","meaning":"chìm đắm"},{"hanzi":"沉闷","pinyin":"chénmèn","meaning":"nặng nề, ngột ngạt, nặng trĩu, nặng lòng"},{"hanzi":"沉迷","pinyin":"chénmí","meaning":"mê muội"},{"hanzi":"沉思","pinyin":"chénsī","meaning":"trầm tư, cân nhắc"},{"hanzi":"沉稳","pinyin":"chénwěn","meaning":"chín chắn, điềm tĩnh"},{"hanzi":"沉着","pinyin":"chénzhuó","meaning":"bình tĩnh, vững vàng, vững chắc"},{"hanzi":"陈旧","pinyin":"chénjiù","meaning":"cũ, cũ kỹ, lỗi thời"},{"hanzi":"陈列","pinyin":"chénliè","meaning":"trưng bày, triển lãm"},{"hanzi":"陈述","pinyin":"chénshù","meaning":"trần thuật, kể, trình bày"},{"hanzi":"衬托","pinyin":"chèntuō","meaning":"tôn lên, làm cho nổi thêm"},{"hanzi":"趁","pinyin":"chèn","meaning":"nhân, lợi dụng"},{"hanzi":"趁机","pinyin":"chènjī","meaning":"thừa cơ"},{"hanzi":"趁早","pinyin":"chènzǎo","meaning":"nhân lúc còn sớm"},{"hanzi":"趁着","pinyin":"chènzhe","meaning":"nhân lúc"},{"hanzi":"称呼","pinyin":"chēnghu","meaning":"xưng hô, gọi là"},{"hanzi":"称作","pinyin":"chēngzuò","meaning":"được gọi là"},{"hanzi":"成才","pinyin":"chéngcái","meaning":"thành tài"},{"hanzi":"成家","pinyin":"chéng jiā","meaning":"lập gia đình"},{"hanzi":"成年","pinyin":"chéngnián","meaning":"thành niên, trưởng thành"},{"hanzi":"成千上万","pinyin":"chéngqiān- shàngwàn","meaning":"hàng ngàn hàng vạn"},{"hanzi":"成群结队","pinyin":"chéngqún-jiéduì","meaning":"kết bè kết đội, cả đàn cả lũ"},{"hanzi":"成天","pinyin":"chéngtiān","meaning":"cả ngày"},{"hanzi":"成问题","pinyin":"chéngwèntí","meaning":"thành vấn đề, gặp trục trặc"},{"hanzi":"成型","pinyin":"chéngxíng","meaning":"thành hình"},{"hanzi":"呈现","pinyin":"chéngxiàn","meaning":"lộ ra, phơi bày"},{"hanzi":"诚恳","pinyin":"chéngkěn","meaning":"thành khẩn, chân thành"},{"hanzi":"诚心诚意","pinyin":"chéngxīn-chéngyì","meaning":"thành tâm thành ý"},{"hanzi":"诚意","pinyin":"chéngyì","meaning":"thành ý"},{"hanzi":"诚挚","pinyin":"chéngzhì","meaning":"chân thành, đứng đắn, nghiêm chỉnh"},{"hanzi":"承包","pinyin":"chéngbāo","meaning":"thầu, nhận khoán"},{"hanzi":"承受","pinyin":"chéngshòu","meaning":"chịu tài, chịu lực, tải trọng"},{"hanzi":"城墙","pinyin":"chéngqiáng","meaning":"tường thành, thành luỹ"},{"hanzi":"乘人之危","pinyin":"chéngrénzhīwēi","meaning":"giậu đổ bìm leo"},{"hanzi":"盛","pinyin":"chéng","meaning":"hưng thịnh, phồn thịnh"},{"hanzi":"惩处","pinyin":"chéngchǔ","meaning":"trừng phạt, trừng trị"},{"hanzi":"惩罚","pinyin":"chéngfá","meaning":"v. nghiêm trị, nghiêm khắc trừng phạt"},{"hanzi":"澄清","pinyin":"chéngqīng","meaning":"v. làm sáng tỏ, adj. trong veo, trong vắt"},{"hanzi":"橙汁","pinyin":"chéngzhī","meaning":"nước cam"},{"hanzi":"逞能","pinyin":"chěng néng","meaning":"trổ tài, phô trương"},{"hanzi":"逞强","pinyin":"chěng/qiáng","meaning":"khoe sức, khoe tài, cố tỏ ra"},{"hanzi":"秤","pinyin":"chèng","meaning":"cái cân, cán đòn"},{"hanzi":"吃不上","pinyin":"chībushàng","meaning":"không có gì để ăn"},{"hanzi":"吃喝玩乐","pinyin":"chī-hē-wán-lè","meaning":"sống phong túng, ăn nhậu chơi bời"},{"hanzi":"吃苦","pinyin":"chī kǔ","meaning":"chịu khổ"},{"hanzi":"吃亏","pinyin":"chī kuī","meaning":"chịu thiệt"},{"hanzi":"痴呆","pinyin":"chīdāi","meaning":"ngu ngốc, mất trí"},{"hanzi":"痴迷","pinyin":"chīmí","meaning":"si mê, mê mẩn"},{"hanzi":"痴心","pinyin":"chīxīn","meaning":"cuồng dại, mê tít, si mê"},{"hanzi":"池塘","pinyin":"chítáng","meaning":"ao, đầm, bể nước"},{"hanzi":"驰名","pinyin":"chímíng","meaning":"lừng danh, nổi tiếng"},{"hanzi":"迟迟","pinyin":"chíchí","meaning":"chậm chạp, trì trệ"},{"hanzi":"迟疑","pinyin":"chíyí","meaning":"ngần ngại, do dự"},{"hanzi":"迟早","pinyin":"chízǎo","meaning":"sớm muộn"},{"hanzi":"持","pinyin":"chí","meaning":"cầm, nắm"},{"hanzi":"持久","pinyin":"chíjiǔ","meaning":"kéo dài, giữ lâu dài"},{"hanzi":"持之以恒","pinyin":"chízhī-yǐhéng","meaning":"kiên trì bền bỉ"},{"hanzi":"尺度","pinyin":"chǐdù","meaning":"thước đo, tiêu chuẩn"},{"hanzi":"耻辱","pinyin":"chǐrǔ","meaning":"si nhục, ô danh"},{"hanzi":"耻笑","pinyin":"chǐxiào","meaning":"chế nhạo, nhạo báng"},{"hanzi":"赤字","pinyin":"chìzì","meaning":"bội chi, số tiền thiếu hụt"},{"hanzi":"翅膀","pinyin":"chìbǎng","meaning":"cánh"},{"hanzi":"冲刺","pinyin":"chōngcì","meaning":"chạy nước rút, bứt về đích"},{"hanzi":"冲浪","pinyin":"chōnglàng","meaning":"lướt sóng, lướt web"},{"hanzi":"冲洗","pinyin":"chōngxǐ","meaning":"súc, rửa, cọ, dội, giũ"},{"hanzi":"冲撞","pinyin":"chōngzhuàng","meaning":"đập vào, đột vào, va nhau"},{"hanzi":"充","pinyin":"chōng","meaning":"đầy đủ, no nê"},{"hanzi":"充当","pinyin":"chōngdāng","meaning":"giữ chức, đảm nhiệm"},{"hanzi":"充沛","pinyin":"chōngpèi","meaning":"dồi dào, tràn đầy, sôi nổi"},{"hanzi":"充实","pinyin":"chōngshí","meaning":"phong phú, đầy đủ, dư dật"},{"hanzi":"重播","pinyin":"chóngbō","meaning":"phát lại"},{"hanzi":"重叠","pinyin":"chóngdié","meaning":"trùng điệp, trùng lặp, chồng chéo"},{"hanzi":"重返","pinyin":"chóngfǎn","meaning":"trở về, trở lại"},{"hanzi":"重合","pinyin":"chónghé","meaning":"trùng hợp"},{"hanzi":"重申","pinyin":"chóngshēn","meaning":"nhắc lại, làm lại, lặp lại"},{"hanzi":"重现","pinyin":"chóngxiàn","meaning":"tái hiện, lại xuất hiện"},{"hanzi":"崇高","pinyin":"chónggāo","meaning":"cao thượng, cao quý, cao cả"},{"hanzi":"崇尚","pinyin":"chóngshàng","meaning":"tôn trọng, tôn kính"},{"hanzi":"宠","pinyin":"chǒng","meaning":"cưng chiều, nuông chiều"},{"hanzi":"宠爱","pinyin":"chǒng'ài","meaning":"cưng chiều, nuông chiều"},{"hanzi":"抽签","pinyin":"chōuqiān","meaning":"rút thăm"},{"hanzi":"抽屉","pinyin":"chōutì","meaning":"ngăn kéo"},{"hanzi":"抽象","pinyin":"chōuxiàng","meaning":"trừu tượng"},{"hanzi":"仇","pinyin":"chóu","meaning":"thù hận, mối thù"},{"hanzi":"仇恨","pinyin":"chóuhèn","meaning":"mối thù, oán hận"},{"hanzi":"仇人","pinyin":"chóurén","meaning":"kẻ thù"},{"hanzi":"稠","pinyin":"chóu","meaning":"đặc, sệt, đông đúc"},{"hanzi":"稠密","pinyin":"chóumì","meaning":"đông đúc"},{"hanzi":"愁眉苦脸","pinyin":"chóuméikǔliǎn","meaning":"mày ủ mặt ê, mày chau mặt ủ"},{"hanzi":"筹","pinyin":"chóu","meaning":"dự trữ, tính toán"},{"hanzi":"筹办","pinyin":"chóubàn","meaning":"chuẩn bị mở"},{"hanzi":"筹备","pinyin":"chóubèi","meaning":"chuẩn bị, chuẩn bị"},{"hanzi":"筹措","pinyin":"chóucuò","meaning":"kiếm, xoay sở"},{"hanzi":"筹划","pinyin":"chóuhuà","meaning":"lên kế hoạch, dự kiến"},{"hanzi":"筹集","pinyin":"chóují","meaning":"gom góp, tập trung"},{"hanzi":"筹码","pinyin":"chóumǎ","meaning":"thẻ đánh bạc"},{"hanzi":"丑恶","pinyin":"chǒu'è","meaning":"đáng ghét, kinh tởm"},{"hanzi":"丑陋","pinyin":"chǒulòu","meaning":"xấu xí, khó coi (tướng mạo, dáng vẻ)"},{"hanzi":"丑闻","pinyin":"chǒuwén","meaning":"xi căng đan, vụ bê bối"},{"hanzi":"瞅","pinyin":"chǒu","meaning":"ngó, nhìn, xem"},{"hanzi":"出版社","pinyin":"chūbǎnshè","meaning":"nhà xuất bản"},{"hanzi":"出厂","pinyin":"chū chǎng","meaning":"xuất xưởng"},{"hanzi":"出丑","pinyin":"chū chǒu","meaning":"xấu mặt, mất mặt"},{"hanzi":"出道","pinyin":"chū dào","meaning":"xuất đạo, ra mắt"},{"hanzi":"出发点","pinyin":"chūfādiǎn","meaning":"điểm xuất phát"},{"hanzi":"出风头","pinyin":"chū fēngtou","meaning":"khoe khoang, khoe mẽ, chơi trội"},{"hanzi":"出境","pinyin":"chū jìng","meaning":"xuất cảnh"},{"hanzi":"出局","pinyin":"chūjú","meaning":"bị loại"},{"hanzi":"出具","pinyin":"chūjù","meaning":"đề phát hành, cung cấp"},{"hanzi":"出口成章","pinyin":"chūkǒu- chéngzhāng","meaning":"xuất khẩu thành thơ"},{"hanzi":"出卖","pinyin":"chūmài","meaning":"bán đứng, phản bội"},{"hanzi":"出毛病","pinyin":"chū máo bìng","meaning":"mắc lỗi, xảy ra sự cố"},{"hanzi":"出难题","pinyin":"chū nántí","meaning":"đưa ra một câu hỏi hóc búa"},{"hanzi":"出人意料","pinyin":"chūrényìliào","meaning":"ngoài dự liệu, bất ngờ"},{"hanzi":"出任","pinyin":"chūrèn","meaning":"đảm nhiệm, nhậm chức"},{"hanzi":"出山","pinyin":"chū shān","meaning":"xuất sơn, xuống núi"},{"hanzi":"出身","pinyin":"chūshēn","meaning":"xuất thân"},{"hanzi":"出示","pinyin":"chūshì","meaning":"trình giấy tờ, trình giấy chứng nhận"},{"hanzi":"出手","pinyin":"chū shǒu","meaning":"tung hàng, bán hàng ra"},{"hanzi":"出头","pinyin":"chū tóu","meaning":"thoát ra, thoát khỏi"},{"hanzi":"出土","pinyin":"chū tǔ","meaning":"khai quật, đào được (đồ cổ)"},{"hanzi":"出息","pinyin":"chūxī","meaning":"tiền đồ, triển vọng"},{"hanzi":"出血","pinyin":"chū xiě","meaning":"chảy máu, ra máu"},{"hanzi":"出演","pinyin":"chūyǎn","meaning":"biểu diễn, diễn xuất"},{"hanzi":"出洋相","pinyin":"chū yángxiàng","meaning":"xấu mặt, làm trò cười cho thiên hạ"},{"hanzi":"出游","pinyin":"chūyóu","meaning":"du lịch, đi chơi"},{"hanzi":"出众","pinyin":"chūzhòng","meaning":"xuất chúng, hơn người"},{"hanzi":"出主意","pinyin":"chū zhǔyì","meaning":"đưa ra chủ ý"},{"hanzi":"出资","pinyin":"chūzī","meaning":"bỏ vốn, xuất vốn"},{"hanzi":"出自","pinyin":"chūzì","meaning":"xuất phát từ, đến từ"},{"hanzi":"出走","pinyin":"chūzǒu","meaning":"bỏ nhà đi"},{"hanzi":"初次","pinyin":"chūcì","meaning":"lần đầu"},{"hanzi":"初衷","pinyin":"chūzhōng","meaning":"ước nguyện ban đầu, dự tính ban đầu"},{"hanzi":"除此之外","pinyin":"chúcǐzhīwài","meaning":"ngoài ra"},{"hanzi":"除去","pinyin":"chúqù","meaning":"bỏ, từ bỏ"},{"hanzi":"除外","pinyin":"chúwài","meaning":"ngoại trừ, trừ ra"},{"hanzi":"处方","pinyin":"chǔfāng","meaning":"đơn thuốc, toa, công thức"},{"hanzi":"处境","pinyin":"chǔjìng","meaning":"cảnh ngộ, hoàn cảnh, trường hợp"},{"hanzi":"处置","pinyin":"chǔzhì","meaning":"xử lý, xử trí, cư xử"},{"hanzi":"储备","pinyin":"chǔbèi","meaning":"v. dự trữ, để dành n. đồ dự trữ"},{"hanzi":"储蓄","pinyin":"chǔxù","meaning":"v. để dành, dành dụm, tiết kiệm n. tiền để dành, tiền tiết kiệm"},{"hanzi":"触动","pinyin":"chùdòng","meaning":"tiếp xúc, va, đụng chạm"},{"hanzi":"触犯","pinyin":"chùfàn","meaning":"mạo phạm, xúc phạm"},{"hanzi":"触觉","pinyin":"chùjué","meaning":"xúc giác"},{"hanzi":"触摸","pinyin":"chùmō","meaning":"tiếp xúc, đụng, chạm"},{"hanzi":"触目惊心","pinyin":"chùmù-jīngxīn","meaning":"nhìn thấy mà giật mình, nhìn thấy mà phát hoảng"},{"hanzi":"揣","pinyin":"chuāi","meaning":"cuộn (trong áo)"},{"hanzi":"揣测","pinyin":"chuǎicè","meaning":"suy đoán, ước chừng"},{"hanzi":"揣摩","pinyin":"chuǎimó","meaning":"nghiêm ngẫm (vấn đề)"},{"hanzi":"踹","pinyin":"chuài","meaning":"đạp, đá"},{"hanzi":"川流不息","pinyin":"chuānliú-bùxī","meaning":"như thoi đưa"},{"hanzi":"穿过","pinyin":"chuānguò","meaning":"đi qua, băng qua"},{"hanzi":"穿小鞋","pinyin":"chuān xiǎoxié","meaning":"gây khó dễ, làm khó dễ"},{"hanzi":"穿越","pinyin":"chuānyuè","meaning":"vượt qua, xuyên không"},{"hanzi":"穿着","pinyin":"chuānzhuó","meaning":"ăn mặc"},{"hanzi":"传承","pinyin":"chuánchéng","meaning":"kế thừa (truyền thống)"},{"hanzi":"传奇","pinyin":"chuánqí","meaning":"truyền kỳ"},{"hanzi":"传染","pinyin":"chuánrǎn","meaning":"truyền nhiễm, lây truyền, lây"},{"hanzi":"传染病","pinyin":"chuánrǎnbìng","meaning":"bệnh truyền nhiễm"},{"hanzi":"传人","pinyin":"chuánrén","meaning":"truyền nhân"},{"hanzi":"传授","pinyin":"chuánshòu","meaning":"truyền thụ, truyền đạt"},{"hanzi":"传闻","pinyin":"chuánwén","meaning":"nghe đồn, lời đồn"},{"hanzi":"船舶","pinyin":"chuánbó","meaning":"thuyền, tàu thuyền"},{"hanzi":"船桨","pinyin":"chuánjiǎng","meaning":"mái chèo"},{"hanzi":"喘","pinyin":"chuǎn","meaning":"thở hổn hển"},{"hanzi":"喘息","pinyin":"chuǎnxī","meaning":"thở gấp, thở hổn hển"},{"hanzi":"串门","pinyin":"chuàn mén","meaning":"sang nhà bạn bè, hàng xóm chơi"},{"hanzi":"创伤","pinyin":"chuāngshāng","meaning":"vết thương, thương tích, vết chém"},{"hanzi":"床位","pinyin":"chuángwèi","meaning":"giường ngủ, chỗ nằm"},{"hanzi":"创","pinyin":"chuàng","meaning":"sáng tạo, sáng lập"},{"hanzi":"创始人","pinyin":"chuàngshǐrén","meaning":"người sáng lập"},{"hanzi":"吹了","pinyin":"chuī le","meaning":"chia tay"},{"hanzi":"吹牛","pinyin":"chuī niú","meaning":"giỏi, đỉnh"},{"hanzi":"吹捧","pinyin":"chuīpěng","meaning":"tăng bốc, quảng cáo lố"},{"hanzi":"垂","pinyin":"chuí","meaning":"rủ, buông xuống, gục"},{"hanzi":"垂头丧气","pinyin":"chuítóu-sàngqì","meaning":"ủ rũ, mất tinh thần"},{"hanzi":"捶","pinyin":"chuí","meaning":"đấm, đập"},{"hanzi":"锤子","pinyin":"chuízi","meaning":"cái búa"},{"hanzi":"纯粹","pinyin":"chúncuì","meaning":"thuần khiết, tinh khiết"},{"hanzi":"纯洁","pinyin":"chúnjié","meaning":"trong sáng, thuần khiết"},{"hanzi":"纯朴","pinyin":"chúnpǔ","meaning":"chất phác, ngây thơ"},{"hanzi":"醇厚","pinyin":"chúnhòu","meaning":"nồng, đậm đà"},{"hanzi":"蠢","pinyin":"chǔn","meaning":"ngu, ngu ngốc"},{"hanzi":"戳","pinyin":"chuō","meaning":"chọc, đâm, xuyên"},{"hanzi":"绰号","pinyin":"chuòhào","meaning":"biệt danh"},{"hanzi":"瓷","pinyin":"cí","meaning":"gốm sứ"},{"hanzi":"瓷器","pinyin":"cíqì","meaning":"đồ sứ, đồ gốm"},{"hanzi":"辞","pinyin":"cí","meaning":"từ chức, sa thải"},{"hanzi":"辞呈","pinyin":"cíchéng","meaning":"đơn từ chức, đơn xin thôi việc"},{"hanzi":"辞去","pinyin":"cíqù","meaning":"từ chức"},{"hanzi":"辞退","pinyin":"cítuì","meaning":"sa thải"},{"hanzi":"慈善","pinyin":"císhàn","meaning":"từ thiện"},{"hanzi":"慈祥","pinyin":"cíxiáng","meaning":"hiền từ, hiền hậu"},{"hanzi":"磁带","pinyin":"cídài","meaning":"băng nhạc"},{"hanzi":"磁卡","pinyin":"cíkǎ","meaning":"thẻ từ"},{"hanzi":"磁盘","pinyin":"cípán","meaning":"đĩa từ"},{"hanzi":"此起彼伏","pinyin":"cǐqǐ-bǐfú","meaning":"hết đợt này đến đợt khác"},{"hanzi":"次日","pinyin":"cìrì","meaning":"hôm sau"},{"hanzi":"伺候","pinyin":"cìhou","meaning":"hầu hạ, phục dịch"},{"hanzi":"刺耳","pinyin":"cì'ěr","meaning":"thô, chói tai, chói tai"},{"hanzi":"刺骨","pinyin":"cìgǔ","meaning":"rét thấu xương, tê buốt"},{"hanzi":"刺绣","pinyin":"cìxiù","meaning":"thêu thùa, thêu dệt"},{"hanzi":"赐","pinyin":"cì","meaning":"ban thường, ban tặng"},{"hanzi":"赐教","pinyin":"cìjiào","meaning":"dạy bảo, bảo ban"},{"hanzi":"匆匆","pinyin":"cōngcōng","meaning":"vội vàng, vội vã"},{"hanzi":"匆忙","pinyin":"cōngmáng","meaning":"vội vội vàng vàng"},{"hanzi":"葱","pinyin":"cōng","meaning":"cây hành"},{"hanzi":"从今以后","pinyin":"cóng jīn yǐhòu","meaning":"từ nay về sau"},{"hanzi":"从来不","pinyin":"cónglái bù","meaning":"không bao giờ"},{"hanzi":"从容","pinyin":"cóngróng","meaning":"bình tĩnh, thong dong"},{"hanzi":"从容不迫","pinyin":"cóngróng-bùpò","meaning":"bình tĩnh, thùng thình"},{"hanzi":"从头","pinyin":"cóngtóu","meaning":"từ đầu, từ lúc sơ khai"},{"hanzi":"从未","pinyin":"cóngwèi","meaning":"chẳng bao giờ, chưa hề"},{"hanzi":"从业","pinyin":"cóngyè","meaning":"hành nghề, theo nghề"},{"hanzi":"从早到晚","pinyin":"cóngzǎo-dàowǎn","meaning":"từ sáng đến tối"},{"hanzi":"丛林","pinyin":"cónglín","meaning":"rừng cây, rừng nhiệt đới"},{"hanzi":"凑","pinyin":"còu","meaning":"tập hợp, gom góp"},{"hanzi":"凑合","pinyin":"còuhe","meaning":"tập hợp, gom góp"},{"hanzi":"凑巧","pinyin":"còuqiǎo","meaning":"đúng lúc, may thay"},{"hanzi":"粗暴","pinyin":"cūbào","meaning":"thô bạo"},{"hanzi":"粗糙","pinyin":"cūcāo","meaning":"thô ráp, xù xì"},{"hanzi":"粗鲁","pinyin":"cū-lǔ","meaning":"thô lỗ"},{"hanzi":"粗略","pinyin":"cūlüè","meaning":"sơ lược, sơ bộ"},{"hanzi":"粗心大意","pinyin":"cūxīn-dàyì","meaning":"cẩu thả"},{"hanzi":"促成","pinyin":"cùchéng","meaning":"thúc đẩy, xúc tiến"},{"hanzi":"簇拥","pinyin":"cùyōng","meaning":"vây quanh, quây quần"},{"hanzi":"窜","pinyin":"cuàn","meaning":"chạy toán loạn, lủi, chuồn"},{"hanzi":"催","pinyin":"cuī","meaning":"thúc giục, hối thúc"},{"hanzi":"催促","pinyin":"cuīcù","meaning":"đẩy nhanh, thúc thục"},{"hanzi":"催眠","pinyin":"cuīmián","meaning":"thôi miên"},{"hanzi":"摧毁","pinyin":"cuīhuǐ","meaning":"phá hủy, phá tan"},{"hanzi":"脆弱","pinyin":"cuìruò","meaning":"yếu đuối, mỏng manh, mảnh khảnh"},{"hanzi":"翠绿","pinyin":"cuìlǜ","meaning":"xanh lá cây, xanh tươi, tươi tốt"},{"hanzi":"存放","pinyin":"cúnfàng","meaning":"gửi"},{"hanzi":"存心","pinyin":"cúnxīn","meaning":"ý định, mưu đồ, cố ý"},{"hanzi":"存折","pinyin":"cúnzhé","meaning":"sổ tiết kiệm"},{"hanzi":"搓","pinyin":"cuō","meaning":"xoa, xoắn, vặn (hai tay)"},{"hanzi":"磋商","pinyin":"cuōshāng","meaning":"bàn bạc, hội ý"},{"hanzi":"撮折","pinyin":"cuòzhé","meaning":"ngăn trở, chen ép, cản trở"},{"hanzi":"措手不及","pinyin":"cuòshǒu-bùjí","meaning":"trở tay không kịp"},{"hanzi":"错别字","pinyin":"cuòbiézì","meaning":"chữ viết nhầm, chữ viết sai"},{"hanzi":"错觉","pinyin":"cuòjué","meaning":"ảo giác"},{"hanzi":"错位","pinyin":"cuò wèi","meaning":"sai lệch"},{"hanzi":"错综复杂","pinyin":"cuòzōng-fùzá","meaning":"rối rắm, phức tạp"},{"hanzi":"搭乘","pinyin":"dāchéng","meaning":"đi du lịch bằng ô tô"},{"hanzi":"搭建","pinyin":"dājiàn","meaning":"dựng, xây dựng, thành lập"},{"hanzi":"达标","pinyin":"dábiāo","meaning":"đạt tiêu chuẩn, đạt mục tiêu"},{"hanzi":"答辩","pinyin":"dábiàn","meaning":"bảo vệ (luận văn, luận án)"},{"hanzi":"打岔","pinyin":"dǎ chà","meaning":"ngắt lời, làm gián đoạn, nói leo, nói chen vào, quấy rầy"},{"hanzi":"打倒","pinyin":"dǎ dǎo","meaning":"ngã, đổ, lật đổ, đánh đổ"},{"hanzi":"打盹儿","pinyin":"dǎ dǔnr","meaning":"ngủ gật, ngủ gục, ngủ gà ngủ gật"},{"hanzi":"打交道","pinyin":"dǎ jiāodao","meaning":"chào hỏi, giao tiếp"},{"hanzi":"打搅","pinyin":"dǎjiǎo","meaning":"quấy rầy"},{"hanzi":"打捞","pinyin":"dǎlāo","meaning":"vớt"},{"hanzi":"打量","pinyin":"dǎliang","meaning":"quan sát, đánh giá (quần áo, diện mạo)"},{"hanzi":"打猎","pinyin":"dǎ liè","meaning":"đi săn"},{"hanzi":"打磨","pinyin":"dǎmó","meaning":"mài, đánh bóng"},{"hanzi":"打通","pinyin":"dǎ tōng","meaning":"làm thông, thông, đã thông"},{"hanzi":"打仗","pinyin":"dǎ zhàng","meaning":"đánh nhau, đánh trận"},{"hanzi":"打招呼","pinyin":"dǎ zhāohu","meaning":"chào hỏi"},{"hanzi":"大包大揽","pinyin":"dàbāo-dàlǎn","meaning":"đảm nhiệm nhiều việc, ôm đồm nhiều việc"},{"hanzi":"大笔","pinyin":"dàbǐ","meaning":"tuyệt bút"},{"hanzi":"大臣","pinyin":"dàchén","meaning":"đại thần"},{"hanzi":"大吃一惊","pinyin":"dàchī-yìjīng","meaning":"ngạc nhiên, kinh ngạc"},{"hanzi":"大大咧咧","pinyin":"dàdaliēliē","meaning":"cẩu thả, không cần thận"},{"hanzi":"大地","pinyin":"dàdì","meaning":"mặt đất"},{"hanzi":"大队","pinyin":"dàduì","meaning":"đại đội"},{"hanzi":"大幅度","pinyin":"dà fúdù","meaning":"mức độ lớn, một cách đáng kể"},{"hanzi":"大公无私","pinyin":"dàgōng-wúsī","meaning":"chí công vô tư, công chính liêm minh"},{"hanzi":"大家庭","pinyin":"dàjiātíng","meaning":"đại gia đình"},{"hanzi":"大街小巷","pinyin":"dàjiē-xiǎoxiàng","meaning":"khắp các ngõ ngách"},{"hanzi":"大惊小怪","pinyin":"dàjīng-xiǎoguài","meaning":"ngạc nhiên, làm quá"},{"hanzi":"大局","pinyin":"dàjú","meaning":"toàn cục, tình hình chung"},{"hanzi":"大款","pinyin":"dàkuǎn","meaning":"người giàu có, kẻ lắm tiền"},{"hanzi":"大面积","pinyin":"dà miànjī","meaning":"diện tích lớn"},{"hanzi":"大名鼎鼎","pinyin":"dàmíng-dǐngdǐng","meaning":"tiếng tăm lừng lẫy, danh tiếng lẫy lừng"},{"hanzi":"大模大样","pinyin":"dámú-dàyàng","meaning":"ngông nghênh, dáng điệu nghênh ngang"},{"hanzi":"大棚","pinyin":"dàpéng","meaning":"nhà kính"},{"hanzi":"大片","pinyin":"dàpiàn","meaning":"kéo ra, căng ra, dài, mảng lớn"},{"hanzi":"大气","pinyin":"dàqì","meaning":"khí quyền"},{"hanzi":"大厦","pinyin":"dàshà","meaning":"cao ốc"},{"hanzi":"大数据","pinyin":"dàshùjù","meaning":"big data, dữ liệu lớn"},{"hanzi":"大肆","pinyin":"dàsì","meaning":"trắng trợn, không kiêng nể"},{"hanzi":"大体","pinyin":"dàtǐ","meaning":"đại thể, cơ bản"},{"hanzi":"大体上","pinyin":"dàtǐ shang","meaning":"nói chung"},{"hanzi":"大同小异","pinyin":"dàtóng-xiǎoyì","meaning":"na ná như nhau, cơ bản giống nhau"},{"hanzi":"大腕儿","pinyin":"dàwànr","meaning":"tai to mặt lớn, có tiếng và thế lực"},{"hanzi":"大选","pinyin":"dàxuǎn","meaning":"tổng tuyển cử, vận động bầu cử"},{"hanzi":"大雁","pinyin":"dàyàn","meaning":"chim nhạn"},{"hanzi":"大意","pinyin":"dàyì","meaning":"đại ý"},{"hanzi":"大意","pinyin":"dàyì","meaning":"không chú ý, sơ ý, lơ là, qua quýt"},{"hanzi":"大有可为","pinyin":"dàyǒu-kěwéi","meaning":"rất có triển vọng"},{"hanzi":"大宗","pinyin":"dàzōng","meaning":"hàng loạt, số lượng lớn, khối lượng lớn, nhiều, hàng chủ lực"},{"hanzi":"歹徒","pinyin":"dǎitú","meaning":"tên vô lại"},{"hanzi":"逮","pinyin":"dǎi","meaning":"bắt, tóm"},{"hanzi":"代号","pinyin":"dàihào","meaning":"dấu hiệu, số, biệt hiệu, mã số"},{"hanzi":"代理人","pinyin":"dàilǐrén","meaning":"người thay mặt, người đại diện"},{"hanzi":"代言人","pinyin":"dàiyánrén","meaning":"người phát ngôn"},{"hanzi":"带队","pinyin":"dàiduì","meaning":"dẫn đội"},{"hanzi":"带路","pinyin":"dài lù","meaning":"dẫn đường"},{"hanzi":"带头","pinyin":"dài tóu","meaning":"đi đầu, dẫn đầu"},{"hanzi":"带头人","pinyin":"dàitóurén","meaning":"người đi đầu"},{"hanzi":"待","pinyin":"dài","meaning":"đối đãi, cư xử, chiều đãi"},{"hanzi":"怠工","pinyin":"dài gōng","meaning":"biếng nhác, chây lười"},{"hanzi":"怠慢","pinyin":"dàimàn","meaning":"lãnh đạm, lạnh nhạt, thờ ơ"},{"hanzi":"逮捕","pinyin":"dàibǔ","meaning":"bắt (tội phạm)"},{"hanzi":"担","pinyin":"dān","meaning":"gánh, chịu trách nhiệm"},{"hanzi":"担当","pinyin":"dāndāng","meaning":"đảm đương, đảm nhận"},{"hanzi":"担负","pinyin":"dānfù","meaning":"gánh vác, phụ trách"},{"hanzi":"单边","pinyin":"dānbiān","meaning":"đơn phương"},{"hanzi":"单薄","pinyin":"dānbó","meaning":"ít ỏi, mỏng manh"},{"hanzi":"单方面","pinyin":"dānfāngmiàn","meaning":"một mặt, một phương diện"},{"hanzi":"单身","pinyin":"dānshēn","meaning":"độc thân, đơn thân"},{"hanzi":"耽搁","pinyin":"dānge","meaning":"lưu lại, nán lại"},{"hanzi":"耽误","pinyin":"dānwu","meaning":"làm lỡ, để lỡ"},{"hanzi":"胆怯","pinyin":"dǎnqiè","meaning":"nhát gan, nhút nhát"},{"hanzi":"胆子","pinyin":"dǎnzi","meaning":"lòng dũng cảm, lòng can đảm"},{"hanzi":"但愿","pinyin":"dànyuàn","meaning":"chỉ mong"},{"hanzi":"担","pinyin":"dàn","meaning":"gánh"},{"hanzi":"担子","pinyin":"dànzi","meaning":"nợ nần, gánh nặng"},{"hanzi":"诞辰","pinyin":"dànchén","meaning":"sinh nhật (thường tỏ ý tôn kính)"},{"hanzi":"淡化","pinyin":"dànhuà","meaning":"làm nhạt, phai nhạt"},{"hanzi":"淡季","pinyin":"dànjì","meaning":"mùa ít khách, mùa ế hàng"},{"hanzi":"蛋白质","pinyin":"dànbáizhí","meaning":"protein"},{"hanzi":"当即","pinyin":"dāngjí","meaning":"lập tức, ngay thức khắc"},{"hanzi":"当今","pinyin":"dāngjīn","meaning":"hiện nay, trước mắt"},{"hanzi":"当面","pinyin":"dāng miàn","meaning":"trước mặt, phía trước"},{"hanzi":"当日","pinyin":"dāngrì","meaning":"hôm đó, lúc đó"},{"hanzi":"当事人","pinyin":"dāngshìrén","meaning":"đương sự, bên (trong kiện cáo)"},{"hanzi":"当务之急","pinyin":"dāngwùzhījí","meaning":"nhiệm vụ cấp bách hiện nay"},{"hanzi":"当下","pinyin":"dāngxià","meaning":"ngay lập tức, tức thì"},{"hanzi":"当心","pinyin":"dāngxīn","meaning":"cẩn thận, lưu tâm, lưu ý"},{"hanzi":"当着","pinyin":"dāngzhe","meaning":"ở đằng trước"},{"hanzi":"当之无愧","pinyin":"dāngzhīwúkuì","meaning":"hoàn toàn xứng đáng"},{"hanzi":"当众","pinyin":"dāngzhòng","meaning":"trước đám đông, trước công chúng"},{"hanzi":"当晚","pinyin":"dāngwǎn","meaning":"tối hôm đó"},{"hanzi":"当真","pinyin":"dāngzhēn","meaning":"tưởng là thật, cho là thật"},{"hanzi":"荡漾","pinyin":"dàngyàng","meaning":"dập dờn, lăn tăn"},{"hanzi":"档次","pinyin":"dàngcì","meaning":"đẳng cấp"},{"hanzi":"导弹","pinyin":"dǎodàn","meaning":"tên lửa"},{"hanzi":"导航","pinyin":"dǎoháng","meaning":"dẫn đường"},{"hanzi":"导火索","pinyin":"dǎohuǒsuǒ","meaning":"cầu chì"},{"hanzi":"导师","pinyin":"dǎoshī","meaning":"người hướng dẫn"},{"hanzi":"导向","pinyin":"dǎoxiàng","meaning":"hướng phát triển"},{"hanzi":"岛屿","pinyin":"dǎoyǔ","meaning":"hòn đảo"},{"hanzi":"捣乱","pinyin":"dǎo luàn","meaning":"quấy rối, phá đám"},{"hanzi":"倒卖","pinyin":"dǎomài","meaning":"mua đi bán lại"},{"hanzi":"倒霉","pinyin":"dǎo méi","meaning":"đen đủi, xui rủi"},{"hanzi":"倒塌","pinyin":"dǎotā","meaning":"sập, sụp đổ"},{"hanzi":"倒下","pinyin":"dǎoxià","meaning":"gục ngã"},{"hanzi":"到头来","pinyin":"dàotóulái","meaning":"kết quả là, kết cục là (thường dùng cho những mặt xấu)"},{"hanzi":"到位","pinyin":"dào wèi","meaning":"đúng chỗ, đúng lúc"},{"hanzi":"倒计时","pinyin":"dǎojìshí","meaning":"đếm ngược"},{"hanzi":"倒数","pinyin":"dǎoshǔ","meaning":"đếm ngược"},{"hanzi":"盗","pinyin":"dào","meaning":"trộm"},{"hanzi":"盗窃","pinyin":"dàoqiè","meaning":"trộm cướp, trộm cắp"},{"hanzi":"悼念","pinyin":"dàoniàn","meaning":"thương tiếc, thương nhớ, tưởng niệm"},{"hanzi":"道具","pinyin":"dàojù","meaning":"đạo cụ, đồ dùng biểu diễn"},{"hanzi":"稻草","pinyin":"dàocǎo","meaning":"rơm rạ"},{"hanzi":"得不偿失","pinyin":"débùchángshī","meaning":"lợi bất cập hại"},{"hanzi":"得当","pinyin":"dédàng","meaning":"thỏa đáng, thích hợp"},{"hanzi":"得力","pinyin":"délì","meaning":"được lợi, được lợi ích"},{"hanzi":"得失","pinyin":"déshī","meaning":"được và mất, thành công và thất bại"},{"hanzi":"得手","pinyin":"déshǒu","meaning":"thuận lợi, trôi chảy"},{"hanzi":"得体","pinyin":"détǐ","meaning":"khéo léo, xác đáng, thỏa đáng"},{"hanzi":"得天独厚","pinyin":"détiāndúhòu","meaning":"gặp may mắn, được trời ưu ái"},{"hanzi":"得益于","pinyin":"déyì yú","meaning":"hưởng lợi từ"},{"hanzi":"得意扬扬","pinyin":"déyì-yángyáng","meaning":"dương dương đắc ý"},{"hanzi":"得知","pinyin":"dézhī","meaning":"được biết"},{"hanzi":"得罪","pinyin":"dézuì","meaning":"đắc tội"},{"hanzi":"德","pinyin":"dé","meaning":"đạo đức, phẩm hạnh"},{"hanzi":"灯笼","pinyin":"dēnglong","meaning":"đèn lồng"},{"hanzi":"灯泡","pinyin":"dēngpào","meaning":"bóng đèn"},{"hanzi":"登机","pinyin":"dēngjī","meaning":"lên máy bay"},{"hanzi":"登陆","pinyin":"dēng lù","meaning":"đổ bộ"},{"hanzi":"蹬","pinyin":"dēng","meaning":"đạp, giẫm"},{"hanzi":"凳子","pinyin":"dèngzi","meaning":"ghế, băng ghế"},{"hanzi":"瞪","pinyin":"dèng","meaning":"trừng mắt, trợn mắt"},{"hanzi":"低调","pinyin":"dīdiào","meaning":"điệu thấp, âm điệu thấp"},{"hanzi":"低估","pinyin":"dīgū","meaning":"đánh giá thấp, xem thường"},{"hanzi":"低谷","pinyin":"dīgǔ","meaning":"thung lũng"},{"hanzi":"低价","pinyin":"dījià","meaning":"phá giá, giá thấp"},{"hanzi":"低迷","pinyin":"dīmí","meaning":"mờ"},{"hanzi":"低碳","pinyin":"dītàn","meaning":"carbon thấp, ít carbon"},{"hanzi":"低下","pinyin":"dīxià","meaning":"thấp kém"},{"hanzi":"堤","pinyin":"dī","meaning":"đê"},{"hanzi":"堤坝","pinyin":"dībà","meaning":"đê điều"},{"hanzi":"提防","pinyin":"dīfang","meaning":"đề phòng"},{"hanzi":"笛子","pinyin":"dízi","meaning":"sáo, ống sáo"},{"hanzi":"抵触","pinyin":"dǐchù","meaning":"mâu thuẫn"},{"hanzi":"抵挡","pinyin":"dǐdǎng","meaning":"chống đối, chống lại, ngăn chặn"},{"hanzi":"抵消","pinyin":"dǐxiāo","meaning":"trung hòa, bù trừ"},{"hanzi":"抵押","pinyin":"dǐyā","meaning":"thế chấp, cầm cố"},{"hanzi":"抵御","pinyin":"dǐyù","meaning":"chống cự, chống lại"},{"hanzi":"抵制","pinyin":"dǐzhì","meaning":"ngăn lại, ngăn chặn"},{"hanzi":"底层","pinyin":"dǐcéng","meaning":"tầng thấp nhất, tầng dưới cùng"},{"hanzi":"底线","pinyin":"dǐxiàn","meaning":"giới hạn, điểm dừng"},{"hanzi":"底蕴","pinyin":"dǐyùn","meaning":"nội tình, tình hình bên trong"},{"hanzi":"底子","pinyin":"dǐzi","meaning":"đáy, đế, cơ sở, nội tình, bản thảo, phần thừa còn lại"},{"hanzi":"地步","pinyin":"dìbù","meaning":"nông nỗi, tình cảnh, tình trạng"},{"hanzi":"地道","pinyin":"dìdào","meaning":"đường hầm, địa đạo"},{"hanzi":"地道","pinyin":"dìdao","meaning":"chính gốc, chính hiệu"},{"hanzi":"地段","pinyin":"dìduàn","meaning":"đoạn đường, chặng"},{"hanzi":"地理","pinyin":"dìlǐ","meaning":"địa lý"},{"hanzi":"地毯","pinyin":"dìtǎn","meaning":"thảm, thảm trải sàn"},{"hanzi":"地下水","pinyin":"dìxiàshuǐ","meaning":"nước ngầm, mạch nước ngầm"},{"hanzi":"地狱","pinyin":"dìyù","meaning":"địa ngục"},{"hanzi":"地域","pinyin":"dìyù","meaning":"khu vực, vùng"},{"hanzi":"地质","pinyin":"dìzhì","meaning":"địa chất"},{"hanzi":"弟子","pinyin":"dìzǐ","meaning":"đồ đệ, học sinh, đệ tử"},{"hanzi":"帝国","pinyin":"dìguó","meaning":"đế quốc"},{"hanzi":"帝国主义","pinyin":"dìguó zhǔyì","meaning":"chủ nghĩa đế quốc"},{"hanzi":"递交","pinyin":"dìjiāo","meaning":"trình, đệ trình, giao"},{"hanzi":"第一手","pinyin":"dìyīshǒu","meaning":"mắt thấy tai nghe"},{"hanzi":"第一线","pinyin":"dìyīxiàn","meaning":"tuyến đầu"},{"hanzi":"颠倒","pinyin":"diāndǎo","meaning":"đảo lộn, đảo ngược"},{"hanzi":"颠覆","pinyin":"diānfù","meaning":"lật, lật nhào"},{"hanzi":"巅峰","pinyin":"diānfēng","meaning":"đỉnh cao"},{"hanzi":"典范","pinyin":"diǎnfàn","meaning":"mẫu mực, kiểu mẫu, điển hình"},{"hanzi":"点火","pinyin":"diǎn huǒ","meaning":"châm lửa, nhóm lửa"},{"hanzi":"点击率","pinyin":"diǎnjīlǜ","meaning":"tỷ lệ nhấp (internet)"},{"hanzi":"点评","pinyin":"diǎnpíng","meaning":"bình luận, đánh giá"},{"hanzi":"点心","pinyin":"diǎnxīn","meaning":"điểm tâm, đồ ăn vặt"},{"hanzi":"点缀","pinyin":"diǎnzhuì","meaning":"điểm xuyết, tô điểm"},{"hanzi":"点子","pinyin":"diǎnzi","meaning":"phương pháp, cách"},{"hanzi":"电报","pinyin":"diànbào","meaning":"điện báo"},{"hanzi":"电铃","pinyin":"diànlíng","meaning":"chuông điện"},{"hanzi":"电网","pinyin":"diànwǎng","meaning":"hàng rào điện, mạng điện"},{"hanzi":"电线","pinyin":"diànxiàn","meaning":"dây điện, dây dẫn điện"},{"hanzi":"电信","pinyin":"diànxìn","meaning":"điện tín, điện báo"},{"hanzi":"电讯","pinyin":"diànxùn","meaning":"viễn thông"},{"hanzi":"垫","pinyin":"diàn","meaning":"lót, chèn; ứng, đưa trước"},{"hanzi":"垫底","pinyin":"diàn dǐ","meaning":"làm nền, lót nền"},{"hanzi":"垫子","pinyin":"diànzi","meaning":"cái đệm, cái lót"},{"hanzi":"淀粉","pinyin":"diànfěn","meaning":"tinh bột"},{"hanzi":"惦记","pinyin":"diànjì","meaning":"nhớ, nhớ đến"},{"hanzi":"奠定","pinyin":"diàndìng","meaning":"đặt nền móng"},{"hanzi":"殿堂","pinyin":"diàntáng","meaning":"cung điện"},{"hanzi":"刁难","pinyin":"diāonàn","meaning":"làm khó dễ, hoạnh họe"},{"hanzi":"叼","pinyin":"diāo","meaning":"ngậm, tha"},{"hanzi":"刁","pinyin":"diāo","meaning":"khắc"},{"hanzi":"雕刻","pinyin":"diāokè","meaning":"điêu khắc, chạm trổ"},{"hanzi":"雕塑","pinyin":"diāosù","meaning":"điêu khắc, nặn tượng"},{"hanzi":"吊销","pinyin":"diàoxiāo","meaning":"thu lại và hủy"},{"hanzi":"钓鱼","pinyin":"diàoyú","meaning":"câu cá"},{"hanzi":"调度","pinyin":"diàodù","meaning":"điều hành, điều động, điều phối"},{"hanzi":"掉队","pinyin":"diào duì","meaning":"tụt lại phía sau, rớt lại phía sau"},{"hanzi":"掉头","pinyin":"diào tóu","meaning":"quay đầu, ngoảnh đầu"},{"hanzi":"爹","pinyin":"diē","meaning":"cha, bố"},{"hanzi":"叠起","pinyin":"diéqǐ","meaning":"nhiều lần nổi dậy"},{"hanzi":"叠","pinyin":"dié","meaning":"trùng điệp, trùng nhau"},{"hanzi":"丁","pinyin":"dīng","meaning":"đinh (con trai), nhân khẩu"},{"hanzi":"叮嘱","pinyin":"dīngzhǔ","meaning":"căn dặn, dặn dò"},{"hanzi":"盯","pinyin":"dīng","meaning":"nhìn chăm chú, nhìn chằm chằm"},{"hanzi":"钉子","pinyin":"dīngzi","meaning":"cái đinh, cây đinh"},{"hanzi":"顶多","pinyin":"dǐngduō","meaning":"nhiều nhất, cùng lắm"},{"hanzi":"顶级","pinyin":"dǐngjí","meaning":"hạng nhất, đỉnh cao"},{"hanzi":"顶尖","pinyin":"dǐngjiān","meaning":"cao nhất, ngon, đạt đến trình độ cao nhất"},{"hanzi":"订单","pinyin":"dìngdān","meaning":"đặt hàng"},{"hanzi":"订购","pinyin":"dìnggòu","meaning":"đặt hàng"},{"hanzi":"订婚","pinyin":"dìng hūn","meaning":"đính hôn"},{"hanzi":"订立","pinyin":"dìnglì","meaning":"ký kết"},{"hanzi":"钉","pinyin":"dīng","meaning":"cái đinh, cây đinh"},{"hanzi":"定金","pinyin":"dìngjīn","meaning":"tiền cọc"},{"hanzi":"定居","pinyin":"dìng jū","meaning":"định cư"},{"hanzi":"定论","pinyin":"dìnglùn","meaning":"định luật, kết luận"},{"hanzi":"定为","pinyin":"dìngwéi","meaning":"định vị, coi là"},{"hanzi":"定向","pinyin":"dìngxiàng","meaning":"định hướng, xác định phương hướng"},{"hanzi":"定心丸","pinyin":"dìngxīnwán","meaning":"thuốc an thần"},{"hanzi":"定义","pinyin":"dìngyì","meaning":"định nghĩa"},{"hanzi":"定做","pinyin":"dìngzuò","meaning":"đặt làm theo yêu cầu"},{"hanzi":"丢掉","pinyin":"diūdiào","meaning":"mất, thất lạc, vứt bỏ"},{"hanzi":"丢脸","pinyin":"diū liǎn","meaning":"mất mặt"},{"hanzi":"丢弃","pinyin":"diūqì","meaning":"vứt bỏ, quăng đi"},{"hanzi":"丢人","pinyin":"diū rén","meaning":"mất mặt, mất thể diện"},{"hanzi":"丢失","pinyin":"diūshī","meaning":"mất, thất lạc"},{"hanzi":"东奔西走","pinyin":"dōngbēn-xīzǒu","meaning":"bôn ba khắp nơi"},{"hanzi":"东道主","pinyin":"dōngdàozhǔ","meaning":"chủ nhà, chủ tiệc"},{"hanzi":"东张西望","pinyin":"dōngzhāng-xīwàng","meaning":"nhìn đông nhìn tây, nhìn xung quanh"},{"hanzi":"董事","pinyin":"dǒngshì","meaning":"giám đốc"},{"hanzi":"董事会","pinyin":"dǒngshìhuì","meaning":"hội đồng quản trị"},{"hanzi":"董事长","pinyin":"dǒngshìzhǎng","meaning":"chủ tịch hội đồng quản trị"},{"hanzi":"懂事","pinyin":"dǒng shì","meaning":"hiểu chuyện"},{"hanzi":"动不动","pinyin":"dòngbudòng","meaning":"hơi một tí, động một tí"},{"hanzi":"动荡","pinyin":"dòngdàng","meaning":"bấp bênh, xao động"},{"hanzi":"动感","pinyin":"dònggǎn","meaning":"sống động, như thật"},{"hanzi":"动工","pinyin":"dòng gōng","meaning":"khởi công"},{"hanzi":"动静","pinyin":"dòngjìng","meaning":"động tĩnh, tiếng động"},{"hanzi":"动脉","pinyin":"dòngmài","meaning":"động mạch"},{"hanzi":"动身","pinyin":"dòng shēn","meaning":"khởi hành, xuất phát"},{"hanzi":"动弹","pinyin":"dòngtán","meaning":"động đậy, cựa quậy"},{"hanzi":"动听","pinyin":"dòngtīng","meaning":"êm tai, bùi tai"},{"hanzi":"动向","pinyin":"dòngxiàng","meaning":"xu hướng, chiều hướng"},{"hanzi":"动用","pinyin":"dòngyòng","meaning":"sử dụng, dùng"},{"hanzi":"冻结","pinyin":"dòngjié","meaning":"đóng lại, đông bằng"},{"hanzi":"栋","pinyin":"dòng","meaning":"xà ngang, xà chính"},{"hanzi":"栋梁","pinyin":"dòngliáng","meaning":"trụ cột"},{"hanzi":"兜","pinyin":"dōu","meaning":"bọc, túm, chịu trách nhiệm"},{"hanzi":"兜儿","pinyin":"dōur","meaning":"túi"},{"hanzi":"兜售","pinyin":"dōushòu","meaning":"chào hàng, rao bán"},{"hanzi":"抖","pinyin":"dǒu","meaning":"run, lắc"},{"hanzi":"陡","pinyin":"dǒu","meaning":"dốc, đột ngột"},{"hanzi":"斗","pinyin":"dòu","meaning":"chiến đấu"},{"hanzi":"斗志","pinyin":"dòuzhì","meaning":"ý chí chiến đấu"},{"hanzi":"豆浆","pinyin":"dòujiāng","meaning":"sữa đậu nành"},{"hanzi":"豆子","pinyin":"dòuzi","meaning":"hạt đậu, cây đậu"},{"hanzi":"逗","pinyin":"dòu","meaning":"dụ dỗ, đùa giỡn, chọc, gây cười"},{"hanzi":"都会","pinyin":"dūhuì","meaning":"đô thị"},{"hanzi":"督促","pinyin":"dūcù","meaning":"thúc giục, đốc thúc"},{"hanzi":"独","pinyin":"dú","meaning":"độc, duy nhất, một"},{"hanzi":"独唱","pinyin":"dúchàng","meaning":"(hát) đơn ca"},{"hanzi":"独家","pinyin":"dújiā","meaning":"duy nhất, độc nhất"},{"hanzi":"独立自主","pinyin":"dúlì-zìzhǔ","meaning":"độc lập tự chủ"},{"hanzi":"独身","pinyin":"dúshēn","meaning":"một mình, đơn thân"},{"hanzi":"独一无二","pinyin":"dúyī-wú'èr","meaning":"độc nhất vô nhị, có một không hai"},{"hanzi":"堵塞","pinyin":"dǔsè","meaning":"tác nghẽn"},{"hanzi":"杜绝","pinyin":"dùjué","meaning":"diệt sạch, ngăn chặn tận gốc"},{"hanzi":"妒忌","pinyin":"dùjì","meaning":"ghen ghét, ghen tị"},{"hanzi":"度","pinyin":"dù (zhìmíngdù)","meaning":"độ, trình độ"},{"hanzi":"度假","pinyin":"dùjià","meaning":"nghỉ dưỡng"},{"hanzi":"渡过","pinyin":"dùguò","meaning":"vượt qua"},{"hanzi":"端正","pinyin":"duānzhèng","meaning":"nghiêm chỉnh, đứng đắn"},{"hanzi":"短缺","pinyin":"duǎnquē","meaning":"thiếu, thiếu hụt"},{"hanzi":"短暂","pinyin":"duǎnzàn","meaning":"ngắn ngủi, nhất thời"},{"hanzi":"段落","pinyin":"duànluò","meaning":"đoạn (văn chương, sự việc)"},{"hanzi":"断定","pinyin":"duàndìng","meaning":"nhận định, kết luận"},{"hanzi":"断断续续","pinyin":"duànduànxùxù","meaning":"gián đoạn, không liên tục"},{"hanzi":"断裂","pinyin":"duànliè","meaning":"gãy, đứt"},{"hanzi":"堆砌","pinyin":"duīqì","meaning":"xây, đắp; rườm rà, dài dòng"},{"hanzi":"队形","pinyin":"duìxíng","meaning":"đội hình"},{"hanzi":"对白","pinyin":"duìbái","meaning":"đối thoại"},{"hanzi":"对策","pinyin":"duìcè","meaning":"đối sách, biện pháp"},{"hanzi":"对称","pinyin":"duìchèn","meaning":"đối xứng, cân đối"},{"hanzi":"对得起","pinyin":"duìdéqǐ","meaning":"không có lỗi"},{"hanzi":"对联","pinyin":"duìlián","meaning":"câu đối"},{"hanzi":"对弈","pinyin":"duìyì","meaning":"đánh cờ"},{"hanzi":"对照","pinyin":"duìzhào","meaning":"đối chiếu"},{"hanzi":"对峙","pinyin":"duìzhì","meaning":"đứng song song, đứng sông đôi"},{"hanzi":"瞄准","pinyin":"duìzhǔn","meaning":"ngắm (đích)"},{"hanzi":"兑换","pinyin":"duìhuàn","meaning":"hối đoái"},{"hanzi":"兑现","pinyin":"duìxiàn","meaning":"thực hiện, thực hành"},{"hanzi":"敦促","pinyin":"dūncù","meaning":"thúc giục, đốc thúc"},{"hanzi":"敦厚","pinyin":"dūnhòu","meaning":"trung thực, chân thành"},{"hanzi":"炖","pinyin":"dùn","meaning":"hầm, ninh"},{"hanzi":"顿时","pinyin":"dùnshí","meaning":"giây phút, phút chốc"},{"hanzi":"多边","pinyin":"duōbiān","meaning":"nhiều phía, nhiều bên"},{"hanzi":"多功能","pinyin":"duōgōngnéng","meaning":"đa chức năng"},{"hanzi":"多亏","pinyin":"duōkuī","meaning":"may mà, nhờ có"},{"hanzi":"多劳多得","pinyin":"duōláo-duōdé","meaning":"làm nhiều hưởng nhiều"},{"hanzi":"多年来","pinyin":"duō nián lái","meaning":"trong nhiều năm qua"},{"hanzi":"多心","pinyin":"duō xīn","meaning":"đa nghi, quá nhạy cảm"},{"hanzi":"多余","pinyin":"duōyú","meaning":"dư, thừa"},{"hanzi":"多元","pinyin":"duōyuán","meaning":"đa nguyên"},{"hanzi":"哆嗦","pinyin":"duōsuō","meaning":"cảm cảm, run cầm cập"},{"hanzi":"夺冠","pinyin":"duó guàn","meaning":"đoạt giải quán quân, đoạt cúp"},{"hanzi":"夺魁","pinyin":"duó kuí","meaning":"đoạt giải nhất, đoạt giải quán quân"},{"hanzi":"躲避","pinyin":"duǒbì","meaning":"lánh mặt, tránh mặt"},{"hanzi":"躲藏","pinyin":"duǒcáng","meaning":"ẩn núp, ẩn nấu"},{"hanzi":"舵手","pinyin":"duòshǒu","meaning":"người cầm lái, người lái"},{"hanzi":"堕落","pinyin":"duòluò","meaning":"sa ngã, trụy lạc"},{"hanzi":"讹诈","pinyin":"ézhà","meaning":"lừa bíp tống tiền, lừa gạt tống tiền"},{"hanzi":"俄语","pinyin":"éyǔ","meaning":"tiếng Nga"},{"hanzi":"鹅","pinyin":"é","meaning":"con ngỗng"},{"hanzi":"额外","pinyin":"éwài","meaning":"ngoài định mức"},{"hanzi":"厄运","pinyin":"èyùn","meaning":"vận hạn, vận đen"},{"hanzi":"恶","pinyin":"è","meaning":"ác, dữ, xấu"},{"hanzi":"恶化","pinyin":"èhuà","meaning":"chuyển biến xấu, trầm trọng"},{"hanzi":"恶劣","pinyin":"èliè","meaning":"xấu xa, tồi tệ"},{"hanzi":"恶性","pinyin":"èxìng","meaning":"ác tính"},{"hanzi":"恶意","pinyin":"èyì","meaning":"ác ý, dụng ý xấu"},{"hanzi":"遏制","pinyin":"èzhì","meaning":"ngăn chặn, kiềm chế"},{"hanzi":"鳄鱼","pinyin":"èyú","meaning":"cá sấu"},{"hanzi":"恩赐","pinyin":"ēncì","meaning":"ban ân, ban ơn"},{"hanzi":"恩惠","pinyin":"ēnhuì","meaning":"ân huệ"},{"hanzi":"恩情","pinyin":"ēnqíng","meaning":"ân tình"},{"hanzi":"恩怨","pinyin":"ēnyuàn","meaning":"ân oán"},{"hanzi":"而已","pinyin":"éryǐ","meaning":"mà thôi, thế thôi"},{"hanzi":"耳光","pinyin":"ěrguāng","meaning":"bạt tai"},{"hanzi":"耳目一新","pinyin":"ěrmù-yīxīn","meaning":"cảm giác mới mẻ, lạ mắt lạ tai"},{"hanzi":"耳熟能详","pinyin":"ěrshú-néngxiáng","meaning":"nghe nhiều nên thuộc, nghe nhiều nên quen"},{"hanzi":"耳闻目睹","pinyin":"ěrwén-mùdǔ","meaning":"tai nghe mắt thấy"},{"hanzi":"二手车","pinyin":"èrshǒuchē","meaning":"xe ô tô cũ"},{"hanzi":"二氧化碳","pinyin":"èryǎnghuàtàn","meaning":"co2"},{"hanzi":"发布会","pinyin":"fābùhuì","meaning":"họp báo"},{"hanzi":"发财","pinyin":"fā cái","meaning":"phát tài"},{"hanzi":"发愁","pinyin":"fā chóu","meaning":"ưu sầu, lo âu"},{"hanzi":"发电机","pinyin":"fādiànjī","meaning":"máy phát điện"},{"hanzi":"发抖","pinyin":"fādǒu","meaning":"run"},{"hanzi":"发奋图强","pinyin":"fāfèn-túqiáng","meaning":"quyết tâm để thành công"},{"hanzi":"发光","pinyin":"fā guāng","meaning":"phát sáng"},{"hanzi":"发火","pinyin":"fā/huǒ","meaning":"nóng giận"},{"hanzi":"发酵","pinyin":"fā jiào","meaning":"lên men"},{"hanzi":"发掘","pinyin":"fājué","meaning":"khai quật, khai thác"},{"hanzi":"发愣","pinyin":"fā lèng","meaning":"ngẩn ra, ngơ ra"},{"hanzi":"发脾气","pinyin":"fā píqì","meaning":"phát cáu, nổi cáu"},{"hanzi":"发起人","pinyin":"fāqǐrén","meaning":"thành viên sáng lập"},{"hanzi":"发热","pinyin":"fā rè","meaning":"phát nhiệt, tỏa nhiệt"},{"hanzi":"发誓","pinyin":"fā shì","meaning":"xin thề"},{"hanzi":"发泄","pinyin":"fāxiè","meaning":"phát tiết, trút ra"},{"hanzi":"发扬","pinyin":"fāyáng","meaning":"phát huy, biểu dương"},{"hanzi":"发扬光大","pinyin":"fāyáng-guāngdà","meaning":"phát huy, làm rạng rỡ"},{"hanzi":"发育","pinyin":"fāyù","meaning":"dậy thì, trưởng thành, trở mã"},{"hanzi":"发源地","pinyin":"fāyuándì","meaning":"nơi sinh"},{"hanzi":"发作","pinyin":"fāzuò","meaning":"phát tác"},{"hanzi":"阀门","pinyin":"fámén","meaning":"van"},{"hanzi":"发型","pinyin":"fāxíng","meaning":"kiểu tóc"},{"hanzi":"帆","pinyin":"fān","meaning":"buồm, cánh buồm"},{"hanzi":"帆船","pinyin":"fānchuán","meaning":"thuyền buồm"},{"hanzi":"翻番","pinyin":"fān fān","meaning":"tăng gấp đôi"},{"hanzi":"翻来覆去","pinyin":"fānlái-fùqù","meaning":"trở mình, trằn trọc"},{"hanzi":"翻天覆地","pinyin":"fāntiān-fùdì","meaning":"thay đổi triệt để, thay đổi hoàn toàn"},{"hanzi":"凡","pinyin":"fán","meaning":"bình thường, thông thường"},{"hanzi":"烦闷","pinyin":"fánmèn","meaning":"buồn rầu, phiền muộn"},{"hanzi":"烦恼","pinyin":"fánnǎo","meaning":"phiền não"},{"hanzi":"烦躁","pinyin":"fánzào","meaning":"buồn bực, bực bội, sốt ruột"},{"hanzi":"繁华","pinyin":"fánhuá","meaning":"phồn hoa, sầm uất"},{"hanzi":"繁忙","pinyin":"fánmáng","meaning":"bận rộn, bộn bề"},{"hanzi":"繁体字","pinyin":"fántǐzì","meaning":"chữ phồn thể"},{"hanzi":"繁重","pinyin":"fánzhòng","meaning":"nặng nề, nặng nhọc"},{"hanzi":"反驳","pinyin":"fǎnbó","meaning":"phản bác"},{"hanzi":"反差","pinyin":"fǎnchā","meaning":"tương phản, trái ngược"},{"hanzi":"反常","pinyin":"fǎncháng","meaning":"khác thường, bất thường"},{"hanzi":"反倒","pinyin":"fǎndào","meaning":"trái lại, ngược lại"},{"hanzi":"反感","pinyin":"fǎngǎn","meaning":"phản cảm"},{"hanzi":"反过来","pinyin":"fǎn-guòlái","meaning":"ngược lại"},{"hanzi":"反击","pinyin":"fǎnjī","meaning":"phản kích, đánh lại"},{"hanzi":"反馈","pinyin":"fǎnkuì","meaning":"phản hồi"},{"hanzi":"反面","pinyin":"fǎnmiàn","meaning":"mặt trái, phản diện"},{"hanzi":"反思","pinyin":"fǎnsī","meaning":"nghĩ lại, suy nghĩ lại chuyện đã qua"},{"hanzi":"反弹","pinyin":"fǎntán","meaning":"đàn hồi"},{"hanzi":"反省","pinyin":"fǎnxǐng","meaning":"xét lại mình, tự kiểm điểm"},{"hanzi":"返回","pinyin":"fǎnhuán","meaning":"trả về, trả lại"},{"hanzi":"犯愁","pinyin":"fàn chóu","meaning":"sầu muộn, buồn rầu"},{"hanzi":"饭碗","pinyin":"fàn wǎn","meaning":"bát cơm, chén cơm"},{"hanzi":"泛滥","pinyin":"fàn làn","meaning":"tràn lan, ngập"},{"hanzi":"范畴","pinyin":"fànchóu","meaning":"phạm trù"},{"hanzi":"贩卖","pinyin":"fànmài","meaning":"buôn bán, bán hàng"},{"hanzi":"方方面面","pinyin":"fāngfāngmiànmiàn","meaning":"mọi mặt, mọi vấn đề"},{"hanzi":"方向盘","pinyin":"fāngxiàngpán","meaning":"tay lái, vô lăng"},{"hanzi":"方言","pinyin":"fāngyán","meaning":"tiếng địa phương"},{"hanzi":"防盗","pinyin":"fángdào","meaning":"chôm trộm, đề phòng trộm cắp"},{"hanzi":"防盗门","pinyin":"fángdàomén","meaning":"cửa chống trộm"},{"hanzi":"防护","pinyin":"fánghù","meaning":"phòng hộ, bảo vệ, che trở"},{"hanzi":"防火墙","pinyin":"fánghuǒqiáng","meaning":"tường ngăn lửa"},{"hanzi":"防卫","pinyin":"fángwèi","meaning":"phòng vệ, phòng ngự"},{"hanzi":"防汛","pinyin":"fángxùn","meaning":"phòng lụt"},{"hanzi":"防疫","pinyin":"fángyì","meaning":"phòng dịch, phòng bệnh truyền nhiễm"},{"hanzi":"防御","pinyin":"fángyù","meaning":"phòng ngự"},{"hanzi":"妨碍","pinyin":"fáng'ài","meaning":"trở ngại, vướng"},{"hanzi":"妨害","pinyin":"fánghài","meaning":"phương hại, có hại, gây hại"},{"hanzi":"房地产","pinyin":"fángdìchǎn","meaning":"bất động sản"},{"hanzi":"仿","pinyin":"fǎng","meaning":"phòng theo, bắt chước"},{"hanzi":"仿制","pinyin":"fǎngzhì","meaning":"mô phỏng, bắt chước"},{"hanzi":"访谈","pinyin":"fǎngtán","meaning":"thăm hỏi"},{"hanzi":"纺织","pinyin":"fǎngzhī","meaning":"dệt, dệt vải"},{"hanzi":"放过","pinyin":"fànguò","meaning":"bỏ qua, tha cho"},{"hanzi":"放水","pinyin":"fàng shuǐ","meaning":"xả nước"},{"hanzi":"放肆","pinyin":"fàngsì","meaning":"hỗn xược, hỗn láo"},{"hanzi":"放映","pinyin":"fàngyìng","meaning":"chiếu phim"},{"hanzi":"放置","pinyin":"fàngzhì","meaning":"để, đặt, cất"},{"hanzi":"放纵","pinyin":"fàngzòng","meaning":"phóng đãng, buông thả"},{"hanzi":"飞速","pinyin":"fēisù","meaning":"nhanh chóng, thần tốc"},{"hanzi":"飞往","pinyin":"fēiwǎng","meaning":"bay tới"},{"hanzi":"飞翔","pinyin":"fēixiáng","meaning":"bay lượn"},{"hanzi":"飞跃","pinyin":"fēiyuè","meaning":"bước vọt, nhảy vọt"},{"hanzi":"非(非金属)","pinyin":"fēi (fēijīnshǔ)","meaning":"phi (phi kim loại)"},{"hanzi":"非得","pinyin":"fēiděi","meaning":"cần phải, buộc phải"},{"hanzi":"非法","pinyin":"fēifǎ","meaning":"bất hợp pháp, phi pháp"},{"hanzi":"非凡","pinyin":"fēifán","meaning":"phi phàm"},{"hanzi":"绯闻","pinyin":"fēiwén","meaning":"tai tiếng, tin đồn"},{"hanzi":"肥料","pinyin":"féiliào","meaning":"phân bón"},{"hanzi":"肥胖","pinyin":"féipàng","meaning":"béo mập, béo phì"},{"hanzi":"肥沃","pinyin":"féiwò","meaning":"màu mỡ, phì nhiêu"},{"hanzi":"肥皂","pinyin":"féizào","meaning":"xà phòng"},{"hanzi":"诽谤","pinyin":"fěibàng","meaning":"phỉ báng, bôi nhọ"},{"hanzi":"废","pinyin":"fèi","meaning":"(adj) phế, vô dụng"},{"hanzi":"废除","pinyin":"fèichú","meaning":"hủy bỏ, bãi bỏ, bãi trừ"},{"hanzi":"废话","pinyin":"fèihuà","meaning":"nói lời vô dụng, lời thừa"},{"hanzi":"废品","pinyin":"fèipǐn","meaning":"phế phẩm"},{"hanzi":"废寝忘食","pinyin":"fèiqǐn-wàngshí","meaning":"quên ăn quên ngủ"},{"hanzi":"废物","pinyin":"fèiwù","meaning":"đồ bỏ đi, phế phẩm, rác rưởi"},{"hanzi":"废墟","pinyin":"fèixū","meaning":"đống hoang tàn, đóng đổ nát"},{"hanzi":"沸沸扬扬","pinyin":"fèifèiyángyáng","meaning":"xôn xao"},{"hanzi":"沸腾","pinyin":"fèiténg","meaning":"sôi sùng sục"},{"hanzi":"费劲","pinyin":"fèi jìn","meaning":"tốn sức, gay go"},{"hanzi":"分辨","pinyin":"fēnbiàn","meaning":"phân biệt"},{"hanzi":"分寸","pinyin":"fēncùn","meaning":"chừng mực"},{"hanzi":"分担","pinyin":"fēndān","meaning":"chia sẻ (trách nhiệm, gánh nặng)"},{"hanzi":"分割","pinyin":"fēngē","meaning":"phân cách, tách rời"},{"hanzi":"分红","pinyin":"fēn hóng","meaning":"chia hoa hồng, chia lợi nhuận"},{"hanzi":"分化","pinyin":"fēnhuà","meaning":"phân hóa"},{"hanzi":"分泌","pinyin":"fēnmì","meaning":"bài tiết, tiết ra"},{"hanzi":"分明","pinyin":"fēnmíng","meaning":"rõ ràng, phân minh, hiển nhiên"},{"hanzi":"分歧","pinyin":"fēnqí","meaning":"chia rẽ, bất đồng"},{"hanzi":"分配","pinyin":"fēn pèi","meaning":"chia của"},{"hanzi":"分支","pinyin":"fēnzhī","meaning":"chi nhánh"},{"hanzi":"芬芳","pinyin":"fēnfāng","meaning":"hương thơm, mùi thơm"},{"hanzi":"吩咐","pinyin":"fēn fù","meaning":"phân phó, dặn dò"},{"hanzi":"氛围","pinyin":"fēnwéi","meaning":"bầu không khí"},{"hanzi":"坟","pinyin":"fén","meaning":"phần mộ"},{"hanzi":"坟墓","pinyin":"fénmù","meaning":"mộ, mồ, mã"},{"hanzi":"焚烧","pinyin":"fénshāo","meaning":"thiêu hủy, đốt đi"},{"hanzi":"粉","pinyin":"fěn","meaning":"bột, bụi, phấn"},{"hanzi":"粉丝","pinyin":"fěnsī","meaning":"người hâm mộ"},{"hanzi":"粉碎","pinyin":"fěnsuì","meaning":"mảnh vỡ"},{"hanzi":"分量","pinyin":"fèn-liàng","meaning":"trọng lượng, phân lượng"},{"hanzi":"分外","pinyin":"fènwài","meaning":"đặc biệt, hết sức"},{"hanzi":"份额","pinyin":"fèn'é","meaning":"số định mức, thị phần"},{"hanzi":"奋力","pinyin":"fènlì","meaning":"ra sức"},{"hanzi":"奋勇","pinyin":"fènyǒng","meaning":"anh dũng, dũng cảm"},{"hanzi":"粪","pinyin":"fèn","meaning":"phân"},{"hanzi":"粪便","pinyin":"fènbiàn","meaning":"phân và nước tiểu"},{"hanzi":"丰富多彩","pinyin":"fēngfù-duōcǎi","meaning":"muôn màu muôn vẻ, sắc sỡ muôn màu"},{"hanzi":"丰厚","pinyin":"fēnghòu","meaning":"hậu hĩnh (lương, đãi ngộ ...)"},{"hanzi":"丰满","pinyin":"fēngmǎn","meaning":"đầy ắp, đầy đủ, sung túc"},{"hanzi":"丰盛","pinyin":"fēngshèng","meaning":"phong phú, thịnh soạn (phương diện vật chất)"},{"hanzi":"丰硕","pinyin":"fēngshuò","meaning":"lớn lao, đáng kể (thường dùng với những vật trừu tượng)"},{"hanzi":"风波","pinyin":"fēngbō","meaning":"phong ba, sóng gió"},{"hanzi":"风采","pinyin":"fēngcǎi","meaning":"phong thái, phong cách"},{"hanzi":"风餐露宿","pinyin":"fēngcān-lùsù","meaning":"màn trời chiếu đất, ăn gió nằm sương"},{"hanzi":"风范","pinyin":"fēngfàn","meaning":"phong phạm, phong độ, khí phách"},{"hanzi":"风风雨雨","pinyin":"fēngfēngyǔyǔ","meaning":"gian khổ nhiều năm"},{"hanzi":"风和日丽","pinyin":"fēnghé-rìlì","meaning":"trời trong nắng ấm (chỉ mùa xuân)"},{"hanzi":"风浪","pinyin":"fēnglàng","meaning":"sóng gió, sóng gió (nguy hiểm)"},{"hanzi":"风力","pinyin":"fēnglì","meaning":"sức gió"},{"hanzi":"风流","pinyin":"fēngliú","meaning":"phong lưu, anh tuấn kiệt xuất"},{"hanzi":"风貌","pinyin":"fēngmào","meaning":"cách điệu, dáng dấp, phong cách và diện mạo"},{"hanzi":"风气","pinyin":"fēngqì","meaning":"bầu không khí, nếp sống, tập tục"},{"hanzi":"风情","pinyin":"fēngqíng","meaning":"phong tình"},{"hanzi":"风趣","pinyin":"fēngqù","meaning":"dí dỏm, thú vị, hài hước"},{"hanzi":"风沙","pinyin":"fēngshā","meaning":"gió cát"},{"hanzi":"风尚","pinyin":"fēngshàng","meaning":"tục lệ, nếp sống"},{"hanzi":"风水","pinyin":"fēng-shuǐ","meaning":"phong thủy"},{"hanzi":"风味","pinyin":"fēngwèi","meaning":"phong vị, mùi vị"},{"hanzi":"风雨","pinyin":"fēngyǔ","meaning":"mưa gió"},{"hanzi":"风云","pinyin":"fēngyún","meaning":"mưa gió, gió mây"},{"hanzi":"风筝","pinyin":"fēngzheng","meaning":"con diều, diều giấy"},{"hanzi":"封顶","pinyin":"fēngdǐng","meaning":"nóc (nhà ...)"},{"hanzi":"封建","pinyin":"fēngjiàn","meaning":"chế độ phong kiến"},{"hanzi":"封面","pinyin":"fēngmiàn","meaning":"trang bìa, bìa mặt"},{"hanzi":"封锁","pinyin":"fēngsuǒ","meaning":"phong tỏa"},{"hanzi":"疯子","pinyin":"fēngzi","meaning":"người điên, người bị bệnh điên"},{"hanzi":"峰回路转","pinyin":"fēnghuí-lùzhuǎn","meaning":"quanh co, khúc khuỷu (núi, đường)"},{"hanzi":"蜂蜜","pinyin":"fēngmì","meaning":"mật ong"},{"hanzi":"逢","pinyin":"féng","meaning":"gặp mặt"},{"hanzi":"缝","pinyin":"féng","meaning":"may, khâu"},{"hanzi":"缝合","pinyin":"fénghé","meaning":"khâu (vết mổ)"},{"hanzi":"讽刺","pinyin":"fěngcì","meaning":"châm biếm, mỉa mai"},{"hanzi":"凤凰","pinyin":"fènghuáng","meaning":"phượng hoàng"},{"hanzi":"缝","pinyin":"fèng","meaning":"may, khâu"},{"hanzi":"否决","pinyin":"fǒujué","meaning":"phủ quyết, bác bỏ"},{"hanzi":"孵化","pinyin":"fūhuà","meaning":"nở trứng"},{"hanzi":"敷","pinyin":"fū","meaning":"đắp, xoa, trét, thoa"},{"hanzi":"扶持","pinyin":"fúchí","meaning":"dìu dắt, nâng đỡ"},{"hanzi":"服饰","pinyin":"fúshì","meaning":"quần áo và trang sức"},{"hanzi":"服务器","pinyin":"fúwùqì","meaning":"máy chủ server"},{"hanzi":"服用","pinyin":"fúyòng","meaning":"uống thuốc"},{"hanzi":"俘获","pinyin":"fúhuò","meaning":"bắt (tù binh)"},{"hanzi":"俘虏","pinyin":"fúlǔ","meaning":"tù binh"},{"hanzi":"浮力","pinyin":"fúlì","meaning":"sức nổi, sức nâng"},{"hanzi":"浮现","pinyin":"fúxiàn","meaning":"hiện ra, phát hiện ra"},{"hanzi":"浮躁","pinyin":"fúzào","meaning":"bốc đồng, nông nổi, bộc chộp"},{"hanzi":"辐射","pinyin":"fúshè","meaning":"tia bức xạ, phóng xạ"},{"hanzi":"福气","pinyin":"fúqi","meaning":"phúc khí, có phúc"},{"hanzi":"抚摸","pinyin":"fǔmō","meaning":"vỗ về, vuốt ve"},{"hanzi":"抚恤","pinyin":"fǔxù","meaning":"cứu trợ"},{"hanzi":"抚养","pinyin":"fǔyǎng","meaning":"nuôi dưỡng, nuôi nấng"},{"hanzi":"抚养费","pinyin":"fǔyǎngfèi","meaning":"phí nuôi dưỡng"},{"hanzi":"斧子","pinyin":"fǔzi","meaning":"búa, rìu"},{"hanzi":"俯首","pinyin":"fǔshǒu","meaning":"cúi đầu"},{"hanzi":"辅导","pinyin":"fǔdǎo","meaning":"chỉ đạo, hướng dẫn"},{"hanzi":"腐败","pinyin":"fǔbài","meaning":"thối rữa, thối rỗng"},{"hanzi":"腐化","pinyin":"fǔhuà","meaning":"thối rữa, biến chất, sa đọa"},{"hanzi":"腐烂","pinyin":"fǔlàn","meaning":"thối rữa, thối nát"},{"hanzi":"腐蚀","pinyin":"fǔshí","meaning":"ăn mòn, mòn dần"},{"hanzi":"腐朽","pinyin":"fǔxiǔ","meaning":"mục, mục nát"},{"hanzi":"付费","pinyin":"fùfèi","meaning":"để trang trải chi phí"},{"hanzi":"付款","pinyin":"fùkuǎn","meaning":"trả tiền, chi tiền"},{"hanzi":"负面","pinyin":"fùmiàn","meaning":"mặt xấu, tiêu cực"},{"hanzi":"负有","pinyin":"fùyǒu","meaning":"chịu trách nhiệm về"},{"hanzi":"附","pinyin":"fù","meaning":"đính kèm, kèm theo"},{"hanzi":"附带","pinyin":"fùdài","meaning":"kèm theo, phụ thêm"},{"hanzi":"附和","pinyin":"fùhè","meaning":"phụ họa, hùa theo"},{"hanzi":"附加","pinyin":"fùjiā","meaning":"phụ thêm, thêm"},{"hanzi":"附属","pinyin":"fùshǔ","meaning":"phụ thuộc"},{"hanzi":"赴","pinyin":"fù","meaning":"đi đến, đi dự (nơi nào đó)"},{"hanzi":"复查","pinyin":"fùchá","meaning":"kiểm tra lại, tái khám"},{"hanzi":"复发","pinyin":"fùfā","meaning":"tái phát, phát lại (thường chỉ bệnh cũ)"},{"hanzi":"复合","pinyin":"fùhé","meaning":"hợp lại, ghép lại, quay lại (ở bên nhau)"},{"hanzi":"复活","pinyin":"fùhuó","meaning":"sống lại, phục sinh"},{"hanzi":"复兴","pinyin":"fùxīng","meaning":"phục hưng"},{"hanzi":"复原","pinyin":"fùyuán","meaning":"phục hồi, hồi phục (sức khỏe)"},{"hanzi":"副作用","pinyin":"fùzuòyòng","meaning":"tác dụng phụ"},{"hanzi":"赋予","pinyin":"fùyǔ","meaning":"giao cho, trao cho"},{"hanzi":"富含","pinyin":"fùhán","meaning":"chứa đựng"},{"hanzi":"富豪","pinyin":"fùháo","meaning":"phú hào, trùm"},{"hanzi":"富强","pinyin":"fùqiáng","meaning":"phú cường, giàu mạnh"},{"hanzi":"富翁","pinyin":"fùwēng","meaning":"phú ông, nhà giàu"},{"hanzi":"富裕","pinyin":"fùyù","meaning":"giàu có, dồi dào"},{"hanzi":"富足","pinyin":"fùzú","meaning":"đầy đủ sung túc, phong phú sung túc"},{"hanzi":"腹部","pinyin":"fùbù","meaning":"bụng, phần bụng"},{"hanzi":"腹泻","pinyin":"fùxiè","meaning":"đi tả, tiêu chảy"},{"hanzi":"覆盖","pinyin":"fùgài","meaning":"che phủ, bao phủ"},{"hanzi":"该","pinyin":"gāi","meaning":"nên, cần phải"},{"hanzi":"改版","pinyin":"gǎi bǎn","meaning":"sửa đổi, thay đổi"},{"hanzi":"改编","pinyin":"gǎibiān","meaning":"cải biên, soạn lại"},{"hanzi":"改动","pinyin":"gǎidòng","meaning":"sửa đổi, thay đổi"},{"hanzi":"改革开放","pinyin":"gǎigé kāifàng","meaning":"cải cách mở cửa"},{"hanzi":"改良","pinyin":"gǎiliáng","meaning":"thay đổi, cải tiến"},{"hanzi":"改名","pinyin":"gǎimíng","meaning":"đổi tên"},{"hanzi":"改日","pinyin":"gǎirì","meaning":"ngày khác, hôm khác"},{"hanzi":"改为","pinyin":"gǎiwéi","meaning":"thay đổi thành"},{"hanzi":"改邪归正","pinyin":"gǎixié-guīzhèng","meaning":"cải tà quy chính"},{"hanzi":"钙","pinyin":"gài","meaning":"canxi"},{"hanzi":"盖子","pinyin":"gàizi","meaning":"cái nắp, nắp vung"},{"hanzi":"概况","pinyin":"gàikuàng","meaning":"tình hình chung, khái quát"},{"hanzi":"概率","pinyin":"gàilǜ","meaning":"xác suất, tỉ lệ"},{"hanzi":"概论","pinyin":"gàilùn","meaning":"khái luận"},{"hanzi":"干戈","pinyin":"gāngē","meaning":"can qua, binh khí"},{"hanzi":"干旱","pinyin":"gānhàn","meaning":"khô hạn, hạn hán"},{"hanzi":"干燥","pinyin":"gānzào","meaning":"khô hanh, hanh"},{"hanzi":"甘心","pinyin":"gānxīn","meaning":"cam tâm"},{"hanzi":"肝脏","pinyin":"gānzàng","meaning":"lá gan"},{"hanzi":"尴尬","pinyin":"gāngà","meaning":"xấu hổ, bối rối, lúng túng"},{"hanzi":"赶赴","pinyin":"gǎnfù","meaning":"đi, đến"},{"hanzi":"赶往","pinyin":"gǎnwǎng","meaning":"nhanh chóng đến (một nơi nào đó)"},{"hanzi":"敢情","pinyin":"gǎnqíng","meaning":"thì ra, hóa ra, dĩ nhiên"},{"hanzi":"感(责任感)","pinyin":"gǎn(zérèngǎn)","meaning":"cảm giác, cảm thấy"},{"hanzi":"感触","pinyin":"gǎnchù","meaning":"cảm xúc"},{"hanzi":"感恩","pinyin":"gǎn'ēn","meaning":"cảm ơn, cảm tạ"},{"hanzi":"感激","pinyin":"gǎnjī","meaning":"cảm kích, biết ơn"},{"hanzi":"感慨","pinyin":"gǎnkǎi","meaning":"cảm khái"},{"hanzi":"感染","pinyin":"gǎnrǎn","meaning":"bị nhiễm, lây"},{"hanzi":"感染力","pinyin":"gǎnrǎnlì","meaning":"sức lan tỏa, sức lan truyền"},{"hanzi":"感叹","pinyin":"gǎntàn","meaning":"cảm thán, thốt lên"},{"hanzi":"感性","pinyin":"gǎnxìng","meaning":"cảm tính"},{"hanzi":"干部","pinyin":"gànbù","meaning":"cán bộ, công nhân viên chức"},{"hanzi":"干事","pinyin":"gànshì","meaning":"cán sự, trợ lý"},{"hanzi":"刚毅","pinyin":"gāngyì","meaning":"cương nghị, cương quyết"},{"hanzi":"纲领","pinyin":"gānglǐng","meaning":"cương lĩnh, chính cương"},{"hanzi":"纲要","pinyin":"gāngyào","meaning":"đề cương"},{"hanzi":"钢","pinyin":"gāng","meaning":"thép"},{"hanzi":"缸","pinyin":"gāng","meaning":"vại, ang, khạp, lu, chậu, vò"},{"hanzi":"港","pinyin":"gǎng","meaning":"bến cảng"},{"hanzi":"杠铃","pinyin":"gànglíng","meaning":"quả tạ"},{"hanzi":"高昂","pinyin":"gāo'áng","meaning":"ngẩng cao"},{"hanzi":"高傲","pinyin":"gāo'ào","meaning":"kiêu ngạo, kiêu căng"},{"hanzi":"高超","pinyin":"gāochāo","meaning":"cao siêu, tuyệt vời"},{"hanzi":"高低","pinyin":"gāodī","meaning":"cao thấp, độ cao"},{"hanzi":"高调","pinyin":"gāodiào","meaning":"nói khoác (vì với nỗi phách nỗi)"},{"hanzi":"高额","pinyin":"gāo'é","meaning":"món tiền kếch xù, khổng lồ"},{"hanzi":"高尔夫球","pinyin":"gāo'ěrfūqiú","meaning":"môn đánh gôn (thể thao)"},{"hanzi":"高峰期","pinyin":"gāofēngqī","meaning":"thời kỳ đỉnh điểm"},{"hanzi":"高贵","pinyin":"gāoguì","meaning":"cao quý, cao cả"},{"hanzi":"高空","pinyin":"gāokōng","meaning":"trên không, bầu trời cao"},{"hanzi":"高龄","pinyin":"gāolíng","meaning":"tuổi cao (chỉ những người ngoài 60 tuổi)"},{"hanzi":"高明","pinyin":"gāomíng","meaning":"cao minh, tài trí (kiến giải, kỹ năng)"},{"hanzi":"高山","pinyin":"gāoshān","meaning":"núi cao"},{"hanzi":"高效","pinyin":"gāoxiào","meaning":"hiệu suất cao, hiệu năng cao"},{"hanzi":"高新技术","pinyin":"gāoxīn-jìshù","meaning":"công nghệ cao"},{"hanzi":"高血压","pinyin":"gāoxiěyā","meaning":"cao huyết áp"},{"hanzi":"高压","pinyin":"gāoyā","meaning":"cao áp, cao thế"},{"hanzi":"高雅","pinyin":"gāoyǎ","meaning":"cao thượng, thanh cao"},{"hanzi":"高涨","pinyin":"gāozhǎng","meaning":"tăng vọt, dâng cao"},{"hanzi":"搞鬼","pinyin":"gǎo guǐ","meaning":"giở trò, ngấm ngầm giở trò"},{"hanzi":"搞笑","pinyin":"gǎoxiào","meaning":"gây cười"},{"hanzi":"告","pinyin":"gào","meaning":"nói cho biết, tuyên bố"},{"hanzi":"告别","pinyin":"gàobié","meaning":"tạm biệt"},{"hanzi":"告诫","pinyin":"gàojiè","meaning":"khuyên bảo, khuyến răn"},{"hanzi":"告示","pinyin":"gàoshì","meaning":"cho thị, thông báo"},{"hanzi":"告知","pinyin":"gàozhī","meaning":"cho biết, cho hay"},{"hanzi":"告状","pinyin":"gào zhuàng","meaning":"cáo trạng"},{"hanzi":"戈壁","pinyin":"gēbì","meaning":"sa mạc"},{"hanzi":"胳膊","pinyin":"gēbo","meaning":"cánh tay"},{"hanzi":"鸽子","pinyin":"gēzi","meaning":"chim bồ câu"},{"hanzi":"搁","pinyin":"gē","meaning":"đặt, kê, gác"},{"hanzi":"搁浅","pinyin":"gē qiǎn","meaning":"mắc cạn, gặp trở ngại"},{"hanzi":"搁置","pinyin":"gēzhì","meaning":"gác lại"},{"hanzi":"割","pinyin":"gē","meaning":"cắt"},{"hanzi":"歌剧","pinyin":"gējù","meaning":"ca kịch, opera"},{"hanzi":"歌颂","pinyin":"gēsòng","meaning":"ca tụng"},{"hanzi":"歌舞","pinyin":"gēwǔ","meaning":"múa hát"},{"hanzi":"歌咏","pinyin":"gēyǒng","meaning":"hát, ca hát"},{"hanzi":"革命","pinyin":"gémìng","meaning":"cách mạng"},{"hanzi":"格","pinyin":"gé","meaning":"ô, kẻ ô"},{"hanzi":"格格不入","pinyin":"gégé-bùrù","meaning":"không ăn khớp, không ăn ý"},{"hanzi":"格局","pinyin":"géjú","meaning":"kết cấu, bố cục"},{"hanzi":"格式","pinyin":"géshì","meaning":"cách thức, quy cách"},{"hanzi":"隔阂","pinyin":"géhé","meaning":"ngăn cách, xa rời"},{"hanzi":"隔离","pinyin":"gélí","meaning":"cách ly"},{"hanzi":"个案","pinyin":"gè'àn","meaning":"vụ án đặc biệt"},{"hanzi":"个头儿","pinyin":"gètóur","meaning":"hình dáng, cỡ, khổ"},{"hanzi":"各奔前程","pinyin":"gèbènqiánchéng","meaning":"đường ai nấy đi"},{"hanzi":"各式各样","pinyin":"gèshì-gèyàng","meaning":"đủ kiểu, đủ thể loại"},{"hanzi":"根基","pinyin":"gēnjī","meaning":"cơ sở, nền móng"},{"hanzi":"根深蒂固","pinyin":"gēnshēn-dìgù","meaning":"ăn sâu bén rễ"},{"hanzi":"根源","pinyin":"gēnyuán","meaning":"nguồn gốc"},{"hanzi":"根治","pinyin":"gēnzhì","meaning":"trị tận gốc"},{"hanzi":"跟不上","pinyin":"gēn bu shàng","meaning":"không theo kịp"},{"hanzi":"跟上","pinyin":"gēnshàng","meaning":"theo kịp"},{"hanzi":"跟踪","pinyin":"gēnzōng","meaning":"theo dõi, bám theo"},{"hanzi":"更改","pinyin":"gēnggǎi","meaning":"thay đổi, sửa đổi"},{"hanzi":"更衣室","pinyin":"gēngyīshì","meaning":"phòng thay đồ"},{"hanzi":"耕地","pinyin":"gēngdì","meaning":"canh tác, trồng trọt"},{"hanzi":"耿直","pinyin":"gěngzhí","meaning":"liêm khiết, chính trực"},{"hanzi":"工地","pinyin":"gōngdì","meaning":"công trường"},{"hanzi":"工会","pinyin":"gōnghuì","meaning":"công đoàn, công hội"},{"hanzi":"工科","pinyin":"gōngkē","meaning":"ngành kỹ thuật"},{"hanzi":"工商界","pinyin":"gōngshāngjiè","meaning":"giới công thương"},{"hanzi":"工序","pinyin":"gōngxù","meaning":"trình tự làm việc"},{"hanzi":"工整","pinyin":"gōngzhěng","meaning":"ngay ngắn, nắn nót"},{"hanzi":"工作量","pinyin":"gōngzuòliàng","meaning":"lượng công việc"},{"hanzi":"弓","pinyin":"gōng","meaning":"cung"},{"hanzi":"公安局","pinyin":"gōng'ānjú","meaning":"cục cảnh sát"},{"hanzi":"公车","pinyin":"gōngchē","meaning":"xe công"},{"hanzi":"公道","pinyin":"gōngdào","meaning":"lẽ phải, công lý"},{"hanzi":"公费","pinyin":"gōngfèi","meaning":"chi phí chung"},{"hanzi":"公共场所","pinyin":"gōnggòng chǎngsuǒ","meaning":"khu vực công cộng"},{"hanzi":"公关","pinyin":"gōngguān","meaning":"quan hệ cộng đồng"},{"hanzi":"公函","pinyin":"gōnghán","meaning":"công hàm, công văn"},{"hanzi":"公积金","pinyin":"gōngjījīn","meaning":"công quỹ"},{"hanzi":"公开信","pinyin":"gōngkāixìn","meaning":"bức thư ngỏ"},{"hanzi":"公款","pinyin":"gōngkuǎn","meaning":"công quỹ, tiền quỹ công"},{"hanzi":"公立","pinyin":"gōnglì","meaning":"công lập"},{"hanzi":"公墓","pinyin":"gōngmù","meaning":"nghĩa trang"},{"hanzi":"公仆","pinyin":"gōngpú","meaning":"đầy tớ"},{"hanzi":"公顷","pinyin":"gōngqǐng","meaning":"héc-ta"},{"hanzi":"公然","pinyin":"gōngrán","meaning":"ngang nhiên, lộ liễu"},{"hanzi":"公示","pinyin":"gōngshì","meaning":"thông báo công khai"},{"hanzi":"公事","pinyin":"gōngshì","meaning":"việc chung, công sự"},{"hanzi":"公务","pinyin":"gōngwù","meaning":"việc công, công vụ"},{"hanzi":"公益","pinyin":"gōngyì","meaning":"lợi ích chung"},{"hanzi":"公益性","pinyin":"gōngyìxìng","meaning":"tính công lợi"},{"hanzi":"公用","pinyin":"gōngyòng","meaning":"sử dụng chung"},{"hanzi":"公寓","pinyin":"gōngyù","meaning":"chung cư, căn hộ"},{"hanzi":"公约","pinyin":"gōngyuē","meaning":"công ước, quy định"},{"hanzi":"公证","pinyin":"gōngzhèng","meaning":"công chứng"},{"hanzi":"公职","pinyin":"gōngzhí","meaning":"nhiệm vụ, công chức"},{"hanzi":"功","pinyin":"gōng","meaning":"công, công lao"},{"hanzi":"功臣","pinyin":"gōngchén","meaning":"công thần, người có công"},{"hanzi":"功底","pinyin":"gōngdǐ","meaning":"nền tảng"},{"hanzi":"功劳","pinyin":"gōngláo","meaning":"công lao"},{"hanzi":"功力","pinyin":"gōnglì","meaning":"năng lực, tài năng"},{"hanzi":"功率","pinyin":"gōnglǜ","meaning":"công suất"},{"hanzi":"功效","pinyin":"gōngxiào","meaning":"hiệu quả"},{"hanzi":"攻","pinyin":"gōng","meaning":"đánh, tấn công"},{"hanzi":"攻读","pinyin":"gōngdú","meaning":"học tập, nghiên cứu"},{"hanzi":"攻关","pinyin":"gōngguān","meaning":"khắc phục khó khăn"},{"hanzi":"供","pinyin":"gōng","meaning":"cung cấp, cung ứng"},{"hanzi":"供不应求","pinyin":"gōngbùyìngqiú","meaning":"cung không đủ cầu"},{"hanzi":"供暖","pinyin":"gōngnuǎn","meaning":"cấp nhiệt"},{"hanzi":"供求","pinyin":"gōngqiú","meaning":"cung cầu"},{"hanzi":"宫殿","pinyin":"gōngdiàn","meaning":"cung điện"},{"hanzi":"宫廷","pinyin":"gōngtíng","meaning":"cung đình"},{"hanzi":"恭维","pinyin":"gōngwěi","meaning":"nịnh hót, tâng bốc"},{"hanzi":"恭喜","pinyin":"gōngxǐ","meaning":"chúc mừng"},{"hanzi":"拱","pinyin":"gǒng","meaning":"vòm, vòng cung"},{"hanzi":"共鸣","pinyin":"gòngmíng","meaning":"cộng hưởng"},{"hanzi":"共识","pinyin":"gòngshí","meaning":"nhận thức chung, đồng thuận"},{"hanzi":"共同体","pinyin":"gòngtóngtǐ","meaning":"cộng đồng"},{"hanzi":"共性","pinyin":"gòngxìng","meaning":"điểm giống nhau"},{"hanzi":"供奉","pinyin":"gòngfèng","meaning":"cung phụng, phụng dưỡng"},{"hanzi":"勾","pinyin":"gōu","meaning":"gạch bỏ, xóa bỏ, vẽ ra, phác thảo"},{"hanzi":"勾画","pinyin":"gōuhuà","meaning":"vẽ phác thảo, phác họa"},{"hanzi":"勾结","pinyin":"gōujié","meaning":"cấu kết, thông đồng"},{"hanzi":"钩","pinyin":"gōu","meaning":"cái móc"},{"hanzi":"钩子","pinyin":"gōuzi","meaning":"cái móc"},{"hanzi":"构思","pinyin":"gōusī","meaning":"cấu tứ, lời suy nghĩ"},{"hanzi":"构想","pinyin":"gōuxiǎng","meaning":"cấu tứ, ý tưởng"},{"hanzi":"购","pinyin":"gòu","meaning":"mua"},{"hanzi":"够呛","pinyin":"gòuqiàng","meaning":"quá sức, quá chừng"},{"hanzi":"估算","pinyin":"gūsuàn","meaning":"tính toán, ước tính"},{"hanzi":"沽名钓誉","pinyin":"gūmíng-diàoyù","meaning":"mua danh trục lợi"},{"hanzi":"孤单","pinyin":"gūdān","meaning":"cô đơn, đơn độc"},{"hanzi":"孤立","pinyin":"gúlì","meaning":"cô lập"},{"hanzi":"孤零零","pinyin":"gūlínglíng","meaning":"lẻ loi, trơ trọi"},{"hanzi":"孤陋寡闻","pinyin":"gūlòu-guǎwén","meaning":"kiến thức hạn hẹp"},{"hanzi":"辜负","pinyin":"gūfù","meaning":"phụ lòng"},{"hanzi":"古董","pinyin":"gǔdǒng","meaning":"đồ cổ"},{"hanzi":"古怪","pinyin":"gǔguài","meaning":"kỳ lạ, quái đản"},{"hanzi":"古迹","pinyin":"gǔjì","meaning":"di tích"},{"hanzi":"古今中外","pinyin":"gǔjīn-zhōngwài","meaning":"từ cổ chí kim"},{"hanzi":"古朴","pinyin":"gǔpǔ","meaning":"phong cách cổ xưa"},{"hanzi":"古人","pinyin":"gǔrén","meaning":"người xưa"},{"hanzi":"股份","pinyin":"gǔfèn","meaning":"cổ phần"},{"hanzi":"股民","pinyin":"gǔmín","meaning":"nhà đầu tư chứng khoán"},{"hanzi":"股市","pinyin":"gǔshì","meaning":"thị trường chứng khoán"},{"hanzi":"骨干","pinyin":"gǔgàn","meaning":"thân xương, trụ cột, cốt cán"},{"hanzi":"骨气","pinyin":"gǔqì","meaning":"khí phách, khí thế"},{"hanzi":"骨折","pinyin":"gǔzhé","meaning":"gãy xương"},{"hanzi":"鼓动","pinyin":"gǔdòng","meaning":"cổ vũ, cổ động"},{"hanzi":"鼓舞","pinyin":"gǔwǔ","meaning":"cổ vũ, khích lệ"},{"hanzi":"固然","pinyin":"gùrán","meaning":"tất nhiên, dĩ nhiên"},{"hanzi":"固执","pinyin":"gùzhí","meaning":"cố chấp"},{"hanzi":"故","pinyin":"gù","meaning":"cố ý, cố tình"},{"hanzi":"顾不得","pinyin":"gùbude","meaning":"không màng đến, không cần thiết"},{"hanzi":"顾不上","pinyin":"gùbushàng","meaning":"mặc kệ, không để ý"},{"hanzi":"顾及","pinyin":"gùjí","meaning":"chiếu cố, chú ý đến"},{"hanzi":"顾虑","pinyin":"gùlǜ","meaning":"lo lắng, băn khoăn"},{"hanzi":"顾全大局","pinyin":"gùquán-dàjú","meaning":"suy nghĩ toàn diện"},{"hanzi":"雇","pinyin":"gù","meaning":"thuê"},{"hanzi":"雇佣","pinyin":"gùyōng","meaning":"thuê làm, mướn làm"},{"hanzi":"雇员","pinyin":"gùyuán","meaning":"người làm thuê"},{"hanzi":"雇主","pinyin":"gùzhǔ","meaning":"chủ, chủ thuê"},{"hanzi":"刮分","pinyin":"guāfēn","meaning":"phân chia, chia cắt"},{"hanzi":"瓜子","pinyin":"guāzǐ","meaning":"hạt dưa"},{"hanzi":"刮风","pinyin":"guā fēng","meaning":"gió thổi"},{"hanzi":"寡妇","pinyin":"guǎfù","meaning":"quả phụ"},{"hanzi":"挂钩","pinyin":"guàgōu","meaning":"móc nối"},{"hanzi":"挂号","pinyin":"guàhào","meaning":"đăng ký"},{"hanzi":"挂念","pinyin":"guàniàn","meaning":"nhớ mong, lo lắng"},{"hanzi":"挂失","pinyin":"guà shī","meaning":"báo mất đồ"},{"hanzi":"乖","pinyin":"guāi","meaning":"ngoan ngoãn, khôn"},{"hanzi":"乖巧","pinyin":"guāiqiǎo","meaning":"thông minh, ngoan"},{"hanzi":"拐弯","pinyin":"guǎi wān","meaning":"rẽ, quẹo, ngoặt"},{"hanzi":"拐杖","pinyin":"guǎizhàng","meaning":"ba-toong"},{"hanzi":"怪不得","pinyin":"guàibude","meaning":"chẳng trách"},{"hanzi":"怪物","pinyin":"guàiwù","meaning":"quái vật"},{"hanzi":"怪异","pinyin":"guàiyì","meaning":"kỳ dị, kỳ quặc"},{"hanzi":"关掉","pinyin":"guāndiào","meaning":"tắt đi"},{"hanzi":"关节","pinyin":"guānjié","meaning":"khớp xương, mấu chốt"},{"hanzi":"关税","pinyin":"guānshuì","meaning":"thuế"},{"hanzi":"关头","pinyin":"guāntóu","meaning":"bước ngoặt"},{"hanzi":"关照","pinyin":"guānzhào","meaning":"chiếu cố, quan tâm"},{"hanzi":"观测","pinyin":"guāncè","meaning":"quan sát đo đạc"},{"hanzi":"观感","pinyin":"guāngǎn","meaning":"cảm tưởng, cảm giác"},{"hanzi":"观摩","pinyin":"guānmó","meaning":"quan sát học hỏi"},{"hanzi":"观赏","pinyin":"guānshǎng","meaning":"thưởng thức"},{"hanzi":"观望","pinyin":"guānwàng","meaning":"xem chừng, nom xem"},{"hanzi":"官兵","pinyin":"guānbīng","meaning":"quan binh"},{"hanzi":"官吏","pinyin":"guānlì","meaning":"quan lại"},{"hanzi":"官僚","pinyin":"guānliáo","meaning":"quan liêu"},{"hanzi":"官僚主义","pinyin":"guānliáo zhǔyì","meaning":"chế độ quan liêu"},{"hanzi":"官员","pinyin":"guānyuán","meaning":"quan chức"},{"hanzi":"棺材","pinyin":"guāncai","meaning":"quan tài"},{"hanzi":"管家","pinyin":"guǎnjiā","meaning":"quản gia, người quản lý"},{"hanzi":"管教","pinyin":"guǎnjiào","meaning":"quản giáo"},{"hanzi":"管理费","pinyin":"guǎnlǐfèi","meaning":"phí quản lý"},{"hanzi":"管辖","pinyin":"guǎnxiá","meaning":"quản lý, cai quản"},{"hanzi":"管用","pinyin":"guǎn yòng","meaning":"hữu hiệu, hiệu nghiệm"},{"hanzi":"管子","pinyin":"guǎnzi","meaning":"cái ống"},{"hanzi":"贯彻","pinyin":"guànchè","meaning":"quán triệt"},{"hanzi":"贯穿","pinyin":"guànchuān","meaning":"xuyên qua"},{"hanzi":"贯通","pinyin":"guàntōng","meaning":"thông suốt, thông hiểu"},{"hanzi":"惯","pinyin":"guàn","meaning":"thói quen, quen thân"},{"hanzi":"惯例","pinyin":"guànlì","meaning":"lệ cũ"},{"hanzi":"惯性","pinyin":"guànxìng","meaning":"quán tính"},{"hanzi":"灌","pinyin":"guàn","meaning":"tưới, dẫn nước"},{"hanzi":"灌溉","pinyin":"guàngài","meaning":"tưới, tưới nước"},{"hanzi":"灌输","pinyin":"guànshū","meaning":"truyền nước, đưa nước"},{"hanzi":"罐","pinyin":"guàn","meaning":"hộp, lọ, can"},{"hanzi":"罐头","pinyin":"guàntou","meaning":"lọ, hộp, chum"},{"hanzi":"光彩","pinyin":"guāngcǎi","meaning":"ánh sáng rực rỡ"},{"hanzi":"光碟","pinyin":"guāngdié","meaning":"Cố lên đi"},{"hanzi":"光顾","pinyin":"guānggù","meaning":"ghé tới, lui tới"},{"hanzi":"光滑","pinyin":"guānghuá","meaning":"trơn, trơn tru"},{"hanzi":"光环","pinyin":"guānghuán","meaning":"vầng sáng"},{"hanzi":"光缆","pinyin":"guānglǎn","meaning":"cáp quang"},{"hanzi":"光芒","pinyin":"guāngmáng","meaning":"hào quang, tia sáng"},{"hanzi":"光明磊落","pinyin":"guāngmíng-lěiluò","meaning":"quang minh lỗi lạc"},{"hanzi":"光泽","pinyin":"guāngzé","meaning":"lộng lẫy, rực rỡ"},{"hanzi":"广义","pinyin":"guǎngyì","meaning":"nghĩa rộng"},{"hanzi":"归根到底","pinyin":"guīgēn-dàodǐ","meaning":"sau tất cả, cuối cùng"},{"hanzi":"归还","pinyin":"guīhuán","meaning":"trả, trả lại"},{"hanzi":"归结","pinyin":"guījié","meaning":"tóm lại, kết thúc"},{"hanzi":"归来","pinyin":"guīlái","meaning":"trở về, quay về"},{"hanzi":"归纳","pinyin":"guīnà","meaning":"quy nạp, tóm tắt"},{"hanzi":"归属","pinyin":"guīshǔ","meaning":"thuộc về"},{"hanzi":"归宿","pinyin":"guīsù","meaning":"chốn trở về, chốn về"},{"hanzi":"龟","pinyin":"guī","meaning":"con rùa"},{"hanzi":"规格","pinyin":"guīgé","meaning":"quy cách, loại"},{"hanzi":"规矩","pinyin":"guījǔ","meaning":"quy củ, quy tắc, khuôn phép"},{"hanzi":"闺女","pinyin":"guīnǚ","meaning":"khuê nữ"},{"hanzi":"瑰宝","pinyin":"guībǎo","meaning":"vật quý hiếm, báu vật"},{"hanzi":"轨迹","pinyin":"guǐjì","meaning":"quỹ đạo"},{"hanzi":"柜台","pinyin":"guìtái","meaning":"quầy hàng, tủ bán hàng"},{"hanzi":"贵宾","pinyin":"guìbīn","meaning":"khách quý"},{"hanzi":"贵重","pinyin":"guìzhòng","meaning":"quý trọng, đáng giá"},{"hanzi":"贵族","pinyin":"guìzú","meaning":"quý tộc"},{"hanzi":"桂花","pinyin":"guìhuā","meaning":"hoa quế"},{"hanzi":"滚动","pinyin":"gǔndòng","meaning":"chuyển động"},{"hanzi":"棍","pinyin":"gùn","meaning":"côn, gậy"},{"hanzi":"棍子","pinyin":"gùnzi","meaning":"cây gậy"},{"hanzi":"国宝","pinyin":"guóbǎo","meaning":"quốc bảo, báu vật quốc gia"},{"hanzi":"国防","pinyin":"guófáng","meaning":"quốc phòng"},{"hanzi":"国画","pinyin":"guóhuà","meaning":"tranh Trung Quốc"},{"hanzi":"国徽","pinyin":"guóhuī","meaning":"quốc huy"},{"hanzi":"国情","pinyin":"guóqíng","meaning":"tình hình trong nước"},{"hanzi":"国土","pinyin":"guótǔ","meaning":"lãnh thổ"},{"hanzi":"国学","pinyin":"guóxué","meaning":"quốc học"},{"hanzi":"国有","pinyin":"guóyǒu","meaning":"thuộc sở hữu nhà nước"},{"hanzi":"果断","pinyin":"guǒduàn","meaning":"quả quyết, quyết đoán"},{"hanzi":"果园","pinyin":"guǒyuán","meaning":"vườn hoa quả"},{"hanzi":"果真","pinyin":"guǒzhēn","meaning":"quả nhiên, quả thật"},{"hanzi":"裹","pinyin":"guǒ","meaning":"bọc, quấn, bó"},{"hanzi":"过半","pinyin":"guòbàn","meaning":"quá nửa, quá bán"},{"hanzi":"过不去","pinyin":"guòbuqù","meaning":"cản trở, gây khó dễ"},{"hanzi":"过错","pinyin":"guòcuò","meaning":"lỗi lầm, sai lầm"},{"hanzi":"过道","pinyin":"guòdào","meaning":"hành lang"},{"hanzi":"过关","pinyin":"guò guān","meaning":"qua được, vượt ải"},{"hanzi":"过奖","pinyin":"guòjiǎng","meaning":"quá khen"},{"hanzi":"过节","pinyin":"guò/jié","meaning":"ăn tết"},{"hanzi":"过境","pinyin":"guò jìng","meaning":"quá cảnh, vận chuyển qua"},{"hanzi":"过滤","pinyin":"guòlǜ","meaning":"lọc (bột, nước...)"},{"hanzi":"过期","pinyin":"guò qī","meaning":"hết hạn, quá hạn"},{"hanzi":"过日子","pinyin":"guò rìzi","meaning":"sống, sinh hoạt"},{"hanzi":"过剩","pinyin":"guòshèng","meaning":"dôi dào, thừa"},{"hanzi":"过失","pinyin":"guòshī","meaning":"sai lầm, sai trái"},{"hanzi":"过头","pinyin":"guò tóu","meaning":"quá mức, quá chừng"},{"hanzi":"过往","pinyin":"guòwǎng","meaning":"qua lại, tới lui"},{"hanzi":"过意不去","pinyin":"guòyìbuqù","meaning":"không yên tâm"},{"hanzi":"过瘾","pinyin":"guò yǐn","meaning":"thỏa mãn, nghiện"},{"hanzi":"过硬","pinyin":"guò yìng","meaning":"vượt trội, nổi trội"},{"hanzi":"过早","pinyin":"guò zǎo","meaning":"sớm, non, trước"},{"hanzi":"海岸","pinyin":"hǎi'àn","meaning":"bờ biển"},{"hanzi":"海拔","pinyin":"hǎibá","meaning":"độ cao so với bạnực nước biển"},{"hanzi":"海滨","pinyin":"hǎibīn","meaning":"ven biển"},{"hanzi":"海盗","pinyin":"hǎidào","meaning":"cướp biển, hải tặc"},{"hanzi":"海量","pinyin":"hǎiliàng","meaning":"rộng lượng, độ lượng"},{"hanzi":"海绵","pinyin":"hǎimián","meaning":"bọt biển"},{"hanzi":"海面","pinyin":"hǎimiàn","meaning":"mặt biển"},{"hanzi":"海内外","pinyin":"hǎi nèiwài","meaning":"trong và ngoài nước"},{"hanzi":"海滩","pinyin":"hǎitān","meaning":"bãi biển"},{"hanzi":"海峡","pinyin":"hǎixiá","meaning":"eo biển"},{"hanzi":"海啸","pinyin":"hǎixiào","meaning":"biển động, sóng thần (do động đất đáy biển hoặc bão gây ra)"},{"hanzi":"海域","pinyin":"hǎiyù","meaning":"hải vực, vùng biển, hải phận"},{"hanzi":"海运","pinyin":"hǎiyùn","meaning":"vận chuyển đường biển"},{"hanzi":"海藻","pinyin":"hǎizǎo","meaning":"rong biển"},{"hanzi":"骇人听闻","pinyin":"hàiréntīngwén","meaning":"kinh khủng, khủng khiếp"},{"hanzi":"害虫","pinyin":"hàichóng","meaning":"côn trùng có hại"},{"hanzi":"害臊","pinyin":"hài sào","meaning":"xấu hổ, thẹn thùng"},{"hanzi":"害羞","pinyin":"hài xiū","meaning":"xấu hổ, ngại ngùng"},{"hanzi":"酣畅","pinyin":"hānchàng","meaning":"say sưa, thỏa chí"},{"hanzi":"酣睡","pinyin":"hānshuì","meaning":"ngủ say, ngon giấc"},{"hanzi":"含糊","pinyin":"hánhu","meaning":"mơ hồ, lơ mơ"},{"hanzi":"含蓄","pinyin":"hánxù","meaning":"bao hàm, bao gồm, súc tích, hàm súc"},{"hanzi":"函授","pinyin":"hánshòu","meaning":"hàm thụ"},{"hanzi":"涵盖","pinyin":"hángài","meaning":"bao gồm, bao hàm"},{"hanzi":"含义","pinyin":"hányì","meaning":"hàm nghĩa"},{"hanzi":"罕见","pinyin":"hǎnjiàn","meaning":"hiếm thấy"},{"hanzi":"汗水","pinyin":"hànshuǐ","meaning":"mồ hôi"},{"hanzi":"旱","pinyin":"hàn","meaning":"khô"},{"hanzi":"旱灾","pinyin":"hànzāi","meaning":"hạn hán"},{"hanzi":"捍卫","pinyin":"hànwèi","meaning":"bảo vệ, gìn giữ"},{"hanzi":"焊","pinyin":"hàn","meaning":"hàn"},{"hanzi":"行家","pinyin":"hángjiā","meaning":"người trong ngành"},{"hanzi":"行列","pinyin":"hángliè","meaning":"hàng, hàng ngũ"},{"hanzi":"行情","pinyin":"hángqíng","meaning":"tình hình thị trường"},{"hanzi":"航海","pinyin":"hánghǎi","meaning":"hàng hải"},{"hanzi":"航天","pinyin":"hángtiān","meaning":"hàng không vũ trụ (vệ tinh nhân tạo, tàu vũ trụ)"},{"hanzi":"航天员","pinyin":"hángtiānyuán","meaning":"phi hành gia"},{"hanzi":"航行","pinyin":"hángxíng","meaning":"đi, vận chuyển (bằng đường hàng không và đường thủy)"},{"hanzi":"航运","pinyin":"hángyùn","meaning":"vận tải đường thủy, vận tải đường biển"},{"hanzi":"毫不","pinyin":"háo bù","meaning":"không chút"},{"hanzi":"毫不犹豫","pinyin":"háo bù yóuyù","meaning":"không một chút lưỡng lự, không do dự"},{"hanzi":"毫无","pinyin":"háo wú","meaning":"không hề, không chút"},{"hanzi":"豪华","pinyin":"háohuá","meaning":"lộng lẫy, rực rỡ, tráng lệ, sang trọng (kiến trúc, vật phẩm hoặc trang sức)"},{"hanzi":"好比","pinyin":"hǎobǐ","meaning":"giống như, ví như, cũng như là, như"},{"hanzi":"好歹","pinyin":"hǎodǎi","meaning":"tốt xấu, phải trái"},{"hanzi":"好感","pinyin":"hǎogǎn","meaning":"thiện cảm, cảm tình, ấn tượng tốt"},{"hanzi":"好坏","pinyin":"hǎohuài","meaning":"rất xấu"},{"hanzi":"好家伙","pinyin":"hǎojiāhuo","meaning":"cứ thật, khá lắm, giỏi thật, hay thật (thán từ, biểu thị ngạc nhiên hoặc khen ngợi)"},{"hanzi":"好评","pinyin":"hǎopíng","meaning":"khen ngợi, đánh giá tốt"},{"hanzi":"好说","pinyin":"hǎoshuō","meaning":"đồng ý, dễ bàn"},{"hanzi":"好笑","pinyin":"hǎoxiào","meaning":"buồn cười"},{"hanzi":"好心","pinyin":"hǎoxīn","meaning":"hảo tâm, lòng tốt, lòng chân thật"},{"hanzi":"好心人","pinyin":"hǎoxīnrén","meaning":"người tốt"},{"hanzi":"好意","pinyin":"hǎoyì","meaning":"lòng tốt, sự tử tế, ý tốt"},{"hanzi":"好在","pinyin":"hǎozài","meaning":"may mà, được cái"},{"hanzi":"号称","pinyin":"hàochēng","meaning":"được gọi là, mệnh danh, xưng là, có tiếng là"},{"hanzi":"好客","pinyin":"hàokè","meaning":"hiếu khách, mến khách"},{"hanzi":"好奇心","pinyin":"hàoqíxīn","meaning":"quan tâm, chú ý, thích thú"},{"hanzi":"耗","pinyin":"hào","meaning":"tiêu hao, hao, tốn, tốn kém"},{"hanzi":"耗费","pinyin":"hàofèi","meaning":"tiêu hao, hao phí, hao mòn"},{"hanzi":"耗时","pinyin":"hàoshí","meaning":"tốn nhiều thời gian, đòi hỏi nhiều thời gian"},{"hanzi":"浩劫","pinyin":"hàojié","meaning":"tai họa lớn, tai vạ lớn, đại nạn"},{"hanzi":"呵护","pinyin":"hēhù","meaning":"che chở, phù hộ"},{"hanzi":"苗","pinyin":"hēmiáo","meaning":"mạ, cây mạ, mạ giống"},{"hanzi":"合唱","pinyin":"héchàng","meaning":"hợp xướng, đồng ca"},{"hanzi":"合乎","pinyin":"héhū","meaning":"hợp, phù hợp, hợp với"},{"hanzi":"合伙","pinyin":"héhuǒ","meaning":"kết phường, kết hội, chung vốn, hùn vốn"},{"hanzi":"合计","pinyin":"héjì","meaning":"cộng lại, tổng cộng, tính gộp lại"},{"hanzi":"合情合理","pinyin":"héqíng-hélǐ","meaning":"hợp tình hợp lý"},{"hanzi":"合影","pinyin":"hé yǐng","meaning":"chụp ảnh chung"},{"hanzi":"合资","pinyin":"hézī","meaning":"hùn vốn, góp vốn"},{"hanzi":"合作社","pinyin":"hézuòshè","meaning":"hợp tác xã"},{"hanzi":"何必","pinyin":"hébì","meaning":"hà cớ, cảm gì"},{"hanzi":"何处","pinyin":"hé chù","meaning":"ở đâu, chỗ nào"},{"hanzi":"何苦","pinyin":"hékǔ","meaning":"tội gì, cần gì, bất tất tự làm khổ mình, việc gì mà phải"},{"hanzi":"何况","pinyin":"hékuàng","meaning":"và lại, huống hồ"},{"hanzi":"何时","pinyin":"hé shí","meaning":"bao thuở, khi nào, lúc nào"},{"hanzi":"和蔼","pinyin":"hé'ǎi","meaning":"hòa nhã, dễ gần, nhã nhặn"},{"hanzi":"和解","pinyin":"héjiě","meaning":"hòa giải, hòa thuận, giảng hòa"},{"hanzi":"和睦","pinyin":"hémù","meaning":"hòa thuận, vui vẻ"},{"hanzi":"和平共处","pinyin":"hépíng gòngchǔ","meaning":"chung sống hòa bình"},{"hanzi":"和气","pinyin":"héqì","meaning":"ôn hòa, điểm đạm"},{"hanzi":"和尚","pinyin":"héshang","meaning":"hòa thượng, sư tăng"},{"hanzi":"河流","pinyin":"héliú","meaning":"sông, sông ngòi"},{"hanzi":"河畔","pinyin":"hépàn","meaning":"bờ sông, đồng bằng sông"},{"hanzi":"荷花","pinyin":"héhuā","meaning":"hoa sen, bông sen"},{"hanzi":"核","pinyin":"hé","meaning":"hạch, nhân (những vật có bộ phận như hạt)"},{"hanzi":"核电站","pinyin":"hédiànzhàn","meaning":"nhà máy năng lượng nguyên tử"},{"hanzi":"核对","pinyin":"héduì","meaning":"thẩm tra đối chiếu, kiểm tra"},{"hanzi":"核能","pinyin":"hénéng","meaning":"năng lượng hạt nhân"},{"hanzi":"核实","pinyin":"héshí","meaning":"thẩm tra, xác minh"},{"hanzi":"核桃","pinyin":"hétáo","meaning":"cây hạch đào"},{"hanzi":"核武器","pinyin":"héwǔqì","meaning":"vũ khí hạt nhân"},{"hanzi":"贺电","pinyin":"hèdiàn","meaning":"điện mừng, điện chúc mừng"},{"hanzi":"贺信","pinyin":"hèxìn","meaning":"thư chúc mừng"},{"hanzi":"喝彩","pinyin":"hè cǎi","meaning":"hoan hô, reo hò"},{"hanzi":"赫然","pinyin":"hèrán","meaning":"thình lình, bất ngờ, bỗng nhiên"},{"hanzi":"鹤立鸡群","pinyin":"hè lì jī qún","meaning":"hạc đứng giữa đàn gà, nổi bật giữa đám đông"},{"hanzi":"黑白","pinyin":"hēibái","meaning":"đen trắng, thiện ác"},{"hanzi":"黑客","pinyin":"hēikè","meaning":"tin tặc, hacker"},{"hanzi":"黑马","pinyin":"hēimǎ","meaning":"hắc mã (không lường được thực lực với người cạnh tranh)"},{"hanzi":"黑手","pinyin":"hēishǒu","meaning":"bàn tay đen, bàn tay gây tội ác"},{"hanzi":"黑心","pinyin":"hēixīn","meaning":"lòng dạ hiểm độc, bụng dạ độc ác"},{"hanzi":"嗨","pinyin":"hāi","meaning":"này, ấy, nè (biểu thị sự nhắc nhở, gọi)"},{"hanzi":"痕迹","pinyin":"hénjì","meaning":"vết tích, dấu vết"},{"hanzi":"恨不得","pinyin":"hèn bu de","meaning":"hận không thể, mong ước"},{"hanzi":"哼","pinyin":"hēng","meaning":"rên, rên rỉ, hừm"},{"hanzi":"横七竖八","pinyin":"héngqī-shùbā","meaning":"tứ tung, bừa bộn"},{"hanzi":"横向","pinyin":"héngxiàng","meaning":"ngang, bình dăng"},{"hanzi":"横","pinyin":"héng","meaning":"ngang tàng, hung ác"},{"hanzi":"轰","pinyin":"hōng","meaning":"nổ, xua đuổi"},{"hanzi":"轰动","pinyin":"hōngdòng","meaning":"náo động, chấn động"},{"hanzi":"轰炸","pinyin":"hōngzhà","meaning":"ném bom, oanh tạc"},{"hanzi":"哄","pinyin":"hǒng","meaning":"dỗ, ru (trẻ con)"},{"hanzi":"哄堂大笑","pinyin":"hǒngtáng-dàxiào","meaning":"cười vang, cười rộ"},{"hanzi":"烘干","pinyin":"hōnggān","meaning":"hong khô, sấy khô"},{"hanzi":"烘托","pinyin":"hōngtuō","meaning":"tô đậm, làm nổi (một cách vẽ tranh Trung Quốc)"},{"hanzi":"弘扬","pinyin":"hóngyáng","meaning":"phát huy mạnh, làm rạng rỡ"},{"hanzi":"红灯","pinyin":"hóngdēng","meaning":"đèn đỏ"},{"hanzi":"红火","pinyin":"hónghuo","meaning":"náo nhiệt, rực rỡ"},{"hanzi":"红扑扑","pinyin":"hóngpūpū","meaning":"đỏ bừng, đỏ sẫm"},{"hanzi":"红润","pinyin":"hóngrùn","meaning":"hồng hào, mịn màng"},{"hanzi":"红薯","pinyin":"hóngshǔ","meaning":"khoai lang"},{"hanzi":"红眼","pinyin":"hóngyǎn","meaning":"giận, tức giận"},{"hanzi":"宏观","pinyin":"hóngguān","meaning":"vĩ mô"},{"hanzi":"宏伟","pinyin":"hóngwěi","meaning":"hào hùng, vĩ đại (quy mô, kế hoạch...)"},{"hanzi":"洪亮","pinyin":"hóngliàng","meaning":"vang dội, vang vọng (âm thanh)"},{"hanzi":"哄","pinyin":"hǒng","meaning":"lừa, đánh lừa"},{"hanzi":"哄","pinyin":"hǒng","meaning":"làm ồn, gào thét"},{"hanzi":"喉咙","pinyin":"hóu-lóng","meaning":"yết hầu, cổ họng"},{"hanzi":"吼","pinyin":"hǒu","meaning":"gầm, gào (dã thú)"},{"hanzi":"后备","pinyin":"hòubèi","meaning":"hậu bị, dự bị"},{"hanzi":"后备箱","pinyin":"hòubèixiāng","meaning":"cốp sau xe"},{"hanzi":"后代","pinyin":"hòudài","meaning":"đời sau, thời đại sau"},{"hanzi":"后盾","pinyin":"hòudùn","meaning":"hậu thuẫn, ủng hộ"},{"hanzi":"后顾之忧","pinyin":"hòugùzhīyōu","meaning":"lo lắng về sau"},{"hanzi":"后期","pinyin":"hòuqī","meaning":"giai đoạn sau, thời kỳ sau"},{"hanzi":"后勤","pinyin":"hòuqín","meaning":"hậu cần"},{"hanzi":"后人","pinyin":"hòurén","meaning":"người đời sau, người sau"},{"hanzi":"后台","pinyin":"hòutái","meaning":"hậu trường, hậu đài"},{"hanzi":"后退","pinyin":"hòutuì","meaning":"lùi về sau, thụt lùi"},{"hanzi":"后续","pinyin":"hòuxù","meaning":"kế tiếp, tiếp theo"},{"hanzi":"后遗症","pinyin":"hòuyízhèng","meaning":"di chứng, di tật"},{"hanzi":"后裔","pinyin":"hòuyì","meaning":"hậu duệ, con cháu"},{"hanzi":"后者","pinyin":"hòuzhě","meaning":"người sau, cái sau"},{"hanzi":"厚道","pinyin":"hòudao","meaning":"phúc hậu, hiền hậu"},{"hanzi":"厚度","pinyin":"hòudù","meaning":"độ dày, bề dày"},{"hanzi":"候选人","pinyin":"hòuxuǎnrén","meaning":"người được đề cử, người ứng cử"},{"hanzi":"呼风唤雨","pinyin":"hūfēng-huànyǔ","meaning":"kêu mưa gọi gió, hô gió gọi mưa (vì hoạt động điên cuồng của bọn phản động.)"},{"hanzi":"呼唤","pinyin":"hūhuàn","meaning":"kêu gọi, hiệu triệu"},{"hanzi":"呼救","pinyin":"hūjiù","meaning":"kêu cứu, kêu la"},{"hanzi":"呼声","pinyin":"hūshēng","meaning":"tiếng hô, tiếng gào"},{"hanzi":"呼应","pinyin":"hūyìng","meaning":"hô ứng, ăn ý"},{"hanzi":"呼吁","pinyin":"hūyù","meaning":"hô hào, kêu gọi"},{"hanzi":"忽高忽低","pinyin":"hūgāo-hūdī","meaning":"lúc cao lúc thấp"},{"hanzi":"忽悠","pinyin":"hūyou","meaning":"chập chờn, lắc lư"},{"hanzi":"胡闹","pinyin":"húnào","meaning":"càn quấy, quấy rối"},{"hanzi":"胡说","pinyin":"húshuō","meaning":"nói bậy, nói xằng"},{"hanzi":"胡思乱想","pinyin":"húsī-luànxiǎng","meaning":"nghĩ ngợi lung tung, nghĩ vớ vẩn"},{"hanzi":"湖","pinyin":"hú","meaning":"hồ"},{"hanzi":"糊","pinyin":"hú","meaning":"dán"},{"hanzi":"糊涂","pinyin":"hútú","meaning":"không rõ, mơ hồ"},{"hanzi":"互补","pinyin":"hùbǔ","meaning":"bổ trợ cho nhau"},{"hanzi":"互访","pinyin":"hùfǎng","meaning":"trao đổi chuyến thăm"},{"hanzi":"互信","pinyin":"hùxìn","meaning":"tin cậy lẫn nhau"},{"hanzi":"互助","pinyin":"hùzhù","meaning":"giúp đỡ nhau, hỗ trợ"},{"hanzi":"护理","pinyin":"hùlǐ","meaning":"hộ lý, người hộ lý"},{"hanzi":"花瓣","pinyin":"huābàn","meaning":"cánh hoa"},{"hanzi":"花卉","pinyin":"huāhuì","meaning":"hoa cỏ, hoa cảnh"},{"hanzi":"花纹","pinyin":"huāwén","meaning":"hoa văn"},{"hanzi":"花样","pinyin":"huāyàng","meaning":"hoa văn, chủng loại"},{"hanzi":"划算","pinyin":"huásuàn","meaning":"tính toán, kế toán"},{"hanzi":"华丽","pinyin":"huálì","meaning":"hoa lệ, lộng lẫy, đẹp đẽ"},{"hanzi":"华侨","pinyin":"huáqiáo","meaning":"Hoa Kiều"},{"hanzi":"华裔","pinyin":"huáyì","meaning":"người gốc Hoa"},{"hanzi":"哗变","pinyin":"huábiàn","meaning":"bất ngờ làm phản, bất ngờ chống lệnh, bất ngờ tạo phản, nổi loạn, nổi dậy, binh biến (quân đội)"},{"hanzi":"哗然","pinyin":"huárán","meaning":"ồn lên, ồn ào, rộ lên, náo động"},{"hanzi":"滑冰","pinyin":"huábīng","meaning":"trượt băng"},{"hanzi":"滑稽","pinyin":"huáji","meaning":"gây cười, chọc cười"},{"hanzi":"滑梯","pinyin":"huátī","meaning":"cầu trượt"},{"hanzi":"滑雪","pinyin":"huáxuě","meaning":"trượt tuyết"},{"hanzi":"化肥","pinyin":"huàféi","meaning":"phân hoá học, phân bón hoá học"},{"hanzi":"化身","pinyin":"huàshēn","meaning":"hoá thân, cụ thể hóa khái niệm trừu tượng"},{"hanzi":"化纤","pinyin":"huàxiān","meaning":"sợi hoá học, sợi nhân tạo"},{"hanzi":"化险为夷","pinyin":"huàxiǎnwéiyí","meaning":"biến nguy thành an"},{"hanzi":"化验","pinyin":"huàyàn","meaning":"hóa nghiệm, phân chất"},{"hanzi":"化妆","pinyin":"huàzhuāng","meaning":"trang điểm, make up"},{"hanzi":"划时代","pinyin":"huàshídài","meaning":"mở ra thời đại mới, đánh dấu thời đại mới"},{"hanzi":"画册","pinyin":"huàcè","meaning":"tập tranh, tập họa"},{"hanzi":"画龙点睛","pinyin":"huàlóng-diǎnjīng","meaning":"vẽ rồng điểm mắt, làm nổi bật nét chính"},{"hanzi":"画蛇添足","pinyin":"huàshé-tiānzú","meaning":"vẽ rắn thêm chân, vẽ vời vô ích, làm những chuyện vô ích"},{"hanzi":"画展","pinyin":"huàzhǎn","meaning":"triển lãm tranh"},{"hanzi":"话费","pinyin":"huàfèi","meaning":"tiền điện thoại"},{"hanzi":"话筒","pinyin":"huàtǒng","meaning":"micro, mi-crô"},{"hanzi":"话语","pinyin":"huàyǔ","meaning":"ngôn ngữ, lời nói, câu nói"},{"hanzi":"怀抱","pinyin":"huáibào","meaning":"ôm ấp, ấp ủ"},{"hanzi":"怀旧","pinyin":"huáijiù","meaning":"nhớ chuyện xưa, nhớ chuyện cũ"},{"hanzi":"怀里","pinyin":"huáilǐ","meaning":"trong lòng"},{"hanzi":"怀孕","pinyin":"huáiyùn","meaning":"mang thai"},{"hanzi":"怀着","pinyin":"huáizhe","meaning":"mang trong mình, ấm ấp"},{"hanzi":"槐树","pinyin":"huáishù","meaning":"cây hòe"},{"hanzi":"坏事","pinyin":"huàishì","meaning":"chuyện xấu, làm hư"},{"hanzi":"欢呼","pinyin":"huānhū","meaning":"hoan hô, reo hò"},{"hanzi":"欢聚","pinyin":"huānjù","meaning":"đoàn tụ, sum họp"},{"hanzi":"欢快","pinyin":"huānkuài","meaning":"khoan khoái, vui thích"},{"hanzi":"欢声笑语","pinyin":"huānshēng-xiàoyǔ","meaning":"tiếng cười nói rộn ràng"},{"hanzi":"还款","pinyin":"huán kuǎn","meaning":"trả nợ"},{"hanzi":"还原","pinyin":"huán yuán","meaning":"trở về trạng thái cũ"},{"hanzi":"环球","pinyin":"huánqiú","meaning":"vòng quanh trái đất"},{"hanzi":"环绕","pinyin":"huánrào","meaning":"xung quanh, xoay quanh"},{"hanzi":"缓","pinyin":"huǎn","meaning":"chậm chạp, trì hoãn, kéo dài"},{"hanzi":"缓和","pinyin":"huǎnhé","meaning":"hòa dịu, xoa dịu (tình hình, không khí)"},{"hanzi":"缓缓","pinyin":"huǎnhuǎn","meaning":"chậm chạp, từ từ"},{"hanzi":"缓慢","pinyin":"huǎnmàn","meaning":"chậm chậm, chậm rãi"},{"hanzi":"幻觉","pinyin":"huànjué","meaning":"ảo giác"},{"hanzi":"幻影","pinyin":"huànyǐng","meaning":"ảo ảnh"},{"hanzi":"换成","pinyin":"huànchéng","meaning":"đổi thành"},{"hanzi":"换取","pinyin":"huànqǔ","meaning":"đổi lấy"},{"hanzi":"换位","pinyin":"huànwèi","meaning":"đổi, đổi chỗ"},{"hanzi":"换言之","pinyin":"huànyánzhī","meaning":"nói cách khác"},{"hanzi":"唤起","pinyin":"huànqǐ","meaning":"gọi dậy, kêu gọi"},{"hanzi":"患","pinyin":"huàn","meaning":"mắc, bị (bệnh)"},{"hanzi":"患病","pinyin":"huànbìng","meaning":"bị bệnh, sinh bệnh, phát bệnh"},{"hanzi":"患有","pinyin":"huànyǒu","meaning":"mắc, bị (bệnh)"},{"hanzi":"焕发","pinyin":"huànfā","meaning":"tỏa sáng, rực rỡ"},{"hanzi":"荒","pinyin":"huāng","meaning":"hoang vu, hoang vắng"},{"hanzi":"荒诞","pinyin":"huāngdàn","meaning":"hoang đường, vô lý"},{"hanzi":"荒凉","pinyin":"huāngliáng","meaning":"hoang vắng, hoang liêu"},{"hanzi":"荒谬","pinyin":"huāngmiù","meaning":"sai lầm, vô lý, vô cùng sai lầm"},{"hanzi":"慌乱","pinyin":"huāngluàn","meaning":"hỗn loạn, lộn xộn"},{"hanzi":"慌张","pinyin":"huāng-zhāng","meaning":"hoang mang rối loạn, luống cuống, lật đật"},{"hanzi":"皇宫","pinyin":"huánggōng","meaning":"hoàng cung, cung vua"},{"hanzi":"皇后","pinyin":"huánghòu","meaning":"hoàng hậu, vợ vua"},{"hanzi":"皇上","pinyin":"huángshang","meaning":"hoàng thượng"},{"hanzi":"皇室","pinyin":"huángshì","meaning":"hoàng thất, hoàng gia"},{"hanzi":"黄昏","pinyin":"huánghūn","meaning":"hoàng hôn, xế chiều"},{"hanzi":"恍然大悟","pinyin":"huǎngrán-dàwù","meaning":"bỗng nhiên tỉnh ngộ"},{"hanzi":"晃","pinyin":"huǎng","meaning":"sáng chói, chói chang"},{"hanzi":"谎话","pinyin":"huǎnghuà","meaning":"lời nói dối"},{"hanzi":"谎言","pinyin":"huǎngyán","meaning":"lời nói dối"},{"hanzi":"晃","pinyin":"huǎng","meaning":"thoáng qua, vượt qua"},{"hanzi":"晃荡","pinyin":"huàngdang","meaning":"lắc lư, dao động"},{"hanzi":"灰","pinyin":"huī","meaning":"tro, than, bụi"},{"hanzi":"灰尘","pinyin":"huīchén","meaning":"bụi đất, bụi bặm"},{"hanzi":"灰心","pinyin":"huīxīn","meaning":"nản lòng, buồn lòng"},{"hanzi":"挥","pinyin":"huī","meaning":"khua, khoa, vẫy"},{"hanzi":"辉煌","pinyin":"huīhuáng","meaning":"huy hoàng"},{"hanzi":"回归","pinyin":"huíguī","meaning":"trở về, quay về"},{"hanzi":"回扣","pinyin":"huíkòu","meaning":"tiền boa, tiền hoa hồng"},{"hanzi":"回馈","pinyin":"huíkuì","meaning":"hoàn lại, trả lại"},{"hanzi":"回落","pinyin":"huíluò","meaning":"hạ xuống, tuột xuống (mực nước, vật giá...)"},{"hanzi":"回升","pinyin":"huíshēng","meaning":"tăng trở lại, lên lại"},{"hanzi":"回首","pinyin":"huíshǒu","meaning":"quay đầu lại, nhớ lại"},{"hanzi":"回味","pinyin":"huíwèi","meaning":"dư vị (sau khi ăn)"},{"hanzi":"回想","pinyin":"huíxiǎng","meaning":"hồi tưởng, nhớ lại, nghĩ lại"},{"hanzi":"回忆录","pinyin":"huíyìlù","meaning":"hồi ký"},{"hanzi":"悔恨","pinyin":"huǐhèn","meaning":"hối hận, hối lỗi, ăn năn"},{"hanzi":"毁坏","pinyin":"huǐhuài","meaning":"hủy hoại, phá hoại"},{"hanzi":"毁灭","pinyin":"huǐmiè","meaning":"tiêu diệt, hủy diệt, phá hủy"},{"hanzi":"汇合","pinyin":"huìhé","meaning":"tụ tập, hợp lại"},{"hanzi":"汇集","pinyin":"huìjí","meaning":"tập hợp, gom góp, tập trung"},{"hanzi":"汇聚","pinyin":"huìjù","meaning":"hội tụ, tụ tập, tập hợp"},{"hanzi":"会场","pinyin":"huìchǎng","meaning":"hội trường"},{"hanzi":"会面","pinyin":"huìmiàn","meaning":"gặp, gặp mặt"},{"hanzi":"会晤","pinyin":"huiwù","meaning":"gặp mặt, hội ngộ"},{"hanzi":"会意","pinyin":"huiyì","meaning":"hội ý, hiểu ý"},{"hanzi":"会诊","pinyin":"huì zhěn","meaning":"hội chẩn (y học)"},{"hanzi":"绘声绘色","pinyin":"huìshēng-huìsè","meaning":"sinh động như thật"},{"hanzi":"贿赂","pinyin":"huìlù","meaning":"hối lộ, đút lót"},{"hanzi":"昏迷","pinyin":"hūnmí","meaning":"hôn mê, mê man"},{"hanzi":"婚纱","pinyin":"hūnshā","meaning":"áo cưới, váy cưới"},{"hanzi":"婚姻","pinyin":"hūnyīn","meaning":"hôn nhân, cưới xin"},{"hanzi":"浑身","pinyin":"húnshēn","meaning":"toàn thân, khắp người"},{"hanzi":"魂","pinyin":"hún","meaning":"linh hồn, hồn"},{"hanzi":"混凝土","pinyin":"hùnníngtǔ","meaning":"bê tông"},{"hanzi":"混淆","pinyin":"hùnxiáo","meaning":"lẫn lộn, xáo trộn"},{"hanzi":"混浊","pinyin":"hùnzhuó","meaning":"vẩn đục, nhớ bẩn"},{"hanzi":"豁","pinyin":"huō","meaning":"vứt bỏ, mất"},{"hanzi":"豁出去","pinyin":"huō chuqù","meaning":"bất cứ giá nào, không đếm xỉa đến"},{"hanzi":"活该","pinyin":"huógāi","meaning":"đáng đời"},{"hanzi":"活期","pinyin":"huóqī","meaning":"không kỳ hạn, không định kỳ"},{"hanzi":"活儿","pinyin":"huór","meaning":"công việc"},{"hanzi":"火暴","pinyin":"huǒbào","meaning":"nóng nảy, nóng tính, nóng vội"},{"hanzi":"火锅","pinyin":"huǒguō","meaning":"lẩu (món ăn)"},{"hanzi":"火候","pinyin":"huǒhòu","meaning":"lúc gay go, giờ phút mấu chốt, đúng lúc khác quan trọng, đúng lúc"},{"hanzi":"火花","pinyin":"huǒhuā","meaning":"tia lửa, đốm lửa"},{"hanzi":"火炬","pinyin":"huǒjù","meaning":"đuốc, bó đuốc"},{"hanzi":"火辣辣","pinyin":"huǒlālā","meaning":"nóng bỏng, nóng rát"},{"hanzi":"火热","pinyin":"huǒrè","meaning":"hừng hực, nhiệt tình, nhiệt huyết"},{"hanzi":"火山","pinyin":"huǒshān","meaning":"núi lửa"},{"hanzi":"火速","pinyin":"huǒsù","meaning":"hỏa tốc, khẩn cấp"},{"hanzi":"火焰","pinyin":"huǒyàn","meaning":"ngọn lửa"},{"hanzi":"火药","pinyin":"huǒyào","meaning":"hỏa dược, thuốc nổ"},{"hanzi":"伙食","pinyin":"huǒshí","meaning":"cơm nước, ăn uống (thường chỉ việc ăn uống trong nhà trường, bộ đội, cơ quan...)"},{"hanzi":"或多或少","pinyin":"huòduō-huòshǎo","meaning":"hoặc nhiều hoặc ít"},{"hanzi":"货币","pinyin":"huòbì","meaning":"tiền tệ, tiền mặt"},{"hanzi":"货车","pinyin":"huòchē","meaning":"xe vận tải, xe hàng"},{"hanzi":"货物","pinyin":"huòwù","meaning":"hàng hóa"},{"hanzi":"货运","pinyin":"huòyùn","meaning":"vận chuyển hàng hóa"},{"hanzi":"获胜","pinyin":"huòshèng","meaning":"thắng lợi, chiến thắng, giành thắng lợi"},{"hanzi":"获悉","pinyin":"huòxī","meaning":"được biết, được tin"},{"hanzi":"祸害","pinyin":"huòhài","meaning":"tai họa, tai vạ, tai hại"},{"hanzi":"霍乱","pinyin":"huòluàn","meaning":"bệnh dịch tả, dịch tả"},{"hanzi":"豁达","pinyin":"huòdá","meaning":"rộng rãi, rộng lượng, độ lượng"},{"hanzi":"几率","pinyin":"jǐlǜ","meaning":"xác suất"},{"hanzi":"讥笑","pinyin":"jīxiào","meaning":"châm biếm, chế giễu, chế nhạo, nhạo báng"},{"hanzi":"饥饿","pinyin":"jī'è","meaning":"đói, đói bụng"},{"hanzi":"机舱","pinyin":"jīcāng","meaning":"khoang tàu, khoang máy bay"},{"hanzi":"机动","pinyin":"jīdòng","meaning":"cơ động, chạy máy, gắn máy; linh hoạt (vận dụng); linh động"},{"hanzi":"机灵","pinyin":"jīling","meaning":"thông minh, lanh lợi, cơ trí"},{"hanzi":"机密","pinyin":"jīmì","meaning":"cơ mật, bí mật"},{"hanzi":"机智","pinyin":"jīzhì","meaning":"lanh trí, tinh nhanh, linh hoạt"},{"hanzi":"肌肤","pinyin":"jīfū","meaning":"da thịt, nước da"},{"hanzi":"积","pinyin":"jī","meaning":"tích lũy, tích góp, gom, gom góp"},{"hanzi":"积淀","pinyin":"jīdiàn","meaning":"tích lũy, gom góp"},{"hanzi":"积蓄","pinyin":"jīxù","meaning":"tích góp, dự trữ"},{"hanzi":"基本功","pinyin":"jīběngōng","meaning":"kiến thức cơ bản, kỹ năng cơ bản"},{"hanzi":"基层","pinyin":"jīcéng","meaning":"cơ sở"},{"hanzi":"基因","pinyin":"jīyīn","meaning":"gen (đơn vị cơ bản của di truyền)"},{"hanzi":"基于","pinyin":"jīyú","meaning":"căn cứ vào, dựa vào, dựa trên"},{"hanzi":"基准","pinyin":"jīzhǔn","meaning":"tiêu chuẩn cơ bản, chuẩn (khi đo đạc)"},{"hanzi":"畸形","pinyin":"jīxíng","meaning":"dị thường, bất thường"},{"hanzi":"激发","pinyin":"jīfā","meaning":"kích thích, kích động (làm cho hăng hái)"},{"hanzi":"激光","pinyin":"jīguāng","meaning":"tia la-de"},{"hanzi":"激化","pinyin":"jīhuà","meaning":"trở nên gay gắt, mãnh liệt, dữ dội (mâu thuẫn)"},{"hanzi":"激活","pinyin":"jīhuó","meaning":"kích hoạt, hoạt động"},{"hanzi":"激励","pinyin":"jīlì","meaning":"khích lệ, khuyến khích, cổ vũ"},{"hanzi":"激起","pinyin":"jīqǐ","meaning":"kích thích"},{"hanzi":"激素","pinyin":"jīsù","meaning":"kích thích tố, hoóc- môn"},{"hanzi":"及","pinyin":"jí","meaning":"và, cho"},{"hanzi":"及其","pinyin":"jí qí","meaning":"và, thêm nữa"},{"hanzi":"及早","pinyin":"jízǎo","meaning":"sớm muộn"},{"hanzi":"吉普","pinyin":"jípǔ","meaning":"xe jeep"},{"hanzi":"吉他","pinyin":"jítā","meaning":"đàn guitar"},{"hanzi":"吉祥物","pinyin":"jíxiángwù","meaning":"vật cát tường, đồ may mắn"},{"hanzi":"级别","pinyin":"jíbié","meaning":"cấp bậc"},{"hanzi":"极度","pinyin":"jídù","meaning":"cực độ"},{"hanzi":"极力","pinyin":"jílì","meaning":"cực lực, làm cố sức"},{"hanzi":"极少数","pinyin":"jí shǎoshù","meaning":"cực kỳ ít"},{"hanzi":"极为","pinyin":"jíwéi","meaning":"vô cùng, tột cùng"},{"hanzi":"极限","pinyin":"jíxiàn","meaning":"giới hạn"},{"hanzi":"即","pinyin":"jí","meaning":"cho dù, mặc dù"},{"hanzi":"即便","pinyin":"jíbìan","meaning":"kể cả, cho dù"},{"hanzi":"即可","pinyin":"jǐkě","meaning":"là có thể rồi"},{"hanzi":"急剧","pinyin":"jíjù","meaning":"cấp tốc, nhanh chóng"},{"hanzi":"急迫","pinyin":"jípò","meaning":"cấp bách"},{"hanzi":"急性","pinyin":"jíxìng","meaning":"cấp tính"},{"hanzi":"急需","pinyin":"jíxū","meaning":"cần ngay, cần gấp"},{"hanzi":"急于","pinyin":"jíyú","meaning":"muốn làm ngay, muốn thực hiện ngay"},{"hanzi":"急诊","pinyin":"jízhěn","meaning":"cấp cứu, khám gấp"},{"hanzi":"急转弯","pinyin":"jízhuǎnwān","meaning":"đột nhiên thay đổi"},{"hanzi":"棘手","pinyin":"jíshǒu","meaning":"gai góc, khó nhằn, hóc búa"},{"hanzi":"集会","pinyin":"jíhuì","meaning":"mít tinh, hội nghị"},{"hanzi":"集结","pinyin":"jíjié","meaning":"tập kết, tụ tập"},{"hanzi":"集邮","pinyin":"jí yóu","meaning":"sưu tập tem"},{"hanzi":"集装箱","pinyin":"jízhuāngxiāng","meaning":"thùng đựng hàng"},{"hanzi":"集资","pinyin":"jízī","meaning":"góp vốn, chung vốn"},{"hanzi":"嫉妒","pinyin":"jídù","meaning":"ghen tị"},{"hanzi":"挤压","pinyin":"jǐyā","meaning":"ép, nén"},{"hanzi":"脊梁","pinyin":"jǐ-liáng","meaning":"sống lưng"},{"hanzi":"计","pinyin":"jì","meaning":"tính toán, tính"},{"hanzi":"计策","pinyin":"jìcè","meaning":"kế hoạch"},{"hanzi":"计较","pinyin":"jìjiào","meaning":"tính toán, so bì"},{"hanzi":"计时","pinyin":"jìshí","meaning":"tính theo thời gian"},{"hanzi":"记号","pinyin":"jìhao","meaning":"ký hiệu"},{"hanzi":"记忆犹新","pinyin":"jìyì-yóuxīn","meaning":"trí nhớ còn mới, ký ức vẫn còn như in"},{"hanzi":"纪录片","pinyin":"jìlùpiàn","meaning":"phim phóng sự, phim tài liệu"},{"hanzi":"纪念碑","pinyin":"jìniànbēi","meaning":"bia kỷ niệm"},{"hanzi":"纪念馆","pinyin":"jìniànguǎn","meaning":"bảo tàng kỷ niệm"},{"hanzi":"纪念日","pinyin":"jìniànrì","meaning":"ngày kỷ niệm"},{"hanzi":"纪实","pinyin":"jìshí","meaning":"báo cáo tại chỗ"},{"hanzi":"技艺","pinyin":"jìyì","meaning":"tài nghệ"},{"hanzi":"忌","pinyin":"jì","meaning":"kiêng, kiêng nể, kiêng dè"},{"hanzi":"忌讳","pinyin":"jì-huì","meaning":"kiêng kị, kiêng cữ"},{"hanzi":"忌口","pinyin":"jì kǒu","meaning":"ăn kiêng"},{"hanzi":"剂","pinyin":"jì","meaning":"thuốc, dược phẩm"},{"hanzi":"迹象","pinyin":"jìxiàng","meaning":"dấu vết (dấu tích không rõ ràng nhưng có thể từ đó suy đoán quá khứ và tương lai)"},{"hanzi":"继","pinyin":"jì","meaning":"tiếp đó, sau đó"},{"hanzi":"继而","pinyin":"jì'ér","meaning":"tiếp theo"},{"hanzi":"继父","pinyin":"jìfù","meaning":"bố dượng, cha dượng"},{"hanzi":"继母","pinyin":"jìmǔ","meaning":"mẹ kế"},{"hanzi":"祭","pinyin":"jì","meaning":"thờ cúng, tế"},{"hanzi":"祭奠","pinyin":"jìdiàn","meaning":"lễ tế, lễ truy điệu"},{"hanzi":"祭祀","pinyin":"jìsì","meaning":"thờ cúng, cúng tế"},{"hanzi":"寄托","pinyin":"jìtuō","meaning":"gửi nhờ, ký thác"},{"hanzi":"寂静","pinyin":"jìjìng","meaning":"vắng vẻ, trống trải, yên lặng"},{"hanzi":"寂寞","pinyin":"jìmò","meaning":"cô đơn lạnh lẽo, cô quạnh"},{"hanzi":"加紧","pinyin":"jiājǐn","meaning":"gấp rút, khẩn trương, tăng cường"},{"hanzi":"加剧","pinyin":"jiājù","meaning":"nguy kịch hơn, trầm trọng hơn"},{"hanzi":"加深","pinyin":"jiāshēn","meaning":"làm sâu sắc, sâu thêm, làm sâu thêm"},{"hanzi":"加重","pinyin":"jiāzhòng","meaning":"nặng thêm, tăng thêm"},{"hanzi":"佳节","pinyin":"jiājié","meaning":"ngày hội, ngày tốt, ngày vui vẻ"},{"hanzi":"家伙","pinyin":"jiāhuo","meaning":"cái thừ, đứa, kẻ"},{"hanzi":"家家户户","pinyin":"jiājiāhùhù","meaning":"từng nhà, mọi nhà"},{"hanzi":"家教","pinyin":"jiājiào","meaning":"gia giáo (sự giáo dục của cha mẹ đối với con cái)"},{"hanzi":"家境","pinyin":"jiājìng","meaning":"gia cảnh, hoàn cảnh gia đình"},{"hanzi":"家禽","pinyin":"jiāqín","meaning":"gia cầm"},{"hanzi":"家用","pinyin":"jiāyòng","meaning":"gia dụng, đồ dùng gia đình"},{"hanzi":"家喻户晓","pinyin":"jiāyù-hùxiǎo","meaning":"nhà nhà đều biết, mọi nhà đều biết"},{"hanzi":"家政","pinyin":"jiāzhèng","meaning":"gia chánh, quản lý gia đình, việc nội trợ"},{"hanzi":"家族","pinyin":"jiāzú","meaning":"gia tộc, dòng họ"},{"hanzi":"嘉年华","pinyin":"jiāniánhuá","meaning":"phim Angels wear white"},{"hanzi":"假定","pinyin":"jiǎdìng","meaning":"nếu như, giả định"},{"hanzi":"假冒","pinyin":"jiǎmào","meaning":"giả mạo, giả danh"},{"hanzi":"假设","pinyin":"jiǎshè","meaning":"giả như, giả thuyết, tỉ dụ"},{"hanzi":"假使","pinyin":"jiǎshǐ","meaning":"nếu như, giả sử"},{"hanzi":"假装","pinyin":"jiǎzhuāng","meaning":"giả vờ, vờ"},{"hanzi":"价位","pinyin":"jiàwèi","meaning":"mức giá"},{"hanzi":"价值观","pinyin":"jiàzhíguān","meaning":"giá trị quan"},{"hanzi":"驾","pinyin":"jià","meaning":"lái, điều khiển"},{"hanzi":"驾车","pinyin":"jià chē","meaning":"lái xe"},{"hanzi":"驾驭","pinyin":"jiàyù","meaning":"điều khiển"},{"hanzi":"架势","pinyin":"jiàshì","meaning":"tư thái, tư thế"},{"hanzi":"架子","pinyin":"jiàzi","meaning":"cái giá"},{"hanzi":"嫁","pinyin":"jià","meaning":"lấy chồng, gả"},{"hanzi":"嫁妆","pinyin":"jiàzhuang","meaning":"của hồi môn, đồ cưới"},{"hanzi":"尖端","pinyin":"jiānduān","meaning":"mũi nhọn, đỉnh điểm"},{"hanzi":"尖锐","pinyin":"jiānruì","meaning":"sắc bén, bén nhọn"},{"hanzi":"奸诈","pinyin":"jiānzhà","meaning":"gian xảo, gian trá"},{"hanzi":"歼灭","pinyin":"jiānmiè","meaning":"tiêu diệt"},{"hanzi":"坚持不懈","pinyin":"jiānchí-bùxiè","meaning":"kiên trì không bỏ cuộc"},{"hanzi":"坚韧","pinyin":"jiānrèn","meaning":"vững chắc, kiên trì"},{"hanzi":"坚实","pinyin":"jiānshí","meaning":"kiên cố, vững chắc"},{"hanzi":"坚守","pinyin":"jiānshǒu","meaning":"giữ vững"},{"hanzi":"坚信","pinyin":"jiānxìn","meaning":"tin chắc"},{"hanzi":"坚硬","pinyin":"jiānyìng","meaning":"cứng rắn, cứng chắc"},{"hanzi":"肩膀","pinyin":"jiānbǎng","meaning":"bờ vai"},{"hanzi":"肩负","pinyin":"jiānfù","meaning":"gánh vác, đảm đương"},{"hanzi":"艰巨","pinyin":"jiānjù","meaning":"gian khó, nặng nề"},{"hanzi":"艰苦奋斗","pinyin":"jiānkǔ-fèndòu","meaning":"tranh đấu gian khổ"},{"hanzi":"艰险","pinyin":"jiānxiǎn","meaning":"gian nguy, gian nan"},{"hanzi":"艰辛","pinyin":"jiānxīn","meaning":"gian khó, vất vả, khổ khăn"},{"hanzi":"监察","pinyin":"jiānchá","meaning":"giám sát, quản lý"},{"hanzi":"监管","pinyin":"jiānguǎn","meaning":"quản giáo (trại giam)"},{"hanzi":"监护","pinyin":"jiānhù","meaning":"giám hộ, giám sát"},{"hanzi":"监控","pinyin":"jiānkòng","meaning":"quản chế, giám sát theo dõi"},{"hanzi":"监视","pinyin":"jiānshì","meaning":"giám thị, theo dõi"},{"hanzi":"监狱","pinyin":"jiānyù","meaning":"nhà tù, ngục tù"},{"hanzi":"兼","pinyin":"jiān","meaning":"kiêm (làm hai việc cùng lúc)"},{"hanzi":"兼顾","pinyin":"jiāngù","meaning":"chú ý, chiếu cố"},{"hanzi":"兼任","pinyin":"jiānrèn","meaning":"kiêm nhiệm"},{"hanzi":"兼容","pinyin":"jiānróng","meaning":"tương thích"},{"hanzi":"兼职","pinyin":"jiānzhí","meaning":"làm thêm"},{"hanzi":"煎","pinyin":"jiān","meaning":"rán, chiên"},{"hanzi":"拣","pinyin":"jiǎn","meaning":"lựa chọn"},{"hanzi":"检察","pinyin":"jiǎnchá","meaning":"kiểm sát, công tố"},{"hanzi":"检讨","pinyin":"jiǎntǎo","meaning":"kiểm thảo, kiểm điểm"},{"hanzi":"减免","pinyin":"jiǎnmiǎn","meaning":"giảm miễn, cắt thuế"},{"hanzi":"减弱","pinyin":"jiǎnruò","meaning":"yếu đi"},{"hanzi":"减速","pinyin":"jiǎn sù","meaning":"giảm tốc"},{"hanzi":"减压","pinyin":"jiǎnyā","meaning":"giảm sức ép"},{"hanzi":"简称","pinyin":"jiǎnchēng","meaning":"viết tắt"},{"hanzi":"简短","pinyin":"jiǎnduǎn","meaning":"ngắn gọn, sơ lược"},{"hanzi":"简化","pinyin":"jiǎnhuà","meaning":"đơn giản hóa"},{"hanzi":"简洁","pinyin":"jiǎnjié","meaning":"ngắn gọn, trong sáng"},{"hanzi":"简陋","pinyin":"jiǎnlòu","meaning":"sơ sài, thô sơ"}];
+const STATIONS = [
+  {
+    city:'Bắc Kinh', sceneBg:'assets/backgrounds/festive-chinese-station.png', passengerArt:'assets/characters/beijing-passenger.png', staffArt:'assets/characters/beijing-staff.png', guideArt:'assets/characters/meow-conductor.png', cn:'北京', rounds:5, taskType:'match-hanzi', taskLabel:'Chọn từ Hán',
+    storyTitle:'Ga Bắc Kinh · Làm lại vé thất lạc',
+    storyText:'Một học giả trẻ làm rơi vé tàu. Trưởng ga cần bạn chọn đúng từ Hán theo nghĩa tiếng Việt để in lại thẻ hành trình.',
+    passengerName:'Tần Du · 秦游',
+    passengerLine:'“Mình đánh rơi vé mất rồi, chỉ còn nhớ nghĩa tiếng Việt của từ cần in...”',
+    passengerSpeech:'帮帮我',
+    staffName:'Trưởng ga Lan · 兰站长',
+    staffLine:'“Chọn đúng từ Hán thì ta mới cho tàu rời ga được.”',
+    staffSpeech:'上车吧',
+    dialogue:'Hành khách: “Tôi nhớ nghĩa, nhưng quên mất chữ Hán trên vé.”\nTrưởng ga: “Giúp cậu ấy chọn đúng từ để làm lại vé nhé.”',
+    missionTitle:'Chọn đúng từ Hán để làm lại vé tàu',
+    missionIntro:'Dạng cơ bản: dựa vào nghĩa tiếng Việt, chọn đúng từ Hán tương ứng.',
+    promptCap:'NGHĨA TIẾNG VIỆT · 越南语释义',
+    banner:'Ga mở đầu để làm quen. Chọn đúng sẽ nạp từ vào toa và cứu vé cho hành khách.',
+    colors:['#a9d8ff','#ffe6bb','#91c184'],
+    illustration:''
+  },
+  {
+    city:'Tây An', sceneBg:'assets/backgrounds/festive-chinese-station.png', passengerArt:'assets/characters/xian-passenger.png', staffArt:'assets/characters/xian-staff.png', guideArt:'assets/characters/meow-conductor.png', cn:'西安', rounds:5, taskType:'match-meaning', taskLabel:'Chọn nghĩa',
+    storyTitle:'Ga Tây An · Dịch mảnh ghi chú cổ',
+    storyText:'Một du khách khảo cổ nhặt được mảnh ghi chú bằng chữ Hán. Bạn phải chọn đúng nghĩa tiếng Việt để mở khóa toa hàng.',
+    passengerName:'Tiểu Chu · 小周',
+    passengerLine:'“Tớ đọc được chữ Hán rồi, nhưng chưa hiểu nghĩa chính xác...”',
+    passengerSpeech:'这是什么意思?',
+    staffName:'Thư ký ga Cảnh · 景秘书',
+    staffLine:'“Hiểu đúng nghĩa thì toa hiện vật mới được niêm phong an toàn.”',
+    staffSpeech:'别着急',
+    dialogue:'Du khách: “Tôi cần biết nghĩa của từ này để hoàn thành biên bản hiện vật.”\nNhân viên ga: “Hãy chọn đúng nghĩa tiếng Việt cho từ Hán.”',
+    missionTitle:'Chọn nghĩa tiếng Việt chính xác cho từ Hán',
+    missionIntro:'Dạng đảo chiều: chỉ nhìn chữ Hán, không có pinyin trong câu hỏi; bạn phải tự nhận mặt chữ và chọn nghĩa phù hợp nhất.',
+    promptCap:'TỪ HÁN · 汉字线索',
+    banner:'Từ ga này trở đi, bạn phải nhìn từ Hán trực tiếp. Cẩn thận với những nghĩa gần giống nhau.',
+    colors:['#a7cff7','#f6d8b6','#b1c88f'],
+    illustration:''
+  },
+  {
+    city:'Thành Đô', sceneBg:'assets/backgrounds/festive-chinese-station.png', passengerArt:'assets/characters/chengdu-passenger.png', staffArt:'assets/characters/chengdu-staff.png', guideArt:'assets/characters/meow-conductor.png', cn:'成都', rounds:5, taskType:'fill-choice', taskLabel:'Điền vào câu',
+    storyTitle:'Ga Thành Đô · Giúp khách hoàn thành thông báo',
+    storyText:'Ở ga Thành Đô, bảng thông báo bị thiếu một từ quan trọng. Bạn phải chọn đúng từ để điền vào câu và giúp đoàn khách tìm hành lý.',
+    passengerName:'A Mai · 阿梅',
+    passengerLine:'“Thông báo bị thiếu từ, hành lý của bạnọi người chưa được trả về...”',
+    passengerSpeech:'行李呢?',
+    staffName:'Meow Trợ lý · 喵助理',
+    staffLine:'“Chọn từ đúng để điền vào câu, loa phát thanh mới hoạt động lại.”',
+    staffSpeech:'填空吧',
+    dialogue:'Loa ga: “广播稿缺了一个词，请尽快补全。”\nMeow trợ lý: “Bạn sẽ chọn đúng từ để câu có nghĩa chuẩn.”',
+    missionTitle:'Điền từ thích hợp vào câu thông báo trong ga',
+    missionIntro:'Bây giờ bạn không chỉ nhớ nghĩa mà còn phải lắp từ vào đúng ngữ cảnh.',
+    promptCap:'ĐIỀN TỪ VÀO CÂU · 句子填空',
+    banner:'Ngữ cảnh bắt đầu xuất hiện. Hãy đọc manh mối và chọn từ phù hợp nhất cho chỗ trống.',
+    colors:['#a3d8d1','#f8e1be','#96c384'],
+    illustration:''
+  },
+  {
+    city:'Thượng Hải', sceneBg:'assets/backgrounds/festive-chinese-station.png', passengerArt:'assets/characters/shanghai-passenger.png', staffArt:'assets/characters/shanghai-staff.png', guideArt:'assets/characters/meow-conductor.png', cn:'上海', rounds:5, taskType:'typing', taskLabel:'Gõ chữ Hán',
+    storyTitle:'Ga Thượng Hải · In lại thẻ lên tàu điện đêm',
+    storyText:'Hệ thống in thẻ ở ga Thượng Hải yêu cầu nhập chính xác chữ Hán. Bạn phải gõ đúng thì tàu đêm mới mở cửa.',
+    passengerName:'Lục Nghiên · 陆妍',
+    passengerLine:'“Máy in không tự nhận từ, cần nhập tay chính xác...”',
+    passengerSpeech:'快一点~',
+    staffName:'Nhân viên Mộc · 木职员',
+    staffLine:'“Tôi sẽ đưa nghĩa và pinyin, còn bạn hãy gõ ra chữ Hán.”',
+    staffSpeech:'手写? 打字!',
+    dialogue:'Nhân viên ga: “Máy in cần nhập chính xác chữ Hán, không được chọn mò nữa.”\nHành khách: “Nhanh lên, tàu đêm sắp đóng cửa!”',
+    missionTitle:'Gõ đúng chữ Hán theo nghĩa và pinyin',
+    missionIntro:'Dạng khó hơn: chỉ dựa vào nghĩa, không có pinyin trong câu hỏi; bạn phải tự nhớ và gõ đúng chữ Hán.',
+    promptCap:'NHẬP CHÍNH TẢ · 正确输入',
+    banner:'Đây là ga luyện nhớ sâu. Dùng gợi ý khi thật cần thiết, nhưng càng ít gợi ý càng nhiều điểm.',
+    colors:['#839fce','#f1c9ae','#9db3dc'],
+    illustration:''
+  },
+  {
+    city:'Quế Lâm', sceneBg:'assets/backgrounds/festive-chinese-station.png', passengerArt:'assets/characters/guilin-passengers.png', staffArt:'assets/characters/guilin-staff.png', guideArt:'assets/characters/meow-conductor.png', cn:'桂林', rounds:5, taskType:'mixed', taskLabel:'Thử thách tổng hợp',
+    storyTitle:'Ga Quế Lâm · Cứu đoàn khách ở chặng cuối',
+    storyText:'Đoàn khách cuối cùng bị rối lịch trình. Bạn phải vượt qua những thử thách tổng hợp: có lúc chọn từ, có lúc điền nghĩa, có lúc gõ chính tả để hoàn tất chuyến đi.',
+    passengerName:'Đoàn du khách · 游客团',
+    passengerLine:'“Nếu cậu giúp xong các câu đố này, cả đoàn sẽ kịp lên thuyền tham quan!”',
+    passengerSpeech:'最后一站!',
+    staffName:'Trưởng ga Quế · 桂站长',
+    staffLine:'“Chặng cuối phải kiểm tra tổng hợp thì mới đóng dấu hoàn thành.”',
+    staffSpeech:'终点见',
+    dialogue:'Trưởng ga: “Đây là bài kiểm tra cuối, kiểu nhiệm vụ sẽ thay đổi liên tục.”\nDu khách: “Qua được ga này, cả đoàn sẽ tới đích!”',
+    missionTitle:'Thử thách tổng hợp ở ga cuối',
+    missionIntro:'Ga Quế Lâm trộn nhiều dạng câu hỏi để xem bạn nhớ từ thật sự đến đâu.',
+    promptCap:'THỬ THÁCH TỔNG HỢP · 综合任务',
+    banner:'Ga cuối sẽ thay đổi kiểu câu hỏi liên tục. Bình tĩnh đọc kỹ từng yêu cầu nhé.',
+    colors:['#9ed7ef','#f7e2b9','#8bb48f'],
+    illustration:''
+  }
+];
+
+const SAVE_KEY = 'meow_hsk79_train_adventure_save_v2';
+const BEST_KEY = 'meow_hsk79_train_best_v2';
+const AUDIO_KEY = 'meow_hsk79_train_audio_v2';
+const SFX_KEY = 'meow_hsk79_train_sfx_v2';
+const $ = (sel)=>document.querySelector(sel);
+const taskArea = $('#taskArea');
+const routeLine = $('#routeLine');
+const logList = $('#logList');
+const overlay = $('#overlay');
+const scene = $('#scene');
+const sceneTrain = $('#sceneTrain');
+
+const state = {
+  started:false,
+  stationIndex:0,
+  roundInStation:0,
+  totalScore:0,
+  combo:0,
+  lives:3,
+  unlocked:1,
+  best:Number(localStorage.getItem(BEST_KEY)||0),
+  wagons:['待装','待装','待装'],
+  currentTask:null,
+  used:new Set(),
+  logs:[],
+  audioOn: JSON.parse(localStorage.getItem(AUDIO_KEY) || 'true'),
+  sfxOn: JSON.parse(localStorage.getItem(SFX_KEY) || 'true'),
+  hintUsed:false,
+  awaitingModalStart:false,
+  stationTaskMode:''
+};
+
+let audioCtx = null;
+let bgmAudio = null;
+let userInteracted = false;
+
+function cloneData(obj){return JSON.parse(JSON.stringify(obj));}
+function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function rand(arr){return arr[Math.floor(Math.random()*arr.length)];}
+function normalizeInput(str){return (str||'').replace(/\s+/g,'').trim();}
+function formatLives(){return state.lives>0?'❤'.repeat(state.lives):'0';}
+function logEvent(text){
+  state.logs.unshift(text);
+  state.logs = state.logs.slice(0,12);
+  renderLogs();
+}
+function renderLogs(){
+  logList.innerHTML = state.logs.length ? state.logs.map(item=>`<div class="log-item">${item}</div>`).join('') : '<div class="log-item">Chưa có nhật ký nào. Khi bắt đầu chơi, các sự kiện sẽ hiện ở đây.</div>';
+}
+function getStation(){return STATIONS[state.stationIndex] || STATIONS[0];}
+
+function persist(){
+  const payload = {
+    started: state.started,
+    stationIndex: state.stationIndex,
+    roundInStation: state.roundInStation,
+    totalScore: state.totalScore,
+    combo: state.combo,
+    lives: state.lives,
+    unlocked: state.unlocked,
+    wagons: state.wagons,
+    logs: state.logs,
+    used: Array.from(state.used),
+    currentTask: state.currentTask,
+    hintUsed: state.hintUsed,
+    stationTaskMode: state.stationTaskMode
+  };
+  if(state.started){
+    localStorage.setItem(SAVE_KEY, JSON.stringify(payload));
+  }else{
+    localStorage.removeItem(SAVE_KEY);
+  }
+  localStorage.setItem(BEST_KEY, String(state.best));
+  localStorage.setItem(AUDIO_KEY, JSON.stringify(state.audioOn));
+  localStorage.setItem(SFX_KEY, JSON.stringify(state.sfxOn));
+}
+function loadSaved(){
+  try{
+    const raw = localStorage.getItem(SAVE_KEY);
+    if(!raw) return false;
+    const data = JSON.parse(raw);
+    state.started = !!data.started;
+    state.stationIndex = Number(data.stationIndex||0);
+    state.roundInStation = Number(data.roundInStation||0);
+    state.totalScore = Number(data.totalScore||0);
+    state.combo = Number(data.combo||0);
+    state.lives = Number(data.lives||3);
+    state.unlocked = Math.max(1, Number(data.unlocked||1));
+    state.wagons = Array.isArray(data.wagons) ? data.wagons : ['待装','待装','待装'];
+    state.logs = Array.isArray(data.logs) ? data.logs : [];
+    state.used = new Set(Array.isArray(data.used)?data.used:[]);
+    state.currentTask = data.currentTask || null;
+    state.hintUsed = !!data.hintUsed;
+    state.stationTaskMode = data.stationTaskMode || '';
+    return true;
+  }catch(err){
+    console.warn(err);
+    return false;
+  }
+}
+function clearSave(){localStorage.removeItem(SAVE_KEY);}
+
+function ensureAudio(){
+  if(!userInteracted) userInteracted = true;
+  if(!audioCtx){
+    const Ctx = window.AudioContext || window.webkitAudioContext;
+    if(Ctx){audioCtx = new Ctx();}
+  }
+  if(audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+}
+function playTone(freq=440, duration=.12, type='sine', volume=.03, when=0){
+  if(!state.sfxOn) return;
+  ensureAudio();
+  if(!audioCtx) return;
+  const now = audioCtx.currentTime + when;
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  osc.type = type;
+  osc.frequency.setValueAtTime(freq, now);
+  gain.gain.setValueAtTime(0.0001, now);
+  gain.gain.exponentialRampToValueAtTime(volume, now + .02);
+  gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+  osc.connect(gain).connect(audioCtx.destination);
+  osc.start(now);
+  osc.stop(now + duration + .03);
+}
+function successSound(){playTone(660,.11,'triangle',.04,0);playTone(880,.12,'triangle',.04,.08);playTone(1100,.15,'triangle',.045,.16);} 
+function failSound(){playTone(360,.14,'sawtooth',.028,0);playTone(270,.18,'sawtooth',.025,.08);} 
+function stationSound(){playTone(520,.12,'square',.035,0);playTone(700,.13,'square',.035,.09);playTone(880,.16,'square',.04,.18);} 
+function whistleSound(){playTone(660,.18,'sine',.03,0);playTone(740,.22,'sine',.03,.16);} 
+function typeSound(){playTone(520,.05,'triangle',.018,0);} 
+function getBgmAudio(){
+  if(!bgmAudio){bgmAudio=new Audio("assets/audio/kanto-daydream.mp3");bgmAudio.loop=true;bgmAudio.preload="auto";bgmAudio.volume=.28;}
+  return bgmAudio;
+}
+function startBgm(reset=false){if(!state.audioOn)return;const a=getBgmAudio();if(reset){try{a.currentTime=0}catch(e){}}a.loop=true;a.play().catch(()=>{});}
+function stopBgm(reset=false){if(!bgmAudio)return;bgmAudio.pause();if(reset){try{bgmAudio.currentTime=0}catch(e){}}}
+
+function makeDecor(){
+  const layer = $('#decorLayer');
+  layer.innerHTML='';
+  for(let i=0;i<18;i++){
+    const el = document.createElement('div');
+    const classes = ['leaf'];
+    if(i%3===1) classes.push('alt');
+    if(i%5===0) classes.push('pink');
+    el.className = classes.join(' ');
+    el.style.left = (Math.random()*100)+'%';
+    el.style.animationDelay = (Math.random()*10)+'s';
+    el.style.animationDuration = (8+Math.random()*5)+'s';
+    layer.appendChild(el);
+  }
+  for(let i=0;i<12;i++){
+    const sp = document.createElement('div');
+    sp.className='spark';
+    sp.style.left = (10+Math.random()*80)+'%';
+    sp.style.top = (18+Math.random()*65)+'%';
+    sp.style.animationDelay = (Math.random()*2.2)+'s';
+    layer.appendChild(sp);
+  }
+}
+
+function renderRoute(){
+  routeLine.innerHTML='';
+  STATIONS.forEach((st, idx)=>{
+    const node = document.createElement('div');
+    node.className = 'route-node' + (idx < state.stationIndex ? ' done' : (idx === state.stationIndex && state.started ? ' active' : ''));
+    node.innerHTML = `<div class="dot"></div><div><b>${st.city}</b><span>${st.cn}</span></div>`;
+    routeLine.appendChild(node);
+    if(idx < STATIONS.length - 1){
+      const seg = document.createElement('div');
+      seg.className = 'route-seg';
+      routeLine.appendChild(seg);
+    }
+  });
+}
+function renderStamps(){
+  $('#stampList').innerHTML = STATIONS.map((st, idx)=>`
+    <div class="stamp ${idx < state.unlocked-1 ? 'done' : ''}">
+      <div class="stamp-name"><b>${st.city}</b><span>${st.cn} · ${st.taskLabel}</span></div>
+      <div class="stamp-badge">${idx < state.unlocked-1 ? '✓' : idx+1}</div>
+    </div>
+  `).join('');
+}
+function renderStats(){
+  $('#wordsCount').textContent = WORDS.length.toLocaleString('vi-VN');
+  $('#bestScore').textContent = state.best.toLocaleString('vi-VN');
+  $('#unlockedStat').textContent = `${state.unlocked} / ${STATIONS.length}`;
+  $('#livesStat').textContent = '❤ ' + state.lives;
+  $('#currentStationBox').textContent = state.started ? getStation().city : 'Chưa khởi hành';
+  $('#scoreBox').textContent = state.totalScore.toLocaleString('vi-VN');
+  $('#comboBox').textContent = String(state.combo);
+  $('#livesBox').textContent = formatLives();
+  const station = getStation();
+  $('#stationRoundBox').textContent = `${state.roundInStation} / ${station.rounds}`;
+  $('#taskTypeBox').textContent = state.started ? station.taskLabel : 'Đa dạng';
+  $('#progressText').textContent = state.started ? `Ga ${station.city}: ${state.roundInStation} / ${station.rounds} nhiệm vụ đã hoàn thành` : 'Chưa khởi hành';
+  $('#progressFill').style.width = state.started ? ((state.roundInStation / station.rounds) * 100).toFixed(1)+'%' : '0%';
+  $('#continueBtn').classList.toggle('hidden', !localStorage.getItem(SAVE_KEY));
+  $('#musicBtn').textContent = state.audioOn ? '🎵' : '🔇';
+  $('#soundBtn').textContent = state.sfxOn ? '🔊' : '🔕';
+  renderRoute();
+  renderStamps();
+}
+
+function updateStory(){
+  const station = getStation();
+  const passengerAvatarImg = $('#passengerAvatarImg');
+  const staffAvatarImg = $('#staffAvatarImg');
+  const sceneGuideImg = $('#sceneGuideImg');
+  if(!state.started || !state.currentTask || !station){
+    $('#stationStoryTitle').textContent = 'Chuyến tàu đang chờ khởi hành';
+    $('#stationStoryText').textContent = 'Mỗi ga là một nhiệm vụ mới để bạn vừa học vừa chơi. Từ vựng HSK7–9 đã nhúng sẵn vào toàn bộ trò chơi.';
+    $('#passengerName').textContent = 'Hành khách';
+    $('#passengerLine').textContent = 'Mỗi ga sẽ có một hành khách nhờ bạn giúp đỡ.';
+    $('#passengerSpeech').textContent = '救命~';
+    $('#staffName').textContent = 'Trưởng ga';
+    $('#staffLine').textContent = 'Nhân viên nhà ga sẽ mở thử thách cho bạn.';
+    $('#staffSpeech').textContent = '加油!';
+    $('#sceneTitle').textContent = 'Sẵn sàng lên tàu';
+    $('#sceneDesc').textContent = 'Bấm “Bắt đầu mới” hoặc “Tiếp tục” để Meow Meow dẫn bạn vào hành trình qua 5 ga lớn của Trung Quốc.';
+    $('#stationIllustration').innerHTML = '';
+    if(passengerAvatarImg) passengerAvatarImg.src = 'assets/characters/beijing-passenger.png';
+    if(staffAvatarImg) staffAvatarImg.src = 'assets/characters/beijing-staff.png';
+    if(sceneGuideImg) sceneGuideImg.src = 'assets/characters/meow-conductor.png';
+    scene.style.background = `linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.16)), url('assets/backgrounds/festive-chinese-station.png') center / cover no-repeat`;
+    return;
+  }
+  $('#stationStoryTitle').textContent = station.storyTitle;
+  $('#stationStoryText').textContent = station.storyText;
+  $('#passengerName').textContent = station.passengerName;
+  $('#passengerLine').textContent = station.passengerLine;
+  $('#passengerSpeech').textContent = station.passengerSpeech;
+  $('#staffName').textContent = station.staffName;
+  $('#staffLine').textContent = station.staffLine;
+  $('#staffSpeech').textContent = station.staffSpeech;
+  $('#sceneTitle').textContent = `${station.city} · ${station.cn}`;
+  $('#sceneDesc').textContent = station.storyText;
+  $('#stationIllustration').innerHTML = station.illustration || '';
+  if(passengerAvatarImg) passengerAvatarImg.src = station.passengerArt || 'assets/characters/beijing-passenger.png';
+  if(staffAvatarImg) staffAvatarImg.src = station.staffArt || 'assets/characters/beijing-staff.png';
+  if(sceneGuideImg) sceneGuideImg.src = station.guideArt || 'assets/characters/meow-conductor.png';
+  scene.style.background = `linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.14)), url('${station.sceneBg || 'assets/backgrounds/festive-chinese-station.png'}') center / cover no-repeat`;
+}
+
+function setMissionTexts(task){
+  const station = getStation();
+  $('#missionTitle').textContent = station.missionTitle;
+  $('#missionIntro').textContent = station.missionIntro;
+  $('#promptCap').textContent = task.promptCap || station.promptCap;
+  $('#promptMain').textContent = task.promptMain;
+  $('#promptSub').textContent = task.promptSub;
+  $('#dialogueTitle').textContent = task.dialogueTitle || 'Lời nhắn trong ga';
+  $('#dialogueText').textContent = task.dialogueText || station.dialogue;
+  $('#targetBig').textContent = task.targetBig || '待命';
+  $('#targetSmall').textContent = task.targetSmall || 'Khoang nhiệm vụ đang chờ bạn giải câu đố.';
+  $('#targetSlot').classList.remove('ready');
+  $('#miniBanner').textContent = task.banner || station.banner;
+  $('#feedbackTag3').textContent = station.taskLabel;
+}
+
+function pickBaseWord(){
+  const available = WORDS.filter(w => !state.used.has(`${w.hanzi}|${w.pinyin}|${w.meaning}`));
+  const pool = available.length ? available : WORDS;
+  const word = cloneData(rand(pool));
+  state.used.add(`${word.hanzi}|${word.pinyin}|${word.meaning}`);
+  return word;
+}
+function getDistinctWords(count, avoidWord){
+  const picked = [];
+  while(picked.length < count){
+    const w = cloneData(rand(WORDS));
+    if(avoidWord && w.hanzi === avoidWord.hanzi && w.meaning === avoidWord.meaning) continue;
+    if(picked.some(x=>x.hanzi===w.hanzi || x.meaning===w.meaning)) continue;
+    picked.push(w);
+  }
+  return picked;
+}
+
+function buildTask(taskTypeOverride=''){
+  const station = getStation();
+  const mode = taskTypeOverride || (station.taskType === 'mixed' ? rand(['match-hanzi','match-meaning','fill-choice','typing']) : station.taskType);
+  state.stationTaskMode = mode;
+  state.hintUsed = false;
+  const answer = pickBaseWord();
+  if(mode === 'match-hanzi'){
+    const choices = shuffle([answer, ...getDistinctWords(3, answer)]).map(w=>({
+      correct: w.hanzi === answer.hanzi && w.meaning === answer.meaning,
+      displayHanzi: w.hanzi, displayPinyin:w.pinyin, displayMeaning:w.meaning
+    }));
+    return {
+      mode, answer,
+      promptCap:'NGHĨA TIẾNG VIỆT · 越南语释义',
+      promptMain: answer.meaning,
+      promptSub:'Hãy chọn đúng từ Hán tương ứng để giúp hành khách làm lại vé / phiếu thông tin.',
+      dialogueTitle:'Khách cần trợ giúp',
+      dialogueText:station.dialogue,
+      targetBig:'装词', targetSmall:'Chọn đúng để nạp từ vào toa tàu.',
+      banner:station.banner,
+      choices
+    };
+  }
+  if(mode === 'match-meaning'){
+    const distractors = getDistinctWords(3, answer).map(w=>w.meaning);
+    const choices = shuffle([answer.meaning, ...distractors]).map(m=>({correct:m===answer.meaning, displayHanzi:answer.hanzi, displayPinyin:answer.pinyin, displayMeaning:m}));
+    return {
+      mode, answer,
+      promptCap:'TỪ HÁN · 汉字线索',
+      promptMain: answer.hanzi,
+      promptSub:'Hãy tự nhận mặt chữ Hán và chọn đúng nghĩa tiếng Việt tương ứng.',
+      dialogueTitle:'Biên bản hiện vật',
+      dialogueText:station.dialogue,
+      targetBig:'释义', targetSmall:'Chọn đúng nghĩa để mở khóa toa hàng.',
+      banner:station.banner,
+      choices
+    };
+  }
+  if(mode === 'fill-choice'){
+    const choices = shuffle([answer, ...getDistinctWords(3, answer)]).map(w=>({correct:w.hanzi===answer.hanzi && w.meaning===answer.meaning, displayHanzi:w.hanzi, displayPinyin:w.pinyin, displayMeaning:w.meaning}));
+    return {
+      mode, answer,
+      promptCap:'ĐIỀN TỪ VÀO CÂU · 句子填空',
+      promptMain:'广播稿：为了帮助旅客，最合适的词语是（ ____ ）。',
+      promptSub:`Manh mối của từ cần điền: “${answer.meaning}”.\nHãy chọn từ phù hợp nhất để điền vào chỗ trống.`,
+      dialogueTitle:'Thông báo trong ga',
+      dialogueText:station.dialogue,
+      targetBig:'填空', targetSmall:'Chọn từ đúng để câu thông báo trở nên hoàn chỉnh.',
+      banner:station.banner,
+      choices
+    };
+  }
+  if(mode === 'typing'){
+    return {
+      mode, answer,
+      promptCap:'NHẬP CHÍNH TẢ · 正确输入',
+      promptMain: answer.meaning,
+      promptSub:'Hãy gõ chính xác chữ Hán tương ứng với nghĩa đã cho để hệ thống in thẻ hoạt động.',
+      dialogueTitle:'Máy in thẻ đang chờ',
+      dialogueText:station.dialogue,
+      targetBig:'输入', targetSmall:'Nhập đúng chữ Hán để tàu được phép khởi hành.',
+      banner:station.banner,
+      inputPlaceholder:'Gõ chữ Hán vào đây...'
+    };
+  }
+}
+
+function renderChoiceTask(task){
+  taskArea.innerHTML = `<section class="choice-grid" id="choiceGrid"></section>`;
+  const grid = $('#choiceGrid');
+  task.choices.forEach(choice=>{
+    const card = document.createElement('button');
+    card.className='choice-card';
+    if(task.mode === 'match-meaning'){
+      card.innerHTML = `<div class="hanzi" style="font-size:1.3rem;font-family:'Be Vietnam Pro',sans-serif">${choice.displayMeaning}</div><div class="type">NGHĨA TIẾNG VIỆT</div><div class="pinyin">Bấm để chọn</div>`;
+    }else{
+      card.innerHTML = `<div class="hanzi">${choice.displayHanzi}</div><div class="pinyin">${choice.displayPinyin}</div><div class="type">Bấm để chọn</div>`;
+    }
+    card.addEventListener('click', ()=>handleChoice(task, choice, card));
+    grid.appendChild(card);
+  });
+}
+function renderTypingTask(task){
+  taskArea.innerHTML = `
+    <section class="type-panel">
+      <input id="typingInput" autocomplete="off" placeholder="${task.inputPlaceholder}">
+      <div class="type-actions">
+        <button class="btn btn-primary" id="submitTypingBtn">Nộp đáp án</button>
+        <button class="btn btn-soft" id="hintBtn">Gợi ý</button>
+      </div>
+      <div class="hint-box" id="hintBox">Mẹo: gõ thật đúng chữ Hán. Nếu cần, bấm “Gợi ý” để xem số lượng chữ hoặc ký tự đầu tiên.</div>
+    </section>
+  `;
+  const input = $('#typingInput');
+  input.focus();
+  input.addEventListener('input', ()=>typeSound());
+  input.addEventListener('keydown', (e)=>{ if(e.key === 'Enter') submitTyping(task); });
+  $('#submitTypingBtn').addEventListener('click', ()=>submitTyping(task));
+  $('#hintBtn').addEventListener('click', ()=>showHint(task));
+}
+
+function renderCurrentTask(){
+  const task = state.currentTask;
+  if(!task){
+    taskArea.innerHTML = '<section class="choice-grid"><div class="choice-card disabled"><div class="hanzi">列车</div><div class="pinyin">lièchē</div><div class="meaning">Bấbạn bắt đầu để khởi hành</div></div><div class="choice-card disabled"><div class="hanzi">词汇</div><div class="pinyin">cíhuì</div><div class="type">Game đa nhiệm vụ HSK7–9</div></div><div class="choice-card disabled"><div class="hanzi">旅行</div><div class="pinyin">lǚxíng</div><div class="type">Đi qua 5 ga lớn</div></div><div class="choice-card disabled"><div class="hanzi">加油</div><div class="pinyin">jiāyóu</div><div class="meaning">Meow Meow cổ vũ bạn!</div></div></section>';
+    return;
+  }
+  setMissionTexts(task);
+  if(task.mode === 'typing') renderTypingTask(task);
+  else renderChoiceTask(task);
+  const taskTypeMap = {
+    'match-hanzi':'Chọn từ Hán',
+    'match-meaning':'Chọn nghĩa',
+    'fill-choice':'Điền vào câu',
+    'typing':'Gõ chữ Hán'
+  };
+  $('#taskTypeBox').textContent = taskTypeMap[task.mode] || getStation().taskLabel;
+}
+
+function fillWagon(answer){
+  const idx = state.roundInStation % 3;
+  state.wagons[idx] = answer.hanzi;
+  ['#wagon1','#wagon2','#wagon3'].forEach((sel, i)=>{
+    const el = $(sel);
+    const txt = state.wagons[i] || '待装';
+    el.innerHTML = `${txt}<div class="wheel left"></div><div class="wheel right"></div>`;
+  });
+}
+function resetWagons(){
+  state.wagons = ['待装','待装','待装'];
+  fillWagon({hanzi:'待装'});
+  ['#wagon1','#wagon2','#wagon3'].forEach((sel, i)=>{
+    const el = $(sel);
+    const txt = state.wagons[i];
+    el.innerHTML = `${txt}<div class="wheel left"></div><div class="wheel right"></div>`;
+  });
+}
+
+function setFeedback(title, text, tag1='pinyin', tag2='汉字', tag3='任务'){
+  $('#feedbackTitle').textContent = title;
+  $('#feedbackText').textContent = text;
+  $('#feedbackTag1').textContent = tag1;
+  $('#feedbackTag2').textContent = tag2;
+  $('#feedbackTag3').textContent = tag3;
+}
+
+function disableChoiceCards(){document.querySelectorAll('.choice-card').forEach(card=>card.classList.add('disabled'));}
+function handleChoice(task, choice, card){
+  disableChoiceCards();
+  const all = [...document.querySelectorAll('.choice-card')];
+  if(choice.correct){
+    card.classList.add('correct');
+    afterCorrect(task);
+  }else{
+    card.classList.add('wrong');
+    all.forEach(el=>{
+      if(task.mode === 'match-meaning'){
+        const meaning = el.querySelector('.hanzi')?.textContent;
+        if(meaning === task.answer.meaning) el.classList.add('correct');
+      }else{
+        const hanzi = el.querySelector('.hanzi')?.textContent;
+        if(hanzi === task.answer.hanzi) el.classList.add('correct');
+      }
+    });
+    afterWrong(task);
+  }
+}
+function submitTyping(task){
+  const val = normalizeInput($('#typingInput').value);
+  if(!val) return;
+  if(val === normalizeInput(task.answer.hanzi)) afterCorrect(task);
+  else afterWrong(task, val);
+}
+function showHint(task){
+  if(state.hintUsed) return;
+  state.hintUsed = true;
+  const ans = task.answer.hanzi;
+  $('#hintBox').textContent = `Gợi ý: từ cần gõ có ${ans.length} chữ. Ký tự đầu tiên là “${ans.charAt(0)}”. Dùng gợi ý sẽ bị trừ nhẹ điểm thưởng.`;
+  setFeedback('Đã mở gợi ý', 'Gợi ý đã được mở cho câu hiện tại. Nếu trả lời đúng, điểm thưởng sẽ thấp hơn một chút.', task.answer.pinyin, task.answer.hanzi, 'gợi ý');
+  persist();
+}
+
+function afterCorrect(task){
+  successSound();
+  state.combo += 1;
+  let gain = 12 + state.stationIndex * 4 + Math.min(18, state.combo * 2);
+  if(state.hintUsed) gain -= 5;
+  state.totalScore += Math.max(8, gain);
+  state.roundInStation += 1;
+  fillWagon(task.answer);
+  $('#targetSlot').classList.add('ready');
+  $('#targetBig').textContent = task.answer.hanzi;
+  $('#targetSmall').textContent = `${task.answer.pinyin} · ${task.answer.meaning}`;
+  setFeedback('Đúng rồi! Tàu tiếp tục lăn bánh 🎉', `Đáp án đúng là “${task.answer.hanzi}” (${task.answer.pinyin}) = “${task.answer.meaning}”.\nBạn được +${Math.max(8,gain)} điểm.`, task.answer.pinyin, task.answer.hanzi, 'đúng');
+  logEvent(`<strong>${getStation().city}</strong>: giải đúng “${task.answer.hanzi}” → <strong>+${Math.max(8,gain)} điểm</strong>.`);
+  updateAfterAnswer();
+  setTimeout(()=>advanceFlow(), 900);
+}
+function afterWrong(task, typed=''){
+  failSound();
+  state.combo = 0;
+  state.lives -= 1;
+  $('#targetSlot').classList.remove('ready');
+  $('#targetBig').textContent = '再试';
+  $('#targetSmall').textContent = 'Chưa qua được thử thách này, hãy xem lại đáp án.';
+  let extra = task.mode === 'typing' && typed ? `Bạn đã gõ: “${typed}”.\n` : '';
+  setFeedback('Sai rồi, mất 1 tim 😿', `${extra}Đáp án đúng là “${task.answer.hanzi}” (${task.answer.pinyin}) = “${task.answer.meaning}”.`, task.answer.pinyin, task.answer.hanzi, 'sai');
+  logEvent(`<strong>${getStation().city}</strong>: trả lời sai, đáp án là “${task.answer.hanzi}”. Mất 1 tim.`);
+  updateAfterAnswer();
+  if(state.lives <= 0) setTimeout(()=>endGame(false), 1100);
+  else setTimeout(()=>nextTask(), 1200);
+}
+function updateAfterAnswer(){
+  if(state.totalScore > state.best){state.best = state.totalScore;}
+  renderStats();
+  persist();
+}
+
+function advanceFlow(){
+  const station = getStation();
+  if(state.roundInStation >= station.rounds) finishStation();
+  else nextTask();
+}
+function nextTask(){
+  if(state.lives <= 0){endGame(false);return;}
+  updateStory();
+  state.currentTask = buildTask();
+  renderCurrentTask();
+  renderStats();
+  persist();
+}
+
+function showStationModal(station, autoStart=false){
+  $('#modalTitle').textContent = `${station.city} · ${station.cn}`;
+  $('#modalText').textContent = station.storyText;
+  $('#modalTag').textContent = station.taskLabel;
+  $('#modalMission').textContent = station.missionIntro;
+  overlay.classList.add('show');
+  state.awaitingModalStart = autoStart;
+}
+function closeModal(){overlay.classList.remove('show');}
+function continueFromModal(){
+  closeModal();
+  if(state.awaitingModalStart){
+    state.awaitingModalStart = false;
+    nextTask();
+  }
+}
+
+function enterStation(idx, fromCompletion=false){
+  state.stationIndex = idx;
+  state.roundInStation = 0;
+  resetWagons();
+  updateStory();
+  renderStats();
+  const st = getStation();
+  showStationModal(st, true);
+  if(fromCompletion){
+    stationSound();
+    whistleSound();
+  }
+  persist();
+}
+
+function finishStation(){
+  const station = getStation();
+  setFeedback(`Hoàn thành ga ${station.city}!`, `Bạn đã giúp xong toàn bộ nhiệm vụ ở ga ${station.city}. Tàu chuẩn bị khởi hành sang ga tiếp theo.`, station.cn, station.city, 'qua ga');
+  $('#targetSlot').classList.add('ready');
+  $('#targetBig').textContent = '到站';
+  $('#targetSmall').textContent = `Đã hoàn thành ${station.rounds} nhiệm vụ của ga ${station.city}.`;
+  sceneTrain.classList.add('depart');
+  whistleSound();
+  stationSound();
+  if(state.unlocked < state.stationIndex + 2) state.unlocked = Math.min(STATIONS.length, state.stationIndex + 2);
+  logEvent(`<strong>${station.city}</strong>: hoàn thành trọn ga. Hộ chiếu hành trình được đóng dấu.`);
+  renderStats();
+  persist();
+  if(state.stationIndex >= STATIONS.length - 1){
+    setTimeout(()=>endGame(true), 1400);
+  }else{
+    setTimeout(()=>{
+      sceneTrain.classList.remove('depart');
+      enterStation(state.stationIndex + 1, true);
+    }, 1400);
+  }
+}
+
+function endGame(win){
+  state.started = false;
+  stopBgm(true);
+  clearSave();
+  if(state.totalScore > state.best){state.best = state.totalScore; localStorage.setItem(BEST_KEY, String(state.best));}
+  renderStats();
+  const msg = win
+    ? `Chúc mừng! Bạn đã đưa chuyến tàu đi trọn 5 ga và hoàn thành tuyến HSK7–9. Tổng điểm của bạn là ${state.totalScore}.`
+    : `Tàu phải tạm dừng vì bạn đã hết tim. Tổng điểm hiện tại là ${state.totalScore}.`;
+  setFeedback(win ? '🎉 Hoàn thành hành trình!' : '😿 Hết tim rồi', msg, win ? '完成' : '暂停', win ? '通关' : '失败', win ? 'chiến thắng' : 'thử lại');
+  $('#missionTitle').textContent = win ? 'Chuyến tàu đã tới đích' : 'Hành trình tạm dừng';
+  $('#missionIntro').textContent = win ? 'Bạn có thể chơi lại để ôn thêm nhiều từ khác nhau.' : 'Bấm “Bắt đầu mới” để chạy lại từ đầu hoặc “Tiếp tục” nếu đã có save mới.';
+  $('#promptMain').textContent = win ? 'Hoàn thành tuyến Trung Quốc' : 'Hết tim rồi';
+  $('#promptSub').textContent = win ? 'Meow Meow đã đóng dấu hoàn thành lên hộ chiếu hành trình của bạn.' : 'Đừng lo, chơi lại là có thể tiếp tục luyện từ.';
+  $('#dialogueText').textContent = win ? 'Trưởng ga Quế: “Bạn đã giúp toàn bộ hành khách rồi!”\nMeow Meow: “喵~ giỏi lắm!”' : 'Meow Meow: “Nghỉ chút rồi quay lại nhé. Chúng ta vẫn còn cả một chuyến tàu để chinh phục.”';
+  $('#targetSlot').classList.add('ready');
+  $('#targetBig').textContent = win ? '通关' : '再来';
+  $('#targetSmall').textContent = win ? `Điểm cao nhất hiện tại: ${state.best}.` : `Điểm cao nhất hiện tại: ${state.best}.`;
+  taskArea.innerHTML = '<section class="choice-grid"><div class="choice-card disabled"><div class="hanzi">再来</div><div class="pinyin">zàilái</div><div class="meaning">Bắt đầu mới để chơi lại</div></div><div class="choice-card disabled"><div class="hanzi">努力</div><div class="pinyin">nǔlì</div><div class="meaning">Luyện tiếp để nhớ chắc hơn</div></div><div class="choice-card disabled"><div class="hanzi">旅行</div><div class="pinyin">lǚxíng</div><div class="meaning">Hành trình vừa kết thúc</div></div><div class="choice-card disabled"><div class="hanzi">加油</div><div class="pinyin">jiāyóu</div><div class="meaning">Meow Meow vẫn cổ vũ bạn</div></div></section>';
+  persist();
+}
+
+function startNewGame(){
+  ensureAudio();
+  state.started = true;
+  startBgm(true);
+  state.stationIndex = 0;
+  state.roundInStation = 0;
+  state.totalScore = 0;
+  state.combo = 0;
+  state.lives = 3;
+  state.unlocked = Math.max(1, state.unlocked);
+  state.wagons = ['待装','待装','待装'];
+  state.currentTask = null;
+  state.used = new Set();
+  state.logs = ['<strong>Khởi hành:</strong> Meow Meow kéo còi tàu, chuyến đi HSK7–9 bắt đầu.'];
+  state.hintUsed = false;
+  sceneTrain.classList.remove('depart');
+  updateStory();
+  renderLogs();
+  enterStation(0,false);
+  persist();
+}
+
+function continueGame(){
+  ensureAudio();
+  if(!loadSaved()){
+    startNewGame();
+    return;
+  }
+  state.started = true;
+  startBgm(false);
+  sceneTrain.classList.remove('depart');
+  updateStory();
+  renderCurrentTask();
+  renderLogs();
+  renderStats();
+  setFeedback('Tiếp tục hành trình', 'Tiến trình cũ đã được khôi phục. Hãy tiếp tục giải nhiệm vụ ở ga hiện tại.', '继续', '旅程', 'tiếp tục');
+}
+
+$('#startBtn').addEventListener('click', startNewGame);
+$('#continueBtn').addEventListener('click', continueGame);
+$('#resetBtn').addEventListener('click', ()=>{clearSave(); startNewGame();});
+$('#musicBtn').addEventListener('click', ()=>{state.audioOn = !state.audioOn; if(state.audioOn && state.started) startBgm(false); else stopBgm(false); renderStats(); persist();});
+$('#soundBtn').addEventListener('click', ()=>{state.sfxOn = !state.sfxOn; renderStats(); persist();});
+$('#modalContinueBtn').addEventListener('click', continueFromModal);
+$('#modalCloseBtn').addEventListener('click', closeModal);
+overlay.addEventListener('click', (e)=>{if(e.target === overlay) closeModal();});
+
+document.addEventListener('visibilitychange', ()=>{if(document.hidden) stopBgm(false); else if(state.audioOn && userInteracted && state.started) startBgm(false);});
+
+function bootstrap(){
+  $('#stationIllustration').innerHTML = STATIONS[0].illustration;
+  makeDecor();
+  renderLogs();
+  renderCurrentTask();
+  renderStats();
+  updateStory();
+  if(localStorage.getItem(SAVE_KEY)){
+    setFeedback('Có tiến trình đã lưu', 'Bấm “Tiếp tục” để chơi tiếp hành trình trước đó, hoặc “Bắt đầu mới” để chơi lại từ đầu.', '继续', '保存', 'save');
+  }
+}
+bootstrap();
+</script>
+</body>
+</html>
