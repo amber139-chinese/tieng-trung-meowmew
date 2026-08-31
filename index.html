@@ -2,6 +2,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -302,6 +303,12 @@ a{color:inherit}
 .game-review:after{content:"游戏";position:absolute;right:24px;bottom:-28px;font-family:"Noto Serif SC",serif;font-size:7.2rem;font-weight:700;color:rgba(185,79,116,.055);pointer-events:none;line-height:1}
 .game-review-copy{position:relative;z-index:1;max-width:740px}.game-review h3{margin:7px 0 7px;font-family:"Noto Serif SC","Be Vietnam Pro",serif;font-size:1.65rem;font-weight:600;color:#5D3E4A}.game-review p{margin:0;color:#7C6971;font-size:.91rem}.game-review-meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}.game-review-action{position:relative;z-index:2;min-width:185px}@media(max-width:760px){.game-review{grid-template-columns:1fr;padding:23px}.game-review-action{min-width:0}.game-review-action .btn{width:100%}}
 
+
+.catch-game-review{background:linear-gradient(135deg,#FFFFFF 0%,#EEF9FB 62%,#FFF6F8 100%);border-color:#CFE8ED;box-shadow:0 15px 40px rgba(63,129,152,.11)}
+.catch-game-review:after{content:"接词";color:rgba(63,129,152,.065)}
+.catch-game-review h3{color:#315F6E}
+.catch-game-review p{color:#667A81}
+
 /* Hộp chat: giữ nguyên nội dung và biểu tượng, chỉ thu nhỏ */
 .chatbox{
   position:fixed;right:18px;bottom:18px;width:276px;background:#fff;border-radius:17px;
@@ -379,7 +386,7 @@ a{color:inherit}
 }
 .vocab-grid{
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-columns:repeat(3,minmax(0,1fr));
   gap:16px;
 }
 .vocab-card{
@@ -695,6 +702,7 @@ a{color:inherit}
       <a href="#cach-hoc">Cách học</a>
       <a href="#khoa-hoc">Bài học</a>
       <a href="#on-tu-vung">Ôn từ vựng</a>
+      <a href="#meo-bat-tu">Mèo bắt từ</a>
       <a href="#luyen-noi">Luyện nói</a>
       <a href="#thi-thu">Thi thử</a>
       <a href="login.html?next=game.html">Trò chơi</a>
@@ -717,6 +725,7 @@ a{color:inherit}
       <a href="#cach-hoc">Cách học</a>
       <a href="#khoa-hoc">Bài học</a>
       <a href="#on-tu-vung">Ôn từ vựng</a>
+      <a href="#meo-bat-tu">Mèo bắt từ</a>
       <a href="#luyen-noi">Luyện nói</a>
       <a href="#thi-thu">Thi thử</a>
       <a href="login.html?next=game.html">Trò chơi</a>
@@ -866,9 +875,40 @@ a{color:inherit}
             </div>
             <a class="btn btn-primary" href="login.html?next=hsk4-vocab.html">Ôn HSK4</a>
           </article>
+
+          <article class="vocab-card">
+            <div class="vocab-level">HSK7–9 · 高级</div>
+            <h4>Ôn từ vựng HSK7–9</h4>
+            <p>1999 mục từ cao cấp được nhúng sẵn từ PDF, có lọc A–Z, pinyin, nghĩa tiếng Việt và flashcard.</p>
+            <div class="course-meta">
+              <span class="tag">1999 mục từ</span>
+              <span class="tag">A → Z</span>
+              <span class="tag">Flashcard</span>
+              <span class="tag">Từ loại + ví dụ</span>
+            </div>
+            <a class="btn btn-primary" href="login.html?next=hsk789-vocab.html">Ôn HSK7–9</a>
+          </article>
         </div>
       </section>
 
+
+
+      <div class="game-review catch-game-review" id="meo-bat-tu">
+        <div class="game-review-copy">
+          <div class="section-kicker">MÈO BẮT TỪ VỰNG · 猫咪接词</div>
+          <h3>Chơi game mèo bắt từ vựng HSK</h3>
+          <p>Di chuyển Meow để hứng đúng thẻ chữ Hán theo nghĩa tiếng Việt. Game đã có bộ từ HSK1, HSK4 và HSK7–9; hứng nhầm hoặc để đáp án rơi sẽ mất một tim.</p>
+          <div class="game-review-meta">
+            <span class="tag">HSK1 · 500 từ</span>
+            <span class="tag">HSK4 · 621 từ</span>
+            <span class="tag">HSK7–9 · 1999 từ</span>
+            <span class="tag">3120 mục từ</span>
+          </div>
+        </div>
+        <div class="game-review-action">
+          <a class="btn btn-primary" href="meo-bat-tu.html">Chơi mèo bắt từ</a>
+        </div>
+      </div>
 
       <div class="speaking-review" id="luyen-noi">
         <div class="speaking-review-copy">
