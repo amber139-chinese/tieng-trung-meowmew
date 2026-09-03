@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phòng game · Tiếng Trung Meow Meow</title>
+<meta name="description" content="Phòng game học tiếng Trung Meow Meow: mèo bắt từ, chuyến tàu từ vựng, hải chiến cá mập và sắp xếp câu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#6FAFC4;--blue-2:#8CC8D6;--blue-dark:#3F8198;--blue-soft:#EAF6F8;--blue-pale:#F6FBFC;--ink:#27373D;--muted:#6A7A80;--line:#D7E9ED;--white:#fff;--shadow:0 16px 42px rgba(52,101,116,.10)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 15% 7%,rgba(151,208,221,.18),transparent 27%),radial-gradient(circle at 86% 16%,rgba(232,184,74,.11),transparent 23%),linear-gradient(180deg,#F8FCFD 0%,#fff 38%,#F7FBFC 100%);line-height:1.7}
+a{color:inherit;text-decoration:none}.container{width:min(1120px,calc(100% - 36px));margin:0 auto}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.9);border-bottom:1px solid rgba(215,233,237,.86);backdrop-filter:blur(14px)}
+.topbar-inner{min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font-weight:700;color:#315F6E;display:flex;align-items:center;gap:10px}
+.logo-mark{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;color:#fff;background:linear-gradient(145deg,var(--blue-dark),var(--blue-2));font-family:"Noto Serif SC",serif;font-size:17px}
+.brand-title{display:flex;flex-direction:column;line-height:1.25;font-size:.88rem}
+.brand-cn{margin-top:2px;font-size:.8em;font-weight:600}
+.back-link{font-size:.88rem;font-weight:700;color:var(--blue-dark);padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:#fff}
+.back-link:hover{background:var(--blue-soft)}
+.hero{padding:48px 0 28px}
+.hero-kicker{color:var(--blue-dark);font-weight:700;font-size:.82rem;letter-spacing:.12em}
+.hero h1{margin:10px 0 12px;font-family:"Noto Serif SC","Be Vietnam Pro",serif;font-size:clamp(1.9rem,4vw,2.8rem);line-height:1.2;font-weight:600}
+.hero p{margin:0;max-width:720px;color:var(--muted);font-size:.98rem}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;padding-bottom:56px}
+.card{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:24px;background:#fff;box-shadow:var(--shadow);padding:24px 24px 22px;display:flex;flex-direction:column;min-height:240px;transition:transform .2s ease,box-shadow .2s ease}
+.card:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(52,101,116,.14)}
+.card:after{position:absolute;right:12px;bottom:-26px;font-family:"Noto Serif SC",serif;font-size:6.5rem;font-weight:700;line-height:1;pointer-events:none;opacity:.07}
+.card.catch:after{content:"接词";color:#3F8198}
+.card.train:after{content:"列车";color:#B0783B}
+.card.shark:after{content:"海战";color:#197299}
+.card.sort:after{content:"游戏";color:#B94F74}
+.card.catch{background:linear-gradient(145deg,#fff 0%,#EEF9FB 70%,#FFF6F8 100%);border-color:#CFE8ED}
+.card.train{background:linear-gradient(145deg,#fff 0%,#FFF9F0 60%,#FFF0F3 100%);border-color:#EDD8BE}
+.card.shark{background:linear-gradient(145deg,#fff 0%,#EAF8FC 50%,#E7F2FF 100%);border-color:#BFDCE9}
+.card.sort{background:linear-gradient(145deg,#fff 0%,#FFF7FA 70%,#FFF0F5 100%);border-color:#F0D6DF}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;font-size:.75rem;font-weight:800;letter-spacing:.04em}
+.card.catch .badge{background:#EAF6F8;color:#3F8198}
+.card.train .badge{background:#FFF4E5;color:#8A6230}
+.card.shark .badge{background:#E8F4FA;color:#245F78}
+.card.sort .badge{background:#FFF1F5;color:#9F3F5D}
+.card h2{position:relative;z-index:1;margin:14px 0 8px;font-family:"Noto Serif SC","Be Vietnam Pro",serif;font-size:1.45rem;font-weight:600;line-height:1.3}
+.card.catch h2{color:#315F6E}
+.card.train h2{color:#6A4A31}
+.card.shark h2{color:#245F78}
+.card.sort h2{color:#5D3E4A}
+.card p{position:relative;z-index:1;margin:0;color:var(--muted);font-size:.9rem;line-height:1.7;flex:1}
+.tags{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:7px;margin:14px 0 18px}
+.tag{font-size:.76rem;padding:4px 9px;border-radius:999px;background:rgba(255,255,255,.75);border:1px solid var(--line);color:#5B7077;font-weight:600}
+.btn{position:relative;z-index:1;display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:10px 16px;border-radius:12px;font-weight:700;font-size:.9rem;border:1px solid transparent;background:var(--blue-dark);color:#fff;width:fit-content}
+.btn:hover{background:#346F84}
+.card.train .btn{background:#A87C3F}
+.card.train .btn:hover{background:#8F6832}
+.card.shark .btn{background:#1F6F8F}
+.card.shark .btn:hover{background:#185A74}
+.card.sort .btn{background:#9D4C6B}
+.card.sort .btn:hover{background:#843E59}
+.footer{border-top:1px solid var(--line);padding:22px 0 36px;color:#809096;font-size:.84rem;text-align:center}
+@media(max-width:760px){
+  .container{width:min(100% - 24px,1120px)}
+  .grid{grid-template-columns:1fr}
+  .hero{padding:36px 0 18px}
+  .btn{width:100%}
+}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="container topbar-inner">
+    <a class="logo" href="index.html" aria-label="Tiếng Trung Meow Meow">
+      <span class="logo-mark">喵</span>
+      <div class="brand-title">
+        <span>TIẾNG TRUNG MEOW MEOW</span>
+        <span class="brand-cn">游戏大厅 · Phòng game</span>
+      </div>
+    </a>
+    <a class="back-link" href="index.html">← Về trang chủ</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-kicker">CHƠI MÀ HỌC · 游戏大厅</div>
+    <h1>Phòng game Meow Meow</h1>
+    <p>Chọn một game bên dưới để ôn từ vựng, luyện phản xạ và học vui hơn. Tên file từng game giữ nguyên như trên website.</p>
+  </div>
+</header>
+
+<main class="container">
+  <div class="grid">
+
+    <article class="card catch">
+      <span class="badge">接词 · Mèo bắt từ</span>
+      <h2>Mèo bắt từ vựng HSK</h2>
+      <p>Di chuyển Meow để hứng đúng thẻ chữ Hán theo nghĩa tiếng Việt. Có HSK1, HSK4 và HSK7–9. Hứng nhầm hoặc để đáp án rơi sẽ mất một tim.</p>
+      <div class="tags">
+        <span class="tag">HSK1 · 500 từ</span>
+        <span class="tag">HSK4 · 621 từ</span>
+        <span class="tag">HSK7–9 · 1999 từ</span>
+      </div>
+      <a class="btn" href="meo-bat-tu.html">Chơi mèo bắt từ</a>
+    </article>
+
+    <article class="card train">
+      <span class="badge">列车 · Chuyến tàu</span>
+      <h2>Chuyến tàu xuyên Trung Quốc</h2>
+      <p>Xếp từ đúng vào toa tàu rồi đi qua 5 ga: Bắc Kinh, Tây An, Thành Đô, Thượng Hải, Quế Lâm. Mỗi ga một dạng nhiệm vụ khác nhau cho HSK7–9.</p>
+      <div class="tags">
+        <span class="tag">HSK7–9</span>
+        <span class="tag">Nhiều mini-game</span>
+        <span class="tag">Lưu tiến trình</span>
+      </div>
+      <a class="btn" href="tu-vung-xuyen-trung-quoc-adventure.html">Lên tàu ngay</a>
+    </article>
+
+    <article class="card shark">
+      <span class="badge">海战 · Hải chiến</span>
+      <h2>Hải chiến từ vựng</h2>
+      <p>Mèo xạ thủ bắn hạ cá mập mang từ vựng HSK7–9. Có cá thường, cá tốc độ, cá thưởng; 5 lượt gợi ý Pinyin; 3 chế độ chơi.</p>
+      <div class="tags">
+        <span class="tag">HSK7–9</span>
+        <span class="tag">3 chế độ</span>
+        <span class="tag">5 lượt gợi ý</span>
+      </div>
+      <a class="btn" href="meow-hoangsa-shark-defense-hsk789.html">Vào hải chiến</a>
+    </article>
+
+    <article class="card sort">
+      <span class="badge">游戏 · Sắp xếp câu</span>
+      <h2>Phòng sắp xếp câu</h2>
+      <p>Sắp xếp câu để kiểm tra độ nhớ. Chơi một mình hoặc chia đội trong lớp, điểm cao lên bảng xếp hạng.</p>
+      <div class="tags">
+        <span class="tag">HSK1 &amp; HSK4</span>
+        <span class="tag">Sắp xếp câu</span>
+        <span class="tag">Xếp hạng</span>
+      </div>
+      <a class="btn" href="game.html">Chơi sắp xếp câu</a>
+    </article>
+
+  </div>
+</main>
+
+<div class="footer">
+  <div class="container">Học cùng Meow Meow · Phòng game · 中文学习空间</div>
+</div>
+</body>
+</html>
