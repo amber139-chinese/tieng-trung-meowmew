@@ -1,0 +1,209 @@
+<!DOCTYPE html><html lang="vi"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thanh mẫu · Tiếng Trung Meow Meow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#6FAFC4;--blue-2:#8CC8D6;--blue-dark:#3F8198;
+  --blue-soft:#EAF6F8;--blue-pale:#F6FBFC;--ink:#27373D;
+  --muted:#6A7A80;--line:#D7E9ED;--white:#FFFFFF;
+  --shadow:0 16px 42px rgba(52,101,116,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;font-family:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 15% 7%,rgba(151,208,221,.18),transparent 27%),
+    radial-gradient(circle at 86% 16%,rgba(232,184,74,.11),transparent 23%),
+    linear-gradient(180deg,#F8FCFD 0%,#FFFFFF 38%,#F7FBFC 100%);
+  line-height:1.7;
+}
+.container{width:min(1120px,calc(100% - 36px));margin:0 auto}
+.topbar{
+  position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);
+  border-bottom:1px solid rgba(215,233,237,.86);backdrop-filter:blur(14px)
+}
+.topbar-inner{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{text-decoration:none;font-weight:700;color:#315F6E;display:flex;align-items:center;gap:10px}
+.logo-mark{
+  width:36px;height:36px;border-radius:12px;display:grid;place-items:center;color:#fff;
+  background:linear-gradient(145deg,var(--blue-dark),var(--blue-2));
+  font-family:"Noto Serif SC",serif;font-size:17px;box-shadow:0 8px 18px rgba(79,145,168,.18)
+}
+.back-link{text-decoration:none;color:var(--blue-dark);font-weight:700;font-size:.9rem}
+.hero{padding:68px 0 38px}
+.kicker{font-size:.8rem;color:var(--blue-dark);font-weight:700;letter-spacing:.12em}
+h1{
+  margin:8px 0;font-family:"Noto Serif SC","Be Vietnam Pro",serif;
+  font-size:clamp(2.1rem,5vw,3.5rem);line-height:1.2;font-weight:600
+}
+.hero p{color:var(--muted);max-width:780px;margin:0}
+.footer{border-top:1px solid var(--line);padding:28px 0 45px;color:#809096;font-size:.86rem;text-align:center}
+@media(max-width:600px){
+  .container{width:min(100% - 24px,1120px)}
+  .logo span:last-child{display:none}
+}
+
+.sound-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;padding-bottom:80px}
+.sound-card{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 12px 30px rgba(52,101,116,.08);transition:.2s}
+.sound-card:hover{transform:translateY(-3px);box-shadow:0 17px 36px rgba(52,101,116,.12)}
+.sound-info{padding:22px 20px 17px}
+.sound-number{font-size:.72rem;color:var(--blue-dark);font-weight:700;letter-spacing:.1em}
+.sound{margin-top:4px;font-family:"Noto Serif SC",serif;font-size:2rem;color:var(--blue-dark);font-weight:600}
+.sound-name{font-family:"Noto Serif SC",serif;font-size:.98rem;margin-top:2px}
+.sound-desc{margin-top:8px;color:var(--muted);font-size:.78rem}
+.video-wrap{background:#F1F8FA;border-top:1px solid var(--line);aspect-ratio:16/9;display:flex;align-items:center;justify-content:center}
+.video-wrap video{width:100%;height:100%;object-fit:cover;display:block}
+.no-video{padding:20px;text-align:center;color:#819198;font-size:.76rem}
+@media(max-width:900px){.sound-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:650px){.sound-grid{grid-template-columns:repeat(2,1fr)}}
+</style></head><body>
+<div class="topbar"><div class="container topbar-inner">
+<a class="logo" href="index.html"><span class="logo-mark">喵</span><span>TIẾNG TRUNG MEOW MEOW · 中文课堂</span></a>
+<a class="back-link" href="phat-am.html">← Phát âm</a>
+</div></div>
+<header class="hero"><div class="container"><div class="kicker">HSK1 3.0 · 声母</div><h1>Thanh mẫu</h1>
+<p>声母 · Shēngmǔ — Thanh mẫu là âm đầu của một âm tiết trong tiếng Trung. Dưới đây gồm 23 thanh mẫu được sử dụng trong hệ thống phát âm của khóa học.</p></div></header>
+<main class="container"><div class="sound-grid"><article class="sound-card">
+<div class="sound-info"><div class="sound-number">THANH MẪU 01</div>
+<div class="sound">b</div><div class="sound-name">玻</div><div class="sound-desc">Âm môi, không bật hơi</div></div>
+<div class="video-wrap"><video controls preload="metadata" src="videos/thanh-mau/b.mp4"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block';"></video>
+<div class="no-video" style="display:none;">Video phát âm sẽ được cập nhật.</div></div></article>
+<article class="sound-card">
+<div class="sound-info"><div class="sound-number">THANH MẪU 02</div>
+<div class="sound">p</div><div class="sound-name">坡</div><div class="sound-desc">Âm môi, bật hơi</div></div>
+<div class="video-wrap"><video controls preload="metadata" src="videos/thanh-mau/p.mp4"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block';"></video>
+<div class="no-video" style="display:none;">Video phát âm sẽ được cập nhật.</div></div></article>
+<article class="sound-card">
+<div class="sound-info"><div class="sound-number">THANH MẪU 03</div>
+<div class="sound">m</div><div class="sound-name">摸</div><div class="sound-desc">Âm mũi môi</div></div>
+<div class="video-wrap"><video controls preload="metadata" src="videos/thanh-mau/m.mp4"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block';"></video>
+<div class="no-video" style="display:none;">Video phát âm sẽ được cập nhật.</div></div></article>
+<article class="sound-card">
+<div class="sound-info"><div class="sound-number">THANH MẪU 04</div>
+<div class="sound">f</div><div class="sound-name">佛</div><div class="sound-desc">Âm môi – răng</div></div>
+<div class="video-wrap"><video controls preload="metadata" src="videos/thanh-mau/f.mp4"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block';"></video>
+<div class="no-video" style="display:none;">Video phát âm sẽ được cập nhật.</div></div></article>
+<article class="sound-card">
+<div class="sound-info"><div class="sound-number">THANH MẪU 05</div>
+<div class="sound">d</div><div class="sound-name">的</div><div class="sound-desc">Âm đầu lưỡi, không bật hơi</div></div>
+<div class="video-wrap"><video controls preload="metadata" src="videos/thanh-mau/d.mp4"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block';"></video>
+<div class="no-video" style="display:none;">Video phát âm sẽ được cập nhật.</div></div></article>
+<article class="sound-card">
+<div class="sound-info"><div class="sound-number">THANH MẪU 06</div>
+<div class="sound">t</div><div class="sound-name">特</div><div class="sound-desc">Âm đầu lưỡi, bật hơi</div></div>
+<div class="video-wrap"><video controls preload="metadata" src="videos/thanh-mau/t.mp4"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block';"></video>
+<div class="no-video" style="display:none;">Video phát âm sẽ được cập nhật.</div></div></article>
+<article class="sound-card">
+<div class="sound-info"><div class="sound-number">THANH MẪU 07</div>
+<div class="sound">n</div><div class="sound-name">你</div><div class="sound-desc">Âm mũi đầu lưỡi</div></div>
+<div class="video-wrap"><video controls preload="metadata" src="videos/thanh-mau/n.mp4"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block';"></video>
+<div class="no-video" style="display:none;">Video phát âm sẽ được cập nhật.</div></div></article>
+<article class="sound-card">
+<div class="sound-info"><div class="sound-number">THANH MẪU 08</div>
+<div class="sound">l</div><div class="sound-name">了</div><div class="sound-desc">Âm bên đầu lưỡi</div></div>
+<div class="video-wrap"><video controls preload="metadata" src="videos/thanh-mau/l.mp4"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block';"></video>
+<div class="no-video" style="display:none;">Video phát âm sẽ được cập nhật.</div></div></article>
+<article class="sound-card">
+<div class="sound-info"><div class="sound-number">THANH MẪU 09</div>
+<div class="sound">g</div><div class="sound-name">哥</div><div class="sound-desc">Âm gốc lưỡi, không bật hơi</div></div>
+<div class="video-wrap"><video controls preload="metadata" src="videos/thanh-mau/g.mp4"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block';"></video>
+<div class="no-video" style="display:none;">Video phát âm sẽ được cập nhật.</div></div></article>
+<article class="sound-card">
+<div class="sound-info"><div class="sound-number">THANH MẪU 10</div>
+<div class="sound">k</div><div class="sound-name">科</div><div class="sound-desc">Âm gốc lưỡi, bật hơi</div></div>
+<div class="video-wrap"><video controls preload="metadata" src="videos/thanh-mau/k.mp4"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block';"></video>
+<div class="no-video" style="display:none;">Video phát âm sẽ được cập nhật.</div></div></article>
+<article class="sound-card">
+<div class="sound-info"><div class="sound-number">THANH MẪU 11</div>
+<div class="sound">h</div><div class="sound-name">喝</div><div class="sound-desc">Âm gốc lưỡi</div></div>
+<div class="video-wrap"><video controls preload="metadata" src="videos/thanh-mau/h.mp4"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block';"></video>
+<div class="no-video" style="display:none;">Video phát âm sẽ được cập nhật.</div></div></article>
+<article class="sound-card">
+<div class="sound-info"><div class="sound-number">THANH MẪU 12</div>
+<div class="sound">j</div><div class="sound-name">鸡</div><div class="sound-desc">Âm mặt lưỡi, không bật hơi</div></div>
+<div class="video-wrap"><video controls preload="metadata" src="videos/thanh-mau/j.mp4"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block';"></video>
+<div class="no-video" style="display:none;">Video phát âm sẽ được cập nhật.</div></div></article>
+<article class="sound-card">
+<div class="sound-info"><div class="sound-number">THANH MẪU 13</div>
+<div class="sound">q</div><div class="sound-name">七</div><div class="sound-desc">Âm mặt lưỡi, bật hơi</div></div>
+<div class="video-wrap"><video controls preload="metadata" src="videos/thanh-mau/q.mp4"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block';"></video>
+<div class="no-video" style="display:none;">Video phát âm sẽ được cập nhật.</div></div></article>
+<article class="sound-card">
+<div class="sound-info"><div class="sound-number">THANH MẪU 14</div>
+<div class="sound">x</div><div class="sound-name">西</div><div class="sound-desc">Âm mặt lưỡi</div></div>
+<div class="video-wrap"><video controls preload="metadata" src="videos/thanh-mau/x.mp4"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block';"></video>
+<div class="no-video" style="display:none;">Video phát âm sẽ được cập nhật.</div></div></article>
+<article class="sound-card">
+<div class="sound-info"><div class="sound-number">THANH MẪU 15</div>
+<div class="sound">zh</div><div class="sound-name">知</div><div class="sound-desc">Âm đầu lưỡi quặt</div></div>
+<div class="video-wrap"><video controls preload="metadata" src="videos/thanh-mau/zh.mp4"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block';"></video>
+<div class="no-video" style="display:none;">Video phát âm sẽ được cập nhật.</div></div></article>
+<article class="sound-card">
+<div class="sound-info"><div class="sound-number">THANH MẪU 16</div>
+<div class="sound">ch</div><div class="sound-name">吃</div><div class="sound-desc">Âm đầu lưỡi quặt, bật hơi</div></div>
+<div class="video-wrap"><video controls preload="metadata" src="videos/thanh-mau/ch.mp4"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block';"></video>
+<div class="no-video" style="display:none;">Video phát âm sẽ được cập nhật.</div></div></article>
+<article class="sound-card">
+<div class="sound-info"><div class="sound-number">THANH MẪU 17</div>
+<div class="sound">sh</div><div class="sound-name">师</div><div class="sound-desc">Âm đầu lưỡi quặt</div></div>
+<div class="video-wrap"><video controls preload="metadata" src="videos/thanh-mau/sh.mp4"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block';"></video>
+<div class="no-video" style="display:none;">Video phát âm sẽ được cập nhật.</div></div></article>
+<article class="sound-card">
+<div class="sound-info"><div class="sound-number">THANH MẪU 18</div>
+<div class="sound">r</div><div class="sound-name">日</div><div class="sound-desc">Âm đầu lưỡi quặt</div></div>
+<div class="video-wrap"><video controls preload="metadata" src="videos/thanh-mau/r.mp4"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block';"></video>
+<div class="no-video" style="display:none;">Video phát âm sẽ được cập nhật.</div></div></article>
+<article class="sound-card">
+<div class="sound-info"><div class="sound-number">THANH MẪU 19</div>
+<div class="sound">z</div><div class="sound-name">资</div><div class="sound-desc">Âm đầu lưỡi, không bật hơi</div></div>
+<div class="video-wrap"><video controls preload="metadata" src="videos/thanh-mau/z.mp4"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block';"></video>
+<div class="no-video" style="display:none;">Video phát âm sẽ được cập nhật.</div></div></article>
+<article class="sound-card">
+<div class="sound-info"><div class="sound-number">THANH MẪU 20</div>
+<div class="sound">c</div><div class="sound-name">次</div><div class="sound-desc">Âm đầu lưỡi, bật hơi</div></div>
+<div class="video-wrap"><video controls preload="metadata" src="videos/thanh-mau/c.mp4"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block';"></video>
+<div class="no-video" style="display:none;">Video phát âm sẽ được cập nhật.</div></div></article>
+<article class="sound-card">
+<div class="sound-info"><div class="sound-number">THANH MẪU 21</div>
+<div class="sound">s</div><div class="sound-name">思</div><div class="sound-desc">Âm đầu lưỡi</div></div>
+<div class="video-wrap"><video controls preload="metadata" src="videos/thanh-mau/s.mp4"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block';"></video>
+<div class="no-video" style="display:none;">Video phát âm sẽ được cập nhật.</div></div></article>
+<article class="sound-card">
+<div class="sound-info"><div class="sound-number">THANH MẪU 22</div>
+<div class="sound">w</div><div class="sound-name">我</div><div class="sound-desc">Âm đệm môi</div></div>
+<div class="video-wrap"><video controls preload="metadata" src="videos/thanh-mau/w.mp4"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block';"></video>
+<div class="no-video" style="display:none;">Video phát âm sẽ được cập nhật.</div></div></article>
+<article class="sound-card">
+<div class="sound-info"><div class="sound-number">THANH MẪU 23</div>
+<div class="sound">y</div><div class="sound-name">一</div><div class="sound-desc">Âm đệm mặt lưỡi</div></div>
+<div class="video-wrap"><video controls preload="metadata" src="videos/thanh-mau/y.mp4"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block';"></video>
+<div class="no-video" style="display:none;">Video phát âm sẽ được cập nhật.</div></div></article></div></main>
+<div class="footer"><div class="container">中文学习空间 · Tiếng Trung Meow Meow</div></div>
+</body></html>
