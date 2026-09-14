@@ -287,24 +287,25 @@ async function enableDictionaryLookup() {
   const ok = await loadDictionary();
   if (!ok) return;
 
-  // Bọc từ Hán trong toàn bộ vùng câu hỏi + transcript + đáp án
-  const container = document.getElementById("questions");
-  wrapChineseInElement(container);
+  document.removeEventListener("mouseup", handleDictSelection);
+  document.addEventListener("mouseup", handleDictSelection);
+  console.log("Đã bật tra từ điển (bôi đen)");
+}
+  function handleDictSelection(e) {
+  if (!reviewMode) return;
 
-  // Gắn sự kiện click
- // Bắt sự kiện bôi đen từ
-document.addEventListener("mouseup", function(e) {
-  if (!reviewMode) return;   // chỉ hoạt động sau khi nộp bài
+  setTimeout(() => {
+    const selection = window.getSelection();
+    const text = selection.toString().trim();
 
-  const selection = window.getSelection();
-  const text = selection.toString().trim();
+    if (!text || !/[\u4e00-\u9fff]/.test(text)) {
+      hideDictPopup();
+      return;
+    }
 
-  // Chỉ xử lý khi có chọn chữ Hán
-  if (!text || !/[\u4e00-\u9fff]/.test(text)) {
-    hideDictPopup();
-    return;
-  }
-
+    showDictPopup(text, e.pageX, e.pageY);
+  }, 10);
+}
   // Hiện popup tại vị trí chuột
   showDictPopup(text, e.pageX, e.pageY);
 });
@@ -455,6 +456,7 @@ function render(){
  $('prevSection').hidden=state.section==='listening'; $('submitBtn').textContent=reviewMode?'Làm lại đề':'Nộp bài'; $('submitBtn').disabled=false;
  $('nextSection').textContent=state.section==='listening'?'Hoàn thành phần Nghe → Sang phần Đọc':state.section==='reading'?'Hoàn thành phần Đọc → Sang phần Viết':'Nộp bài';
  buildNav();bind();updateProgress();window.scrollTo({top:0,behavior:'smooth'});
+if (reviewMode) enableDictionaryLookup();
 }
 function sectionForQuestion(n){return n<=45?'listening':n<=85?'reading':'writing'}
 function buildNav(){
