@@ -278,7 +278,7 @@ function wrapChineseInElement(el) {
     const text = node.textContent;
     if (!/[\u4e00-\u9fff]/.test(text)) return;
     const span = document.createElement("span");
-    span.innerHTML = text.replace(/([\u4e00-\u9fff]+)/g, '<span class="han-word">$1</span>');
+    span.innerHTML = text.replace(/([\u4e00-\u9fff])/g, '<span class="han-word">$1</span>');
     node.parentNode.replaceChild(span, node);
   });
 }
