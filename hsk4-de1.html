@@ -10,114 +10,116 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f4f6f9;
-      color: #333;
+      background-color: #f8fafc;
+      color: #334155;
     }
     header {
-      background: #fff;
+      background: #ffffff;
       border-bottom: 1px solid #e2e8f0;
       padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       position: sticky;
       top: 0;
       z-index: 100;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
     }
-    h1 { margin: 0; font-size: 1.25rem; color: #1e293b; }
-    .audio-player { margin-top: 5px; }
+    h1 { margin: 0 0 10px 0; font-size: 1.25rem; color: #0f172a; }
+    .audio-player audio { width: 100%; max-width: 500px; }
+    
     .container {
       display: flex;
       max-width: 1200px;
-      margin: 2rem auto;
-      gap: 2rem;
+      margin: 1.5rem auto;
+      gap: 1.5rem;
       padding: 0 1rem;
     }
-    .main-content { flex: 1; }
+    .main-content { flex: 1; min-width: 0; }
     .sidebar {
       width: 280px;
-      background: #fff;
-      padding: 1.5rem;
+      background: #ffffff;
+      padding: 1.25rem;
       border-radius: 8px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      border: 1px solid #e2e8f0;
       height: fit-content;
       position: sticky;
       top: 5rem;
     }
+    
     .question {
-      background: #fff;
-      padding: 1.5rem;
+      background: #ffffff;
+      padding: 1.25rem;
       border-radius: 8px;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      margin-bottom: 1rem;
+      border: 1px solid #e2e8f0;
     }
     .qhead { font-weight: bold; margin-bottom: 0.5rem; color: #0284c7; }
-    .qtext { font-size: 1.1rem; margin-bottom: 1rem; }
+    .qtext { font-size: 1.05rem; margin-bottom: 1rem; line-height: 1.5; }
+    
     .options { display: flex; flex-direction: column; gap: 0.5rem; }
     .options.tf { flex-direction: row; }
     .opt {
-      padding: 0.75rem 1rem;
+      padding: 0.6rem 1rem;
       border: 1px solid #cbd5e1;
       border-radius: 6px;
-      background: #fff;
+      background: #ffffff;
       text-align: left;
       cursor: pointer;
-      font-size: 1rem;
-      transition: all 0.2s;
+      font-size: 0.95rem;
+      transition: all 0.15s ease;
     }
     .opt:hover { background: #f1f5f9; }
     .opt.selected {
       border-color: #0284c7;
       background: #e0f2fe;
       color: #0369a1;
-      font-weight: bold;
+      font-weight: 600;
     }
-    .tf-symbol { font-size: 1.2rem; margin-right: 0.5rem; }
-    .nums { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; }
+    .tf-symbol { font-size: 1.1rem; margin-right: 0.4rem; }
+    
+    .progress { margin-bottom: 0.75rem; font-weight: 600; font-size: 0.95rem; }
+    .nums { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.4rem; }
     .num {
-      padding: 0.5rem;
+      padding: 0.4rem 0;
       border: 1px solid #cbd5e1;
-      background: #fff;
+      background: #ffffff;
       border-radius: 4px;
       cursor: pointer;
       text-align: center;
+      font-size: 0.85rem;
     }
-    .num.answered { background: #0284c7; color: #fff; border-color: #0284c7; }
-    .progress { margin-bottom: 1rem; font-weight: bold; }
+    .num.answered { background: #0284c7; color: #ffffff; border-color: #0284c7; }
     
-    /* Popup từ điển */
     #dict-popup {
       position: absolute;
       display: none;
-      width: 320px;
-      background: #fff;
+      width: 300px;
+      background: #ffffff;
       border: 1px solid #cbd5e1;
       border-radius: 8px;
-      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-      padding: 1rem;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+      padding: 0.85rem;
       z-index: 1000;
     }
-    #dict-word { font-size: 1.2rem; font-weight: bold; color: #0f172a; }
-    #dict-pinyin { color: #0284c7; font-style: italic; margin-bottom: 0.5rem; }
-    #dict-meanings { padding-left: 1.2rem; margin: 0; }
+    #dict-word { font-size: 1.1rem; font-weight: bold; color: #0f172a; }
+    #dict-pinyin { color: #0284c7; font-style: italic; margin-bottom: 0.4rem; font-size: 0.9rem; }
+    #dict-meanings { padding-left: 1rem; margin: 0; font-size: 0.9rem; }
   </style>
 </head>
 <body>
 
   <header>
-    <div>
-      <h1 id="examTitle">Meow Meow HSK4 · Đề 1</h1>
-      <div class="audio-player">
-        <audio id="examAudio" controls></audio>
-      </div>
+    <h1 id="examTitle">Meow Meow HSK4 · Đề 1</h1>
+    <div class="audio-player">
+      <audio id="examAudio" controls></audio>
     </div>
   </header>
 
   <div class="container">
+    <!-- Khung hiển thị danh sách câu hỏi -->
     <div class="main-content" id="questions"></div>
 
+    <!-- Khung điều hướng bên phải -->
     <div class="sidebar">
-      <div class="progress">Đã làm: <span id="progressText">0/45</span></div>
+      <div class="progress">Đã làm: <span id="progressText">0/0</span></div>
       <div id="questionNav"></div>
     </div>
   </div>
@@ -182,6 +184,7 @@
 
       qContainer.innerHTML = qHtml;
       navContainer.innerHTML = navHtml;
+      document.getElementById('progressText').textContent = `0/${examData.questions.length}`;
     }
 
     function selectOpt(qNum, answer) {
@@ -257,7 +260,7 @@
       }
 
       popup.style.display = "block";
-      popup.style.left = Math.min(x + 12, window.innerWidth - 340) + "px";
+      popup.style.left = Math.min(x + 12, window.innerWidth - 320) + "px";
       popup.style.top = (y + 12) + "px";
     }
 
