@@ -181,6 +181,45 @@ body{background:linear-gradient(180deg,#FAF8F9 0%,#F8F7F9 48%,#FBF9FA 100%)}
   color: #999;
   line-height: 1;
 }
+  /* ===== Từ điển Hán Việt ===== */
+#dict-popup {
+  display: none;
+  position: absolute;
+  z-index: 9999;
+  background: #fff;
+  border: 1px solid #E8DDE1;
+  border-radius: 14px;
+  padding: 16px 18px;
+  max-width: 360px;
+  box-shadow: 0 12px 32px rgba(84,66,74,.15);
+  font-size: 15px;
+  line-height: 1.55;
+}
+#dict-popup .dict-word {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+#dict-popup .dict-pinyin {
+  color: #A95F78;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+#dict-popup .dict-meanings {
+  margin: 0;
+  padding-left: 18px;
+}
+#dict-popup .dict-meanings li {
+  margin-bottom: 4px;
+}
+#dict-popup .dict-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  cursor: pointer;
+  font-size: 20px;
+  color: #999;
+}
 </style>
 </head><body>
 <header class="topbar"><div class="top-inner"><a class="back" href="#" onclick="history.back();return false">← Trở về</a><div class="title" id="examTitle">HSK4</div><button class="submit" id="submitBtn">Nộp bài</button></div></header>
@@ -195,6 +234,13 @@ body{background:linear-gradient(180deg,#FAF8F9 0%,#F8F7F9 48%,#FBF9FA 100%)}
 <div class="section-actions"><button class="prev" id="prevSection" hidden>← Phần trước</button><button class="next" id="nextSection">Hoàn thành phần Nghe → Sang phần Đọc</button></div>
 </main>
 <aside class="navcard"><div class="navtitle" id="navTitle">Nghe</div><div id="questionNav"></div><div class="legend"><span><i class="dot"></i>Chưa làm</span><span><i class="dot done"></i>Đã làm</span><span><i class="dot cur"></i>Đang xem</span></div></aside>
+</div>
+  <!-- Popup từ điển -->
+<div id="dict-popup">
+  <span class="dict-close" onclick="hideDictPopup()">×</span>
+  <div class="dict-word" id="dict-word"></div>
+  <div class="dict-pinyin" id="dict-pinyin"></div>
+  <ul class="dict-meanings" id="dict-meanings"></ul>
 </div>
   <!-- Popup từ điển -->
 <div id="dict-popup">
@@ -316,6 +362,81 @@ async function enableDictionaryLookup() {
       hideDictPopup();
     }
   });
+}
+  /* ===== TỪ ĐIỂN HÁN VIỆT ===== */
+let dictionary = null;
+let dictLoaded = false;
+
+async function loadDictionary() {
+  if (dictLoaded) return true;
+  try {
+    const res = await fetch("CVDICT.json");
+    const data = await res.json();
+    dictionary = {};
+    data.forEach(item => {
+      dictionary[item.traditional] = item;
+      if (item.simplified !== item.traditional) {
+        dictionary[item.simplified] = item;
+      }
+    });
+    dictLoaded = true;
+    console.log("Đã load từ điển:", Object.keys(dictionary).length);
+    return true;
+  } catch (e) {
+    console.error(e);
+    alert("Không tải được từ điển. Kiểm tra file CVDICT.json");
+    return false;
+  }
+}
+
+function showDictPopup(word, x, y) {
+  const popup = document.getElementById("dict-popup");
+  const entry = dictionary && dictionary[word];
+
+  if (!entry) {
+    document.getElementById("dict-word").textContent = word;
+    document.getElementById("dict-pinyin").textContent = "";
+    document.getElementById("dict-meanings").innerHTML = "<li>Không tìm thấy trong từ điển</li>";
+  } else {
+    document.getElementById("dict-word").textContent = entry.traditional + (entry.simplified !== entry.traditional ? ` (${entry.simplified})` : "");
+    document.getElementById("dict-pinyin").textContent = entry.pinyin;
+    const ul = document.getElementById("dict-meanings");
+    ul.innerHTML = "";
+    (entry.meanings || []).forEach(m => {
+      const li = document.createElement("li");
+      li.textContent = m;
+      ul.appendChild(li);
+    });
+  }
+
+  popup.style.display = "block";
+  popup.style.left = Math.min(x + 12, window.innerWidth - 380) + "px";
+  popup.style.top = (y + 12) + "px";
+}
+
+function hideDictPopup() {
+  document.getElementById("dict-popup").style.display = "none";
+}
+
+async function enableDictionaryLookup() {
+  const ok = await loadDictionary();
+  if (!ok) return;
+
+  document.removeEventListener("mouseup", handleDictSelection);
+  document.addEventListener("mouseup", handleDictSelection);
+}
+
+function handleDictSelection(e) {
+  if (!reviewMode) return;
+
+  setTimeout(() => {
+    const text = window.getSelection().toString().trim();
+    if (!text || !/[\u4e00-\u9fff]/.test(text)) {
+      hideDictPopup();
+      return;
+    }
+    showDictPopup(text, e.pageX, e.pageY);
+  }, 10);
 }
 const params=new URLSearchParams(location.search), testNo=params.get('test')||'1';
 const TEST=window.MEOW_MOCK_TESTS?.[testNo]||window.MEOW_MOCK_TESTS?.['1'];
