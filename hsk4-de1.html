@@ -292,12 +292,22 @@ async function enableDictionaryLookup() {
   wrapChineseInElement(container);
 
   // Gắn sự kiện click
-  document.querySelectorAll(".han-word").forEach(el => {
-    el.addEventListener("click", function(e) {
-      e.stopPropagation();
-      showDictPopup(this.textContent.trim(), e.pageX, e.pageY);
-    });
-  });
+ // Bắt sự kiện bôi đen từ
+document.addEventListener("mouseup", function(e) {
+  if (!reviewMode) return;   // chỉ hoạt động sau khi nộp bài
+
+  const selection = window.getSelection();
+  const text = selection.toString().trim();
+
+  // Chỉ xử lý khi có chọn chữ Hán
+  if (!text || !/[\u4e00-\u9fff]/.test(text)) {
+    hideDictPopup();
+    return;
+  }
+
+  // Hiện popup tại vị trí chuột
+  showDictPopup(text, e.pageX, e.pageY);
+});
 
   // Click ra ngoài thì ẩn popup
   document.addEventListener("click", function(e) {
