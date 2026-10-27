@@ -10,7 +10,105 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<script defer src="meow-auth.js"></script>
+<script>
+/* meow-auth inline — local file:// không redirect; hosting vẫn bắt login */
+(function(){
+  const SUPABASE_URL = "https://xmtvmwcjjqqzscmkdlwd.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_R5TEjUNB6lDTJuN4MNdhVQ_ANwIaKLP";
+  const isLocalFile = location.protocol === 'file:';
+
+  function loadSupabase(){
+    return new Promise((resolve,reject)=>{
+      if(window.supabase) return resolve();
+      const s=document.createElement('script');
+      s.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+      s.onload=resolve;
+      s.onerror=reject;
+      document.head.appendChild(s);
+    });
+  }
+  function currentTarget(){
+    return (location.pathname.split('/').pop() || 'hsk4-vocab.html') + location.search;
+  }
+  function injectAccountBar(user){
+    if(document.getElementById('meow-account-bar')) return;
+    const name=(user.user_metadata && user.user_metadata.display_name) ||
+               (user.user_metadata && user.user_metadata.username) ||
+               'Học viên';
+    const style=document.createElement('style');
+    style.textContent=
+      '#meow-account-bar{position:fixed;right:14px;top:14px;z-index:99999;'+
+      'display:flex;align-items:center;gap:8px;padding:7px 9px;border:1px solid #D7E9ED;'+
+      'border-radius:999px;background:rgba(255,255,255,.95);box-shadow:0 7px 22px rgba(55,110,125,.12);'+
+      'font:600 12px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;color:#4D6871;backdrop-filter:blur(10px)}'+
+      '#meow-account-bar button,#meow-account-bar a{border:0;background:#EAF6F8;color:#3F8198;border-radius:999px;'+
+      'padding:6px 9px;font:700 11px/1 system-ui;text-decoration:none;cursor:pointer}';
+    document.head.appendChild(style);
+    const bar=document.createElement('div');
+    bar.id='meow-account-bar';
+    bar.innerHTML='<span>Xin chào, '+name+'</span><button type="button">Đăng xuất</button>';
+    document.body.appendChild(bar);
+    bar.querySelector('button').onclick=async()=>{
+      if(window.meowSupabase) await window.meowSupabase.auth.signOut();
+      if(isLocalFile) location.reload();
+      else location.replace('login.html');
+    };
+  }
+  async function isAdmin(client,user){
+    try{
+      const {data,error}=await client.from('admin_users').select('id').eq('id',user.id).maybeSingle();
+      return !error && !!data;
+    }catch(e){ return false; }
+  }
+  function finishGuest(client){
+    window.meowUser=null;
+    window.meowIsAdmin=false;
+    window.dispatchEvent(new CustomEvent('meow-auth-ready',{
+      detail:{user:null,client:client||null,isAdmin:false,localGuest:true}
+    }));
+  }
+  async function start(){
+    try{
+      await loadSupabase();
+    }catch(e){
+      finishGuest(null);
+      return;
+    }
+    const client=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+    window.meowSupabase=client;
+    let user=null;
+    try{
+      const {data,error}=await client.auth.getUser();
+      if(!error && data && data.user) user=data.user;
+    }catch(e){}
+
+    if(!user){
+      if(isLocalFile){ finishGuest(client); return; }
+      location.replace('login.html?next='+encodeURIComponent(currentTarget()));
+      return;
+    }
+    window.meowUser=user;
+    injectAccountBar(user);
+    const admin=await isAdmin(client,user);
+    window.meowIsAdmin=admin;
+    if(admin){
+      const bar=document.getElementById('meow-account-bar');
+      if(bar && !bar.querySelector('[data-admin]')){
+        const a=document.createElement('a');
+        a.href='admin.html'; a.dataset.admin='1'; a.textContent='Quản lý';
+        bar.insertBefore(a, bar.querySelector('button'));
+      }
+    }
+    window.dispatchEvent(new CustomEvent('meow-auth-ready',{
+      detail:{user:user,client:client,isAdmin:admin}
+    }));
+  }
+  start().catch(function(){
+    if(isLocalFile) finishGuest(null);
+    else location.replace('login.html?next='+encodeURIComponent(currentTarget()));
+  });
+})();
+</script>
 <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/pinyin-pro@3.29.1/dist/index.js"></script>
 
@@ -355,6 +453,80 @@ a{color:inherit}
   .flash-back{justify-content:flex-start;padding-top:52px}
 }
 
+
+/* Từ chưa thuộc + Quiz */
+.unlearned-shell,.quiz-shell{padding:4px 0 10px}
+.unlearned-top,.quiz-top{
+  display:flex;justify-content:space-between;align-items:center;gap:14px;
+  margin-bottom:14px;flex-wrap:wrap;
+}
+.unlearned-info,.quiz-info{color:#7A646D;font-size:.8rem}
+.unlearned-info b,.quiz-info b{color:var(--blue-dark)}
+.unlearned-tools,.quiz-tools{display:flex;gap:8px;flex-wrap:wrap}
+.unlearned-empty,.quiz-empty{
+  background:#fff;border:1px solid var(--line);border-radius:22px;padding:28px;
+  text-align:center;color:#826B74;
+}
+.quiz-card{
+  max-width:720px;margin:0 auto;background:#fff;border:1px solid var(--line);
+  border-radius:24px;padding:28px 24px;box-shadow:0 18px 45px rgba(157,76,107,.10);
+}
+.quiz-q-meta{font-size:.72rem;font-weight:800;color:#B58A99;margin-bottom:8px}
+.quiz-q-hanzi{
+  font-family:"Noto Serif SC",serif;font-size:clamp(2.8rem,8vw,4.5rem);
+  color:#573743;font-weight:600;text-align:center;line-height:1.15;margin:8px 0 6px;
+}
+.quiz-q-pinyin{text-align:center;color:var(--rose);font-size:1.05rem;font-weight:700;margin-bottom:18px}
+.quiz-q-prompt{text-align:center;color:#7A646D;font-size:.88rem;font-weight:600;margin-bottom:16px}
+.quiz-options{display:grid;gap:10px}
+.quiz-opt{
+  border:1px solid var(--line);background:#fff;border-radius:14px;
+  padding:14px 16px;text-align:left;cursor:pointer;font-size:.92rem;font-weight:600;
+  color:var(--ink);transition:.15s ease;
+}
+.quiz-opt:hover:not(:disabled){border-color:#E4A3BA;background:#FFF8FA}
+.quiz-opt.correct{border-color:#5BA88A;background:#Eef8F3;color:#2D6B54}
+.quiz-opt.wrong{border-color:#D46B7A;background:#FFF0F2;color:#8D3A4A}
+.quiz-opt:disabled{cursor:default}
+.quiz-feedback{
+  margin-top:14px;padding:12px 14px;border-radius:12px;font-size:.84rem;font-weight:600;
+  display:none;
+}
+.quiz-feedback.show{display:block}
+.quiz-feedback.ok{background:#Eef8F3;color:#2D6B54;border:1px solid #B8E0CF}
+.quiz-feedback.bad{background:#FFF0F2;color:#8D3A4A;border:1px solid #F0C8D0}
+.quiz-nav{
+  display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin-top:18px;
+}
+.quiz-score-bar{
+  display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:12px;
+  font-size:.78rem;font-weight:800;color:#8A707A;
+}
+.quiz-score-bar b{color:var(--blue-dark)}
+.quiz-mode-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;justify-content:center}
+.quiz-mode-btn{
+  border:1px solid var(--line);background:#fff;color:#82586A;border-radius:999px;
+  padding:7px 14px;font-size:.74rem;font-weight:800;cursor:pointer;
+}
+.quiz-mode-btn.active{background:#FFF0F5;border-color:#E9AFC3;color:#A84469}
+.auth-bar{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  margin:0 0 10px;padding:10px 12px;background:#fff;border:1px solid var(--line);
+  border-radius:14px;font-size:.78rem;color:#7A646D;
+}
+.auth-bar b{color:var(--blue-dark)}
+.auth-bar input{
+  border:1px solid var(--line);border-radius:9px;padding:7px 10px;width:min(180px,100%);
+  outline:none;
+}
+.auth-bar input:focus{border-color:#E4A3BA}
+.unlearn-badge{
+  display:inline-block;border-radius:999px;background:#FFF0F5;border:1px solid #E9AFC3;
+  color:#A84469;font-size:.68rem;font-weight:800;padding:3px 8px;margin-left:6px;
+}
+.save-unlearn-btn.active{background:#FFF0F5;border-color:#E9AFC3;color:#A84469}
+
+
 </style>
 </head>
 
@@ -385,6 +557,8 @@ a{color:inherit}
       <div class="study-tabs" role="tablist" aria-label="Chế độ ôn tập">
         <button class="study-tab active" id="tabList" type="button" data-tab="list">Danh sách từ</button>
         <button class="study-tab" id="tabFlash" type="button" data-tab="flash">Flashcard</button>
+        <button class="study-tab" id="tabUnlearned" type="button" data-tab="unlearned">Từ chưa thuộc</button>
+        <button class="study-tab" id="tabQuiz" type="button" data-tab="quiz">Trắc nghiệm</button>
       </div>
     </div>
   </div>
@@ -392,6 +566,15 @@ a{color:inherit}
   <div class="toolbar-shell">
     <div class="container">
       <div class="toolbar">
+
+        <div class="auth-bar" id="authBar">
+          <span id="authStatus">Đang xác thực đăng nhập (meow-auth)…</span>
+          <span id="authLoginWrap" hidden></span>
+          <span id="authUserWrap" hidden>
+            Tiến độ của: <b id="authUserLabel"></b>
+            <span style="opacity:.75">· lưu theo tài khoản</span>
+          </span>
+        </div>
         <div class="search-row">
           <input id="search" class="search-input" placeholder="Tìm chữ Hán, pinyin, nghĩa, âm Hán Việt hoặc số bài..." autocomplete="off">
           <select id="lessonFilter" class="filter-select">
@@ -471,6 +654,66 @@ a{color:inherit}
         </div>
       </div>
 
+
+      <div id="unlearnedPanel" class="panel" hidden>
+        <div class="unlearned-shell">
+          <div class="unlearned-top">
+            <div class="unlearned-info">
+              Các từ bạn đánh dấu <b>Cần ôn lại</b> hoặc trả lời sai trong trắc nghiệm.
+              Dữ liệu lưu theo tài khoản đăng nhập.
+              <b id="unlearnedCount"></b>
+            </div>
+            <div class="unlearned-tools">
+              <button class="flash-tool" id="clearUnlearned" type="button">Xóa hết danh sách</button>
+              <button class="flash-tool" id="studyUnlearnedFlash" type="button">Ôn flashcard</button>
+              <button class="flash-tool" id="studyUnlearnedQuiz" type="button">Làm trắc nghiệm</button>
+            </div>
+          </div>
+          <div id="unlearnedEmpty" class="unlearned-empty" hidden>Chưa có từ nào trong danh sách “chưa thuộc”.</div>
+          <div id="unlearnedList" class="word-list"></div>
+        </div>
+      </div>
+
+      <div id="quizPanel" class="panel" hidden>
+        <div class="quiz-shell">
+          <div class="quiz-top">
+            <div class="quiz-info">
+              Trắc nghiệm 4 đáp án. Sai sẽ được lưu vào <b>Từ chưa thuộc</b>.
+              Dùng cùng bộ lọc bài / tìm kiếm phía trên.
+            </div>
+            <div class="quiz-tools">
+              <button class="flash-tool" id="quizRestart" type="button">Bắt đầu lại</button>
+              <button class="flash-tool" id="quizFromUnlearned" type="button">Chỉ từ chưa thuộc</button>
+            </div>
+          </div>
+          <div class="quiz-mode-row">
+            <button class="quiz-mode-btn active" id="quizModeMeaning" type="button" data-mode="meaning">Hán → Nghĩa</button>
+            <button class="quiz-mode-btn" id="quizModeHanzi" type="button" data-mode="hanzi">Nghĩa → Hán</button>
+          </div>
+          <div id="quizEmpty" class="quiz-empty" hidden>Không có từ phù hợp để làm trắc nghiệm.</div>
+          <div id="quizStudy">
+            <div class="quiz-card">
+              <div class="quiz-q-meta" id="quizMeta"></div>
+              <div class="quiz-q-hanzi" id="quizHanzi"></div>
+              <div class="quiz-q-pinyin" id="quizPinyin"></div>
+              <div class="quiz-q-prompt" id="quizPrompt">Chọn nghĩa đúng:</div>
+              <div class="quiz-options" id="quizOptions"></div>
+              <div class="quiz-feedback" id="quizFeedback"></div>
+            </div>
+            <div class="quiz-score-bar">
+              <span>Câu: <b id="quizProgress">0/0</b></span>
+              <span>Đúng: <b id="quizCorrect">0</b></span>
+              <span>Sai: <b id="quizWrong">0</b></span>
+            </div>
+            <div class="quiz-nav">
+              <button class="flash-nav-btn" id="quizSpeak" type="button">Nghe từ</button>
+              <button class="flash-nav-btn main" id="quizNext" type="button" disabled>Câu tiếp</button>
+              <button class="action-btn save-unlearn-btn" id="quizSaveUnlearn" type="button" hidden>Lưu vào chưa thuộc</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="source-note">
         Dữ liệu Hán tự, pinyin và nghĩa tiếng Việt được tổng hợp theo HSK4 Bài 1–20 của giáo trình lớp đang sử dụng. Mỗi từ đều có câu ví dụ đặt trực tiếp vào ngữ cảnh sử dụng thực tế để dễ hiểu và dễ nhớ. Âm Hán Việt được ghép theo dữ liệu kVietnamese của Unicode Unihan. Phần thứ tự nét sử dụng Hanzi Writer.
       </div>
@@ -513,10 +756,165 @@ let activeStudyTab = 'list';
 let flashDeck = [];
 let flashIndex = 0;
 let flashKnown = new Set();
-let flashReview = new Set();
+let flashReview = new Set(); // "chưa thuộc" / cần ôn lại
+let currentUser = null; // username string
+let quizDeck = [];
+let quizIndex = 0;
+let quizCorrect = 0;
+let quizWrong = 0;
+let quizAnswered = false;
+let quizMode = 'meaning'; // meaning | hanzi
+let quizOnlyUnlearned = false;
+let quizLastWrongId = null;
+
 
 const $ = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
+
+/* ========== Auth + persistent storage (theo tài khoản) ========== */
+function storageKey(kind){
+  const u = currentUser || 'guest';
+  return `meow_hsk4_${u}_${kind}`;
+}
+function loadSet(kind){
+  try{
+    const raw = localStorage.getItem(storageKey(kind));
+    if(!raw) return new Set();
+    const arr = JSON.parse(raw);
+    return new Set(Array.isArray(arr) ? arr.map(Number) : []);
+  }catch(e){ return new Set(); }
+}
+function saveSet(kind, set){
+  try{
+    localStorage.setItem(storageKey(kind), JSON.stringify([...set]));
+  }catch(e){}
+}
+function persistProgress(){
+  saveSet('known', flashKnown);
+  saveSet('unlearned', flashReview);
+  // Đồng bộ cloud (nếu có bảng); không chặn UI
+  if(typeof syncProgressToCloud === 'function'){
+    syncProgressToCloud();
+  }
+}
+function loadProgress(){
+  flashKnown = loadSet('known');
+  flashReview = loadSet('unlearned');
+}
+function getMeowUser(){
+  try{
+    if(window.meowUser && window.meowUser.id) return window.meowUser;
+  }catch(e){}
+  return null;
+}
+function displayNameOf(user){
+  if(!user) return '';
+  const m = user.user_metadata || {};
+  return m.display_name || m.username || user.email || 'Học viên';
+}
+function detectAuthUser(){
+  const u = getMeowUser();
+  if(u && u.id) return String(u.id);
+  return null;
+}
+function setUserFromAuth(){
+  const id = detectAuthUser();
+  const prev = currentUser;
+  currentUser = id;
+  loadProgress();
+  updateAuthUI();
+  if(prev !== currentUser){
+    if(typeof renderFlashcard === 'function') renderFlashcard();
+    if(typeof renderUnlearned === 'function') renderUnlearned();
+    if(typeof applyFilters === 'function') applyFilters();
+  }
+  // Đồng bộ lên Supabase nếu có bảng user_vocab_progress (không bắt buộc)
+  syncProgressFromCloud().then(()=>{
+    if(typeof renderFlashcard === 'function') renderFlashcard();
+    if(typeof renderUnlearned === 'function') renderUnlearned();
+  }).catch(()=>{});
+}
+function updateAuthUI(){
+  const status = $('#authStatus');
+  const loginWrap = $('#authLoginWrap');
+  const userWrap = $('#authUserWrap');
+  if(!status) return;
+  const u = getMeowUser();
+  if(u && currentUser){
+    status.textContent = 'Đã đăng nhập · tiến độ lưu theo tài khoản Supabase';
+    if(loginWrap) loginWrap.hidden = true;
+    if(userWrap){
+      userWrap.hidden = false;
+      const lab = $('#authUserLabel');
+      if(lab) lab.textContent = displayNameOf(u);
+    }
+  }else if(currentUser){
+    status.textContent = 'Đã nhận tài khoản · dữ liệu lưu local theo user id';
+    if(loginWrap) loginWrap.hidden = true;
+    if(userWrap) userWrap.hidden = false;
+  }else{
+    // meow-auth sẽ redirect login nếu chưa đăng nhập; hiển thị chờ
+    status.textContent = 'Đang xác thực đăng nhập… (meow-auth)';
+    if(loginWrap) loginWrap.hidden = true;
+    if(userWrap) userWrap.hidden = true;
+  }
+}
+async function syncProgressFromCloud(){
+  const client = window.meowSupabase;
+  const u = getMeowUser();
+  if(!client || !u) return;
+  try{
+    const { data, error } = await client
+      .from('user_vocab_progress')
+      .select('known_ids, unlearned_ids')
+      .eq('user_id', u.id)
+      .eq('deck', 'hsk4_b1_20')
+      .maybeSingle();
+    if(error) return; // bảng có thể chưa tồn tại
+    if(data){
+      if(Array.isArray(data.known_ids)) flashKnown = new Set(data.known_ids.map(Number));
+      if(Array.isArray(data.unlearned_ids)) flashReview = new Set(data.unlearned_ids.map(Number));
+      persistProgressLocalOnly();
+    }
+  }catch(e){}
+}
+function persistProgressLocalOnly(){
+  saveSet('known', flashKnown);
+  saveSet('unlearned', flashReview);
+}
+async function syncProgressToCloud(){
+  const client = window.meowSupabase;
+  const u = getMeowUser();
+  if(!client || !u) return;
+  try{
+    await client.from('user_vocab_progress').upsert({
+      user_id: u.id,
+      deck: 'hsk4_b1_20',
+      known_ids: [...flashKnown],
+      unlearned_ids: [...flashReview],
+      updated_at: new Date().toISOString()
+    }, { onConflict: 'user_id,deck' });
+  }catch(e){}
+}
+function addUnlearned(id){
+  id = Number(id);
+  if(!id) return;
+  flashReview.add(id);
+  flashKnown.delete(id);
+  persistProgress();
+}
+function removeUnlearned(id){
+  id = Number(id);
+  flashReview.delete(id);
+  persistProgress();
+}
+function markKnownId(id){
+  id = Number(id);
+  flashKnown.add(id);
+  flashReview.delete(id);
+  persistProgress();
+}
+
 
 function escapeHtml(s){
   return String(s||'').replace(/[&<>"']/g,m=>({
@@ -574,7 +972,10 @@ function hanVietOf(word){
 
 async function loadHanViet(){
   try{
-    const r = await fetch(HANVIET_URL,{cache:'force-cache'});
+    const ctrl = typeof AbortController !== 'undefined' ? new AbortController() : null;
+    const timer = ctrl ? setTimeout(()=>ctrl.abort(), 8000) : null;
+    const r = await fetch(HANVIET_URL,{cache:'force-cache', signal: ctrl ? ctrl.signal : undefined});
+    if(timer) clearTimeout(timer);
     if(!r.ok) throw new Error('Không tải được Unihan');
     HANVIET = await r.json();
   }catch(e){
@@ -690,6 +1091,7 @@ function renderWords(){
         <div class="detail-actions">
           <button class="action-btn speak-word" type="button">Nghe từ</button>
           <button class="action-btn primary stroke-word" type="button">Xem thứ tự nét</button>
+          <button class="action-btn save-unlearn-btn toggle-unlearn" type="button">Lưu vào chưa thuộc</button>
         </div>
       </div>
     </article>
@@ -730,6 +1132,29 @@ function renderWords(){
       if(w) openStroke(w);
     });
   });
+
+  $$('.toggle-unlearn').forEach(btn=>{
+    const id=Number(btn.closest('.word-card').dataset.id);
+    if(flashReview.has(id)){
+      btn.classList.add('active');
+      btn.textContent='Đã lưu · Bỏ khỏi chưa thuộc';
+    }
+    btn.addEventListener('click',e=>{
+      e.stopPropagation();
+      const cardId=Number(btn.closest('.word-card').dataset.id);
+      if(flashReview.has(cardId)){
+        removeUnlearned(cardId);
+        btn.classList.remove('active');
+        btn.textContent='Lưu vào chưa thuộc';
+      }else{
+        addUnlearned(cardId);
+        btn.classList.add('active');
+        btn.textContent='Đã lưu · Bỏ khỏi chưa thuộc';
+      }
+      if(typeof renderUnlearned==='function') renderUnlearned();
+      if(typeof renderFlashcard==='function') renderFlashcard();
+    });
+  });
 }
 
 function renderPagination(){
@@ -766,9 +1191,17 @@ function switchStudyTab(tab){
   activeStudyTab=tab;
   $('#tabList').classList.toggle('active',tab==='list');
   $('#tabFlash').classList.toggle('active',tab==='flash');
+  const tu=$('#tabUnlearned'), tq=$('#tabQuiz');
+  if(tu) tu.classList.toggle('active',tab==='unlearned');
+  if(tq) tq.classList.toggle('active',tab==='quiz');
   $('#listPanel').hidden=tab!=='list';
   $('#flashPanel').hidden=tab!=='flash';
+  const up=$('#unlearnedPanel'), qp=$('#quizPanel');
+  if(up) up.hidden=tab!=='unlearned';
+  if(qp) qp.hidden=tab!=='quiz';
   if(tab==='flash')renderFlashcard();
+  if(tab==='unlearned')renderUnlearned();
+  if(tab==='quiz'){ quizOnlyUnlearned=false; startQuiz(); }
 }
 
 function resetFlashDeck(shuffle=false){
@@ -816,7 +1249,7 @@ function renderFlashcard(){
   $('#flashNext').disabled=flashIndex===flashDeck.length-1;
   $('#markKnown').classList.toggle('active',flashKnown.has(w.id));
   $('#markReview').classList.toggle('active',flashReview.has(w.id));
-  $('#knownSummary').textContent=`Đã nhớ: ${flashKnown.size} · Cần ôn lại: ${flashReview.size}`;
+  $('#knownSummary').textContent=`Đã nhớ: ${flashKnown.size} · Chưa thuộc: ${flashReview.size}`;
 }
 function flipFlash(){if(flashDeck.length)$('#flashcard').classList.toggle('flipped');}
 function goFlash(step){
@@ -826,11 +1259,246 @@ function goFlash(step){
 }
 function markFlash(kind){
   const w=currentFlashWord(); if(!w)return;
-  if(kind==='known'){flashKnown.add(w.id);flashReview.delete(w.id);}
-  else{flashReview.add(w.id);flashKnown.delete(w.id);}
+  if(kind==='known') markKnownId(w.id);
+  else addUnlearned(w.id);
   renderFlashcard();
+  if(typeof renderUnlearned==='function') renderUnlearned();
   if(flashIndex<flashDeck.length-1){flashIndex++;renderFlashcard();}
 }
+
+/* ========== Từ chưa thuộc ========== */
+function getUnlearnedWords(){
+  return WORDS.filter(w => flashReview.has(w.id));
+}
+function renderUnlearned(){
+  const list = getUnlearnedWords();
+  const empty = $('#unlearnedEmpty');
+  const box = $('#unlearnedList');
+  const count = $('#unlearnedCount');
+  if(count) count.textContent = list.length ? `(${list.length} từ)` : '';
+  if(!list.length){
+    if(empty) empty.hidden = false;
+    if(box) box.innerHTML = '';
+    return;
+  }
+  if(empty) empty.hidden = true;
+  if(!box) return;
+  box.innerHTML = list.map(w => `
+    <article class="word-card" data-id="${w.id}">
+      <button class="word-summary" type="button" aria-expanded="false">
+        <span class="no">${sourceLabel(w)}</span>
+        <span>
+          <span class="hanzi">${escapeHtml(w.hanzi)}</span>
+          <span class="pinyin">${escapeHtml(w.pinyin)}</span>
+        </span>
+        <span class="meaning">${escapeHtml(w.meanings || '—')}</span>
+        <span class="hanviet">${escapeHtml(w.hanviet)}</span>
+        <span class="pos-list"><span class="pos-tag">Bài ${w.lesson}</span><span class="unlearn-badge">Chưa thuộc</span></span>
+        <span class="detail-text">Mở chi tiết</span>
+      </button>
+      <div class="word-detail">
+        ${w.senses.map(senseHtml).join('')}
+        ${exampleHtml(w)}
+        <div class="detail-actions">
+          <button class="action-btn speak-word" type="button">Nghe từ</button>
+          <button class="action-btn primary stroke-word" type="button">Xem thứ tự nét</button>
+          <button class="action-btn mark-known-from-unlearn" type="button">Đánh dấu đã nhớ</button>
+          <button class="action-btn remove-unlearn" type="button">Xóa khỏi danh sách</button>
+        </div>
+      </div>
+    </article>
+  `).join('');
+
+  box.querySelectorAll('.word-summary').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const card=btn.closest('.word-card');
+      const open=card.classList.toggle('open');
+      btn.setAttribute('aria-expanded',open?'true':'false');
+      card.querySelector('.detail-text').textContent=open?'Thu gọn':'Mở chi tiết';
+    });
+  });
+  box.querySelectorAll('.speak-word').forEach(btn=>{
+    btn.addEventListener('click',e=>{
+      e.stopPropagation();
+      const id=Number(btn.closest('.word-card').dataset.id);
+      const w=WORDS.find(x=>x.id===id);
+      if(w) speak(w.hanzi.split(/[|｜／]/)[0].trim());
+    });
+  });
+  box.querySelectorAll('.stroke-word').forEach(btn=>{
+    btn.addEventListener('click',e=>{
+      e.stopPropagation();
+      const id=Number(btn.closest('.word-card').dataset.id);
+      const w=WORDS.find(x=>x.id===id);
+      if(w) openStroke(w);
+    });
+  });
+  box.querySelectorAll('.mark-known-from-unlearn').forEach(btn=>{
+    btn.addEventListener('click',e=>{
+      e.stopPropagation();
+      const id=Number(btn.closest('.word-card').dataset.id);
+      markKnownId(id);
+      renderUnlearned();
+      renderFlashcard();
+    });
+  });
+  box.querySelectorAll('.remove-unlearn').forEach(btn=>{
+    btn.addEventListener('click',e=>{
+      e.stopPropagation();
+      const id=Number(btn.closest('.word-card').dataset.id);
+      removeUnlearned(id);
+      renderUnlearned();
+      renderFlashcard();
+    });
+  });
+}
+
+/* ========== Trắc nghiệm ========== */
+function shuffleArr(arr){
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+function buildQuizDeck(){
+  let base;
+  if(quizOnlyUnlearned){
+    base = getUnlearnedWords();
+    if(!base.length) base = FILTERED.length ? FILTERED : WORDS;
+  }else{
+    base = FILTERED.length ? FILTERED : WORDS;
+  }
+  quizDeck = shuffleArr(base);
+  quizIndex = 0;
+  quizCorrect = 0;
+  quizWrong = 0;
+  quizAnswered = false;
+  quizLastWrongId = null;
+}
+function startQuiz(){
+  buildQuizDeck();
+  renderQuiz();
+}
+function currentQuizWord(){
+  return quizDeck.length ? quizDeck[Math.max(0, Math.min(quizIndex, quizDeck.length-1))] : null;
+}
+function pickDistractors(correct, mode, n=3){
+  const pool = WORDS.filter(w => w.id !== correct.id);
+  const shuffled = shuffleArr(pool);
+  const out = [];
+  const seen = new Set();
+  for(const w of shuffled){
+    const val = mode === 'meaning' ? (w.meanings||'') : (w.hanzi||'');
+    const cval = mode === 'meaning' ? (correct.meanings||'') : (correct.hanzi||'');
+    if(!val || val === cval || seen.has(val)) continue;
+    seen.add(val);
+    out.push(w);
+    if(out.length >= n) break;
+  }
+  return out;
+}
+function renderQuiz(){
+  const empty = $('#quizEmpty');
+  const study = $('#quizStudy');
+  if(!quizDeck.length){
+    if(empty) empty.hidden = false;
+    if(study) study.hidden = true;
+    return;
+  }
+  if(empty) empty.hidden = true;
+  if(study) study.hidden = false;
+
+  const w = currentQuizWord();
+  if(!w) return;
+  quizAnswered = false;
+  quizLastWrongId = null;
+
+  $('#quizMeta').textContent = sourceLabel(w) + (flashReview.has(w.id) ? ' · Chưa thuộc' : '');
+  if(quizMode === 'meaning'){
+    $('#quizHanzi').textContent = w.hanzi;
+    $('#quizPinyin').textContent = w.pinyin || '';
+    $('#quizPrompt').textContent = 'Chọn nghĩa đúng:';
+  }else{
+    $('#quizHanzi').textContent = w.meanings || '—';
+    $('#quizPinyin').textContent = '';
+    $('#quizPrompt').textContent = 'Chọn chữ Hán đúng:';
+  }
+
+  const distractors = pickDistractors(w, quizMode, 3);
+  const options = shuffleArr([w, ...distractors]);
+  const optsEl = $('#quizOptions');
+  optsEl.innerHTML = options.map(o => {
+    const label = quizMode === 'meaning' ? (o.meanings || '—') : (o.hanzi || '—');
+    return `<button class="quiz-opt" type="button" data-id="${o.id}">${escapeHtml(label)}</button>`;
+  }).join('');
+
+  optsEl.querySelectorAll('.quiz-opt').forEach(btn => {
+    btn.addEventListener('click', () => answerQuiz(Number(btn.dataset.id)));
+  });
+
+  const fb = $('#quizFeedback');
+  fb.className = 'quiz-feedback';
+  fb.textContent = '';
+  $('#quizNext').disabled = true;
+  const saveBtn = $('#quizSaveUnlearn');
+  if(saveBtn){ saveBtn.hidden = true; saveBtn.classList.remove('active'); }
+
+  $('#quizProgress').textContent = `${quizIndex+1} / ${quizDeck.length}`;
+  $('#quizCorrect').textContent = String(quizCorrect);
+  $('#quizWrong').textContent = String(quizWrong);
+}
+function answerQuiz(chosenId){
+  if(quizAnswered) return;
+  const w = currentQuizWord();
+  if(!w) return;
+  quizAnswered = true;
+  const ok = chosenId === w.id;
+  $$('#quizOptions .quiz-opt').forEach(btn => {
+    btn.disabled = true;
+    const id = Number(btn.dataset.id);
+    if(id === w.id) btn.classList.add('correct');
+    else if(id === chosenId && !ok) btn.classList.add('wrong');
+  });
+  const fb = $('#quizFeedback');
+  if(ok){
+    quizCorrect++;
+    fb.className = 'quiz-feedback show ok';
+    fb.textContent = 'Chính xác! ' + (w.pinyin ? w.pinyin + ' · ' : '') + (w.meanings || '');
+    // đúng rồi thì có thể bỏ khỏi chưa thuộc nếu muốn — không tự động
+  }else{
+    quizWrong++;
+    quizLastWrongId = w.id;
+    addUnlearned(w.id);
+    fb.className = 'quiz-feedback show bad';
+    fb.textContent = 'Sai rồi. Đáp án: ' + (quizMode==='meaning' ? (w.meanings||'') : (w.hanzi||'')) +
+      (w.pinyin ? ` (${w.pinyin})` : '') + ' — đã lưu vào “Từ chưa thuộc”.';
+    const saveBtn = $('#quizSaveUnlearn');
+    if(saveBtn){
+      saveBtn.hidden = false;
+      saveBtn.classList.add('active');
+      saveBtn.textContent = 'Đã lưu vào chưa thuộc';
+    }
+  }
+  $('#quizCorrect').textContent = String(quizCorrect);
+  $('#quizWrong').textContent = String(quizWrong);
+  $('#quizNext').disabled = false;
+  if(typeof renderUnlearned === 'function') renderUnlearned();
+  if(typeof renderFlashcard === 'function') renderFlashcard();
+}
+function nextQuiz(){
+  if(quizIndex < quizDeck.length - 1){
+    quizIndex++;
+    renderQuiz();
+  }else{
+    const fb = $('#quizFeedback');
+    fb.className = 'quiz-feedback show ok';
+    fb.textContent = `Hết bộ đề! Đúng ${quizCorrect}/${quizDeck.length}. Bấm “Bắt đầu lại” để làm tiếp.`;
+    $('#quizNext').disabled = true;
+  }
+}
+
 function speak(text){
   if(!('speechSynthesis'in window))return;
   speechSynthesis.cancel();
@@ -878,6 +1546,73 @@ function closeStroke(){
 
 $('#tabList').addEventListener('click',()=>switchStudyTab('list'));
 $('#tabFlash').addEventListener('click',()=>switchStudyTab('flash'));
+const tabU=$('#tabUnlearned'), tabQ=$('#tabQuiz');
+if(tabU) tabU.addEventListener('click',()=>switchStudyTab('unlearned'));
+if(tabQ) tabQ.addEventListener('click',()=>switchStudyTab('quiz'));
+
+// Auth
+const _alb=$('#authLoginBtn'); if(_alb) _alb.addEventListener('click',()=>{
+  const name = (($('#authUsername')&&$('#authUsername').value)||'').trim();
+  if(!name){ alert('Nhập tên học viên để đăng nhập.'); return; }
+  setUser(name);
+});
+const _aun=$('#authUsername'); if(_aun) _aun.addEventListener('keydown',e=>{
+  if(e.key==='Enter'){ const _b=$('#authLoginBtn'); if(_b) _b.click(); }
+});
+const _alo=$('#authLogoutBtn'); if(_alo) _alo.addEventListener('click',()=>{
+  if(confirm('Đăng xuất? Dữ liệu của tài khoản vẫn được giữ trên máy này.')) setUser(null);
+});
+
+// Unlearned tools
+const _cu=$('#clearUnlearned'); if(_cu) _cu.addEventListener('click',()=>{
+  if(!flashReview.size) return;
+  if(!confirm(`Xóa hết ${flashReview.size} từ trong danh sách chưa thuộc?`)) return;
+  flashReview.clear();
+  persistProgress();
+  renderUnlearned();
+  renderFlashcard();
+});
+const _suf=$('#studyUnlearnedFlash'); if(_suf) _suf.addEventListener('click',()=>{
+  const list = getUnlearnedWords();
+  if(!list.length){ alert('Chưa có từ chưa thuộc.'); return; }
+  FILTERED = list;
+  // temporary: show flash of unlearned
+  activeLetter = '';
+  $('#lessonFilter').value = '';
+  $('#search').value = '';
+  resetFlashDeck(true);
+  switchStudyTab('flash');
+});
+const _suq=$('#studyUnlearnedQuiz'); if(_suq) _suq.addEventListener('click',()=>{
+  quizOnlyUnlearned = true;
+  switchStudyTab('quiz');
+  startQuiz();
+});
+
+// Quiz
+const _qr=$('#quizRestart'); if(_qr) _qr.addEventListener('click',()=>{ quizOnlyUnlearned=false; startQuiz(); });
+const _qfu=$('#quizFromUnlearned'); if(_qfu) _qfu.addEventListener('click',()=>{
+  quizOnlyUnlearned = true;
+  startQuiz();
+});
+const _qn=$('#quizNext'); if(_qn) _qn.addEventListener('click', nextQuiz);
+const _qs=$('#quizSpeak'); if(_qs) _qs.addEventListener('click',()=>{
+  const w = currentQuizWord();
+  if(w) speak(w.hanzi.split(/[|｜／]/)[0].trim());
+});
+const _qmm=$('#quizModeMeaning'); if(_qmm) _qmm.addEventListener('click',()=>{
+  quizMode = 'meaning';
+  $('#quizModeMeaning').classList.add('active');
+  $('#quizModeHanzi').classList.remove('active');
+  startQuiz();
+});
+const _qmh=$('#quizModeHanzi'); if(_qmh) _qmh.addEventListener('click',()=>{
+  quizMode = 'hanzi';
+  $('#quizModeHanzi').classList.add('active');
+  $('#quizModeMeaning').classList.remove('active');
+  startQuiz();
+});
+
 $('#flashcard').addEventListener('click',flipFlash);
 $('#flashcard').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();flipFlash();}});
 $('#flashFlip').addEventListener('click',e=>{e.stopPropagation();flipFlash();});
@@ -899,8 +1634,39 @@ $('#strokeModal').addEventListener('click',e=>{if(e.target===$('#strokeModal'))c
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#strokeModal').classList.contains('open'))closeStroke();});
 
 (async()=>{
-  await loadHanViet();
-  prepareWords();
+  // meow-auth.js (defer) sẽ set window.meowUser + dispatch meow-auth-ready
+  window.addEventListener('meow-auth-ready', ()=>{
+    setUserFromAuth();
+  });
+  // Nếu auth đã sẵn sàng trước khi listener gắn
+  if(window.meowUser && window.meowUser.id){
+    setUserFromAuth();
+  }else{
+    updateAuthUI();
+    // fallback: thử lại vài lần (auth script defer)
+    let tries = 0;
+    const t = setInterval(()=>{
+      tries++;
+      if(window.meowUser && window.meowUser.id){
+        clearInterval(t);
+        setUserFromAuth();
+      }else if(tries > 25){
+        clearInterval(t);
+      }
+    }, 200);
+  }
+
+  try{
+    await loadHanViet();
+  }catch(e){ HANVIET = {}; }
+  try{
+    prepareWords();
+  }catch(e){
+    console.error(e);
+    const s=$('#status');
+    if(s){ s.hidden=false; s.className='error-box'; s.textContent='Lỗi tải danh sách từ: '+(e.message||e); }
+  }
+  try{ renderUnlearned(); }catch(e){}
 })();
 </script>
 </body>
