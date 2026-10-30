@@ -40,8 +40,15 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 .jump{border:1px solid var(--line);background:#fff;color:var(--blue-dark);font-weight:700;border-radius:12px;padding:0 16px;cursor:pointer}
 .layout{display:grid;grid-template-columns:230px 1fr;gap:22px;align-items:start;padding-bottom:70px}
 .side{position:sticky;top:78px;max-height:calc(100vh - 96px);overflow:auto;padding:8px 8px 20px 0}
-.side a{display:block;font-size:.82rem;color:#567078;padding:4px 0}
-.side a:hover{color:var(--blue-dark)}
+.side-title{font-weight:700;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-dark);margin:0 0 10px;padding:0 4px}
+.side a{display:flex;align-items:flex-start;gap:8px;font-size:.84rem;color:#3f5a63;padding:7px 8px;margin:2px 0;border-radius:10px;line-height:1.35;border:1px solid transparent}
+.side a:hover{color:var(--blue-dark);background:var(--blue-soft);border-color:var(--line)}
+.toc-num{flex:none;min-width:26px;height:22px;padding:0 6px;border-radius:7px;display:inline-flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:#fff;background:linear-gradient(145deg,var(--blue-dark),var(--blue-2))}
+.toc-text{flex:1;font-family:"Noto Serif SC","Be Vietnam Pro",serif;font-weight:600}
+.toc-practice .toc-num{background:linear-gradient(145deg,#c4922e,var(--gold));color:#3a2a0a}
+.toc-practice{margin-top:10px;border-color:rgba(228,183,90,.35)!important;background:rgba(228,183,90,.08)}
+.gp-h .num{font-size:.85rem;min-width:34px}
+.ttl{font-weight:700}
 .gp{background:#fff;border:1px solid var(--line);border-radius:16px;margin:0 0 12px;box-shadow:0 8px 22px rgba(52,101,116,.05);overflow:hidden}
 .gp-h{width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;border:0;background:linear-gradient(135deg,#F7FBFC,#fff);cursor:pointer;text-align:left;font:inherit;color:inherit}
 .gp-h:hover{background:var(--blue-soft)}
@@ -92,7 +99,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
   </div>
 </header>
 <main class="container layout">
-  <aside class="side"><a href="#gp1">不仅。。。也/还/而且。。。</a><a href="#gp2">从来</a><a href="#gp3">刚</a><a href="#gp4">即使。。。也。。。</a><a href="#gp5">（在）。。。上</a><a href="#gp6">6.正好</a><a href="#gp7">7.差不多</a><a href="#gp8">8.尽管</a><a href="#gp9">却</a><a href="#gp10">而</a><a href="#gp11">11.挺</a><a href="#gp12">12. 本来</a><a href="#gp13">13.另外</a><a href="#gp14">14.首先。。。其次。。。</a><a href="#gp15">15.不管</a><a href="#gp16">16.以为</a><a href="#gp17">17. 原来</a><a href="#gp18">18. 并</a><a href="#gp19">19.按照</a><a href="#gp20">20.甚至</a><a href="#gp21">21.肯定</a><a href="#gp22">22. 再说</a><a href="#gp23">23.实际</a><a href="#gp24">25.对。。。来说</a><a href="#gp25">26.尤其</a><a href="#gp26">27.竟然 không ngờ, vậy mà</a><a href="#gp27">28.倍</a><a href="#gp28">29.值得 đáng</a><a href="#gp29">30.其中 trong đó, trong số đó</a><a href="#gp30">31.（在）。。。下 trong..., dưới...</a><a href="#gp31">32.估计 dự đoán</a><a href="#gp32">33. 来不及 không kịp</a><a href="#gp33">34.离合词重叠 từ ly hợp lặp lại</a><a href="#gp34">35.要是 nếu</a><a href="#gp35">36.既。。。又/也/还。。。đã...lại..., vừa...vừa...</a><a href="#gp36">37. 使 khiến cho, làm cho</a><a href="#gp37">38.只要</a><a href="#gp38">39.可不是</a><a href="#gp39">40. 因此 vì vậy</a><a href="#gp40">42.往往</a><a href="#gp41">43. 难道</a><a href="#gp42">45.通过</a><a href="#gp43">46.可是</a><a href="#gp44">47.结果</a><a href="#gp45">49. 上</a><a href="#gp46">50.不过</a><a href="#gp47">51.确实</a><a href="#gp48">52.在。。。看来</a><a href="#gp49">53.由于</a><a href="#gp50">比如</a><a href="#gp51">连</a><a href="#gp52">55. 否则</a><a href="#gp53">无论</a><a href="#gp54">然而</a><a href="#gp55">同时</a><a href="#gp56">并且</a><a href="#gp57">再。。。也。。。</a><a href="#gp58">6. 对于</a><a href="#gp59">61. 名量词重叠 Sự lặp lại danh từ/lượng từ</a><a href="#gp60">62.相反</a><a href="#gp61">63. 大概</a><a href="#gp62">64.偶尔</a><a href="#gp63">65.由</a><a href="#gp64">66.进行</a><a href="#gp65">67.随着</a><a href="#gp66">68.够</a><a href="#gp67">69.以</a><a href="#gp68">70.既然</a><a href="#gp69">71.于是</a><a href="#gp70">72.什么的</a><a href="#gp71">73.想起来</a><a href="#gp72">74.弄</a><a href="#gp73">75.千万</a><a href="#gp74">76.来</a><a href="#gp75">77.左右</a><a href="#gp76">78.可</a><a href="#gp77">79.恐怕</a><a href="#gp78">80.到底</a><a href="#gp79">81.拿。。。来说</a><a href="#gp80">82.敢</a><a href="#gp81">83.倒</a><a href="#gp82">84.干</a><a href="#gp83">85.趟</a><a href="#gp84">86.为了。。。而。。。</a><a href="#gp85">87.仍然</a><a href="#gp86">88.是否</a><a href="#gp87">89.受不了</a><a href="#gp88">90.接着</a><a href="#gp89">91.除此以外</a><a href="#gp90">92.把。。。叫作。。。</a><a href="#gp91">93.疑问代词活用表示任指 Đại từ nghi vấn phiếm chỉ</a><a href="#gp92">94.上</a><a href="#gp93">95.出来</a><a href="#gp94">96.总的来说</a><a href="#gp95">97.在于</a><a href="#gp96">98.动词着动词着</a><a href="#gp97">99.一。。。就。。。</a><a href="#gp98">100.究竟</a><a href="#gp99">101.起来</a><a href="#gp100">102.动词+起</a><a href="#practice">121 câu ôn tập</a></aside>
+  <aside class="side"><div class="side-title">Mục lục ngữ pháp</div><a href="#gp1"><span class="toc-num">1</span><span class="toc-text">不仅。。。也/还/而且。。。</span></a><a href="#gp2"><span class="toc-num">2</span><span class="toc-text">从来</span></a><a href="#gp3"><span class="toc-num">3</span><span class="toc-text">刚</span></a><a href="#gp4"><span class="toc-num">4</span><span class="toc-text">即使。。。也。。。</span></a><a href="#gp5"><span class="toc-num">5</span><span class="toc-text">（在）。。。上</span></a><a href="#gp6"><span class="toc-num">6</span><span class="toc-text">正好</span></a><a href="#gp7"><span class="toc-num">7</span><span class="toc-text">差不多</span></a><a href="#gp8"><span class="toc-num">8</span><span class="toc-text">尽管</span></a><a href="#gp9"><span class="toc-num">9</span><span class="toc-text">却</span></a><a href="#gp10"><span class="toc-num">10</span><span class="toc-text">而</span></a><a href="#gp11"><span class="toc-num">11</span><span class="toc-text">挺</span></a><a href="#gp12"><span class="toc-num">12</span><span class="toc-text">本来</span></a><a href="#gp13"><span class="toc-num">13</span><span class="toc-text">另外</span></a><a href="#gp14"><span class="toc-num">14</span><span class="toc-text">首先。。。其次。。。</span></a><a href="#gp15"><span class="toc-num">15</span><span class="toc-text">不管</span></a><a href="#gp16"><span class="toc-num">16</span><span class="toc-text">以为</span></a><a href="#gp17"><span class="toc-num">17</span><span class="toc-text">原来</span></a><a href="#gp18"><span class="toc-num">18</span><span class="toc-text">并</span></a><a href="#gp19"><span class="toc-num">19</span><span class="toc-text">按照</span></a><a href="#gp20"><span class="toc-num">20</span><span class="toc-text">甚至</span></a><a href="#gp21"><span class="toc-num">21</span><span class="toc-text">肯定</span></a><a href="#gp22"><span class="toc-num">22</span><span class="toc-text">再说</span></a><a href="#gp23"><span class="toc-num">23</span><span class="toc-text">实际</span></a><a href="#gp24"><span class="toc-num">24</span><span class="toc-text">对。。。来说</span></a><a href="#gp25"><span class="toc-num">25</span><span class="toc-text">尤其</span></a><a href="#gp26"><span class="toc-num">26</span><span class="toc-text">竟然 không ngờ, vậy mà</span></a><a href="#gp27"><span class="toc-num">27</span><span class="toc-text">倍</span></a><a href="#gp28"><span class="toc-num">28</span><span class="toc-text">值得 đáng</span></a><a href="#gp29"><span class="toc-num">29</span><span class="toc-text">其中 trong đó, trong số đó</span></a><a href="#gp30"><span class="toc-num">30</span><span class="toc-text">（在）。。。下 trong..., dưới...</span></a><a href="#gp31"><span class="toc-num">31</span><span class="toc-text">估计 dự đoán</span></a><a href="#gp32"><span class="toc-num">32</span><span class="toc-text">来不及 không kịp</span></a><a href="#gp33"><span class="toc-num">33</span><span class="toc-text">离合词重叠 từ ly hợp lặp lại</span></a><a href="#gp34"><span class="toc-num">34</span><span class="toc-text">要是 nếu</span></a><a href="#gp35"><span class="toc-num">35</span><span class="toc-text">既。。。又/也/还。。。đã...lại..., vừa...vừa...</span></a><a href="#gp36"><span class="toc-num">36</span><span class="toc-text">使 khiến cho, làm cho</span></a><a href="#gp37"><span class="toc-num">37</span><span class="toc-text">只要</span></a><a href="#gp38"><span class="toc-num">38</span><span class="toc-text">可不是</span></a><a href="#gp39"><span class="toc-num">39</span><span class="toc-text">因此 vì vậy</span></a><a href="#gp40"><span class="toc-num">40</span><span class="toc-text">往往</span></a><a href="#gp41"><span class="toc-num">41</span><span class="toc-text">难道</span></a><a href="#gp42"><span class="toc-num">42</span><span class="toc-text">通过</span></a><a href="#gp43"><span class="toc-num">43</span><span class="toc-text">可是</span></a><a href="#gp44"><span class="toc-num">44</span><span class="toc-text">结果</span></a><a href="#gp45"><span class="toc-num">45</span><span class="toc-text">上</span></a><a href="#gp46"><span class="toc-num">46</span><span class="toc-text">不过</span></a><a href="#gp47"><span class="toc-num">47</span><span class="toc-text">确实</span></a><a href="#gp48"><span class="toc-num">48</span><span class="toc-text">在。。。看来</span></a><a href="#gp49"><span class="toc-num">49</span><span class="toc-text">由于</span></a><a href="#gp50"><span class="toc-num">50</span><span class="toc-text">比如</span></a><a href="#gp51"><span class="toc-num">51</span><span class="toc-text">连</span></a><a href="#gp52"><span class="toc-num">52</span><span class="toc-text">否则</span></a><a href="#gp53"><span class="toc-num">53</span><span class="toc-text">无论</span></a><a href="#gp54"><span class="toc-num">54</span><span class="toc-text">然而</span></a><a href="#gp55"><span class="toc-num">55</span><span class="toc-text">同时</span></a><a href="#gp56"><span class="toc-num">56</span><span class="toc-text">并且</span></a><a href="#gp57"><span class="toc-num">57</span><span class="toc-text">再。。。也。。。</span></a><a href="#gp58"><span class="toc-num">58</span><span class="toc-text">对于</span></a><a href="#gp59"><span class="toc-num">59</span><span class="toc-text">名量词重叠 Sự lặp lại danh từ/lượng từ</span></a><a href="#gp60"><span class="toc-num">60</span><span class="toc-text">相反</span></a><a href="#gp61"><span class="toc-num">61</span><span class="toc-text">大概</span></a><a href="#gp62"><span class="toc-num">62</span><span class="toc-text">偶尔</span></a><a href="#gp63"><span class="toc-num">63</span><span class="toc-text">由</span></a><a href="#gp64"><span class="toc-num">64</span><span class="toc-text">进行</span></a><a href="#gp65"><span class="toc-num">65</span><span class="toc-text">随着</span></a><a href="#gp66"><span class="toc-num">66</span><span class="toc-text">够</span></a><a href="#gp67"><span class="toc-num">67</span><span class="toc-text">以</span></a><a href="#gp68"><span class="toc-num">68</span><span class="toc-text">既然</span></a><a href="#gp69"><span class="toc-num">69</span><span class="toc-text">于是</span></a><a href="#gp70"><span class="toc-num">70</span><span class="toc-text">什么的</span></a><a href="#gp71"><span class="toc-num">71</span><span class="toc-text">想起来</span></a><a href="#gp72"><span class="toc-num">72</span><span class="toc-text">弄</span></a><a href="#gp73"><span class="toc-num">73</span><span class="toc-text">千万</span></a><a href="#gp74"><span class="toc-num">74</span><span class="toc-text">来</span></a><a href="#gp75"><span class="toc-num">75</span><span class="toc-text">左右</span></a><a href="#gp76"><span class="toc-num">76</span><span class="toc-text">可</span></a><a href="#gp77"><span class="toc-num">77</span><span class="toc-text">恐怕</span></a><a href="#gp78"><span class="toc-num">78</span><span class="toc-text">到底</span></a><a href="#gp79"><span class="toc-num">79</span><span class="toc-text">拿。。。来说</span></a><a href="#gp80"><span class="toc-num">80</span><span class="toc-text">敢</span></a><a href="#gp81"><span class="toc-num">81</span><span class="toc-text">倒</span></a><a href="#gp82"><span class="toc-num">82</span><span class="toc-text">干</span></a><a href="#gp83"><span class="toc-num">83</span><span class="toc-text">趟</span></a><a href="#gp84"><span class="toc-num">84</span><span class="toc-text">为了。。。而。。。</span></a><a href="#gp85"><span class="toc-num">85</span><span class="toc-text">仍然</span></a><a href="#gp86"><span class="toc-num">86</span><span class="toc-text">是否</span></a><a href="#gp87"><span class="toc-num">87</span><span class="toc-text">受不了</span></a><a href="#gp88"><span class="toc-num">88</span><span class="toc-text">接着</span></a><a href="#gp89"><span class="toc-num">89</span><span class="toc-text">除此以外</span></a><a href="#gp90"><span class="toc-num">90</span><span class="toc-text">把。。。叫作。。。</span></a><a href="#gp91"><span class="toc-num">91</span><span class="toc-text">疑问代词活用表示任指 Đại từ nghi vấn phiếm chỉ</span></a><a href="#gp92"><span class="toc-num">92</span><span class="toc-text">上</span></a><a href="#gp93"><span class="toc-num">93</span><span class="toc-text">出来</span></a><a href="#gp94"><span class="toc-num">94</span><span class="toc-text">总的来说</span></a><a href="#gp95"><span class="toc-num">95</span><span class="toc-text">在于</span></a><a href="#gp96"><span class="toc-num">96</span><span class="toc-text">动词着动词着</span></a><a href="#gp97"><span class="toc-num">97</span><span class="toc-text">一。。。就。。。</span></a><a href="#gp98"><span class="toc-num">98</span><span class="toc-text">究竟</span></a><a href="#gp99"><span class="toc-num">99</span><span class="toc-text">起来</span></a><a href="#gp100"><span class="toc-num">100</span><span class="toc-text">动词+起</span></a><a href="#practice" class="toc-practice"><span class="toc-num">★</span><span class="toc-text">121 câu ôn tập</span></a></aside>
   <div>
     <article class="gp" id="gp1" data-key="不仅。。。也/还/而且。。。">
   <button class="gp-h" type="button" aria-expanded="false">
@@ -144,7 +151,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp6" data-key="6.正好">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">6</span>
-    <span class="ttl">6.正好</span>
+    <span class="ttl">正好</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">正好 có thể được dùng làm tính từ và mang ý nghĩa là vừa vặn, diễn tả đối tượng được đề cập (thời gian, vị trí, thể tích, số lượng, mức độ..) thỏa mãn điều kiện nào đó (không sớm không muộn, không trước không sau, không to không nhỏ, không nhiều không ít, không cao không thấp..). Ví dụ:</p>
@@ -154,7 +161,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp7" data-key="7.差不多">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">7</span>
-    <span class="ttl">7.差不多</span>
+    <span class="ttl">差不多</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">差不多 có thể được dùng làm tính từ và mang ý nghĩa là xấp xỉ, khác biệt rất nhỏ. Ví dụ:</p>
@@ -166,7 +173,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp8" data-key="8.尽管">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">8</span>
-    <span class="ttl">8.尽管</span>
+    <span class="ttl">尽管</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Liên từ 尽管 thường được dùng ở vế thứ nhất của câu phức để đưa ra một sự thật. Vế câu thứ hai cho biết kết quả (vốn không xảy ra trong tình huống thông thường), được dùng kết hợp với các từ ngữ biểu thị sự chuyển ý như 但是，可是，却，还是.</p>
@@ -197,7 +204,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp11" data-key="11.挺">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">11</span>
-    <span class="ttl">11.挺</span>
+    <span class="ttl">挺</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Phó từ 挺 có nghĩa là rất, thường được dùng trong cấu trúc 挺。。的.</p>
@@ -206,7 +213,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp12" data-key="12. 本来">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">12</span>
-    <span class="ttl">12. 本来</span>
+    <span class="ttl">本来</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Phó từ 本来 diễn tả rằng tình huống/sự việc nào đó đáng lẽ phải như vậy. 本来 cũng mang ý nghĩa là lúc đầu, trước đây.</p>
@@ -215,7 +222,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp13" data-key="13.另外">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">13</span>
-    <span class="ttl">13.另外</span>
+    <span class="ttl">另外</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Đại từ 另外 chỉ người hay sự vật bên ngoài phạm vi đã được đề cập trước đó, thường được dùng trong cấu trúc“另外（+的）+ Số lượng (+Danh từ)” hay “另外+ 的(+Danh từ)”. Ví dụ：</p>
@@ -229,7 +236,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp14" data-key="14.首先。。。其次。。。">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">14</span>
-    <span class="ttl">14.首先。。。其次。。。</span>
+    <span class="ttl">首先。。。其次。。。</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">首先 và 其次 là đại từ, thường được dùng kết hợp trong văn viết để liệt kê các sự việc theo trình tự nào đó. Ví dụ:</p>
@@ -240,7 +247,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp15" data-key="15.不管">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">15</span>
-    <span class="ttl">15.不管</span>
+    <span class="ttl">不管</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Liên từ 不管 chỉ kết luận hay kết quả sẽ không thay đổi trong mọi tình huống được giả định, thường được dùng chung với các đại từ nghi vấn như 什么，怎么，谁，哪儿 và 多（么）. Người ta cũng thường sử dụng 不管 kết hợp với 还是 hay mẫu câu chính phản, khi đó vế câu thứ hai thường có 都 hoặc các từ khác.</p>
@@ -249,7 +256,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp16" data-key="16.以为">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">16</span>
-    <span class="ttl">16.以为</span>
+    <span class="ttl">以为</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Động từ 以为 thường được dùng để chỉ việc gì đó không phải là sự thật.</p>
@@ -258,7 +265,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp17" data-key="17. 原来">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">17</span>
-    <span class="ttl">17. 原来</span>
+    <span class="ttl">原来</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">原来 có thể được dùng làm danh từ với nghĩa là ban đầu, trước đây,  chỉ tình huống được miêu tả trong vế câu hay câu theo sau nó khác với tình huống trước đây. Ví dụ:</p>
@@ -272,7 +279,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp18" data-key="18. 并">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">18</span>
-    <span class="ttl">18. 并</span>
+    <span class="ttl">并</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Phó từ 并 được dùng trước các từ phủ định như 不/没（有）để nhấn mạnh ngữ khí phủ định.</p>
@@ -281,7 +288,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp19" data-key="19.按照">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">19</span>
-    <span class="ttl">19.按照</span>
+    <span class="ttl">按照</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Giới từ 按照 có nghĩa là theo, dựa vào, căn cứ vào. Ví dụ:</p>
@@ -289,7 +296,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp20" data-key="20.甚至">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">20</span>
-    <span class="ttl">20.甚至</span>
+    <span class="ttl">甚至</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Phó từ 甚至 nhấn mạnh một ví dụ nổi bật, có thể được đặt trước mục cuối cùng của các danh từ, động từ hay vế câu đồng đẳng để làm nổi bật mục này. Ví dụ:</p>
@@ -298,7 +305,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp21" data-key="21.肯定">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">21</span>
-    <span class="ttl">21.肯定</span>
+    <span class="ttl">肯定</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">肯定 có thể được dùng làm phó từ với nghĩa là nhất định, không nghi ngờ. Ví dụ:  您放心，质量肯定不“打折”</p>
@@ -310,7 +317,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp22" data-key="22. 再说">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">22</span>
-    <span class="ttl">22. 再说</span>
+    <span class="ttl">再说</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">再说 có thể được dùng làm động từ, diễn tả ý gác lại (việc gì) để giải quyết hay suy sét sau. Ví dụ:</p>
@@ -324,7 +331,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp23" data-key="23.实际">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">23</span>
-    <span class="ttl">23.实际</span>
+    <span class="ttl">实际</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">实际 có thể được dùng làm danh từ để chỉ sự vật hay tình huống tồn tại khách quan. Ví dụ:</p>
@@ -337,7 +344,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp24" data-key="25.对。。。来说">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">24</span>
-    <span class="ttl">25.对。。。来说</span>
+    <span class="ttl">对。。。来说</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">对。。。来说 diễn tả ý nhìn nhận vấn đề từ góc độ nào đó. Ví dụ:</p>
@@ -346,7 +353,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp25" data-key="26.尤其">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">25</span>
-    <span class="ttl">26.尤其</span>
+    <span class="ttl">尤其</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Phó từ 尤其 chỉ mức độ tăng thêm. Vế câu thứ nhất thường đưa ra một tình huống tổng thể, vế câu thứ hai dùng 尤其 để chỉ ra khía cạnh nổi bật nhất trong tình huống tổng thể đó. Ví dụ:</p>
@@ -356,7 +363,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp26" data-key="27.竟然 không ngờ, vậy mà">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">26</span>
-    <span class="ttl">27.竟然 không ngờ, vậy mà</span>
+    <span class="ttl">竟然 không ngờ, vậy mà</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Phó từ 竟然 được dùng trước động từ hoặc tính từ để chỉ sự việc không ngờ, nằm ngoài dự đoán. Ví dụ:</p>
@@ -364,7 +371,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp27" data-key="28.倍">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">27</span>
-    <span class="ttl">28.倍</span>
+    <span class="ttl">倍</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Lượng từ 倍 chỉ số lần. Đây là lượng từ độc lập. Thông thường theo sau 倍 không có danh từ. Ví dụ:</p>
@@ -372,7 +379,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp28" data-key="29.值得 đáng">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">28</span>
-    <span class="ttl">29.值得 đáng</span>
+    <span class="ttl">值得 đáng</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Động từ 值得 diễn tả rằng việc gì đó đáng được thực hiện và sẽ mang lại kết quả tốt. Ví dụ:</p>
@@ -381,7 +388,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp29" data-key="30.其中 trong đó, trong số đó">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">29</span>
-    <span class="ttl">30.其中 trong đó, trong số đó</span>
+    <span class="ttl">其中 trong đó, trong số đó</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Danh từ 其中 được dùng để chỉ phạm vi hay vị trí. Ví dụ:</p>
@@ -389,7 +396,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp30" data-key="31.（在）。。。下 trong..., dưới...">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">30</span>
-    <span class="ttl">31.（在）。。。下 trong..., dưới...</span>
+    <span class="ttl">（在）。。。下 trong..., dưới...</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Thành phần đứng giữa “(在)。。。下” thường là một danh từ hay động từ có hai âm tiết kèm từ bổ nghĩa đứng trước nó. Cấu trúc này được dùng để chỉ một điều kiện, tình huống. Ví dụ:</p>
@@ -397,7 +404,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp31" data-key="32.估计 dự đoán">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">31</span>
-    <span class="ttl">32.估计 dự đoán</span>
+    <span class="ttl">估计 dự đoán</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Động từ 估计 có nghĩa là đưa ra suy đoán chung chung về sự vật dựa vào những điều kiện nào đó. Ví dụ:</p>
@@ -405,7 +412,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp32" data-key="33. 来不及 không kịp">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">32</span>
-    <span class="ttl">33. 来不及 không kịp</span>
+    <span class="ttl">来不及 không kịp</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Động từ 来不及 diễn tả rằng do thời gian ngắn nên người nào đó không kịp làm việc gì. 来不及 có thể được dùng độc lập hoặc có thể có động từ theo sau. Ví dụ:</p>
@@ -413,7 +420,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp33" data-key="34.离合词重叠 từ ly hợp lặp lại">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">33</span>
-    <span class="ttl">34.离合词重叠 từ ly hợp lặp lại</span>
+    <span class="ttl">离合词重叠 từ ly hợp lặp lại</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Sự lặp lại của từ ly hợp diễn tả các ý như thời gian ngắn, việc làm thử, sự nhẹ nhàng, tùy tiện.</p>
@@ -422,7 +429,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp34" data-key="35.要是 nếu">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">34</span>
-    <span class="ttl">35.要是 nếu</span>
+    <span class="ttl">要是 nếu</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Liên từ 要是 thường được dùng trong cấu trúc “要是。。。（的话），就。。. Vế câu sử dụng 要是 đưa ra một giả thuyết, vế câu sử dụng 就 chỉ hành động được thực hiện hay kết quả xuất hiện trong tình huống xảy ra giả thuyết đó. Ví dụ:</p>
@@ -432,7 +439,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp35" data-key="36.既。。。又/也/还。。。đã...lại..., vừa...vừa...">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">35</span>
-    <span class="ttl">36.既。。。又/也/还。。。đã...lại..., vừa...vừa...</span>
+    <span class="ttl">既。。。又/也/还。。。đã...lại..., vừa...vừa...</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">“既。。。又/也/还。。。” được dùng để nối hai cấu trúc mang đặc điểm của động từ hoặc tính từ (hai cấu trúc thường giống nhau) nhằm diễn tả hai tình huống (đều mang nghĩa tích cực hoặc đều mang nghĩa tiêu cực) tồn tại cùng lúc.  Ví dụ:</p>
@@ -442,7 +449,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp36" data-key="37. 使 khiến cho, làm cho">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">36</span>
-    <span class="ttl">37. 使 khiến cho, làm cho</span>
+    <span class="ttl">使 khiến cho, làm cho</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Động từ 使 có nghĩa là  (tương tự 让) thường được dùng trong văn viết. Ví dụ</p>
@@ -450,7 +457,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp37" data-key="38.只要">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">37</span>
-    <span class="ttl">38.只要</span>
+    <span class="ttl">只要</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Liên từ 只要 thường được dùng trong cấu trúc câu “只要。。。就”. Vế của câu đứng sau 只要 đưa ra một điều kiện cần thiết, vế câu đứng sau 就 chỉ kết quả của điều kiện này. Ví dụ:</p>
@@ -458,7 +465,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp38" data-key="39.可不是">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">38</span>
-    <span class="ttl">39.可不是</span>
+    <span class="ttl">可不是</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Phó từ 可不是 được sử dụng để bày tỏ sự tán thành hoặc đồng cảm với những điều người khác nói, thường đứng độc lập tạo thành một câu (cũng có thể dùng 可不). Ví dụ:</p>
@@ -471,7 +478,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp39" data-key="40. 因此 vì vậy">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">39</span>
-    <span class="ttl">40. 因此 vì vậy</span>
+    <span class="ttl">因此 vì vậy</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Liên từ 因此 gần nghĩa với 所以 nhưng không được dùng kết hợp với 因为. Ví dụ:</p>
@@ -480,7 +487,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp40" data-key="42.往往">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">40</span>
-    <span class="ttl">42.往往</span>
+    <span class="ttl">往往</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Phó từ 往往 chỉ tình huống nào đó thường xảy ra trong điều kiện nhất định, thường được dùng để nói về những sự việc có tính quy luật. Ví dụ:</p>
@@ -490,7 +497,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp41" data-key="43. 难道">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">41</span>
-    <span class="ttl">43. 难道</span>
+    <span class="ttl">难道</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Phó từ 难道 nhấn mạnh ngữ khí của câu hỏi tu từ. Khi 难道 được dùng trong câu hỏi tu từ khẳng định, cả câu mang nghĩa phủ định và ngược lại, chẳng hạn câu 难道汉语真的这么难吗？có hàm ý người nói nhấn mạnh tiếng Trung Quốc không khó. Ví dụ:</p>
@@ -501,7 +508,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp42" data-key="45.通过">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">42</span>
-    <span class="ttl">45.通过</span>
+    <span class="ttl">通过</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">通过 có thể được dùng làm giới từ để diễn tả ý đạt được mục đích nhất định nhờ người nào đó hay bằng phương tiện/cách thức nào đó. Ví dụ:</p>
@@ -514,7 +521,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp43" data-key="46.可是">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">43</span>
-    <span class="ttl">46.可是</span>
+    <span class="ttl">可是</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Liên từ 可是 được dùng ở vế câu sau của câu phức để chỉ sự chuyển ý. 虽然 thường được dùng ở vế câu trước để kết hợp với 可是. Ví dụ:</p>
@@ -523,7 +530,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp44" data-key="47.结果">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">44</span>
-    <span class="ttl">47.结果</span>
+    <span class="ttl">结果</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">结果 có thể được dùng làm danh từ để chỉ trạng thái cuối cùng trong diễn biến của sự việc, Ví dụ:</p>
@@ -536,7 +543,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp45" data-key="49. 上">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">45</span>
-    <span class="ttl">49. 上</span>
+    <span class="ttl">上</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Động từ 上 diễn tả ý đạt đến hoặc đủ (số lượng hay mức độ nhất định), theo sau nó thường là tân ngữ chỉ số lượng. Ví dụ:</p>
@@ -544,7 +551,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp46" data-key="50.不过">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">46</span>
-    <span class="ttl">50.不过</span>
+    <span class="ttl">不过</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">不过 có thể được dùng làm liên từ và được đặt ở đầu vế câu sau để chỉ sự chuyển ý, bổ sung và điều chỉnh ý của vế câu trước. Ví dụ:</p>
@@ -557,7 +564,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp47" data-key="51.确实">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">47</span>
-    <span class="ttl">51.确实</span>
+    <span class="ttl">确实</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Phó từ 确实 được dùng để khẳng định tính xác thực của một tình huống khách quan. Ví dụ:</p>
@@ -568,7 +575,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp48" data-key="52.在。。。看来">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">48</span>
-    <span class="ttl">52.在。。。看来</span>
+    <span class="ttl">在。。。看来</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">在。。。看来 là thành phần được dùng để chỉ ra rằng nội dung kế tiếp là lời phát biểu ý kiến hay quan điểm. Ví dụ:</p>
@@ -578,7 +585,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp49" data-key="53.由于">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">49</span>
-    <span class="ttl">53.由于</span>
+    <span class="ttl">由于</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">由于 có thể được dùng làm liên từ để chỉ nguyên nhân, theo sau đó là một câu. 由于 Thường được đặt ở vế đầu của câu. Ví dụ:</p>
@@ -609,7 +616,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp52" data-key="55. 否则">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">52</span>
-    <span class="ttl">55. 否则</span>
+    <span class="ttl">否则</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Liên từ 否则 có nghĩa là nếu không thì.... Câu theo sau 否则 chỉ kết quả được suy ra từ câu phía trước hoặc đưa ra một lựa chọn khác. Ví dụ:</p>
@@ -665,7 +672,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp58" data-key="6. 对于">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">58</span>
-    <span class="ttl">6. 对于</span>
+    <span class="ttl">对于</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Giới từ 对于 cho biết đối tượng được đề cập đến trong tình huống nào đó hay qua thái độ của người nào đó. Cấu trúc &quot;对于。。。&quot; có thể được dùng ở trước hoặc sau chủ ngữ. Ví dụ:</p>
@@ -674,7 +681,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp59" data-key="61. 名量词重叠 Sự lặp lại danh từ/lượng từ">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">59</span>
-    <span class="ttl">61. 名量词重叠 Sự lặp lại danh từ/lượng từ</span>
+    <span class="ttl">名量词重叠 Sự lặp lại danh từ/lượng từ</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Danh từ/lượng từ được lặp lại thường có dạng AA, có nghĩa là &quot;mỗi&quot;. Cấu trúc này có thể được dùng làm chủ ngữ, định ngữ của chủ ngữ và trạng ngữ nhưng không được dùng làm tân ngữ và định ngữ của tân ngữ.</p>
@@ -684,7 +691,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp60" data-key="62.相反">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">60</span>
-    <span class="ttl">62.相反</span>
+    <span class="ttl">相反</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Liên từ 相反 được dùng ở đầu hoặc giữa vế câu sau để chỉ sự chuyển ý hoặc diễn tả sự tăng tiến. Ví dụ:</p>
@@ -695,7 +702,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp61" data-key="63. 大概">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">61</span>
-    <span class="ttl">63. 大概</span>
+    <span class="ttl">大概</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">大概 được dùng làm phó từ để chỉ sự phỏng đoán gần đúng về số lượng, thời gian hoặc chỉ sự suy đoán tình huống, cho biết khả năng xảy ra sự việc nào đó là rất cao. 大概 cũng có thể được dùng làm tính từ với nghĩa là không chính xác lắm, chung chung. Ví dụ:</p>
@@ -703,7 +710,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp62" data-key="64.偶尔">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">62</span>
-    <span class="ttl">64.偶尔</span>
+    <span class="ttl">偶尔</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Phó từ 偶尔 chỉ tình huống xảy ra với tần suất rất thấp. Ví dụ:</p>
@@ -713,7 +720,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp63" data-key="65.由">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">63</span>
-    <span class="ttl">65.由</span>
+    <span class="ttl">由</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Giới từ 由 cho biết người đảm nhận công việc nào đó. Ví dụ:</p>
@@ -722,7 +729,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp64" data-key="66.进行">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">64</span>
-    <span class="ttl">66.进行</span>
+    <span class="ttl">进行</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Động từ 进行 có nghĩa là thực hiện hoạt động hay công việc nào đó. 进行 thường dùng trước động từ có 2 âm tiết diễn tả hành động mang tính chính thức, nghiêm túc. Thông thường, những động từ diễn tả hành động tạm thời hoặc liên quan đến cuộc sống hàng ngày không được dùng với 进行. Ví dụ:</p>
@@ -732,7 +739,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp65" data-key="67.随着">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">65</span>
-    <span class="ttl">67.随着</span>
+    <span class="ttl">随着</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Giới từ 随着 chỉ một sự việc là điều kiện để một sự việc khác xảy ra. Theo sau 随着 thường là động từ hai âm tiết kèm từ bổ nghĩa. Ví dụ:</p>
@@ -742,7 +749,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp66" data-key="68.够">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">66</span>
-    <span class="ttl">68.够</span>
+    <span class="ttl">够</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Động từ 够 có nghĩa là đủ về số lượng. Ví dụ:</p>
@@ -753,7 +760,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp67" data-key="69.以">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">67</span>
-    <span class="ttl">69.以</span>
+    <span class="ttl">以</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Giới từ 以 có nghĩa là dựa vào, bằng, lấy và thường được dùng trong cấu trúc &quot;以 + động từ&quot;. Ví dụ:</p>
@@ -766,7 +773,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp68" data-key="70.既然">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">68</span>
-    <span class="ttl">70.既然</span>
+    <span class="ttl">既然</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Liên từ 既然 được dùng ở vế đầu của câu để diễn tả ý vì sự thật đã là như vậy. Vế câu sau thường có các từ như 就，也，还... được dùng để kết hợp với 既然 để chỉ kết luận được rút ra dựa vào tình huống được đề cập trước đó. Ví dụ:</p>
@@ -776,7 +783,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp69" data-key="71.于是">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">69</span>
-    <span class="ttl">71.于是</span>
+    <span class="ttl">于是</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Liên từ 于是 được dùng ở vế câu sau để chỉ sự việc xảy ra ngay sau sự việc được đề cập ở vế câu trước đó. 于是 thường bao hàm quan hệ tiếp nối. Ví dụ:</p>
@@ -787,7 +794,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp70" data-key="72.什么的">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">70</span>
-    <span class="ttl">72.什么的</span>
+    <span class="ttl">什么的</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Trợ từ 什么的 được dùng sau sự vật được liệt kê để chỉ còn có những trường hợp khác. 什么的 thường được sử dụng trong văn nói. Ví dụ:</p>
@@ -797,7 +804,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp71" data-key="73.想起来">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">71</span>
-    <span class="ttl">73.想起来</span>
+    <span class="ttl">想起来</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Động từ 起来 có thể được dùng sau động từ khác để làm bổ ngữ chỉ phương hướng, hoặc bổ ngữ chỉ khả năng, diễn tả hướng của hành động là từ dưới đi lên. Ví dụ:</p>
@@ -807,7 +814,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp72" data-key="74.弄">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">72</span>
-    <span class="ttl">74.弄</span>
+    <span class="ttl">弄</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Động từ 弄 có nghĩa là làm, thường được dùng trong văn nói, có thể thay thế một số động từ khác. Ví dụ:</p>
@@ -816,7 +823,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp73" data-key="75.千万">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">73</span>
-    <span class="ttl">75.千万</span>
+    <span class="ttl">千万</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Phó từ 千万 có nghĩa là nhất định, nhất thiết phải. Theo sau 千万 thường là cấu trúc phủ định. Ví dụ:</p>
@@ -825,7 +832,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp74" data-key="76.来">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">74</span>
-    <span class="ttl">76.来</span>
+    <span class="ttl">来</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Động từ 来 được đặt trước một động từ khác để diễn tả ý sắp thực hiện việc gì đó, thường được sử dụng trong văn nói. Nếu ta không dùng 来 thì nghĩa của câu vẫn không thay đổi. Ví dụ:</p>
@@ -834,7 +841,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp75" data-key="77.左右">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">75</span>
-    <span class="ttl">77.左右</span>
+    <span class="ttl">左右</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Danh từ 左右 chỉ được dùng sau các từ chỉ số lượng để diễn tả ý nhiều hơn, hoặc hơi ít hơn một số lượng nào đó. Ví dụ:</p>
@@ -843,7 +850,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp76" data-key="78.可">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">76</span>
-    <span class="ttl">78.可</span>
+    <span class="ttl">可</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Phó từ 可 được dùng để nhấn mạnh, 可 cũng có thể được sử dụng trong câu hỏi để làm cho ngữ khí trở nên mạnh hơn. Ví dụ:</p>
@@ -851,7 +858,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp77" data-key="79.恐怕">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">77</span>
-    <span class="ttl">79.恐怕</span>
+    <span class="ttl">恐怕</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Động từ 恐怕 có nghĩa là lo lắng. Ví dụ:</p>
@@ -863,7 +870,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp78" data-key="80.到底">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">78</span>
-    <span class="ttl">80.到底</span>
+    <span class="ttl">到底</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Động từ 到底 có nghĩa là đến cùng. Ví dụ:</p>
@@ -876,7 +883,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp79" data-key="81.拿。。。来说">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">79</span>
-    <span class="ttl">81.拿。。。来说</span>
+    <span class="ttl">拿。。。来说</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="zh">Trong cấu trúc trên, 拿 là giới từ, được dùng để đưa ra sự vật hay tình huống được nói rõ. Ví dụ:  这次招聘很多人符合公司的要求，拿他来说，他不仅专业符合职业要求，而且还有工作经验。</p>
@@ -885,7 +892,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp80" data-key="82.敢">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">80</span>
-    <span class="ttl">82.敢</span>
+    <span class="ttl">敢</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Động từ năng nguyện 敢 được dùng trước các động từ để diễn tả ý tự tin làm việc gì. Ví dụ:</p>
@@ -895,7 +902,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp81" data-key="83.倒">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">81</span>
-    <span class="ttl">83.倒</span>
+    <span class="ttl">倒</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Động từ 倒 có nghĩa là đổ/rót thứ gì ra khỏi vật chứa. Ví dụ:</p>
@@ -905,7 +912,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp82" data-key="84.干">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">82</span>
-    <span class="ttl">84.干</span>
+    <span class="ttl">干</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Động từ 干 (gàn) (làm) diễn tả ý dấn thân vào sự nghiệp, công việc hay hoạt động nào đó. Ví dụ:</p>
@@ -919,7 +926,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp83" data-key="85.趟">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">83</span>
-    <span class="ttl">85.趟</span>
+    <span class="ttl">趟</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Lượng từ 趟 chỉ số lần đi lại. Ví dụ:</p>
@@ -929,7 +936,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp84" data-key="86.为了。。。而。。。">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">84</span>
-    <span class="ttl">86.为了。。。而。。。</span>
+    <span class="ttl">为了。。。而。。。</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Trong cấu trúc &quot;为了... 而...&quot;, vế câu trước chỉ mục đích của hành động hay hoạt động trong vế câu sau. Theo sau 为了 là từ hoặc cụm từ. Ví dụ:</p>
@@ -939,7 +946,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp85" data-key="87.仍然">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">85</span>
-    <span class="ttl">87.仍然</span>
+    <span class="ttl">仍然</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="zh">Phó từ 仍然 chỉ tình huống như cũ, không có sự thay đổi.  就算在几公里深的海底也仍然能看到东西。  人比动物聪明，但动物仍然有很多值得人学习的地方。</p>
@@ -947,7 +954,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp86" data-key="88.是否">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">86</span>
-    <span class="ttl">88.是否</span>
+    <span class="ttl">是否</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Phó từ 是否 có nghĩa là &quot;hay không&quot; , thường được dùng trong văn viết. Ví dụ:</p>
@@ -957,7 +964,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp87" data-key="89.受不了">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">87</span>
-    <span class="ttl">89.受不了</span>
+    <span class="ttl">受不了</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">受不了 có nghĩa là chịu không nổi (sự đau đớn, nỗi đau khổ, áp lực, điều bất hạnh, thái độ, tính khí...), thường được dùng trước danh từ hay cụm danh từ. Ví dụ:</p>
@@ -967,7 +974,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp88" data-key="90.接着">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">88</span>
-    <span class="ttl">90.接着</span>
+    <span class="ttl">接着</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Phó từ 接着 có nghĩa là ngay sau đó (về thời gian), chỉ tình huống khác xảy ra ngay sau tình huống được đề cập trước đó.</p>
@@ -979,7 +986,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp89" data-key="91.除此以外">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">89</span>
-    <span class="ttl">91.除此以外</span>
+    <span class="ttl">除此以外</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">除此以外 thường được dùng trong văn viết, có nghĩa là ngoài điều này (chỉ nội dung được đề cập trước đó) ra. Ví dụ:</p>
@@ -988,7 +995,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp90" data-key="92.把。。。叫作。。。">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">90</span>
-    <span class="ttl">92.把。。。叫作。。。</span>
+    <span class="ttl">把。。。叫作。。。</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Trong cấu trúc &quot;把。。。叫作。。。&quot; thành phần đứng sau là tên gọi của thành phần đứng trước. Theo sau 把 thường là danh từ, đại từ hoặc cụm danh từ. Ví dụ:</p>
@@ -998,7 +1005,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp91" data-key="93.疑问代词活用表示任指 Đại từ nghi vấn phiếm chỉ">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">91</span>
-    <span class="ttl">93.疑问代词活用表示任指 Đại từ nghi vấn phiếm chỉ</span>
+    <span class="ttl">疑问代词活用表示任指 Đại từ nghi vấn phiếm chỉ</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Các đại từ nghi vấn 什么 cái gì, 谁 ai, 哪 nào, 哪儿 đâu, 哪里 đâu, 怎么 thế nào ...là các đại từ nghi vấn phiếm chỉ, có thể được dùng để chỉ bất kỳ người nào hoặc bất kỳ vật gì; chẳng hạn 什么 chỉ bất kỳ thứ gì, 谁 chỉ bất kỳ ai. Những đại từ này thường kết hợp với 都/也 trong câu. Hãy xem các ví dụ sau:</p>
@@ -1007,7 +1014,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp92" data-key="94.上">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">92</span>
-    <span class="ttl">94.上</span>
+    <span class="ttl">上</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Động từ 上 được dùng sau động từ khác để làm bổ ngữ chỉ phương hướng hoặc bổ ngữ chỉ khả năng. Trong trường hợp làm bổ ngữ chỉ phương hướng, 上 có nghĩa mở rộng là mục đích của hành động/hoạt động đã đạt được. Trong trường hợp làm bổ ngữ chỉ khả năng, 上 diễn tả ý người ta có đạt được mục đích hay không khi thực hiện hành động/hoạt động nào đó. Ví dụ:</p>
@@ -1015,7 +1022,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp93" data-key="95.出来">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">93</span>
-    <span class="ttl">95.出来</span>
+    <span class="ttl">出来</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Động từ 出来 có thể được dùng sau động từ khác để làm bổ ngữ chỉ phương hướng, diễn tả hành động/hoạt động nào đó làm cho sự vật thay đổi trạng thái từ không tồn tại sang hiện hữu, từ bị che khuất sang lộ rõ. Ví dụ:</p>
@@ -1023,7 +1030,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp94" data-key="96.总的来说">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">94</span>
-    <span class="ttl">96.总的来说</span>
+    <span class="ttl">总的来说</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">总的来说 thường được dùng làm thành phần xen kẽ để diễn tả rằng người nào đó đưa ra nhận xét dựa trên tổng thể hay các tình huống chủ yếu. Ví dụ:</p>
@@ -1032,7 +1039,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp95" data-key="97.在于">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">95</span>
-    <span class="ttl">97.在于</span>
+    <span class="ttl">在于</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Động từ 在于 thường được dùng trong văn viết để chỉ bản chất của sự vật, có nghĩa là ở chỗ, chính là. Chủ ngữ của 在于 thường là cụm danh từ; ta phải dùng danh từ, động từ hay câu ngắn sau 在于 để làm tân ngữ của hành động này. Ví dụ:</p>
@@ -1042,7 +1049,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp96" data-key="98.动词着动词着">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">96</span>
-    <span class="ttl">98.动词着动词着</span>
+    <span class="ttl">动词着动词着</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Trong cấu trúc &quot;Động từ + 着 + động từ được lặp lại + 着&quot;, động từ thường chỉ có một âm tiết. Người ta thường sử dụng một động từ khác sau cấu trúc này để chỉ hành động khác xảy ra khi hành động được đề cập phía trước đang tiếp diễn.  Ví dụ:</p>
@@ -1050,7 +1057,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp97" data-key="99.一。。。就。。。">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">97</span>
-    <span class="ttl">99.一。。。就。。。</span>
+    <span class="ttl">一。。。就。。。</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Cấu trúc &quot;一 ....就...&quot; (vừa... thì/đã...) có thể được dùng để chỉ hai sự việc xảy ra nối tiếp nhau. Chủ ngữ của 2 sự việc này có thể giống hoặc không giống nhau. Ví dụ:</p>
@@ -1061,7 +1068,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp98" data-key="100.究竟">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">98</span>
-    <span class="ttl">100.究竟</span>
+    <span class="ttl">究竟</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Phó từ 究竟 được dùng trong câu hỏi hay câu có đại từ nghi vấn để chỉ sự truy vấn và làm mạnh thêm ngữ khí nghi vấn.</p>
@@ -1071,7 +1078,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp99" data-key="101.起来">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">99</span>
-    <span class="ttl">101.起来</span>
+    <span class="ttl">起来</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Động từ 起来 có thể được dùng sau động từ khác để làm bổ ngữ chỉ phương hướng, diễn tả hướng của hành động là từ dưới lên trên. 起来 cũng có thể có nghĩa mở rộng là diễn tả hành động bắt đầu và tiếp diễn hoặc cho biết người nói đánh giá người/sự vật từ phương diện nào đó. Ví dụ:</p>
@@ -1079,7 +1086,7 @@ input[type="search"]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 
 </article><article class="gp" id="gp100" data-key="102.动词+起">
   <button class="gp-h" type="button" aria-expanded="false">
     <span class="num">100</span>
-    <span class="ttl">102.动词+起</span>
+    <span class="ttl">动词+起</span>
     <span class="chev">▾</span>
   </button>
   <div class="gp-b"><p class="vi">Cấu trúc &quot;Động từ + 起&quot; chỉ hành động liên quan đến sự vật nào đó; thường thì động từ này nằm trong số ít động từ có tân ngữ đi kèm như: 说, 谈, 讲, 问, 提, 聊, 回忆...Theo sau cấu trúc trên thường là danh từ. Ví dụ:</p>
