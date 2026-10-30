@@ -1,15 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HSK4 2.0 · Tiếng Trung Meow Meow</title>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
-
 <style>
 :root{
   --blue:#6FAFC4;
@@ -150,7 +147,6 @@ a{color:inherit}
   border-top:1px solid var(--line);padding:28px 0 45px;margin-top:25px;
   color:#809096;font-size:.86rem;text-align:center
 }
-
 /* Hộp chat: giữ nguyên nội dung và biểu tượng, chỉ thu nhỏ */
 .chatbox{
   position:fixed;right:18px;bottom:18px;width:276px;background:#fff;border-radius:17px;
@@ -187,7 +183,6 @@ a{color:inherit}
 .chat-mini:hover{background:#4F91A8;transform:translateY(-2px) scale(1.03)}
 .chatbox.hidden{display:none}
 @keyframes chatIn{from{opacity:0;transform:translateY(10px) scale(.97)}to{opacity:1;transform:none}}
-
 .lesson-hero{padding:64px 0 38px}
 .lesson-hero h1{
   margin:8px 0;font-family:"Noto Serif SC","Be Vietnam Pro",serif;
@@ -230,7 +225,30 @@ a{color:inherit}
 .topic-vocab-card h2{margin:5px 0 2px;font-family:"Noto Serif SC","Be Vietnam Pro",serif;font-size:1.42rem}
 .topic-vocab-card p{margin:0;color:var(--muted);font-size:.88rem}
 .topic-vocab-go{position:relative;color:var(--blue-dark);font-weight:700;font-size:.9rem;white-space:nowrap}
-
+/* Grammar card highlight */
+.grammar-entry{padding:0 0 26px}
+.grammar-card{
+  position:relative;overflow:hidden;text-decoration:none;
+  display:grid;grid-template-columns:76px 1fr auto;align-items:center;gap:22px;
+  padding:25px 27px;border-radius:22px;border:1px solid #B8DDE5;
+  background:linear-gradient(135deg,#FFF9EC 0%,#FFFFFF 55%,#F3FBFC 100%);
+  box-shadow:var(--shadow);transition:.2s;
+}
+.grammar-card:before{
+  content:"语法";position:absolute;right:120px;top:-26px;
+  font-family:"Noto Serif SC",serif;font-size:7.5rem;font-weight:700;
+  line-height:1;color:rgba(228,183,90,.10);pointer-events:none;
+}
+.grammar-card:hover{transform:translateY(-3px);box-shadow:0 19px 44px rgba(52,101,116,.14)}
+.grammar-folder{
+  width:76px;height:64px;border-radius:15px;display:grid;place-items:center;
+  background:linear-gradient(145deg,#C49A3C,var(--gold));
+  color:#fff;font-size:2rem;box-shadow:0 10px 22px rgba(196,154,60,.22);
+}
+.grammar-label{font-size:.76rem;font-weight:700;letter-spacing:.1em;color:#9A7B2F}
+.grammar-card h2{margin:5px 0 2px;font-family:"Noto Serif SC","Be Vietnam Pro",serif;font-size:1.42rem}
+.grammar-card p{margin:0;color:var(--muted);font-size:.88rem}
+.grammar-go{position:relative;color:#9A7B2F;font-weight:700;font-size:.9rem;white-space:nowrap}
 @media(max-width:850px){
   .feature-strip,.course-grid,.about-grid,.lesson-grid{grid-template-columns:1fr}
   .feature-item{border-right:0;border-bottom:1px solid var(--line)}
@@ -242,9 +260,9 @@ a{color:inherit}
   .container{width:min(100% - 24px,1120px)}
   .chatbox{right:10px;bottom:10px;width:calc(100% - 20px)}
   .chat-mini{right:12px;bottom:12px}
-  .topic-vocab-card{grid-template-columns:58px 1fr;gap:15px;padding:20px}
-  .topic-folder{width:58px;height:52px;font-size:1.55rem}
-  .topic-vocab-go{grid-column:2}
+  .topic-vocab-card,.grammar-card{grid-template-columns:58px 1fr;gap:15px;padding:20px}
+  .topic-folder,.grammar-folder{width:58px;height:52px;font-size:1.55rem}
+  .topic-vocab-go,.grammar-go{grid-column:2}
 }
 </style>
 <script defer src="meow-auth.js"></script>
@@ -260,16 +278,15 @@ a{color:inherit}
     <a class="back-link" href="index.html">← Về trang chính</a>
   </div>
 </div>
-
 <header class="lesson-hero">
   <div class="container">
     <div class="section-kicker">HSK4 2.0 · 中级</div>
     <h1>汉语教程 · 中级</h1>
-    <p>Chọn bài muốn học hoặc mở phần ôn tập từ vựng HSK4. Bài 1–20 hiện đã có trên website.</p>
+    <p>Chọn bài muốn học hoặc mở phần ôn tập từ vựng HSK4 / Tổng hợp ngữ pháp. Bài 1–20 hiện đã có trên website.</p>
   </div>
 </header>
-
 <main class="container">
+  <!-- Từ vựng theo chủ đề -->
   <section class="topic-vocab-entry" aria-label="Từ vựng giao tiếp theo chủ đề">
     <a class="topic-vocab-card" href="tu-vung-giao-tiep/index.html">
       <span class="topic-folder" aria-hidden="true">▰</span>
@@ -279,6 +296,19 @@ a{color:inherit}
         <p>13 chủ đề · Flashcard có từ loại, ví dụ và nút nghe tiếng Trung.</p>
       </span>
       <span class="topic-vocab-go">Mở thư mục →</span>
+    </a>
+  </section>
+
+  <!-- Tổng hợp ngữ pháp HSK4 -->
+  <section class="grammar-entry" aria-label="Tổng hợp ngữ pháp HSK4">
+    <a class="grammar-card" href="tong-hop-ngu-phap/tong-hop-ngu-phap.html">
+      <span class="grammar-folder" aria-hidden="true">文</span>
+      <span>
+        <span class="grammar-label">THƯ MỤC NGỮ PHÁP · 语法总结</span>
+        <h2>Tổng hợp ngữ pháp HSK4</h2>
+        <p>Đúng nguyên văn file tổng hợp · 100 mục · 121 câu ôn tập và đáp án.</p>
+      </span>
+      <span class="grammar-go">Mở thư mục →</span>
     </a>
   </section>
 
@@ -339,7 +369,6 @@ a{color:inherit}
         </a>
         
   
-
         <a class="lesson-card" href="hsk4.bai7.html">
           <div>
             <div class="lesson-no">BÀI 07</div>
@@ -348,7 +377,6 @@ a{color:inherit}
           </div>
           <div class="lesson-go">Vào bài →</div>
         </a>
-
         <a class="lesson-card" href="hsk4.bai8.html">
           <div>
             <div class="lesson-no">BÀI 08</div>
@@ -357,7 +385,6 @@ a{color:inherit}
           </div>
           <div class="lesson-go">Vào bài →</div>
         </a>
-
         <a class="lesson-card" href="hsk4.bai9.html">
           <div>
             <div class="lesson-no">BÀI 09</div>
@@ -366,7 +393,6 @@ a{color:inherit}
           </div>
           <div class="lesson-go">Vào bài →</div>
         </a>
-
         <a class="lesson-card" href="hsk4.bai10.html">
           <div>
             <div class="lesson-no">BÀI 10</div>
@@ -375,8 +401,6 @@ a{color:inherit}
           </div>
           <div class="lesson-go">Vào bài →</div>
         </a>
-
-
         <a class="lesson-card" href="hsk4.bai11.html">
           <div>
             <div class="lesson-no">BÀI 11</div>
@@ -385,7 +409,6 @@ a{color:inherit}
           </div>
           <div class="lesson-go">Vào bài →</div>
         </a>
-
         <a class="lesson-card" href="hsk4.bai12.html">
           <div>
             <div class="lesson-no">BÀI 12</div>
@@ -394,7 +417,6 @@ a{color:inherit}
           </div>
           <div class="lesson-go">Vào bài →</div>
         </a>
-
         <a class="lesson-card" href="hsk4.bai13.html">
           <div>
             <div class="lesson-no">BÀI 13</div>
@@ -403,7 +425,6 @@ a{color:inherit}
           </div>
           <div class="lesson-go">Vào bài →</div>
         </a>
-
         <a class="lesson-card" href="hsk4.bai14.html">
           <div>
             <div class="lesson-no">BÀI 14</div>
@@ -412,7 +433,6 @@ a{color:inherit}
           </div>
           <div class="lesson-go">Vào bài →</div>
         </a>
-
         <a class="lesson-card" href="hsk4.bai15.html">
           <div>
             <div class="lesson-no">BÀI 15</div>
@@ -421,7 +441,6 @@ a{color:inherit}
           </div>
           <div class="lesson-go">Vào bài →</div>
         </a>
-
         <a class="lesson-card" href="hsk4.bai16.html">
           <div>
             <div class="lesson-no">BÀI 16</div>
@@ -430,7 +449,6 @@ a{color:inherit}
           </div>
           <div class="lesson-go">Vào bài →</div>
         </a>
-
         <a class="lesson-card" href="hsk4.bai17.html">
           <div>
             <div class="lesson-no">BÀI 17</div>
@@ -439,7 +457,6 @@ a{color:inherit}
           </div>
           <div class="lesson-go">Vào bài →</div>
         </a>
-
         <a class="lesson-card" href="hsk4.bai18.html">
           <div>
             <div class="lesson-no">BÀI 18</div>
@@ -448,7 +465,6 @@ a{color:inherit}
           </div>
           <div class="lesson-go">Vào bài →</div>
         </a>
-
         <a class="lesson-card" href="hsk4.bai19.html">
           <div>
             <div class="lesson-no">BÀI 19</div>
@@ -457,7 +473,6 @@ a{color:inherit}
           </div>
           <div class="lesson-go">Vào bài →</div>
         </a>
-
         <a class="lesson-card" href="hsk4.bai20.html">
           <div>
             <div class="lesson-no">BÀI 20</div>
@@ -468,7 +483,6 @@ a{color:inherit}
         </a>
         </div>
 </main>
-
 <div class="footer">
   <div class="container">中文学习空间 · Tiếng Trung Meow Meow</div>
 </div>
