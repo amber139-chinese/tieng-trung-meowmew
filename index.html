@@ -251,6 +251,85 @@
     .footer b{display:block;font-family:var(--serif);font-size:1.35rem;margin-bottom:6px;color:#fff}
     .footer small{display:block;margin-top:14px;opacity:.7}
 
+    /* ===== CỬA SỔ CHI TIẾT TEM ===== */
+    .stamp{cursor:pointer;-webkit-tap-highlight-color:transparent;outline:none}
+    .stamp:focus-visible{transform:rotate(0) translateY(-9px) scale(1.05);filter:drop-shadow(0 0 3px var(--gold)) drop-shadow(0 0 3px var(--gold)) drop-shadow(0 14px 14px rgba(20,63,79,.3))}
+    .postbook-hint{display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:5px 14px;border-radius:999px;background:#FFF1CF;color:#8A6410;font-size:.8rem;font-weight:700}
+
+    .sm{position:fixed;inset:0;z-index:10000;align-items:center;justify-content:center;padding:20px;background:rgba(10,36,46,.66);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+    .sm[hidden]{display:none}
+    .sm:not([hidden]){display:flex;animation:smFade .25s ease}
+    .sm-card{position:relative;width:min(900px,100%);max-height:calc(100dvh - 40px);overflow:auto;overscroll-behavior:contain;border:9px solid transparent;border-radius:30px;box-shadow:0 30px 80px rgba(0,0,0,.45);animation:smPop .38s cubic-bezier(.2,.9,.3,1.1);
+      background:linear-gradient(#FFFDF8,#FBF4E2) padding-box,repeating-linear-gradient(-45deg,#D6453A 0 16px,#fff 16px 32px,#2E8AA3 32px 48px,#fff 48px 64px) border-box}
+    .sm-bar{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:12px;padding:12px 18px 12px 20px;background:linear-gradient(135deg,var(--deep),#1D5D70);color:#fff}
+    .sm-logo{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(145deg,var(--seal),#F0806B);font-family:var(--serif);font-weight:900;font-size:1.2rem;box-shadow:0 6px 14px rgba(0,0,0,.25);flex:none}
+    .sm-brand{flex:1;min-width:0;line-height:1.25}
+    .sm-brand b{display:block;font-size:.82rem;letter-spacing:.06em}
+    .sm-brand span{display:block;font-family:var(--serif);font-size:.8rem;color:#FFE9B8;font-weight:600}
+    .sm-x{flex:none;width:40px;height:40px;border:0;border-radius:50%;background:rgba(255,255,255,.16);color:#fff;font-size:1.1rem;cursor:pointer;transition:.18s}
+    .sm-x:hover{background:var(--coral)}
+
+    .sm-body{display:grid;grid-template-columns:260px 1fr;gap:30px;padding:28px 28px 24px}
+    .sm-left{position:sticky;top:76px;align-self:start;display:flex;flex-direction:column;align-items:center;gap:22px}
+    .sm-stampwrap{width:100%;transform:rotate(-2.5deg);filter:drop-shadow(0 14px 16px rgba(20,63,79,.30));animation:smStamp .55s cubic-bezier(.2,.9,.3,1.2)}
+    .sm-stampwrap .stamp-face{margin:0}
+    .sm-postmark{width:98px;height:98px;border-radius:50%;display:grid;place-content:center;text-align:center;color:#3F5F94;opacity:.6;transform:rotate(-10deg);font-family:var(--serif);box-shadow:inset 0 0 0 3px rgba(63,95,148,.55),inset 0 0 0 7px #FBF4E2,inset 0 0 0 8.5px rgba(63,95,148,.4)}
+    .sm-postmark span{font-size:1.6rem;font-weight:900;line-height:1}
+    .sm-postmark small{margin-top:4px;font-family:var(--sans);font-size:.55rem;font-weight:800;letter-spacing:.14em}
+
+    .sm-right{min-width:0}
+    .sm-kicker{font-size:.76rem;font-weight:800;letter-spacing:.14em;color:var(--brand-dark)}
+    .sm-hz{font-family:var(--serif);font-weight:900;font-size:clamp(3rem,6vw,4.4rem);line-height:1.15;color:var(--deep);margin-top:4px}
+    .sm-py{font-size:1.5rem;font-weight:700;color:var(--coral);line-height:1.3}
+    .sm-vi{margin-top:2px;font-size:1.12rem;font-weight:700;color:var(--brand-dark)}
+    .sm-audio{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 6px}
+    .sm-play{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 18px;border-radius:999px;border:1.5px solid var(--line);background:#fff;color:var(--brand-dark);font:inherit;font-weight:700;font-size:.88rem;cursor:pointer;transition:.18s}
+    .sm-play:hover{transform:translateY(-2px);border-color:var(--coral)}
+    .sm-play.main{background:var(--coral);border-color:var(--coral);color:#fff;box-shadow:0 10px 20px rgba(239,106,76,.3)}
+    .sm-play.playing{animation:smPulse 1s ease-in-out infinite}
+    .sm-src{font-size:.76rem;color:var(--muted);min-height:1.3em;line-height:1.4}
+    .sm-src.human{color:#2F7F5E;font-weight:700}
+    .sm-h{margin:22px 0 9px;font-size:.76rem;font-weight:800;letter-spacing:.12em;color:var(--brand-dark);text-transform:uppercase}
+    .sm-words{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .sm-chip{text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:16px;padding:10px 12px;cursor:pointer;font:inherit;display:flex;flex-direction:column;gap:1px;transition:.18s}
+    .sm-chip:hover{border-color:var(--coral);transform:translateY(-2px)}
+    .sm-chip.playing{border-color:var(--coral);background:#FFF3EE}
+    .sm-chip b{font-family:var(--serif);font-size:1.15rem;color:var(--deep);line-height:1.35}
+    .sm-chip i{font-style:normal;font-size:.8rem;color:var(--coral);font-weight:700}
+    .sm-chip span{font-size:.76rem;color:var(--muted);line-height:1.35}
+    .sm-ex{background:#fff;border:1.5px solid var(--line);border-radius:20px;padding:16px 18px}
+    .sm-ex-zh{font-family:var(--serif);font-size:1.35rem;font-weight:700;color:var(--deep);line-height:1.55}
+    .sm-ex-py{color:var(--coral);font-weight:600;font-size:.92rem}
+    .sm-ex-vi{color:var(--muted);font-size:.9rem;margin-top:2px}
+    .sm-ex .sm-audio{margin:12px 0 0}
+    .sm-culture{margin-top:16px;border:1.5px dashed #D9B56A;background:linear-gradient(135deg,#FFF8E6,#FFEFC8);border-radius:20px;padding:14px 18px}
+    .sm-culture b{font-family:var(--serif);color:#8A6410;letter-spacing:.04em}
+    .sm-culture p{margin:6px 0 0;color:#4F4630;font-size:.92rem}
+    .sm-tip{margin-top:14px;display:flex;gap:12px;align-items:flex-start;background:var(--soft);border-radius:20px;padding:14px 16px}
+    .sm-cat{flex:none;width:42px;height:42px;border-radius:14px;background:linear-gradient(145deg,var(--seal),#F0806B);color:#fff;display:grid;place-items:center;font-family:var(--serif);font-weight:900;font-size:1.3rem;transform:rotate(-6deg);box-shadow:0 8px 16px rgba(214,69,58,.25)}
+    .sm-tip b{color:var(--deep);font-size:.9rem}
+    .sm-tip p{margin:2px 0 0;color:#3F555C;font-size:.9rem}
+    .sm-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 20px;background:linear-gradient(135deg,var(--deep),var(--deep-2));color:#CFE6EC;font-size:.85rem}
+    .sm-foot .sm-motto{font-family:var(--serif);text-align:center;flex:1}
+    .sm-foot button{border:1.5px solid rgba(255,255,255,.32);background:rgba(255,255,255,.1);color:#fff;border-radius:999px;padding:9px 16px;font:inherit;font-weight:700;font-size:.82rem;cursor:pointer;transition:.18s;white-space:nowrap}
+    .sm-foot button:hover{background:var(--coral);border-color:var(--coral)}
+
+    @keyframes smFade{from{opacity:0}to{opacity:1}}
+    @keyframes smPop{from{opacity:0;transform:translateY(24px) scale(.96)}to{opacity:1;transform:none}}
+    @keyframes smStamp{from{opacity:0;transform:rotate(-14deg) scale(.8) translateY(24px)}to{opacity:1;transform:rotate(-2.5deg)}}
+    @keyframes smPulse{0%,100%{box-shadow:0 0 0 0 rgba(239,106,76,.45)}50%{box-shadow:0 0 0 9px rgba(239,106,76,0)}}
+    @media(max-width:760px){
+      .sm{align-items:flex-end;padding:0}
+      .sm-card{width:100%;max-height:93dvh;border-width:7px;border-bottom-width:0;border-radius:26px 26px 0 0}
+      .sm-body{grid-template-columns:1fr;gap:18px;padding:20px 16px 18px}
+      .sm-left{position:static;flex-direction:row;justify-content:center;gap:16px}
+      .sm-stampwrap{width:170px;flex:none}
+      .sm-postmark{width:78px;height:78px}.sm-postmark span{font-size:1.3rem}
+      .sm-words{grid-template-columns:1fr}
+      .sm-foot .sm-motto{display:none}.sm-foot{justify-content:space-between}
+    }
+    @media(prefers-reduced-motion:reduce){.sm:not([hidden]),.sm-card,.sm-stampwrap,.sm-play.playing{animation:none}}
+
     /* ===== CHATBOX ===== */
     .chatbox{position:fixed;right:20px;bottom:20px;width:360px;max-height:min(560px,80dvh);background:#fff;border-radius:26px;overflow:hidden;box-shadow:0 22px 54px rgba(14,47,60,.32);border:1.5px solid #CDE6EB;z-index:9999;display:flex;flex-direction:column;animation:chatIn .3s ease}
     .chatbox.hidden{display:none}
@@ -380,12 +459,13 @@
           <div class="section-kicker">邮册 · TEM THƯ MEOW MEOW</div>
           <h2>Một vòng Trung Hoa qua tem thư</h2>
           <p>Ẩm thực, hán phục, cổ trấn, Vạn Lý Trường Thành… những nét văn hoá bạn sẽ gặp lại trong từng bài học.</p>
+          <span class="postbook-hint">Bấm vào từng con tem để xem nghĩa, pinyin và nghe đọc</span>
         </div>
 
         <div class="stamp-row">
 
           <!-- 1. Trường Thành -->
-          <figure class="stamp"><div class="stamp-face">
+          <figure class="stamp" tabindex="0" role="button" aria-haspopup="dialog" data-stamp="truong-thanh" aria-label="Xem nghĩa và nghe đọc: Vạn Lý Trường Thành"><div class="stamp-face">
             <div class="stamp-art">
               <svg viewBox="0 0 160 200" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Tranh vẽ Vạn Lý Trường Thành">
                 <defs><linearGradient id="s1g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F9DFAE"/><stop offset=".6" stop-color="#FBF1D6"/><stop offset="1" stop-color="#EFD9A9"/></linearGradient></defs>
@@ -411,7 +491,7 @@
           </div></figure>
 
           <!-- 2. Cổ trấn -->
-          <figure class="stamp"><div class="stamp-face">
+          <figure class="stamp" tabindex="0" role="button" aria-haspopup="dialog" data-stamp="co-tran" aria-label="Xem nghĩa và nghe đọc: Cổ trấn"><div class="stamp-face">
             <div class="stamp-art">
               <svg viewBox="0 0 160 200" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Tranh vẽ cổ trấn sông nước với cầu đá và đèn lồng">
                 <defs>
@@ -446,7 +526,7 @@
           </div></figure>
 
           <!-- 3. Ẩm thực -->
-          <figure class="stamp"><div class="stamp-face">
+          <figure class="stamp" tabindex="0" role="button" aria-haspopup="dialog" data-stamp="am-thuc" aria-label="Xem nghĩa và nghe đọc: Ẩm thực"><div class="stamp-face">
             <div class="stamp-art">
               <svg viewBox="0 0 160 200" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Tranh vẽ xửng hấp bánh bao há cảo">
                 <defs>
@@ -472,7 +552,7 @@
           </div></figure>
 
           <!-- 4. Hán phục -->
-          <figure class="stamp"><div class="stamp-face">
+          <figure class="stamp" tabindex="0" role="button" aria-haspopup="dialog" data-stamp="han-phuc" aria-label="Xem nghĩa và nghe đọc: Hán phục"><div class="stamp-face">
             <div class="stamp-art">
               <svg viewBox="0 0 160 200" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Tranh vẽ thiếu nữ mặc Hán phục cầm quạt tròn bên cổng trăng">
                 <defs><linearGradient id="s4g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D4EBE1"/><stop offset="1" stop-color="#8CC3B3"/></linearGradient></defs>
@@ -514,7 +594,7 @@
           </div></figure>
 
           <!-- 5. Gấu trúc -->
-          <figure class="stamp"><div class="stamp-face">
+          <figure class="stamp" tabindex="0" role="button" aria-haspopup="dialog" data-stamp="gau-truc" aria-label="Xem nghĩa và nghe đọc: Gấu trúc"><div class="stamp-face">
             <div class="stamp-art">
               <svg viewBox="0 0 160 200" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Tranh vẽ gấu trúc ôm cây trúc">
                 <defs><linearGradient id="s5g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E7F3D4"/><stop offset="1" stop-color="#B7D79A"/></linearGradient></defs>
@@ -542,7 +622,7 @@
           </div></figure>
 
           <!-- 6. Lễ hội đèn lồng -->
-          <figure class="stamp"><div class="stamp-face">
+          <figure class="stamp" tabindex="0" role="button" aria-haspopup="dialog" data-stamp="den-long" aria-label="Xem nghĩa và nghe đọc: Hội đèn lồng"><div class="stamp-face">
             <div class="stamp-art">
               <svg viewBox="0 0 160 200" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Tranh vẽ bảo tháp dưới trăng rằm với dây đèn lồng">
                 <defs><linearGradient id="s6g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1B2250"/><stop offset="1" stop-color="#4C3F7E"/></linearGradient></defs>
@@ -639,6 +719,56 @@
       <button id="pwaInstallLater" type="button">Để sau</button>
     </div>
     <div class="pwa-ios-steps" id="pwaIosSteps">Trên iPhone/iPad: mở trang này bằng Safari → chọn Chia sẻ → Thêm vào Màn hình chính.</div>
+  </div>
+
+  <!-- ===== CỬA SỔ CHI TIẾT TEM ===== -->
+  <div class="sm" id="stampModal" role="dialog" aria-modal="true" aria-labelledby="smTitle" hidden>
+    <div class="sm-card">
+      <div class="sm-bar">
+        <span class="sm-logo" aria-hidden="true">喵</span>
+        <div class="sm-brand"><b>TIẾNG TRUNG MEOW MEOW</b><span>中文课堂 · 邮册 <span id="smNo" style="display:inline"></span></span></div>
+        <button class="sm-x" id="smClose" type="button" aria-label="Đóng">✕</button>
+      </div>
+      <div class="sm-body">
+        <div class="sm-left">
+          <div class="sm-stampwrap" id="smStamp"></div>
+          <div class="sm-postmark" aria-hidden="true"><span>喵邮</span><small>MEOW MEOW</small></div>
+        </div>
+        <div class="sm-right">
+          <div class="sm-kicker" id="smPos"></div>
+          <div class="sm-hz" id="smTitle"></div>
+          <div class="sm-py" id="smPy"></div>
+          <div class="sm-vi" id="smVi"></div>
+          <div class="sm-audio">
+            <button class="sm-play main" id="smPlayWord" type="button"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M3 10v4h4l5 4V6L7 10H3zm13.5 2a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>Nghe đọc</button>
+            <button class="sm-play" id="smPlayWordSlow" type="button">Đọc chậm</button>
+          </div>
+          <div class="sm-src" id="smSrc" aria-live="polite"></div>
+
+          <div class="sm-h">Từ liên quan · 相关词语</div>
+          <div class="sm-words" id="smWords"></div>
+
+          <div class="sm-h">Mẫu câu · 例句</div>
+          <div class="sm-ex">
+            <div class="sm-ex-zh" id="smExZh"></div>
+            <div class="sm-ex-py" id="smExPy"></div>
+            <div class="sm-ex-vi" id="smExVi"></div>
+            <div class="sm-audio">
+              <button class="sm-play" id="smPlayEx" type="button"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M3 10v4h4l5 4V6L7 10H3zm13.5 2a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>Nghe câu</button>
+              <button class="sm-play" id="smPlayExSlow" type="button">Đọc chậm</button>
+            </div>
+          </div>
+
+          <div class="sm-culture"><b>文化小站 · Góc văn hoá</b><p id="smCulture"></p></div>
+          <div class="sm-tip"><span class="sm-cat" aria-hidden="true">喵</span><div><b>Meow Meow mách nhỏ</b><p id="smTip"></p></div></div>
+        </div>
+      </div>
+      <div class="sm-foot">
+        <button id="smPrev" type="button">← Tem trước</button>
+        <span class="sm-motto">喵~ Học cùng Meow Meow, vui quá là vui</span>
+        <button id="smNext" type="button">Tem sau →</button>
+      </div>
+    </div>
   </div>
 
   <!-- ===== CHATBOX (mặc định đóng) ===== -->
@@ -770,6 +900,216 @@
       this.style.height = Math.min(this.scrollHeight, 90) + "px";
     });
     chatSend.addEventListener("click", sendMessage);
+
+    // ===== Cửa sổ chi tiết tem + âm đọc =====
+    (function () {
+      // Có file ghi âm thật thì dùng, không thì dùng giọng tự nhiên tốt nhất của thiết bị.
+      // Đặt file trong thư mục audio/tem/ : <khoá>.mp3, <khoá>-cau.mp3, <khoá>-t1.mp3 … <khoá>-t3.mp3
+      const AUDIO_BASE = "audio/tem/";
+      const STAMPS = {
+        "truong-thanh": {
+          zh: "长城", py: "Chángchéng", vi: "Vạn Lý Trường Thành", pos: "名词 · Danh từ",
+          words: [
+            { zh: "万里长城", py: "Wànlǐ Chángchéng", vi: "Vạn Lý Trường Thành (vạn dặm trường thành)" },
+            { zh: "好汉", py: "hǎohàn", vi: "hảo hán, người anh hùng" },
+            { zh: "城墙", py: "chéngqiáng", vi: "tường thành" }
+          ],
+          ex: { zh: "不到长城非好汉。", py: "Bú dào Chángchéng fēi hǎohàn.", vi: "Chưa lên Trường Thành thì chưa phải hảo hán." },
+          culture: "Trường Thành không phải một bức tường duy nhất mà là cả hệ thống tường thành, quan ải và đài phong hoả do nhiều triều đại xây, nối dài suốt hơn hai nghìn năm. Các đoạn du khách hay đến ở gần Bắc Kinh phần lớn được xây dựng hoặc tu sửa thời Minh.",
+          tip: "Chữ 长 có hai âm: cháng (dài) trong 长城, nhưng zhǎng (lớn lên, người đứng đầu) trong 校长 xiàozhǎng (hiệu trưởng). Trường Thành đọc là cháng nhé!"
+        },
+        "co-tran": {
+          zh: "古镇", py: "gǔzhèn", vi: "cổ trấn, thị trấn cổ", pos: "名词 · Danh từ",
+          words: [
+            { zh: "江南", py: "Jiāngnán", vi: "Giang Nam, vùng sông nước hạ lưu Trường Giang" },
+            { zh: "小桥流水", py: "xiǎoqiáo liúshuǐ", vi: "cầu nhỏ nước chảy" },
+            { zh: "灯笼", py: "dēnglong", vi: "đèn lồng" }
+          ],
+          ex: { zh: "我想去江南的古镇玩。", py: "Wǒ xiǎng qù Jiāngnán de gǔzhèn wán.", vi: "Mình muốn đến chơi cổ trấn Giang Nam." },
+          culture: "Vùng Giang Nam nổi tiếng với những cổ trấn sông nước như Chu Trang, Ô Trấn, Đồng Lý: nhà tường trắng ngói đen, cầu đá cong, thuyền ô bồng lướt qua dưới những dãy đèn lồng đỏ.",
+          tip: "Thanh 3 đứng trước thanh khác thì chỉ đọc nửa thanh: hạ giọng xuống thấp, không nâng lên. Vì vậy gǔ trong gǔzhèn chỉ trầm xuống rồi nhấn mạnh sang zhèn."
+        },
+        "am-thuc": {
+          zh: "美食", py: "měishí", vi: "món ngon, ẩm thực", pos: "名词 · Danh từ",
+          words: [
+            { zh: "饺子", py: "jiǎozi", vi: "sủi cảo" },
+            { zh: "点心", py: "diǎnxin", vi: "dimsum, món điểm tâm" },
+            { zh: "包子", py: "bāozi", vi: "bánh bao" }
+          ],
+          ex: { zh: "我最喜欢吃饺子。", py: "Wǒ zuì xǐhuan chī jiǎozi.", vi: "Mình thích ăn sủi cảo nhất." },
+          culture: "Ẩm thực Trung Hoa nổi tiếng với tám trường phái lớn như Xuyên, Việt, Lỗ, Tô… Ở Quảng Đông, người ta “饮茶 yǐn chá” (uống trà) cùng dimsum. Dịp Tết, nhiều nhà miền Bắc gói sủi cảo, hình dáng giống thỏi nguyên bảo nên mang ý cầu tài lộc.",
+          tip: "Chữ “zi” trong 饺子, 包子 đọc nhẹ và ngắn (khinh thanh). Còn 吃 chī là “ăn”, hay đi kèm món ngon: 吃美食 là đi ăn món ngon."
+        },
+        "han-phuc": {
+          zh: "汉服", py: "Hànfú", vi: "Hán phục, trang phục truyền thống của người Hán", pos: "名词 · Danh từ",
+          words: [
+            { zh: "交领", py: "jiāolǐng", vi: "cổ áo giao nhau (cổ chéo)" },
+            { zh: "团扇", py: "tuánshàn", vi: "quạt tròn" },
+            { zh: "梅花", py: "méihuā", vi: "hoa mai, hoa mận" }
+          ],
+          ex: { zh: "她穿着汉服，真漂亮！", py: "Tā chuānzhe Hànfú, zhēn piàoliang!", vi: "Cô ấy mặc Hán phục, đẹp thật!" },
+          culture: "Hán phục thường có cổ áo bắt chéo, vạt phải đè lên vạt trái, tay áo rộng và thắt lưng. Mấy năm gần đây nhiều bạn trẻ Trung Quốc thích mặc Hán phục đi chơi cổ trấn, đi lễ hội hay chụp ảnh.",
+          tip: "穿 chuān là “mặc” (quần áo, giày). Chữ 服 trong 汉服 đọc đủ thanh 2 là fú, nhưng trong 衣服 yīfu lại đọc nhẹ."
+        },
+        "gau-truc": {
+          zh: "熊猫", py: "xióngmāo", vi: "gấu trúc (nghĩa đen: “gấu mèo”)", pos: "名词 · Danh từ",
+          words: [
+            { zh: "竹子", py: "zhúzi", vi: "cây tre, cây trúc" },
+            { zh: "国宝", py: "guóbǎo", vi: "quốc bảo, báu vật quốc gia" },
+            { zh: "可爱", py: "kě'ài", vi: "đáng yêu" }
+          ],
+          ex: { zh: "熊猫爱吃竹子。", py: "Xióngmāo ài chī zhúzi.", vi: "Gấu trúc thích ăn tre." },
+          culture: "Gấu trúc khổng lồ sống chủ yếu ở vùng núi Tứ Xuyên, Thiểm Tây và Cam Túc. Người Trung Quốc gọi chúng là “quốc bảo”, và gấu trúc cũng là hình ảnh sứ giả hữu nghị quen thuộc. Thành Đô có cơ sở nghiên cứu nuôi gấu trúc rất nổi tiếng.",
+          tip: "熊猫 gồm 熊 xióng (gấu) + 猫 māo (mèo). Chữ 猫 chính là mèo nhà Meow Meow đó! Tiếng mèo kêu trong tiếng Trung viết là 喵 miāo."
+        },
+        "den-long": {
+          zh: "灯会", py: "dēnghuì", vi: "hội đèn lồng", pos: "名词 · Danh từ",
+          words: [
+            { zh: "元宵节", py: "Yuánxiāojié", vi: "Tết Nguyên Tiêu (rằm tháng Giêng)" },
+            { zh: "灯笼", py: "dēnglong", vi: "đèn lồng" },
+            { zh: "猜灯谜", py: "cāi dēngmí", vi: "đoán đố trên đèn lồng" }
+          ],
+          ex: { zh: "元宵节我们去看灯会。", py: "Yuánxiāojié wǒmen qù kàn dēnghuì.", vi: "Rằm tháng Giêng chúng mình đi xem hội đèn lồng." },
+          culture: "Rằm tháng Giêng âm lịch khép lại dịp Tết. Người ta treo đèn, đi xem hội đèn, đoán đố trên đèn và ăn 汤圆 tāngyuán (bánh trôi nước), tròn trịa như ước mong đoàn viên.",
+          tip: "灯 dēng là đèn (thanh 1, giọng cao đều), 会 huì (thanh 4, rơi dứt khoát). 会 còn có nghĩa là “biết” (我会说中文) và “họp” (开会)."
+        }
+      };
+      const ORDER = ["truong-thanh", "co-tran", "am-thuc", "han-phuc", "gau-truc", "den-long"];
+
+      const modal = $("stampModal"), card = modal.querySelector(".sm-card");
+      const synth = ("speechSynthesis" in window) ? window.speechSynthesis : null;
+      let idx = 0, lastFocus = null, curAudio = null, cachedVoice, playingBtn = null;
+
+      // ----- chọn giọng tự nhiên nhất mà thiết bị có -----
+      function scoreVoice(v) {
+        const n = v.name; let s = 0;
+        if (/Natural|Online/i.test(n)) s += 100;                       // Microsoft Edge: Xiaoxiao, Yunxi… (neural)
+        if (/Xiaoxiao|Xiaoyi|Yunxi|Yunjian|Yunyang|Xiaochen|Xiaohan/i.test(n)) s += 15;
+        if (/Premium|Enhanced|Siri/i.test(n)) s += 70;                // Apple giọng nâng cao
+        if (/Google/i.test(n)) s += 60;                               // Chrome / Android
+        if (/Tingting|Ting-Ting|Lili|Meijia|Sinji/i.test(n)) s += 8;
+        if (/Huihui|Kangkang|Yaoyao/i.test(n)) s -= 30;               // giọng Windows cũ, nghe khá máy
+        if (!v.localService) s += 10;
+        if (/^zh[-_]CN/i.test(v.lang)) s += 5;
+        return s;
+      }
+      function pickVoice() {
+        if (cachedVoice !== undefined) return cachedVoice;
+        if (!synth) return (cachedVoice = null);
+        const vs = synth.getVoices().filter(v => /^zh([-_](CN|Hans))?$/i.test(v.lang) || /^cmn/i.test(v.lang));
+        vs.sort((a, b) => scoreVoice(b) - scoreVoice(a));
+        return (cachedVoice = vs[0] || null);
+      }
+      if (synth) synth.addEventListener("voiceschanged", () => { cachedVoice = undefined; });
+
+      // ----- trạng thái nút / nguồn giọng -----
+      function setPlaying(btn) {
+        if (playingBtn) playingBtn.classList.remove("playing");
+        playingBtn = btn || null;
+        if (playingBtn) playingBtn.classList.add("playing");
+      }
+      function showSrc(kind, name) {
+        const el = $("smSrc");
+        el.className = "sm-src" + (kind === "human" ? " human" : "");
+        el.textContent =
+          kind === "human" ? "Giọng đọc thật của cô Hương" :
+          kind === "tts" ? "Chưa có file ghi âm, đang dùng giọng tự nhiên của thiết bị: " + name :
+          kind === "novoice" ? "Thiết bị chưa có giọng tiếng Trung. Hãy dùng Chrome/Edge hoặc cài giọng Trung trong phần Cài đặt." :
+          "Trình duyệt này chưa hỗ trợ đọc giọng nói.";
+      }
+      function stop() {
+        if (curAudio) { curAudio.pause(); curAudio = null; }
+        if (synth) synth.cancel();
+        setPlaying(null);
+      }
+      function speak(text, slow, btn) {
+        if (!synth) { showSrc("none"); setPlaying(null); return; }
+        const v = pickVoice();
+        showSrc(v ? "tts" : "novoice", v && v.name);
+        const u = new SpeechSynthesisUtterance(text);
+        u.lang = v ? v.lang : "zh-CN";
+        if (v) u.voice = v;
+        u.rate = slow ? 0.62 : 0.85;
+        u.pitch = 1;
+        u.onend = u.onerror = () => { if (playingBtn === btn) setPlaying(null); };
+        synth.speak(u);
+      }
+      function play(file, text, slow, btn) {
+        stop(); setPlaying(btn);
+        let decided = false;
+        const fallback = () => { if (decided) return; decided = true; speak(text, slow, btn); };
+        const a = new Audio(AUDIO_BASE + file);
+        curAudio = a; a.playbackRate = slow ? 0.8 : 1;
+        a.addEventListener("error", fallback);
+        a.addEventListener("ended", () => { if (playingBtn === btn) setPlaying(null); });
+        a.play().then(() => { if (!decided) { decided = true; showSrc("human"); } }).catch(fallback);
+      }
+
+      // ----- hiển thị -----
+      function render(i) {
+        idx = (i + ORDER.length) % ORDER.length;
+        const key = ORDER[idx], d = STAMPS[key];
+        const src = document.querySelector('.stamp[data-stamp="' + key + '"] .stamp-face');
+        $("smStamp").replaceChildren(src ? src.cloneNode(true) : "");
+        $("smNo").textContent = "· 第" + (idx + 1) + "枚 / " + ORDER.length;
+        $("smPos").textContent = "TỪ MỚI · " + d.pos.toUpperCase();
+        $("smTitle").textContent = d.zh;
+        $("smPy").textContent = d.py;
+        $("smVi").textContent = d.vi;
+        $("smExZh").textContent = d.ex.zh; $("smExPy").textContent = d.ex.py; $("smExVi").textContent = d.ex.vi;
+        $("smCulture").textContent = d.culture; $("smTip").textContent = d.tip;
+        $("smWords").innerHTML = d.words.map((w, k) =>
+          '<button class="sm-chip" type="button" data-w="' + k + '" aria-label="Nghe ' + escapeHTML(w.zh) + '"><b>' + escapeHTML(w.zh) + '</b><i>' + escapeHTML(w.py) + '</i><span>' + escapeHTML(w.vi) + '</span></button>').join("");
+        $("smSrc").textContent = ""; $("smSrc").className = "sm-src";
+        card.scrollTop = 0;
+      }
+      function openModal(i) {
+        lastFocus = document.activeElement;
+        render(i);
+        modal.hidden = false;
+        document.body.style.overflow = "hidden";
+        $("smClose").focus();
+      }
+      function closeModal() {
+        stop();
+        modal.hidden = true;
+        document.body.style.overflow = "";
+        if (lastFocus && lastFocus.focus) lastFocus.focus();
+      }
+
+      // ----- sự kiện -----
+      document.querySelectorAll(".stamp[data-stamp]").forEach(el => {
+        const open = () => openModal(ORDER.indexOf(el.dataset.stamp));
+        el.addEventListener("click", open);
+        el.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
+      });
+      $("smClose").addEventListener("click", closeModal);
+      modal.addEventListener("click", e => { if (e.target === modal) closeModal(); });
+      $("smPrev").addEventListener("click", () => { stop(); render(idx - 1); });
+      $("smNext").addEventListener("click", () => { stop(); render(idx + 1); });
+      $("smPlayWord").addEventListener("click", e => { const k = ORDER[idx]; play(k + ".mp3", STAMPS[k].zh, false, e.currentTarget); });
+      $("smPlayWordSlow").addEventListener("click", e => { const k = ORDER[idx]; play(k + ".mp3", STAMPS[k].zh, true, e.currentTarget); });
+      $("smPlayEx").addEventListener("click", e => { const k = ORDER[idx]; play(k + "-cau.mp3", STAMPS[k].ex.zh, false, e.currentTarget); });
+      $("smPlayExSlow").addEventListener("click", e => { const k = ORDER[idx]; play(k + "-cau.mp3", STAMPS[k].ex.zh, true, e.currentTarget); });
+      $("smWords").addEventListener("click", e => {
+        const b = e.target.closest(".sm-chip"); if (!b) return;
+        const k = ORDER[idx], n = Number(b.dataset.w);
+        play(k + "-t" + (n + 1) + ".mp3", STAMPS[k].words[n].zh, false, b);
+      });
+      document.addEventListener("keydown", e => {
+        if (modal.hidden) return;
+        if (e.key === "Escape") { e.stopImmediatePropagation(); closeModal(); return; }
+        if (e.key === "ArrowLeft") { stop(); render(idx - 1); return; }
+        if (e.key === "ArrowRight") { stop(); render(idx + 1); return; }
+        if (e.key === "Tab") {
+          const f = [...modal.querySelectorAll("button")].filter(x => x.offsetParent !== null);
+          if (!f.length) return;
+          const first = f[0], last = f[f.length - 1];
+          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+      }, true);
+    })();
 
     // Hiệu ứng hiện dần khi cuộn
     (function () {
