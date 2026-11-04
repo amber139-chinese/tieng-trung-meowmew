@@ -122,7 +122,17 @@
     .postbook-head p{margin:0;color:var(--muted);font-size:.93rem;max-width:560px}
     .postmark{position:absolute;right:22px;top:12px;width:156px;color:#3F5F94;opacity:.55;transform:rotate(-11deg);pointer-events:none;z-index:4;font-family:var(--serif)}
 
-    .stamp-row{display:grid;grid-template-columns:repeat(6,1fr);gap:20px 18px}
+    .stamp-scroller{position:relative}
+    .stamp-row{position:relative;display:flex;gap:18px;overflow-x:auto;overflow-y:hidden;padding:16px 8px 30px;margin:-16px -8px -10px;scroll-snap-type:x proximity;scroll-padding:0 8px;-webkit-overflow-scrolling:touch;cursor:grab;user-select:none;-webkit-user-select:none;scrollbar-width:thin;scrollbar-color:#D9B56A transparent}
+    .stamp-row.drag{cursor:grabbing;scroll-snap-type:none}
+    .stamp-row::-webkit-scrollbar{height:8px}.stamp-row::-webkit-scrollbar-thumb{background:#D9B56A;border-radius:8px}.stamp-row::-webkit-scrollbar-track{background:rgba(217,181,106,.18);border-radius:8px}
+    .stamp-row .stamp{flex:0 0 168px;scroll-snap-align:start}
+    .stamp-bar{display:flex;align-items:center;justify-content:flex-end;gap:10px;margin:0 0 6px}
+    .stamp-count{font-size:.8rem;font-weight:700;color:var(--muted);margin-right:4px}
+    .stamp-arrow{width:42px;height:42px;border-radius:50%;border:1.5px solid #D9B56A;background:#fff;color:var(--deep);font-size:1.1rem;font-weight:800;cursor:pointer;transition:.18s;box-shadow:0 6px 14px rgba(20,63,79,.12)}
+    .stamp-arrow:hover:not(:disabled){background:var(--coral);border-color:var(--coral);color:#fff}
+    .stamp-arrow:disabled{opacity:.35;cursor:default}
+    .cap-cn.l{font-size:1rem;letter-spacing:.02em}
     .stamp{margin:0;transform:rotate(var(--r,0deg));filter:drop-shadow(0 7px 8px rgba(20,63,79,.22));transition:transform .35s cubic-bezier(.2,.8,.2,1),filter .35s}
     .stamp:nth-child(1){--r:-2.5deg}.stamp:nth-child(2){--r:1.8deg}.stamp:nth-child(3){--r:-1.2deg}
     .stamp:nth-child(4){--r:2.6deg}.stamp:nth-child(5){--r:-2deg}.stamp:nth-child(6){--r:1.4deg}
@@ -148,14 +158,14 @@
     .cap-vi{grid-column:1;font-size:.68rem;line-height:1.3;color:var(--muted);font-weight:600}
     .cap-val{grid-column:2;grid-row:1/3;align-self:center;font-family:var(--serif);font-weight:900;font-size:1.05rem;color:var(--seal);border:1.5px solid var(--seal);border-radius:6px;padding:2px 6px;line-height:1.2}
 
-    @media(max-width:1000px){.stamp-row{grid-template-columns:repeat(3,1fr)}.stamps-wrap{margin-top:-95px}}
+    @media(max-width:1000px){.stamps-wrap{margin-top:-95px}}
     @media(max-width:760px){
       .postbook{padding:22px 16px 28px;border-width:7px;border-radius:24px}
       .postbook-head{padding-right:0}.postmark{display:none}
-      .stamp-row{gap:18px 12px}
+      .stamp-row{gap:14px}
       .cap-cn{font-size:1.1rem}
     }
-    @media(max-width:520px){.stamp-row{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:520px){.stamp-row .stamp{flex-basis:142px}.stamp-arrow{width:38px;height:38px}}
     @media(prefers-reduced-motion:reduce){.stamp{transition:none}}
 
     /* ===== SECTION ===== */
@@ -298,6 +308,8 @@
     .sm-chip i{font-style:normal;font-size:.8rem;color:var(--coral);font-weight:700}
     .sm-chip span{font-size:.76rem;color:var(--muted);line-height:1.35}
     .sm-ex{background:#fff;border:1.5px solid var(--line);border-radius:20px;padding:16px 18px}
+    .sm-ex-zh,.sm-ex-py,.sm-ex-vi{white-space:pre-line}
+    .sm-ex-py{margin-top:10px;line-height:1.6}.sm-ex-vi{margin-top:10px;line-height:1.6}
     .sm-ex-zh{font-family:var(--serif);font-size:1.35rem;font-weight:700;color:var(--deep);line-height:1.55}
     .sm-ex-py{color:var(--coral);font-weight:600;font-size:.92rem}
     .sm-ex-vi{color:var(--muted);font-size:.9rem;margin-top:2px}
@@ -458,11 +470,12 @@
         <div class="postbook-head">
           <div class="section-kicker">邮册 · TEM THƯ MEOW MEOW</div>
           <h2>Một vòng Trung Hoa qua tem thư</h2>
-          <p>Ẩm thực, hán phục, cổ trấn, Vạn Lý Trường Thành… những nét văn hoá bạn sẽ gặp lại trong từng bài học.</p>
-          <span class="postbook-hint">Bấm vào từng con tem để xem nghĩa, pinyin và nghe đọc</span>
+          <p>Danh nhân, thơ cổ, danh thắng, lễ hội, ẩm thực… 30 con tem là 30 nét văn hoá Trung Hoa bạn sẽ gặp lại trong từng bài học.</p>
+          <span class="postbook-hint">Kéo chuột (hoặc vuốt) sang ngang để xem thêm · Bấm vào tem để xem nghĩa, pinyin và nghe đọc</span>
         </div>
 
-        <div class="stamp-row">
+        <div class="stamp-bar"><span class="stamp-count" id="stampCount" aria-live="polite"></span><button class="stamp-arrow" id="stampPrev" type="button" aria-label="Xem tem trước">←</button><button class="stamp-arrow" id="stampNext" type="button" aria-label="Xem tem sau">→</button></div>
+        <div class="stamp-scroller"><div class="stamp-row" id="stampRow" aria-label="Bộ sưu tập 30 con tem">
 
           <!-- 1. Trường Thành -->
           <figure class="stamp" tabindex="0" role="button" aria-haspopup="dialog" data-stamp="truong-thanh" aria-label="Xem nghĩa và nghe đọc: Vạn Lý Trường Thành"><div class="stamp-face">
@@ -654,7 +667,7 @@
             <figcaption><span class="cap-cn">灯会</span><span class="cap-vi">Hội đèn lồng</span><span class="cap-val">15分</span></figcaption>
           </div></figure>
 
-        </div>
+        </div></div>
       </div>
     </div>
   </div>
@@ -748,7 +761,7 @@
           <div class="sm-h">Từ liên quan · 相关词语</div>
           <div class="sm-words" id="smWords"></div>
 
-          <div class="sm-h">Mẫu câu · 例句</div>
+          <div class="sm-h" id="smExH">Mẫu câu · 例句</div>
           <div class="sm-ex">
             <div class="sm-ex-zh" id="smExZh"></div>
             <div class="sm-ex-py" id="smExPy"></div>
@@ -976,6 +989,252 @@
       };
       const ORDER = ["truong-thanh", "co-tran", "am-thuc", "han-phuc", "gau-truc", "den-long"];
 
+      // ===== 24 tem mới: danh nhân, thơ cổ, danh thắng, lễ hội, nghệ thuật =====
+      const S = {
+        bg: (n, a, b) => `<defs><linearGradient id="m${n}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient></defs><rect width="160" height="200" fill="url(#m${n})"/>`,
+        sun: (x, y, r, c) => `<circle cx="${x}" cy="${y}" r="${r * 1.5}" fill="${c}" opacity=".2"/><circle cx="${x}" cy="${y}" r="${r}" fill="${c}"/>`,
+        hill: (y, c, o = 1) => `<path d="M0 ${y} Q26 ${y - 32} 54 ${y - 8} T108 ${y - 14} T160 ${y - 4} V200H0Z" fill="${c}" opacity="${o}"/>`,
+        peak: (x, y, w, h, c) => `<path d="M${x - w} ${y} Q${x - w / 3} ${y - h * .7} ${x} ${y - h} Q${x + w / 3} ${y - h * .7} ${x + w} ${y}Z" fill="${c}"/>`,
+        karst: (x, y, w, h, c) => `<path d="M${x - w} ${y} Q${x - w} ${y - h * .7} ${x - w * .35} ${y - h} Q${x} ${y - h - 5} ${x + w * .35} ${y - h} Q${x + w} ${y - h * .7} ${x + w} ${y}Z" fill="${c}"/>`,
+        water: (y, c, l = "#fff") => `<rect y="${y}" width="160" height="${200 - y}" fill="${c}"/><g fill="none" stroke="${l}" stroke-width="1" opacity=".5" stroke-linecap="round"><path d="M10 ${y + 14} q8 -3 16 0 t16 0"/><path d="M92 ${y + 22} q8 -3 16 0 t16 0"/><path d="M30 ${y + 34} q8 -3 16 0 t16 0"/><path d="M104 ${y + 44} q8 -3 16 0 t16 0"/></g>`,
+        roof: (x, y, w, c) => `<path d="M${x - w} ${y} Q${x - w * .55} ${y - 1} ${x - w * .4} ${y - 9} H${x + w * .4} Q${x + w * .55} ${y - 1} ${x + w} ${y}Z" fill="${c}"/>`,
+        hall: (x, y, w, h, wall, rf) => `<rect x="${x - w / 2}" y="${y - h}" width="${w}" height="${h}" fill="${wall}"/>` + S.roof(x, y - h + 1, w * .68, rf),
+        pagoda: (x, y, n, w, wall, rf) => {
+          let s = "";
+          for (let i = 0; i < n; i++) { const ww = w * (1 - i * .17), yy = y - i * w * .3; s += `<rect x="${x - ww * .39}" y="${yy - w * .2}" width="${ww * .78}" height="${w * .2}" fill="${wall}"/>` + S.roof(x, yy - w * .2 + 1, ww * .62, rf); }
+          return s + `<path d="M${x} ${y - n * w * .3 - w * .05} v-10" stroke="${rf}" stroke-width="1.5"/>`;
+        },
+        man: (x, y, s, robe, hat, beard) => `<g transform="translate(${x} ${y}) scale(${s})"><path d="M-20 70 Q-17 26 0 22 Q17 26 20 70Z" fill="${robe}"/><path d="M-13 42 Q0 54 13 42 L12 50 Q0 58 -12 50Z" fill="#000" opacity=".18"/><circle cy="10" r="10" fill="#F2CFA3"/><rect x="-12" y="-3" width="24" height="6" rx="2" fill="${hat}"/><path d="M-6 16 Q0 38 6 16Z" fill="${beard || "#2B2118"}"/></g>`,
+        pine: (x, y, s, c = "#2E6B4F") => `<g transform="translate(${x} ${y}) scale(${s})"><rect x="-1.5" y="-10" width="3" height="10" fill="#6B4630"/><path d="M-12 -8 L0 -26 L12 -8Z M-10 -18 L0 -36 L10 -18Z" fill="${c}"/></g>`,
+        lantern: (x, y, s = 1) => `<path d="M${x} ${y - 11 * s}v5" stroke="#E4B75A" stroke-width="1"/><ellipse cx="${x}" cy="${y}" rx="${5 * s}" ry="${6.5 * s}" fill="#D6453A"/><rect x="${x - 3 * s}" y="${y - 7.5 * s}" width="${6 * s}" height="${2 * s}" fill="#E4B75A"/>`,
+        cloud: (x, y, s, c = "#fff", o = .8) => `<g fill="${c}" opacity="${o}"><ellipse cx="${x}" cy="${y}" rx="${18 * s}" ry="${5 * s}"/><ellipse cx="${x + 10 * s}" cy="${y - 4 * s}" rx="${11 * s}" ry="${5 * s}"/></g>`,
+        taiji: (x, y, r) => `<g transform="translate(${x} ${y}) scale(${r / 17})"><circle r="17" fill="#fff" stroke="#222" stroke-width="1.5"/><path d="M0 -17 A17 17 0 0 1 0 17 A8.5 8.5 0 0 1 0 0 A8.5 8.5 0 0 0 0 -17Z" fill="#222"/><circle cy="-8.5" r="2.6" fill="#fff"/><circle cy="8.5" r="2.6" fill="#222"/></g>`,
+        soldier: (x, y, s, c) => `<g transform="translate(${x} ${y}) scale(${s})" fill="${c}"><circle cy="-38" r="3.5"/><circle cy="-30" r="6"/><path d="M-9 -22 H9 L11 6 H-11Z"/><rect x="-10" y="6" width="8" height="14"/><rect x="2" y="6" width="8" height="14"/></g>`
+      };
+      const rain = [...Array(2)].map((_, r) => [...Array(14)].map((_, k) => `<path d="M${6 + k * 11 + r * 5} ${10 + ((k * 37 + r * 50) % 70)} l-4 14" stroke="#fff" stroke-width="1" opacity=".7"/>`).join("")).join("");
+      const flags = [[20, "#4A6FA5"], [46, "#fff"], [72, "#D6453A"], [100, "#3FA46A"], [128, "#F0B94B"]].map(f => { const t = f[0] / 160; return `<rect x="${f[0] - 5}" y="${30 + 13 * 4 * t * (1 - t) + 1}" width="10" height="8" fill="${f[1]}"/>`; }).join("");
+      const trigrams = [0, 1, 2, 3, 4, 5, 6, 7].map(i => `<g transform="translate(80 100) rotate(${i * 45}) translate(0 -60)" stroke="#222" stroke-width="2.4">` + [0, 1, 2].map(j => (i >> j) & 1 ? `<path d="M-8 ${j * 5 - 5}h16"/>` : `<path d="M-8 ${j * 5 - 5}h6M2 ${j * 5 - 5}h6"/>`).join("") + `</g>`).join("");
+
+      // [khoá, 汉字, pinyin, nghĩa, chú thích tem, mệnh giá, loại, [3 từ], [câu], góc văn hoá, mách nhỏ, [màu nền], tranh]
+      const MORE = [
+        ["kong-tu", "孔子", "Kǒngzǐ", "Khổng Tử, nhà tư tưởng, nhà giáo dục lớn", "Khổng Tử", "10分", "人物 · Nhân vật",
+          [["论语", "Lúnyǔ", "Luận Ngữ, sách ghi lời Khổng Tử"], ["万世师表", "wànshì shībiǎo", "bậc thầy của muôn đời"], ["仁", "rén", "nhân, lòng nhân ái"]],
+          ["学而时习之，不亦说乎？", "Xué ér shí xí zhī, bú yì yuè hū?", "Học rồi thường xuyên ôn tập, chẳng phải vui sao?"],
+          "Khổng Tử (551–479 TCN) sống ở nước Lỗ, mở trường dạy học cho cả người nghèo. Lời nói và việc làm của ông được học trò ghi lại trong 《论语》. Ngày 28/9 là ngày kỷ niệm ông, ở nhiều nơi gọi là Tết Thầy.",
+          "Trong câu này 说 đọc là yuè và mang nghĩa “vui” (giống chữ 悦). Còn 说 đọc shuō mới là “nói” như 说话.",
+          ["#F6E8C8", "#E2C68C"],
+          `<rect x="10" width="14" height="200" fill="#B5452F" opacity=".85"/><rect x="136" width="14" height="200" fill="#B5452F" opacity=".85"/>${S.sun(80, 70, 34, "#fff7e0")}${S.man(80, 52, 1.75, "#2C4A6B", "#1B1B1B")}<rect x="30" y="166" width="100" height="18" rx="3" fill="#C9A15B"/><text x="80" y="180" text-anchor="middle" font-size="13" font-weight="900" fill="#7A2E20" font-family="Noto Serif SC,serif">论语</text>`],
+        ["li-bai", "李白", "Lǐ Bái", "Lý Bạch, “thi tiên” đời Đường", "Lý Bạch", "20分", "人物 · Nhân vật",
+          [["诗仙", "shīxiān", "thi tiên, tiên thơ"], ["明月", "míngyuè", "trăng sáng"], ["思乡", "sīxiāng", "nhớ quê"]],
+          ["床前明月光，\n疑是地上霜。\n举头望明月，\n低头思故乡。", "Chuáng qián míng yuèguāng,\nyí shì dìshàng shuāng.\nJǔ tóu wàng míngyuè,\ndī tóu sī gùxiāng.", "Đầu giường ánh trăng rọi,\nNgỡ mặt đất phủ sương.\nNgẩng đầu nhìn trăng sáng,\nCúi đầu nhớ cố hương."],
+          "Lý Bạch (701–762) là nhà thơ nổi tiếng của đời Đường, mê trăng và mê rượu. Bài 《静夜思》 (Tĩnh dạ tư) chỉ có bốn câu, tả nỗi nhớ quê trong một đêm trăng. Học sinh Trung Quốc gần như ai cũng thuộc.",
+          "Thanh 3 gặp nhau thì đổi: 举头 đọc gần như jú tóu. Hãy đọc chậm, ngắt nhịp 2-3 như làm thơ nhé!",
+          ["#161B45", "#3E4380"],
+          `${S.sun(110, 52, 24, "#F7E6A8")}<g fill="#fff" opacity=".8"><circle cx="24" cy="30" r="1"/><circle cx="60" cy="18" r="1.2"/><circle cx="144" cy="110" r="1"/><circle cx="20" cy="80" r="1"/></g>${S.hill(170, "#1D2347")}${S.pine(132, 178, 1.2, "#1F3F3F")}${S.man(52, 92, 1.25, "#E8EEF6", "#2B2B2B")}<path d="M76 126 l10 -8" stroke="#F2CFA3" stroke-width="3"/><path d="M84 112 h9 l-1 9 h-7Z" fill="#E4B75A"/>`],
+        ["du-fu", "杜甫", "Dù Fǔ", "Đỗ Phủ, “thi thánh” đời Đường", "Đỗ Phủ", "20分", "人物 · Nhân vật",
+          [["诗圣", "shīshèng", "thi thánh"], ["春雨", "chūnyǔ", "mưa xuân"], ["草堂", "cǎotáng", "thảo đường (nhà tranh)"]],
+          ["好雨知时节，当春乃发生。\n随风潜入夜，润物细无声。\n野径云俱黑，江船火独明。\n晓看红湿处，花重锦官城。", "Hǎo yǔ zhī shíjié, dāng chūn nǎi fāshēng.\nSuí fēng qián rù yè, rùn wù xì wú shēng.\nYě jìng yún jù hēi, jiāng chuán huǒ dú míng.\nXiǎo kàn hóng shī chù, huā zhòng Jǐnguān Chéng.", "Mưa lành biết đúng lúc, xuân đến liền làm vạn vật nảy mầm.\nTheo gió lặng lẽ vào đêm, thấm nhuần muôn vật nhẹ không một tiếng.\nĐường quê mây đen kịt, thuyền trên sông chỉ một ngọn lửa sáng.\nSớm mai nhìn nơi ướt đỏ, hoa nặng trĩu cả thành Cẩm Quan."],
+          "Bài 《春夜喜雨》 (Đêm xuân mừng mưa) tả cơn mưa xuân lặng lẽ nuôi cây; 锦官城 là tên xưa của Thành Đô. Đỗ Phủ (712–770) thường viết về cuộc sống khổ cực của dân thường, nên được gọi là “thi thánh”; người ta hay nhắc “Lý – Đỗ” (李杜) đi đôi với nhau. Ông từng sống trong ngôi nhà tranh ở Thành Đô, nay là Đỗ Phủ Thảo Đường, một điểm tham quan nổi tiếng.",
+          "好雨 gồm hai thanh 3 đứng cạnh nhau nên 好 đọc thành thanh 2: háo yǔ.",
+          ["#B9CFCB", "#E6EEE2"],
+          `${rain}${S.hill(150, "#7FA08A")}<rect y="176" width="160" height="24" fill="#5E7F5C"/><rect x="48" y="120" width="64" height="36" fill="#D9C9A0"/><path d="M38 124 L80 92 L122 124Z" fill="#8C6A3F"/><rect x="72" y="134" width="16" height="22" fill="#5A3E2B"/><g stroke="#4E8B4A" stroke-width="3"><path d="M18 90V200M30 70V200M140 80V200"/></g><g fill="#6FB062"><ellipse cx="26" cy="104" rx="8" ry="2.5"/><ellipse cx="38" cy="86" rx="8" ry="2.5"/><ellipse cx="132" cy="96" rx="8" ry="2.5"/></g>`],
+        ["lao-tu", "老子", "Lǎozǐ", "Lão Tử, người sáng lập Đạo gia", "Lão Tử", "10分", "人物 · Nhân vật",
+          [["道德经", "Dàodéjīng", "Đạo Đức Kinh"], ["阴阳", "yīnyáng", "âm dương"], ["无为", "wúwéi", "vô vi, thuận theo tự nhiên"]],
+          ["千里之行，始于足下。", "Qiānlǐ zhī xíng, shǐ yú zú xià.", "Đường đi ngàn dặm bắt đầu từ bước chân dưới chân mình."],
+          "Tương truyền Lão Tử cưỡi trâu xanh đi về phía tây, khi qua ải thì để lại cuốn 《道德经》 chừng năm nghìn chữ. Sách là nền tảng của Đạo gia, đề cao sự giản dị và thuận theo tự nhiên.",
+          "行 có hai âm: xíng (đi, được) trong 千里之行, và háng (hàng, ngành) trong 银行 yínháng (ngân hàng).",
+          ["#EFE7CE", "#C9D8C0"],
+          `${S.taiji(36, 44, 17)}${S.peak(112, 150, 60, 80, "#9DB8A8")}${S.peak(48, 160, 60, 70, "#7FA08F")}${S.hill(176, "#5E8068")}<g fill="#4A3B30"><ellipse cx="78" cy="148" rx="34" ry="17"/><rect x="48" y="156" width="6" height="22"/><rect x="62" y="158" width="6" height="20"/><rect x="92" y="158" width="6" height="20"/><rect x="104" y="156" width="6" height="22"/><ellipse cx="38" cy="136" rx="11" ry="9"/></g><path d="M32 128 q-8 -8 -4 -14 M44 128 q6 -8 2 -14" stroke="#4A3B30" stroke-width="3" fill="none"/>${S.man(82, 84, 1, "#F4F1E8", "#3B3B3B", "#EEE")}`],
+        ["vuong-chi-hoan", "王之涣", "Wáng Zhīhuàn", "Vương Chi Hoán, nhà thơ đời Đường", "Quán Tước lâu", "15分", "人物 · Nhân vật",
+          [["黄河", "Huánghé", "sông Hoàng Hà"], ["登高", "dēnggāo", "leo lên cao"], ["楼", "lóu", "lầu, toà nhà cao"]],
+          ["白日依山尽，\n黄河入海流。\n欲穷千里目，\n更上一层楼。", "Bái rì yī shān jìn,\nHuáng Hé rù hǎi liú.\nYù qióng qiānlǐ mù,\ngèng shàng yì céng lóu.", "Mặt trời chiều tựa núi khuất dần,\nHoàng Hà đổ ra biển chảy xuôi.\nMuốn nhìn xa ngàn dặm,\nhãy bước lên thêm một tầng lầu."],
+          "Bài 《登鹳雀楼》 chỉ 20 chữ nhưng rất nổi tiếng: hai câu đầu tả mặt trời lặn sau núi, Hoàng Hà đổ ra biển; hai câu sau khuyên người ta phải đứng cao hơn thì mới nhìn xa hơn. Câu cuối thường dùng để động viên cố gắng vươn lên.",
+          "更 trong 更上一层楼 đọc gèng (thêm, hơn nữa). Chữ này còn có âm gēng như trong 更新 gēngxīn (cập nhật).",
+          ["#F4B96E", "#FBE6BC"],
+          `${S.sun(86, 92, 26, "#D6453A")}${S.hill(150, "#C98D5A", .8)}${S.water(158, "#CBA24E")}${S.pagoda(72, 152, 3, 46, "#C9A15B", "#6B3A28")}<path d="M110 50 q4 -5 8 0 q4 -5 8 0" fill="none" stroke="#6B3A28" stroke-width="1.4"/>`],
+        ["phuong-hoang", "凤凰古城", "Fènghuáng Gǔchéng", "Phượng Hoàng cổ trấn (Hồ Nam)", "Phượng Hoàng cổ trấn", "30分", "地名 · Địa danh",
+          [["沱江", "Tuójiāng", "sông Đà Giang"], ["吊脚楼", "diàojiǎolóu", "nhà sàn chân cao bên sông"], ["湘西", "Xiāngxī", "Tương Tây"]],
+          ["夜里的凤凰古城特别美。", "Yèli de Fènghuáng Gǔchéng tèbié měi.", "Ban đêm Phượng Hoàng cổ trấn đặc biệt đẹp."],
+          "Phượng Hoàng cổ trấn nằm ở vùng Tương Tây, tỉnh Hồ Nam, nổi tiếng với những dãy nhà sàn nhô ra bên sông Đà Giang, tối đến lên đèn rất lung linh. Đây cũng là quê của nhà văn Thẩm Tòng Văn (沈从文).",
+          "凤凰 là “phượng hoàng”: 凤 là phượng trống, 凰 là phượng mái. Ghép lại thành tên loài chim thần thoại.",
+          ["#27335F", "#E7A07B"],
+          `${S.hill(130, "#1E2748", .9)}<g stroke="#2A1F1B" stroke-width="3"><path d="M14 150v18M30 150v20M46 150v18M110 144v24M126 144v26M142 144v24"/></g>${S.hall(30, 150, 46, 44, "#4B3426", "#2A1F1B")}${S.hall(126, 144, 52, 40, "#4B3426", "#2A1F1B")}<g fill="#FFD36B"><rect x="18" y="118" width="8" height="10"/><rect x="34" y="118" width="8" height="10"/><rect x="112" y="116" width="8" height="10"/><rect x="132" y="116" width="8" height="10"/></g>${S.water(164, "#1D3B52", "#F7B955")}${S.lantern(20, 100)}${S.lantern(46, 98)}${S.lantern(120, 98)}${S.lantern(146, 100)}<path d="M62 178 Q82 190 106 178Z" fill="#2A1F1B"/>`],
+        ["co-cung", "故宫", "Gùgōng", "Cố Cung, Tử Cấm Thành ở Bắc Kinh", "Cố Cung Bắc Kinh", "20分", "地名 · Địa danh",
+          [["紫禁城", "Zǐjìnchéng", "Tử Cấm Thành"], ["皇帝", "huángdì", "hoàng đế"], ["博物院", "bówùyuàn", "viện bảo tàng"]],
+          ["故宫是明清两代的皇宫。", "Gùgōng shì Míng Qīng liǎng dài de huánggōng.", "Cố Cung là hoàng cung của hai triều Minh và Thanh."],
+          "Cố Cung được xây xong khoảng năm 1420 thời Minh. Từ đó, hoàng đế hai triều Minh và Thanh sống và làm việc ở đây. Nay nơi này là Bảo tàng Cố Cung, lưu giữ rất nhiều cổ vật, mái ngói vàng và tường đỏ là dấu hiệu dễ nhận nhất.",
+          "故 là “cũ, xưa” (故事 gùshi là chuyện xưa, câu chuyện). 故宫 nghĩa đen là “cung điện xưa”.",
+          ["#9FD3E8", "#F3EEDF"],
+          `<rect y="176" width="160" height="24" fill="#B9B6AC"/><rect x="24" y="124" width="112" height="32" fill="#B8352B"/>${S.roof(80, 125, 78, "#E5B53C")}<rect x="44" y="102" width="72" height="16" fill="#B8352B"/>${S.roof(80, 103, 56, "#E5B53C")}${[40, 56, 72, 88, 104].map(x => `<rect x="${x}" y="136" width="9" height="20" fill="#7A1F18"/>`).join("")}<path d="M18 156 H142 L150 176 H10Z" fill="#F4F1EA"/>${S.cloud(34, 40, 1.2)}${S.cloud(124, 62, 1)}`],
+        ["thien-dan", "天坛", "Tiāntán", "Thiên Đàn, nơi hoàng đế tế trời", "Thiên Đàn", "15分", "地名 · Địa danh",
+          [["祈年殿", "Qíniándiàn", "điện Kỳ Niên"], ["祭天", "jìtiān", "tế trời"], ["北京", "Běijīng", "Bắc Kinh"]],
+          ["天坛是古代皇帝祭天的地方。", "Tiāntán shì gǔdài huángdì jìtiān de dìfang.", "Thiên Đàn là nơi hoàng đế thời xưa tế trời."],
+          "Mỗi năm các hoàng đế Minh – Thanh đến Thiên Đàn để cầu cho mưa thuận gió hoà, mùa màng bội thu. Điện Kỳ Niên hình tròn, mái ngói xanh ba tầng, tượng trưng cho trời; còn nền đất vuông tượng trưng cho đất.",
+          "Chữ 地方 có hai cách đọc: dìfang (nơi chốn, đọc nhẹ chữ sau) và dìfāng (địa phương). Câu trên dùng dìfang.",
+          ["#8EC9E3", "#EAF4F6"],
+          `${S.cloud(36, 40, 1.2)}${S.cloud(126, 70, 1)}<ellipse cx="80" cy="170" rx="66" ry="11" fill="#F2EFE6"/><ellipse cx="80" cy="160" rx="52" ry="8" fill="#fff"/><rect x="64" y="108" width="32" height="50" fill="#B8352B"/><path d="M44 122 Q64 120 66 106 H94 Q96 120 116 122Z" fill="#2F6FB5"/><path d="M52 100 Q68 98 70 86 H90 Q92 98 108 100Z" fill="#2F6FB5"/><path d="M60 80 Q72 78 74 68 H86 Q88 78 100 80Z" fill="#2F6FB5"/><circle cx="80" cy="58" r="5" fill="#E5B53C"/>${S.pine(18, 172, 1.1)}${S.pine(142, 172, 1.1)}`],
+        ["tay-ho", "西湖", "Xī Hú", "Tây Hồ ở Hàng Châu", "Tây Hồ Hàng Châu", "20分", "地名 · Địa danh",
+          [["杭州", "Hángzhōu", "Hàng Châu"], ["断桥", "Duànqiáo", "Đoạn Kiều, cầu nổi tiếng bên Tây Hồ"], ["龙井茶", "Lóngjǐngchá", "trà Long Tỉnh"]],
+          ["水光潋滟晴方好，\n山色空蒙雨亦奇。\n欲把西湖比西子，\n淡妆浓抹总相宜。", "Shuǐ guāng liànyàn qíng fāng hǎo,\nshān sè kōngméng yǔ yì qí.\nYù bǎ Xīhú bǐ Xīzǐ,\ndàn zhuāng nóng mǒ zǒng xiāngyí.", "Mặt nước lấp lánh, trời nắng thì đẹp,\nNúi mờ trong mưa cũng lạ kỳ.\nMuốn đem Tây Hồ sánh với Tây Tử,\nTrang điểm nhạt hay đậm đều hợp."],
+          "Bài 《饮湖上初晴后雨》 của Tô Thức (đời Tống) ví Tây Hồ như mỹ nhân Tây Thi (西子): trời nắng hay mưa, hồ vẫn đẹp. Người Trung Quốc có câu “上有天堂，下有苏杭” (trên có thiên đường, dưới có Tô Hàng).",
+          "Chữ 湖 hú (hồ) có bộ thuỷ 氵. Hàng Châu có Tây Hồ, còn Vũ Hán có Đông Hồ, nhớ nhé!",
+          ["#F2E4D6", "#DCEBE5"],
+          `${S.hill(110, "#A8C3B2", .8)}${S.hill(124, "#7FA690")}${S.pagoda(46, 108, 3, 22, "#C9A15B", "#6B3A28")}${S.water(132, "#8CC4BD")}<path d="M36 140 Q80 114 124 140" fill="none" stroke="#8C7F6B" stroke-width="4"/><g stroke="#6FA25A" stroke-width="1.4" fill="none"><path d="M140 30 Q146 60 138 96"/><path d="M150 30 Q156 56 150 90"/><path d="M130 30 Q134 56 128 84"/></g><path d="M118 30 Q145 20 160 30" stroke="#5B4636" stroke-width="3" fill="none"/><path d="M84 170 Q100 180 120 170Z" fill="#3B2A1E"/><path d="M96 170 Q104 158 114 170Z" fill="#6B4630"/>`],
+        ["que-lam", "桂林山水", "Guìlín shānshuǐ", "non nước Quế Lâm", "Non nước Quế Lâm", "20分", "地名 · Địa danh",
+          [["漓江", "Líjiāng", "sông Lý Giang"], ["山水", "shānshuǐ", "non nước, phong cảnh"], ["竹筏", "zhúfá", "bè tre"]],
+          ["桂林山水甲天下。", "Guìlín shānshuǐ jiǎ tiānxià.", "Non nước Quế Lâm đẹp nhất thiên hạ."],
+          "Quế Lâm (Quảng Tây) có những ngọn núi đá vôi mọc lên từ mặt đất, bao quanh dòng Lý Giang xanh trong. Cảnh sông Lý Giang từng được in ở mặt sau tờ 20 nhân dân tệ. Du khách hay ngồi bè tre ngắm núi, xem ngư dân dùng chim cốc bắt cá.",
+          "甲 jiǎ là “hạng nhất, số 1” (giống “giáp” trong Hán Việt). 甲天下 nghĩa là đứng đầu thiên hạ.",
+          ["#F3EBCD", "#CFE5D8"],
+          `${S.cloud(60, 60, 1.3)}${S.karst(40, 140, 22, 86, "#5E9A78")}${S.karst(104, 140, 26, 104, "#4C8A68")}${S.karst(142, 140, 18, 64, "#78AE90")}${S.karst(78, 140, 16, 50, "#8CBFA2")}${S.water(138, "#4FA7A9")}<path d="M56 174 h50" stroke="#C9A15B" stroke-width="5" stroke-linecap="round"/><circle cx="80" cy="154" r="4" fill="#F2CFA3"/><path d="M72 152 l8 -8 l8 8Z" fill="#E4C27A"/><path d="M80 158 v14" stroke="#4A3B30" stroke-width="3"/>`],
+        ["truong-gia-gioi", "张家界", "Zhāngjiājiè", "Trương Gia Giới (Hồ Nam)", "Trương Gia Giới", "25分", "地名 · Địa danh",
+          [["石柱", "shízhù", "cột đá"], ["云海", "yúnhǎi", "biển mây"], ["玻璃桥", "bōliqiáo", "cầu kính"]],
+          ["张家界的山像一根根石柱。", "Zhāngjiājiè de shān xiàng yì gēngēn shízhù.", "Núi ở Trương Gia Giới trông như từng cột đá."],
+          "Trương Gia Giới nổi tiếng với hàng nghìn cột đá sa thạch cao vút, thường lảng vảng sương mù. Người ta cho rằng khung cảnh này là nguồn cảm hứng cho những ngọn núi lơ lửng trong phim Avatar; một ngọn núi ở đây đã được đặt thêm tên “Avatar Hallelujah”.",
+          "一根根 yì gēngēn: lặp lượng từ 根 (cái cột, cây, sợi) để nhấn mạnh “từng cái một”.",
+          ["#C9DDE2", "#F4EFE3"],
+          [[30, 170, 12, 120, "#4B6B5A"], [62, 178, 14, 150, "#3F6150"], [98, 172, 13, 130, "#587A68"], [128, 170, 12, 100, "#4B6B5A"]].map(p => S.karst(p[0], p[1], p[2], p[3], p[4]) + `<circle cx="${p[0]}" cy="${p[1] - p[3] - 1}" r="${p[2] * .55}" fill="#2F7A4D"/>`).join("") + `<ellipse cx="80" cy="150" rx="90" ry="10" fill="#fff" opacity=".75"/><ellipse cx="60" cy="112" rx="60" ry="7" fill="#fff" opacity=".6"/><ellipse cx="110" cy="78" rx="50" ry="6" fill="#fff" opacity=".6"/>`],
+        ["cuu-trai-cau", "九寨沟", "Jiǔzhàigōu", "Cửu Trại Câu (Tứ Xuyên)", "Cửu Trại Câu", "25分", "地名 · Địa danh",
+          [["海子", "hǎizi", "hồ nhỏ (cách gọi ở đây)"], ["瀑布", "pùbù", "thác nước"], ["藏族", "Zàngzú", "dân tộc Tạng"]],
+          ["九寨沟的水五颜六色。", "Jiǔzhàigōu de shuǐ wǔ yán liù sè.", "Nước ở Cửu Trại Câu nhiều màu sắc rực rỡ."],
+          "Cửu Trại Câu (Tứ Xuyên) được đặt theo chín ngôi làng của người Tạng trong thung lũng. Các hồ nước ở đây trong vắt, đổi màu xanh ngọc, xanh lam theo mùa và ánh sáng. Nơi này được UNESCO công nhận là Di sản thế giới từ năm 1992.",
+          "五颜六色 là thành ngữ “năm màu sáu sắc”, tức là rất nhiều màu. Dùng được để tả hoa, đèn, quần áo…",
+          ["#D0EBF4", "#F5F6E6"],
+          `${S.peak(110, 120, 50, 54, "#B7D3DE")}${S.hill(118, "#E8A23B")}${[[18, 112, 13, "#D6453A"], [40, 102, 12, "#F0B94B"], [130, 106, 14, "#E07B2E"], [150, 114, 12, "#D6453A"], [108, 100, 10, "#F0B94B"]].map(c => `<circle cx="${c[0]}" cy="${c[1]}" r="${c[2]}" fill="${c[3]}"/>`).join("")}${S.water(126, "#34B6C4")}<path d="M84 100 v26" stroke="#fff" stroke-width="5" opacity=".9"/><path d="M0 30 Q80 56 160 30" fill="none" stroke="#7A5C3E"/>${flags}`],
+        ["hoang-son", "黄山", "Huángshān", "Hoàng Sơn (An Huy)", "Hoàng Sơn", "30分", "地名 · Địa danh",
+          [["迎客松", "Yíngkèsōng", "tùng đón khách"], ["云海", "yúnhǎi", "biển mây"], ["奇松怪石", "qí sōng guài shí", "tùng lạ đá kỳ"]],
+          ["五岳归来不看山，黄山归来不看岳。", "Wǔ yuè guīlái bú kàn shān, Huángshān guīlái bú kàn yuè.", "Đi Ngũ Nhạc về chẳng cần ngắm núi, đi Hoàng Sơn về chẳng cần ngắm nhạc."],
+          "Hoàng Sơn nổi tiếng với bốn điều: tùng lạ, đá kỳ, biển mây và suối nước nóng. Câu nói trên được lưu truyền để ca ngợi vẻ đẹp của Hoàng Sơn so với Ngũ Nhạc (năm ngọn núi lớn của Trung Quốc). Cây tùng Đón Khách đã hàng trăm năm tuổi.",
+          "岳 yuè (nhạc) là “núi lớn”. Trong 五岳 wǔyuè, 五 wǔ + 岳 yuè: thanh 3 rồi thanh 4 nên 五 đọc thấp xuống.",
+          ["#E4E9EA", "#F6F0E4"],
+          `${S.peak(48, 150, 38, 110, "#6C7F7A")}${S.peak(112, 150, 44, 136, "#586B67")}${S.peak(150, 150, 26, 80, "#7D908A")}${S.pine(112, 22, .9)}${S.cloud(40, 128, 2.6, "#fff", .9)}${S.cloud(120, 138, 3, "#fff", .95)}${S.cloud(70, 160, 3.4, "#fff", .95)}<rect y="166" width="160" height="34" fill="#fff" opacity=".92"/>`],
+        ["binh-ma-dung", "兵马俑", "Bīngmǎyǒng", "Binh mã dũng (đội quân đất nung)", "Binh mã dũng Tây An", "30分", "地名 · Địa danh",
+          [["秦始皇", "Qín Shǐhuáng", "Tần Thuỷ Hoàng"], ["西安", "Xī'ān", "Tây An"], ["陶俑", "táoyǒng", "tượng đất nung"]],
+          ["兵马俑是两千多年前的陶像。", "Bīngmǎyǒng shì liǎng qiān duō nián qián de táoxiàng.", "Binh mã dũng là những tượng đất nung từ hơn hai nghìn năm trước."],
+          "Đội quân đất nung được chôn cạnh lăng mộ Tần Thuỷ Hoàng ở gần Tây An. Năm 1974, một nhóm nông dân đào giếng đã tình cờ phát hiện ra. Mỗi tượng có nét mặt, tư thế và trang phục khác nhau.",
+          "西安 Xī'ān (Tây An, thanh 1) khác 陕西 Shǎnxī (Thiểm Tây). Còn 山西 Shānxī (Sơn Tây) đọc khác ở thanh điệu nhé.",
+          ["#D9B98A", "#B58654"],
+          [[22, 100], [51, 100], [80, 100], [109, 100], [138, 100]].map(p => S.soldier(p[0], p[1], .7, "#8A5E3A")).join("") + [[30, 142], [68, 142], [106, 142], [142, 142]].map(p => S.soldier(p[0], p[1], .95, "#9A6B43")).join("") + [[34, 196], [80, 196], [126, 196]].map(p => S.soldier(p[0], p[1], 1.3, "#AD7B4F")).join("")],
+        ["bo-da-la", "布达拉宫", "Bùdálā Gōng", "cung Potala ở Lhasa, Tây Tạng", "Cung Potala", "30分", "地名 · Địa danh",
+          [["西藏", "Xīzàng", "Tây Tạng"], ["拉萨", "Lāsà", "Lhasa"], ["雪山", "xuěshān", "núi tuyết"]],
+          ["布达拉宫在拉萨。", "Bùdálā Gōng zài Lāsà.", "Cung Potala nằm ở Lhasa."],
+          "Cung Potala nằm trên đồi Hồng Sơn ở Lhasa, độ cao trên 3.600 mét. Toà cung có phần Bạch Cung (màu trắng, nơi ở và làm việc) và Hồng Cung (màu đỏ, nơi thờ phụng). Xưa đây là nơi ở của các vị Đạt Lai Lạt Ma.",
+          "布达拉 là phiên âm tiếng Tạng, nên khi đọc phải đủ bốn âm tiết: bù-dá-lā-gōng.",
+          ["#4A9FD8", "#D4EAF5"],
+          `${S.peak(30, 130, 50, 70, "#fff")}${S.peak(136, 130, 56, 86, "#EAF2F8")}${S.hill(160, "#8E7B63")}<path d="M30 172 L46 112 H114 L130 172Z" fill="#F4F1EA"/><rect x="56" y="82" width="48" height="32" fill="#9E2B25"/>${S.roof(80, 83, 34, "#E5B53C")}${S.roof(56, 106, 12, "#E5B53C")}${S.roof(104, 106, 12, "#E5B53C")}<g fill="#3B2A1E">${[52, 64, 76, 88, 100].map(x => `<rect x="${x}" y="124" width="5" height="8"/><rect x="${x}" y="142" width="5" height="8"/>`).join("")}</g><path d="M50 172 L92 152 L70 142 L112 126" fill="none" stroke="#B9B6AC" stroke-width="3"/>`],
+        ["le-giang", "丽江古城", "Lìjiāng Gǔchéng", "cổ thành Lệ Giang (Vân Nam)", "Lệ Giang cổ thành", "25分", "地名 · Địa danh",
+          [["纳西族", "Nàxīzú", "dân tộc Nạp Tây"], ["玉龙雪山", "Yùlóng Xuěshān", "núi tuyết Ngọc Long"], ["东巴文", "Dōngbāwén", "chữ Đông Ba"]],
+          ["丽江古城里有很多小河。", "Lìjiāng Gǔchéng lǐ yǒu hěn duō xiǎo hé.", "Trong cổ thành Lệ Giang có rất nhiều dòng suối nhỏ."],
+          "Lệ Giang (Vân Nam) là quê hương của dân tộc Nạp Tây, nổi tiếng với chữ Đông Ba, một trong số ít hệ chữ tượng hình còn dùng trong nghi lễ. Phố cổ có nước chảy len qua các ngõ nhỏ, phía xa là núi tuyết Ngọc Long. Cổ thành được UNESCO ghi danh năm 1997.",
+          "Câu có 有 thì phủ định bằng 没有, nhưng ở đây 很多 (rất nhiều) đi sau 有 nên không cần phủ định.",
+          ["#BFE0F0", "#F6EBD4"],
+          `${S.peak(104, 112, 64, 78, "#EAF2F8")}${S.hill(122, "#8FA6B4")}${[[24, 138], [58, 146], [96, 140], [132, 146]].map(p => S.roof(p[0], p[1], 20, "#4A4F55") + `<rect x="${p[0] - 14}" y="${p[1]}" width="28" height="16" fill="#E9DFC8"/>`).join("")}<path d="M0 178 Q60 162 160 180 V200 H0Z" fill="#69B7C4"/><circle cx="122" cy="172" r="12" fill="none" stroke="#6B4630" stroke-width="2.5"/><path d="M122 160v24M110 172h24" stroke="#6B4630" stroke-width="1.5"/>${S.lantern(40, 160)}${S.lantern(84, 158)}`],
+        ["don-hoang", "敦煌", "Dūnhuáng", "Đôn Hoàng (Cam Túc)", "Đôn Hoàng", "30分", "地名 · Địa danh",
+          [["莫高窟", "Mògāokū", "hang Mạc Cao"], ["丝绸之路", "Sīchóu zhī Lù", "Con đường Tơ lụa"], ["沙漠", "shāmò", "sa mạc"]],
+          ["敦煌在丝绸之路上。", "Dūnhuáng zài Sīchóu zhī Lù shang.", "Đôn Hoàng nằm trên Con đường Tơ lụa."],
+          "Đôn Hoàng là trạm dừng quan trọng của Con đường Tơ lụa. Hang Mạc Cao ở đây có hàng trăm hang động với tranh tường và tượng Phật được vẽ, tạc qua nhiều triều đại; hình tiên nữ bay (phi thiên) rất nổi tiếng. Gần đó còn có hồ Nguyệt Nha giữa sa mạc.",
+          "上 trong 路上 đọc nhẹ (shang), mang nghĩa “ở trên”. Ví dụ: 桌子上 zhuōzi shang (trên bàn).",
+          ["#F2B987", "#FBE8CB"],
+          `<path d="M118 30 a16 16 0 1 0 14 22 a13 13 0 1 1 -14 -22Z" fill="#FFF4D8"/><path d="M14 62 q20 -20 40 0 t40 0" fill="none" stroke="#C8453B" stroke-width="2" opacity=".7"/><path d="M0 130 Q50 96 100 128 T160 120 V200H0Z" fill="#E5A25F"/><path d="M0 130 Q50 96 100 128" fill="none" stroke="#F7D6A6" stroke-width="2" opacity=".7"/><path d="M0 164 Q60 130 120 162 T160 152 V200H0Z" fill="#CF8444"/><path d="M44 184 Q70 172 96 184 Q70 192 44 184Z" fill="#4FA7A9"/><g fill="#6B4630"><path d="M96 150 q4 -12 8 -2 q4 -10 8 0 l2 -12 h3 l-1 14 v14 h-3 v-12 h-14 v12 h-3Z"/><path d="M124 144 q4 -12 8 -2 q4 -10 8 0 l2 -12 h3 l-1 14 v14 h-3 v-12 h-14 v12 h-3Z"/></g>`],
+        ["hoang-hac-lau", "黄鹤楼", "Huánghè Lóu", "Hoàng Hạc Lâu (Vũ Hán)", "Hoàng Hạc Lâu", "20分", "地名 · Địa danh",
+          [["武汉", "Wǔhàn", "Vũ Hán"], ["长江", "Chángjiāng", "Trường Giang"], ["扬州", "Yángzhōu", "Dương Châu"]],
+          ["故人西辞黄鹤楼，\n烟花三月下扬州。\n孤帆远影碧空尽，\n唯见长江天际流。", "Gùrén xī cí Huánghè Lóu,\nyānhuā sān yuè xià Yángzhōu.\nGūfān yuǎnyǐng bìkōng jìn,\nwéi jiàn Chángjiāng tiānjì liú.", "Bạn cũ từ biệt Hoàng Hạc Lâu ở phía tây,\nTháng ba hoa khói xuôi Dương Châu.\nBóng cánh buồm lẻ xa dần khuất vào trời xanh,\nChỉ thấy Trường Giang chảy tới chân trời."],
+          "Đây là bài 《黄鹤楼送孟浩然之广陵》 Lý Bạch viết tiễn bạn Mạnh Hạo Nhiên đi Dương Châu. Hoàng Hạc Lâu bên bờ Trường Giang cũng là nơi Thôi Hiệu viết bài thơ nổi tiếng; tương truyền Lý Bạch đã rất phục bài ấy. Toà lầu hiện nay được xây lại vào năm 1985.",
+          "烟花 trong thơ cổ là cảnh hoa nở rực như khói sương mùa xuân. Ngày nay 烟花 thường dùng để chỉ pháo hoa.",
+          ["#CBE6F3", "#F3EFE0"],
+          `${S.cloud(30, 40, 1.6)}${S.cloud(124, 62, 1.4)}${S.hill(152, "#9DB8A8")}${S.water(164, "#5FA3C0")}${S.pagoda(78, 150, 5, 52, "#F0E6CC", "#B8352B")}<path d="M104 90 q14 -16 30 -4 q-12 -2 -16 6 q8 4 10 12 q-14 -6 -24 -14Z" fill="#E4B75A"/>`],
+        ["trung-thu", "中秋节", "Zhōngqiūjié", "Tết Trung Thu (rằm tháng Tám)", "Tết Trung Thu", "15分", "节日 · Lễ hội",
+          [["月饼", "yuèbǐng", "bánh trung thu"], ["嫦娥", "Cháng'é", "Hằng Nga"], ["团圆", "tuányuán", "đoàn viên, sum họp"]],
+          ["明月几时有？把酒问青天。\n不知天上宫阙，今夕是何年。\n我欲乘风归去，又恐琼楼玉宇，高处不胜寒。\n起舞弄清影，何似在人间。\n转朱阁，低绮户，照无眠。\n不应有恨，何事长向别时圆？\n人有悲欢离合，月有阴晴圆缺，此事古难全。\n但愿人长久，千里共婵娟。", "Míngyuè jǐshí yǒu? Bǎ jiǔ wèn qīngtiān.\nBù zhī tiānshàng gōngquè, jīnxī shì hé nián.\nWǒ yù chéng fēng guī qù, yòu kǒng qióng lóu yù yǔ, gāochù bù shèng hán.\nQǐ wǔ nòng qīngyǐng, héshì zài rénjiān.\nZhuǎn zhū gé, dī qǐ hù, zhào wú mián.\nBù yīng yǒu hèn, héshì cháng xiàng biéshí yuán?\nRén yǒu bēi huān lí hé, yuè yǒu yīn qíng yuán quē, cǐ shì gǔ nán quán.\nDàn yuàn rén chángjiǔ, qiānlǐ gòng chánjuān.", "Trăng sáng có tự bao giờ? Nâng chén hỏi trời xanh.\nChẳng biết cung khuyết trên trời, đêm nay là năm nào.\nTa muốn cưỡi gió bay về, lại sợ lầu quỳnh đền ngọc, trên cao lạnh không chịu nổi.\nĐứng dậy múa với bóng trong, nào khác gì chốn nhân gian.\nTrăng xoay qua gác đỏ, thấp xuống cửa chạm hoa, soi người không ngủ.\nChắc không nên có hận, sao cứ tròn vào lúc chia ly?\nNgười có vui buồn tan hợp, trăng có sáng tối tròn khuyết, chuyện này xưa nay khó vẹn toàn.\nChỉ mong người sống lâu dài, cách ngàn dặm vẫn cùng ngắm vầng trăng đẹp."],
+          "Đây là bài 《水调歌头》 của Tô Thức, viết vào đêm Trung Thu để nhớ người em trai ở xa. Rằm tháng Tám là ngày cả nhà sum họp, ngắm trăng và ăn bánh trung thu; truyền thuyết kể rằng Hằng Nga bay lên cung trăng.",
+          "月饼 yuèbǐng: 月 yuè (trăng) + 饼 bǐng (bánh). 婵娟 chánjuān là cách nói thơ ca, chỉ vầng trăng đẹp.",
+          ["#1A2455", "#4A3C7C"],
+          `${S.sun(80, 62, 40, "#F7E6A8")}<g fill="#E9D28A"><ellipse cx="78" cy="74" rx="12" ry="8"/><circle cx="92" cy="66" r="6"/><ellipse cx="90" cy="54" rx="2.5" ry="8"/><ellipse cx="96" cy="55" rx="2.5" ry="8"/></g><g fill="#fff" opacity=".8"><circle cx="20" cy="30" r="1"/><circle cx="140" cy="24" r="1.2"/><circle cx="26" cy="100" r="1"/><circle cx="144" cy="96" r="1"/></g><path d="M0 200 V152 H30 L40 142 L50 152 H80 L90 140 L100 152 H160 V200Z" fill="#12142E"/>${S.lantern(24, 128)}${S.lantern(136, 126)}<ellipse cx="80" cy="188" rx="46" ry="8" fill="#E4B75A"/><circle cx="62" cy="178" r="10" fill="#B8742F"/><circle cx="90" cy="179" r="11" fill="#C98438"/><circle cx="76" cy="172" r="9" fill="#D6954A"/>`],
+        ["doan-ngo", "端午节", "Duānwǔjié", "Tết Đoan Ngọ (mùng 5 tháng 5 âm)", "Tết Đoan Ngọ", "15分", "节日 · Lễ hội",
+          [["粽子", "zòngzi", "bánh chưng/bánh ú gói lá"], ["龙舟", "lóngzhōu", "thuyền rồng"], ["屈原", "Qū Yuán", "Khuất Nguyên"]],
+          ["端午节我们吃粽子、看龙舟。", "Duānwǔjié wǒmen chī zòngzi, kàn lóngzhōu.", "Tết Đoan Ngọ chúng mình ăn bánh ú lá và xem đua thuyền rồng."],
+          "Đoan Ngọ gắn với nhà thơ yêu nước Khuất Nguyên của nước Sở, người đã nhảy xuống sông Mịch La. Dân chúng chèo thuyền đi tìm và ném cơm xuống sông, từ đó có tục đua thuyền rồng và gói bánh. Người ta còn treo ngải cứu, uống rượu hùng hoàng để trừ tà.",
+          "粽 zòng (bánh) viết bằng bộ 米 (gạo). Số đếm: 一个粽子 yí ge zòngzi; zi đọc nhẹ.",
+          ["#BDE3DA", "#F1F6E4"],
+          `${S.sun(130, 40, 16, "#F7C85A")}${S.water(110, "#3F9C9B")}${[36, 50, 64, 78, 92, 106, 120].map(x => `<circle cx="${x}" cy="118" r="4.5" fill="#F2CFA3"/><rect x="${x - 4}" y="122" width="8" height="12" fill="#F0B94B"/><path d="M${x} 126 l10 14" stroke="#6B4630" stroke-width="1.6"/>`).join("")}<path d="M14 134 H146 Q136 150 118 150 H44 Q24 150 14 134Z" fill="#C8302B"/><path d="M10 134 q-4 -22 10 -28 q-4 10 4 18Z" fill="#E5B53C"/><path d="M50 192 L70 162 L90 192Z" fill="#5E9A4E"/><path d="M70 162 L112 178 L90 192Z" fill="#7BB35E"/><path d="M60 178 H100" stroke="#D6453A" stroke-width="2"/>`],
+        ["kinh-kich", "京剧", "Jīngjù", "Kinh kịch (Bắc Kinh)", "Kinh kịch", "20分", "艺术 · Nghệ thuật",
+          [["脸谱", "liǎnpǔ", "mặt nạ vẽ trên mặt"], ["梅兰芳", "Méi Lánfāng", "Mai Lan Phương, nghệ sĩ nổi tiếng"], ["生旦净丑", "shēng dàn jìng chǒu", "bốn vai: sinh, đán, tịnh, sửu"]],
+          ["京剧的脸谱很有意思。", "Jīngjù de liǎnpǔ hěn yǒu yìsi.", "Những khuôn mặt vẽ trong Kinh kịch rất thú vị."],
+          "Kinh kịch hình thành ở Bắc Kinh vào cuối thế kỷ 18, kết hợp hát, đọc, diễn xuất và võ thuật. Màu mặt nạ có ý nghĩa: đỏ tượng trưng cho trung nghĩa (như Quan Vũ), đen tượng trưng cho cương trực (như Bao Công), trắng tượng trưng cho gian xảo (như Tào Tháo).",
+          "有意思 yǒu yìsi nghĩa là “thú vị”. Chữ 思 trong 意思 đọc nhẹ (sī → si).",
+          ["#7A1D28", "#C8453B"],
+          `<path d="M56 52 Q24 24 20 6" stroke="#fff" stroke-width="2.5" fill="none"/><path d="M104 52 Q136 24 140 6" stroke="#fff" stroke-width="2.5" fill="none"/><path d="M44 68 Q80 22 116 68 Q80 54 44 68Z" fill="#E5B53C"/><circle cx="80" cy="36" r="6" fill="#D6302B"/><circle cx="52" cy="50" r="4" fill="#fff"/><circle cx="108" cy="50" r="4" fill="#fff"/><path d="M80 64 Q40 72 40 112 Q40 150 80 168 Q120 150 120 112 Q120 72 80 64Z" fill="#D6302B"/><path d="M80 66 Q64 92 70 112 Q74 140 80 162 Q86 140 90 112 Q96 92 80 66Z" fill="#F4E6CB"/><path d="M44 96 Q60 74 78 94 Q62 90 44 96Z M116 96 Q100 74 82 94 Q98 90 116 96Z" fill="#1B1B1B"/><ellipse cx="62" cy="106" rx="9" ry="4.5" fill="#fff"/><ellipse cx="98" cy="106" rx="9" ry="4.5" fill="#fff"/><circle cx="62" cy="106" r="2.5" fill="#1B1B1B"/><circle cx="98" cy="106" r="2.5" fill="#1B1B1B"/><path d="M64 148 Q80 156 96 148" stroke="#1B1B1B" stroke-width="3" fill="none"/>`],
+        ["thu-phap", "书法", "shūfǎ", "thư pháp", "Thư pháp", "15分", "艺术 · Nghệ thuật",
+          [["毛笔", "máobǐ", "bút lông"], ["宣纸", "xuānzhǐ", "giấy Tuyên"], ["文房四宝", "wénfáng sìbǎo", "văn phòng tứ bảo: bút, mực, giấy, nghiên"]],
+          ["我在练习毛笔字。", "Wǒ zài liànxí máobǐzì.", "Mình đang tập viết chữ bút lông."],
+          "Thư pháp là nghệ thuật viết chữ Hán bằng bút lông. Chữ “永” (vĩnh) có đủ tám nét cơ bản nên được dùng để luyện, gọi là “永字八法”. Vương Hy Chi (đời Đông Tấn) được tôn là “thư thánh” với bức 《兰亭序》.",
+          "Thanh 3 đứng trước thanh 3: 我 đọc như thanh 2 trong 我写 (wó xiě). Với 练习 liànxí thì mỗi chữ có thanh riêng.",
+          ["#F8F2DF", "#EADFC0"],
+          `<path d="M16 28 L52 14" stroke="#6B4630" stroke-width="5" stroke-linecap="round"/><path d="M12 30 L18 26" stroke="#1B1B1B" stroke-width="6" stroke-linecap="round"/><text x="80" y="140" text-anchor="middle" font-size="118" font-weight="900" fill="#1B1B1B" font-family="Noto Serif SC,serif">永</text><path d="M16 176 Q60 164 100 178" stroke="#1B1B1B" stroke-width="5" stroke-linecap="round" opacity=".85"/><rect x="108" y="150" width="28" height="28" rx="3" fill="#D6453A" transform="rotate(4 122 164)"/><text x="122" y="172" text-anchor="middle" font-size="17" font-weight="900" fill="#fff" font-family="Noto Serif SC,serif">书</text>`],
+        ["tra", "茶", "chá", "trà", "Văn hoá trà", "10分", "名词 · Danh từ",
+          [["龙井", "Lóngjǐng", "trà Long Tỉnh"], ["茉莉花茶", "mòlìhuā chá", "trà hoa nhài"], ["功夫茶", "gōngfu chá", "trà công phu"]],
+          ["请喝茶。", "Qǐng hē chá.", "Mời bạn uống trà."],
+          "Trung Quốc là quê hương của trà. Mời khách một tách trà là phép lịch sự cơ bản. Ở một số nơi như Quảng Đông, khi được rót trà, người ta gõ hai ngón tay xuống bàn để cảm ơn. Dịp lễ, trà còn tượng trưng cho sự tôn kính.",
+          "请 qǐng (mời) đặt đầu câu để mời lịch sự: 请坐 (mời ngồi), 请喝茶 (mời uống trà). Cực hữu ích khi đi chơi Trung Quốc!",
+          ["#DCE9CE", "#F5EFDD"],
+          `<path d="M0 150 Q40 134 80 148 T160 140 V200H0Z" fill="#6FA25A"/><path d="M0 172 Q50 156 100 170 T160 164 V200H0Z" fill="#4E8B4A"/><path d="M50 108 Q30 108 34 128 Q38 140 52 134" fill="none" stroke="#8B4A2F" stroke-width="6"/><path d="M106 116 Q124 110 128 92 L120 92 Q116 104 104 106Z" fill="#8B4A2F"/><ellipse cx="78" cy="118" rx="30" ry="24" fill="#8B4A2F"/><path d="M62 98 Q78 82 94 98Z" fill="#6E3A24"/><circle cx="78" cy="84" r="4" fill="#6E3A24"/><path d="M130 80 q-6 -10 0 -18 q6 -8 0 -16" stroke="#fff" stroke-width="3" fill="none" opacity=".8"/><path d="M114 164 h30 q-2 18 -15 18 q-13 0 -15 -18Z" fill="#fff" stroke="#8B4A2F"/><path d="M20 180 q12 -16 24 0 q-12 8 -24 0Z" fill="#7BB35E"/>`],
+        ["thai-cuc", "太极", "tàijí", "Thái cực, Thái cực quyền", "Thái cực quyền", "20分", "艺术 · Nghệ thuật",
+          [["阴阳", "yīnyáng", "âm dương"], ["八卦", "bāguà", "bát quái, tám quẻ"], ["易经", "Yìjīng", "Kinh Dịch"]],
+          ["公园里有人在打太极拳。", "Gōngyuán lǐ yǒu rén zài dǎ tàijíquán.", "Trong công viên có người đang tập Thái cực quyền."],
+          "Hình Thái cực gồm âm và dương xoay quanh nhau, bao quanh là bát quái trong 《易经》. Thái cực quyền là môn võ chuyển động chậm, mềm mại, giúp dưỡng sinh; sáng sớm trong công viên Trung Quốc, bạn thường thấy các cụ tập. Năm 2020, UNESCO đã ghi danh môn này.",
+          "Tập Thái cực quyền nói là 打太极拳 (dǎ tàijíquán). Động từ 打 ở đây có nghĩa là “đánh”, giống như 打篮球 (đánh bóng rổ).",
+          ["#E7E1CF", "#C8D3C3"],
+          `${S.hill(190, "#8FA98E", .6)}${S.taiji(80, 100, 34)}${trigrams}`]
+      ];
+
+      const R = [-2.5, 1.8, -1.2, 2.6, -2, 1.4];
+      const row = $("stampRow");
+      MORE.forEach((m, n) => {
+        const k = m[0];
+        STAMPS[k] = { zh: m[1], py: m[2], vi: m[3], pos: m[6], words: m[7].map(w => ({ zh: w[0], py: w[1], vi: w[2] })), ex: { zh: m[8][0], py: m[8][1], vi: m[8][2] }, culture: m[9], tip: m[10] };
+        ORDER.push(k);
+        const f = document.createElement("figure");
+        f.className = "stamp"; f.tabIndex = 0; f.setAttribute("role", "button"); f.setAttribute("aria-haspopup", "dialog");
+        f.dataset.stamp = k; f.setAttribute("aria-label", "Xem nghĩa và nghe đọc: " + m[4]);
+        f.style.setProperty("--r", R[(n + 6) % 6] + "deg");
+        f.innerHTML = '<div class="stamp-face"><div class="stamp-art"><svg viewBox="0 0 160 200" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Tranh vẽ ' + m[4] + '">' + S.bg(n + 7, m[11][0], m[11][1]) + m[12] + '</svg></div><figcaption><span class="cap-cn' + (m[1].length > 3 ? " l" : "") + '">' + m[1] + '</span><span class="cap-vi">' + m[4] + '</span><span class="cap-val">' + m[5] + '</span></figcaption></div>';
+        row.appendChild(f);
+      });
+
+      // ----- kéo chuột / vuốt / nút mũi tên để xem thêm tem -----
+      (function () {
+        let down = false, moved = false, sx = 0, sl = 0;
+        const prev = $("stampPrev"), next = $("stampNext"), cnt = $("stampCount");
+        const upd = () => {
+          prev.disabled = row.scrollLeft < 6;
+          next.disabled = row.scrollLeft > row.scrollWidth - row.clientWidth - 6;
+          const w = (row.querySelector(".stamp") || {}).offsetWidth || 160;
+          const first = Math.min(ORDER.length, Math.round(row.scrollLeft / (w + 18)) + 1);
+          cnt.textContent = first + " / " + ORDER.length + " tem";
+        };
+        row.addEventListener("scroll", upd, { passive: true });
+        window.addEventListener("resize", upd);
+        const step = d => row.scrollBy({ left: d * Math.max(200, row.clientWidth * .8), behavior: "smooth" });
+        prev.addEventListener("click", () => step(-1));
+        next.addEventListener("click", () => step(1));
+        row.addEventListener("mousedown", e => { if (e.button) return; down = true; moved = false; sx = e.clientX; sl = row.scrollLeft; });
+        window.addEventListener("mousemove", e => {
+          if (!down) return;
+          const dx = e.clientX - sx;
+          if (!moved && Math.abs(dx) > 5) { moved = true; row.classList.add("drag"); }
+          if (moved) { row.scrollLeft = sl - dx; e.preventDefault(); }
+        });
+        window.addEventListener("mouseup", () => { if (!down) return; down = false; row.classList.remove("drag"); });
+        // nếu vừa kéo thì không mở cửa sổ chi tiết
+        row.addEventListener("click", e => { if (moved) { e.stopPropagation(); e.preventDefault(); moved = false; } }, true);
+        row.addEventListener("dragstart", e => e.preventDefault());
+        upd();
+      })();
+      function focusRow() {
+        const el = row.querySelector('[data-stamp="' + ORDER[idx] + '"]');
+        if (el) row.scrollTo({ left: el.offsetLeft - (row.clientWidth - el.offsetWidth) / 2, behavior: "smooth" });
+      }
+
       const modal = $("stampModal"), card = modal.querySelector(".sm-card");
       const synth = ("speechSynthesis" in window) ? window.speechSynthesis : null;
       let idx = 0, lastFocus = null, curAudio = null, cachedVoice, playingBtn = null;
@@ -1013,7 +1272,7 @@
         el.className = "sm-src" + (kind === "human" ? " human" : "");
         el.textContent =
           kind === "human" ? "Giọng đọc thật của cô Hương" :
-          kind === "tts" ? "Chưa có file ghi âm, đang dùng giọng tự nhiên của thiết bị: " + name :
+          kind === "tts" ? "" :
           kind === "novoice" ? "Thiết bị chưa có giọng tiếng Trung. Hãy dùng Chrome/Edge hoặc cài giọng Trung trong phần Cài đặt." :
           "Trình duyệt này chưa hỗ trợ đọc giọng nói.";
       }
@@ -1056,6 +1315,7 @@
         $("smTitle").textContent = d.zh;
         $("smPy").textContent = d.py;
         $("smVi").textContent = d.vi;
+        $("smExH").textContent = d.ex.zh.indexOf("\n") > -1 ? "Cả bài thơ · 全诗" : "Mẫu câu · 例句";
         $("smExZh").textContent = d.ex.zh; $("smExPy").textContent = d.ex.py; $("smExVi").textContent = d.ex.vi;
         $("smCulture").textContent = d.culture; $("smTip").textContent = d.tip;
         $("smWords").innerHTML = d.words.map((w, k) =>
@@ -1072,6 +1332,7 @@
       }
       function closeModal() {
         stop();
+        focusRow();
         modal.hidden = true;
         document.body.style.overflow = "";
         if (lastFocus && lastFocus.focus) lastFocus.focus();
