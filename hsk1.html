@@ -87,7 +87,41 @@ a{color:inherit}:focus-visible{outline:3px solid var(--gold);outline-offset:3px;
 </span>
 <span class="entry-go">Mở thư mục →</span>
 </a>
+<a id="teacherMgmtCard" class="entry-card gold" href="quan-ly-bai-tap.html" data-bg="管" style="display:none">
+<span class="entry-ico">管</span>
+<span>
+<span class="entry-label">DÀNH CHO CÔ · 管理</span>
+<h2>Quản lý bài tập đã nộp</h2>
+<p>Xem đáp án từng học sinh, lọc theo bài, điểm số.</p>
+</span>
+<span class="entry-go">Xem bài nộp →</span>
+</a>
 </div>
+<script>
+(async function () {
+  try {
+    if (!window.supabase) {
+      await new Promise((resolve, reject) => {
+        const s = document.createElement("script");
+        s.src = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
+        s.onload = resolve; s.onerror = reject;
+        document.head.appendChild(s);
+      });
+    }
+    const db = window.supabase.createClient(
+      "https://xmtvmwcjjqqzscmkdlwd.supabase.co",
+      "sb_publishable_R5TEjUNB6lDTJuN4MNdhVQ_ANwIaKLP"
+    );
+    const { data: { session } } = await db.auth.getSession();
+    if (!session) return;
+    const u = (session.user.user_metadata?.username || "").toLowerCase();
+    if (u === "amber123" || u === "amber") {
+      const el = document.getElementById("teacherMgmtCard");
+      if (el) el.style.display = "";
+    }
+  } catch (e) {}
+})();
+</script>
 <div class="lesson-grid">
 <div class="stamp-wrap special"><a class="lesson-card" href="phat-am.html"><div class="lesson-art"><div class="lesson-no">PHÁT ÂM</div><div class="lesson-title">汉语发音</div></div><div class="lesson-cap"><div class="lesson-desc">Thanh mẫu, vận mẫu và thanh điệu trong tiếng Trung.</div><div class="lesson-row"><span class="lesson-go">Vào bài →</span><span class="lesson-val">发音</span></div></div></a></div>
 <div class="stamp-wrap"><a class="lesson-card" href="bai1.html"><div class="lesson-art"><div class="lesson-no">BÀI 01</div><div class="lesson-title">你好！</div></div><div class="lesson-cap"><div class="lesson-desc">Làm quen chào hỏi tiếng Trung.</div><div class="lesson-row"><span class="lesson-go">Vào bài →</span><span class="lesson-val">第1课</span></div></div></a></div>
