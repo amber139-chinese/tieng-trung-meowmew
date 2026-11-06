@@ -1595,7 +1595,7 @@
           const { data: { session } } = await db.auth.getSession();
           if (!session) return;
           const u = (session.user.user_metadata?.username || "").toLowerCase();
-          if (u !== "amber123") return;
+          if (u !== "amber123" && u !== "amber") return;
           document.querySelectorAll(".nav, .mobile-nav-inner").forEach(nav => {
             if (nav.querySelector("[data-teacher-mgmt]")) return;
             const a = document.createElement("a");
