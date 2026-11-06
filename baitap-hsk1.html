@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài tập HSK1 · Tiếng Trung Meow Meow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    :root{
+      --brand:#2E8AA3;--brand-2:#58B4C8;--brand-dark:#1F6479;--deep:#143F4F;--deep-2:#0E2F3C;
+      --soft:#E8F4F7;--paper:#FBF8F2;--line:#DCE9EC;--white:#fff;
+      --ink:#1B2E35;--muted:#5B7078;
+      --gold:#F0B94B;--coral:#EF6A4C;--coral-dark:#D9533A;--seal:#D6453A;
+      --shadow:0 14px 36px rgba(20,63,79,.10);
+      --serif:"Noto Serif SC","Be Vietnam Pro",serif;--sans:"Be Vietnam Pro",system-ui,sans-serif;
+      --air:repeating-linear-gradient(-45deg,#D6453A 0 16px,#fff 16px 32px,#2E8AA3 32px 48px,#fff 48px 64px);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:var(--sans);color:var(--ink);line-height:1.7;background:var(--paper)}
+    a{color:inherit;text-decoration:none}
+    .container{width:min(900px,calc(100% - 32px));margin:0 auto}
+    .topbar{position:sticky;top:0;z-index:50;background:rgba(251,248,242,.92);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
+    .topbar-inner{min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--deep)}
+    .logo-mark{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;color:#fff;background:linear-gradient(145deg,var(--seal),#F0806B);font-family:var(--serif);font-size:18px;font-weight:900}
+    .user-chip{font-size:.85rem;font-weight:600;color:var(--brand-dark);background:var(--soft);padding:8px 14px;border-radius:999px}
+    .hero{padding:36px 0 18px}
+    .hero h1{margin:0 0 8px;font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.3rem);color:var(--deep)}
+    .hero p{margin:0;color:var(--muted)}
+    .back{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.9rem;color:var(--brand-dark);margin-bottom:12px}
+    .back:hover{color:var(--coral)}
+    .card{background:#fff;border:1.5px solid var(--line);border-radius:24px;padding:24px;box-shadow:var(--shadow);margin-bottom:16px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 28px;border-radius:999px;font-weight:700;font-size:.95rem;border:0;cursor:pointer;font-family:inherit;transition:.2s}
+    .btn-primary{background:var(--coral);color:#fff;box-shadow:0 10px 22px rgba(239,106,76,.3)}
+    .btn-primary:hover{background:var(--coral-dark);transform:translateY(-1px)}
+    .btn-primary:disabled{opacity:.55;cursor:not-allowed;transform:none}
+    .btn-ghost{background:#fff;border:1.5px solid var(--line);color:var(--deep)}
+    .login-gate{text-align:center;padding:60px 20px}
+    .login-gate h2{font-family:var(--serif);color:var(--deep);margin:0 0 12px}
+    .hidden{display:none!important}
+    .msg{margin-top:14px;padding:12px 16px;border-radius:14px;font-weight:600;font-size:.92rem}
+    .msg.ok{background:#E8F7EE;color:#1F6B3F}
+    .msg.err{background:#FDECEC;color:#9B2C2C}
+    .msg.info{background:var(--soft);color:var(--brand-dark)}
+
+    /* Danh sách bài tập */
+    .ex-list{display:grid;gap:12px}
+    .ex-item{display:grid;grid-template-columns:64px 1fr auto;align-items:center;gap:16px;padding:16px 18px;border:1.5px solid var(--line);border-radius:18px;background:#fff;cursor:pointer;transition:.18s;text-align:left;font:inherit;width:100%}
+    .ex-item:hover{border-color:var(--brand-2);transform:translateY(-2px);box-shadow:var(--shadow)}
+    .ex-no{width:64px;height:52px;border-radius:14px;display:grid;place-items:center;color:#fff;font-family:var(--serif);font-weight:900;font-size:1.1rem;background:linear-gradient(145deg,var(--brand-dark),var(--brand-2))}
+    .ex-item:nth-child(6n+2) .ex-no{background:linear-gradient(145deg,#E2573A,#F2866C)}
+    .ex-item:nth-child(6n+3) .ex-no{background:linear-gradient(145deg,#C98A1E,#E9B94F)}
+    .ex-item:nth-child(6n+4) .ex-no{background:linear-gradient(145deg,#4A6FA5,#86A2CC)}
+    .ex-item:nth-child(6n+5) .ex-no{background:linear-gradient(145deg,#B84868,#DC8AA2)}
+    .ex-item:nth-child(6n) .ex-no{background:linear-gradient(145deg,#2A8C86,#62BEB8)}
+    .ex-title{font-family:var(--serif);font-weight:700;font-size:1.15rem;color:var(--deep);margin:0 0 2px}
+    .ex-desc{margin:0;font-size:.88rem;color:var(--muted)}
+    .ex-go{font-weight:800;font-size:.88rem;color:var(--coral);white-space:nowrap}
+
+    /* Quiz view */
+    .q{margin-bottom:22px;padding-bottom:18px;border-bottom:1px dashed var(--line)}
+    .q:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+    .q-num{font-weight:800;color:var(--brand-dark);margin-right:6px}
+    .q-text{font-weight:600;margin-bottom:12px}
+    .opts{display:flex;flex-direction:column;gap:8px}
+    .opt{display:flex;align-items:center;gap:10px;padding:12px 14px;border:1.5px solid var(--line);border-radius:14px;cursor:pointer;transition:.15s;background:#fff}
+    .opt:hover{border-color:var(--brand-2);background:var(--soft)}
+    .opt input{accent-color:var(--coral);width:18px;height:18px}
+    .opt.selected{border-color:var(--coral);background:#FFF3EE}
+    .progress{height:6px;background:var(--line);border-radius:6px;overflow:hidden;margin:18px 0 8px}
+    .progress > i{display:block;height:100%;background:linear-gradient(90deg,var(--brand),var(--coral));width:0;transition:.3s}
+    .meta{font-size:.85rem;color:var(--muted);margin-bottom:6px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+    @media(max-width:560px){
+      .ex-item{grid-template-columns:52px 1fr;gap:12px}
+      .ex-go{grid-column:2}
+      .ex-no{width:52px;height:44px;font-size:1rem}
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <a class="logo" href="index.html"><span class="logo-mark">喵</span><span>Tiếng Trung Meow Meow</span></a>
+      <div id="userChip" class="user-chip hidden">...</div>
+    </div>
+  </div>
+
+  <main class="container">
+    <div id="gate" class="login-gate card">
+      <h2>Bạn cần đăng nhập để làm bài tập</h2>
+      <p style="color:var(--muted);margin:0 0 22px">Đăng nhập để Meow Meow ghi nhận bài nộp và gửi cho cô.</p>
+      <a class="btn btn-primary" href="login.html?next=baitap-hsk1.html">Đăng nhập ngay</a>
+    </div>
+
+    <div id="app" class="hidden">
+      <!-- Danh sách 15 bài -->
+      <div id="listView">
+        <div class="hero">
+          <a class="back" href="hsk1.html">← Về HSK1</a>
+          <h1>Thư mục bài tập HSK1</h1>
+          <p>Chọn bài để làm bài tập nhỏ. Nộp xong cô sẽ thấy đáp án trên trang quản lý.</p>
+        </div>
+        <div class="ex-list" id="exList"></div>
+      </div>
+
+      <!-- Làm 1 bài -->
+      <div id="quizView" class="hidden">
+        <div class="hero">
+          <button type="button" class="back" id="backToList" style="background:none;border:0;cursor:pointer;padding:0;font:inherit">← Về danh sách bài tập</button>
+          <div class="meta" id="exMeta">HSK1</div>
+          <h1 id="exTitle">Bài tập</h1>
+          <p id="exSub">Chọn đáp án đúng rồi bấm Nộp bài.</p>
+          <div class="progress"><i id="progBar"></i></div>
+          <div class="meta" id="progText">Đã trả lời 0 / 0 câu</div>
+        </div>
+        <form id="quizForm" class="card"></form>
+        <div class="actions">
+          <button type="button" class="btn btn-primary" id="submitBtn">Nộp bài cho cô</button>
+          <button type="button" class="btn btn-ghost" id="cancelQuiz">Quay lại</button>
+        </div>
+        <div id="msg" class="msg hidden"></div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const SUPABASE_URL = "https://xmtvmwcjjqqzscmkdlwd.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_R5TEjUNB6lDTJuN4MNdhVQ_ANwIaKLP";
+    const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    // ===== 15 bài tập nhỏ HSK1 =====
+    const LESSONS = [
+      {
+        id: "hsk1-bai01", title: "Bài 1 · 你好！", zh: "你好！",
+        desc: "Chào hỏi cơ bản",
+        questions: [
+          { id: "1", text: "“你好” nghĩa là gì?", options: ["A. Tạm biệt", "B. Xin chào", "C. Cảm ơn", "D. Xin lỗi"], answer: "B. Xin chào" },
+          { id: "2", text: "Cách đáp lại “你好” phổ biến là?", options: ["A. 你好", "B. 再见", "C. 谢谢", "D. 不客气"], answer: "A. 你好" },
+          { id: "3", text: "“老师好” dùng để chào ai?", options: ["A. Bạn bè", "B. Giáo viên", "C. Bố mẹ", "D. Người lạ"], answer: "B. Giáo viên" }
+        ]
+      },
+      {
+        id: "hsk1-bai02", title: "Bài 2 · 我叫李文", zh: "我叫李文",
+        desc: "Hỏi tên, giới thiệu bản thân",
+        questions: [
+          { id: "1", text: "“我叫…” dùng để làm gì?", options: ["A. Hỏi tuổi", "B. Nói tên mình", "C. Nói tạm biệt", "D. Hỏi đường"], answer: "B. Nói tên mình" },
+          { id: "2", text: "“你叫什么名字？” nghĩa là?", options: ["A. Bạn bao nhiêu tuổi?", "B. Bạn ở đâu?", "C. Bạn tên gì?", "D. Bạn làm gì?"], answer: "C. Bạn tên gì?" },
+          { id: "3", text: "Đáp án đúng cho “你叫什么名字？”:", options: ["A. 我叫小明", "B. 我很好", "C. 我是学生", "D. 再见"], answer: "A. 我叫小明" }
+        ]
+      },
+      {
+        id: "hsk1-bai03", title: "Bài 3 · 我是中国人", zh: "我是中国人",
+        desc: "Quốc tịch, 是 / 的 / 吗",
+        questions: [
+          { id: "1", text: "“我是中国人” nghĩa là?", options: ["A. Tôi là người Việt", "B. Tôi là người Trung Quốc", "C. Tôi là học sinh", "D. Tôi là giáo viên"], answer: "B. Tôi là người Trung Quốc" },
+          { id: "2", text: "Câu hỏi đúng để hỏi quốc tịch:", options: ["A. 你是哪国人？", "B. 你叫什么？", "C. 你好吗？", "D. 你几岁？"], answer: "A. 你是哪国人？" },
+          { id: "3", text: "“吗” thường đặt ở đâu trong câu hỏi đúng/sai?", options: ["A. Đầu câu", "B. Giữa câu", "C. Cuối câu", "D. Không dùng"], answer: "C. Cuối câu" }
+        ]
+      },
+      {
+        id: "hsk1-bai04", title: "Bài 4 · 我有两个孩子", zh: "我有两个孩子",
+        desc: "Gia đình, số lượng, hỏi tuổi",
+        questions: [
+          { id: "1", text: "“我有两个孩子” nghĩa là?", options: ["A. Tôi có hai người bạn", "B. Tôi có hai đứa con", "C. Tôi có hai anh chị", "D. Tôi có hai quyển sách"], answer: "B. Tôi có hai đứa con" },
+          { id: "2", text: "Lượng từ thường dùng với người là?", options: ["A. 个", "B. 本", "C. 只", "D. 条"], answer: "A. 个" },
+          { id: "3", text: "“你几岁了？” dùng để hỏi?", options: ["A. Tên", "B. Tuổi", "C. Nghề nghiệp", "D. Địa chỉ"], answer: "B. Tuổi" }
+        ]
+      },
+      {
+        id: "hsk1-bai05", title: "Bài 5 · 今天我休息", zh: "今天我休息",
+        desc: "Ngày tháng, thứ trong tuần",
+        questions: [
+          { id: "1", text: "“今天” nghĩa là?", options: ["A. Hôm qua", "B. Hôm nay", "C. Ngày mai", "D. Tuần sau"], answer: "B. Hôm nay" },
+          { id: "2", text: "“休息” nghĩa là?", options: ["A. Làm việc", "B. Nghỉ ngơi", "C. Học bài", "D. Ăn cơm"], answer: "B. Nghỉ ngơi" },
+          { id: "3", text: "“明天” nghĩa là?", options: ["A. Hôm nay", "B. Hôm qua", "C. Ngày mai", "D. Tuần này"], answer: "C. Ngày mai" }
+        ]
+      },
+      {
+        id: "hsk1-bai06", title: "Bài 6 · 你的手机号是多少？", zh: "你的手机号是多少？",
+        desc: "Số điện thoại, con số",
+        questions: [
+          { id: "1", text: "“手机号” nghĩa là?", options: ["A. Số nhà", "B. Số điện thoại", "C. Số báo danh", "D. Mã số thuế"], answer: "B. Số điện thoại" },
+          { id: "2", text: "“多少” dùng để hỏi?", options: ["A. Cái gì", "B. Ở đâu", "C. Bao nhiêu", "D. Khi nào"], answer: "C. Bao nhiêu" },
+          { id: "3", text: "Số “零” đọc là?", options: ["A. yī", "B. èr", "C. líng", "D. shí"], answer: "C. líng" }
+        ]
+      },
+      {
+        id: "hsk1-bai07", title: "Bài 7 · 我晚上六点半下班", zh: "我晚上六点半下班",
+        desc: "Nói giờ, phút, thời gian trong ngày",
+        questions: [
+          { id: "1", text: "“六点半” nghĩa là?", options: ["A. 6 giờ đúng", "B. 6 giờ 15", "C. 6 giờ rưỡi", "D. 7 giờ"], answer: "C. 6 giờ rưỡi" },
+          { id: "2", text: "“下班” nghĩa là?", options: ["A. Đi làm", "B. Tan làm", "C. Nghỉ phép", "D. Tăng ca"], answer: "B. Tan làm" },
+          { id: "3", text: "“晚上” là khoảng thời gian nào?", options: ["A. Buổi sáng", "B. Buổi trưa", "C. Buổi tối", "D. Nửa đêm"], answer: "C. Buổi tối" }
+        ]
+      },
+      {
+        id: "hsk1-bai08", title: "Bài 8 · 我爸爸也在医院工作", zh: "我爸爸也在医院工作",
+        desc: "Nơi làm việc, 在 / 也",
+        questions: [
+          { id: "1", text: "“医院” nghĩa là?", options: ["A. Trường học", "B. Bệnh viện", "C. Công ty", "D. Nhà hàng"], answer: "B. Bệnh viện" },
+          { id: "2", text: "“也” nghĩa là?", options: ["A. Không", "B. Cũng", "C. Rất", "D. Đã"], answer: "B. Cũng" },
+          { id: "3", text: "“在…工作” dùng để nói?", options: ["A. Ở đâu sống", "B. Làm việc ở đâu", "C. Học ở đâu", "D. Ăn ở đâu"], answer: "B. Làm việc ở đâu" }
+        ]
+      },
+      {
+        id: "hsk1-bai09", title: "Bài 9 · 我明天上午在学校学习", zh: "我明天上午在学校学习",
+        desc: "Thời gian + địa điểm + hoạt động",
+        questions: [
+          { id: "1", text: "“上午” nghĩa là?", options: ["A. Buổi sáng", "B. Buổi chiều", "C. Buổi tối", "D. Cả ngày"], answer: "A. Buổi sáng" },
+          { id: "2", text: "Thứ tự thường gặp: thời gian → địa điểm → động từ. Câu đúng là?", options: ["A. 我学习在学校明天", "B. 我明天上午在学校学习", "C. 在学校我明天学习", "D. 学习我明天在学校"], answer: "B. 我明天上午在学校学习" },
+          { id: "3", text: "“学习” nghĩa là?", options: ["A. Chơi", "B. Học", "C. Ngủ", "D. Mua"], answer: "B. Học" }
+        ]
+      },
+      {
+        id: "hsk1-bai10", title: "Bài 10 · 这儿的苹果真便宜", zh: "这儿的苹果真便宜",
+        desc: "Mua sắm, giá tiền",
+        questions: [
+          { id: "1", text: "“便宜” nghĩa là?", options: ["A. Đắt", "B. Rẻ", "C. Ngon", "D. To"], answer: "B. Rẻ" },
+          { id: "2", text: "“苹果” nghĩa là?", options: ["A. Chuối", "B. Cam", "C. Táo", "D. Nho"], answer: "C. Táo" },
+          { id: "3", text: "“真” trong “真便宜” mang nghĩa?", options: ["A. Giả", "B. Thật / rất", "C. Không", "D. Cũng"], answer: "B. Thật / rất" }
+        ]
+      },
+      {
+        id: "hsk1-bai11", title: "Bài 11 · 我读大学呢", zh: "我读大学呢",
+        desc: "Học tập, đang diễn ra (呢)",
+        questions: [
+          { id: "1", text: "“大学” nghĩa là?", options: ["A. Trường tiểu học", "B. Trường trung học", "C. Đại học", "D. Mẫu giáo"], answer: "C. Đại học" },
+          { id: "2", text: "“呢” ở cuối “我读大学呢” gợi ý?", options: ["A. Câu mệnh lệnh", "B. Đang diễn ra / nhấn mạnh", "C. Quá khứ", "D. Phủ định"], answer: "B. Đang diễn ra / nhấn mạnh" },
+          { id: "3", text: "“读” trong ngữ cảnh này nghĩa là?", options: ["A. Viết", "B. Đọc / học (bậc học)", "C. Nghe", "D. Nói"], answer: "B. Đọc / học (bậc học)" }
+        ]
+      },
+      {
+        id: "hsk1-bai12", title: "Bài 12 · 昨天下雪了", zh: "昨天下雪了",
+        desc: "Thời tiết, trợ từ 了",
+        questions: [
+          { id: "1", text: "“昨天” nghĩa là?", options: ["A. Hôm nay", "B. Hôm qua", "C. Ngày mai", "D. Tuần sau"], answer: "B. Hôm qua" },
+          { id: "2", text: "“下雪” nghĩa là?", options: ["A. Mưa", "B. Nắng", "C. Tuyết rơi", "D. Gió"], answer: "C. Tuyết rơi" },
+          { id: "3", text: "“了” ở cuối câu thường đánh dấu?", options: ["A. Tương lai", "B. Sự việc đã xảy ra / thay đổi", "C. Câu hỏi", "D. Phủ định"], answer: "B. Sự việc đã xảy ra / thay đổi" }
+        ]
+      },
+      {
+        id: "hsk1-bai13", title: "Bài 13 · 请给我一杯茶", zh: "请给我一杯茶",
+        desc: "Gọi món, lượng từ",
+        questions: [
+          { id: "1", text: "“请给我…” dùng để?", options: ["A. Từ chối", "B. Yêu cầu lịch sự", "C. Hỏi đường", "D. Xin lỗi"], answer: "B. Yêu cầu lịch sự" },
+          { id: "2", text: "“一杯茶” — lượng từ đúng là?", options: ["A. 个", "B. 杯", "C. 本", "D. 只"], answer: "B. 杯" },
+          { id: "3", text: "“茶” nghĩa là?", options: ["A. Cà phê", "B. Nước lọc", "C. Trà", "D. Sữa"], answer: "C. Trà" }
+        ]
+      },
+      {
+        id: "hsk1-bai14", title: "Bài 14 · 我看了一个电影", zh: "我看了一个电影",
+        desc: "Hoạt động đã xảy ra, 了",
+        questions: [
+          { id: "1", text: "“电影” nghĩa là?", options: ["A. Sách", "B. Phim", "C. Bài hát", "D. Trò chơi"], answer: "B. Phim" },
+          { id: "2", text: "“看了一个电影” cho thấy hành động?", options: ["A. Sẽ xem", "B. Đang xem", "C. Đã xem", "D. Không xem"], answer: "C. Đã xem" },
+          { id: "3", text: "Lượng từ với phim thường là?", options: ["A. 个 / 部", "B. 杯", "C. 条", "D. 双"], answer: "A. 个 / 部" }
+        ]
+      },
+      {
+        id: "hsk1-bai15", title: "Bài 15 · 大兴机场见！", zh: "大兴机场见！",
+        desc: "Sân bay, di chuyển, hẹn gặp",
+        questions: [
+          { id: "1", text: "“机场” nghĩa là?", options: ["A. Ga tàu", "B. Bến xe", "C. Sân bay", "D. Bến cảng"], answer: "C. Sân bay" },
+          { id: "2", text: "“…见！” trong “机场见” nghĩa gần với?", options: ["A. Tạm biệt mãi mãi", "B. Hẹn gặp ở…", "C. Không gặp nữa", "D. Đi về nhà"], answer: "B. Hẹn gặp ở…" },
+          { id: "3", text: "“大兴机场” là tên?", options: ["A. Một trường học", "B. Một sân bay", "C. Một bệnh viện", "D. Một công viên"], answer: "B. Một sân bay" }
+        ]
+      }
+    ];
+
+    let currentUser = null;
+    let currentLesson = null;
+    const answers = {};
+
+    const $ = id => document.getElementById(id);
+
+    function showMsg(text, type = "info") {
+      const el = $("msg");
+      el.className = "msg " + type;
+      el.textContent = text;
+      el.classList.remove("hidden");
+    }
+
+    function updateProgress() {
+      if (!currentLesson) return;
+      const done = Object.keys(answers).length;
+      const total = currentLesson.questions.length;
+      $("progBar").style.width = (done / total * 100) + "%";
+      $("progText").textContent = `Đã trả lời ${done} / ${total} câu`;
+    }
+
+    function renderList() {
+      $("exList").innerHTML = LESSONS.map((L, i) => `
+        <button type="button" class="ex-item" data-i="${i}">
+          <span class="ex-no">${String(i + 1).padStart(2, "0")}</span>
+          <span>
+            <div class="ex-title">${L.zh}</div>
+            <p class="ex-desc">${L.desc} · ${L.questions.length} câu</p>
+          </span>
+          <span class="ex-go">Làm bài →</span>
+        </button>
+      `).join("");
+      $("exList").querySelectorAll(".ex-item").forEach(btn => {
+        btn.onclick = () => openQuiz(Number(btn.dataset.i));
+      });
+    }
+
+    function openQuiz(i) {
+      currentLesson = LESSONS[i];
+      Object.keys(answers).forEach(k => delete answers[k]);
+      $("listView").classList.add("hidden");
+      $("quizView").classList.remove("hidden");
+      $("exMeta").textContent = "HSK1 · " + currentLesson.title;
+      $("exTitle").textContent = currentLesson.title;
+      $("exSub").textContent = currentLesson.desc + " · Chọn đáp án rồi nộp cho cô.";
+      $("msg").classList.add("hidden");
+      $("submitBtn").disabled = false;
+      $("submitBtn").textContent = "Nộp bài cho cô";
+
+      $("quizForm").innerHTML = currentLesson.questions.map((q, idx) => `
+        <div class="q" data-qid="${q.id}">
+          <div class="q-text"><span class="q-num">${idx + 1}.</span> ${q.text}</div>
+          <div class="opts">
+            ${q.options.map(opt => `
+              <label class="opt">
+                <input type="radio" name="q${q.id}" value="${opt.replace(/"/g, "&quot;")}">
+                <span>${opt}</span>
+              </label>
+            `).join("")}
+          </div>
+        </div>
+      `).join("");
+
+      $("quizForm").querySelectorAll("input[type=radio]").forEach(input => {
+        input.addEventListener("change", () => {
+          const qid = input.name.replace("q", "");
+          answers[qid] = input.value;
+          input.closest(".q").querySelectorAll(".opt").forEach(o => o.classList.remove("selected"));
+          input.closest(".opt").classList.add("selected");
+          updateProgress();
+        });
+      });
+      updateProgress();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function closeQuiz() {
+      $("quizView").classList.add("hidden");
+      $("listView").classList.remove("hidden");
+      currentLesson = null;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    async function init() {
+      const { data: { session } } = await db.auth.getSession();
+      if (!session) {
+        $("gate").classList.remove("hidden");
+        $("app").classList.add("hidden");
+        return;
+      }
+      currentUser = session.user;
+      const meta = currentUser.user_metadata || {};
+      const name = meta.display_name || meta.username || currentUser.email?.split("@")[0] || "Bạn";
+      $("userChip").textContent = "Xin chào, " + name;
+      $("userChip").classList.remove("hidden");
+      $("gate").classList.add("hidden");
+      $("app").classList.remove("hidden");
+      renderList();
+    }
+
+    $("backToList").onclick = closeQuiz;
+    $("cancelQuiz").onclick = closeQuiz;
+
+    $("submitBtn").onclick = async () => {
+      if (!currentLesson) return;
+      const total = currentLesson.questions.length;
+      const answered = Object.keys(answers).length;
+      if (answered < total) {
+        showMsg(`Bạn còn ${total - answered} câu chưa trả lời. Hãy làm hết rồi nộp nhé!`, "err");
+        return;
+      }
+
+      let correct = 0;
+      currentLesson.questions.forEach(q => {
+        if (answers[q.id] === q.answer) correct++;
+      });
+      const score = Math.round(correct / total * 100);
+
+      $("submitBtn").disabled = true;
+      showMsg("Đang gửi bài cho cô...", "info");
+
+      const meta = currentUser.user_metadata || {};
+      const { error } = await db.from("submissions").insert({
+        user_id: currentUser.id,
+        username: meta.username || null,
+        display_name: meta.display_name || null,
+        exercise_id: currentLesson.id,
+        exercise_title: "HSK1 · " + currentLesson.title,
+        answers: answers,
+        score: score,
+        total_questions: total
+      });
+
+      if (error) {
+        console.error(error);
+        showMsg("Gửi bài thất bại: " + (error.message || "Lỗi không xác định."), "err");
+        $("submitBtn").disabled = false;
+        return;
+      }
+
+      showMsg(`Nộp bài thành công! Bạn đúng ${correct}/${total} câu (${score}%). Cô đã nhận được đáp án.`, "ok");
+      $("submitBtn").textContent = "Đã nộp bài";
+    };
+
+    init();
+  </script>
+</body>
+</html>
