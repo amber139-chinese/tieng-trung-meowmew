@@ -430,11 +430,11 @@
     <div class="container topbar-inner">
       <a class="logo" href="index.html" aria-label="Tiếng Trung Meow Meow"><span class="logo-mark">喵</span><div class="brand-title"><span>TIẾNG TRUNG MEOW MEOW</span><span class="brand-cn">中文课堂</span></div></a>
       <nav class="nav" aria-label="Menu chính">
-        <a href="#gioi-thieu">Giới thiệu</a><a href="#khoa-hoc">Bài học</a><a href="#on-tu-vung">Ôn từ vựng</a><a href="phong-game.html">Phòng game</a><a href="#luyen-noi">Luyện nói</a><a href="#thi-thu">Thi thử</a><a href="#lien-he">Liên hệ</a><a class="nav-cta" href="login.html">Đăng nhập</a>
+        <a href="#gioi-thieu">Giới thiệu</a><a href="#khoa-hoc">Bài học</a><a href="#on-tu-vung">Ôn từ vựng</a><a href="phong-game.html">Phòng game</a><a href="#luyen-noi">Luyện nói</a><a href="#thi-thu">Thi thử</a><a href="baitap.html">Bài tập</a><a href="#lien-he">Liên hệ</a><a class="nav-cta" href="login.html">Đăng nhập</a>
       </nav>
       <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-expanded="false" aria-controls="mobileNav">Menu</button>
     </div>
-    <nav class="mobile-nav" id="mobileNav" aria-label="Menu trên điện thoại"><div class="mobile-nav-inner"><a href="#gioi-thieu">Giới thiệu</a><a href="#khoa-hoc">Bài học</a><a href="#on-tu-vung">Ôn từ vựng</a><a href="phong-game.html">Phòng game</a><a href="#luyen-noi">Luyện nói</a><a href="#thi-thu">Thi thử</a><a href="#lien-he">Liên hệ</a><a class="nav-cta" href="login.html">Đăng nhập</a></div></nav>
+    <nav class="mobile-nav" id="mobileNav" aria-label="Menu trên điện thoại"><div class="mobile-nav-inner"><a href="#gioi-thieu">Giới thiệu</a><a href="#khoa-hoc">Bài học</a><a href="#on-tu-vung">Ôn từ vựng</a><a href="phong-game.html">Phòng game</a><a href="#luyen-noi">Luyện nói</a><a href="#thi-thu">Thi thử</a><a href="baitap.html">Bài tập</a><a href="#lien-he">Liên hệ</a><a class="nav-cta" href="login.html">Đăng nhập</a></div></nav>
   </div>
 
   <header class="hero">
@@ -716,6 +716,8 @@
         <div class="banner banner-speak reveal" id="luyen-noi"><div class="banner-hz" aria-hidden="true">口语</div><div><div class="section-kicker">LUYỆN NÓI · 口语练习</div><h3>Khu chúng mình cùng luyện nói với Meow Meow</h3><p>Chọn câu ngẫu nhiên từ HSK1 hoặc HSK4, nghe câu mẫu, tự ghi âm rồi xem Meow Meow góp ý thanh điệu, ngữ điệu, ngắt nghỉ và những chỗ cần đọc lại.</p><div class="course-meta"><span class="tag">HSK1 &amp; HSK4</span><span class="tag">Nghe câu mẫu</span><span class="tag">Ghi âm</span><span class="tag">Sửa phát âm</span></div></div><div class="banner-action"><a class="btn btn-primary" href="login.html?next=speaking.html">Luyện nói ngay</a></div></div>
 
         <div class="banner banner-mock reveal" id="thi-thu"><div class="banner-hz" aria-hidden="true">考试</div><div><div class="section-kicker">THI THỬ · 模拟考试</div><h3>Phòng thi thử HSK Meow Meow</h3><p>Hiện Meow Meow có 10 đề thi thử HSK4.</p><div class="course-meta"><span class="tag">HSK4</span><span class="tag">100 câu / đề</span><span class="tag">Đếm giờ</span></div></div><div class="banner-action"><a class="btn btn-primary" href="login.html?next=mock-test-v5.html">Vào phòng thi</a></div></div>
+
+        <div class="banner reveal" id="bai-tap" style="--c:#2E8AA3;--bg:#E4F4F8"><div class="banner-hz" aria-hidden="true">练习</div><div><div class="section-kicker">BÀI TẬP · 练习</div><h3>Làm bài tập gửi cho cô</h3><p>Chọn đáp án, nộp bài. Cô xem được ngay trên trang quản lý.</p><div class="course-meta"><span class="tag">HSK4</span><span class="tag">Nộp online</span><span class="tag">Có điểm tạm</span></div></div><div class="banner-action"><a class="btn btn-primary" href="login.html?next=baitap.html">Làm bài tập</a></div></div>
       </div>
 
       <div class="notice-card reveal"><div class="section-kicker">TIPS HỌC ĐẾN TỪ NHÀ MEOW MEOW</div><ul class="notice-list"><li>Đừng cố học quá nhiều một lúc, ngày một ít - cần cù sẽ bù thông minh!!!</li><li>Gặp từ mới thì viết ra giấy, kèm ví dụ, vận dụng vào thực tế.</li><li>Học xong bài nào, lên ngay website Meow Meow xem lại bài cũ rồi cùng ôn luyện nàooo.</li><li>Mệt quá thì làm cốc nước cam, tiếng Trung vẫn khó nhưng có sức học hơn.</li></ul></div>
@@ -1578,6 +1580,36 @@
         card.hidden = true;
       });
       window.addEventListener("appinstalled", () => { card.hidden = true; deferredPrompt = null; });
+    })();
+
+    // Nút "Quản lý BT" chỉ hiện với username amber123
+    (function () {
+      const s = document.createElement("script");
+      s.src = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
+      s.onload = async () => {
+        try {
+          const db = window.supabase.createClient(
+            "https://xmtvmwcjjqqzscmkdlwd.supabase.co",
+            "sb_publishable_R5TEjUNB6lDTJuN4MNdhVQ_ANwIaKLP"
+          );
+          const { data: { session } } = await db.auth.getSession();
+          if (!session) return;
+          const u = (session.user.user_metadata?.username || "").toLowerCase();
+          if (u !== "amber123") return;
+          document.querySelectorAll(".nav, .mobile-nav-inner").forEach(nav => {
+            if (nav.querySelector("[data-teacher-mgmt]")) return;
+            const a = document.createElement("a");
+            a.href = "quan-ly-bai-tap.html";
+            a.textContent = "Quản lý BT";
+            a.setAttribute("data-teacher-mgmt", "1");
+            a.style.cssText = "background:var(--coral);color:#fff;font-weight:700";
+            const cta = nav.querySelector(".nav-cta");
+            if (cta) nav.insertBefore(a, cta);
+            else nav.appendChild(a);
+          });
+        } catch (e) {}
+      };
+      document.head.appendChild(s);
     })();
   </script>
 </body>
