@@ -59,10 +59,10 @@ $('#send').onclick=async()=>{
       };
       const {error}=await db.from('submissions').insert(row);
       if(error)throw error;
-      m.className='ok';m.textContent='✅ Đã gửi bài thành công!';
+      m.className='ok';m.textContent='Bài bạn iu đã nộp chờ Meow meow chấm nhenn 🐱';
     }else if(C.ENDPOINT){
       await fetch(C.ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(payload)});
-      m.className='ok';m.textContent='✅ Đã gửi bài thành công!';
+      m.className='ok';m.textContent='Bài bạn iu đã nộp chờ Meow meow chấm nhenn 🐱';
     }else{
       const body=answers.map(a=>`[${a.section}] ${a.q}: ${a.answer}`).join('\n');
       location.href=`mailto:${C.FALLBACK_EMAIL}?subject=${encodeURIComponent('Bài tập HSK1 - Bài '+L.n+' - '+name+' - '+cls)}&body=${encodeURIComponent(body)}`;
