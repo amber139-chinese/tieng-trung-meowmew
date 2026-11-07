@@ -1,0 +1,153 @@
+<!DOCTYPE html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Thi thử 1 - HSK 3.0 cấp 1</title>
+<script src="assets/hsk-config.js"></script>
+<style>
+:root{--p:#e8554e;--p-d:#c93f39;--p-l:#fdeceb;--ink:#22252b;--mut:#6b7280;--ln:#e6e8ec;--bg:#f6f7f9;--card:#fff;--ok:#1f9d57;--ok-l:#e7f6ee;--bad:#d64545;--bad-l:#fdeeee;--am:#d98a0b;--fr:#f1f3f6}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Segoe UI",system-ui,"Noto Sans SC","PingFang SC",sans-serif}
+button{font:inherit;cursor:pointer}
+.btn{border:0;border-radius:12px;padding:11px 20px;font-weight:700;transition:.15s}
+.btn.pri{background:var(--p);color:#fff;box-shadow:0 4px 12px #e8554e40}.btn.pri:hover{background:var(--p-d)}
+.btn.sec{background:#fff;color:var(--p);border:1.5px solid var(--p)}.btn.sec:hover{background:var(--p-l)}
+.btn.ter{background:transparent;color:var(--mut);padding:11px 12px;text-decoration:underline}.btn.ter:hover{color:var(--ink)}
+.btn.lg{padding:14px 28px;font-size:17px}
+.bar{position:sticky;top:0;z-index:20;background:#fffffff2;backdrop-filter:blur(8px);border-bottom:1px solid var(--ln)}
+.bar>div{max-width:1120px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:14px}
+.bar h1{font-size:16px;margin:0;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar h1 small{display:block;font-weight:400;color:var(--mut);font-size:12px}
+.timer{font:700 22px/1 ui-monospace,Menlo,Consolas,monospace;padding:9px 14px;border-radius:12px;background:var(--fr);letter-spacing:.04em}
+.timer.warn{background:#fff3dc;color:var(--am)}.timer.danger{background:var(--bad-l);color:var(--bad);animation:pl 1s infinite}
+@keyframes pl{50%{opacity:.55}}
+.start{max-width:560px;margin:7vh auto;background:var(--card);border-radius:20px;padding:32px;box-shadow:0 10px 40px #0001;text-align:center}
+.start h2{margin:0 0 4px;font-size:26px}.start p{color:var(--mut);margin:0 0 18px}
+.start input{width:100%;padding:13px 14px;border:1.5px solid var(--ln);border-radius:12px;font:inherit;margin-bottom:10px}.start input:focus{outline:0;border-color:var(--p)}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 20px}.facts div{background:var(--fr);border-radius:12px;padding:12px 6px}.facts b{display:block;font-size:22px}.facts span{font-size:12px;color:var(--mut)}
+.err{color:var(--bad);font-size:14px;min-height:20px;margin:0 0 10px}
+.layout{max-width:1120px;margin:0 auto;padding:16px;display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:20px;align-items:start}
+.sec{background:var(--card);border-radius:18px;padding:20px;margin-bottom:18px;box-shadow:0 1px 4px #0000000d}
+.sech{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:19px}.sech span{font-size:13px;font-weight:400;color:var(--mut)}
+audio{width:100%;margin:0 0 6px}.hint{font-size:13px;color:var(--mut);margin:0 0 6px}
+.ph{margin:22px 0 10px;padding-left:12px;border-left:4px solid var(--p)}.ph b{display:block}.ph span{font-size:13px;color:var(--mut)}
+.pool{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 12px}
+.fig{position:relative}.frame{display:block;aspect-ratio:4/3;background:var(--fr);border-radius:12px;overflow:hidden;border:1px solid var(--ln)}
+.frame img{width:100%;height:100%;object-fit:contain;display:block}
+.fig .lt{position:absolute;left:8px;top:8px;width:28px;height:28px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:700;font-size:14px}
+.bank{background:var(--p-l);border-radius:12px;padding:12px 16px;margin:0 0 12px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:4px 16px}.bank b{color:var(--p);margin-right:6px}
+.q{padding:16px 0;border-top:1px solid var(--ln);scroll-margin-top:90px}.q:first-of-type{border-top:0}
+.qh{display:flex;gap:12px;align-items:flex-start;margin-bottom:10px}
+.num{flex:none;min-width:34px;height:34px;border-radius:10px;background:var(--p-l);color:var(--p);display:grid;place-items:center;font-weight:800}
+.qt{font-size:19px;padding-top:2px}
+.opts{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}.opts.imgs{grid-template-columns:repeat(3,1fr)}.opts.lt6{grid-template-columns:repeat(6,1fr);max-width:520px}
+.opt{position:relative;display:flex;align-items:center;gap:10px;border:1.5px solid var(--ln);border-radius:12px;padding:10px 12px;background:#fff;cursor:pointer;transition:.12s}
+.opt:hover{border-color:#f0a19d}.opt input{position:absolute;opacity:0}
+.opt .k{flex:none;width:28px;height:28px;border-radius:50%;background:var(--fr);display:grid;place-items:center;font-weight:700;font-size:14px}
+.opt .oc small{display:block;color:var(--mut);font-size:12px;line-height:1.2}.opt .zh{font-size:18px}
+.opt.on{border-color:var(--p);background:var(--p-l)}.opt.on .k{background:var(--p);color:#fff}
+.opt:has(input:focus-visible){outline:3px solid #e8554e55}
+.opts.imgs .opt{flex-direction:column;align-items:stretch;padding:8px}.opts.imgs .opt .frame{order:1}.opts.imgs .opt .k{order:2;align-self:center}
+.opts.lt6 .opt{justify-content:center;padding:8px 0}
+.done .opt{cursor:default;pointer-events:none}.opt.ok{border-color:var(--ok);background:var(--ok-l)}.opt.ok .k{background:var(--ok);color:#fff}
+.opt.bad{border-color:var(--bad);background:var(--bad-l)}.opt.bad .k{background:var(--bad);color:#fff}
+.sol{display:none;margin-top:12px;border-radius:12px;background:var(--fr);padding:12px 14px;font-size:15px}
+.done .sol{display:block}.sol .v{font-weight:700;margin-bottom:6px}.sol .v.ok{color:var(--ok)}.sol .v.bad{color:var(--bad)}.sol .v.sk{color:var(--am)}
+.sol p{margin:3px 0}.sol .tr{font-size:17px}.sol .vi{color:var(--mut)}
+.side{position:sticky;top:84px;background:var(--card);border-radius:18px;padding:16px;box-shadow:0 1px 4px #0000000d;max-height:calc(100vh - 100px);overflow:auto}
+.side h3{margin:0 0 8px;font-size:15px}.prog{height:8px;border-radius:8px;background:var(--fr);overflow:hidden;margin-bottom:6px}.prog i{display:block;height:100%;width:0;background:var(--p);transition:.3s}
+.cnt{font-size:13px;color:var(--mut);margin-bottom:12px}.cnt b{color:var(--ink);font-size:15px}
+.ngrid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:12px}
+.nb{aspect-ratio:1;border-radius:9px;border:1.5px solid var(--ln);background:#fff;font-weight:600;color:var(--mut)}.nb.a{background:var(--p);border-color:var(--p);color:#fff}
+.nb.c{background:var(--ok);border-color:var(--ok);color:#fff}.nb.w{background:var(--bad);border-color:var(--bad);color:#fff}.nb.s{background:#fff;border:1.5px dashed var(--am);color:var(--am)}
+.lg2{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:12px;color:var(--mut);margin:0 0 12px}.lg2 i{display:inline-block;width:12px;height:12px;border-radius:4px;vertical-align:-1px;margin-right:4px;border:1.5px solid var(--ln)}
+.side .btn{width:100%;margin-top:6px}
+.result{display:none;background:linear-gradient(135deg,#e8554e,#f08a5d);color:#fff;border-radius:18px;padding:22px;margin-bottom:18px}
+.result.show{display:block}.result .big{font-size:52px;font-weight:800;line-height:1}.result .big small{font-size:22px;opacity:.85}
+.pill{display:inline-block;vertical-align:middle;font-size:15px;font-weight:700;padding:5px 14px;border-radius:99px;background:#fff;margin-left:8px}.pill.ok{color:var(--ok)}.pill.no{color:var(--bad)}.result .sub{margin-top:6px;opacity:.95}.rs{display:flex;flex-wrap:wrap;gap:12px 28px;margin:12px 0 16px}.rs div{background:#ffffff26;border-radius:12px;padding:8px 14px}.rs b{font-size:20px}
+.result .btn.pri{background:#fff;color:var(--p-d);box-shadow:none}.result .btn.sec{background:transparent;color:#fff;border-color:#fff}.result .btn.ter{color:#fff}
+.flt{display:none;gap:6px;margin:0 0 14px}.flt.show{display:flex}.flt button{border:1.5px solid var(--ln);background:#fff;border-radius:99px;padding:6px 14px;font-weight:600;color:var(--mut)}.flt button.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.hide{display:none!important}
+dialog{border:0;border-radius:18px;padding:24px;max-width:420px;box-shadow:0 20px 60px #0004}dialog::backdrop{background:#0006}
+dialog h3{margin:0 0 6px}dialog p{color:var(--mut);margin:0 0 18px}.acts{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+.toast{position:fixed;left:50%;bottom:76px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:99px;font-size:14px;z-index:60;display:none}
+.fab{display:none}#close{display:none}
+@media(max-width:980px){
+ #close{display:block}.layout{grid-template-columns:1fr;padding:10px}.side{position:fixed;left:0;right:0;bottom:0;top:auto;z-index:40;border-radius:20px 20px 0 0;max-height:72vh;transform:translateY(105%);transition:.25s;box-shadow:0 -10px 40px #0003}.side.open{transform:none}
+ .fab{display:flex;position:fixed;left:12px;right:12px;bottom:12px;z-index:30;background:var(--ink);color:#fff;border:0;border-radius:14px;padding:13px 16px;justify-content:space-between;font-weight:700;box-shadow:0 8px 24px #0004}
+ body{padding-bottom:72px}.opts.imgs,.pool{gap:6px}.opts.lt6{grid-template-columns:repeat(6,1fr)}.bar h1 small{display:none}.timer{font-size:19px;padding:8px 10px}.btn.lg{width:100%}
+}
+@media print{.bar,.side,.fab{display:none}#close{display:none}}
+</style></head><body>
+<div class="bar hide" id="bar"><div><h1 id="ttl"></h1><div class="timer" id="tm">40:00</div><button class="btn pri" id="sub">Nộp bài</button></div></div>
+<div class="start" id="start"><h2 id="stT"></h2><p id="stS"></p>
+<div class="facts"><div><b>40</b><span>câu · 200 điểm</span></div><div><b>40'</b><span>thời gian</span></div><div><b>1 lần</b><span>nghe audio liền mạch</span></div></div>
+<input id="nm" placeholder="Họ và tên" autocomplete="name"><input id="cl" placeholder="Lớp"><div class="err" id="er"></div>
+<button class="btn pri lg" id="go">Bắt đầu làm bài</button><p style="margin:14px 0 0;font-size:13px">Đồng hồ bắt đầu chạy ngay khi bạn bấm nút. Hết giờ hệ thống tự nộp bài.</p></div>
+<div class="layout hide" id="lay"><div id="content"></div>
+<aside class="side" id="side"><h3>Tiến độ làm bài</h3><div class="prog"><i id="pg"></i></div><div class="cnt"><b id="n1">0</b>/40 câu đã chọn · <span id="n2">40</span> câu chưa chọn</div>
+<div class="lg2"><span><i style="background:var(--p);border-color:var(--p)"></i>Đã chọn</span><span><i></i>Chưa chọn</span></div>
+<h3>Nghe (1–20)</h3><div class="ngrid" id="g1"></div><h3>Đọc (21–40)</h3><div class="ngrid" id="g2"></div>
+<button class="btn pri" id="sub2">Nộp bài</button><button class="btn ter" id="close">Đóng</button></aside></div>
+<button class="fab hide" id="fab"><span>Danh sách câu</span><span id="fabn">0/40</span></button>
+<dialog id="dlg"><h3 id="dt">Nộp bài?</h3><p id="dp"></p><div class="acts"><button class="btn sec" id="dno">Quay lại làm bài</button><button class="btn pri" id="dyes">Nộp bài</button></div></dialog><div class="toast" id="toast"></div>
+<script>
+const X={"id":1,"title":"Thi thử HSK 3.0 cấp 1 · Đề số 1","sub":"全真模拟试卷 1 · 40 câu · 40 phút","audio":"audio/baithi1/一级试卷1-录音.mp3","parts":[{"sec":"L","zh":"第一部分 第1—5题 · 听短语，选图片","vi":"Nghe cụm từ, chọn hình đúng","qs":[1,2,3,4,5]},{"sec":"L","zh":"第二部分 第6—10题 · 听问题，选回答","vi":"Nghe câu hỏi, chọn câu trả lời đúng","qs":[6,7,8,9,10]},{"sec":"L","zh":"第三部分 第11—15题 · 听对话，选图片","vi":"Nghe hội thoại, chọn hình phù hợp nhất","qs":[11,12,13,14,15],"pool":["img/baithi1/p3_1.jpg","img/baithi1/p3_2.jpg","img/baithi1/p3_3.jpg","img/baithi1/p3_4.jpg","img/baithi1/p3_5.jpg","img/baithi1/p3_6.jpg"]},{"sec":"L","zh":"第四部分 第16—20题 · 听句子和问题","vi":"Nghe câu và câu hỏi, chọn đáp án đúng","qs":[16,17,18,19,20]},{"sec":"R","zh":"第一部分 第21—25题 · 句子配图片","vi":"Chọn hình phù hợp nhất với câu","qs":[21,22,23,24,25],"pool":["img/baithi1/r1_1.jpg","img/baithi1/r1_2.jpg","img/baithi1/r1_3.jpg","img/baithi1/r1_4.jpg","img/baithi1/r1_5.jpg","img/baithi1/r1_6.jpg"]},{"sec":"R","zh":"第二部分 第26—30题 · 选择回答","vi":"Chọn câu trả lời phù hợp","qs":[26,27,28,29,30],"bank":[["A","有点儿贵。"],["B","没有。"],["C","20岁。"],["D","没事。"],["E","对，他是我同学。"],["F","好的，谢谢！"]]},{"sec":"R","zh":"第三部分 第31—35题 · 选词填空","vi":"Chọn từ điền vào chỗ trống","qs":[31,32,33,34,35],"bank":[["A","问"],["B","电视"],["C","生病"],["D","叫"],["E","一下"],["F","说话"]]},{"sec":"R","zh":"第四部分 第36—40题 · 选择答案","vi":"Chọn đáp án đúng","qs":[36,37,38,39,40]}],"qs":[{"n":1,"text":"","opts":[{"k":"A","img":"img/baithi1/q1_1.jpg"},{"k":"B","img":"img/baithi1/q1_2.jpg"},{"k":"C","img":"img/baithi1/q1_3.jpg"}],"a":"B","tr":"喝茶","vi":"Uống trà"},{"n":2,"text":"","opts":[{"k":"A","img":"img/baithi1/q1_4.jpg"},{"k":"B","img":"img/baithi1/q1_5.jpg"},{"k":"C","img":"img/baithi1/q1_6.jpg"}],"a":"C","tr":"做午饭","vi":"Nấu bữa trưa"},{"n":3,"text":"","opts":[{"k":"A","img":"img/baithi1/q1_7.jpg"},{"k":"B","img":"img/baithi1/q1_8.jpg"},{"k":"C","img":"img/baithi1/q1_9.jpg"}],"a":"B","tr":"两个面包","vi":"Hai cái bánh mì"},{"n":4,"text":"","opts":[{"k":"A","img":"img/baithi1/q1_10.jpg"},{"k":"B","img":"img/baithi1/q1_11.jpg"},{"k":"C","img":"img/baithi1/q1_12.jpg"}],"a":"A","tr":"在房间学习","vi":"Học trong phòng"},{"n":5,"text":"","opts":[{"k":"A","img":"img/baithi1/q1_13.jpg"},{"k":"B","img":"img/baithi1/q1_14.jpg"},{"k":"C","img":"img/baithi1/q1_15.jpg"}],"a":"C","tr":"漂亮的衣服","vi":"Quần áo đẹp"},{"n":6,"text":"","opts":[{"k":"A","zh":"三月","py":"sān yuè"},{"k":"B","zh":"五个","py":"wǔ gè"},{"k":"C","zh":"星期天","py":"xīngqītiān"}],"a":"C","tr":"今天星期几？","vi":"Hôm nay thứ mấy?"},{"n":7,"text":"","opts":[{"k":"A","zh":"上课","py":"shàngkè"},{"k":"B","zh":"书店","py":"shūdiàn"},{"k":"C","zh":"大学生","py":"dàxuésheng"}],"a":"B","tr":"你现在在哪儿？","vi":"Bây giờ bạn ở đâu?"},{"n":8,"text":"","opts":[{"k":"A","zh":"没有","py":"méiyǒu"},{"k":"B","zh":"不知道","py":"bù zhīdào"},{"k":"C","zh":"六点十分","py":"liù diǎn shí fēn"}],"a":"A","tr":"请问你有时间吗？","vi":"Xin hỏi bạn có thời gian không?"},{"n":9,"text":"","opts":[{"k":"A","zh":"没关系","py":"méi guānxi"},{"k":"B","zh":"非常好","py":"fēicháng hǎo"},{"k":"C","zh":"很好看","py":"hěn hǎokàn"}],"a":"B","tr":"她的中文怎么样？","vi":"Tiếng Trung của cô ấy thế nào?"},{"n":10,"text":"","opts":[{"k":"A","zh":"十个","py":"shí gè"},{"k":"B","zh":"不好吃","py":"bù hǎochī"},{"k":"C","zh":"在饭店","py":"zài fàndiàn"}],"a":"A","tr":"你吃几个饺子？","vi":"Bạn ăn mấy cái sủi cảo?"},{"n":11,"text":"","opts":[{"k":"A"},{"k":"B"},{"k":"C"},{"k":"D"},{"k":"E"},{"k":"F"}],"a":"B","tr":"女：请坐！ 男：谢谢！","vi":"Nữ: Mời ngồi! Nam: Cảm ơn!"},{"n":12,"text":"","opts":[{"k":"A"},{"k":"B"},{"k":"C"},{"k":"D"},{"k":"E"},{"k":"F"}],"a":"E","tr":"男：现在几点？ 女：四点十分。","vi":"Nam: Bây giờ mấy giờ? Nữ: 4 giờ 10 phút."},{"n":13,"text":"","opts":[{"k":"A"},{"k":"B"},{"k":"C"},{"k":"D"},{"k":"E"},{"k":"F"}],"a":"A","tr":"女：你在做什么呢？ 男：我在超市买东西呢。","vi":"Nữ: Bạn đang làm gì? Nam: Tôi đang mua đồ ở siêu thị."},{"n":14,"text":"","opts":[{"k":"A"},{"k":"B"},{"k":"C"},{"k":"D"},{"k":"E"},{"k":"F"}],"a":"F","tr":"男：你晚上想吃什么？ 女：吃面条儿，怎么样？","vi":"Nam: Tối nay bạn muốn ăn gì? Nữ: Ăn mì nhé?"},{"n":15,"text":"","opts":[{"k":"A"},{"k":"B"},{"k":"C"},{"k":"D"},{"k":"E"},{"k":"F"}],"a":"D","tr":"男：房间里有电脑吗？ 女：有。","vi":"Nam: Trong phòng có máy tính không? Nữ: Có."},{"n":16,"text":"","opts":[{"k":"A","zh":"很热","py":"hěn rè"},{"k":"B","zh":"下雪","py":"xià xuě"},{"k":"C","zh":"下雨","py":"xià yǔ"}],"a":"C","tr":"今天天气不好，下雨了。问：今天是什么天气？","vi":"Hôm nay thời tiết không tốt, mưa rồi. Hỏi: Hôm nay thời tiết thế nào?"},{"n":17,"text":"","opts":[{"k":"A","zh":"做饭","py":"zuò fàn"},{"k":"B","zh":"学中文","py":"xué Zhōngwén"},{"k":"C","zh":"去外边玩","py":"qù wàibian wán"}],"a":"B","tr":"我今天晚上和同学一起学习中文。问：说话人今晚做什么？","vi":"Tối nay tôi học tiếng Trung cùng bạn học. Hỏi: Tối nay người nói làm gì?"},{"n":18,"text":"","opts":[{"k":"A","zh":"家","py":"jiā"},{"k":"B","zh":"医院","py":"yīyuàn"},{"k":"C","zh":"学校","py":"xuéxiào"}],"a":"A","tr":"我明天不忙，可以在家里休息。问：说话人明天在哪里？","vi":"Mai tôi không bận, có thể nghỉ ở nhà. Hỏi: Mai người nói ở đâu?"},{"n":19,"text":"","opts":[{"k":"A","zh":"读书","py":"dúshū"},{"k":"B","zh":"唱歌","py":"chàng gē"},{"k":"C","zh":"买衣服","py":"mǎi yīfu"}],"a":"C","tr":"这件衣服小了，我想买件新的。问：说话人想做什么？","vi":"Chiếc áo này nhỏ rồi, tôi muốn mua cái mới. Hỏi: Người nói muốn làm gì?"},{"n":20,"text":"","opts":[{"k":"A","zh":"开车","py":"kāichē"},{"k":"B","zh":"坐火车","py":"zuò huǒchē"},{"k":"C","zh":"坐飞机","py":"zuò fēijī"}],"a":"B","tr":"坐飞机太贵了，我坐火车去那儿吧。问：说话人怎么去那儿？","vi":"Đi máy bay đắt quá, tôi đi tàu hỏa đến đó. Hỏi: Người nói đi bằng gì?"},{"n":21,"text":"我的儿子还没下课。","opts":[{"k":"A"},{"k":"B"},{"k":"C"},{"k":"D"},{"k":"E"},{"k":"F"}],"a":"D","tr":"","vi":"Con trai tôi chưa tan học."},{"n":22,"text":"她明天去医院看病。","opts":[{"k":"A"},{"k":"B"},{"k":"C"},{"k":"D"},{"k":"E"},{"k":"F"}],"a":"C","tr":"","vi":"Ngày mai cô ấy đi bệnh viện khám bệnh."},{"n":23,"text":"你的小猫真漂亮！它几岁了？","opts":[{"k":"A"},{"k":"B"},{"k":"C"},{"k":"D"},{"k":"E"},{"k":"F"}],"a":"A","tr":"","vi":"Con mèo của bạn đẹp quá! Nó mấy tuổi rồi?"},{"n":24,"text":"妈妈正在睡觉，不要说话。","opts":[{"k":"A"},{"k":"B"},{"k":"C"},{"k":"D"},{"k":"E"},{"k":"F"}],"a":"B","tr":"","vi":"Mẹ đang ngủ, đừng nói chuyện."},{"n":25,"text":"朋友在一家公司工作。","opts":[{"k":"A"},{"k":"B"},{"k":"C"},{"k":"D"},{"k":"E"},{"k":"F"}],"a":"F","tr":"","vi":"Bạn tôi làm việc ở một công ty."},{"n":26,"text":"你认识高先生吧？","opts":[{"k":"A"},{"k":"B"},{"k":"C"},{"k":"D"},{"k":"E"},{"k":"F"}],"a":"E","tr":"","vi":"Bạn quen anh Cao phải không?"},{"n":27,"text":"真对不起，我来晚了。","opts":[{"k":"A"},{"k":"B"},{"k":"C"},{"k":"D"},{"k":"E"},{"k":"F"}],"a":"D","tr":"","vi":"Thật xin lỗi, tôi đến muộn."},{"n":28,"text":"你看见谢老师了吗？","opts":[{"k":"A"},{"k":"B"},{"k":"C"},{"k":"D"},{"k":"E"},{"k":"F"}],"a":"B","tr":"","vi":"Bạn thấy thầy/cô Tạ chưa?"},{"n":29,"text":"那个超市的东西怎么样？","opts":[{"k":"A"},{"k":"B"},{"k":"C"},{"k":"D"},{"k":"E"},{"k":"F"}],"a":"A","tr":"","vi":"Đồ ở siêu thị đó thế nào?"},{"n":30,"text":"你姐姐今年多大？","opts":[{"k":"A"},{"k":"B"},{"k":"C"},{"k":"D"},{"k":"E"},{"k":"F"}],"a":"C","tr":"","vi":"Chị bạn năm nay bao nhiêu tuổi?"},{"n":31,"text":"他（　）了，今天不能来上班了。","opts":[{"k":"A"},{"k":"B"},{"k":"C"},{"k":"D"},{"k":"E"},{"k":"F"}],"a":"C","tr":"","vi":"Anh ấy bị ốm (生病), hôm nay không đi làm được."},{"n":32,"text":"女士，你好！请在这儿写（　）你的手机号。","opts":[{"k":"A"},{"k":"B"},{"k":"C"},{"k":"D"},{"k":"E"},{"k":"F"}],"a":"E","tr":"","vi":"Chị ơi, xin viết một chút (一下) số điện thoại của chị vào đây."},{"n":33,"text":"现在看（　）的人很少了。","opts":[{"k":"A"},{"k":"B"},{"k":"C"},{"k":"D"},{"k":"E"},{"k":"F"}],"a":"B","tr":"","vi":"Bây giờ người xem tivi (电视) rất ít."},{"n":34,"text":"A：你找老师有什么事？<br>B：我想（　）他一个问题。","opts":[{"k":"A"},{"k":"B"},{"k":"C"},{"k":"D"},{"k":"E"},{"k":"F"}],"a":"A","tr":"","vi":"A: Bạn tìm thầy có việc gì? B: Em muốn hỏi (问) thầy một câu."},{"n":35,"text":"A：你孩子会（　）了吗？<br>B：她会叫“妈妈”了。","opts":[{"k":"A"},{"k":"B"},{"k":"C"},{"k":"D"},{"k":"E"},{"k":"F"}],"a":"F","tr":"","vi":"A: Con bạn biết nói (说话) chưa? B: Bé biết gọi “mẹ” rồi."},{"n":36,"text":"下雪了，你多穿一件衣服吧。<br>★说话人觉得天气怎么样：","opts":[{"k":"A","zh":"雨太大"},{"k":"B","zh":"太热了"},{"k":"C","zh":"有点儿冷"}],"a":"C","tr":"","vi":"Tuyết rơi rồi, bạn mặc thêm áo đi. → Hơi lạnh."},{"n":37,"text":"今天公司有很多事，他没有时间吃饭。<br>★我们可以知道什么：","opts":[{"k":"A","zh":"他很忙"},{"k":"B","zh":"他生病了"},{"k":"C","zh":"他喜欢做饭"}],"a":"A","tr":"","vi":"Hôm nay công ty nhiều việc, anh ấy không có thời gian ăn cơm. → Anh ấy rất bận."},{"n":38,"text":"家里没有水果了，我再去买些吧。<br>★说话人要去哪儿：","opts":[{"k":"A","zh":"超市"},{"k":"B","zh":"朋友家"},{"k":"C","zh":"电影院"}],"a":"A","tr":"","vi":"Nhà hết trái cây, tôi đi mua thêm. → Đi siêu thị."},{"n":39,"text":"他的女朋友很漂亮，学习也很好。<br>★他的女朋友怎么样：","opts":[{"k":"A","zh":"很好看"},{"k":"B","zh":"很少生病"},{"k":"C","zh":"不爱说话"}],"a":"A","tr":"","vi":"Bạn gái anh ấy rất xinh, học cũng giỏi. → Rất xinh."},{"n":40,"text":"一个杯子八十块？太贵了！有便宜一点儿的吗？<br>★说话人正在做什么：","opts":[{"k":"A","zh":"见朋友"},{"k":"B","zh":"写汉字"},{"k":"C","zh":"买东西"}],"a":"C","tr":"","vi":"Một cái cốc 80 tệ? Đắt quá! Có cái nào rẻ hơn không? → Đang mua đồ."}]};const $=s=>document.querySelector(s),C=window.HSK_CONFIG||{};
+const KEY='hsk_thi_'+X.id,TOTAL=40,LIM=40*60;let S={name:'',cls:'',start:0,ans:{},done:false},iv;
+try{Object.assign(S,JSON.parse(localStorage.getItem(KEY)||'{}'))}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+$('#stT').textContent=X.title;$('#stS').textContent=X.sub;$('#ttl').innerHTML=X.title+'<small>'+X.sub+'</small>';
+$('#nm').value=S.name;$('#cl').value=S.cls;
+function build(){
+ let h=`<div class="result" id="res"></div><div class="flt" id="flt"><button class="on" data-f="all">Tất cả</button><button data-f="w">Câu sai</button><button data-f="s">Chưa làm</button></div>`,cur='';
+ X.parts.forEach(p=>{
+  if(p.sec!==cur){if(cur)h+='</section>';cur=p.sec;h+=`<section class="sec"><h2 class="sech">${p.sec==='L'?'一、听力':'二、阅读'}<span>${p.sec==='L'?'Phần nghe · 20 câu':'Phần đọc · 20 câu'}</span></h2>`;
+   if(p.sec==='L')h+=`<audio controls preload="none" src="${X.audio}"></audio><p class="hint">Audio chạy một lần liền mạch cho cả 20 câu. Mỗi câu được đọc hai lần.</p>`}
+  h+=`<div class="ph"><b>${p.zh}</b><span>${p.vi}</span></div>`;
+  if(p.pool)h+=`<div class="pool">`+p.pool.map((s,i)=>`<div class="fig"><span class="frame"><img src="${s}" alt="${'ABCDEF'[i]}"></span><span class="lt">${'ABCDEF'[i]}</span></div>`).join('')+`</div>`;
+  if(p.bank)h+=`<div class="bank">`+p.bank.map(b=>`<div><b>${b[0]}</b>${b[1]}</div>`).join('')+`</div>`;
+  p.qs.forEach(n=>h+=qh(X.qs[n-1],p));
+ });
+ $('#content').innerHTML=h+'</section>';
+ const g=(a,b)=>{let t='';for(let n=a;n<=b;n++)t+=`<button class="nb" data-n="${n}">${n}</button>`;return t};$('#g1').innerHTML=g(1,20);$('#g2').innerHTML=g(21,40);
+}
+function qh(q,p){
+ const imgs=q.opts.some(o=>o.img),six=q.opts.length===6&&!imgs;
+ const o=q.opts.map(o=>`<label class="opt"><input type="radio" name="q${q.n}" value="${o.k}"><span class="k">${o.k}</span>${o.img?`<span class="frame"><img src="${o.img}" alt="${o.k}" loading="lazy"></span>`:''}${o.zh?`<span class="oc">${o.py?`<small>${o.py}</small>`:''}<span class="zh">${o.zh}</span></span>`:''}</label>`).join('');
+ return `<article class="q" id="q${q.n}"><div class="qh"><span class="num">${q.n}</span><div class="qt">${q.text||''}</div></div><div class="opts ${imgs?'imgs':six?'lt6':''}">${o}</div><div class="sol"></div></article>`}
+function paint(){
+ let c=0;for(let n=1;n<=TOTAL;n++){const a=S.ans[n];if(a)c++;
+  const b=document.querySelector(`.nb[data-n="${n}"]`),q=X.qs[n-1];b.className='nb'+(S.done?(!a?' s':a===q.a?' c':' w'):a?' a':'');
+  document.querySelectorAll(`#q${n} .opt`).forEach(l=>{const v=l.querySelector('input').value;l.classList.toggle('on',a===v&&!S.done);l.querySelector('input').checked=a===v;
+   if(S.done){l.classList.toggle('ok',v===q.a);l.classList.toggle('bad',a===v&&v!==q.a)}})}
+ $('#n1').textContent=c;$('#n2').textContent=TOTAL-c;$('#pg').style.width=c/TOTAL*100+'%';$('#fabn').textContent=c+'/'+TOTAL}
+function tick(){if(S.done)return;const left=Math.max(0,LIM-Math.floor((Date.now()-S.start)/1000)),m=$('#tm');
+ m.textContent=String(Math.floor(left/60)).padStart(2,'0')+':'+String(left%60).padStart(2,'0');m.className='timer'+(left<=300?' danger':left<=600?' warn':'');
+ if(left<=0){clearInterval(iv);if(!S.done)finish(true)}}
+function begin(){$('#start').classList.add('hide');['bar','lay','fab'].forEach(i=>$('#'+i).classList.remove('hide'));build();paint();if(S.done){show()}else{tick();iv=setInterval(tick,1000)}}
+$('#go').onclick=()=>{const n=$('#nm').value.trim();if(!n){$('#er').textContent='Vui lòng nhập họ và tên trước khi bắt đầu.';$('#nm').focus();return}
+ S={name:n,cls:$('#cl').value.trim(),start:Date.now(),ans:{},done:false};save();begin()};
+document.addEventListener('change',e=>{if(e.target.type==='radio'&&!S.done){S.ans[+e.target.name.slice(1)]=e.target.value;save();paint()}});
+document.addEventListener('click',e=>{const b=e.target.closest('.nb');if(b){$('#side').classList.remove('open');document.getElementById('q'+b.dataset.n).scrollIntoView({block:'start'})}});
+$('#fab').onclick=()=>$('#side').classList.add('open');$('#close').onclick=()=>$('#side').classList.remove('open');
+function ask(){const un=TOTAL-Object.keys(S.ans).length;$('#side').classList.remove('open');
+ $('#dt').textContent=un?`Còn ${un} câu chưa chọn`:'Nộp bài?';$('#dp').textContent=un?'Câu chưa chọn sẽ tính là sai. Bạn có muốn nộp bài ngay không?':'Sau khi nộp bạn không thể sửa đáp án.';$('#dlg').showModal()}
+$('#sub').onclick=$('#sub2').onclick=()=>{if(!S.done)ask()};$('#dno').onclick=()=>$('#dlg').close();$('#dyes').onclick=()=>{$('#dlg').close();finish(false)};
+function finish(auto){clearInterval(iv);S.done=true;S.end=Date.now();save();paint();show();window.scrollTo({top:0});if(auto)toast('Hết giờ — hệ thống đã tự nộp bài.');send()}
+function score(){let l=0,r=0;X.qs.forEach(q=>{if(S.ans[q.n]===q.a)q.n<=20?l++:r++});return{l,r,t:l+r}}
+function show(){const s=score(),pc=Math.round(s.t/TOTAL*100),un=TOTAL-Object.keys(S.ans).length;
+ const res=$('#res');res.className='result show';res.innerHTML=`<div class="big">${s.t*5}<small>/200 điểm</small> <span class="pill ${s.t*5>=120?'ok':'no'}">${s.t*5>=120?'✓ Đạt':'Chưa đạt'}</span></div><div class="sub">Đúng ${s.t}/${TOTAL} câu · ${pc}% · Điểm đạt: từ 120/200</div><div class="rs"><div>🎧 Nghe hiểu <b>${s.l*5}/100</b></div><div>📖 Đọc hiểu <b>${s.r*5}/100</b></div><div>✗ Sai <b>${TOTAL-s.t-un}</b></div><div>– Bỏ trống <b>${un}</b></div></div><button class="btn pri" id="rv">Xem lời giải câu sai</button> <button class="btn sec" id="rt">Làm lại</button> <button class="btn ter" id="mail">Gửi kết quả cho giáo viên</button>`;
+ $('#flt').classList.add('show');document.body.classList.add('done');$('#tm').textContent='Đã nộp ✓';$('#tm').className='timer';$('.lg2').innerHTML='<span><i style="background:var(--ok);border-color:var(--ok)"></i>Đúng</span><span><i style="background:var(--bad);border-color:var(--bad)"></i>Sai</span><span><i style="border:1.5px dashed var(--am)"></i>Bỏ trống</span>';$('#sub').classList.add('hide');$('#sub2').classList.add('hide');clearInterval(iv);
+ X.qs.forEach(q=>{const a=S.ans[q.n],ok=a===q.a,ob=q.opts.find(o=>o.k===q.a),ya=q.opts.find(o=>o.k===a);
+  const ct=o=>o?(o.zh?o.k+' · '+o.zh:o.k):'';const el=document.querySelector(`#q${q.n} .sol`);
+  el.innerHTML=`<div class="v ${ok?'ok':a?'bad':'sk'}">${ok?'✓ Chính xác':a?'✗ Chưa đúng — bạn chọn '+ct(ya):'– Bạn chưa chọn đáp án'}</div><p>Đáp án đúng: <b>${ct(ob)}</b></p>${q.tr?`<p class="tr">🎧 ${q.tr}</p>`:''}<p class="vi">${q.vi}</p>`;
+  document.getElementById('q'+q.n).dataset.st=ok?'c':a?'w':'s'});
+ $('#rv').onclick=()=>{flt('w')};$('#rt').onclick=()=>{try{localStorage.removeItem(KEY)}catch(e){}location.reload()};$('#mail').onclick=mail}
+document.addEventListener('click',e=>{const b=e.target.closest('.flt button');if(b)flt(b.dataset.f)});
+function flt(f){document.querySelectorAll('.flt button').forEach(b=>b.classList.toggle('on',b.dataset.f===f));
+ document.querySelectorAll('.q').forEach(q=>q.classList.toggle('hide',f==='w'?q.dataset.st!=='w':f==='s'?q.dataset.st!=='s':false));
+ document.querySelectorAll('.sec').forEach(sec=>{let grp=[],vis=false;const flush=()=>{grp.forEach(e=>e.classList.toggle('hide',f!=='all'&&!vis));grp=[];vis=false};
+  [...sec.children].forEach(e=>{if(e.classList.contains('ph')){flush();grp=[e]}else if(e.classList.contains('pool')||e.classList.contains('bank'))grp.push(e);else if(e.classList.contains('q')){if(!e.classList.contains('hide'))vis=true}});flush()});
+ (document.querySelector('.q:not(.hide)')||$('#flt')).scrollIntoView({block:'start'})}
+function payload(){const s=score();return{lesson:'Thi thử số '+X.id,student:{name:S.name,cls:S.cls},time:new Date().toLocaleString('vi-VN'),score:s.t*5+'/200',passed:s.t*5>=120,correct:s.t+'/'+TOTAL,listening:s.l*5+'/100',reading:s.r*5+'/100',answers:X.qs.map(q=>({q:q.n,answer:S.ans[q.n]||'',correct:q.a,ok:S.ans[q.n]===q.a}))}}
+async function send(){if(!C.ENDPOINT)return;try{await fetch(C.ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(payload())});toast('Đã gửi kết quả cho giáo viên ✓')}catch(e){toast('Gửi kết quả lỗi, bấm “Gửi kết quả cho giáo viên” để thử lại.')}}
+function mail(){if(C.ENDPOINT){send();return}const p=payload();location.href=`mailto:${C.FALLBACK_EMAIL||''}?subject=${encodeURIComponent('Thi thử HSK1 số '+X.id+' - '+S.name+' - '+S.cls)}&body=${encodeURIComponent(p.score+(p.passed?' - Đạt':' - Chưa đạt')+' (Nghe hiểu '+p.listening+', Đọc hiểu '+p.reading+'; đúng '+p.correct+')\n'+p.answers.map(a=>a.q+'.'+(a.answer||'-')).join(' '))}`}
+function toast(t){const e=$('#toast');e.textContent=t;e.style.display='block';setTimeout(()=>e.style.display='none',3500)}
+if(S.start&&S.name)begin();
+</script></body></html>
