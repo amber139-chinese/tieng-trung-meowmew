@@ -49,6 +49,16 @@
     .ex-title{font-family:var(--serif);font-weight:700;font-size:1.15rem;color:var(--deep);margin:0 0 2px}
     .ex-desc{margin:0;font-size:.88rem;color:var(--muted)}
     .ex-go{font-weight:800;font-size:.88rem;color:var(--coral);white-space:nowrap}
+    /* Khu Đề thi thử */
+    .exam-head{padding:6px 0 14px;border-top:1.5px dashed var(--line);margin-top:4px}
+    .exam-head h2{margin:8px 0 4px;font-family:var(--serif);font-size:clamp(1.4rem,3.4vw,1.8rem);color:var(--deep)}
+    .exam-head p{margin:0;color:var(--muted);font-size:.92rem}
+    .ex-list.exams .ex-item{border-color:#F3C9C1;background:linear-gradient(180deg,#fff,#FFF8F6)}
+    .ex-list.exams .ex-item:hover{border-color:var(--coral)}
+    .ex-list.exams .ex-item .ex-no{background:linear-gradient(145deg,var(--seal),#F0806B);font-size:.95rem}
+    .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+    .tag{font-size:.74rem;font-weight:700;padding:2px 10px;border-radius:999px;background:var(--soft);color:var(--brand-dark)}
+    .tag.hot{background:#FDE9E5;color:var(--coral-dark)}
     @media(max-width:560px){
       .ex-item{grid-template-columns:52px 1fr;gap:12px}
       .ex-go{grid-column:2}
@@ -76,6 +86,13 @@
     </div>
 
     <div class="ex-list" id="exList"></div>
+
+    <div class="exam-head">
+      <div class="section-kicker">ĐỀ THI THỬ · 模拟考试</div>
+      <h2>Đề thi thử HSK 3.0 (一级)</h2>
+      <p>Làm như thi thật: 40 câu, 40 phút, tự chấm điểm thang 200 và có lời giải sau khi nộp bài.</p>
+    </div>
+    <div class="ex-list exams" id="examList"></div>
   </main>
 
   <script>
@@ -98,6 +115,12 @@
       { n: 15, zh: "大兴机场见！",         vi: "Sân bay, di chuyển, hẹn gặp",         file: "hsk1-baitap/baitap-hsk1-bai15.html" }
     ];
 
+    // Đề thi thử — bấm vào khung sẽ mở đúng đề
+    const EXAMS = [
+      { n: 1, zh: "HSK 3.0（一级）全真模拟试卷 1", vi: "Đề thi thử số 1 · Nghe 20 câu + Đọc 20 câu", file: "hsk1-baitap/baithi1.html" },
+      { n: 2, zh: "HSK 3.0（一级）全真模拟试卷 2", vi: "Đề thi thử số 2 · Nghe 20 câu + Đọc 20 câu", file: "hsk1-baitap/baithi2.html" }
+    ];
+
     const $ = id => document.getElementById(id);
 
     $("exList").innerHTML = LESSONS.map(L => `
@@ -108,6 +131,18 @@
           <p class="ex-desc">${L.vi}</p>
         </span>
         <span class="ex-go">Vào bài →</span>
+      </a>
+    `).join("");
+
+    $("examList").innerHTML = EXAMS.map(E => `
+      <a class="ex-item" href="${E.file}">
+        <span class="ex-no">Đề ${E.n}</span>
+        <span>
+          <div class="ex-title">${E.zh}</div>
+          <p class="ex-desc">${E.vi}</p>
+          <div class="tags"><span class="tag hot">⏱ 40 phút</span><span class="tag">200 điểm · đạt từ 120</span><span class="tag">Có lời giải</span></div>
+        </span>
+        <span class="ex-go">Vào thi →</span>
       </a>
     `).join("");
 
