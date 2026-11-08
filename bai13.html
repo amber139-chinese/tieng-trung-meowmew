@@ -1537,11 +1537,40 @@ const state = {tab:'vocab',flash:0,mask:false};
 const tabs = [['vocab','Từ mới'],['grammar','Ngữ pháp'],['patterns','Mẫu câu'],['dialogues','Hội thoại'],['games','Game']];
 function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 function toast(t){const x=$('#toast');x.textContent=t;x.classList.add('show');setTimeout(()=>x.classList.remove('show'),1500)}
-let voices=[], currentVoice=null;
+let voices=[], currentVoice=null, femaleList=[], maleList=[];
+/* Giọng đọc theo nhân vật trong giáo trình.
+   g = nữ (F) hoặc nam (M); k = chọn giọng thứ mấy trong nhóm (để hai nhân vật cùng giới trong một hội thoại không trùng giọng);
+   p = cao độ (trẻ em cao hơn, người lớn tuổi thấp hơn). 胡医生, 服务员, 售货员 giáo trình không ghi giới tính, tạm gán để hai vai tương phản. */
+const CHAR_VOICE={
+  '王一飞':{g:'F',k:0,p:1},
+  '王一雪':{g:'F',k:1,p:.94},
+  '白家月':{g:'F',k:1,p:1.08},
+  '安妮':{g:'F',k:1,p:1.06},
+  '刘小雪':{g:'F',k:1,p:1.28},
+  '胡医生':{g:'F',k:0,p:.94},
+  '售货员':{g:'F',k:1,p:.98},
+  '陈天中':{g:'M',k:1,p:1.05},
+  '李文':{g:'M',k:0,p:1},
+  '刘明':{g:'M',k:0,p:.88},
+  '刘小明':{g:'M',k:0,p:1.4},
+  '杨同乐':{g:'M',k:1,p:1},
+  '服务员':{g:'M',k:0,p:1}
+};
+function spkProfile(sp,d){
+  if(CHAR_VOICE[sp])return CHAR_VOICE[sp];
+  const order=[...new Set(d.lines.map(l=>l[0]))].indexOf(sp);
+  return {g:order%2?'M':'F',k:0,p:1};
+}
+function voiceGender(n){
+  if(/Yunxi|Yunjian|Yunyang|Yunxia|Yunhao|Kangkang|Li-?mu/i.test(n))return 'M';
+  if(/Xiaoxiao|Xiaoyi|Xiaobei|Xiaoni|Xiaohan|Xiaomeng|Xiaomo|Xiaoxuan|Xiaorui|Xiaoshuang|Huihui|Yaoyao|Ting-?ting|Mei-?jia|Yu-?shu|Lili|Google|普通话/i.test(n))return 'F';
+  return '';
+}
 function loadVoices(){
   voices=speechSynthesis.getVoices().filter(v=>/^zh[-_]CN/i.test(v.lang)||/Mandarin|普通话|Putonghua/i.test(v.name));
   const rank=v=>{const n=v.name;let s=0;
-    if(/Xiaoxiao/i.test(n))s+=100;else if(/Xiaoyi|Yunxi|Yunjian|Yunyang|Yunxia/i.test(n))s+=90;
+    if(/Xiaoxiao/i.test(n))s+=100;else if(/Yunxi/i.test(n))s+=100;
+    else if(/Xiaoyi|Yunjian|Yunyang|Yunxia/i.test(n))s+=90;
     if(/Natural|Online/i.test(n))s+=60;
     if(/Google/i.test(n))s+=50;
     if(/Premium|Enhanced|Siri/i.test(n))s+=40;
@@ -1550,19 +1579,60 @@ function loadVoices(){
     if(/Kangkang|Yaoyao|Huihui|Lili/i.test(n))s-=30;
     return s};
   voices.sort((a,b)=>rank(b)-rank(a));
-  currentVoice=voices[0]||null;
+  femaleList=voices.filter(v=>voiceGender(v.name)==='F');
+  if(!femaleList.length)femaleList=voices.filter(v=>voiceGender(v.name)==='');
+  maleList=voices.filter(v=>voiceGender(v.name)==='M');
+  currentVoice=femaleList[0]||voices[0]||null;
 }
 if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=loadVoices;setTimeout(loadVoices,150)}
-function speak(text,rate=.88){
-  if(!('speechSynthesis' in window)){toast('Meow chưa đọc được trên trình duyệt này, bạn thử Chrome giúp Meow nha');return}
-  speechSynthesis.cancel();
-  const u=new SpeechSynthesisUtterance(text);u.lang='zh-CN';u.rate=rate;u.pitch=1;if(currentVoice)u.voice=currentVoice;
-  speechSynthesis.speak(u);
+function stopAudio(){
+  if('speechSynthesis' in window)speechSynthesis.cancel();
+  if(window._dlgAudio){try{window._dlgAudio.pause()}catch(e){}window._dlgAudio=null}
 }
+function makeUtter(text,prof,rate){
+  prof=prof||{g:'F',k:0,p:1};
+  const u=new SpeechSynthesisUtterance(text);u.lang='zh-CN';u.rate=rate;
+  let v=null,pitch=prof.p;
+  if(prof.g==='M'){
+    if(maleList.length)v=maleList[prof.k%maleList.length];
+    else{v=currentVoice;pitch=Math.max(.5,prof.p*.75)}
+  }else{
+    v=femaleList.length?femaleList[prof.k%femaleList.length]:currentVoice;
+  }
+  if(v)u.voice=v;
+  u.pitch=pitch;
+  return u;
+}
+function speak(text,rate=.88,prof){
+  if(!('speechSynthesis' in window)){toast('Meow chưa đọc được trên trình duyệt này, bạn thử Chrome giúp Meow nha');return}
+  stopAudio();
+  speechSynthesis.speak(makeUtter(text,prof,rate));
+}
+/* Nghe cả đoạn: ưu tiên file mp3 cùng thư mục (bai12_hoithoai1.mp3, bai12_hoithoai2.mp3, ...).
+   Chưa có file thì tự đọc bằng giọng trình duyệt, mỗi nhân vật một giọng. */
 function speakDialogue(d){
-  speechSynthesis.cancel(); let i=0;
-  const next=()=>{if(i>=d.lines.length)return;const u=new SpeechSynthesisUtterance(d.lines[i][1]);u.lang='zh-CN';u.rate=.86;u.pitch=1;if(currentVoice)u.voice=currentVoice;u.onend=()=>{i++;setTimeout(next,180)};speechSynthesis.speak(u)};
-  next();
+  stopAudio();
+  const di=D.dialogues.indexOf(d);
+  const src=`bai${D.lesson}_hoithoai${di+1}.mp3`;
+  const tts=()=>{
+    if(!('speechSynthesis' in window)){toast('Meow chưa đọc được trên trình duyệt này, bạn thử Chrome giúp Meow nha');return}
+    let i=0;
+    const next=()=>{
+      if(i>=d.lines.length)return;
+      const ln=d.lines[i];
+      const u=makeUtter(ln[1],spkProfile(ln[0],d),.85);
+      u.onend=()=>{i++;setTimeout(next,450)};
+      speechSynthesis.speak(u);
+    };
+    next();
+  };
+  let fell=false;
+  const fb=()=>{if(fell)return;fell=true;window._dlgAudio=null;tts()};
+  try{
+    const a=new Audio(src);window._dlgAudio=a;
+    a.addEventListener('error',fb);
+    const p=a.play();if(p&&p.catch)p.catch(fb);
+  }catch(e){fb()}
 }
 function initDecor(){
   const layer=$('#stickers');
@@ -1614,7 +1684,7 @@ function renderDialogues(c){
   c.innerHTML=intro('Hội thoại trong bài','Giữ lại các đoạn hội thoại trong PDF. Có thể nghe từng câu hoặc nghe cả đoạn.')
     +D.dialogues.map((d,di)=>`<div class="dialogue"><div class="dialogue-head"><h3>${d.title}</h3><button class="btn primary" data-play="${di}"> Nghe cả đoạn</button></div>${d.lines.map((ln,li)=>`<div class="line"><div class="speaker">${ln[0]}</div><div class="cnline">${ln[1]}</div><button class="iconbtn" data-line="${di}-${li}">Nghe</button></div>`).join('')}</div>`).join('');
   $$('[data-play]').forEach(b=>b.onclick=()=>speakDialogue(D.dialogues[Number(b.dataset.play)]));
-  $$('[data-line]').forEach(b=>b.onclick=()=>{const [di,li]=b.dataset.line.split('-').map(Number);speak(D.dialogues[di].lines[li][1])});
+  $$('[data-line]').forEach(b=>b.onclick=()=>{const [di,li]=b.dataset.line.split('-').map(Number);speak(D.dialogues[di].lines[li][1],.85,spkProfile(D.dialogues[di].lines[li][0],D.dialogues[di]))});
 }
 function normalize(s){return String(s||'').replace(/[\s，。！？、；：,.!?;:]/g,'')}
 function renderGames(c){
