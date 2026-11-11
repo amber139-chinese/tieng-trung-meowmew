@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>量词 · Lượng từ tiếng Trung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@500;700&family=Be+Vietnam+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+:root{--paper:#F5ECD9;--card:#FFF9EC;--ink:#2A1A15;--mute:#7B6556;--red:#B0262B;--lac:#8E1B20;--gold:#C79A3B;--jade:#2E6F5E;--line:#E0CFA9;--ring:#F6DDCB;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1A1210;--card:#291B17;--ink:#F4E9D2;--mute:#BBA790;--red:#E65A5E;--lac:#7A171B;--gold:#E0B85A;--jade:#63B8A0;--line:#47332B;--ring:#3B2520;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#1A1210;--card:#291B17;--ink:#F4E9D2;--mute:#BBA790;--red:#E65A5E;--lac:#7A171B;--gold:#E0B85A;--jade:#63B8A0;--line:#47332B;--ring:#3B2520;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 "Be Vietnam Pro",system-ui,sans-serif}
+.han{font-family:"Noto Serif SC","Songti SC","SimSun",serif}
+.brush{font-family:"Ma Shan Zheng","Noto Serif SC","STKaiti",serif}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+header{background-color:var(--lac);color:#FBEFD5;text-align:center;padding:30px 18px 34px;border-bottom:5px double var(--gold);background-image:repeating-linear-gradient(45deg,rgba(255,215,140,.09) 0 2px,transparent 2px 16px),repeating-linear-gradient(-45deg,rgba(255,215,140,.09) 0 2px,transparent 2px 16px)}
+.seal{display:inline-grid;place-items:center;background:#FBEFD5;color:var(--lac);border-radius:8px;transform:rotate(-4deg);box-shadow:0 0 0 3px var(--lac),0 0 0 5px #FBEFD5}
+header .seal{width:86px;height:86px;font-size:36px;line-height:1.05;text-align:center;margin-bottom:14px}
+h1{margin:0;font:700 clamp(26px,6vw,40px)/1.2 "Noto Serif SC","Be Vietnam Pro",serif;letter-spacing:.02em}
+header p{margin:8px auto 0;max-width:46ch;color:#EBD6AC;font-size:15px}
+main{max-width:980px;margin:0 auto;padding:22px 16px 40px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 12px;scrollbar-width:thin}
+.chip{flex:none;border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:6px 15px;font-size:14px}
+.chip .han{color:var(--red);margin-right:6px;font-weight:700}
+.chip[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:#fff}
+.chip[aria-pressed="true"] .han{color:#FBE3B0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:14px;margin-top:6px}
+.card{position:relative;text-align:center;background:var(--card);border:1.5px solid var(--line);border-radius:10px;padding:16px 10px 14px;outline:1px solid var(--gold);outline-offset:-6px;transition:transform .15s,border-color .15s}
+.card:hover{transform:translateY(-3px);border-color:var(--red)}
+.card .c{display:block;font-size:50px;line-height:1.1;color:var(--red);font-weight:700}
+.py{display:block;color:var(--jade);font-weight:600;font-size:15px}
+.nm{display:block;font-size:13.5px;color:var(--mute);margin:2px 0 6px;min-height:40px}
+.em{display:flex;justify-content:center;gap:4px}.em svg{width:34px;height:34px}
+.back{border:1.5px solid var(--red);background:none;color:var(--red);border-radius:999px;padding:6px 16px;margin-bottom:16px;font-weight:600}
+.hero{display:flex;gap:20px;align-items:center;background:var(--card);border:1.5px solid var(--gold);border-radius:12px;padding:20px;margin-bottom:22px}
+.hero .seal{flex:none;width:112px;height:112px;font-size:70px;font-weight:700;background:var(--red);color:#FBEFD5;box-shadow:0 0 0 3px var(--red),0 0 0 5px var(--gold)}
+.hero h2{margin:2px 0 6px;font:700 24px/1.3 "Noto Serif SC","Be Vietnam Pro",serif}
+.hero p{margin:0 0 10px;color:var(--mute);max-width:60ch}
+.formula{display:inline-block;border:1.5px dashed var(--gold);border-radius:8px;padding:4px 12px;font-size:14px}
+.formula b{color:var(--red);font-size:18px}
+.exs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.ex{position:relative;text-align:center;background:var(--card);border:1.5px solid var(--line);border-radius:10px;padding:18px 12px 14px}
+.ill{width:116px;height:116px;margin:0 auto 10px;border-radius:50%;display:grid;place-items:center;font-size:60px;background:radial-gradient(circle,var(--ring) 55%,transparent 72%);border:2px solid var(--gold);box-shadow:0 0 0 5px var(--card),0 0 0 6px var(--line)}
+.ill svg{width:90px;height:90px}
+.hz{font-size:26px;font-weight:700;line-height:1.3}
+.hz b{color:var(--red)}
+.vi{font-weight:500}
+.spk{position:absolute;top:8px;right:8px;border:1px solid var(--line);background:var(--paper);border-radius:50%;width:34px;height:34px;font-size:15px}
+footer{text-align:center;color:var(--mute);font-size:13px;padding:6px 16px 26px}
+@media (max-width:560px){.hero{flex-direction:column;text-align:center}}
+@media (prefers-reduced-motion:reduce){.card{transition:none}}
+:root{--paper:#FBF8F2;--card:#fff;--ink:#1B2E35;--mute:#5B7078;--red:#D6453A;--lac:#143F4F;--gold:#F0B94B;--jade:#1F6479;--line:#DCE9EC;--ring:#FFF1CF}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--paper:#0E2F3C;--card:#16404F;--ink:#F3EBDD;--mute:#A9C4CC;--red:#EF6A4C;--lac:#0B2630;--jade:#58B4C8;--line:#245566;--ring:#1D5D70}}
+:root[data-theme=dark]{--paper:#0E2F3C;--card:#16404F;--ink:#F3EBDD;--mute:#A9C4CC;--red:#EF6A4C;--lac:#0B2630;--jade:#58B4C8;--line:#245566;--ring:#1D5D70}
+body::before{content:'';position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--paper)}
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--paper) 90%,transparent);border-bottom:1px solid var(--line);backdrop-filter:blur(16px)}
+.tb{width:min(1140px,calc(100% - 32px));margin:0 auto;min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--ink)}
+.logo-mark{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;color:#fff;background:linear-gradient(145deg,#D6453A,#F0806B);font:900 20px 'Noto Serif SC',serif;box-shadow:0 8px 18px rgba(214,69,58,.28)}
+.bt{display:flex;flex-direction:column;line-height:1.2;font-size:.82rem;font-weight:700;letter-spacing:.03em}
+.bc{font:700 .84rem 'Noto Serif SC',serif;color:var(--jade);margin-top:3px}
+.tbn{font-weight:700;font-size:.85rem;color:var(--jade);padding:7px 15px;border-radius:999px;background:color-mix(in srgb,var(--jade) 14%,transparent)}
+.lh{position:relative;overflow:hidden;color:#fff;isolation:isolate;padding:60px 0 150px;background:radial-gradient(circle at 85% 15%,rgba(88,180,200,.38),transparent 38%),radial-gradient(circle at 5% 100%,rgba(240,185,75,.2),transparent 34%),linear-gradient(135deg,#0E2F3C,#143F4F 55%,#1D5D70)}
+.lh:before{content:'量词';position:absolute;left:-1vw;bottom:-4.5rem;z-index:-1;font:900 clamp(9rem,22vw,18rem)/1 'Noto Serif SC',serif;color:rgba(255,255,255,.05);letter-spacing:.04em}
+.lh:after{content:'';position:absolute;inset:0;z-index:-1;background-image:radial-gradient(rgba(255,255,255,.1) 1.2px,transparent 1.4px);background-size:26px 26px;-webkit-mask-image:linear-gradient(180deg,#000,transparent 80%);mask-image:linear-gradient(180deg,#000,transparent 80%)}
+.lg{width:min(1140px,calc(100% - 40px));margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.kick{display:inline-block;color:#FFE9B8;font-weight:700;font-size:.8rem;letter-spacing:.16em;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22)}
+.lh h1{margin:20px 0 14px;font:700 clamp(2.1rem,5vw,3.8rem)/1.2 'Noto Serif SC','Be Vietnam Pro',serif;letter-spacing:-.01em}
+.lh .bn{display:block;margin-bottom:12px;font:700 clamp(.8rem,1.3vw,1rem)/1.3 'Be Vietnam Pro',sans-serif;letter-spacing:.14em;color:#58B4C8}
+.lh p{margin:0;max-width:46ch;color:#CFE6EC}
+.hl{color:#F0B94B;background:linear-gradient(transparent 82%,rgba(240,185,75,.35) 82%)}
+.btn{display:inline-flex;align-items:center;margin-top:26px;min-height:48px;padding:11px 26px;border-radius:999px;background:#EF6A4C;color:#fff;font-weight:700;text-decoration:none;box-shadow:0 12px 24px rgba(239,106,76,.32)}
+.hv{position:relative;height:340px}
+.hc{position:absolute;background:#fff;color:#1B2E35;border-radius:24px;box-shadow:0 18px 40px rgba(0,0,0,.28);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.hc b{font:700 2rem/1 'Noto Serif SC',serif}.hc i{font-style:normal;color:#1F6479;font-weight:600;font-size:.85rem;margin-top:4px}
+.hm{width:230px;height:270px;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-3deg);background:linear-gradient(160deg,#fff,#FFF6E0);border-radius:32px}
+.hm b{font-size:7rem;color:#143F4F}.hm i{font-size:1.2rem}
+.hm:before{content:'';position:absolute;inset:12px;border:1.5px dashed rgba(240,185,75,.8);border-radius:22px}
+.h1c,.h2c,.h3c{width:140px;height:92px;z-index:2}
+.h1c{left:0;top:10px;rotate:-7deg;animation:fl 6s ease-in-out infinite}.h2c{right:0;top:60px;rotate:6deg;animation:fl 7s ease-in-out -2s infinite}.h3c{left:14px;bottom:10px;rotate:5deg;animation:fl 6.5s ease-in-out -4s infinite}
+.sl{position:absolute;right:14px;bottom:2px;width:78px;height:78px;border-radius:16px;background:#D6453A;color:#fff;display:grid;place-items:center;font:900 2.6rem 'Noto Serif SC',serif;transform:rotate(8deg);box-shadow:0 14px 28px rgba(0,0,0,.35);z-index:3}
+@keyframes fl{0%,100%{translate:0 0}50%{translate:0 -10px}}
+.stamps-wrap{position:relative;z-index:3;margin-top:-100px}
+.postbook{--ink:#1B2E35;--mute:#5B7078;--jade:#1F6479;--card:#fff;--line:#DCE9EC;--red:#D6453A;--gold:#C79A3B;color:#1B2E35;width:min(1140px,calc(100% - 40px));margin:0 auto;border:9px solid transparent;border-radius:30px;padding:28px 28px 38px;box-shadow:0 26px 60px rgba(14,47,60,.2);background:linear-gradient(#FFFDF8,#FBF4E2) padding-box,repeating-linear-gradient(-45deg,#D6453A 0 16px,#fff 16px 32px,#2E8AA3 32px 48px,#fff 48px 64px) border-box}
+.postbook main{max-width:none;padding:0}
+.sk,.sec{display:flex;align-items:center;gap:10px}
+.sk{font-size:.78rem;color:var(--jade);font-weight:800;letter-spacing:.14em}.sk:before,.sec:before{content:'';width:26px;height:3px;border-radius:3px;background:#EF6A4C}
+.pbh h2{margin:8px 0 6px;font:700 clamp(1.45rem,2.6vw,2.05rem)/1.3 'Noto Serif SC',serif;color:#143F4F}.pbh p{margin:0 0 14px;color:var(--mute);font-size:.93rem}
+.sec{margin:28px 0 14px;font:700 1.2rem 'Noto Serif SC',serif;color:#143F4F}
+.grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:24px 18px;padding:10px 6px}
+.card,.ex{display:block;border:0;background:none;padding:0;outline:0;text-align:center;transform:rotate(var(--r,0deg));filter:drop-shadow(0 7px 8px rgba(20,63,79,.22));transition:transform .35s cubic-bezier(.2,.8,.2,1),filter .35s}
+.card:nth-child(3n+1),.ex:nth-child(3n+1){--r:-2deg}.card:nth-child(3n+2),.ex:nth-child(3n+2){--r:1.6deg}.card:nth-child(3n),.ex:nth-child(3n){--r:-1deg}
+.card:hover,.ex:hover{transform:rotate(0) translateY(-8px) scale(1.04);border:0;filter:drop-shadow(0 18px 18px rgba(20,63,79,.3))}
+.face{--pm:radial-gradient(circle at 50% 0,#0000 4.5px,#000 5px) center top/13px 100% repeat-x,radial-gradient(circle at 50% 100%,#0000 4.5px,#000 5px) center bottom/13px 100% repeat-x,radial-gradient(circle at 0 50%,#0000 4.5px,#000 5px) left center/100% 13px repeat-y,radial-gradient(circle at 100% 50%,#0000 4.5px,#000 5px) right center/100% 13px repeat-y;background:#FFFEFA;color:#1B2E35;padding:11px 11px 10px;-webkit-mask:var(--pm);-webkit-mask-composite:source-in;mask:var(--pm);mask-composite:intersect}
+.art{position:relative;aspect-ratio:4/5;border-radius:3px;overflow:hidden;box-shadow:0 0 0 1.5px rgba(20,63,79,.28);display:grid;place-items:center}
+.art:after{content:'';position:absolute;inset:3px;border:1px solid rgba(255,255,255,.6);border-radius:2px;pointer-events:none}
+.art svg{width:78%;height:auto;position:relative;z-index:1;filter:drop-shadow(0 2px 3px rgba(20,63,79,.15))}
+.wm{position:absolute;right:-4px;bottom:-18px;font:900 7.8rem/1 'Noto Serif SC',serif;color:rgba(255,255,255,.38);text-shadow:0 2px 8px rgba(0,0,0,.08)}
+.cap{padding:9px 2px 0;display:grid;gap:2px;text-align:center}
+.cn{font:900 1.3rem/1.15 'Noto Serif SC',serif;color:#143F4F;letter-spacing:.06em}.cn b{color:#D6453A}
+.vi2{font-size:.74rem;line-height:1.3;color:#5B7078;font-weight:600}
+.val{justify-self:center;font-weight:800;font-size:.85rem;color:#D6453A;border:1.5px solid #D6453A;border-radius:6px;padding:1px 8px;margin-top:3px}
+.exs{grid-template-columns:repeat(auto-fill,minmax(172px,1fr));gap:24px 18px;padding:8px 6px}
+.ex .art{aspect-ratio:1/1}.ex .art svg{width:72%}.ex .py{font-size:.85rem}
+.ex .spk{top:19px;right:19px;z-index:3;background:rgba(255,255,255,.85)}
+.hero{background:linear-gradient(135deg,#143F4F,#1D5D70);color:#fff;border:0;border-radius:22px}
+.hero h2{color:#fff}.hero p{color:#CFE6EC}.hero .py{color:#FFE9B8}.formula{color:#fff}.formula b{color:#F0B94B}
+.mc{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.mchip{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:10px 14px;display:grid;gap:1px}
+.mh{font:700 1.2rem 'Noto Serif SC',serif;color:#143F4F}.mh b{color:#D6453A}
+.ft{margin-top:64px;padding:44px 16px 50px;text-align:center;color:#CFE6EC;font-size:.95rem;background:linear-gradient(135deg,#143F4F,#0E2F3C);position:relative;overflow:hidden}
+.ft:before{content:'喵';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font:900 12rem/1 'Noto Serif SC',serif;color:rgba(255,255,255,.05)}
+.ft b{position:relative;display:block;font:700 1.35rem 'Noto Serif SC',serif;margin-bottom:6px;color:#fff}.ft small{position:relative;display:block;margin-top:14px;opacity:.7}
+@media(max-width:820px){.lg{grid-template-columns:1fr}.hv{display:none}.lh{padding:44px 0 120px}.stamps-wrap{margin-top:-84px}.postbook{padding:20px 14px 28px;border-width:7px;border-radius:24px}}
+@media(prefers-reduced-motion:reduce){.h1c,.h2c,.h3c{animation:none}.card,.ex{transition:none}}
+</style>
+</head>
+<body>
+<div class='topbar'><div class='tb'><a class='logo' href='index.html'><span class='logo-mark'>喵</span><div class='bt'><span>TIẾNG TRUNG MEOW MEOW</span><span class='bc'>中文课堂</span></div></a><span class='tbn'><a href="kien-thuc-can-nho.html" style="color:inherit;text-decoration:none">← Kiến thức cần nhớ</a> · 量词</span></div></div>
+<div class='lh'><div class='lg'><div><div class='kick'>MEOW MEOW 量词</div><h1><span class='bn'>Tiếng Trung Meow Meow</span>Cùng Meow Meow <span class='hl'>học lượng từ</span></h1><p>Lượng từ (量词) chỉ đơn vị số lượng của người, sự vật hoặc động tác. Mỗi con tem là một lượng từ: cách dùng, ví dụ minh hoạ và danh từ hay đi cùng.</p><a class='btn' href='#tem'>Xem bộ tem lượng từ</a></div><div class='hv' aria-hidden='true'><div class='hc h1c'><b>一只</b><i>yì zhī</i></div><div class='hc h2c'><b>一杯</b><i>yì bēi</i></div><div class='hc h3c'><b>一本</b><i>yì běn</i></div><div class='hc hm'><b>量</b><i>liàng</i></div><div class='sl'>喵</div></div></div></div>
+<div class='stamps-wrap' id='tem'><div class='postbook'><div class='pbh'><div class='sk'>邮册 · TEM LƯỢNG TỪ</div><h2>Bộ sưu tập lượng từ</h2><p>Bấm vào một con tem để xem cách dùng và ví dụ.</p></div><main id="app"></main></div></div>
+<footer class='ft'><b>中文学习空间</b>Học cùng Meow Meow, vui quá là vui<small>© 2026 Tiếng Trung Meow Meow · Cô Nguyễn Thu Hương</small></footer>
+<script>
+const G={all:["全","Tất cả"],pb:["通","Phổ biến"],dv:["动","Động vật"],vt:["物","Đồ vật"],an:["饮","Ăn uống"],pt:["行","Xe & nơi chốn"],tn:["自","Thiên nhiên"],ng:["人","Con người"]};
+const D=[
+["个","ge","pb","Lượng từ vạn năng","Lượng từ phổ biến nhất. Dùng cho người, trái cây, đồ ăn, thời gian, ý tưởng… khi không có lượng từ riêng. Nhiều danh từ có lượng từ riêng vẫn có thể dùng 个 trong khẩu ngữ.",[["人","yí ge rén","Một người","🧑"],["苹果","yí ge píngguǒ","Một quả táo","🍎"],["鸡蛋","yí ge jīdàn","Một quả trứng","🥚"],["问题","yí ge wèntí","Một câu hỏi","❓"]]],
+["只","zhī","dv","Động vật nhỏ · một chiếc trong cặp","Dùng cho thú nhỏ, chim, côn trùng; một chiếc trong cặp (giày, mắt, tay); đồng hồ, thuyền nhỏ.",[["猫","yì zhī māo","Một con mèo","🐱"],["狗","yì zhī gǒu","Một con chó","🐶"],["鸟","yì zhī niǎo","Một con chim","🐦"],["鸡","yì zhī jī","Một con gà","🐔"]]],
+["头","tóu","dv","Gia súc, thú lớn","Dùng cho vật nuôi và thú to: bò, lợn, cừu, lừa, lạc đà, voi, sư tử, báo…",[["猪","yì tóu zhū","Một con lợn","🐷"],["牛","yì tóu niú","Một con bò","🐮"],["大象","yì tóu dàxiàng","Một con voi","🐘"],["狮子","yì tóu shīzi","Một con sư tử","🦁"]]],
+["匹","pǐ","dv","Ngựa, cuộn vải","Dùng cho ngựa; cũng dùng cho cuộn vải/lụa và “một con sói đơn độc” (一匹狼).",[["马","yì pǐ mǎ","Một con ngựa","🐴"],["狼","yì pǐ láng","Một con sói","🐺"],["布","yì pǐ bù","Một cuộn vải","🧵"]]],
+["条","tiáo","dv","Vật dài, mảnh, mềm","Dùng cho rắn, cá, chó; đồ dài như quần, váy, khăn, sông, đường; cũng dùng cho “một mạng” (一条命), “một lý do” (一条理由).",[["蛇","yì tiáo shé","Một con rắn","🐍"],["鱼","yì tiáo yú","Một con cá","🐟"],["裤子","yì tiáo kùzi","Một chiếc quần","👖"],["河","yì tiáo hé","Một dòng sông","🏞️"]]],
+["本","běn","vt","Sách vở","Dùng cho sách, từ điển, tạp chí, sổ tay — những thứ đóng thành quyển.",[["书","yì běn shū","Một quyển sách","📖"],["词典","yì běn cídiǎn","Một quyển từ điển","📚"],["杂志","yì běn zázhì","Một cuốn tạp chí","📰"]]],
+["张","zhāng","vt","Vật có mặt phẳng","Dùng cho giấy, ảnh, vé, bản đồ; giường, bàn; mặt, miệng (一张脸, 一张嘴).",[["纸","yì zhāng zhǐ","Một tờ giấy","📄"],["床","yì zhāng chuáng","Một cái giường","🛏️"],["照片","yì zhāng zhàopiàn","Một tấm ảnh","🖼️"],["票","yì zhāng piào","Một tấm vé","🎫"]]],
+["把","bǎ","vt","Vật có cán, tay cầm","Dùng cho ô, ghế, dao, chìa khoá, quạt, ấm; cũng chỉ nắm (一把米), bó nhỏ (一把筷子).",[["伞","yì bǎ sǎn","Một cái ô","☂️"],["椅子","yì bǎ yǐzi","Một cái ghế","🪑"],["刀","yì bǎ dāo","Một con dao","🔪"],["钥匙","yì bǎ yàoshi","Một chiếc chìa khoá","🔑"]]],
+["件","jiàn","vt","Quần áo, sự việc","Dùng cho quần áo (áo, áo khoác), hành lý, quà tặng và sự việc (一件事).",[["衣服","yí jiàn yīfu","Một bộ quần áo","👕"],["外套","yí jiàn wàitào","Một chiếc áo khoác","🧥"],["事","yí jiàn shì","Một việc","📌"],["礼物","yí jiàn lǐwù","Một món quà","🎁"]]],
+["双","shuāng","vt","Đôi, cặp","Dùng cho những thứ đi thành đôi: giày, đũa, găng tay, tất, mắt, tay.",[["鞋","yì shuāng xié","Một đôi giày","👟"],["筷子","yì shuāng kuàizi","Một đôi đũa","🥢"],["手套","yì shuāng shǒutào","Một đôi găng tay","🧤"],["袜子","yì shuāng wàzi","Một đôi tất","🧦"]]],
+["杯","bēi","an","Cốc, ly","Dùng cho đồ uống đựng trong cốc hoặc ly: trà, cà phê, nước, sữa, bia…",[["茶","yì bēi chá","Một tách trà","🍵"],["咖啡","yì bēi kāfēi","Một ly cà phê","☕"],["水","yì bēi shuǐ","Một cốc nước","💧"],["牛奶","yì bēi niúnǎi","Một ly sữa","🥛"]]],
+["碗","wǎn","an","Bát","Dùng cho món đựng trong bát: cơm, mì, canh, cháo.",[["饭","yì wǎn fàn","Một bát cơm","🍚"],["面","yì wǎn miàn","Một bát mì","🍜"],["汤","yì wǎn tāng","Một bát canh","🥣"]]],
+["辆","liàng","pt","Xe có bánh","Dùng cho ô tô, xe đạp, xe buýt, xe máy, taxi, xe tải…",[["车","yí liàng chē","Một chiếc xe","🚗"],["自行车","yí liàng zìxíngchē","Một chiếc xe đạp","🚲"],["公共汽车","yí liàng gōnggòng qìchē","Một chiếc xe buýt","🚌"],["摩托车","yí liàng mótuōchē","Một chiếc xe máy","🛵"]]],
+["座","zuò","pt","Vật to, đứng yên","Dùng cho núi, cầu, tháp, thành phố, nhà máy, bia đá — vật lớn cố định.",[["山","yí zuò shān","Một ngọn núi","⛰️"],["桥","yí zuò qiáo","Một cây cầu","🌉"],["塔","yí zuò tǎ","Một toà tháp","🗼"],["城市","yí zuò chéngshì","Một thành phố","🏙️"]]],
+["家","jiā","pt","Cơ sở kinh doanh","Dùng cho cửa hàng, nhà hàng, bệnh viện, ngân hàng, công ty, khách sạn.",[["商店","yì jiā shāngdiàn","Một cửa hàng","🏪"],["餐厅","yì jiā cāntīng","Một nhà hàng","🍽️"],["医院","yì jiā yīyuàn","Một bệnh viện","🏥"],["银行","yì jiā yínháng","Một ngân hàng","🏦"]]],
+["朵","duǒ","tn","Hoa, mây","Dùng cho hoa và đám mây — những thứ có dáng cụm tròn mềm.",[["花","yì duǒ huā","Một bông hoa","🌸"],["玫瑰","yì duǒ méiguī","Một đoá hồng","🌹"],["云","yì duǒ yún","Một đám mây","☁️"]]],
+["棵","kē","tn","Cây cối","Dùng cho cây và rau có thân: cây, thông, cải thảo, dưa chuột…",[["树","yì kē shù","Một cái cây","🌳"],["松树","yì kē sōngshù","Một cây thông","🌲"],["白菜","yì kē báicài","Một cây cải thảo","🥬"]]],
+["位","wèi","ng","Người (lịch sự)","Dùng khi muốn thể hiện sự tôn trọng: thầy cô, bác sĩ, khách, đại biểu.",[["老师","yí wèi lǎoshī","Một thầy giáo, cô giáo","👩‍🏫"],["医生","yí wèi yīshēng","Một bác sĩ","🧑‍⚕️"],["客人","yí wèi kèrén","Một vị khách","🙋"]]],
+["块","kuài","vt","Cục, miếng, hòn","Dùng cho vật dạng khối/miếng: đường, đá, gạch, thịt, tiền, xà phòng, bánh…",[["糖","yí kuài táng","Một cục đường","🍬"],["石头","yí kuài shítou","Một hòn đá","🪨"],["肉","yí kuài ròu","Một miếng thịt","🥩"],["钱","yí kuài qián","Một đồng tiền","💵"]]],
+["根","gēn","vt","Sợi, que, cọng dài","Dùng cho vật dài mảnh: tóc, dây, que diêm, nến, hành, chuối, bánh quẩy…",[["头发","yì gēn tóufa","Một sợi tóc","💇"],["绳子","yì gēn shéngzi","Một sợi dây","🪢"],["香蕉","yì gēn xiāngjiāo","Một quả chuối","🍌"],["火柴","yì gēn huǒchái","Một que diêm","🔥"]]],
+["颗","kē","tn","Viên, hạt tròn nhỏ","Khác với 棵 (cây). Dùng cho vật tròn nhỏ: sao, răng, hạt, ngọc, trái tim…",[["星星","yì kē xīngxing","Một ngôi sao","⭐"],["牙齿","yì kē yáchǐ","Một cái răng","🦷"],["心","yì kē xīn","Một trái tim","❤"],["种子","yì kē zhǒngzi","Một hạt giống","🌱"]]],
+["片","piàn","vt","Miếng mỏng, phiến","Dùng cho vật mỏng dẹt: lá, mây, bánh mì, thuốc, môi…",[["叶子","yí piàn yèzi","Một phiến lá","🍃"],["云","yí piàn yún","Một đám mây","☁"],["面包","yí piàn miànbāo","Một lát bánh mì","🍞"]]],
+["顶","dǐng","vt","Mũ, màn","Dùng cho mũ nón, màn mùng, kiệu…",[["帽子","yì dǐng màozi","Một cái mũ","🎩"],["蚊帐","yì dǐng wénzhàng","Một cái màn","🛏️"]]],
+["套","tào","vt","Bộ, bộ đồ","Dùng cho bộ quần áo, bộ nội thất, bộ đồ ăn, bộ thiết bị…",[["衣服","yí tào yīfu","Một bộ quần áo","👕"],["西装","yí tào xīzhuāng","Một bộ âu phục","👔"],["家具","yí tào jiājù","Một bộ nội thất","🪑"]]],
+["场","chǎng","pt","Trận, buổi, màn","Dùng cho mưa tuyết, bệnh, chiến tranh; phim, bóng đá, biểu diễn…",[["雨","yì chǎng yǔ","Một trận mưa","🌧"],["电影","yì chǎng diànyǐng","Một buổi chiếu phim","🎬"],["球赛","yì chǎng qiúsài","Một trận bóng","⚽"]]],
+["部","bù","vt","Bộ phim, tác phẩm","Dùng cho phim, sách/tác phẩm, điện thoại (一部手机), đôi khi xe hơi.",[["电影","yí bù diànyǐng","Một bộ phim","🎬"],["手机","yí bù shǒujī","Một chiếc điện thoại","📱"],["著作","yí bù zhùzuò","Một tác phẩm","📖"]]],
+["名","míng","ng","Người (nghề nghiệp)","Dùng khi danh từ mang tính nghề nghiệp, chức danh: bác sĩ, luật sư, học sinh…",[["医生","yì míng yīshēng","Một bác sĩ","🧑‍⚕️"],["学生","yì míng xuésheng","Một học sinh","🧑"],["律师","yì míng lǜshī","Một luật sư","👔"]]],
+["口","kǒu","vt","Giếng, nồi lớn","Dùng cho giếng, nồi lớn, chum vại; cũng đếm thành viên gia đình (三口人).",[["井","yì kǒu jǐng","Một cái giếng","🕳️"],["锅","yì kǒu guō","Một cái nồi","🍲"]]],
+["间","jiān","pt","Căn phòng","Dùng cho phòng, nhà (một gian): phòng ngủ, phòng học, văn phòng…",[["房子","yì jiān fángzi","Một căn nhà","🏠"],["屋子","yì jiān wūzi","Một căn phòng","🚪"]]],
+["所","suǒ","pt","Trường, viện","Dùng cho trường học, bệnh viện, viện nghiên cứu…",[["学校","yì suǒ xuéxiào","Một ngôi trường","🏫"],["医院","yì suǒ yīyuàn","Một bệnh viện","🏥"]]],
+["架","jià","pt","Máy bay","Dùng cho máy bay, thang, máy ảnh (đôi khi).",[["飞机","yí jià fēijī","Một chiếc máy bay","✈"]]],
+["台","tái","vt","Máy móc, thiết bị","Dùng cho TV, máy tính, điều hòa, máy ảnh…",[["电视","yì tái diànshì","Một cái TV","📺"],["电脑","yì tái diànnǎo","Một máy tính","💻"]]],
+["滴","dī","an","Giọt","Dùng cho chất lỏng nhỏ: nước, nước mắt, máu, mồ hôi, dầu…",[["水","yì dī shuǐ","Một giọt nước","💧"],["眼泪","yì dī yǎnlèi","Một giọt nước mắt","😢"]]],
+["粒","lì","tn","Hạt nhỏ","Dùng cho hạt gạo, hạt giống, viên thuốc, hạt cát…",[["米","yì lì mǐ","Một hạt gạo","🍚"],["种子","yì lì zhǒngzi","Một hạt giống","🌱"]]],
+["扇","shàn","vt","Cánh cửa, cửa sổ","Dùng cho cửa và cửa sổ (đếm theo cánh).",[["门","yì shàn mén","Một cánh cửa","🚪"],["窗户","yì shàn chuānghu","Một cái cửa sổ","🪟"]]],
+["副","fù","vt","Đôi kính, bộ bài","Dùng cho kính mắt, găng (đôi khi), bộ bài, vợt…",[["眼镜","yí fù yǎnjìng","Một cặp kính","👓"],["手套","yí fù shǒutào","Một đôi găng tay","🧤"]]],
+["顿","dùn","an","Bữa ăn","Dùng cho bữa ăn: bữa sáng, bữa trưa, bữa tối…",[["饭","yí dùn fàn","Một bữa cơm","🍚"],["早餐","yí dùn zǎocān","Một bữa sáng","🥐"]]],
+["份","fèn","an","Phần, suất","Dùng cho phần ăn, tài liệu, quà, báo…",[["早餐","yí fèn zǎocān","Một phần ăn sáng","🥐"],["报纸","yí fèn bàozhǐ","Một tờ báo","📰"]]],
+];
+
+const K="#1B2E35",
+S=b=>`<svg viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fff" stop-opacity=".35"/><stop offset="100%" stop-color="#000" stop-opacity=".08"/></linearGradient><filter id="sh"><feDropShadow dx="0" dy="1.5" stdDeviation="1.2" flood-opacity=".22"/></filter></defs><g filter="url(#sh)">${b}</g></svg>`,
+c=(x,y,r,f,o="")=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${f||K}" ${o}/>`,
+el=(x,y,rx,ry,f,o="")=>`<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="${f}" ${o}/>`,
+p=(d,f,o="")=>`<path d="${d}" fill="${f}" ${o}/>`,
+ln=(d,s,w,o="")=>`<path d="${d}" fill="none" stroke="${s}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" ${o}/>`,
+r=(x,y,w,h,f,o="")=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${f}" ${o}/>`,
+BL='stroke="#2E6A8A" stroke-width="1.8" stroke-linejoin="round"';
+
+const I={
+/* —— động vật —— */
+"🐱":S(
+  el(32,54,17,7,"#C8C0D0")+
+  p("M14 22L10 4L26 16Z","#E8E4EC")+p("M50 22L54 4L38 16Z","#E8E4EC")+
+  p("M16 18L12 6L24 16Z","#F5A8B8")+p("M48 18L52 6L40 16Z","#F5A8B8")+
+  c(32,30,16.5,"#EDE9F2")+
+  el(32,40,12,10,"#EDE9F2")+
+  el(32,36,10,8,"#F7F4FA")+
+  el(24,28,3.2,3.8,K)+el(40,28,3.2,3.8,K)+
+  c(25.2,27,1.1,"#fff")+c(41.2,27,1.1,"#fff")+
+  c(24.4,28.4,0.7,"#fff")+c(40.4,28.4,0.7,"#fff")+
+  p("M29 34.5H35L32 38Z","#E86C7A")+
+  ln("M32 38V42M27 43.5Q32 47.5 32 42Q32 47.5 37 43.5",K,1.5)+
+  ln("M14 34L2 28M14 38L2 44M50 34L62 28M50 38L62 44","#9A94A8",1.6)+
+  ln("M30 16V26M25 18L27 26M35 18L33 26","#B0A8B8",1.7)+
+  el(18,36,3,2,"#F5A8B8",'opacity=".55"')+el(46,36,3,2,"#F5A8B8",'opacity=".55"')
+),
+"🐶":S(
+  el(32,54,15,7,"#C48A4A")+
+  el(14,28,6.5,13,"#6B3E24",'transform="rotate(12 14 28)"')+
+  el(50,28,6.5,13,"#6B3E24",'transform="rotate(-12 50 28)"')+
+  c(32,30,15.5,"#E8B36B")+el(32,40,10,8,"#F6DDB5")+
+  c(24,27,2.6)+c(40,27,2.6)+
+  c(25,26,0.9,"#fff")+c(41,26,0.9,"#fff")+
+  el(32,34,4,3,K)+
+  ln("M32 37V42M27 43Q32 47 32 42Q32 47 37 43",K,1.3)+
+  p("M29 44Q32 52 35 44Z","#E86C7A")
+),
+"🐦":S(
+  ln("M10 56H54","#8B5A2B",3)+
+  p("M14 36L2 26L6 42Z","#1F6FA8")+
+  ln("M26 48V56M34 48V56","#E89A2E",2.8)+
+  el(30,36,16,13,"#3D9FD4")+el(27,42,10,7,"#B5E0F5")+
+  c(42,26,9.5,"#3D9FD4")+
+  p("M50 22L60 28L50 32Z","#E89A2E")+
+  c(44,24,2.1)+c(44.8,23.2,0.7,"#fff")+
+  p("M24 32Q42 30 48 44Q32 48 24 38Z","#1F6FA8")
+),
+"🐔":S(
+  p("M14 38L6 24L20 32Z","#E5D5B5")+
+  ln("M27 52V60M37 52V60","#E89A2E",2.8)+
+  el(32,42,17,13,"#FFFDF8",'stroke="#D9C9A8" stroke-width="1.4"')+
+  p("M20 38Q30 32 40 44Q28 52 20 38Z","#F2DFB8")+
+  el(32,24,10,10,"#FFFDF8",'stroke="#D9C9A8" stroke-width="1.4"')+
+  p("M24 16Q24 8 29 12Q32 4 35 12Q40 8 40 16Z","#D92B36")+
+  p("M40 22L50 26L40 30Z","#E89A2E")+
+  el(36,32,2.6,3.8,"#D92B36")+c(34,22,2)
+),
+"🐷":S(
+  p("M14 22L18 8L28 18Z","#F0A0B4")+p("M50 22L46 8L36 18Z","#F0A0B4")+
+  c(32,34,19,"#F5B0C2")+
+  c(16,38,3.6,"#E888A0")+c(48,38,3.6,"#E888A0")+
+  el(32,40,10,7.5,"#F9C8D4")+
+  el(28,40,1.8,2.8,"#B85070")+el(36,40,1.8,2.8,"#B85070")+
+  c(24,28,2.5)+c(40,28,2.5)+
+  c(25,27,0.8,"#fff")+c(41,27,0.8,"#fff")
+),
+"🐮":S(
+  ln("M20 14Q14 4 8 8M44 14Q50 4 56 8","#D4B06A",4)+
+  el(10,26,7,4,"#FFFDF8",'transform="rotate(-22 10 26)" stroke="#D4C4A0" stroke-width="1.2"')+
+  el(54,26,7,4,"#FFFDF8",'transform="rotate(22 54 26)" stroke="#D4C4A0" stroke-width="1.2"')+
+  el(32,32,15.5,18,"#FFFDF8",'stroke="#D4C4A0" stroke-width="1.5"')+
+  p("M18 20Q28 10 34 18Q30 28 18 26Z",K)+
+  el(32,44,11,8,"#F0B0A8")+
+  el(27,44,2,2.4,"#A84848")+el(37,44,2,2.4,"#A84848")+
+  c(24,30,2.4)+c(40,30,2.4)
+),
+"🐘":S(
+  el(10,30,9,15,"#7A8A9C")+el(54,30,9,15,"#7A8A9C")+
+  el(32,30,16,18,"#9AABC0")+
+  ln("M32 36V50Q32 58 42 56","#9AABC0",9)+
+  ln("M22 42Q14 46 16 54M42 42Q50 46 48 54","#FFFDF8",3)+
+  c(24,26,2.4)+c(40,26,2.4)+
+  c(25,25,0.8,"#fff")+c(41,25,0.8,"#fff")+
+  el(32,34,6,4,"#7A8A9C")
+),
+"🦁":S(
+  c(32,32,26,"#D4892A")+
+  c(14,14,5.5,"#F0C56A")+c(50,14,5.5,"#F0C56A")+
+  c(32,36,16.5,"#F0C56A")+
+  el(32,44,9,7,"#FBE8C8")+
+  p("M28 38H36L32 43Z","#6B3A22")+
+  ln("M32 43V47M27 48Q32 52 32 47Q32 52 37 48",K,1.3)+
+  c(24,32,2.4)+c(40,32,2.4)+
+  c(25,31,0.8,"#fff")+c(41,31,0.8,"#fff")
+),
+"🐴":S(
+  ln("M20 12Q8 30 20 56M44 12Q56 30 44 56",K,5.5)+
+  p("M22 14L20 2L30 10Z","#9A5A32")+p("M42 14L44 2L34 10Z","#9A5A32")+
+  el(32,32,13,20,"#A86838")+el(32,30,4,14,"#F5E8D4")+
+  el(32,50,10,7,"#C88858")+
+  el(28,50,1.6,2.2,K)+el(36,50,1.6,2.2,K)+
+  c(22,26,2.3)+c(42,26,2.3)
+),
+"🐺":S(
+  p("M12 26L10 4L28 16Z","#6B7888")+p("M52 26L54 4L36 16Z","#6B7888")+
+  p("M10 28Q12 16 32 14Q52 16 54 28Q52 46 32 58Q12 46 10 28Z","#8A96A4")+
+  p("M22 40Q32 32 42 40Q38 54 32 56Q26 54 22 40Z","#E8ECF0")+
+  el(32,44,4,2.8,K)+
+  el(24,30,3.4,2,"#F0C94C",'transform="rotate(12 24 30)"')+
+  el(40,30,3.4,2,"#F0C94C",'transform="rotate(-12 40 30)"')+
+  c(24,30,1.2)+c(40,30,1.2)+
+  ln("M32 46.5V51M27 52Q32 56 32 51Q32 56 37 52",K,1.3)
+),
+"🐍":S(
+  ln("M10 54C8 36 30 46 34 34C38 22 20 26 32 14","#3D9A5C",10)+
+  ln("M10 54C8 36 30 46 34 34C38 22 20 26 32 14","#B8E8A8",2.2,'stroke-dasharray="0.2 8"')+
+  el(32,14,8,6.5,"#3D9A5C")+
+  c(29,12.5,1.8)+c(35,12.5,1.8)+
+  ln("M32 8V2M32 2L28.5 0M32 2L35.5 0","#D92B36",1.5)
+),
+"🐟":S(
+  p("M50 32L62 18V46Z","#D45A20")+
+  el(30,32,20,13,"#E87830")+
+  p("M22 20Q32 10 42 20L36 28Z","#D45A20")+
+  ln("M20 24Q16 32 20 40","#D45A20",1.8)+
+  ln("M28 26Q32 32 28 38M36 26Q40 32 36 38","#FFC898",1.6)+
+  c(14,30,3.2,"#fff")+c(13.4,30,1.6)
+),
+
+/* —— đồ vật / sách / giấy —— */
+"🧵":S(
+  p("M14 46H34L30 58H10Z","#C02820")+
+  el(48,34,7,14,"#E04A40")+
+  p("M12 18H50V48H12Z","#C02820")+
+  p("M20 18H24V48H20Z","#E0B85A")+p("M32 18H36V48H32Z","#E0B85A")+
+  ln("M48 26Q44 32 48 36Q52 40 48 44","#8A1810",1.8)
+),
+"👖":S(
+  p("M16 6H48L52 56H36L32 26L28 56H12Z","#2E6AA8")+
+  p("M16 6H48V14H16Z","#1E4A7A")+
+  c(32,10,1.6,"#E0B85A")+
+  ln("M32 14V26","#1E4A7A",1.6)+
+  ln("M16 50H30M38 50H50","#1E4A7A",1.4)
+),
+"📄":S(
+  p("M14 4H40L54 18V58H14Z","#FFFDF8",'stroke="#C4A878" stroke-width="1.8" stroke-linejoin="round"')+
+  p("M40 4V18H54Z","#EDE0C8")+
+  ln("M22 28H46M22 36H46M22 44H38","#C4B090",2.2)
+),
+"📖":S(
+  p("M4 18V54Q20 48 32 56Q44 48 60 54V18Z","#8A1A18")+
+  p("M32 18Q20 10 6 16V50Q20 44 32 52Q44 44 58 50V16Q44 10 32 18Z","#FFFDF8")+
+  ln("M32 18V52","#C9A24A",1.6)+
+  ln("M12 26Q20 22 28 28M12 34Q20 30 28 36M12 42Q20 38 28 44M36 28Q44 22 52 26M36 36Q44 30 52 34M36 44Q44 38 52 42","#C4B090",1.5)
+),
+"📚":S(
+  p("M8 42H56V56H8Z","#1F6B5A")+ln("M16 42V56M48 42V56","#E0B85A",1.6)+
+  p("M12 28H54V42H12Z","#B02028")+ln("M20 28V42M46 28V42","#E0B85A",1.6)+
+  p("M6 14H48V28H6Z","#C9A24A")+ln("M14 14V28M40 14V28","#8A1A18",1.6)
+),
+"📰":S(
+  p("M14 6H50V58H14Z","#FFFDF8",BL)+
+  p("M18 12H46V22H18Z","#B02028")+
+  p("M18 26H46V42H18Z","#6A9EC8")+
+  c(40,32,3.5,"#F0C94C")+
+  p("M18 42L28 32L36 42Z","#4A8A68")+
+  ln("M18 48H46M18 54H38","#C4B090",2)
+),
+"🛏":S(
+  p("M4 14H14V54H4Z","#7A4A28")+
+  p("M12 46H58V54H12Z","#9A6238")+
+  p("M12 32H58V48H12Z","#3A9AB8")+
+  p("M14 24Q14 18 22 18H34Q38 18 38 24V34H14Z","#FFFDF8",'stroke="#D0E0E8" stroke-width="1.4"')+
+  ln("M40 32V48","#1F6A88",2)
+),
+"🖼":S(
+  p("M6 8H58V56H6Z","#C9A24A")+
+  p("M12 14H52V50H12Z","#B8D8F0")+
+  c(42,26,5,"#F0C94C")+
+  p("M12 50L26 30L38 42L44 34L52 50Z","#4A8A68")
+),
+"🎫":S(
+  p("M4 16H60V28Q52 32 60 36V48H4V36Q12 32 4 28Z","#D6453A")+
+  ln("M42 20V44","#fff",2,'stroke-dasharray="3.5 3.5"')+
+  ln("M12 26H34M12 36H28","#FBE3B0",2.5)
+),
+
+/* —— đồ có cán / chìa / ô —— */
+"☂":S(
+  p("M6 34Q8 8 32 6Q56 8 58 34Q50 28 44 34Q38 28 32 34Q26 28 20 34Q14 28 6 34Z","#D6453A")+
+  p("M32 6Q24 20 32 34Q40 20 32 6Z","#FBF1DC")+
+  ln("M32 34V54Q32 60 26 58",K,3.2)
+),
+"🪑":S(
+  p("M18 4H46V30H18Z","#C88850")+
+  ln("M26 10V28M32 10V28M38 10V28","#9A6238",2.2)+
+  p("M12 30H52V40H12Z","#9A6238")+
+  ln("M18 40V58M46 40V58","#7A4A28",4.5)
+),
+"🔪":S(
+  p("M6 12H44Q56 12 56 26V42H6Z","#C8D4DC")+
+  ln("M12 20H40","#fff",2.2)+
+  c(16,32,2.8,"#7A8898")+
+  p("M56 22H62V38H56Z","#7A3A24")
+),
+"🔑":S(
+  c(18,24,13.5,"#E0B85A")+c(18,24,6,"#F8F0D8")+
+  ln("M28 34L56 58M44 48L50 42M50 54L56 48","#E0B85A",5.5)
+),
+
+/* —— giày / đũa / găng / tất —— */
+"👟":S(
+  p("M4 40Q4 30 14 30L22 36L34 30Q56 32 60 48V54H4Z","#2E6AA8")+
+  p("M44 38Q56 40 60 48H44Z","#FBF8F2")+
+  p("M4 50H60V56H4Z","#F0E8D8")+
+  ln("M22 36L26 42M28 34L32 40","#fff",2.2)
+),
+"🥢":S(
+  ln("M10 6L48 58","#7A4A28",4.5)+
+  ln("M20 4L58 54","#9A6238",4.5)+
+  ln("M10 6L14 12M20 4L24 10","#C02820",4)
+),
+"🧤":S(
+  p("M10 30Q10 14 24 12Q36 12 36 28V42H10Z","#D6453A")+
+  p("M34 28Q50 28 48 40Q44 46 34 42Z","#D6453A")+
+  p("M8 42H38V56H8Z","#F5F0E6")+
+  ln("M8 48H38","#D6453A",2.2)+
+  p("M28 28Q42 26 40 38Q36 44 28 40Z","#E86850")
+),
+"🧦":S(
+  p("M18 6H40V30L54 46Q60 56 48 58Q40 58 32 48L18 38Z","#E0B85A")+
+  p("M18 6H40V16H18Z","#D6453A")+
+  ln("M18 24H40","#D6453A",3)
+),
+
+/* —— xe —— */
+"🚗":S(
+  p("M4 44Q4 34 14 32L22 20H42L50 32Q60 34 60 44V50H4Z","#D6453A")+
+  p("M24 24H32V32H16Z M34 24H42L48 32H34Z","#B8DCF0")+
+  c(16,50,7)+c(48,50,7)+
+  c(16,50,3,"#C0CCD4")+c(48,50,3,"#C0CCD4")+
+  c(58,42,2.4,"#F0C94C")
+),
+"🚲":S(
+  c(16,44,12,"none",'stroke="'+K+'" stroke-width="3"')+
+  c(48,44,12,"none",'stroke="'+K+'" stroke-width="3"')+
+  ln("M16 44L28 26H42L48 44M28 26L34 44H16M42 26L38 18H48","#1F6FA8",3.2)+
+  ln("M22 22H34",K,3)
+),
+"🚌":S(
+  p("M8 10H56Q62 10 62 16V48H2V16Q2 10 8 10Z","#1F6B5A")+
+  p("M6 16H22V30H6Z M24 16H40V30H24Z M42 16H58V30H42Z","#B8DCF0")+
+  p("M2 36H62V42H2Z","#E0B85A")+
+  c(16,52,7)+c(48,52,7)+
+  c(16,52,3,"#C0CCD4")+c(48,52,3,"#C0CCD4")
+),
+"🛵":S(
+  c(16,48,10,"none",'stroke="'+K+'" stroke-width="3"')+
+  c(48,48,10,"none",'stroke="'+K+'" stroke-width="3"')+
+  p("M20 36H40L46 48H28Z","#EF6A4C")+
+  ln("M28 36V20H40L44 28","#EF6A4C",3.5)+
+  c(40,18,5,"#1E2227")+
+  ln("M16 48L28 36L48 48","#2E8AA3",2.5)
+),
+
+/* —— hoa / cây / mây —— */
+"🌸":S(
+  ln("M32 40V60","#3D9A5C",3.2)+
+  p("M32 52Q44 46 50 54Q42 60 32 52Z","#4FA36B")+
+  c(32,16,9.5,"#F5A0B8")+c(48,28,9.5,"#F5A0B8")+c(42,46,9.5,"#F5A0B8")+
+  c(22,46,9.5,"#F5A0B8")+c(16,28,9.5,"#F5A0B8")+
+  c(32,32,7.5,"#F0B94B")
+),
+"🌹":S(
+  ln("M32 36V60","#2E7A30",3.2)+
+  p("M32 52Q46 42 52 52Q42 60 32 52Z","#3D9A5C")+
+  p("M18 52Q26 42 32 50Q26 58 18 52Z","#3D9A5C")+
+  c(32,22,16,"#C02028")+el(32,22,9,8,"#E84850")+
+  ln("M26 22Q32 12 38 22Q32 32 28 24","#8A1018",2)
+),
+"☁":S(
+  p("M14 46Q2 46 4 34Q6 24 18 28Q20 14 32 16Q44 12 50 26Q62 24 62 38Q62 46 50 46Z","#E8F4FA",'stroke="#8AB0C4" stroke-width="1.8" stroke-linejoin="round"')+
+  ln("M18 36Q24 28 32 32","#fff",2.8)
+),
+"🌳":S(
+  p("M28 40H36V60H28Z","#7A4A28")+
+  c(32,26,19,"#3D9A5C")+c(16,38,11,"#4FB06A")+c(48,38,11,"#4FB06A")+
+  c(32,14,8,"#6EC87A")
+),
+"🌲":S(
+  p("M28 52H36V62H28Z","#5A3A20")+
+  p("M32 2L50 26H14Z","#1F6B4A")+
+  p("M32 14L54 40H10Z","#1F6B4A")+
+  p("M32 28L58 56H6Z","#2E8A60")
+),
+"🥬":S(
+  p("M32 4Q4 22 12 48Q22 60 32 58Q42 60 52 48Q60 22 32 4Z","#8BC878")+
+  p("M26 28Q22 48 28 58H36Q42 48 38 28Q32 20 26 28Z","#F4F8EC")+
+  ln("M32 10V30M18 26L28 38M46 26L36 38","#5A9A50",1.8)
+),
+"🏞":S(
+  p("M6 16Q6 6 18 6H46Q58 6 58 16V50Q58 58 50 58H14Q6 58 6 50Z","#C8E4F4")+
+  c(44,20,5.5,"#F0C94C")+
+  p("M6 48L24 22L38 48Z","#6A9A7A")+
+  p("M28 48L44 26L58 48Z","#4A7A60")+
+  p("M6 46Q24 36 34 46T58 40V50Q58 58 50 58H14Q6 58 6 50Z","#4A9AD0")+
+  ln("M16 52Q24 48 30 52M40 50Q48 46 54 50","#B0DCF0",1.6)
+),
+
+/* —— đồ uống / ăn —— */
+"🍵":S(
+  ln("M24 16Q20 10 24 4M38 16Q34 10 38 4","#B8A890",2)+
+  p("M8 28H56Q56 52 32 58Q8 52 8 28Z","#FFFDF8",BL)+
+  el(32,28,24,5,"#7AB85A",'stroke="#2E6A8A" stroke-width="1.8"')+
+  ln("M12 40Q32 50 52 40","#2E6A8A",1.6)+
+  p("M22 56H42V60H22Z","#2E6A8A")
+),
+"☕":S(
+  ln("M22 14Q18 8 22 2M34 14Q30 8 34 2","#B8A890",2)+
+  el(30,54,24,4.5,"#D4C4A0")+
+  p("M12 20H46V46Q46 54 38 54H20Q12 54 12 46Z","#C02820")+
+  ln("M46 28H52A8 8 0 0 1 52 44H46","#C02820",4.5)+
+  el(29,20,17,4,"#4A2A18")
+),
+"💧":S(
+  p("M32 6Q14 28 14 40Q14 54 32 58Q50 54 50 40Q50 28 32 6Z","#5BAEE0")+
+  p("M32 12Q20 30 20 40Q20 50 32 52Q44 50 44 40Q44 30 32 12Z","#8ED0F0")+
+  el(26,34,4,6,"#fff",'opacity=".45"')
+),
+"🥛":S(
+  p("M16 10H48L44 56H20Z","#E8F0F4",'stroke="#8AA0B0" stroke-width="1.8" stroke-linejoin="round"')+
+  p("M18 24H46L44 56H20Z","#fff")+
+  ln("M24 32L26 48","#fff",2.5,'opacity=".6"')
+),
+"🍚":S(
+  p("M10 32H54Q54 54 32 58Q10 54 10 32Z","#FFFDF8",BL)+
+  p("M12 32Q14 14 32 12Q50 14 52 32Z","#fff",'stroke="#D4C4A0" stroke-width="1.4"')+
+  ln("M24 24L28 26M34 18L38 20M40 28L44 30M20 30L24 32","#D4C4A0",1.6)+
+  ln("M14 42Q32 50 50 42","#2E6A8A",1.5)+
+  p("M24 56H40V60H24Z","#2E6A8A")
+),
+"🍜":S(
+  p("M10 32H54Q54 54 32 58Q10 54 10 32Z","#FFFDF8",BL)+
+  ln("M12 32Q16 16 24 28T34 20T44 28T54 18","#E8C86A",3.2)+
+  c(42,26,5.5,"#fff")+c(42,26,2.4,"#E89A2E")+
+  ln("M44 4L26 30M50 6L34 32","#7A4A28",2.2)+
+  ln("M14 42Q32 50 50 42","#2E6A8A",1.5)+
+  p("M24 56H40V60H24Z","#2E6A8A")
+),
+"🥣":S(
+  ln("M24 22Q20 16 24 10M38 22Q34 16 38 10","#B8A890",2)+
+  p("M10 32H54Q54 54 32 58Q10 54 10 32Z","#FFFDF8",BL)+
+  el(32,32,24,6,"#E88830")+
+  c(24,31,1.8,"#4FA36B")+c(34,34,1.8,"#4FA36B")+c(42,31,1.8,"#4FA36B")+
+  ln("M14 42Q32 50 50 42","#2E6A8A",1.5)+
+  p("M24 56H40V60H24Z","#2E6A8A")
+),
+
+/* —— người —— */
+"🧑":S(
+  p("M14 58Q14 36 32 34Q50 36 50 58Z","#3A6FA0")+
+  p("M26 34L32 46L38 34Z","#FBF8F2")+
+  c(32,20,12,"#F2CFA0")+
+  p("M20 20Q20 6 32 6Q44 6 44 20Q38 12 32 12Q26 12 20 20Z","#2B2118")+
+  c(27,21,1.8)+c(37,21,1.8)+
+  ln("M29 27Q32 30 35 27",K,1.4)
+),
+"👩‍🏫":S(
+  p("M14 58Q14 36 32 34Q50 36 50 58Z","#1F6B5A")+
+  p("M26 34L32 46L38 34Z","#FBF8F2")+
+  c(32,20,12,"#F2CFA0")+
+  p("M20 20Q20 6 32 6Q44 6 44 20Q38 12 32 12Q26 12 20 20Z","#2B2118")+
+  c(27,21,1.8)+c(37,21,1.8)+
+  ln("M29 27Q32 30 35 27",K,1.4)+
+  c(27,21,4,"none",'stroke="'+K+'" stroke-width="1.2"')+
+  c(37,21,4,"none",'stroke="'+K+'" stroke-width="1.2"')+
+  p("M42 44H60V58H42Z","#C9A24A")+ln("M45 49H57M45 53H55","#FBF1DC",1.5)
+),
+"🧑‍⚕️":S(
+  p("M14 58Q14 36 32 34Q50 36 50 58Z","#E4EEF4")+
+  p("M26 34L32 46L38 34Z","#FBF8F2")+
+  c(32,20,12,"#F2CFA0")+
+  p("M20 20Q20 6 32 6Q44 6 44 20Q38 12 32 12Q26 12 20 20Z","#fff",'stroke="#C0CCD4" stroke-width="1.4"')+
+  p("M30 4H34V14H30Z M28 6H36V10H28Z","#D6453A")+
+  c(27,21,1.8)+c(37,21,1.8)+
+  ln("M29 27Q32 30 35 27",K,1.4)+
+  ln("M22 40Q20 56 32 56Q44 56 42 40","#1F7A98",2.2)+
+  c(32,56,2.8,"#1F7A98")
+),
+"🙋":S(
+  ln("M48 48Q60 36 56 14","#D6453A",9)+
+  p("M14 58Q14 36 32 34Q50 36 50 58Z","#D6453A")+
+  p("M26 34L32 46L38 34Z","#FBF8F2")+
+  c(32,20,12,"#F2CFA0")+
+  p("M20 20Q20 6 32 6Q44 6 44 20Q38 12 32 12Q26 12 20 20Z","#2B2118")+
+  c(27,21,1.8)+c(37,21,1.8)+
+  ln("M29 27Q32 30 35 27",K,1.4)+
+  c(56,12,5.5,"#F2CFA0")
+),
+
+/* —— quần áo / quà —— */
+"👕":S(
+  p("M20 6Q32 14 44 6L58 18L52 32L44 26V58H20V26L12 32L6 18Z","#3A9AB8")+
+  ln("M20 6Q32 18 44 6","#1F6A88",3)+
+  ln("M20 40H44","#fff",2.5)
+),
+"🧥":S(
+  p("M18 4H46L60 18L56 58H8L4 18Z","#9A6238")+
+  p("M32 4L22 58H42Z","#F5E8D4")+
+  p("M18 4L32 22L46 4Z","#7A4A28")+
+  c(24,36,2.2)+c(24,46,2.2)+
+  ln("M32 22V58","#C4B090",1.3)
+),
+"📌":S(
+  p("M24 4H40L38 24Q48 28 48 38H16Q16 28 26 24Z","#D6453A")+
+  ln("M32 38V60","#7A8898",3.5)+
+  ln("M28 10H36","#F5A0B0",2.2)
+),
+"🎁":S(
+  p("M8 28H56V58H8Z","#D6453A")+
+  p("M4 18H60V30H4Z","#E84850")+
+  p("M28 18H36V58H28Z","#F0B94B")+
+  p("M32 18Q18 0 14 12Q14 22 32 18Z M32 18Q46 0 50 12Q50 22 32 18Z","#F0B94B")
+),
+
+/* —— địa điểm —— */
+"⛰":S(
+  c(48,12,5.5,"#F0C94C")+
+  p("M2 54L24 16L36 38L44 24L62 54Z","#4A8A68")+
+  p("M24 16L36 38L28 54H2Z","#3A6A54")+
+  p("M24 16L30 28L24 26L18 28Z","#fff")
+),
+"🌉":S(
+  p("M0 46H64V60H0Z","#4A9AD0")+
+  p("M2 34Q32 22 62 34V46H2Z","#C4A878")+
+  p("M6 46Q6 34 18 34Q30 34 30 46Z","#4A9AD0")+
+  p("M34 46Q34 34 46 34Q58 34 58 46Z","#4A9AD0")+
+  ln("M2 34Q32 22 62 34","#7A5A38",2.5)
+),
+"🗼":S(
+  p("M28 4H36L42 56H22Z","#C02820")+
+  p("M24 16H40L38 24H26Z","#E0B85A")+
+  p("M26 32H38L36 40H28Z","#E0B85A")+
+  p("M16 56H48V60H16Z","#8A98A3")+
+  ln("M32 4V0","#6B3A28",2)
+),
+"🏙":S(
+  r(4,22,14,36,"#4A6A88")+r(20,14,16,44,"#3A5A78")+r(38,20,12,38,"#5A7A98")+r(48,28,12,30,"#4A6A88")+
+  r(7,28,3,3,"#F0C94C")+r(7,36,3,3,"#F0C94C")+r(7,44,3,3,"#F0C94C")+
+  r(24,22,3,3,"#F0C94C")+r(30,22,3,3,"#F0C94C")+r(24,30,3,3,"#F0C94C")+r(30,30,3,3,"#F0C94C")+
+  r(24,38,3,3,"#F0C94C")+r(30,38,3,3,"#F0C94C")+
+  p("M2 58H62V62H2Z","#8A98A3")
+),
+"🏪":S(
+  p("M6 22H58V58H6Z","#F0E4C8")+
+  p("M4 10H60L54 24H10Z","#D6453A")+
+  p("M14 10H26L24 24H12Z M36 10H48L46 24H34Z","#fff")+
+  p("M14 36H32V58H14Z","#7A4A28")+
+  p("M38 34H52V48H38Z","#B8DCF0",'stroke="#C4A878" stroke-width="1.4"')
+),
+"🍽":S(
+  el(34,34,18,18,"#FFFDF8",'stroke="#2E6A8A" stroke-width="2.8"')+
+  el(34,34,10,10,"none",'stroke="#D0E0E8" stroke-width="2"')+
+  ln("M6 6V22Q6 30 12 30V58M12 6V22M18 6V22Q18 30 12 30","#7A8898",2.5)+
+  p("M56 6Q64 14 60 32H56Z","#C0CCD4")+ln("M58 32V58","#7A8898",3)
+),
+"🏥":S(
+  p("M8 16H56V58H8Z","#F5F0E8",'stroke="#C4A878" stroke-width="1.8"')+
+  r(12,22,8,8,"#B8DCF0")+r(44,22,8,8,"#B8DCF0")+r(12,40,8,8,"#B8DCF0")+r(44,40,8,8,"#B8DCF0")+
+  p("M28 20H36V30H46V38H36V48H28V38H18V30H28Z","#D6453A")+
+  p("M26 50H38V58H26Z","#3A9AB8")
+),
+"🏦":S(
+  p("M32 4L60 20H4Z","#C9A24A")+
+  c(32,14,3.5,"#FBF1DC")+
+  r(10,24,8,26,"#F5F0E8",'stroke="#C4A878" stroke-width="1"')+
+  r(22,24,8,26,"#F5F0E8",'stroke="#C4A878" stroke-width="1"')+
+  r(34,24,8,26,"#F5F0E8",'stroke="#C4A878" stroke-width="1"')+
+  r(46,24,8,26,"#F5F0E8",'stroke="#C4A878" stroke-width="1"')+
+  p("M6 50H58V56H6Z","#C4A878")+
+  p("M2 56H62V60H2Z","#9A8860")
+),
+
+/* —— mới: khối / sợi / hạt / mũ … —— */
+"🍬":S(
+  p("M18 22L8 10L16 18L18 22Z","#E0B85A")+p("M46 22L56 10L48 18Z","#E0B85A")+
+  p("M18 42L8 54L16 46Z","#E0B85A")+p("M46 42L56 54L48 46Z","#E0B85A")+
+  c(32,32,16,"#F07898")+c(32,32,11,"#fff")+c(32,32,6.5,"#EF6A4C")+
+  el(28,28,3,5,"#fff",'opacity=".5"')
+),
+"🪨":S(
+  p("M8 42L16 20L34 12L52 22L58 42L44 54H16Z","#7A8898")+
+  p("M16 20L28 28L34 12L42 30L52 22L46 42H20Z","#A0B0C0")+
+  ln("M20 38L30 30M38 36L48 28","#5A6878",1.6)+
+  el(26,36,4,2.5,"#6A7888",'opacity=".5"')
+),
+"🥩":S(
+  p("M10 28Q10 12 28 10Q50 8 54 28Q56 46 36 52Q14 54 10 36Z","#B02028")+
+  p("M18 30Q20 18 34 16Q46 18 48 32Q46 44 34 46Q18 44 18 30Z","#E04048")+
+  c(26,28,2.4,"#F5A0B0")+c(36,32,2.4,"#F5A0B0")+c(30,36,1.8,"#F5A0B0")+
+  el(40,24,5,3,"#F5A0B0",'opacity=".4"')
+),
+"💵":S(
+  p("M6 16H58V48H6Z","#1F6B4A")+
+  p("M10 20H54V44H10Z","#3D9A5C")+
+  c(32,32,9,"#E0B85A")+c(32,32,5.5,"#1F6B4A")+
+  ln("M14 26H22M42 26H50M14 38H22M42 38H50","#E0B85A",2.2)+
+  r(12,22,4,4,"#E0B85A",'opacity=".5"')+r(48,38,4,4,"#E0B85A",'opacity=".5"')
+),
+"💇":S(
+  p("M28 4Q18 20 22 40Q24 52 20 60Q32 54 36 40Q42 18 34 4Z","#2B2118")+
+  p("M30 6Q22 22 26 40Q28 50 24 58Q34 52 36 40Q40 20 34 6Z","#4A3A30")+
+  p("M31 8Q26 24 28 40Q30 48 28 56Q34 50 35 40Q38 22 33 8Z","#6B5244")+
+  ln("M32 4Q24 28 30 60","#1A1410",1.2)+
+  el(30,12,4,8,"#8A7060",'opacity=".35"')+
+  c(36,22,1.5,"#C4A888",'opacity=".5"')+
+  c(28,38,1.2,"#C4A888",'opacity=".4"')
+),
+"🪢":S(
+  ln("M8 30Q18 8 32 18Q46 28 56 8","#7A4A28",6)+
+  ln("M8 36Q20 52 32 40Q44 28 56 52","#9A6238",6)+
+  c(32,32,8,"#7A4A28")+c(32,32,4,"#C88850")
+),
+"🍌":S(
+  p("M16 50Q8 30 22 12Q28 4 38 10Q52 20 50 42Q48 54 34 56Q22 56 16 50Z","#E8B830")+
+  p("M22 46Q16 30 28 14Q36 8 42 16Q50 26 46 44Q44 52 34 52Q26 52 22 46Z","#F5D86A")+
+  ln("M32 12Q28 4 34 0","#5A3A18",3.2)+
+  p("M30 2Q38-2 40 6Q34 10 30 2Z","#4FA36B")
+),
+"🔥":S(
+  p("M32 58Q14 48 16 30Q18 14 32 4Q46 14 48 30Q50 48 32 58Z","#E84820")+
+  p("M32 52Q22 44 24 32Q26 18 32 12Q38 18 40 32Q42 44 32 52Z","#F0B94B")+
+  p("M32 46Q26 40 28 34Q30 26 32 22Q34 26 36 34Q38 40 32 46Z","#FFF4D0")
+),
+"⭐":S(
+  p("M32 4L39 24H60L44 36L50 56L32 44L14 56L20 36L4 24H25Z","#E8A820")+
+  p("M32 12L37 26H52L40 34L44 48L32 40L20 48L24 34L12 26H27Z","#F0C94C")+
+  c(32,30,4,"#FFF4D0",'opacity=".5"')
+),
+"🦷":S(
+  p("M20 8H44V28Q44 42 38 52Q32 60 32 60Q32 60 26 52Q20 42 20 28Z","#FFFDF8",'stroke="#C4A878" stroke-width="1.8"')+
+  ln("M28 18V38M36 18V38","#E0D4B8",2.2)+
+  p("M24 52Q32 60 40 52","#F2CFA0")+
+  el(28,22,3,4,"#fff",'opacity=".6"')
+),
+"❤":S(
+  p("M32 56L8 30Q2 16 16 10Q26 6 32 18Q38 6 48 10Q62 16 56 30Z","#C02028")+
+  p("M32 50L14 30Q10 20 18 16Q26 12 32 24Q38 12 46 16Q54 20 50 30Z","#E84850")+
+  el(22,22,5,4,"#fff",'opacity=".35"')
+),
+"🌱":S(
+  ln("M32 60V26","#6B4630",3.5)+
+  p("M32 26Q14 16 12 4Q28 10 32 22Q36 10 52 4Q50 16 32 26Z","#3D9A5C")+
+  p("M32 36Q20 30 18 20Q28 26 32 34Q36 26 46 20Q44 30 32 36Z","#5FBA70")
+),
+"🍃":S(
+  p("M10 42Q18 8 52 6Q56 28 42 48Q28 58 10 42Z","#3D9A5C")+
+  p("M16 40Q24 14 46 12Q48 28 38 44Q28 52 16 40Z","#6EC87A")+
+  ln("M14 38Q32 28 50 10","#1F6B4A",2.2)
+),
+"🍞":S(
+  p("M8 28Q8 14 32 12Q56 14 56 28V50Q56 56 48 56H16Q8 56 8 50Z","#D4A050")+
+  p("M12 28Q12 18 32 16Q52 18 52 28V48H12Z","#F5E8D0")+
+  c(22,32,2.4,"#C88840")+c(34,36,2.4,"#C88840")+c(42,30,1.8,"#C88840")+
+  el(28,24,8,3,"#E8C878",'opacity=".5"')
+),
+"🎩":S(
+  p("M14 34H50V44H14Z","#1A1A1E")+
+  p("M20 12H44V34H20Z","#1A1A1E")+
+  p("M18 8H46V14H18Z","#1A1A1E")+
+  p("M10 44H54V52H10Z","#2A2A30")+
+  p("M20 28H44V32H20Z","#D6453A")+
+  el(32,20,6,2,"#fff",'opacity=".12"')
+),
+"👔":S(
+  p("M18 6L32 20L46 6L56 16L46 30V58H18V30L8 16Z","#2E5A8A")+
+  p("M28 20H36V58H28Z","#F0B94B")+
+  p("M32 6L28 20H36Z","#FFFDF8")+
+  ln("M22 36H28M36 36H42M22 46H28M36 46H42","#1E3A5A",2)
+),
+"🌧":S(
+  c(22,20,11,"#8AB0C8")+c(36,16,13,"#A0C4D8")+c(48,22,10,"#8AB0C8")+
+  p("M12 28H54Q54 38 46 38H18Q12 38 12 28Z","#6A90A8")+
+  ln("M20 42V56M28 40V58M36 42V54M44 40V56","#3A6FA0",2.8)
+),
+"🎬":S(
+  p("M6 14H58V50H6Z","#1A1A1E")+
+  p("M10 18H54V28H10Z","#F0B94B")+
+  r(12,18,6,10,"#1A1A1E")+r(22,18,6,10,"#1A1A1E")+r(32,18,6,10,"#1A1A1E")+r(42,18,6,10,"#1A1A1E")+
+  p("M10 32H54V46H10Z","#2A2A30")+
+  ln("M16 36H48M16 42H42","#7A8898",2)
+),
+"⚽":S(
+  c(32,32,23,"#FFFDF8",'stroke="#1A1A1E" stroke-width="2"')+
+  p("M32 10L41 28H23Z","#1A1A1E")+
+  p("M14 22L26 36L10 42Z","#1A1A1E")+
+  p("M50 22L38 36L54 42Z","#1A1A1E")+
+  p("M20 50L32 38L44 50Z","#1A1A1E")
+),
+"📱":S(
+  p("M18 4H46Q52 4 52 10V54Q52 60 46 60H18Q12 60 12 54V10Q12 4 18 4Z","#1A1A1E")+
+  p("M18 12H46V50H18Z","#3A9AB8")+
+  c(32,55,2.4,"#fff")+
+  el(28,18,6,2,"#fff",'opacity=".25"')
+),
+"🕳":S(
+  el(32,42,24,12,"#2A2A30")+
+  el(32,40,20,9,"#1A1A1E")+
+  el(32,38,14,5,"#0A1A24")+
+  ln("M18 18V34M26 10V32M38 10V32M46 18V34","#5A6878",2.2)
+),
+"🍲":S(
+  p("M10 28H54V42Q54 56 32 60Q10 56 10 42Z","#8A98A8")+
+  el(32,28,24,7,"#C0CCD4")+
+  el(32,28,18,5,"#E84820")+
+  c(24,28,2.4,"#F0B94B")+c(36,26,2.4,"#4FA36B")+c(42,30,1.8,"#fff")+
+  ln("M18 14Q22 6 28 12M32 10Q36 2 42 10M46 14Q50 6 56 12","#8A98A8",2.2)
+),
+"🏠":S(
+  p("M6 32L32 8L58 32V56H6Z","#D4A050")+
+  p("M12 32L32 14L52 32V52H12Z","#F5E8D0")+
+  p("M28 40H36V52H28Z","#7A4A28")+
+  p("M16 34H26V44H16Z","#3A9AB8")+p("M38 34H48V44H38Z","#3A9AB8")+
+  p("M6 32L32 8L58 32L50 32L32 14L14 32Z","#D6453A")
+),
+"🚪":S(
+  p("M14 4H50V60H14Z","#9A6238")+
+  p("M18 8H46V56H18Z","#C88850")+
+  c(42,34,3.5,"#E0B85A")+
+  ln("M18 20H46M18 28H46","#7A4A28",1.5)+
+  el(24,16,4,2,"#E8C878",'opacity=".3"')
+),
+"🏫":S(
+  p("M4 22H60V58H4Z","#F0E4C8")+
+  p("M2 10H62L56 24H8Z","#D6453A")+
+  r(12,28,12,12,"#B8DCF0")+r(28,28,12,12,"#B8DCF0")+r(44,28,12,12,"#B8DCF0")+
+  p("M26 44H38V58H26Z","#7A4A28")+
+  p("M28 4H36V12H28Z","#D6453A")+
+  ln("M32 4V0","#8A98A3",2)
+),
+"✈":S(
+  p("M32 2L40 28L60 36L40 40L32 62L24 40L4 36L24 28Z","#C8D4E0",'stroke="#2E5A8A" stroke-width="1.5"')+
+  p("M32 10L38 28H26Z","#2E5A8A")+
+  ln("M18 34H46","#2E5A8A",2.5)+
+  el(36,20,4,2,"#fff",'opacity=".4"')
+),
+"📺":S(
+  p("M6 12H58V48H6Z","#1A1A1E")+
+  p("M10 16H54V42H10Z","#3A9AB8")+
+  p("M24 48H40V54H24Z","#2A2A30")+
+  p("M18 54H46V58H18Z","#1A1A1E")+
+  c(14,44,1.8,"#EF6A4C")+
+  el(18,20,8,3,"#fff",'opacity=".2"')
+),
+"💻":S(
+  p("M8 12H56V42H8Z","#2A2A30")+
+  p("M12 16H52V38H12Z","#3A9AB8")+
+  p("M4 42H60V50H4Z","#1A1A1E")+
+  ln("M28 45H36","#7A8898",2.5)+
+  el(18,20,8,3,"#fff",'opacity=".2"')
+),
+"😢":S(
+  c(32,32,23,"#F2CFA0")+
+  c(23,28,3.2)+c(41,28,3.2)+
+  ln("M24 44Q32 50 40 44","#C85068",2.2)+
+  ln("M22 34V44M42 34V44","#4A9AD0",2.8)+
+  p("M18 34Q16 42 22 44","#4A9AD0")
+),
+"🥐":S(
+  p("M10 42Q6 24 24 14Q42 6 54 24Q58 38 44 48Q26 56 10 42Z","#D4A050")+
+  p("M16 40Q14 26 28 18Q44 12 50 28Q52 38 40 44Q26 50 16 40Z","#F5E8D0")+
+  ln("M20 36Q30 28 42 32","#C88840",2.2)
+),
+"👓":S(
+  c(18,32,13,"none",'stroke="#1A1A1E" stroke-width="3.2"')+
+  c(46,32,13,"none",'stroke="#1A1A1E" stroke-width="3.2"')+
+  ln("M31 32H33","#1A1A1E",3.2)+
+  ln("M5 30Q0 26 4 20M59 30Q64 26 60 20","#1A1A1E",3)+
+  c(18,32,9,"#A8D0E8",'opacity=".45"')+
+  c(46,32,9,"#A8D0E8",'opacity=".45"')+
+  el(14,28,4,2,"#fff",'opacity=".5"')
+),
+"🪟":S(
+  p("M8 6H56V58H8Z","#C4A878")+
+  p("M12 10H52V54H12Z","#A8D0E8")+
+  ln("M32 10V54M12 32H52","#C4A878",3.5)+
+  p("M12 10H52V18H12Z","#7AB0D0",'opacity=".35"')+
+  el(18,16,6,2,"#fff",'opacity=".3"')
+),
+"🍎":S(
+  p("M32 14Q14 8 8 26Q2 46 18 58Q28 62 32 56Q36 62 46 58Q62 46 56 26Q50 8 32 14Z","#D6453A")+
+  ln("M18 28Q22 18 30 16","#F5A0A0",3)+
+  ln("M32 14Q32 4 38 0","#5A3A18",3)+
+  p("M34 8Q48-2 56 8Q46 18 34 8Z","#4FA36B")
+),
+"🥚":S(
+  p("M32 4Q52 4 54 36Q54 58 32 58Q10 58 10 36Q12 4 32 4Z","#F5E8C8",'stroke="#D4B888" stroke-width="1.8"')+
+  ln("M22 22Q26 12 34 10","#fff",3.5)+
+  el(26,28,5,7,"#fff",'opacity=".25"')
+),
+"❓":S(
+  ln("M18 20Q18 6 32 6Q48 6 48 20Q48 30 38 36Q32 40 32 46","#EF6A4C",8)+
+  c(32,56,5,"#EF6A4C")
+)
+};
+
+/* map unicode / FE0F variants */
+Object.assign(I,{
+  "☂️":I["☂"],"☁️":I["☁"],"⛰️":I["⛰"],"🏙️":I["🏙"],"🏞️":I["🏞"],
+  "🛏️":I["🛏"],"🖼️":I["🖼"],"🍽️":I["🍽"],"🌧️":I["🌧"],"✈️":I["✈"],
+  "❤️":I["❤"],"👩‍🏫":I["👩‍🏫"],"🧑‍⚕️":I["🧑‍⚕️"],
+  "\u{1F9D1}":I["🧑"],"\u{1F34E}":I["🍎"],"\u{1F95A}":I["🥚"],"\u2753":I["❓"],
+  "\u{1F455}":I["👕"],"\u{1F9E5}":I["🧥"],"\u{1F4CC}":I["📌"],"\u{1F381}":I["🎁"],
+  "\u26F0":I["⛰"],"\u{1F309}":I["🌉"],"\u{1F5FC}":I["🗼"],"\u{1F3D9}":I["🏙"],
+  "\u{1F3EA}":I["🏪"],"\u{1F37D}":I["🍽"],"\u{1F3E5}":I["🏥"],"\u{1F3E6}":I["🏦"],
+  "\u{1F469}\u200D\u{1F3EB}":I["👩‍🏫"],"\u{1F9D1}\u200D\u2695":I["🧑‍⚕️"],"\u{1F64B}":I["🙋"]
+});
+
+
+
+const X={
+"只":"兔子|tùzi|con thỏ;鸭子|yāzi|con vịt;老鼠|lǎoshǔ|con chuột;手|shǒu|bàn tay;眼睛|yǎnjing|con mắt;鞋|xié|chiếc giày;表|biǎo|chiếc đồng hồ",
+"头":"羊|yáng|con cừu;熊|xióng|con gấu;驴|lǘ|con lừa;鹿|lù|con hươu;骆驼|luòtuó|con lạc đà",
+"匹":"骏马|jùnmǎ|con tuấn mã;小马|xiǎo mǎ|chú ngựa con;斑马|bānmǎ|con ngựa vằn;黑马|hēi mǎ|con ngựa đen",
+"条":"狗|gǒu|con chó;路|lù|con đường;裙子|qúnzi|chiếc váy;围巾|wéijīn|chiếc khăn quàng;龙|lóng|con rồng;命|mìng|tính mạng;理由|lǐyóu|lý do",
+"杯":"啤酒|píjiǔ|ly bia;果汁|guǒzhī|ly nước ép;可乐|kělè|ly cô-ca;豆浆|dòujiāng|ly sữa đậu nành",
+"碗":"粥|zhōu|bát cháo;牛肉面|niúròumiàn|bát mì bò;馄饨|húntun|bát hoành thánh;米饭|mǐfàn|bát cơm trắng",
+"本":"小说|xiǎoshuō|cuốn tiểu thuyết;字典|zìdiǎn|cuốn từ điển;漫画|mànhuà|cuốn truyện tranh;笔记本|bǐjìběn|quyển sổ tay",
+"把":"勺子|sháozi|cái thìa;梳子|shūzi|cái lược;剪刀|jiǎndāo|cái kéo;扇子|shànzi|cái quạt;锁|suǒ|cái khoá;米|mǐ|nắm gạo",
+"双":"眼睛|yǎnjing|đôi mắt;拖鞋|tuōxié|đôi dép;靴子|xuēzi|đôi bốt;手|shǒu|đôi tay",
+"辆":"出租车|chūzūchē|chiếc taxi;卡车|kǎchē|chiếc xe tải;摩托车|mótuōchē|chiếc xe máy;汽车|qìchē|chiếc ô tô",
+"朵":"梅花|méihuā|bông hoa mai;荷花|héhuā|bông hoa sen;菊花|júhuā|bông hoa cúc;牡丹|mǔdan|bông mẫu đơn",
+"棵":"草|cǎo|ngọn cỏ;柳树|liǔshù|cây liễu;竹子|zhúzi|cây tre;菜|cài|cây rau;黄瓜|huángguā|cây dưa chuột",
+"张":"地图|dìtú|tấm bản đồ;桌子|zhuōzi|cái bàn;报纸|bàozhǐ|tờ báo;脸|liǎn|khuôn mặt;嘴|zuǐ|cái miệng",
+"个":"朋友|péngyou|người bạn;梨|lí|quả lê;面包|miànbāo|cái bánh mì;故事|gùshi|câu chuyện;学生|xuésheng|học sinh;月|yuè|tháng;小时|xiǎoshí|giờ;办法|bànfǎ|cách làm",
+"件":"毛衣|máoyī|cái áo len;衬衫|chènshān|cái áo sơ mi;行李|xíngli|món hành lý;大衣|dàyī|cái áo khoác dài",
+"座":"寺庙|sìmiào|ngôi chùa;岛|dǎo|hòn đảo;房子|fángzi|toà nhà;雕像|diāoxiàng|bức tượng;城堡|chéngbǎo|toà lâu đài;工厂|gōngchǎng|nhà máy",
+"家":"公司|gōngsī|công ty;酒店|jiǔdiàn|khách sạn;书店|shūdiàn|hiệu sách;咖啡店|kāfēidiàn|quán cà phê;超市|chāoshì|siêu thị",
+"位":"先生|xiānsheng|vị ông;女士|nǚshì|vị quý bà;教授|jiàoshòu|vị giáo sư;顾客|gùkè|vị khách hàng;朋友|péngyou|vị bạn",
+"块":"橡皮|xiàngpí|cục tẩy;砖|zhuān|cục gạch;香皂|xiāngzào|cục xà phòng;蛋糕|dàngāo|miếng bánh",
+"根":"葱|cōng|cọng hành;电线|diànxiàn|sợi dây điện;蜡烛|làzhú|ngọn nến;油条|yóutiáo|thanh bánh quẩy",
+"颗":"珍珠|zhēnzhū|viên ngọc trai;宝石|bǎoshí|viên đá quý;子弹|zǐdàn|viên đạn",
+"片":"药|yào|viên thuốc dẹt;嘴唇|zuǐchún|môi;面包|miànbāo|lát bánh mì",
+"顶":"帽子|màozi|cái mũ;蚊帐|wénzhàng|cái màn",
+"套":"餐具|cānjù|bộ đồ ăn;设备|shèbèi|bộ thiết bị",
+"场":"雪|xuě|trận tuyết;病|bìng|trận bệnh;演出|yǎnchū|buổi biểu diễn",
+"部":"电影|diànyǐng|bộ phim;字典|zìdiǎn|cuốn từ điển",
+"名":"律师|lǜshī|luật sư;警察|jǐngchá|cảnh sát;演员|yǎnyuán|diễn viên",
+"口":"人|rén|thành viên (nhà);锅|guō|cái nồi;钟|zhōng|cái chuông lớn",
+"间":"教室|jiàoshì|phòng học;卧室|wòshì|phòng ngủ;办公室|bàngōngshì|văn phòng",
+"所":"大学|dàxué|trường đại học;研究所|yánjiūsuǒ|viện nghiên cứu",
+"架":"飞机|fēijī|máy bay;相机|xiàngjī|máy ảnh",
+"台":"电脑|diànnǎo|máy tính;空调|kōngtiáo|máy lạnh;打印机|dǎyìnjī|máy in",
+"滴":"血|xuè|giọt máu;汗水|hànshuǐ|giọt mồ hôi;油|yóu|giọt dầu",
+"粒":"沙子|shāzi|hạt cát;药|yào|viên thuốc",
+"扇":"门|mén|cánh cửa;窗户|chuānghu|cửa sổ",
+"副":"扑克牌|pūkèpái|bộ bài;对联|duìlián|câu đối",
+"顿":"午饭|wǔfàn|bữa trưa;晚饭|wǎnfàn|bữa tối",
+"份":"礼物|lǐwù|phần quà;文件|wénjiàn|bản tài liệu;工作|gōngzuò|công việc"
+};
+
+const ic=e=>I[e.replace(/\uFE0F/g,"")]||I[e];
+const GC={pb:["#D6EEF5","#7EC4D8"],dv:["#FCE0B0","#E8A84A"],vt:["#D4E2F8","#7A9FD4"],an:["#FBD5CC","#E88870"],pt:["#C8EBE3","#5CB8A8"],tn:["#D5F0C4","#7EC060"],ng:["#F5D0E4","#D080B0"]};
+D.forEach(d=>{d[5]=d[5].filter(e=>ic(e[3]))});
+for(let i=D.length;i--;)if(!D[i][5].length)D.splice(i,1);
+const app=document.getElementById("app");
+let grp="all";
+const synth=("speechSynthesis" in window)?window.speechSynthesis:null;
+let cachedVoice;
+function scoreVoice(v){
+  const n=v.name;let s=0;
+  if(/Natural|Online/i.test(n))s+=100;
+  if(/Xiaoxiao|Xiaoyi|Yunxi|Yunjian|Yunyang|Xiaochen|Xiaohan/i.test(n))s+=20;
+  if(/Premium|Enhanced|Siri/i.test(n))s+=70;
+  if(/Google/i.test(n))s+=60;
+  if(/Tingting|Ting-Ting|Lili|Meijia|Sinji/i.test(n))s+=8;
+  if(/Huihui|Kangkang|Yaoyao/i.test(n))s-=30;
+  if(!v.localService)s+=10;
+  if(/^zh[-_](CN|Hans)/i.test(v.lang)||/^cmn/i.test(v.lang))s+=5;
+  return s;
+}
+function pickVoice(){
+  if(cachedVoice!==undefined)return cachedVoice;
+  if(!synth)return(cachedVoice=null);
+  const vs=synth.getVoices().filter(v=>/^zh([-_](CN|Hans))?$/i.test(v.lang)||/^cmn/i.test(v.lang)||/Chinese|中文|普通话/i.test(v.name));
+  vs.sort((a,b)=>scoreVoice(b)-scoreVoice(a));
+  return(cachedVoice=vs[0]||null);
+}
+if(synth)synth.addEventListener("voiceschanged",()=>{cachedVoice=undefined;});
+function say(t,slow){
+  try{
+    if(!synth)return;
+    synth.cancel();
+    const v=pickVoice();
+    const u=new SpeechSynthesisUtterance(t);
+    u.lang=v?v.lang:"zh-CN";
+    if(v)u.voice=v;
+    u.rate=slow?0.62:0.78;
+    u.pitch=1;
+    synth.speak(u);
+  }catch(e){}
+}
+function home(){
+  const chips=Object.keys(G).filter(k=>k==="all"||D.some(d=>d[2]===k)).map(k=>`<button class="chip" data-g="${k}" aria-pressed="${k===grp}"><span class="han">${G[k][0]}</span>${G[k][1]}</button>`).join("");
+  const cards=D.map((d,i)=>[d,i]).filter(([d])=>grp==="all"||d[2]===grp).map(([d,i])=>`<button class='card' data-i='${i}'><div class='face'><div class='art' style='background:linear-gradient(160deg,${GC[d[2]][0]},${GC[d[2]][1]})'><span class='wm han'>${d[0]}</span>${ic(d[5][0][3])}</div><div class='cap'><span class='cn han'>${d[0]}</span><span class='vi2'>${d[3]}</span><span class='val'>${d[1]}</span></div></div></button>`).join("");
+  app.innerHTML=`<div class="chips" role="group" aria-label="Nhóm lượng từ">${chips}</div><div class="grid">${cards}</div>`;
+}
+function detail(i){
+  const d=D[i],gc=GC[d[2]],bg='linear-gradient(160deg,'+gc[0]+','+gc[1]+')',pre=/[àèìòùǜ]/.test(d[1])||d[1]=='ge'?'yí':'yì',more=X[d[0]]?`<div class='sec'>Thêm danh từ đi cùng · 更多例子 <small style="font-weight:500;color:var(--mute)">(bấm để nghe)</small></div><div class='mc'>${X[d[0]].split(';').map(s=>{const a=s.split('|');return `<button type="button" class='mchip' data-say="一${d[0]}${a[0]}" aria-label="Nghe 一${d[0]}${a[0]}"><span class='mh han'><b>一${d[0]}</b>${a[0]}</span><span class='py'>${pre} ${d[1]} ${a[1]}</span><span class='vi'>Một ${a[2]}</span></button>`}).join('')}</div>`:'';
+  const ex=d[5].map(e=>`<article class="ex"><button class="spk" data-say="一${d[0]}${e[0]}" aria-label="Nghe phát âm">🔊</button><div class='face'><div class='art' style='background:${bg}'>${ic(e[3])}</div><div class='cap'><span class='cn han'><b>一${d[0]}</b>${e[0]}</span><span class='py'>${e[1]}</span><span class='vi2'>${e[2]}</span></div></div></article>`).join("");
+  app.innerHTML=`<button class="back" data-back>← Tất cả lượng từ</button><section class="hero"><button type="button" class="seal han" data-say="${d[0]}" aria-label="Nghe ${d[0]}" style="border:0;cursor:pointer">${d[0]}</button><div><span class="py">${d[1]}</span><h2>${d[3]}</h2><p>${d[4]}</p><div class="formula">Số từ + <b class="han">${d[0]}</b> + Danh từ</div><div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="spk" data-say="${d[0]}" aria-label="Nghe lượng từ" style="position:static;width:auto;border-radius:999px;padding:6px 14px">🔊 Nghe ${d[0]}</button><button type="button" class="spk" data-say="${d[0]}" data-slow="1" aria-label="Nghe chậm" style="position:static;width:auto;border-radius:999px;padding:6px 14px">🐢 Chậm</button></div></div></section><div class='sec'>Ví dụ minh hoạ · 图例</div><div class='exs'>${ex}</div>${more}`;
+  window.scrollTo(0,0);
+}
+app.addEventListener("click",e=>{
+  const b=e.target.closest("button");if(!b)return;
+  if(b.dataset.g){grp=b.dataset.g;home()}
+  else if(b.dataset.i){detail(+b.dataset.i)}
+  else if(b.dataset.back!==undefined){home()}
+  else if(b.dataset.say){say(b.dataset.say,!!b.dataset.slow)}
+});
+home();
+</script>
+</body>
+</html>
