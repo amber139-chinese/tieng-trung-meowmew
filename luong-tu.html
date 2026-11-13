@@ -6,57 +6,38 @@
 <title>量词 · Lượng từ tiếng Trung</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@500;700&family=Be+Vietnam+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700&family=Be+Vietnam+Pro:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
-:root{--paper:#F5ECD9;--card:#FFF9EC;--ink:#2A1A15;--mute:#7B6556;--red:#B0262B;--lac:#8E1B20;--gold:#C79A3B;--jade:#2E6F5E;--line:#E0CFA9;--ring:#F6DDCB;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1A1210;--card:#291B17;--ink:#F4E9D2;--mute:#BBA790;--red:#E65A5E;--lac:#7A171B;--gold:#E0B85A;--jade:#63B8A0;--line:#47332B;--ring:#3B2520;color-scheme:dark}}
-:root[data-theme="dark"]{--paper:#1A1210;--card:#291B17;--ink:#F4E9D2;--mute:#BBA790;--red:#E65A5E;--lac:#7A171B;--gold:#E0B85A;--jade:#63B8A0;--line:#47332B;--ring:#3B2520;color-scheme:dark}
+:root{--paper:#FBF8F2;--card:#fff;--ink:#1B2E35;--mute:#5B7078;--red:#D6453A;--lac:#143F4F;--gold:#F0B94B;--jade:#1F6479;--line:#DCE9EC;--ring:#FFF1CF;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0E2F3C;--card:#16404F;--ink:#F3EBDD;--mute:#A9C4CC;--red:#EF6A4C;--lac:#0B2630;--gold:#F0B94B;--jade:#58B4C8;--line:#245566;--ring:#1D5D70;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#0E2F3C;--card:#16404F;--ink:#F3EBDD;--mute:#A9C4CC;--red:#EF6A4C;--lac:#0B2630;--gold:#F0B94B;--jade:#58B4C8;--line:#245566;--ring:#1D5D70;color-scheme:dark}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 "Be Vietnam Pro",system-ui,sans-serif}
 .han{font-family:"Noto Serif SC","Songti SC","SimSun",serif}
-.brush{font-family:"Ma Shan Zheng","Noto Serif SC","STKaiti",serif}
 button{font:inherit;color:inherit;cursor:pointer}
 button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
-header{background-color:var(--lac);color:#FBEFD5;text-align:center;padding:30px 18px 34px;border-bottom:5px double var(--gold);background-image:repeating-linear-gradient(45deg,rgba(255,215,140,.09) 0 2px,transparent 2px 16px),repeating-linear-gradient(-45deg,rgba(255,215,140,.09) 0 2px,transparent 2px 16px)}
 .seal{display:inline-grid;place-items:center;background:#FBEFD5;color:var(--lac);border-radius:8px;transform:rotate(-4deg);box-shadow:0 0 0 3px var(--lac),0 0 0 5px #FBEFD5}
-header .seal{width:86px;height:86px;font-size:36px;line-height:1.05;text-align:center;margin-bottom:14px}
 h1{margin:0;font:700 clamp(26px,6vw,40px)/1.2 "Noto Serif SC","Be Vietnam Pro",serif;letter-spacing:.02em}
-header p{margin:8px auto 0;max-width:46ch;color:#EBD6AC;font-size:15px}
 main{max-width:980px;margin:0 auto;padding:22px 16px 40px}
 .chips{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 12px;scrollbar-width:thin}
 .chip{flex:none;border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:6px 15px;font-size:14px}
 .chip .han{color:var(--red);margin-right:6px;font-weight:700}
 .chip[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:#fff}
 .chip[aria-pressed="true"] .han{color:#FBE3B0}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:14px;margin-top:6px}
-.card{position:relative;text-align:center;background:var(--card);border:1.5px solid var(--line);border-radius:10px;padding:16px 10px 14px;outline:1px solid var(--gold);outline-offset:-6px;transition:transform .15s,border-color .15s}
-.card:hover{transform:translateY(-3px);border-color:var(--red)}
-.card .c{display:block;font-size:50px;line-height:1.1;color:var(--red);font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:24px 18px;padding:10px 6px;margin-top:6px}
 .py{display:block;color:var(--jade);font-weight:600;font-size:15px}
-.nm{display:block;font-size:13.5px;color:var(--mute);margin:2px 0 6px;min-height:40px}
-.em{display:flex;justify-content:center;gap:4px}.em svg{width:34px;height:34px}
 .back{border:1.5px solid var(--red);background:none;color:var(--red);border-radius:999px;padding:6px 16px;margin-bottom:16px;font-weight:600}
-.hero{display:flex;gap:20px;align-items:center;background:var(--card);border:1.5px solid var(--gold);border-radius:12px;padding:20px;margin-bottom:22px}
+.hero{display:flex;gap:20px;align-items:center;background:linear-gradient(135deg,#143F4F,#1D5D70);color:#fff;border:0;border-radius:22px;padding:20px;margin-bottom:22px}
 .hero .seal{flex:none;width:112px;height:112px;font-size:70px;font-weight:700;background:var(--red);color:#FBEFD5;box-shadow:0 0 0 3px var(--red),0 0 0 5px var(--gold)}
 .hero h2{margin:2px 0 6px;font:700 24px/1.3 "Noto Serif SC","Be Vietnam Pro",serif}
 .hero p{margin:0 0 10px;color:var(--mute);max-width:60ch}
 .formula{display:inline-block;border:1.5px dashed var(--gold);border-radius:8px;padding:4px 12px;font-size:14px}
 .formula b{color:var(--red);font-size:18px}
-.exs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
-.ex{position:relative;text-align:center;background:var(--card);border:1.5px solid var(--line);border-radius:10px;padding:18px 12px 14px}
-.ill{width:116px;height:116px;margin:0 auto 10px;border-radius:50%;display:grid;place-items:center;font-size:60px;background:radial-gradient(circle,var(--ring) 55%,transparent 72%);border:2px solid var(--gold);box-shadow:0 0 0 5px var(--card),0 0 0 6px var(--line)}
-.ill svg{width:90px;height:90px}
-.hz{font-size:26px;font-weight:700;line-height:1.3}
-.hz b{color:var(--red)}
+.exs{display:grid;grid-template-columns:repeat(auto-fill,minmax(172px,1fr));gap:24px 18px;padding:8px 6px}
 .vi{font-weight:500}
 .spk{position:absolute;top:8px;right:8px;border:1px solid var(--line);background:var(--paper);border-radius:50%;width:34px;height:34px;font-size:15px}
-footer{text-align:center;color:var(--mute);font-size:13px;padding:6px 16px 26px}
 @media (max-width:560px){.hero{flex-direction:column;text-align:center}}
-@media (prefers-reduced-motion:reduce){.card{transition:none}}
-:root{--paper:#FBF8F2;--card:#fff;--ink:#1B2E35;--mute:#5B7078;--red:#D6453A;--lac:#143F4F;--gold:#F0B94B;--jade:#1F6479;--line:#DCE9EC;--ring:#FFF1CF}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--paper:#0E2F3C;--card:#16404F;--ink:#F3EBDD;--mute:#A9C4CC;--red:#EF6A4C;--lac:#0B2630;--jade:#58B4C8;--line:#245566;--ring:#1D5D70}}
-:root[data-theme=dark]{--paper:#0E2F3C;--card:#16404F;--ink:#F3EBDD;--mute:#A9C4CC;--red:#EF6A4C;--lac:#0B2630;--jade:#58B4C8;--line:#245566;--ring:#1D5D70}
 body::before{content:'';position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--paper)}
 .topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--paper) 90%,transparent);border-bottom:1px solid var(--line);backdrop-filter:blur(16px)}
 .tb{width:min(1140px,calc(100% - 32px));margin:0 auto;min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}
@@ -92,8 +73,7 @@ body::before{content:'';position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .sk{font-size:.78rem;color:var(--jade);font-weight:800;letter-spacing:.14em}.sk:before,.sec:before{content:'';width:26px;height:3px;border-radius:3px;background:#EF6A4C}
 .pbh h2{margin:8px 0 6px;font:700 clamp(1.45rem,2.6vw,2.05rem)/1.3 'Noto Serif SC',serif;color:#143F4F}.pbh p{margin:0 0 14px;color:var(--mute);font-size:.93rem}
 .sec{margin:28px 0 14px;font:700 1.2rem 'Noto Serif SC',serif;color:#143F4F}
-.grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:24px 18px;padding:10px 6px}
-.card,.ex{display:block;border:0;background:none;padding:0;outline:0;text-align:center;transform:rotate(var(--r,0deg));filter:drop-shadow(0 7px 8px rgba(20,63,79,.22));transition:transform .35s cubic-bezier(.2,.8,.2,1),filter .35s}
+.card,.ex{position:relative;display:block;border:0;background:none;padding:0;outline:0;text-align:center;transform:rotate(var(--r,0deg));filter:drop-shadow(0 7px 8px rgba(20,63,79,.22));transition:transform .35s cubic-bezier(.2,.8,.2,1),filter .35s}
 .card:nth-child(3n+1),.ex:nth-child(3n+1){--r:-2deg}.card:nth-child(3n+2),.ex:nth-child(3n+2){--r:1.6deg}.card:nth-child(3n),.ex:nth-child(3n){--r:-1deg}
 .card:hover,.ex:hover{transform:rotate(0) translateY(-8px) scale(1.04);border:0;filter:drop-shadow(0 18px 18px rgba(20,63,79,.3))}
 .face{--pm:radial-gradient(circle at 50% 0,#0000 4.5px,#000 5px) center top/13px 100% repeat-x,radial-gradient(circle at 50% 100%,#0000 4.5px,#000 5px) center bottom/13px 100% repeat-x,radial-gradient(circle at 0 50%,#0000 4.5px,#000 5px) left center/100% 13px repeat-y,radial-gradient(circle at 100% 50%,#0000 4.5px,#000 5px) right center/100% 13px repeat-y;background:#FFFEFA;color:#1B2E35;padding:11px 11px 10px;-webkit-mask:var(--pm);-webkit-mask-composite:source-in;mask:var(--pm);mask-composite:intersect}
@@ -105,10 +85,8 @@ body::before{content:'';position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .cn{font:900 1.3rem/1.15 'Noto Serif SC',serif;color:#143F4F;letter-spacing:.06em}.cn b{color:#D6453A}
 .vi2{font-size:.74rem;line-height:1.3;color:#5B7078;font-weight:600}
 .val{justify-self:center;font-weight:800;font-size:.85rem;color:#D6453A;border:1.5px solid #D6453A;border-radius:6px;padding:1px 8px;margin-top:3px}
-.exs{grid-template-columns:repeat(auto-fill,minmax(172px,1fr));gap:24px 18px;padding:8px 6px}
 .ex .art{aspect-ratio:1/1}.ex .art svg{width:72%}.ex .py{font-size:.85rem}
 .ex .spk{top:19px;right:19px;z-index:3;background:rgba(255,255,255,.85)}
-.hero{background:linear-gradient(135deg,#143F4F,#1D5D70);color:#fff;border:0;border-radius:22px}
 .hero h2{color:#fff}.hero p{color:#CFE6EC}.hero .py{color:#FFE9B8}.formula{color:#fff}.formula b{color:#F0B94B}
 .mc{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
 .mchip{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:10px 14px;display:grid;gap:1px}
@@ -179,22 +157,7 @@ BL='stroke="#2E6A8A" stroke-width="1.8" stroke-linejoin="round"';
 
 const I={
 /* —— động vật —— */
-"🐱":S(
-  el(32,54,17,7,"#C8C0D0")+
-  p("M14 22L10 4L26 16Z","#E8E4EC")+p("M50 22L54 4L38 16Z","#E8E4EC")+
-  p("M16 18L12 6L24 16Z","#F5A8B8")+p("M48 18L52 6L40 16Z","#F5A8B8")+
-  c(32,30,16.5,"#EDE9F2")+
-  el(32,40,12,10,"#EDE9F2")+
-  el(32,36,10,8,"#F7F4FA")+
-  el(24,28,3.2,3.8,K)+el(40,28,3.2,3.8,K)+
-  c(25.2,27,1.1,"#fff")+c(41.2,27,1.1,"#fff")+
-  c(24.4,28.4,0.7,"#fff")+c(40.4,28.4,0.7,"#fff")+
-  p("M29 34.5H35L32 38Z","#E86C7A")+
-  ln("M32 38V42M27 43.5Q32 47.5 32 42Q32 47.5 37 43.5",K,1.5)+
-  ln("M14 34L2 28M14 38L2 44M50 34L62 28M50 38L62 44","#9A94A8",1.6)+
-  ln("M30 16V26M25 18L27 26M35 18L33 26","#B0A8B8",1.7)+
-  el(18,36,3,2,"#F5A8B8",'opacity=".55"')+el(46,36,3,2,"#F5A8B8",'opacity=".55"')
-),
+"🐱":S(ln("M45 54Q62 55 57 38Q55 32 50 36","#F2A860",6)+el(32,49,14,11,"#F9BE80")+el(32,52,7.5,6,"#FFF4E2")+el(25,58,5.2,3.2,"#FFF4E2")+el(39,58,5.2,3.2,"#FFF4E2")+ln("M25 57V59.5M39 57V59.5","#F0C9A0",1)+p("M12 28L13 6L29 15Z","#F9BE80")+p("M52 28L51 6L35 15Z","#F9BE80")+p("M16.5 23L17 11.5L25 16Z","#FFB3C1")+p("M47.5 23L47 11.5L39 16Z","#FFB3C1")+el(32,31,21.5,17,"#F9BE80")+ln("M32 14.5V19.5M26.5 15.5L27.5 20M37.5 15.5L36.5 20","#E58F47",2)+el(32,38,8.5,5.5,"#FFF4E2")+el(23,31.5,4.3,5,K)+el(41,31.5,4.3,5,K)+c(24.7,29.4,1.7,"#fff")+c(42.7,29.4,1.7,"#fff")+c(22,33.6,.9,"#fff")+c(40,33.6,.9,"#fff")+el(14.5,38,3.6,2.3,"#FF9DB0",'opacity=".75"')+el(49.5,38,3.6,2.3,"#FF9DB0",'opacity=".75"')+p("M30 35H34L32 37.4Z","#F0788C")+ln("M32 37.4Q30.5 40.6 27.5 39M32 37.4Q33.5 40.6 36.5 39",K,1.3)+ln("M12 34L4 32M12 37L4 38.5M52 34L60 32M52 37L60 38.5","#C98757",1.2)),
 "🐶":S(
   el(32,54,15,7,"#C48A4A")+
   el(14,28,6.5,13,"#6B3E24",'transform="rotate(12 14 28)"')+
@@ -245,15 +208,7 @@ const I={
   el(27,44,2,2.4,"#A84848")+el(37,44,2,2.4,"#A84848")+
   c(24,30,2.4)+c(40,30,2.4)
 ),
-"🐘":S(
-  el(10,30,9,15,"#7A8A9C")+el(54,30,9,15,"#7A8A9C")+
-  el(32,30,16,18,"#9AABC0")+
-  ln("M32 36V50Q32 58 42 56","#9AABC0",9)+
-  ln("M22 42Q14 46 16 54M42 42Q50 46 48 54","#FFFDF8",3)+
-  c(24,26,2.4)+c(40,26,2.4)+
-  c(25,25,0.8,"#fff")+c(41,25,0.8,"#fff")+
-  el(32,34,6,4,"#7A8A9C")
-),
+"🐘":S(el(12,30,10,13,"#9FB1C4")+el(52,30,10,13,"#9FB1C4")+el(13,31,5.5,8.5,"#F2B8C2")+el(51,31,5.5,8.5,"#F2B8C2")+c(32,29,18,"#B8C7D8")+ln("M32 36V47Q32 56 41 55","#B8C7D8",9.5)+ln("M28.5 42H35.5M29 47H34.5","#9FB1C4",1.3)+p("M23 40Q19 48 24 53Q26.5 47 27 41Z M41 40Q45 48 40 53Q37.5 47 37 41Z","#FFFDF5",'stroke="#E3D3B0" stroke-width="1"')+c(25,27,2.6)+c(39,27,2.6)+c(26,26,.9,"#fff")+c(40,26,.9,"#fff")+el(18.5,35,3.2,2,"#FF9DB0",'opacity=".7"')+el(45.5,35,3.2,2,"#FF9DB0",'opacity=".7"')+p("M28 15Q32 11 36 15Q32 20 28 15Z","#9FB1C4")),
 "🦁":S(
   c(32,32,26,"#D4892A")+
   c(14,14,5.5,"#F0C56A")+c(50,14,5.5,"#F0C56A")+
@@ -264,14 +219,7 @@ const I={
   c(24,32,2.4)+c(40,32,2.4)+
   c(25,31,0.8,"#fff")+c(41,31,0.8,"#fff")
 ),
-"🐴":S(
-  ln("M20 12Q8 30 20 56M44 12Q56 30 44 56",K,5.5)+
-  p("M22 14L20 2L30 10Z","#9A5A32")+p("M42 14L44 2L34 10Z","#9A5A32")+
-  el(32,32,13,20,"#A86838")+el(32,30,4,14,"#F5E8D4")+
-  el(32,50,10,7,"#C88858")+
-  el(28,50,1.6,2.2,K)+el(36,50,1.6,2.2,K)+
-  c(22,26,2.3)+c(42,26,2.3)
-),
+"🐴":S(p("M16 22Q7 36 14 54Q21 48 21 40Z M48 22Q57 36 50 54Q43 48 43 40Z","#5A3622")+p("M20 17L19 3L29 11Z M44 17L45 3L35 11Z","#C98048")+p("M21.5 13.5L21 7L26 11Z M42.5 13.5L43 7L38 11Z","#F4B6B0")+p("M16 25Q16 11 32 11Q48 11 48 25Q48 35 44 43Q43 59 32 59Q21 59 20 43Q16 35 16 25Z","#C98048")+p("M30 13H34L35.5 38H28.5Z","#FFF4E2")+p("M22 15Q28 9 32 20Q36 9 42 15Q40 7 32 6Q24 7 22 15Z","#5A3622")+el(32,49,10.5,8.5,"#F6D9B6")+c(28.2,48.5,1.4,"#A0623A")+c(35.8,48.5,1.4,"#A0623A")+el(25,29,3.4,4.2,K)+el(39,29,3.4,4.2,K)+c(26.3,27.4,1.4,"#fff")+c(40.3,27.4,1.4,"#fff")+el(19.5,37,3,2,"#FF9DB0",'opacity=".7"')+el(44.5,37,3,2,"#FF9DB0",'opacity=".7"')+ln("M29 54Q32 56.5 35 54",K,1.2)),
 "🐺":S(
   p("M12 26L10 4L28 16Z","#6B7888")+p("M52 26L54 4L36 16Z","#6B7888")+
   p("M10 28Q12 16 32 14Q52 16 54 28Q52 46 32 58Q12 46 10 28Z","#8A96A4")+
@@ -282,13 +230,7 @@ const I={
   c(24,30,1.2)+c(40,30,1.2)+
   ln("M32 46.5V51M27 52Q32 56 32 51Q32 56 37 52",K,1.3)
 ),
-"🐍":S(
-  ln("M10 54C8 36 30 46 34 34C38 22 20 26 32 14","#3D9A5C",10)+
-  ln("M10 54C8 36 30 46 34 34C38 22 20 26 32 14","#B8E8A8",2.2,'stroke-dasharray="0.2 8"')+
-  el(32,14,8,6.5,"#3D9A5C")+
-  c(29,12.5,1.8)+c(35,12.5,1.8)+
-  ln("M32 8V2M32 2L28.5 0M32 2L35.5 0","#D92B36",1.5)
-),
+"🐍":S(ln("M10 55Q6 40 22 43Q40 46 38 33Q36 24 29 25","#6DBE6F",11)+ln("M10 55Q6 40 22 43Q40 46 38 33Q36 24 29 25","#B6E3A0",2.4,'stroke-dasharray="0.1 8"')+el(27,17,10,8.5,"#6DBE6F")+c(22.6,15.5,2.4)+c(31.4,15.5,2.4)+c(23.4,14.6,.9,"#fff")+c(32.2,14.6,.9,"#fff")+el(18.5,20,2.4,1.6,"#FF9DB0",'opacity=".7"')+el(35.5,20,2.4,1.6,"#FF9DB0",'opacity=".7"')+ln("M25 21Q27 23 29 21",K,1)+ln("M27 24V29M27 29L25 31.5M27 29L29 31.5","#E4564A",1.4)),
 "🐟":S(
   p("M50 32L62 18V46Z","#D45A20")+
   el(30,32,20,13,"#E87830")+
@@ -299,13 +241,7 @@ const I={
 ),
 
 /* —— đồ vật / sách / giấy —— */
-"🧵":S(
-  p("M14 46H34L30 58H10Z","#C02820")+
-  el(48,34,7,14,"#E04A40")+
-  p("M12 18H50V48H12Z","#C02820")+
-  p("M20 18H24V48H20Z","#E0B85A")+p("M32 18H36V48H32Z","#E0B85A")+
-  ln("M48 26Q44 32 48 36Q52 40 48 44","#8A1810",1.8)
-),
+"🧵":S(p("M28 49H52Q54 56 59 57H30Z","#E4564A")+p("M16 19H46V49H16Z","#D6453A")+el(46,34,6,15,"#B5322F")+el(16,34,6,15,"#F6E0B8")+el(16,34,3.6,9.5,"none",'stroke="#D6453A" stroke-width="1.6"')+el(16,34,1.8,4,"#8B5A2B")+ln("M16 24.5H46M16 43.5H46","#F0B94B",1.6)+c(26,29,2.2,"#F6E0B8")+c(35,31,2.2,"#F6E0B8")+c(41,38,2.2,"#F6E0B8")+c(29,39,2.2,"#F6E0B8")+c(21,40,1.6,"#F6E0B8")),
 "👖":S(
   p("M16 6H48L52 56H36L32 26L28 56H12Z","#2E6AA8")+
   p("M16 6H48V14H16Z","#1E4A7A")+
@@ -368,12 +304,7 @@ const I={
   p("M12 30H52V40H12Z","#9A6238")+
   ln("M18 40V58M46 40V58","#7A4A28",4.5)
 ),
-"🔪":S(
-  p("M6 12H44Q56 12 56 26V42H6Z","#C8D4DC")+
-  ln("M12 20H40","#fff",2.2)+
-  c(16,32,2.8,"#7A8898")+
-  p("M56 22H62V38H56Z","#7A3A24")
-),
+"🔪":S('<g transform="translate(32 33) rotate(32) scale(.88) translate(-34 -33)">'+p("M26 3Q43 18 43 41H26Z","#D5DEE6",'stroke="#9AA7B3" stroke-width="1.5" stroke-linejoin="round"')+ln("M30.5 11V37","#fff",2.2)+p("M25 41H44V45H25Z","#9AA7B3")+p("M27 45H42V59Q42 62 39 62H30Q27 62 27 59Z","#8B3A2B")+c(34.5,51,1.7,"#E0B85A")+c(34.5,57,1.7,"#E0B85A")+'</g>'),
 "🔑":S(
   c(18,24,13.5,"#E0B85A")+c(18,24,6,"#F8F0D8")+
   ln("M28 34L56 58M44 48L50 42M50 54L56 48","#E0B85A",5.5)
@@ -386,18 +317,8 @@ const I={
   p("M4 50H60V56H4Z","#F0E8D8")+
   ln("M22 36L26 42M28 34L32 40","#fff",2.2)
 ),
-"🥢":S(
-  ln("M10 6L48 58","#7A4A28",4.5)+
-  ln("M20 4L58 54","#9A6238",4.5)+
-  ln("M10 6L14 12M20 4L24 10","#C02820",4)
-),
-"🧤":S(
-  p("M10 30Q10 14 24 12Q36 12 36 28V42H10Z","#D6453A")+
-  p("M34 28Q50 28 48 40Q44 46 34 42Z","#D6453A")+
-  p("M8 42H38V56H8Z","#F5F0E6")+
-  ln("M8 48H38","#D6453A",2.2)+
-  p("M28 28Q42 26 40 38Q36 44 28 40Z","#E86850")
-),
+"🥢":S(ln("M13 7L44 57","#C98757",4.6)+ln("M13 7L44 57","#E8BE92",1.4)+ln("M12 6L18 16","#C8302B",5.4)+ln("M17.6 15L19.4 18","#F0B94B",5.4)+ln("M24 5L55 52","#B97A45",4.6)+ln("M24 5L55 52","#DCA877",1.4)+ln("M23 4L29 14","#C8302B",5.4)+ln("M28.6 13L30.4 16","#F0B94B",5.4)),
+"🧤":S('<g transform="translate(1 12) scale(.95)">'+p("M4 30V14Q4 4 14 4Q24 4 24 14V30Z","#D6453A")+p("M24 19Q33 19 31 28Q29 32 24 30Z","#D6453A")+p("M3 30H25V40H3Z","#F6E8D0")+ln("M8 31V39M14 31V39M20 31V39","#E3D3B0",1.4)+c(14,16,2.2,"#FBE3B0")+c(14,23,2.2,"#FBE3B0")+'</g><g transform="translate(63 12) scale(-.95 .95)">'+p("M4 30V14Q4 4 14 4Q24 4 24 14V30Z","#2E8AA3")+p("M24 19Q33 19 31 28Q29 32 24 30Z","#2E8AA3")+p("M3 30H25V40H3Z","#F6E8D0")+ln("M8 31V39M14 31V39M20 31V39","#E3D3B0",1.4)+c(14,16,2.2,"#BFE1F5")+c(14,23,2.2,"#BFE1F5")+'</g>'),
 "🧦":S(
   p("M18 6H40V30L54 46Q60 56 48 58Q40 58 32 48L18 38Z","#E0B85A")+
   p("M18 6H40V16H18Z","#D6453A")+
@@ -575,13 +496,7 @@ const I={
   ln("M20 6Q32 18 44 6","#1F6A88",3)+
   ln("M20 40H44","#fff",2.5)
 ),
-"🧥":S(
-  p("M18 4H46L60 18L56 58H8L4 18Z","#9A6238")+
-  p("M32 4L22 58H42Z","#F5E8D4")+
-  p("M18 4L32 22L46 4Z","#7A4A28")+
-  c(24,36,2.2)+c(24,46,2.2)+
-  ln("M32 22V58","#C4B090",1.3)
-),
+"🧥":S(p("M20 12L6 21L10 51H20Z M44 12L58 21L54 51H44Z","#E3873F")+p("M20 10H44V57H20Z","#F0A04B")+p("M20 10Q32 24 44 10Q40 5 32 5Q24 5 20 10Z","#C86A28")+ln("M32 20V57","#FFF4E2",2)+c(32,22,1.6,"#E0B85A")+ln("M23 43H29M35 43H41","#C86A28",2.2)+p("M9 46H20V52H9Z M44 46H55V52H44Z","#C86A28")+ln("M22 16V54","#F7BE78",1.6)),
 "📌":S(
   p("M24 4H40L38 24Q48 28 48 38H16Q16 28 26 24Z","#D6453A")+
   ln("M32 38V60","#7A8898",3.5)+
@@ -899,7 +814,7 @@ const X={
 "本":"小说|xiǎoshuō|cuốn tiểu thuyết;字典|zìdiǎn|cuốn từ điển;漫画|mànhuà|cuốn truyện tranh;笔记本|bǐjìběn|quyển sổ tay",
 "把":"勺子|sháozi|cái thìa;梳子|shūzi|cái lược;剪刀|jiǎndāo|cái kéo;扇子|shànzi|cái quạt;锁|suǒ|cái khoá;米|mǐ|nắm gạo",
 "双":"眼睛|yǎnjing|đôi mắt;拖鞋|tuōxié|đôi dép;靴子|xuēzi|đôi bốt;手|shǒu|đôi tay",
-"辆":"出租车|chūzūchē|chiếc taxi;卡车|kǎchē|chiếc xe tải;摩托车|mótuōchē|chiếc xe máy;汽车|qìchē|chiếc ô tô",
+"辆":"出租车|chūzūchē|chiếc taxi;卡车|kǎchē|chiếc xe tải;汽车|qìchē|chiếc ô tô",
 "朵":"梅花|méihuā|bông hoa mai;荷花|héhuā|bông hoa sen;菊花|júhuā|bông hoa cúc;牡丹|mǔdan|bông mẫu đơn",
 "棵":"草|cǎo|ngọn cỏ;柳树|liǔshù|cây liễu;竹子|zhúzi|cây tre;菜|cài|cây rau;黄瓜|huángguā|cây dưa chuột",
 "张":"地图|dìtú|tấm bản đồ;桌子|zhuōzi|cái bàn;报纸|bàozhǐ|tờ báo;脸|liǎn|khuôn mặt;嘴|zuǐ|cái miệng",
@@ -911,20 +826,20 @@ const X={
 "块":"橡皮|xiàngpí|cục tẩy;砖|zhuān|cục gạch;香皂|xiāngzào|cục xà phòng;蛋糕|dàngāo|miếng bánh",
 "根":"葱|cōng|cọng hành;电线|diànxiàn|sợi dây điện;蜡烛|làzhú|ngọn nến;油条|yóutiáo|thanh bánh quẩy",
 "颗":"珍珠|zhēnzhū|viên ngọc trai;宝石|bǎoshí|viên đá quý;子弹|zǐdàn|viên đạn",
-"片":"药|yào|viên thuốc dẹt;嘴唇|zuǐchún|môi;面包|miànbāo|lát bánh mì",
-"顶":"帽子|màozi|cái mũ;蚊帐|wénzhàng|cái màn",
+"片":"药|yào|viên thuốc dẹt;嘴唇|zuǐchún|môi",
+
 "套":"餐具|cānjù|bộ đồ ăn;设备|shèbèi|bộ thiết bị",
 "场":"雪|xuě|trận tuyết;病|bìng|trận bệnh;演出|yǎnchū|buổi biểu diễn",
-"部":"电影|diànyǐng|bộ phim;字典|zìdiǎn|cuốn từ điển",
-"名":"律师|lǜshī|luật sư;警察|jǐngchá|cảnh sát;演员|yǎnyuán|diễn viên",
-"口":"人|rén|thành viên (nhà);锅|guō|cái nồi;钟|zhōng|cái chuông lớn",
+"部":"字典|zìdiǎn|cuốn từ điển",
+"名":"警察|jǐngchá|cảnh sát;演员|yǎnyuán|diễn viên",
+"口":"人|rén|thành viên (nhà);钟|zhōng|cái chuông lớn",
 "间":"教室|jiàoshì|phòng học;卧室|wòshì|phòng ngủ;办公室|bàngōngshì|văn phòng",
 "所":"大学|dàxué|trường đại học;研究所|yánjiūsuǒ|viện nghiên cứu",
-"架":"飞机|fēijī|máy bay;相机|xiàngjī|máy ảnh",
-"台":"电脑|diànnǎo|máy tính;空调|kōngtiáo|máy lạnh;打印机|dǎyìnjī|máy in",
+"架":"相机|xiàngjī|máy ảnh",
+"台":"空调|kōngtiáo|máy lạnh;打印机|dǎyìnjī|máy in",
 "滴":"血|xuè|giọt máu;汗水|hànshuǐ|giọt mồ hôi;油|yóu|giọt dầu",
 "粒":"沙子|shāzi|hạt cát;药|yào|viên thuốc",
-"扇":"门|mén|cánh cửa;窗户|chuānghu|cửa sổ",
+
 "副":"扑克牌|pūkèpái|bộ bài;对联|duìlián|câu đối",
 "顿":"午饭|wǔfàn|bữa trưa;晚饭|wǎnfàn|bữa tối",
 "份":"礼物|lǐwù|phần quà;文件|wénjiàn|bản tài liệu;工作|gōngzuò|công việc"
