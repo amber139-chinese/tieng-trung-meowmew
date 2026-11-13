@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>部首 · Bộ thủ tiếng Trung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700&family=Be+Vietnam+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+:root{--paper:#FBF8F2;--card:#fff;--ink:#1B2E35;--mute:#5B7078;--red:#D6453A;--lac:#143F4F;--gold:#F0B94B;--jade:#1F6479;--line:#DCE9EC;--ring:#FFF1CF;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0E2F3C;--card:#16404F;--ink:#F3EBDD;--mute:#A9C4CC;--red:#EF6A4C;--lac:#0B2630;--gold:#F0B94B;--jade:#58B4C8;--line:#245566;--ring:#1D5D70;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#0E2F3C;--card:#16404F;--ink:#F3EBDD;--mute:#A9C4CC;--red:#EF6A4C;--lac:#0B2630;--gold:#F0B94B;--jade:#58B4C8;--line:#245566;--ring:#1D5D70;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 "Be Vietnam Pro",system-ui,sans-serif}
+.han{font-family:"Noto Serif SC","Songti SC","SimSun",serif}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.seal{display:inline-grid;place-items:center;background:#FBEFD5;color:var(--lac);border-radius:8px;transform:rotate(-4deg);box-shadow:0 0 0 3px var(--lac),0 0 0 5px #FBEFD5}
+h1{margin:0;font:700 clamp(26px,6vw,40px)/1.2 "Noto Serif SC","Be Vietnam Pro",serif;letter-spacing:.02em}
+main{max-width:980px;margin:0 auto;padding:22px 16px 40px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 12px;scrollbar-width:thin}
+.chip{flex:none;border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:6px 15px;font-size:14px}
+.chip .han{color:var(--red);margin-right:6px;font-weight:700}
+.chip[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:#fff}
+.chip[aria-pressed="true"] .han{color:#FBE3B0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:24px 18px;padding:10px 6px;margin-top:6px}
+.py{display:block;color:var(--jade);font-weight:600;font-size:15px}
+.back{border:1.5px solid var(--red);background:none;color:var(--red);border-radius:999px;padding:6px 16px;margin-bottom:16px;font-weight:600}
+.hero{display:flex;gap:20px;align-items:center;background:linear-gradient(135deg,#143F4F,#1D5D70);color:#fff;border:0;border-radius:22px;padding:20px;margin-bottom:22px}
+.hero .seal{flex:none;width:112px;height:112px;font-size:70px;font-weight:700;background:var(--red);color:#FBEFD5;box-shadow:0 0 0 3px var(--red),0 0 0 5px var(--gold)}
+.hero h2{margin:2px 0 6px;font:700 24px/1.3 "Noto Serif SC","Be Vietnam Pro",serif}
+.hero p{margin:0 0 10px;color:var(--mute);max-width:60ch}
+.formula{display:inline-block;border:1.5px dashed var(--gold);border-radius:8px;padding:4px 12px;font-size:14px}
+.formula b{color:var(--red);font-size:18px}
+.exs{display:grid;grid-template-columns:repeat(auto-fill,minmax(172px,1fr));gap:24px 18px;padding:8px 6px}
+.vi{font-weight:500}
+.spk{position:absolute;top:8px;right:8px;border:1px solid var(--line);background:var(--paper);border-radius:50%;width:34px;height:34px;font-size:15px}
+@media (max-width:560px){.hero{flex-direction:column;text-align:center}}
+body::before{content:'';position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--paper)}
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--paper) 90%,transparent);border-bottom:1px solid var(--line);backdrop-filter:blur(16px)}
+.tb{width:min(1140px,calc(100% - 32px));margin:0 auto;min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--ink)}
+.logo-mark{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;color:#fff;background:linear-gradient(145deg,#D6453A,#F0806B);font:900 20px 'Noto Serif SC',serif;box-shadow:0 8px 18px rgba(214,69,58,.28)}
+.bt{display:flex;flex-direction:column;line-height:1.2;font-size:.82rem;font-weight:700;letter-spacing:.03em}
+.bc{font:700 .84rem 'Noto Serif SC',serif;color:var(--jade);margin-top:3px}
+.tbn{font-weight:700;font-size:.85rem;color:var(--jade);padding:7px 15px;border-radius:999px;background:color-mix(in srgb,var(--jade) 14%,transparent)}
+.lh{position:relative;overflow:hidden;color:#fff;isolation:isolate;padding:60px 0 150px;background:radial-gradient(circle at 85% 15%,rgba(88,180,200,.38),transparent 38%),radial-gradient(circle at 5% 100%,rgba(240,185,75,.2),transparent 34%),linear-gradient(135deg,#0E2F3C,#143F4F 55%,#1D5D70)}
+.lh:before{content:'部首';position:absolute;left:-1vw;bottom:-4.5rem;z-index:-1;font:900 clamp(9rem,22vw,18rem)/1 'Noto Serif SC',serif;color:rgba(255,255,255,.05);letter-spacing:.04em}
+.lh:after{content:'';position:absolute;inset:0;z-index:-1;background-image:radial-gradient(rgba(255,255,255,.1) 1.2px,transparent 1.4px);background-size:26px 26px;-webkit-mask-image:linear-gradient(180deg,#000,transparent 80%);mask-image:linear-gradient(180deg,#000,transparent 80%)}
+.lg{width:min(1140px,calc(100% - 40px));margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.kick{display:inline-block;color:#FFE9B8;font-weight:700;font-size:.8rem;letter-spacing:.16em;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22)}
+.lh h1{margin:20px 0 14px;font:700 clamp(2.1rem,5vw,3.8rem)/1.2 'Noto Serif SC','Be Vietnam Pro',serif;letter-spacing:-.01em}
+.lh .bn{display:block;margin-bottom:12px;font:700 clamp(.8rem,1.3vw,1rem)/1.3 'Be Vietnam Pro',sans-serif;letter-spacing:.14em;color:#58B4C8}
+.lh p{margin:0;max-width:46ch;color:#CFE6EC}
+.hl{color:#F0B94B;background:linear-gradient(transparent 82%,rgba(240,185,75,.35) 82%)}
+.btn{display:inline-flex;align-items:center;margin-top:26px;min-height:48px;padding:11px 26px;border-radius:999px;background:#EF6A4C;color:#fff;font-weight:700;text-decoration:none;box-shadow:0 12px 24px rgba(239,106,76,.32)}
+.hv{position:relative;height:340px}
+.hc{position:absolute;background:#fff;color:#1B2E35;border-radius:24px;box-shadow:0 18px 40px rgba(0,0,0,.28);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.hc b{font:700 2rem/1 'Noto Serif SC',serif}.hc i{font-style:normal;color:#1F6479;font-weight:600;font-size:.85rem;margin-top:4px}
+.hm{width:230px;height:270px;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-3deg);background:linear-gradient(160deg,#fff,#FFF6E0);border-radius:32px}
+.hm b{font-size:7rem;color:#143F4F}.hm i{font-size:1.2rem}
+.hm:before{content:'';position:absolute;inset:12px;border:1.5px dashed rgba(240,185,75,.8);border-radius:22px}
+.h1c,.h2c,.h3c{width:140px;height:92px;z-index:2}
+.h1c{left:0;top:10px;rotate:-7deg;animation:fl 6s ease-in-out infinite}.h2c{right:0;top:60px;rotate:6deg;animation:fl 7s ease-in-out -2s infinite}.h3c{left:14px;bottom:10px;rotate:5deg;animation:fl 6.5s ease-in-out -4s infinite}
+.sl{position:absolute;right:14px;bottom:2px;width:78px;height:78px;border-radius:16px;background:#D6453A;color:#fff;display:grid;place-items:center;font:900 2.6rem 'Noto Serif SC',serif;transform:rotate(8deg);box-shadow:0 14px 28px rgba(0,0,0,.35);z-index:3}
+@keyframes fl{0%,100%{translate:0 0}50%{translate:0 -10px}}
+.stamps-wrap{position:relative;z-index:3;margin-top:-100px}
+.postbook{--ink:#1B2E35;--mute:#5B7078;--jade:#1F6479;--card:#fff;--line:#DCE9EC;--red:#D6453A;--gold:#C79A3B;color:#1B2E35;width:min(1140px,calc(100% - 40px));margin:0 auto;border:9px solid transparent;border-radius:30px;padding:28px 28px 38px;box-shadow:0 26px 60px rgba(14,47,60,.2);background:linear-gradient(#FFFDF8,#FBF4E2) padding-box,repeating-linear-gradient(-45deg,#D6453A 0 16px,#fff 16px 32px,#2E8AA3 32px 48px,#fff 48px 64px) border-box}
+.postbook main{max-width:none;padding:0}
+.sk,.sec{display:flex;align-items:center;gap:10px}
+.sk{font-size:.78rem;color:var(--jade);font-weight:800;letter-spacing:.14em}.sk:before,.sec:before{content:'';width:26px;height:3px;border-radius:3px;background:#EF6A4C}
+.pbh h2{margin:8px 0 6px;font:700 clamp(1.45rem,2.6vw,2.05rem)/1.3 'Noto Serif SC',serif;color:#143F4F}.pbh p{margin:0 0 14px;color:var(--mute);font-size:.93rem}
+.sec{margin:28px 0 14px;font:700 1.2rem 'Noto Serif SC',serif;color:#143F4F}
+.card,.ex{position:relative;display:block;border:0;background:none;padding:0;outline:0;text-align:center;transform:rotate(var(--r,0deg));filter:drop-shadow(0 7px 8px rgba(20,63,79,.22));transition:transform .35s cubic-bezier(.2,.8,.2,1),filter .35s}
+.card:nth-child(3n+1),.ex:nth-child(3n+1){--r:-2deg}.card:nth-child(3n+2),.ex:nth-child(3n+2){--r:1.6deg}.card:nth-child(3n),.ex:nth-child(3n){--r:-1deg}
+.card:hover,.ex:hover{transform:rotate(0) translateY(-8px) scale(1.04);border:0;filter:drop-shadow(0 18px 18px rgba(20,63,79,.3))}
+.face{--pm:radial-gradient(circle at 50% 0,#0000 4.5px,#000 5px) center top/13px 100% repeat-x,radial-gradient(circle at 50% 100%,#0000 4.5px,#000 5px) center bottom/13px 100% repeat-x,radial-gradient(circle at 0 50%,#0000 4.5px,#000 5px) left center/100% 13px repeat-y,radial-gradient(circle at 100% 50%,#0000 4.5px,#000 5px) right center/100% 13px repeat-y;background:#FFFEFA;color:#1B2E35;padding:11px 11px 10px;-webkit-mask:var(--pm);-webkit-mask-composite:source-in;mask:var(--pm);mask-composite:intersect}
+.art{position:relative;aspect-ratio:4/5;border-radius:3px;overflow:hidden;box-shadow:0 0 0 1.5px rgba(20,63,79,.28);display:grid;place-items:center}
+.art:after{content:'';position:absolute;inset:3px;border:1px solid rgba(255,255,255,.6);border-radius:2px;pointer-events:none}
+.art svg{width:68%;height:auto;position:relative;z-index:1}
+.wm{position:absolute;right:-6px;bottom:-14px;font:900 7.5rem/1 'Noto Serif SC',serif;color:rgba(255,255,255,.45)}
+.cap{padding:9px 2px 0;display:grid;gap:2px;text-align:center}
+.cn{font:900 1.3rem/1.15 'Noto Serif SC',serif;color:#143F4F;letter-spacing:.06em}.cn b{color:#D6453A}
+.vi2{font-size:.74rem;line-height:1.3;color:#5B7078;font-weight:600}
+.val{justify-self:center;font-weight:800;font-size:.85rem;color:#D6453A;border:1.5px solid #D6453A;border-radius:6px;padding:1px 8px;margin-top:3px}
+.ex .art{aspect-ratio:1/1}.ex .art svg{width:72%}.ex .py{font-size:.85rem}
+.ex .spk{top:19px;right:19px;z-index:3;background:rgba(255,255,255,.85)}
+.hero h2{color:#fff}.hero p{color:#CFE6EC}.hero .py{color:#FFE9B8}.formula{color:#fff}.formula b{color:#F0B94B}
+.mc{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.mchip{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:10px 14px;display:grid;gap:1px}
+.mh{font:700 1.2rem 'Noto Serif SC',serif;color:#143F4F}.mh b{color:#D6453A}
+.ft{margin-top:64px;padding:44px 16px 50px;text-align:center;color:#CFE6EC;font-size:.95rem;background:linear-gradient(135deg,#143F4F,#0E2F3C);position:relative;overflow:hidden}
+.ft:before{content:'喵';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font:900 12rem/1 'Noto Serif SC',serif;color:rgba(255,255,255,.05)}
+.ft b{position:relative;display:block;font:700 1.35rem 'Noto Serif SC',serif;margin-bottom:6px;color:#fff}.ft small{position:relative;display:block;margin-top:14px;opacity:.7}
+@media(max-width:820px){.lg{grid-template-columns:1fr}.hv{display:none}.lh{padding:44px 0 120px}.stamps-wrap{margin-top:-84px}.postbook{padding:20px 14px 28px;border-width:7px;border-radius:24px}}
+@media(prefers-reduced-motion:reduce){.h1c,.h2c,.h3c{animation:none}.card,.ex{transition:none}}
+.orig{display:flex;gap:18px;align-items:center;background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:16px}
+.orig svg{width:104px;height:104px;flex:none;background:var(--ring);border-radius:16px;padding:12px}
+.orig p,.note p{margin:0;color:#1B2E35}
+.note{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:16px 18px}
+.tips{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.tips li{background:linear-gradient(135deg,#FFF6E0,#FFFDF5);border:1.5px dashed var(--gold);border-radius:14px;padding:10px 14px;color:#1B2E35}
+.mchip{position:relative}.mchip .spk{top:8px;right:8px;width:30px;height:30px;font-size:13px}
+.mchip .py{color:var(--jade);font-weight:600;font-size:.9rem}
+@media(max-width:560px){.orig{flex-direction:column;text-align:center}}
+</style>
+</head>
+<body>
+<div class='topbar'><div class='tb'><a class='logo' href='#'><span class='logo-mark'>喵</span><div class='bt'><span>TIẾNG TRUNG MEOW MEOW</span><span class='bc'>中文课堂</span></div></a><span class='tbn'>部首 · Bộ thủ</span></div></div>
+<div class='lh'><div class='lg'><div><div class='kick'>MEOW MEOW 部首</div><h1><span class='bn'>Tiếng Trung Meow Meow</span>Cùng Meow Meow <span class='hl'>học bộ thủ</span></h1><p>Mỗi con tem là một bộ thủ: nguồn gốc, phân tích, mẹo nhớ và 20 từ hay gặp.</p><a class='btn' href='#tem'>Xem bộ tem bộ thủ</a></div><div class='hv' aria-hidden='true'><div class='hc h1c'><b>亻</b><i>rén</i></div><div class='hc h2c'><b>氵</b><i>shuǐ</i></div><div class='hc h3c'><b>木</b><i>mù</i></div><div class='hc hm'><b>部</b><i>bù</i></div><div class='sl'>喵</div></div></div></div>
+<div class='stamps-wrap' id='tem'><div class='postbook'><div class='pbh'><div class='sk'>邮册 · TEM BỘ THỦ</div><h2>Bộ sưu tập bộ thủ</h2><p>Bấm vào một con tem để xem nguồn gốc, mẹo nhớ và từ vựng.</p>
+<p style="margin-top:8px;font-size:.88rem;color:#5B7078;line-height:1.5">Đây là danh sách <b>65 bộ thủ và dạng biến thể thường gặp</b> (không phải danh mục đầy đủ 201 bộ của 《汉字部首表》2009 hay 214 bộ Khang Hy). Hình vẽ trên tem là <b>phiên bản hiện đại hoá</b> từ giáp cốt văn, cách điệu để dễ nhận diện. Phần giải thích tách rõ: <b>字源</b> (có căn cứ lịch sử), <b>构字</b> (cấu tạo) và <b>记忆技巧</b> (mẹo nhớ – không phải lịch sử thật).</p></div><main id="app"></main></div></div>
+<footer class='ft'><b>中文学习空间</b>Học cùng Meow Meow, vui quá là vui<small>© 2026 Tiếng Trung Meow Meow · Cô Nguyễn Thu Hương</small></footer>
+<script>
+const R=[
+["亻","人","rén","Nhân đứng","người","2 nét","M30 10Q31 30 22 56M28 24Q42 28 50 40",
+"Giáp cốt văn vẽ nghiêng một người đang đứng: thân cúi nhẹ, một cánh tay chìa ra phía trước. Khi đứng bên trái chữ khác, 人 được rút gọn thành 亻 hai nét.",
+"Nằm bên trái chữ, báo hiệu nghĩa liên quan đến người: nghề nghiệp, quan hệ, tính cách, hành động của con người. Phần còn lại thường gợi âm đọc (你 nǐ = 亻 + 尔, 他 tā = 亻 + 也).",
+"休 = 亻 + 木: người dựa vào cây → nghỉ ngơi (mẹo nhớ).|体 = 亻 + 本: mẹo nhớ chữ giản thể (thực tế 体 là giản thể của 體 từ 骨+豊; chữ 体 cổ còn nghĩa thô kệch).|们 = 亻 + 门: những người cùng đi qua cổng thành nhóm (mẹo).",
+"你|nǐ|bạn;他|tā|anh ấy;们|men|(hậu tố số nhiều);什么|shénme|cái gì;住|zhù|ở, sống;做|zuò|làm;休息|xiūxi|nghỉ ngơi;体|tǐ|cơ thể;作业|zuòyè|bài tập;位|wèi|vị (lượng từ lịch sự);便宜|piányi|rẻ;信|xìn|tin, thư;借|jiè|mượn;假|jiǎ|giả;例如|lìrú|ví dụ;优秀|yōuxiù|xuất sắc;价格|jiàgé|giá cả;健康|jiànkāng|sức khoẻ;像|xiàng|giống;但是|dànshì|nhưng"],
+["口","","kǒu","Khẩu","miệng","3 nét","M16 22Q16 18 20 18H44Q48 18 48 22V44Q48 48 44 48H20Q16 48 16 44Z",
+"Giáp cốt văn vẽ cái miệng đang há; kim văn tròn trịa, về sau vuông hoá cho dễ viết. Từ miệng mà mở rộng ra nghĩa lối vào, số người (三口人).",
+"Có thể đứng bên trái (吃, 喝), trên (号), dưới (名, 哥). Chữ có 口 thường nói về ăn, nói, kêu, hát, hoặc là trợ từ cuối câu (吗, 呢, 吧, 啊) vì chúng vốn là tiếng phát ra từ miệng.",
+"吗 = 口 + 马: miệng cất lên câu hỏi (mẹo).|哥 = hai 口 chồng nhau: anh cả hay gọi to (mẹo).|告 = 牛 + 口: theo 《说文》 bò húc người, sừng mắc ngang gỗ để báo hiệu; một số giải thích liên quan cáo tế (không phải bò rống).",
+"吃|chī|ăn;喝|hē|uống;叫|jiào|gọi, kêu;听|tīng|nghe;吗|ma|(trợ từ hỏi);呢|ne|(trợ từ hỏi);哪|nǎ|nào;唱|chàng|hát;问|wèn|hỏi;喂|wèi|alo;吧|ba|(trợ từ đề nghị);嘴|zuǐ|miệng;啊|a|(trợ từ cảm thán);咖啡|kāfēi|cà phê;告诉|gàosu|nói cho biết;哥|gē|anh trai;名|míng|tên;句|jù|câu;员|yuán|nhân viên;商|shāng|thương mại"],
+["氵","水","shuǐ","Ba chấm thuỷ","nước","3 nét","M32 8V54Q32 59 27 58M32 30Q22 26 16 36M32 30Q42 26 48 36M20 14Q16 18 14 24M44 14Q48 18 50 24",
+"Giáp cốt văn vẽ dòng nước chảy ở giữa, hai bên bắn ra những giọt nước. Khi làm bộ bên trái, 水 rút thành ba chấm 氵.",
+"Đứng bên trái, chỉ nước, sông hồ biển, chất lỏng, hoặc các hành động liên quan đến nước (洗, 流, 游). Phần bên phải thường là âm đọc: 河 hé có 可 kě, 湖 hú có 胡 hú.",
+"Thấy ba chấm bên trái → nghĩ “ba giọt nước” (mẹo).|海 = 氵 + 每: 每 là thanh phù gợi âm; mẹo “mỗi ngày đầy nước” chỉ để nhớ.|清 = 氵 + 青: 青 thanh phù; mẹo nước xanh trong.",
+"河|hé|sông;海|hǎi|biển;湖|hú|hồ;洗|xǐ|rửa, giặt;游泳|yóuyǒng|bơi lội;清楚|qīngchu|rõ ràng;酒|jiǔ|rượu;汤|tāng|canh;漂亮|piàoliang|đẹp;活|huó|sống;汉语|hànyǔ|tiếng Hán;汗|hàn|mồ hôi;注意|zhùyì|chú ý;流|liú|chảy;满|mǎn|đầy;渴|kě|khát;深|shēn|sâu;没|méi|không có;法|fǎ|pháp, cách;温|wēn|ấm"],
+["木","","mù","Mộc","cây, gỗ","4 nét","M32 6V58M12 26Q32 22 52 26M20 12Q28 18 32 24M44 12Q36 18 32 24M32 46Q22 50 16 58M32 46Q42 50 48 58",
+"Giáp cốt văn vẽ cái cây: cành xoè lên trên, thân thẳng, rễ bám xuống dưới. Hai cây là 林 (rừng nhỏ), ba cây là 森 (rừng rậm).",
+"Chữ có 木 thường là cây cối, đồ làm bằng gỗ, nhà cửa, đồ dùng (桌, 椅, 楼, 桥). 木 có thể đứng trái, dưới hoặc giữa chữ. Phần còn lại hay là âm đọc, như 机 jī có 几 jǐ.",
+"本 = 木 + nét ngang ở gốc: chỉ gốc cây → “gốc, vốn” (chỉ sự).|末 = nét ngang ở ngọn → “ngọn, cuối”.|果 = 田 trên 木: quả trên cây.|休 = 亻 + 木: người tựa cây nghỉ (mẹo).",
+"梅花|méihuā|hoa mai;森林|sēnlín|rừng rậm;树|shù|cây;桌子|zhuōzi|cái bàn;椅子|yǐzi|cái ghế;机场|jīchǎng|sân bay;楼|lóu|toà nhà;桥|qiáo|cây cầu;学校|xuéxiào|trường học;村|cūn|làng;黑板|hēibǎn|bảng đen;条|tiáo|(lượng từ vật dài);极|jí|cực kỳ;样子|yàngzi|dáng vẻ;本|běn|quyển, gốc;水果|shuǐguǒ|hoa quả;杯|bēi|cái cốc;根|gēn|rễ, gốc;棵|kē|(lượng từ cây);检查|jiǎnchá|kiểm tra"],
+["忄","心","xīn","Tâm đứng","tim, tâm trí","3 nét","M10 26Q12 52 32 54Q52 52 54 26M32 10V38M20 22Q20 34 26 40",
+"Giáp cốt văn vẽ quả tim có buồng và mạch máu. Người xưa tin tim là nơi suy nghĩ, nên 心 chỉ tâm trí và cảm xúc. Bên trái là 忄 (ba nét), phía dưới giữ nguyên 心.",
+"Chữ có 忄 hoặc 心 nói về cảm xúc, suy nghĩ, ý chí, tính cách: 快, 怕, 忙, 懂, 想, 意, 感, 态. 忄 đứng trái, 心 thường đứng dưới chữ.",
+"想 = 相 + 心: mẹo “tim nhìn nhau → nhớ nghĩ”.|忙 = 忄 + 亡: mẹo “tim mất hồn vì bận” (亡 thanh phù).|怕 = 忄 + 白: mẹo “sợ trắng mặt” (白 thanh phù).",
+"想|xiǎng|nghĩ, muốn, nhớ;思考|sīkǎo|suy nghĩ;忙|máng|bận;快乐|kuàilè|vui vẻ;怕|pà|sợ;慢|màn|chậm;感情|gǎnqíng|tình cảm;感谢|gǎnxiè|cảm ơn;愿意|yuànyì|sẵn lòng;意思|yìsi|ý nghĩa;总是|zǒngshì|luôn luôn;必须|bìxū|phải;心情|xīnqíng|tâm trạng;忘记|wàngjì|quên;着急|zháojí|sốt ruột;怎么|zěnme|thế nào;态度|tàidù|thái độ;恭喜|gōngxǐ|chúc mừng;懂|dǒng|hiểu;习惯|xíguàn|thói quen"],
+["扌","手","shǒu","Thủ / Tay đứng","tay","3 nét","M32 58V30M32 30Q18 26 14 10M32 30Q26 20 26 6M32 30Q38 20 40 6M32 30Q46 24 52 12",
+"Giáp cốt văn vẽ bàn tay xoè năm ngón. 手 là chữ độc lập; khi làm bộ bên trái được rút thành 扌 ba nét, nét cuối hất lên.",
+"Chữ có 扌 chỉ hành động bằng tay: đánh, cầm, đẩy, kéo, tìm, ôm, chụp. Gặp động từ lạ có 扌 thì có thể đoán nó là thao tác của đôi tay. Phần bên phải thường gợi âm: 拉 lā, 抱 bào có 包 bāo.",
+"找 = 扌 + 戈: mẹo “tay cầm giáo đi tìm”.|抱 = 扌 + 包: 包 thanh phù; mẹo “tay bọc → ôm”.|拿 = 合 + 手: hai tay chụm → cầm (mẹo).",
+"打|dǎ|đánh, chơi;把|bǎ|nắm, (giới từ);找|zhǎo|tìm;拿|ná|cầm;提|tí|xách;推|tuī|đẩy;拉|lā|kéo;接|jiē|đón, nhận;换|huàn|đổi;担心|dānxīn|lo lắng;搬|bān|chuyển;报纸|bàozhǐ|tờ báo;指|zhǐ|chỉ;抱|bào|ôm;拍照|pāizhào|chụp ảnh;握手|wòshǒu|bắt tay;按|àn|bấm;挂|guà|treo;选择|xuǎnzé|lựa chọn;扔|rēng|ném"],
+["讠","言","yán","Ngôn","lời nói","2 nét (讠) / 7 nét (言)","M20 8H44M22 20H42M24 32H40M22 40H42V56H22Z",
+"Kim văn vẽ cái miệng 口 có nét ở trên chỉ lời đang thoát ra. Chữ giản thể rút 言 thành 讠 hai nét khi làm bộ bên trái.",
+"Bộ này đi với lời nói, ngôn ngữ, giao tiếp, học tập: 说, 话, 请, 读, 课, 语, 词. Hầu hết là động từ về nói và học. Phần bên phải thường gợi âm: 请 qǐng có 青 qīng, 读 dú có 卖 mài (âm xưa).",
+"话 = 讠 + 舌: lời từ lưỡi (mẹo).|请 = 讠 + 青: 青 thanh phù; mẹo “lời mời tươi”.|语 = 讠 + 吾: 吾 thanh phù; mẹo “lời của tôi”.",
+"说|shuō|nói;话|huà|lời nói;请|qǐng|mời, xin;谢谢|xièxie|cảm ơn;读|dú|đọc;认识|rènshi|quen biết;记|jì|nhớ, ghi;让|ràng|để, cho phép;语言|yǔyán|ngôn ngữ;课|kè|bài học;谁|shéi|ai;讲|jiǎng|giảng, kể;词|cí|từ;试|shì|thử;该|gāi|nên;误会|wùhuì|hiểu lầm;计划|jìhuà|kế hoạch;谈|tán|trò chuyện;访问|fǎngwèn|thăm hỏi;设计|shèjì|thiết kế"],
+["日","","rì","Nhật","mặt trời, ngày","4 nét","M32 12A20 20 0 1 0 32 52A20 20 0 1 0 32 12ZM32 32h.01",
+"Giáp cốt văn vẽ vòng tròn có chấm ở giữa (mặt trời). Về sau vòng tròn khó khắc nên được vuông hoá thành 日. Nghĩa mở rộng: ban ngày, ngày, thời gian.",
+"Chữ có 日 nói về thời gian, ánh sáng, thời tiết: 早, 晚, 晴, 昨, 时, 暖, 明, 星. 日 có thể đứng trái hoặc trên. Với 星 và 昨, phần còn lại thường là âm đọc.",
+"明 = 日 + 月: mặt trời + mặt trăng → sáng (mẹo).|早 = 日 trên 甲 (theo 《说文》); mẹo hiện đại nhìn như 日 trên 十: mặt trời vừa nhô.|晴 = 日 + 青: trời nắng xanh trong (mẹo).",
+"明天|míngtiān|ngày mai;时间|shíjiān|thời gian;早|zǎo|sớm;晚上|wǎnshang|buổi tối;星期|xīngqī|tuần;春天|chūntiān|mùa xuân;晴|qíng|trời nắng;昨天|zuótiān|hôm qua;时候|shíhou|lúc, khi;旧|jiù|cũ;晒|shài|phơi nắng;最|zuì|nhất;影响|yǐngxiǎng|ảnh hưởng;暖和|nuǎnhuo|ấm áp;日期|rìqī|ngày tháng;普通|pǔtōng|bình thường;景色|jǐngsè|cảnh sắc;智慧|zhìhuì|trí tuệ;音乐|yīnyuè|âm nhạc;是|shì|là"],
+["女","","nǚ","Nữ","phụ nữ","3 nét","M34 8Q44 16 36 28Q28 36 18 36M12 32Q34 34 52 54M22 52Q34 44 44 38",
+"Giáp cốt văn vẽ người phụ nữ quỳ, hai tay khoanh trước ngực, dáng nhu mì. Các nét cong dần được viết thẳng lại thành 女.",
+"Chữ có 女 thường nói về phụ nữ, nữ giới, quan hệ họ hàng bên nữ: 妈, 姐, 妹, 奶, 姑, 姨, 她. 女 hay đứng bên trái. Một số chữ như 好, 安, 如 mang nghĩa trừu tượng nhưng vẫn giữ 女 trong cấu tạo.",
+"好 = 女 + 子: mẹ ôm con → tốt đẹp (mẹo phổ biến).|安 = 宀 + 女: phụ nữ trong nhà → yên (mẹo).|妈 = 女 + 马: 马 thanh phù (âm gần mǎ → mā).",
+"妈妈|māma|mẹ;姐姐|jiějie|chị gái;妹妹|mèimei|em gái;奶奶|nǎinai|bà nội;她|tā|cô ấy;好|hǎo|tốt;姓|xìng|họ;结婚|jiéhūn|kết hôn;女儿|nǚ'ér|con gái;如果|rúguǒ|nếu;妻子|qīzi|vợ;姑娘|gūniang|cô gái;妇女|fùnǚ|phụ nữ;阿姨|āyí|dì, cô;要|yào|cần, muốn;安全|ānquán|an toàn;开始|kāishǐ|bắt đầu;奇妙|qímiào|kỳ diệu;嫂子|sǎozi|chị dâu;姥姥|lǎolao|bà ngoại"],
+["艹","草","cǎo","Thảo đầu","cỏ, cây cỏ","3 nét","M20 58V28M20 28Q8 26 6 12Q18 12 20 28M44 58V24M44 24Q56 22 58 8Q46 8 44 24M32 58V36",
+"Giáp cốt văn vẽ hai, ba mầm cỏ vừa nhú lên khỏi mặt đất. Khi làm bộ phía trên chữ, 草 rút thành 艹 ba nét.",
+"艹 luôn nằm trên đầu chữ, chỉ cỏ, hoa, rau, trái, dược liệu: 花, 菜, 茶, 药, 苹果, 葡萄. Phần dưới thường gợi âm đọc, ví dụ 花 huā có 化 huà.",
+"花 = 艹 + 化: 化 thanh phù; mẹo “cỏ hoá hoa”.|茶 = 艹 + 人 + 木: mẹo “người ngồi giữa cây cỏ nhấm trà”.|药 = 艹 + 约: 约 thanh phù (âm gần).",
+"花|huā|hoa;草|cǎo|cỏ;茶|chá|trà;菜|cài|rau, món ăn;药|yào|thuốc;苹果|píngguǒ|quả táo;英语|yīngyǔ|tiếng Anh;节日|jiérì|ngày lễ;蓝色|lánsè|màu xanh lam;艺术|yìshù|nghệ thuật;荷花|héhuā|hoa sen;芒果|mángguǒ|xoài;苦|kǔ|đắng;著名|zhùmíng|nổi tiếng;落|luò|rơi;荣幸|róngxìng|vinh hạnh;草莓|cǎoméi|dâu tây;葡萄|pútao|nho;蔬菜|shūcài|rau củ;香蕉|xiāngjiāo|chuối"],
+["辶","辵","chuò","Xước (bộ đi)","đi, di chuyển","3 nét","M12 10Q14 22 24 24M14 32Q26 30 32 40M10 50Q30 58 54 52",
+"Kim văn 辵 ghép 彳 (ngã tư, bước chân) với 止 (bàn chân): người đang bước đi trên đường. Giản thể viết gọn thành 辶, thường gọi là “chữ chạy”.",
+"Nằm ở góc trái dưới, ôm lấy phần còn lại của chữ. Nghĩa là đi, đường, tiến lùi, khoảng cách: 过, 进, 远, 近, 送, 道. Phần bên trong thường gợi âm hoặc bổ sung nghĩa.",
+"远 = 辶 + 元: 元 thanh phù; mẹo “đi xa”.|近 = 辶 + 斤: 斤 thanh phù; mẹo “đi đoạn ngắn → gần”.|送 = 辶 + 关: mẹo “tiễn qua cửa ải”.",
+"这|zhè|này;过|guò|qua, trải qua;还|hái|còn, vẫn;进|jìn|vào;远|yuǎn|xa;近|jìn|gần;送|sòng|tiễn, tặng;边|biān|bên;道|dào|đường, đạo lý;迟到|chídào|đến muộn;迎接|yíngjiē|đón tiếp;递|dì|đưa, chuyền;通过|tōngguò|thông qua;运动|yùndòng|vận động;速度|sùdù|tốc độ;连|lián|liền, nối;迷路|mílù|lạc đường;遇到|yùdào|gặp phải;适合|shìhé|phù hợp;逛街|guàngjiē|đi dạo phố"],
+["宀","","mián","Miên","mái nhà","3 nét","M32 8L6 30M32 8L58 30M16 28V56M48 28V56",
+"Giáp cốt văn vẽ mái nhà nhìn nghiêng, hai mái dốc xuống như căn lều có nóc.",
+"Luôn đứng trên đầu chữ, nghĩa là nhà, nơi ở, che chở, yên ổn: 家, 安, 室, 客, 定, 宿. Phần dưới cho biết ai hoặc cái gì ở trong nhà.",
+"家 = 宀 + 豕: nhà có nuôi lợn dưới mái (giải thích phổ biến từ chữ nguyên).|安 = 宀 + 女: phụ nữ trong nhà → yên (mẹo).|客 = 宀 + 各: 各 thanh phù; mẹo “người đến nhà là khách”.",
+"家|jiā|nhà;安静|ānjìng|yên tĩnh;客人|kèrén|khách;决定|juédìng|quyết định;字|zì|chữ;完|wán|xong;教室|jiàoshì|lớp học;宿舍|sùshè|ký túc xá;宽|kuān|rộng;富|fù|giàu;害怕|hàipà|sợ;容易|róngyì|dễ;宴会|yànhuì|tiệc;其实|qíshí|thực ra;寒冷|hánlěng|giá lạnh;寄|jì|gửi;宣布|xuānbù|tuyên bố;宝贝|bǎobèi|bảo bối;官|guān|quan;宫|gōng|cung điện"],
+["灬","火","huǒ","Hoả / Bốn chấm hoả","lửa","4 nét","M32 6Q22 22 28 34Q18 30 16 44Q18 58 32 58Q46 58 48 44Q48 30 38 22Q36 30 32 28Q36 18 32 6Z",
+"Giáp cốt văn vẽ ngọn lửa bốc lên với những tia lửa. Ở dưới chữ, 火 biến thành bốn chấm 灬; ở bên trái chữ vẫn viết là 火.",
+"Chữ có 火 hay 灬 nói về lửa, nhiệt độ, nấu nướng, ánh sáng: 灯, 烧, 热, 煮, 照, 点. 灬 hay đi với những chữ liên quan đến nấu, đun, chiếu sáng.",
+"然: 《说文》从火肰声 (肰 = 肉+犬); không phải 月. Nghĩa gốc liên quan nướng/cháy. Mẹo “nướng thịt chó” chỉ mang tính liên tưởng.|热 = 执 + 灬: mẹo “cầm trên lửa → nóng”.|烦 = 火 + 页: mẹo “đầu óc bốc lửa → phiền”.",
+"火车|huǒchē|tàu hoả;灯|dēng|đèn;热|rè|nóng;点|diǎn|chấm, giờ;烧|shāo|đốt, sốt;烤鸭|kǎoyā|vịt quay;炒|chǎo|xào;照|zhào|chiếu;然后|ránhòu|sau đó;烦|fán|phiền;爆|bào|nổ;炸|zhà|chiên, nổ;烟|yān|khói;灰|huī|tro;热闹|rènao|náo nhiệt;灾|zāi|tai hoạ;煮|zhǔ|nấu;燃烧|ránshāo|cháy;煤|méi|than;炉|lú|lò"],
+["钅","金","jīn","Kim","kim loại, vàng","5 nét (钅)","M32 8L12 30H52ZM32 30V56M18 44H46M24 52h.01M40 52h.01",
+"Kim văn vẽ khuôn đúc cùng những mẩu kim loại nhỏ, về sau chuẩn hoá thành 金. Giản thể rút bên trái thành 钅.",
+"Nằm bên trái, chỉ kim loại, tiền bạc, đồ vật làm bằng kim loại: 钱, 铁, 钟, 锁, 针, 键. Phần bên phải thường gợi âm đọc.",
+"钱 = 钅 + 戋: 戋 thanh phù; mẹo “mẩu kim loại nhỏ”.|钟 = 钅 + 中: 中 thanh phù; mẹo “chuông/đồng hồ kim loại”.|错 = 钅 + 昔: 昔 thanh phù; mẹo “mạ nhầm → sai” chỉ liên tưởng.",
+"钱|qián|tiền;银行|yínháng|ngân hàng;铁路|tiělù|đường sắt;钟|zhōng|chuông, đồng hồ;钢琴|gāngqín|đàn piano;错|cuò|sai;锁|suǒ|khoá;针|zhēn|kim;镜子|jìngzi|gương;钥匙|yàoshi|chìa khoá;铅笔|qiānbǐ|bút chì;锻炼|duànliàn|rèn luyện;铃|líng|chuông nhỏ;钉子|dīngzi|cái đinh;锅|guō|cái nồi;铜|tóng|đồng;钻石|zuànshí|kim cương;钩|gōu|móc;店铺|diànpù|cửa tiệm;键盘|jiànpán|bàn phím"],
+["门","","mén","Môn","cửa","3 nét","M16 56V12H30V56M48 56V12H34V56M10 58H54",
+"Giáp cốt văn vẽ hai cánh cửa đối diện nhau. Giản thể giữ ý hai cánh cửa nhưng viết gọn.",
+"Bộ bao quanh: nghĩa là cửa, lối vào, khoảng giữa; chữ bên trong cho biết điều gì xảy ra ở cửa: 问, 间, 闻, 闪, 闲, 闭. Chữ bên trong có khi chỉ nghĩa, có khi chỉ âm.",
+"问 = 门 + 口: miệng ngoài cửa → hỏi (mẹo).|间 = 门 + 日: nắng lọt khe cửa → khoảng giữa (mẹo khá hợp lý).|闻 = 门 + 耳: tai áp cửa nghe (mẹo).",
+"门|mén|cửa;问|wèn|hỏi;间|jiān|giữa, gian;闻|wén|nghe, ngửi;闲|xián|rảnh;闪|shǎn|loé;闭|bì|đóng;闷|mèn|buồn bực;阅读|yuèdú|đọc;闹|nào|ồn ào;门口|ménkǒu|cửa ra vào;问题|wèntí|vấn đề;房间|fángjiān|căn phòng;空间|kōngjiān|không gian;瞬间|shùnjiān|khoảnh khắc;门票|ménpiào|vé vào cửa;部门|bùmén|bộ phận;专门|zhuānmén|chuyên;闯|chuǎng|xông vào;新闻|xīnwén|tin tức"],
+["土","","tǔ","Thổ","đất","3 nét","M32 10V44M12 44H52M6 56H58",
+"Giáp cốt văn vẽ một ụ đất nhô lên trên mặt đất. Hai nét ngang về sau tượng trưng cho tầng đất và mặt đất.",
+"Chữ có 土 nói về đất, nền móng, địa điểm, xây dựng: 地, 场, 城, 墙, 块, 坏. Bên trái thì nét cuối hất lên, bên dưới thì giữ nguyên.",
+"城 = 土 + 成: 成 thanh phù; mẹo “đắp đất thành luỹ”.|坐 = hai 人 trên 土: hai người ngồi đất (mẹo).|坏 = 土 + 不: mẹo “đất không tốt → hỏng”.",
+"地方|dìfang|nơi chốn;地图|dìtú|bản đồ;广场|guǎngchǎng|quảng trường;城市|chéngshì|thành phố;块|kuài|cục, đồng;坐|zuò|ngồi;墙|qiáng|tường;塔|tǎ|tháp;坏|huài|hỏng;土豆|tǔdòu|khoai tây;堵车|dǔchē|tắc xe;增加|zēngjiā|tăng thêm;坚持|jiānchí|kiên trì;基础|jīchǔ|nền tảng;环境|huánjìng|môi trường;垃圾|lājī|rác;填|tián|điền;培养|péiyǎng|bồi dưỡng;地球|dìqiú|trái đất;坡|pō|dốc"],
+["⺮","竹","zhú","Trúc đầu","tre","6 nét","M20 58V8M20 20Q8 22 6 32M20 20Q32 16 38 6M44 58V14M44 28Q56 26 58 36M44 40Q32 38 28 46",
+"Giáp cốt văn vẽ hai nhánh tre với lá rủ xuống. Khi nằm trên đầu chữ, 竹 rút thành ⺮.",
+"Luôn nằm trên đầu chữ: đồ làm bằng tre, thẻ tre để viết, dụng cụ, đếm tính: 笔, 筷, 第, 等, 算, 答, 简. Thời xưa người ta viết trên thẻ tre nên nhiều chữ về văn bản có bộ này.",
+"笔 = ⺮ + 毛: bút xưa ống tre + lông (khá chuẩn).|筷 = ⺮ + 快: 快 thanh phù; mẹo “đũa gắp nhanh”.|笑 = ⺮ + 夭: mẹo “lá tre rung như cười”.",
+"笔|bǐ|bút;笔记|bǐjì|ghi chép;筷子|kuàizi|đũa;笑|xiào|cười;第一|dìyī|thứ nhất;等|děng|đợi;算|suàn|tính;答案|dá'àn|đáp án;简单|jiǎndān|đơn giản;箱子|xiāngzi|vali, hòm;篮球|lánqiú|bóng rổ;签证|qiānzhèng|visa;管理|guǎnlǐ|quản lý;笨|bèn|ngốc;符合|fúhé|phù hợp;篇|piān|bài (lượng từ);建筑|jiànzhù|kiến trúc;微笑|wēixiào|mỉm cười;竹子|zhúzi|cây tre;签|qiān|ký"],
+["饣","食","shí","Thực","ăn, đồ ăn","3 nét (饣)","M32 8L14 24H50ZM14 24V30H50V24M18 30Q18 54 32 54Q46 54 46 30M24 6Q20 12 24 16",
+"Giáp cốt văn vẽ cái bát đầy có nắp, hơi nóng bốc lên. Phần trên là nắp, phần dưới là đồ ăn. Giản thể viết gọn bên trái thành 饣.",
+"Nằm bên trái, chỉ thức ăn, bữa ăn, cảm giác no đói và nơi ăn uống: 饭, 饿, 饱, 饼, 馆. Phần bên phải thường gợi âm đọc.",
+"饿 = 饣 + 我: 我 thanh phù; mẹo “tôi cần ăn → đói”.|饱 = 饣 + 包: 包 thanh phù; mẹo “bụng bao đầy → no”.|馆 = 饣 + 官: 官 thanh phù; mẹo “nơi đãi quan khách”.",
+"饭|fàn|cơm;饿|è|đói;饱|bǎo|no;饺子|jiǎozi|sủi cảo;饼|bǐng|bánh;馒头|mántou|bánh bao trắng;馆|guǎn|quán, viện;饭馆|fànguǎn|nhà hàng;图书馆|túshūguǎn|thư viện;饮料|yǐnliào|đồ uống;饮食|yǐnshí|ăn uống;早饭|zǎofàn|bữa sáng;午饭|wǔfàn|bữa trưa;晚饭|wǎnfàn|bữa tối;米饭|mǐfàn|cơm trắng;饭店|fàndiàn|nhà hàng / khách sạn (tùy ngữ cảnh);博物馆|bówùguǎn|bảo tàng;大使馆|dàshǐguǎn|đại sứ quán;装饰|zhuāngshì|trang trí;饥饿|jī'è|đói khát"],
+["目","","mù","Mục","mắt","5 nét","M8 32Q32 10 56 32Q32 54 8 32ZM32 24A8 8 0 1 0 32 40A8 8 0 1 0 32 24Z",
+"Giáp cốt văn vẽ con mắt có viền và tròng đen. Về sau con mắt được dựng đứng lên và vuông hoá thành 目.",
+"Chữ có 目 nói về mắt, nhìn, xem, giấc ngủ: 看, 睡, 眼, 睛, 眉, 相. 目 đứng bên trái, dưới hoặc giữa chữ. Mở rộng nghĩa thành mục tiêu, tiết mục, danh mục.",
+"看 = 手 trên 目: tay che mắt nhìn xa (mẹo phổ biến).|睡 = 目 + 垂: 垂 thanh phù; mẹo “mi mắt rủ → ngủ”.|相 = 木 + 目: mắt nhìn cây → xem xét (mẹo).",
+"看|kàn|nhìn, xem;眼睛|yǎnjing|mắt;睡觉|shuìjiào|ngủ;眉毛|méimao|lông mày;相信|xiāngxìn|tin tưởng;盯|dīng|nhìn chằm chằm;目标|mùbiāo|mục tiêu;目的|mùdì|mục đích;节目|jiémù|chương trình;真|zhēn|thật;直|zhí|thẳng;着|zhe|đang (trợ từ);省|shěng|tỉnh;盼望|pànwàng|mong mỏi;盲|máng|mù;瞎|xiā|mù, bừa bãi;瞧|qiáo|nhìn;睁|zhēng|mở mắt;看见|kànjiàn|nhìn thấy;眼镜|yǎnjìng|kính mắt"],
+["⻊","足","zú","Túc","chân","7 nét","M32 8V30M20 30H44V44Q54 46 54 58H14Q14 46 20 44Z",
+"Giáp cốt văn vẽ cái chân: phần trên là đầu gối, phần dưới là bàn chân (止) hướng về phía trước. Ở bên trái chữ, 足 biến thành ⻊.",
+"Chữ có ⻊ nói về chân và động tác của chân: chạy, nhảy, đá, đạp, bước, đường đi: 跑, 跳, 路, 踢, 跟, 距. Phần bên phải gợi âm đọc, như 跑 pǎo có 包 bāo.",
+"跑 = ⻊ + 包: 包 thanh phù; mẹo “chân bọc gió”.|路 = ⻊ + 各: 各 thanh phù; mẹo “mỗi người một nẻo → đường”.|跟 = ⻊ + 艮: 艮 thanh phù; mẹo “chân bám gót”.",
+"足球|zúqiú|bóng đá;跑步|pǎobù|chạy bộ;跳舞|tiàowǔ|nhảy múa;路|lù|đường;跟|gēn|theo, với;踢|tī|đá;踩|cǎi|dẫm;蹲|dūn|ngồi xổm;距离|jùlí|khoảng cách;跳|tiào|nhảy;跨|kuà|bước qua;跌|diē|ngã;踏|tà|bước lên;蹦|bèng|nhảy tưng;跪|guì|quỳ;路线|lùxiàn|tuyến đường;马路|mǎlù|đường cái;跑道|pǎodào|đường chạy;实践|shíjiàn|thực hành;满足|mǎnzú|thoả mãn"],
+["王","玉","wáng","Ngọc (vương chữ bên)","ngọc, đá quý","4 nét","M10 12H54M16 32H48M8 52H56M32 12V52",
+"Giáp cốt văn 玉 vẽ sợi dây xâu ba viên ngọc. Chữ 王 (vua) vốn vẽ chiếc rìu lớn tượng trưng quyền lực, nhưng hai chữ có hình gần giống nhau. Khi làm bộ bên trái, 玉 bỏ dấu chấm và viết thành 王.",
+"Chữ có 王 bên trái thường chỉ ngọc, đồ quý, đồ chơi, tròn trịa; nhiều chữ về đạo lý và sự hiện ra cũng mang bộ này vì ngọc cần được mài giũa: 球, 现, 理, 班, 玩, 珍.",
+"理 = 王 + 里: 里 thanh phù; mẹo “đường vân ngọc → lý lẽ” (có cơ sở chữ nguyên về ngọc).|现 = 王 + 见: ngọc lộ ra (mẹo).|球 = 王 + 求: 求 thanh phù; mẹo “tròn như ngọc”.",
+"玩|wán|chơi;球|qiú|bóng;现在|xiànzài|bây giờ;理解|lǐjiě|hiểu;班|bān|lớp;珍惜|zhēnxī|trân trọng;玻璃|bōli|thuỷ tinh;玫瑰|méigui|hoa hồng;小提琴|xiǎotíqín|vĩ cầm;珠|zhū|hạt châu;珠宝|zhūbǎo|châu báu;玩具|wánjù|đồ chơi;现代|xiàndài|hiện đại;王|wáng|vua;玉|yù|ngọc;理想|lǐxiǎng|lý tưởng;全球|quánqiú|toàn cầu;理由|lǐyóu|lý do;琢磨|zhuómo|suy ngẫm;环|huán|vòng"],
+["车","","chē","Xa","xe cộ","4 nét","M14 12V52M50 12V52M14 32H50M32 32V58M26 58H38",
+"Giáp cốt văn vẽ chiếc xe ngựa nhìn từ trên xuống: hai bánh hai bên, trục ngang ở giữa và càng xe. Chữ giản thể 车 giữ lại hình trục và bánh.",
+"Chữ có 车 chỉ xe cộ, bánh xe, vận chuyển, quay vòng: 辆, 轮, 转, 输, 载. Một số chữ như 较, 轻, 软 mượn 车 làm gốc nghĩa xe và phần còn lại cho âm.",
+"Nhìn 车 như xe từ trên: hai ngang = bánh, dọc = trục (mẹo hình).|转 = 车 + 专: 专 thanh phù; mẹo “bánh xe quay”.|输 = 车 + 俞: 俞 thanh phù; mẹo “chở đi → thua”.",
+"车|chē|xe;汽车|qìchē|ô tô;自行车|zìxíngchē|xe đạp;出租车|chūzūchē|taxi;车站|chēzhàn|bến xe;辆|liàng|chiếc (xe);轻|qīng|nhẹ;软|ruǎn|mềm;转|zhuǎn|quay;较|jiào|so sánh;比较|bǐjiào|tương đối;输|shū|thua;轮船|lúnchuán|tàu thuỷ;轮子|lúnzi|bánh xe;车库|chēkù|nhà để xe;车票|chēpiào|vé xe;转变|zhuǎnbiàn|chuyển biến;运输|yùnshū|vận chuyển;下载|xiàzǎi|tải xuống;轨道|guǐdào|quỹ đạo"],
+["马","","mǎ","Mã","ngựa","3 nét","M46 8L40 18Q30 20 26 30Q20 32 20 42V58M44 18Q50 34 44 46V58M28 40H44M20 28Q12 22 14 10",
+"Giáp cốt văn vẽ con ngựa đứng nghiêng: đầu dài, bờm, bốn chân, đuôi. Chữ giản thể 马 rút gọn rất nhiều so với 馬.",
+"Chữ có 马 đứng bên trái, nghĩa liên quan đến ngựa, cưỡi, phi nhanh, lái. Rất nhiều chữ chỉ dùng 马 để gợi âm: 妈 mā, 吗 ma, 码 mǎ, 骂 mà.",
+"骑 = 马 + 奇: 奇 thanh phù; mẹo “cưỡi ngựa lạ”.|骗 = 马 + 扁: 扁 thanh phù; mẹo “lừa trên ngựa”.|驾 = 加 + 马: mẹo “thêm ngựa → lái”.",
+"马|mǎ|ngựa;骑|qí|cưỡi;骂|mà|mắng;骗|piàn|lừa;驾驶|jiàshǐ|lái xe;驶|shǐ|chạy (xe);驴|lǘ|con lừa;骆驼|luòtuo|lạc đà;骄傲|jiāo'ào|kiêu ngạo;经验|jīngyàn|kinh nghiệm;马上|mǎshàng|ngay lập tức;马虎|mǎhu|cẩu thả;斑马|bānmǎ|ngựa vằn;驯|xùn|thuần hoá;驱|qū|xua đuổi;骑车|qíchē|đi xe đạp;考验|kǎoyàn|thử thách;骑士|qíshì|kỵ sĩ;马拉松|mǎlāsōng|ma-ra-tông;验证|yànzhèng|xác minh"],
+["鸟","","niǎo","Điểu","chim","5 nét","M10 40Q20 20 38 22Q44 14 52 16L56 20L50 22Q50 34 40 44L38 56M28 44L26 56M18 40Q28 48 38 44",
+"Giáp cốt văn vẽ con chim đậu: đầu, mỏ, cánh, đuôi và chân. Chữ giản thể 鸟 rút gọn nét từ 鳥.",
+"Chữ có 鸟 chỉ các loài chim, gia cầm, tiếng chim hót: 鸡, 鸭, 鹅, 鸽, 鸣. Nhiều chữ thêm bộ 鸟 sau một phần gợi âm, ví dụ 鹅 é có 我 wǒ.",
+"鸡 = 又 + 鸟: mẹo “tay bắt chim → gà” (giản thể).|鸭 = 甲 + 鸟: 甲 thanh phù; mẹo “lông dày như giáp”.|鸣 = 口 + 鸟: miệng chim hót (mẹo).",
+"鸟|niǎo|chim;鸡|jī|gà;鸭|yā|vịt;鹅|é|ngỗng;鸽子|gēzi|bồ câu;鹰|yīng|đại bàng;鸣|míng|hót, kêu;鸡蛋|jīdàn|trứng gà;鸡肉|jīròu|thịt gà;鸭子|yāzi|con vịt;鹦鹉|yīngwǔ|vẹt;鹤|hè|hạc;鸳鸯|yuānyāng|uyên ương;小鸟|xiǎoniǎo|chim nhỏ;海鸥|hǎi'ōu|mòng biển;喜鹊|xǐquè|chim khách;鸵鸟|tuóniǎo|đà điểu;天鹅|tiān'é|thiên nga;火鸡|huǒjī|gà tây;鸡尾酒|jīwěijiǔ|cocktail"],
+["鱼","","yú","Ngư","cá","8 nét","M8 32Q22 14 42 32Q22 50 8 32ZM42 32L58 18V46ZM18 30h.01",
+"Giáp cốt văn vẽ con cá: đầu, thân có vảy, đuôi chẻ. Chữ giản thể 鱼 vẫn giữ đầu, thân và đuôi.",
+"Chữ có 鱼 chỉ cá, hải sản, thuỷ sản. 鱼 đứng bên trái hoặc dưới chữ: 鲜, 鲤, 鲨, 鲸, 鳄. Từ 鲜 mở rộng thành “tươi mới”.",
+"鲜 = 鱼 + 羊: mẹo “cá + dê → tươi ngon”.|鲸 = 鱼 + 京: 京 thanh phù; mẹo “cá to như kinh đô”.|鲨 = 鱼 + 沙: 沙 thanh phù (âm gần).",
+"鱼|yú|cá;鲜|xiān|tươi;鲤鱼|lǐyú|cá chép;金鱼|jīnyú|cá vàng;鲨鱼|shāyú|cá mập;鲸鱼|jīngyú|cá voi;鳄鱼|èyú|cá sấu;鲫鱼|jìyú|cá diếc;带鱼|dàiyú|cá hố;海鲜|hǎixiān|hải sản;新鲜|xīnxiān|tươi mới;鱼肉|yúròu|thịt cá;钓鱼|diàoyú|câu cá;鱼汤|yútāng|canh cá;烤鱼|kǎoyú|cá nướng;鱼缸|yúgāng|bể cá;鱼刺|yúcì|xương cá;鲍鱼|bàoyú|bào ngư;鳗鱼|mányú|lươn biển;鱿鱼|yóuyú|mực ống"],
+["犭","犬","quǎn","Khuyển (bộ chó)","chó, thú vật","3 nét","M14 20Q22 14 28 22L38 22Q46 22 48 32V46M20 22V54M38 28V54M48 32Q54 26 52 16",
+"Giáp cốt văn 犬 vẽ con chó đứng nghiêng: thân thon, bụng thót, đuôi cong lên. Khi làm bộ bên trái rút thành 犭.",
+"Chữ có 犭 nói về thú vật, nhất là thú rừng, thú săn, và các hành vi hoang dã hoặc quá khích: 狗, 猫, 狼, 狮, 狂, 独, 犯. Phần bên phải thường gợi âm.",
+"独 = 犭 + 虫: mẹo “chó đơn độc → một mình”.|狂 = 犭 + 王: 王 thanh phù; mẹo “chó làm vua → điên”.|犯 = 犭 + 卩: mẹo “thú vồ → phạm”.",
+"狗|gǒu|chó;猫|māo|mèo;猪|zhū|lợn;狼|láng|sói;猴子|hóuzi|khỉ;狮子|shīzi|sư tử;独立|dúlì|độc lập;孤独|gūdú|cô độc;狂|kuáng|điên cuồng;猜|cāi|đoán;犯|fàn|phạm;犯罪|fànzuì|phạm tội;猎人|lièrén|thợ săn;狐狸|húli|cáo;猩猩|xīngxing|đười ươi;独特|dútè|độc đáo;猛|měng|dữ dội;狠|hěn|tàn nhẫn;狡猾|jiǎohuá|xảo quyệt;熊猫|xióngmāo|gấu trúc"],
+["衤","衣","yī","Y (bộ áo)","áo, quần áo","5 nét (衣) / 5 nét (衤)","M22 8L32 22L42 8M14 14L6 30L16 34V56H48V34L58 30L50 14L42 8M32 22V56",
+"Giáp cốt văn 衣 vẽ phần cổ áo và hai tay áo bắt chéo trước ngực. Khi làm bộ bên trái, 衣 rút thành 衤.",
+"Chữ có 衤 chỉ quần áo, vải, may vá, mặc: 衬, 裤, 裙, 被, 袜, 初, 补. Phần bên phải gợi âm hoặc nghĩa: 裤 kù có 库 kù, 裙 qún có 群 qún.",
+"初 = 衤 + 刀: cắt vải bằng dao → ban đầu (mẹo khá hợp lý).|裤 = 衤 + 库: 库 thanh phù; mẹo “quần như kho chân”.|补 = 衤 + 卜: 卜 thanh phù; mẹo “vá áo”.",
+"衣服|yīfu|quần áo;裤子|kùzi|quần;裙子|qúnzi|váy;衬衫|chènshān|áo sơ mi;被子|bèizi|chăn;初|chū|đầu, sơ;补|bǔ|bổ, vá;袜子|wàzi|tất;袖子|xiùzi|tay áo;袋子|dàizi|cái túi;口袋|kǒudài|túi áo;裁|cái|cắt may;装|zhuāng|giả vờ, đóng;西装|xīzhuāng|com-lê;初中|chūzhōng|cấp hai;补习|bǔxí|học thêm;补充|bǔchōng|bổ sung;被|bèi|bị;衬|chèn|lót;表|biǎo|biểu, bên ngoài"],
+["纟","糸","sī","Mịch (bộ tơ)","tơ, sợi","3 nét","M30 8Q14 14 22 28Q40 32 42 44Q42 56 26 58M30 8Q46 14 38 28",
+"Giáp cốt văn 糸 vẽ cuộn tơ: những búi sợi xoắn và đầu tơ buông xuống. Chữ giản thể 纟 viết gọn thành ba nét.",
+"Chữ có 纟 chỉ sợi, vải, dây, màu sắc, mối liên kết: 红, 绿, 线, 给, 级, 经, 结, 练. Chuyện nối kết, theo thứ tự và liên tục cũng mang bộ này vì tơ xe thành dải liền.",
+"红 = 纟 + 工: 工 là thanh phù (《说文》从糸工声); mẹo “thợ làm tơ đỏ” chỉ để nhớ.|给 = 纟 + 合: mẹo.|练 = 纟 + 东: mẹo “luyện tơ mềm → luyện tập”.",
+"红|hóng|đỏ;绿|lǜ|xanh lá;给|gěi|cho;纸|zhǐ|giấy;线|xiàn|sợi, đường;经常|jīngcháng|thường xuyên;经理|jīnglǐ|giám đốc;练习|liànxí|luyện tập;结果|jiéguǒ|kết quả;终于|zhōngyú|cuối cùng;级|jí|cấp;细|xì|mảnh, tỉ mỉ;组织|zǔzhī|tổ chức;紧张|jǐnzhāng|căng thẳng;继续|jìxù|tiếp tục;绝对|juéduì|tuyệt đối;网络|wǎngluò|mạng;纪念|jìniàn|kỷ niệm;约会|yuēhuì|hẹn hò;总结|zǒngjié|tổng kết"],
+["石","","shí","Thạch","đá","5 nét","M12 12H52M24 12V28M24 28Q10 40 8 56M38 34H52V52H38Z",
+"Giáp cốt văn vẽ vách núi (厂) và một hòn đá (口) lăn xuống dưới chân núi. Hình đá rơi bên sườn núi chính là 石.",
+"Chữ có 石 nói về đá, khoáng chất, tính cứng, mài đập: 碗, 破, 研, 确, 矿, 硬, 碎. 石 thường đứng bên trái hoặc phía dưới chữ.",
+"破 = 石 + 皮: 皮 thanh phù; mẹo “đập đá bong vỏ → vỡ”.|研 = 石 + 开: mẹo “mài đá mở ra → nghiên cứu”.|确 = 石 + 角: 角 thanh phù; mẹo “chắc như đá”.",
+"石头|shítou|hòn đá;碗|wǎn|bát;破|pò|vỡ, rách;研究|yánjiū|nghiên cứu;确实|quèshí|quả thật;矿泉水|kuàngquánshuǐ|nước khoáng;磨|mó|mài;碎|suì|vỡ vụn;砖|zhuān|gạch;宝石|bǎoshí|đá quý;石油|shíyóu|dầu mỏ;石榴|shíliu|quả lựu;碰|pèng|đụng, chạm;硬|yìng|cứng;硕士|shuòshì|thạc sĩ;确定|quèdìng|xác định;破坏|pòhuài|phá hoại;研究生|yánjiūshēng|nghiên cứu sinh;磁铁|cítiě|nam châm;砍|kǎn|chặt"],
+["山","","shān","Sơn","núi","3 nét","M6 54L20 30L28 40L40 10L58 54",
+"Giáp cốt văn vẽ ba đỉnh núi nhô lên từ mặt đất, đỉnh giữa cao nhất. Qua thời gian, hình núi được viết thẳng nét thành 山.",
+"Chữ có 山 chỉ núi non, địa hình cao, đảo, bờ: 岛, 岸, 峰, 岩, 岭. 山 nằm trên đầu chữ (岁, 崇) hoặc bên trái (峰, 岭), có khi nằm dưới (岛).",
+"岛 = 鸟 + 山: chim đậu núi giữa biển → đảo (mẹo).|岁 = 山 + 夕: mẹo “núi + hoàng hôn → tuổi”.|峰 = 山 + 夆: 夆 thanh phù; mẹo “đỉnh nhọn”.",
+"山|shān|núi;火山|huǒshān|núi lửa;山水|shānshuǐ|sơn thuỷ;爬山|páshān|leo núi;岛|dǎo|đảo;岁|suì|tuổi;岸|àn|bờ;山峰|shānfēng|đỉnh núi;山谷|shāngǔ|thung lũng;登山|dēngshān|leo núi;岩石|yánshí|đá núi;山林|shānlín|rừng núi;山村|shāncūn|làng núi;山洞|shāndòng|hang động;山顶|shāndǐng|đỉnh núi;山坡|shānpō|sườn núi;山脉|shānmài|dãy núi;海岛|hǎidǎo|đảo biển;崇拜|chóngbài|sùng bái;山羊|shānyáng|dê núi"]
+,
+["刂","刀","dāo","Đao đứng","dao, cắt","2 nét (刂)","M20 8V56M36 8V40Q36 52 28 56",
+"Giáp cốt văn vẽ lưỡi dao có chuôi. Khi làm bộ bên phải, 刀 rút thành 刂 hai nét dọc.",
+"Nằm bên phải chữ, chỉ hành động cắt, chia, tách, lợi hại: 分, 切, 利, 别, 刻, 刚. Phần bên trái thường gợi âm hoặc nghĩa.",
+"分 = 八 + 刀: dao tách đôi (mẹo).|切 = 七 + 刀: 七 thanh phù; mẹo “cắt bằng dao”.|利 = 禾 + 刀: cắt lúa → lợi/sắc (mẹo).",
+"分|fēn|chia, phút;切|qiē|cắt;利|lì|lợi, sắc;别|bié|đừng, khác;到|dào|đến;前|qián|trước;刚|gāng|vừa, cứng;刻|kè|khắc, giờ;刮|guā|cạo;刺|cì|đâm;剑|jiàn|kiếm;剧|jù|kịch;剩|shèng|còn lại;创|chuàng|sáng tạo;则|zé|thì;删|shān|xoá;剖|pōu|mổ;割|gē|cắt;判|pàn|phán;刚|gāng|vừa mới"],
+["力","","lì","Lực","sức mạnh","2 nét","M20 12Q28 20 32 40V58M32 40Q42 30 52 18",
+"Giáp cốt văn vẽ cánh tay đang gồng sức, cơ bắp nổi lên. Hình tượng sức lực của con người.",
+"Chữ có 力 nói về sức mạnh, cố gắng, động lực: 动, 加, 努, 助, 男, 功. 力 thường đứng bên phải hoặc dưới chữ.",
+"动 = 云 + 力: mẹo nhìn mặt chữ giản thể (chữ phồn 動 khác).|加 = 力 + 口: mẹo “dùng sức nói thêm”.|男 = 田 + 力: sức trên ruộng → đàn ông (mẹo phổ biến).",
+"力|lì|sức lực;动力|dònglì|động lực;努力|nǔlì|nỗ lực;帮助|bāngzhù|giúp đỡ;加|jiā|thêm;动|dòng|động;功|gōng|công;男|nán|nam;劳动|láodòng|lao động;能力|nénglì|năng lực;力量|lìliang|sức mạnh;压力|yālì|áp lực;成功|chénggōng|thành công;功课|gōngkè|bài tập;办公室|bàngōngshì|văn phòng;加强|jiāqiáng|tăng cường;劝|quàn|khuyên;勇|yǒng|dũng cảm;勤|qín|siêng năng;劲|jìn|sức"],
+["又","","yòu","Hựu","lại, tay phải","2 nét","M18 18Q32 12 48 20L48 40Q40 52 28 52Q16 48 18 36",
+"Giáp cốt văn vẽ bàn tay phải xoè ra. Nghĩa gốc là tay phải, sau mở rộng thành “lại, cũng”.",
+"Chữ có 又 thường liên quan đến tay, hành động lặp lại, hoặc chỉ là thành phần âm: 友, 双, 反, 取, 受, 对. 又 đứng dưới hoặc bên phải.",
+"友 = 又 + 又: hai tay nắm → bạn (mẹo).|双 = hai 又: đôi (mẹo).|反 = 厂 + 又: tay lật → phản (mẹo).",
+"又|yòu|lại, cũng;朋友|péngyou|bạn bè;双|shuāng|đôi;反|fǎn|phản;取|qǔ|lấy;受|shòu|nhận;对|duì|đúng, đối;发|fā|phát;难|nán|khó;劝|quàn|khuyên;叔|shū|chú;仅|jǐn|chỉ;欢|huān|vui;观|guān|xem;权|quán|quyền;树|shù|cây;鸡|jī|gà;难|nán|khó khăn;友爱|yǒu'ài|hữu ái;反对|fǎnduì|phản đối"],
+["大","","dà","Đại","to, lớn","3 nét","M32 8V58M10 28Q32 24 54 28M20 48Q32 42 44 48",
+"Giáp cốt văn vẽ người dang rộng hai tay và hai chân, tượng trưng sự to lớn.",
+"Chữ có 大 nói về kích thước, mức độ lớn, quan trọng: 天, 太, 夫, 头, 奇, 美. 大 thường đứng trên hoặc dưới.",
+"天 = 大 + nét ngang trên đầu: người dưới trời (mẹo).|太 = 大 + chấm: quá lớn (mẹo).|夫 = 大 + nét ngang: đàn ông trưởng thành (mẹo).",
+"大|dà|to, lớn;天|tiān|trời;太|tài|quá;夫|fū|chồng, người;头|tóu|đầu;奇|qí|kỳ lạ;美|měi|đẹp;大学|dàxué|đại học;大家|dàjiā|mọi người;大概|dàgài|đại khái;大声|dàshēng|to tiếng;长大|zhǎngdà|lớn lên;巨大|jùdà|khổng lồ;重要|zhòngyào|quan trọng;大夫|dàifu|bác sĩ;太阳|tàiyáng|mặt trời;天空|tiānkōng|bầu trời;天真|tiānzhēn|ngây thơ;奇|qí|kỳ;奖|jiǎng|thưởng"],
+["小","","xiǎo","Tiểu","nhỏ","3 nét","M32 8V40M18 28Q32 24 46 28M22 48Q32 42 42 48",
+"Giáp cốt văn vẽ ba hạt cát nhỏ hoặc người đang cúi nhỏ. Nghĩa là nhỏ bé.",
+"Chữ có 小 chỉ kích thước nhỏ, ít, trẻ: 少, 尖, 尘, 肖, 孙. 小 thường đứng trên hoặc dưới.",
+"少 = 小 + nét phụ: ít hơn nhỏ (mẹo).|尖 = 小 + 大: nhỏ trên to dưới → nhọn (mẹo).|尘 = 小 + 土: đất nhỏ → bụi (mẹo).",
+"小|xiǎo|nhỏ;少|shǎo|ít;小时|xiǎoshí|giờ;小学|xiǎoxué|tiểu học;小姐|xiǎojiě|cô;小心|xiǎoxīn|cẩn thận;小说|xiǎoshuō|tiểu thuyết;小孩|xiǎohái|trẻ em;小费|xiǎofèi|tiền tip;大小|dàxiǎo|kích thước;年轻|niánqīng|trẻ;尖|jiān|nhọn;尘|chén|bụi;肖|xiào|giống;孙|sūn|cháu;尔|ěr|ngươi;当|dāng|đương;尚|shàng|còn;光|guāng|ánh sáng;辉|huī|rực rỡ"],
+["寸","","cùn","Thốn","tấc, đo lường","3 nét","M32 8V48M12 32H52M28 52H36",
+"Giáp cốt văn vẽ bàn tay với một dấu chỉ vào vị trí mạch cổ tay (cách một tấc). Nghĩa gốc là đơn vị đo.",
+"Chữ có 寸 liên quan đến đo lường, ngắn, pháp luật, tay: 对, 射, 封, 村, 时, 专. 寸 thường đứng dưới hoặc bên phải.",
+"对 = 又 + 寸: mẹo.|时 = 日 + 寺声 (giản thể còn 寸); mẹo “đo bằng tấc” không phải nguồn gốc lịch sử.|村 = 木 + 寸: mẹo nhớ.",
+"寸|cùn|tấc;对|duì|đúng, đối;时|shí|thời gian;村|cūn|làng;专|zhuān|chuyên;射|shè|bắn;封|fēng|phong;导|dǎo|hướng dẫn;寻|xún|tìm;寿|shòu|thọ;将|jiāng|sẽ, tướng;尊|zūn|tôn;付|fù|trả;讨|tǎo|thảo luận;耐|nài|chịu;过|guò|qua;得|dé|được;待|dài|đợi;诗|shī|thơ;特|tè|đặc biệt"],
+["工","","gōng","Công","công việc, thợ","3 nét","M12 12H52M32 12V52M12 52H52",
+"Giáp cốt văn vẽ cái thước thợ hoặc dụng cụ đo góc vuông. Nghĩa là công việc, kỹ thuật.",
+"Chữ có 工 nói về công việc, thợ thủ công, kỹ năng: 左, 巧, 功, 式, 差, 巨. 工 thường đứng trái hoặc dưới.",
+"左 = 工 + 𠂇: mẹo “tay trái cầm thước”.|功 = 工 + 力: công việc + sức = công lao (mẹo).|巧 = 工 + 丂: mẹo “thợ khéo”.",
+"工|gōng|công việc;工作|gōngzuò|công việc;工人|gōngrén|công nhân;左边|zuǒbiān|bên trái;功|gōng|công;巧|qiǎo|khéo;式|shì|kiểu;差|chà|sai, kém;巨|jù|khổng lồ;攻|gōng|tấn công;项|xiàng|hạng mục;空|kōng|không;红|hóng|đỏ;经|jīng|kinh;轻|qīng|nhẹ;劲|jìn|sức;功课|gōngkè|bài tập;工程师|gōngchéngshī|kỹ sư;工艺|gōngyì|công nghệ;工具|gōngjù|công cụ"],
+["广","","guǎng","Quảng","rộng, nhà mái","3 nét","M12 12H52V56M12 12V40",
+"Giáp cốt văn vẽ mái nhà dựa vào vách núi (厂 mở rộng). Nghĩa là nhà rộng, chỗ che.",
+"Luôn nằm trên đầu chữ, chỉ nhà cửa, nơi chốn rộng rãi, bệnh viện, cửa hàng: 店, 床, 库, 座, 庭, 廊.",
+"店 = 广 + 占: 占 thanh phù; mẹo “nhà chiếm chỗ bán hàng”.|床 = 广 + 木: gỗ dưới mái → giường (mẹo).|座 = 广 + 坐: chỗ ngồi dưới mái (mẹo).",
+"广|guǎng|rộng;广告|guǎnggào|quảng cáo;商店|shāngdiàn|cửa hàng;床|chuáng|giường;座|zuò|chỗ ngồi;库|kù|kho;庭|tíng|sân;廊|láng|hành lang;庙|miào|đền;府|fǔ|phủ;庆|qìng|mừng;度|dù|độ;应|yīng|nên;底|dǐ|đáy;康|kāng|khoẻ;序|xù|thứ tự;废|fèi|bỏ;麻|má|gai;磨|mó|mài;庞|páng|khổng lồ"],
+["戈","","gē","Qua","mâu, giáo","4 nét","M10 20H54M32 8V52M20 40Q32 48 44 40M48 12L54 20",
+"Giáp cốt văn vẽ cây giáo có lưỡi ngang và cán dài. Vũ khí thời cổ.",
+"Chữ có 戈 liên quan đến chiến tranh, vũ khí, hành động đâm chém: 我, 战, 成, 或, 戏, 截. 戈 thường đứng bên phải.",
+"我: giáp cốt là hình vũ khí có lưỡi răng cưa (tượng hình), sau mượn làm đại từ “tôi”. Mẹo “tay cầm giáo” không chính xác lịch sử.|战 = 占 + 戈: mẹo nhớ.|成 = 戊 + nét: mẹo nhớ.",
+"戈|gē|mâu;我|wǒ|tôi;战|zhàn|chiến;成|chéng|thành;或|huò|hoặc;戏|xì|kịch;截|jié|cắt ngang;戒|jiè|giới;伐|fá|đánh;找|zhǎo|tìm;划|huà|vạch;钱|qián|tiền;浅|qiǎn|nông;贱|jiàn|rẻ;残|cán|tàn;戴|dài|đeo;戋|jiān|nhỏ;戊|wù|mậu;戌|xū|tuất;戍|shù|thủ"],
+["方","","fāng","Phương","vuông, hướng","4 nét","M20 8H44V28H20ZM20 28V56M32 28V56M12 40H52",
+"Giáp cốt văn vẽ cái cày hoặc dụng cụ vuông, sau thành nghĩa phương hướng, hình vuông.",
+"Chữ có 方 nói về hướng, phương pháp, hình dạng: 放, 旅, 族, 旁, 旗, 施. 方 thường đứng trái hoặc dưới.",
+"放 = 方 + 攵: mẹo “dùng roi hướng đi → thả”.|旁 = 方 + 立: mẹo “đứng bên phương”.|旅 = 方 + 氏: mẹo “đoàn người theo hướng”.",
+"方|fāng|phương, vuông;地方|dìfang|nơi;方法|fāngfǎ|phương pháp;方向|fāngxiàng|hướng;放|fàng|thả;旁|páng|bên;旅|lǚ|du lịch;族|zú|tộc;旗|qí|cờ;施|shī|thi;房|fáng|phòng;访|fǎng|thăm;防|fáng;phòng;纺|fǎng|se sợi;芳|fāng|thơm;仿|fǎng|bắt chước;坊|fāng|phố;妨|fáng|cản;肪|fáng|mỡ;傲|ào|kiêu"],
+["月","","yuè","Nguyệt","mặt trăng, thịt","4 nét","M20 8Q12 20 12 32Q12 48 20 56H36Q44 48 44 32Q44 20 36 8ZM20 20H36",
+"Giáp cốt văn vẽ mặt trăng khuyết. Khi làm bộ bên trái thường chỉ thịt (từ 肉), bên phải hoặc dưới chỉ mặt trăng, tháng.",
+"Chữ có 月 (thịt) nói về cơ thể, nội tạng: 朋, 服, 肥, 肯, 胃, 脑. Chữ chỉ thời gian: 明, 期, 朝, 有.",
+"明 = 日 + 月: mặt trời + mặt trăng = sáng (mẹo).|朋: giáp cốt là hai chuỗi vỏ sò (đơn vị tiền tệ cổ), sau mở rộng thành “bạn”. Mẹo “hai 月” không đúng lịch sử.|服: thực tế từ 舟 + thành phần (舟 biến dạng gần 月); không phải 月 + 艮.",
+"月|yuè|tháng, mặt trăng;有|yǒu|có;朋|péng|bạn;服|fú|phục, quần áo;明|míng|sáng;期|qī|kỳ;朝|cháo|triều;肥|féi|béo;肯|kěn|chịu;胃|wèi|dạ dày;脑|nǎo|não;腿|tuǐ|chân;脸|liǎn|mặt;脱|tuō|cởi;胜|shèng|thắng;能|néng|có thể;青|qīng|xanh;前|qián|trước;阴|yīn|âm;阳|yáng|dương"],
+["欠","","qiàn","Khiếm","thiếu, ngáp","4 nét","M32 8Q20 20 20 32Q20 48 32 56Q44 48 44 32Q44 20 32 8M28 28H36",
+"Giáp cốt văn vẽ người đang há miệng thở hoặc ngáp. Nghĩa gốc là thiếu hơi, sau thành thiếu.",
+"Chữ có 欠 nói về thiếu thốn, cảm xúc, hành động há miệng: 吹, 歌, 欢, 次, 软, 欺. 欠 thường đứng bên phải.",
+"次 = 冫 + 欠: mẹo “thiếu lần hai → thứ tự”.|欢 = 又 + 欠: mẹo “tay + há miệng vui”.|歌 = 哥 + 欠: 哥 thanh phù; mẹo “anh hát há miệng”.",
+"欠|qiàn|thiếu;次|cì|lần;欢|huān|vui;歌|gē|hát;吹|chuī|thổi;软|ruǎn|mềm;欺|qī|lừa;欲|yù|muốn;款|kuǎn|khoản;欧|ōu|Âu;歉|qiàn|xin lỗi;歇|xiē|nghỉ;欧|ōu|châu Âu;炊|chuī|nấu;砍|kǎn|chặt;饮|yǐn|uống;钦|qīn|kính;款待|kuǎndài|khoản đãi;歌颂|gēsòng|ca ngợi;欢喜|huānxǐ|vui mừng"],
+["火","","huǒ","Hoả","lửa","4 nét","M32 8Q22 22 28 34Q18 30 16 44Q18 58 32 58Q46 58 48 44Q48 30 38 22Q36 30 32 28Q36 18 32 6",
+"Giáp cốt văn vẽ ngọn lửa bốc lên với tia lửa. Khi đứng dưới chữ biến thành 灬 bốn chấm; bên trái giữ nguyên 火.",
+"Chữ có 火 chỉ lửa, nhiệt, nấu nướng, ánh sáng, tai hoạ: 灯, 烧, 热, 炸, 灭, 灾. 火 đứng trái hoặc dưới.",
+"灯 = 火 + 丁: 丁 thanh phù; mẹo “lửa trên chân đế → đèn”.|烧 = 火 + 尧: 尧 thanh phù; mẹo “lửa cao → đốt”.|灭 = 一 + 火: đè lửa tắt (mẹo).",
+"火|huǒ|lửa;火车|huǒchē|tàu hoả;灯|dēng|đèn;热|rè|nóng;烧|shāo|đốt;炸|zhà|nổ, chiên;灭|miè|tắt;灾|zāi|tai hoạ;灰|huī|tro;烟|yān|khói;炒|chǎo|xào;烤|kǎo|nướng;炉|lú|lò;煤|méi|than;燃|rán|cháy;爆|bào|nổ;炎|yán|viêm;淡|dàn|nhạt;秋|qiū|thu;伙|huǒ|đồng bọn"],
+["田","","tián","Điền","ruộng","5 nét","M12 12H52V52H12ZM12 32H52M32 12V52",
+"Giáp cốt văn vẽ thửa ruộng chia ô. Nghĩa là ruộng đất, đồng áng.",
+"Chữ có 田 nói về ruộng, nông nghiệp, ranh giới: 男, 界, 留, 畜, 画, 略. 田 đứng giữa hoặc dưới chữ.",
+"男 = 田 + 力: sức trên ruộng → đàn ông (mẹo phổ biến).|界 = 田 + 介: 介 thanh phù; mẹo “ranh giới ruộng”.|留 = 卯 + 田: 卯 thanh phù; mẹo “ở lại ruộng”.",
+"田|tián|ruộng;男|nán|nam;界|jiè|ranh giới;留|liú|ở lại;画|huà|vẽ;略|lüè|lược;畜|chù|gia súc;思|sī|nghĩ;细|xì|mảnh;苗|miáo|mạ;备|bèi|chuẩn bị;番|fān|lần;畏|wèi|sợ;胃|wèi|dạ dày;雷|léi|sấm;电|diàn|điện;福|fú|phúc;富|fù|giàu;猫|māo|mèo;累|lèi|mệt"],
+["疒","","nè","Nạch","bệnh tật","5 nét","M12 8H52V20H12ZM20 20V56M32 20V48M44 20V56",
+"Kim văn vẽ người nằm trên giường bệnh. Bộ chỉ bệnh tật, đau ốm.",
+"Luôn nằm bên trái, chỉ bệnh, đau, khuyết điểm: 病, 痛, 疯, 瘦, 疲, 疗. Phần bên phải gợi âm hoặc loại bệnh.",
+"病 = 疒 + 丙: 丙 thanh phù.|痛 = 疒 + 甬: 甬 thanh phù; mẹo “đau nhức”.|疲 = 疒 + 皮: 皮 thanh phù; mẹo “mệt đến bong da”.",
+"病|bìng|bệnh;痛|tòng|đau;疯|fēng|điên;瘦|shòu|gầy;疲|pí|mệt;疗|liáo|điều trị;疾|jí|bệnh;症|zhèng|triệu chứng;痕|hén|sẹo;痒|yǎng|ngứa;疮|chuāng|ghẻ;癌|ái|ung thư;瘫|tān|liệt;瘾|yǐn|nghiện;瘸|qué|què;疤|bā|sẹo;疹|zhěn|ban;疼|téng|đau;疲倦|píjuàn|mệt mỏi;病人|bìngrén|bệnh nhân"],
+["白","","bái","Bạch","trắng","5 nét","M32 8A20 20 0 1 0 32 52A20 20 0 1 0 32 8ZM32 20h.01",
+"Giáp cốt văn vẽ hạt gạo trắng hoặc mặt trời vừa mọc (sáng trắng). Nghĩa là màu trắng, rõ ràng.",
+"Chữ có 白 nói về màu trắng, sáng, rõ, trống: 的, 百, 皇, 皆, 泉, 的. 白 đứng trái hoặc trên.",
+"的 = 白 + 勺: mẹo.|百 = 一 + 白: một trăm (mẹo).|皇 = 白 + 王: mẹo “vua sáng như mặt trời”.",
+"白|bái|trắng;的|de|(trợ từ);百|bǎi|trăm;皇|huáng|hoàng;皆|jiē|đều;泉|quán|suối;的|dí|đích;怕|pà|sợ;拍|pāi|vỗ;迫|pò|ép;伯|bó|bá;泊|bó|cập bến;柏|bǎi|bách;锦|jǐn|gấm;的士|díshì|taxi;明白|míngbai|hiểu;白天|báitiān|ban ngày;白菜|báicài|cải trắng;白云|báiyún|mây trắng;白色|báisè|màu trắng"],
+["皿","","mǐn","Mãnh","bát, đĩa","5 nét","M12 20H52V40Q52 52 40 56H24Q12 52 12 40ZM20 28H44",
+"Giáp cốt văn vẽ cái bát, đĩa sâu. Nghĩa là đồ đựng.",
+"Chữ có 皿 thường đứng dưới, chỉ đồ đựng, chứa đựng, đầy: 盛, 盆, 盘, 盖, 监, 盗. Nghĩa mở rộng thành giám sát, lợi ích.",
+"盛 = 成 + 皿: 成 thanh phù; mẹo “đầy trong bát”.|盆 = 分 + 皿: mẹo “bát chia → chậu”.|监 = 臣 + 皿: mẹo “nhìn vào bát → giám sát”.",
+"皿|mǐn|bát;盛|shèng|thịnh;盆|pén|chậu;盘|pán|đĩa;盖|gài|nắp;监|jiān|giám;盗|dào|trộm;盒|hé|hộp;盈|yíng|đầy;益|yì|lợi;血|xuè|máu;温|wēn|ấm;盐|yán|muối;监|jiān|nhà tù;蓝|lán|xanh lam;尽|jìn|hết;盟|méng|minh;盏|zhǎn|chén;盔|kuī|mũ;盂|yú|bát"],
+["礻","示","shì","Thị (bộ lễ)","chỉ, thờ cúng","4 nét (礻)","M20 8H44M24 20H40M28 32H36V56M16 44H48",
+"Giáp cốt văn 示 vẽ bàn thờ có vật cúng. Khi làm bộ bên trái rút thành 礻.",
+"Nằm bên trái, chỉ việc thờ cúng, thần linh, lễ nghi, may rủi: 神, 礼, 福, 祝, 祈, 社. Phần bên phải gợi âm.",
+"神 = 礻 + 申: 申 thanh phù.|礼 = 礻 + 乙: mẹo.|福 = 礻 + 畐: 畐 thanh phù; mẹo “đầy dưới bàn thờ → phúc”.",
+"神|shén|thần;礼|lǐ|lễ;福|fú|phúc;祝|zhù|chúc;祈|qí|cầu;社|shè|xã;祖|zǔ|tổ;祥|xiáng|tường;票|piào|vé;禁|jìn|cấm;祭|jì|tế;祸|huò|hoạ;禅|chán|thiền;禄|lù|lộc;祯|zhēn|trinh;禧|xǐ|hỉ;礼|lǐ|lễ phép;祝福|zhùfú|chúc phúc;精神|jīngshén|tinh thần;社会|shèhuì|xã hội"],
+["禾","","hé","Hoà","lúa","5 nét","M32 6V58M12 26Q32 22 52 26M20 12Q28 18 32 24M44 12Q36 18 32 24M32 46Q22 50 16 58M32 46Q42 50 48 58",
+"Giáp cốt văn vẽ cây lúa có bông nặng trĩu. Nghĩa là lúa, ngũ cốc.",
+"Chữ có 禾 nói về lúa gạo, nông nghiệp, mùa màng: 秋, 种, 科, 税, 和, 香. 禾 đứng trái hoặc dưới.",
+"秋 = 禾 + 火: mẹo “lúa chín dưới lửa mùa thu” (có cơ sở chữ nguyên).|种 = 禾 + 中: 中 thanh phù; mẹo “trồng lúa giữa”.|和 = 禾 + 口: 禾 thanh phù (《说文》从口禾声); mẹo “lúa + miệng → hoà”.",
+"禾|hé|lúa;和|hé|và, hoà;秋|qiū|thu;种|zhǒng|giống, trồng;科|kē|khoa;税|shuì|thuế;香|xiāng|thơm;利|lì|lợi;私|sī|riêng;季|jì|mùa;秒|miǎo|giây;移|yí|di chuyển;稀|xī|loãng;程|chéng|trình;称|chēng|gọi;积|jī|tích;稻|dào|lúa nước;稼|jià|gieo;稿|gǎo|bản thảo;和气|héqi|hoà khí"],
+["虫","","chóng","Trùng","côn trùng","6 nét","M20 12Q32 8 44 12Q48 24 40 36Q48 48 32 56Q16 48 24 36Q16 24 20 12ZM28 28H36",
+"Giáp cốt văn vẽ con sâu hoặc rắn nhỏ. Nghĩa là côn trùng, sâu bọ.",
+"Chữ có 虫 chỉ côn trùng, động vật nhỏ, một số loài bò sát: 蛇, 蚊, 蜂, 蝶, 虽, 独. 虫 đứng trái hoặc dưới.",
+"虽 = 口 + 虫: mẹo “miệng + sâu → tuy”.|蛇 = 它 + 虫: 它 thanh phù; mẹo “nó + sâu → rắn”.|蚊 = 文 + 虫: 文 thanh phù; mẹo “sâu có văn → muỗi”.",
+"虫|chóng|côn trùng;虽|suī|tuy;蛇|shé|rắn;蚊|wén|muỗi;蜂|fēng|ong;蝶|dié|bướm;独|dú|độc;强|qiáng|mạnh;蛋|dàn|trứng;蛮|mán|man;融|róng|tan;触|chù|chạm;虾|xiā|tôm;蚁|yǐ|kiến;蚕|cán|tằm;萤|yíng|đom đóm;虹|hóng|cầu vồng;蝶|dié|bướm;虫|chóng|sâu;虽然|suīrán|mặc dù"]
+,
+["子","","zǐ","Tử","con, hạt","3 nét","M32 8Q20 20 24 36Q28 48 20 56M32 8Q44 20 40 36Q36 48 44 56M24 28H40",
+"Giáp cốt văn vẽ hình đứa trẻ sơ sinh: đầu to, thân nhỏ, hai tay dang ra. Có bản còn vẽ trẻ nằm trong bụng mẹ. Nghĩa gốc là con cái, sau mở rộng thành hạt giống, người học trò.",
+"Chữ có 子 nói về con cái, hạt giống, người trẻ, học hành: 学, 字, 孩, 孙, 季, 孤. 子 thường đứng dưới hoặc bên phải.",
+"学 = ⺍ + 子: trẻ học dưới mái (mẹo).|字 = 宀 + 子: nuôi con trong nhà → chữ (mẹo).|好 = 女 + 子: mẹ ôm con → tốt (mẹo).",
+"子|zǐ|con;孩子|háizi|đứa trẻ;学|xué|học;字|zì|chữ;孙子|sūnzi|cháu nội;季|jì|mùa;孤|gū|cô độc;孔|kǒng|lỗ;存|cún|tồn tại;孝|xiào|hiếu;孟|mèng|mạnh;李|lǐ|họ Lý;享|xiǎng|hưởng;厚|hòu|dày;教|jiào|dạy;游|yóu|chơi;孩|hái|trẻ;孙|sūn|cháu;籽|zǐ|hạt;学|xué|học tập"],
+["贝","貝","bèi","Bối","vỏ sò, tiền","4 nét (贝)","M20 12H44V28Q44 40 32 48Q20 40 20 28ZM24 20H40M24 28H40",
+"Giáp cốt văn vẽ chiếc vỏ sò biển có đường vân. Thời thượng cổ dùng vỏ sò làm vật trao đổi, vì thế 贝 mang nghĩa tiền bạc, của cải. Chữ giản thể rút gọn nhiều nét.",
+"Chữ có 贝 chỉ tiền bạc, mua bán, quý giá: 买, 卖, 贵, 贱, 货, 财, 贫, 赞. 贝 thường đứng bên phải hoặc dưới.",
+"买 = 乚 + 贝: mẹo “lấy tiền mua”.|贵 = 中 + 一 + 贝: mẹo “đồ quý”.|贫 = 分 + 贝: chia tiền → nghèo (mẹo).",
+"贝|bèi|vỏ sò;买|mǎi|mua;卖|mài|bán;贵|guì|đắt, quý;便宜|piányi|rẻ;货|huò|hàng hoá;财|cái|của cải;贫|pín|nghèo;赞|zàn|khen;责|zé|trách;败|bài|thua;员|yuán|nhân viên;贯|guàn|xuyên;贤|xián|hiền;贼|zéi|trộm;赌|dǔ|cờ bạc;赠|zèng|tặng;赚|zhuàn|kiếm tiền;赛|sài|thi;费|fèi|phí"],
+["见","見","jiàn","Kiến","thấy, gặp","4 nét (见)","M20 12H44V28H20ZM24 20H40M32 28V48M20 48H44",
+"Giáp cốt văn vẽ người quỳ gối, phía trên là con mắt to (目). Hình tượng người đang nhìn. Về sau phần người được viết gọn, chỉ còn 见.",
+"Chữ có 见 nói về nhìn, gặp, xuất hiện, quan điểm: 现, 视, 观, 觉, 览. 见 thường đứng bên phải.",
+"现 = 王 + 见: ngọc lộ ra (mẹo).|观 = 又 + 见: mẹo “nhìn kỹ”.|觉 = ⺍ + 见: mẹo “cảm nhận bằng mắt”.",
+"见|jiàn|thấy;看见|kànjiàn|nhìn thấy;现在|xiànzài|bây giờ;见面|jiànmiàn|gặp mặt;意见|yìjiàn|ý kiến;观|guān|xem;视|shì|nhìn;觉|jué|cảm thấy;览|lǎn|xem;规|guī|quy tắc;觅|mì|tìm;靓|liàng|đẹp;觊|jì|mong;觑|qù|nhìn;觐|jìn|triều kiến;觑|qù|liếc;觅|mì|tìm kiếm;观|guān|quan sát;见|jiàn|gặp;现|xiàn|hiện"],
+["页","頁","yè","Hiệt","đầu, trang","6 nét (页)","M24 8H40V20H24ZM20 20H44V36Q44 48 32 56Q20 48 20 36ZM28 28H36",
+"Giáp cốt văn vẽ cái đầu người có tóc phía trên. Nghĩa gốc là đầu. Vì chữ viết trên thẻ tre cũng được xem như “đầu” trang, nên sau này 页 còn mang nghĩa trang sách.",
+"Chữ có 页 thường chỉ đầu, mặt, trang giấy, hạng mục: 顺, 须, 题, 颜, 顿, 领. 页 đứng bên phải.",
+"顺 = 川 + 页: mẹo “theo dòng đầu óc”.|题 = 是 + 页: 是 thanh phù; mẹo “đề mục trên đầu”.|颜 = 彦 + 页: 彦 thanh phù; mẹo “diện mạo”.",
+"页|yè|trang;顺|shùn|thuận;须|xū|phải;题|tí|đề;颜|yán|mặt;顿|dùn|dừng;领|lǐng|lãnh;预|yù|trước;硕|shuò|lớn;顾|gù|nhìn;烦|fán|phiền;颁|bān|ban;颂|sòng|tụng;颇|pō|khá;颈|jǐng|cổ;颖|yǐng|tinh;颗|kē|hạt;颠|diān|điên;颤|chàn|run;显|xiǎn|hiển"],
+["雨","","yǔ","Vũ","mưa","8 nét","M12 12H52M20 8V16M32 8V16M44 8V16M16 28V48M28 24V52M36 24V52M48 28V48",
+"Giáp cốt văn vẽ một nét ngang phía trên tượng trưng bầu trời, bên dưới là những giọt mưa đang rơi. Hình ảnh rất sống động của cơn mưa.",
+"Chữ có 雨 nói về mưa, thời tiết, hiện tượng trên trời: 雪, 雷, 电, 需, 露, 霜. 雨 thường đứng trên đầu chữ.",
+"雪 = 雨 + 彐: mẹo “mưa đóng thành tuyết”.|雷 = 雨 + 田: mẹo “sấm trên ruộng”.|需 = 雨 + 而: 而 thanh phù; mẹo “cần mưa”.",
+"雨|yǔ|mưa;下雪|xiàxuě|tuyết rơi;雷|léi|sấm;电|diàn|điện;需要|xūyào|cần;零|líng|linh;露|lù|sương;霜|shuāng|sương giá;震|zhèn|rung;霍|huò|chợt;霞|xiá|ráng;霸|bà|bá;雾|wù|sương mù;霖|lín|mưa dầm;霎|shà|chốc;霓|ní|cầu vồng;雪|xuě|tuyết;雷雨|léiyǔ|mưa giông;雨伞|yǔsǎn|ô;雨水|yǔshuǐ|nước mưa"],
+["阝","","fù","Phụ / Ấp","đồi (trái) / ấp (phải)","3 nét","M20 8V56M20 12Q36 20 36 36Q36 48 20 52",
+"Bên trái vốn từ 阜: giáp cốt văn vẽ bậc cấp của đồi núi. Bên phải vốn từ 邑: vẽ khu vực có người ở bao quanh. Hai chữ khác nhau nhưng về sau đều viết thành 阝.",
+"阝 bên trái (từ 阜) chỉ địa hình, đồi núi; bên phải (từ 邑) chỉ thành ấp, vùng đất: 院, 都, 那, 阳, 阴, 防, 阻.",
+"阳 = 阝 + 日: đồi có nắng → dương (mẹo).|阴 = 阝 + 月: đồi có trăng → âm (mẹo).|都 = 者 + 阝: 者 thanh phù; mẹo “thành lớn”.",
+"阳|yáng|dương;阴|yīn|âm;院|yuàn|viện;都|dōu|đều;那|nà|đó;防|fáng|phòng;阻|zǔ|cản;阶|jiē|bậc;陆|lù|đất liền;队|duì|đội;阵|zhèn|trận;际|jì|giao;阿|ā|a;陈|chén|trần;附|fù|phụ;限|xiàn|hạn;除|chú|trừ;险|xiǎn|hiểm;随|suí|theo;隐|yǐn|ẩn"],
+["攵","","pū","Phộc","đánh, gõ","4 nét","M36 8V28M20 28H52M32 28Q20 40 16 56M32 28Q44 40 48 56",
+"Giáp cốt văn vẽ bàn tay cầm một chiếc gậy đang gõ xuống (chữ 攴). Khi làm bộ bên phải, nét được viết gọn thành 攵, thường gọi là “phộc”.",
+"Chữ có 攵 chỉ hành động đánh, gõ, khiến cho, giáo dục: 教, 放, 收, 改, 故, 敬. 攵 đứng bên phải.",
+"教 = 孝 + 攵: mẹo “lấy gậy dạy con”.|放 = 方 + 攵: mẹo “thả đi”.|改 = 己 + 攵: mẹo “sửa mình”.",
+"教|jiào|dạy;放|fàng|thả;收|shōu|thu;改|gǎi|sửa;故|gù|cố;敬|jìng|kính;做|zuò|làm;故|gù|vì vậy;敢|gǎn|dám;散|sàn|rời;数|shù|số;整|zhěng|chỉnh;效|xiào|hiệu;敌|dí|địch;敏|mǐn|nhạy;繁|fán|phồn;敲|qiāo|gõ;攻|gōng|tấn công;败|bài|thua;政|zhèng|chính"],
+["巾","","jīn","Cân","khăn, vải","3 nét","M32 8V56M16 20H48M16 36H48",
+"Giáp cốt văn vẽ một dải vải hoặc chiếc khăn đang treo xuống. Nghĩa gốc là khăn, vải. Về sau dùng chỉ các đồ làm bằng vải.",
+"Chữ có 巾 nói về đồ vải, khăn, mũ, cờ: 带, 帽, 帮, 常, 布, 帆. 巾 đứng dưới hoặc bên phải.",
+"带 = 卅 + 巾: mẹo “mang khăn”.|帽 = 冒 + 巾: 冒 thanh phù; mẹo “mũ”.|帮 = 邦 + 巾: 邦 thanh phù; mẹo “giúp đỡ”.",
+"巾|jīn|khăn;毛巾|máojīn|khăn mặt;带|dài|mang;帽|mào|mũ;帮|bāng|giúp;常|cháng|thường;布|bù|vải;帆|fān|buồm;希|xī|hy vọng;帅|shuài|soái;帐|zhàng|màn;帜|zhì|cờ;帘|lián|rèm;帖|tiě|thiệp;帕|pà|khăn;币|bì|tiền;市|shì|chợ;帛|bó|lụa;帝|dì|đế;帅|shuài|đẹp trai"],
+["尸","","shī","Thi","xác, thân người","3 nét","M20 8H44V24H20ZM20 24V56M32 24V48",
+"Giáp cốt văn vẽ người đang ngồi xổm hoặc nằm nghiêng. Nghĩa gốc là thi thể. Về sau mở rộng thành thân người, rồi chỉ nơi ở (vì người nằm trong nhà).",
+"Chữ có 尸 nói về thân thể, nhà cửa, lớp: 屋, 层, 居, 展, 屎, 尾. 尸 thường đứng trên.",
+"屋 = 尸 + 至: mẹo “nơi thân đến → nhà”.|居 = 尸 + 古: 古 thanh phù; mẹo “ở”.|展 = 尸 + 兟: mẹo “mở rộng”.",
+"尸|shī|xác;屋子|wūzi|căn nhà;层|céng|tầng;居|jū|ở;展|zhǎn|triển lãm;尾|wěi|đuôi;屎|shǐ|phân;尿|niào|nước tiểu;尺|chǐ|thước;尼|ní|ni;尽|jǐn|hết;局|jú|cục;屎|shǐ|cứt;屈|qū|khuất;屋|wū|nhà;层|céng|lớp;履|lǚ|giày;属|shǔ|thuộc;屠|tú|mổ;屡|lǚ|thường"],
+["牜","牛","niú","Ngưu","bò","4 nét","M20 12H44M32 12V52M16 28Q32 24 48 28M20 44H44",
+"Giáp cốt văn vẽ đầu con bò với hai sừng rõ rệt nhìn từ phía trước. Khi làm bộ bên trái, chữ được viết gọn thành 牜.",
+"Chữ có 牛 / 牜 nói về bò, gia súc, sự vật đặc biệt: 特, 物, 牧, 牢, 牺. 牜 đứng bên trái.",
+"特 = 牜 + 寺: 寺 thanh phù; mẹo “bò đực đặc biệt”.|物 = 牜 + 勿: 勿 thanh phù; mẹo “sự vật”.|牧 = 牜 + 攵: chăn bò (mẹo).",
+"牛|niú|bò;特|tè|đặc biệt;物|wù|vật;牧|mù|chăn;牢|láo|chuồng;牺|xī|hy sinh;牡|mǔ|đực;牲|shēng|súc vật;牵|qiān|kéo;犀|xī|tê giác;犁|lí|cày;犊|dú|bê;牦|máo|bò Tây Tạng;物|wù|đồ vật;特|tè|đặc;牛|niú|bò;牛奶|niúnǎi|sữa bò;牛肉|niúròu|thịt bò;牧民|mùmín|người chăn;牺牲|xīshēng|hy sinh"],
+["立","","lì","Lập","đứng","5 nét","M20 12H44M32 12V40M12 40H52M16 52H48",
+"Giáp cốt văn vẽ một người đang đứng thẳng trên mặt đất (hình giống chữ 大 có thêm nét dưới chân). Nghĩa gốc là đứng.",
+"Chữ có 立 nói về đứng, lập tức, vị trí: 位, 站, 童, 端, 竖, 竞. 立 thường đứng trên hoặc dưới.",
+"位 = 人 + 立: người đứng → vị trí (mẹo).|站 = 立 + 占: 占 thanh phù; mẹo “đứng”.|童 = 立 + 里: mẹo “trẻ đứng”.",
+"立|lì|đứng;位|wèi|vị trí;站|zhàn|đứng;童|tóng|trẻ;端|duān|đầu;竖|shù|dọc;竞|jìng|cạnh tranh;章|zhāng|chương;音|yīn|âm;意|yì|ý;亲|qīn|thân;产|chǎn|sản;彦|yàn|người tài;飒|sà|gió ào ạt, nhanh nhẹn;站|zhàn|trạm;立即|lìjí|ngay lập tức;立场|lìchǎng|lập trường;立体|lìtǐ|lập thể;独立|dúlì|độc lập;建立|jiànlì|xây dựng"],
+["穴","","xué","Huyệt","hang, lỗ","5 nét","M16 16H48V28H16ZM24 28V52M40 28V52M20 40H44",
+"Giáp cốt văn vẽ một cái hang hoặc lỗ hổng trên núi / mái nhà. Nghĩa gốc là hang động, chỗ trống. Về sau chỉ các lỗ, khoảng không.",
+"Chữ có 穴 nói về hang, lỗ, không gian trống: 空, 穿, 突, 窗, 穷, 究. 穴 thường đứng trên.",
+"空 = 穴 + 工: 工 thanh phù; mẹo “hang trống”.|穿 = 穴 + 牙: mẹo “xuyên hang”.|窗 = 穴 + 囱: mẹo “cửa sổ”.",
+"穴|xué|hang;空|kōng|không;穿|chuān|mặc, xuyên;突|tū|đột;窗|chuāng|cửa sổ;穷|qióng|nghèo;究|jiū|nghiên cứu;窄|zhǎi|hẹp;窝|wō|hang;窑|yáo|lò;窜|cuàn|trốn;窃|qiè|trộm;窍|qiào|lỗ;窘|jiǒng|bí;窟|kū|hang;窥|kuī|nhìn trộm;窦|dòu|lỗ;窪|wā|trũng;空|kōng|bầu trời;窗户|chuānghu|cửa sổ"],
+["米","","mǐ","Mễ","gạo","6 nét","M32 8V56M12 20L32 32L52 20M12 44L32 32L52 44M20 28H44",
+"Giáp cốt văn vẽ những hạt thóc hoặc bông lúa có hạt. Nghĩa gốc là lúa gạo. Chữ giữ khá nguyên hình từ cổ đến nay.",
+"Chữ có 米 nói về gạo, lương thực, bột, loại: 粉, 精, 粮, 类, 糖, 糊. 米 đứng trái hoặc dưới.",
+"粉 = 米 + 分: 分 thanh phù; mẹo “gạo nghiền → bột”.|精 = 米 + 青: 青 thanh phù; mẹo “gạo tinh”.|粮 = 米 + 良: 良 thanh phù; mẹo “lương thực tốt”.",
+"米|mǐ|gạo;米饭|mǐfàn|cơm;粉|fěn|bột;精|jīng|tinh;粮|liáng|lương;类|lèi|loại;糖|táng|đường;糊|hú|hồ;粒|lì|hạt;粗|cū|thô;粥|zhōu|cháo;粪|fèn|phân;糟|zāo|bã;糠|kāng|cám;糜|mí|nhão;粲|càn|gạo trắng;黎|lí|đen;粘|zhān|dính;粤|yuè|Việt;米粉|mǐfěn|bột gạo"],
+["羊","","yáng","Dương","dê","6 nét","M20 8Q32 4 44 8M16 20H48M32 12V48M20 36Q32 44 44 36",
+"Giáp cốt văn vẽ đầu con dê nhìn chính diện, hai sừng cong rõ rệt. Đây là một trong những chữ tượng hình sinh động nhất.",
+"Chữ có 羊 nói về dê, tốt đẹp, đàn: 美, 群, 着, 羞, 善, 详. 羊 đứng trên hoặc trái.",
+"美 = 羊 + 大: dê to → đẹp (mẹo phổ biến, có cơ sở).|群 = 君 + 羊: 君 thanh phù; mẹo “đàn dê”.|善 = 羊 + 言: mẹo “nói tốt”.",
+"羊|yáng|dê;美|měi|đẹp;群|qún|đàn;着|zhe|đang;羞|xiū|xấu hổ;善|shàn|tốt;详|xiáng|chi tiết;样|yàng|mẫu;养|yǎng|nuôi;氧|yǎng|oxy;羔|gāo|dê con;羹|gēng|canh;羡|xiàn|ghen tị;羲|xī|Phục Hy;鲜|xiān|tươi;美|měi|Mỹ;山羊|shānyáng|dê núi;羊毛|yángmáo|lông dê;羊群|yángqún|đàn dê;善良|shànliáng|hiền lành"],
+["耳","","ěr","Nhĩ","tai","6 nét","M20 8H44V48Q44 56 32 56Q20 56 20 48ZM28 20H36M28 32H36M28 44H36",
+"Giáp cốt văn vẽ hình cái tai người, có vành tai và lỗ tai rõ ràng. Về sau nét được viết thẳng và vuông hơn thành 耳 ngày nay.",
+"Chữ có 耳 nói về tai, nghe, chức vụ: 听, 闻, 职, 聪, 耽, 聊. 耳 đứng trái hoặc dưới.",
+"听 (giản thể) = 口 + 斤 (thanh phù); chữ phồn 聽 mới có 耳. Mẹo “口+耳” chỉ đúng với dạng phồn.|闻 = 门 + 耳: tai ở cửa nghe ngóng (mẹo).|聪 = 耳 + 总: tai thông minh (mẹo).",
+"耳|ěr|tai;听|tīng|nghe;闻|wén|nghe;职|zhí|chức;聪|cōng|thông minh;聊|liáo|tán;耽|dān|chìm đắm;耸|sǒng|cao;耻|chǐ|xấu hổ;耽|dān|chậm;耿|gěng|trung trực;聂|niè|thì thầm;聆|líng|lắng nghe;聘|pìn|mời;聚|jù|tụ;联|lián|liên;聪|cōng|thông minh;耳朵|ěrduo|tai;听力|tīnglì|khả năng nghe;职业|zhíyè|nghề nghiệp"]
+];
+const GC=[["#E8F4F7","#BFE3EC"],["#FCEBD0","#F3C98B"],["#E4ECF8","#B8CBEA"],["#F9E3DE","#F0B3A5"],["#DDF1EC","#A9D8CC"],["#E5F3DC","#B5D99C"],["#F6E3EE","#E3B0CE"]];
+const sv=d=>`<svg viewBox="0 0 64 64" fill="none" stroke="#143F4F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${d}"/></svg>`;
+const app=document.getElementById("app");
+let preferredVoice=null;
+function pickBestChineseVoice(){
+  const voices=speechSynthesis.getVoices();
+  if(!voices.length)return null;
+  // Ưu tiên tuyệt đối giọng nữ neural bản xứ
+  const preferred=[
+    "Microsoft Xiaoxiao Online (Natural) - Chinese (Mainland)",
+    "Microsoft Xiaoyi Online (Natural) - Chinese (Mainland)",
+    "Microsoft Xiaoxuan Online (Natural) - Chinese (Mainland)",
+    "Microsoft Yunxi Online (Natural) - Chinese (Mainland)",
+    "Microsoft Xiaoxiao",
+    "Google 普通话（中国大陆）",
+    "Google 國語（臺灣）",
+    "Ting-Ting",
+    "Sin-Ji",
+    "Mei-Jia",
+    "Yaoyao",
+    "Huihui"
+  ];
+  for(const name of preferred){
+    const v=voices.find(x=>x.name.includes(name)||x.name===name);
+    if(v)return v;
+  }
+  // Lọc giọng nữ zh-CN
+  let v=voices.find(x=>(x.lang==="zh-CN"||x.lang.startsWith("zh"))&&
+    (x.name.toLowerCase().includes("female")||x.name.includes("女")||
+     /xiao|ting|mei|yun|yao|hui|lin|li|fang|qin/i.test(x.name)));
+  if(v)return v;
+  // Bất kỳ giọng zh-CN nào
+  return voices.find(x=>x.lang==="zh-CN"||x.lang.startsWith("zh"))||null;
+}
+function say(t){try{
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(t);
+  u.lang="zh-CN";
+  u.rate=0.72;
+  u.pitch=1.08;
+  u.volume=1;
+  if(!preferredVoice)preferredVoice=pickBestChineseVoice();
+  if(preferredVoice)u.voice=preferredVoice;
+  speechSynthesis.speak(u);
+}catch(e){}}
+if(typeof speechSynthesis!=="undefined"&&speechSynthesis.onvoiceschanged!==undefined){
+  speechSynthesis.onvoiceschanged=()=>{preferredVoice=pickBestChineseVoice();};
+}
+preferredVoice=pickBestChineseVoice();
+function home(){
+  app.innerHTML=`<div class="grid">${R.map((r,i)=>{const g=GC[i%7];return `<button class='card' data-i='${i}'><div class='face'><div class='art' style='background:linear-gradient(160deg,${g[0]},${g[1]})'><span class='wm han'>${r[0]}</span>${sv(r[6])}</div><div class='cap'><span class='cn han'>${r[0]}${r[1]?' · '+r[1]:''}</span><span class='vi2'>${r[3]}</span><span class='val'>${r[4]}</span></div></div></button>`}).join("")}</div>`;
+}
+function detail(i){
+  const r=R[i],tips=r[9].split("|").map(t=>`<li>${t}</li>`).join(""),
+  ws=r[10].split(";").map(w=>{const a=w.split("|");return `<div class='mchip'><button class='spk' data-say='${a[0]}' aria-label='Nghe phát âm'>🔊</button><span class='mh han'>${a[0]}</span><span class='py'>${a[1]}</span><span class='vi'>${a[2]}</span></div>`}).join("");
+  app.innerHTML=`<button class="back" data-back>← Tất cả bộ thủ</button><section class="hero"><div class="seal han">${r[0]}</div><div><span class="py">${r[2]} · ${r[5]}</span><h2>${r[3]} · ${r[4]}</h2>${r[1]?`<div class="formula">Chữ gốc <b class="han">${r[1]}</b> → dạng bộ <b class="han">${r[0]}</b></div>`:`<div class="formula">Bộ <b class="han">${r[0]}</b> giữ nguyên hình khi làm bộ</div>`}</div></section>
+<div class='sec'>字源 · Nguồn gốc (có căn cứ lịch sử)</div><div class='orig'>${sv(r[6])}<p>${r[7]}</p></div>
+<div class='sec'>构字分析 · Phân tích cấu tạo</div><div class='note'><p>${r[8]}</p></div>
+<div class='sec'>记忆技巧 · Mẹo nhớ (chỉ để ghi nhớ, không phải lịch sử)</div><ul class='tips'>${tips}</ul>
+<div class='sec'>20 từ thường gặp · 常用词</div><div class='mc'>${ws}</div>`;
+  window.scrollTo(0,0);
+}
+app.addEventListener("click",e=>{
+  const b=e.target.closest("button");if(!b)return;
+  if(b.dataset.i){detail(+b.dataset.i)}
+  else if(b.dataset.back!==undefined){home()}
+  else if(b.dataset.say){say(b.dataset.say)}
+});
+home();
+</script>
+</body>
+</html>
