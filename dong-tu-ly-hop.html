@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#FBF8F2">
+<title>Động từ ly hợp · Tiếng Trung Meow Meow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --brand:#2E8AA3;--brand-2:#58B4C8;--brand-dark:#1F6479;--deep:#143F4F;--deep-2:#0E2F3C;
+  --soft:#E8F4F7;--paper:#FBF8F2;--line:#DCE9EC;--ink:#1B2E35;--muted:#5B7078;
+  --gold:#F0B94B;--coral:#EF6A4C;--seal:#D6453A;
+  --shadow:0 14px 36px rgba(20,63,79,.10);
+  --serif:"Noto Serif SC","Be Vietnam Pro",serif;
+  --sans:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --air:repeating-linear-gradient(-45deg,#D6453A 0 16px,#fff 16px 32px,#2E8AA3 32px 48px,#fff 48px 64px)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--sans);color:var(--ink);line-height:1.7;overflow-x:hidden;background:radial-gradient(circle at 12% 6%,rgba(88,180,200,.16),transparent 30%),radial-gradient(circle at 90% 14%,rgba(240,185,75,.14),transparent 26%),var(--paper)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:8px}
+.container{width:min(1140px,calc(100% - 40px));margin:0 auto}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(255,253,248,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.topbar:after{content:"";display:block;height:7px;background:var(--air)}
+.topbar-inner{min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{display:flex;align-items:center;gap:11px;text-decoration:none;font-weight:800;font-size:.86rem;letter-spacing:.05em;color:var(--deep)}
+.logo-mark{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;color:#fff;font-family:var(--serif);font-weight:900;font-size:1.15rem;background:linear-gradient(145deg,var(--seal),#F0806B);box-shadow:0 6px 14px rgba(214,69,58,.28);transform:rotate(-6deg)}
+.back-link{text-decoration:none;color:var(--brand-dark);font-weight:700;font-size:.9rem;padding:8px 16px;border-radius:999px;border:1.5px solid var(--line);background:#fff;transition:.18s}
+.back-link:hover{border-color:var(--coral);color:var(--coral)}
+.hero{position:relative;padding:54px 0 30px}
+.hero:before{content:"离";position:absolute;right:max(4vw,10px);top:-8px;font-family:var(--serif);font-weight:900;font-size:clamp(8rem,18vw,14rem);line-height:1;color:rgba(46,138,163,.07);pointer-events:none}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-size:.78rem;font-weight:800;letter-spacing:.13em;color:var(--brand-dark)}
+.kicker:before{content:"";width:34px;height:3px;border-radius:3px;background:var(--coral)}
+h1,h2,h3{font-family:var(--serif);color:var(--deep)}
+h1{position:relative;margin:10px 0 8px;font-size:clamp(2.1rem,5vw,3.5rem);line-height:1.2}
+.hero p{position:relative;max-width:720px;margin:0;color:var(--muted)}
+.count{display:inline-block;margin-top:14px;padding:5px 13px;border-radius:999px;background:#FFF1CF;color:#8A6410;font-size:.78rem;font-weight:800}
+main{padding-bottom:70px}
+.intro-card{position:relative;overflow:hidden;margin:10px 0 28px;padding:24px 26px;border:6px solid transparent;border-radius:24px;background:linear-gradient(135deg,#FFFDF8,#FBF4E2) padding-box,var(--air) border-box;box-shadow:var(--shadow)}
+.intro-card h2{margin:0 0 8px;font-size:1.35rem}
+.intro-card p{margin:6px 0;color:var(--muted)}
+.intro-card strong{color:var(--deep)}
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.pill{padding:5px 11px;border-radius:999px;background:#E8F4F7;color:var(--brand-dark);font-size:.78rem;font-weight:800}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin:34px 0 15px}
+.section-head h2{margin:0;font-size:1.55rem}
+.section-head p{margin:0;color:var(--muted);font-size:.85rem}
+.pattern-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.pattern{padding:19px 20px;border:1.5px solid var(--line);border-radius:18px;background:#fffefa;box-shadow:0 7px 18px rgba(20,63,79,.06)}
+.pattern-label{font-size:.72rem;font-weight:800;letter-spacing:.1em;color:var(--coral)}
+.pattern h3{margin:5px 0 8px;font-size:1.1rem}
+.formula{display:inline-block;padding:7px 12px;border-radius:10px;background:#EAF4F6;color:var(--deep);font-weight:800;letter-spacing:.02em}
+.pattern p{margin:9px 0 0;color:var(--muted);font-size:.88rem}
+.example{margin-top:10px;padding:10px 12px;border-left:3px solid var(--gold);background:#FFF8E8;border-radius:0 10px 10px 0}
+.cn{font-family:var(--serif);font-size:1.08rem;font-weight:800;color:var(--deep)}
+.py{font-size:.78rem;color:var(--brand-dark);font-weight:700}
+.vi{font-size:.84rem;color:var(--muted)}
+.toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:18px 0 14px}
+.search{flex:1;min-width:210px;padding:11px 14px;border:1.5px solid var(--line);border-radius:12px;background:#fffefa;font:inherit;color:var(--ink)}
+.search:focus{outline:3px solid rgba(240,185,75,.45);border-color:var(--gold)}
+.filter{border:1.5px solid var(--line);border-radius:999px;background:#fffefa;color:var(--brand-dark);padding:8px 13px;font:700 .8rem var(--sans);cursor:pointer}
+.filter.active,.filter:hover{background:var(--brand-dark);border-color:var(--brand-dark);color:white}
+.vocab-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+.vocab{position:relative;overflow:hidden;padding:16px 16px 14px;border:1px solid rgba(20,63,79,.1);border-radius:17px;background:#fffefa;box-shadow:0 8px 20px rgba(20,63,79,.07);transition:.2s}
+.vocab:hover{transform:translateY(-4px);box-shadow:0 14px 26px rgba(20,63,79,.12)}
+.vocab-top{display:flex;align-items:start;justify-content:space-between;gap:10px}
+.vocab-word{font-family:var(--serif);font-size:1.65rem;line-height:1.3;font-weight:900;color:var(--deep)}
+.vocab-tag{font-size:.67rem;font-weight:800;padding:4px 8px;border-radius:999px;background:#FFF1CF;color:#8A6410;white-space:nowrap}
+.vocab-py{color:var(--brand-dark);font-size:.8rem;font-weight:700}
+.vocab-meaning{margin:5px 0 10px;color:var(--ink);font-weight:700}
+.vocab-example{padding:10px 11px;border-radius:11px;background:#F2F7F7}
+.vocab-example .cn{font-size:1rem}
+.vocab-example .py{display:block;margin:2px 0}
+.vocab-example .vi{display:block}
+.vocab-note{margin-top:9px;font-size:.77rem;color:var(--muted)}
+.empty{display:none;padding:24px;text-align:center;color:var(--muted);background:#fffefa;border-radius:14px}
+.note-box{margin-top:28px;padding:20px 22px;border-radius:18px;background:#EAF4F6;border:1px solid #CDE3E8}
+.note-box h2{margin:0 0 7px;font-size:1.25rem}
+.note-box p{margin:6px 0;color:var(--muted);font-size:.9rem}
+.note-box strong{color:var(--deep)}
+.quiz{margin-top:30px;padding:23px;border:6px solid transparent;border-radius:22px;background:linear-gradient(#fffefa,#fffefa) padding-box,var(--air) border-box;box-shadow:var(--shadow)}
+.quiz h2{margin:0 0 5px;font-size:1.45rem}
+.quiz-intro{margin:0 0 16px;color:var(--muted);font-size:.88rem}
+.question{padding:15px 0;border-top:1px solid var(--line)}
+.question:first-of-type{border-top:0}
+.question p{margin:0 0 9px;font-weight:700}
+.option{display:block;margin:7px 0;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:pointer;font-size:.88rem}
+.option input{margin-right:8px;accent-color:var(--brand)}
+.quiz-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:12px}
+.primary{border:0;border-radius:999px;padding:10px 18px;background:var(--coral);color:white;font:800 .88rem var(--sans);cursor:pointer;box-shadow:0 7px 15px rgba(239,106,76,.22)}
+.primary:hover{filter:brightness(.96);transform:translateY(-1px)}
+.result{font-weight:800;color:var(--brand-dark)}
+
+.quiz-stats{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
+.quiz-stats span{padding:5px 10px;border-radius:999px;background:#EAF4F6;color:var(--brand-dark);font-size:.75rem;font-weight:800}
+.exercise-group{margin:20px 0 0;padding-top:16px;border-top:1px solid var(--line)}
+.exercise-group h3{margin:0 0 5px;font-size:1.12rem}
+.exercise-hint{margin:0 0 12px;color:var(--muted);font-size:.83rem}
+.exercise-item{padding:13px 0;border-top:1px dashed var(--line)}
+.exercise-item:first-of-type{border-top:0}
+.exercise-prompt{margin:0 0 8px;font-weight:700}
+.exercise-options{display:grid;grid-template-columns:1fr;gap:7px}
+.exercise-option{display:flex;gap:8px;align-items:flex-start;padding:9px 11px;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:pointer;font-size:.88rem}
+.exercise-option:has(input:checked){border-color:var(--brand);background:#F1F8F9}
+.exercise-option input{margin-top:5px;accent-color:var(--brand)}
+.fill-answer{width:min(100%,360px);padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;font:inherit;background:#fff}
+.feedback{display:none;margin-top:8px;padding:9px 11px;border-radius:9px;font-size:.83rem}
+.feedback.correct{display:block;background:#EAF6ED;color:#245C35}
+.feedback.wrong{display:block;background:#FFF0EC;color:#8C3828}
+.secondary{border:1.5px solid var(--line);border-radius:999px;padding:9px 16px;background:#fff;color:var(--brand-dark);font:800 .85rem var(--sans);cursor:pointer}
+.score-panel{margin-top:16px;padding:15px;border-radius:13px;background:#EAF4F6;color:var(--deep);font-weight:700}
+@media(min-width:680px){.exercise-options.two-col{grid-template-columns:1fr 1fr}}
+
+.footer{background:linear-gradient(135deg,var(--deep),var(--deep-2));color:#CFE6EC;padding:26px 0 34px;text-align:center;font-size:.86rem}
+.footer b{display:block;font-family:var(--serif);font-weight:600;color:#FFE9B8;margin-bottom:2px}
+@media(max-width:850px){.vocab-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){
+ .container{width:calc(100% - 24px)}.hero{padding-top:38px}.pattern-grid{grid-template-columns:1fr}
+ .vocab-grid{grid-template-columns:1fr 1fr;gap:11px}.vocab{padding:13px 12px}
+ .vocab-word{font-size:1.45rem}.vocab-tag{font-size:.6rem}
+ .section-head{display:block}.section-head p{margin-top:4px}
+ .logo span:last-child{display:none}.back-link{font-size:.78rem;padding:7px 11px}
+}
+@media(max-width:390px){.vocab-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="container topbar-inner">
+    <a class="logo" href="index.html"><span class="logo-mark">喵</span><span>TIẾNG TRUNG MEOW MEOW · 中文课堂</span></a>
+    <a class="back-link" href="kien-thuc-can-nho.html">← Kiến thức cần nhớ</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="container">
+    <div class="kicker">知识 · NGỮ PHÁP TIẾNG TRUNG</div>
+    <h1>Động từ ly hợp</h1>
+    <p>Nhận biết 离合词, hiểu vì sao chúng có thể “tách đôi” và luyện cách dùng tự nhiên trong câu.</p>
+    <span class="count">离合词 · 50 từ vựng &amp; cách dùng</span>
+  </div>
+</header>
+
+<main class="container">
+  <section class="intro-card">
+    <h2>01 · Động từ ly hợp là gì?</h2>
+    <p><strong>Động từ ly hợp (离合词 · líhécí)</strong> là những từ thường được cấu tạo theo kiểu <strong>động từ + tân ngữ</strong>. Khi dùng trong câu, giữa hai thành tố này có thể chèn thêm một số thành phần như trợ từ, số lượng từ hoặc bổ ngữ.</p>
+    <p>Vì vậy, không phải lúc nào ta cũng dùng cả cụm như một động từ liền nhau. Hãy nhớ: <strong>“ly” là tách, “hợp” là ghép</strong>.</p>
+    <div class="pill-row"><span class="pill">动词 + 宾语</span><span class="pill">Có thể tách ra</span><span class="pill">Chú ý vị trí của 了 / 过 / bổ ngữ</span></div>
+  </section>
+
+  <div class="section-head">
+    <h2>02 · Những cấu trúc thường gặp</h2>
+    <p>Một vài mẫu cơ bản cần nhớ</p>
+  </div>
+  <section class="pattern-grid">
+    <article class="pattern">
+      <div class="pattern-label">CẤU TRÚC 01</div>
+      <h3>Diễn tả hành động đã xảy ra</h3>
+      <div class="formula">Động từ + 了 + tân ngữ</div>
+      <div class="example"><div class="cn">我洗了澡。</div><div class="py">Wǒ xǐ le zǎo.</div><div class="vi">Tôi đã tắm rồi.</div></div>
+      <p>Với nhiều động từ ly hợp, 了 thường đặt ở giữa hai thành tố khi biểu thị hành động đã hoàn thành. Cách dùng cụ thể còn tùy từng từ và ngữ cảnh.</p>
+    </article>
+    <article class="pattern">
+      <div class="pattern-label">CẤU TRÚC 02</div>
+      <h3>Thêm số lượng từ / khoảng thời gian</h3>
+      <div class="formula">Động từ + số lượng / bổ ngữ + tân ngữ</div>
+      <div class="example"><div class="cn">我们聊了一会儿天。</div><div class="py">Wǒmen liáo le yíhuìr tiān.</div><div class="vi">Chúng tôi trò chuyện một lúc.</div></div>
+      <p>Thành phần bổ sung thường được đặt giữa động từ và tân ngữ.</p>
+    </article>
+    <article class="pattern">
+      <div class="pattern-label">CẤU TRÚC 03</div>
+      <h3>Diễn tả trải nghiệm</h3>
+      <div class="formula">Động từ + 过 + tân ngữ</div>
+      <div class="example"><div class="cn">他结过婚。</div><div class="py">Tā jié guo hūn.</div><div class="vi">Anh ấy từng kết hôn.</div></div>
+      <p>过 đặt sau thành tố động từ, trước thành tố tân ngữ.</p>
+    </article>
+    <article class="pattern">
+      <div class="pattern-label">CẤU TRÚC 04</div>
+      <h3>Thêm định ngữ cho tân ngữ</h3>
+      <div class="formula">Động từ + 的 + (định ngữ) + tân ngữ</div>
+      <div class="example"><div class="cn">她睡了一个好觉。</div><div class="py">Tā shuì le yí ge hǎo jiào.</div><div class="vi">Cô ấy đã có một giấc ngủ ngon.</div></div>
+      <p>Trong mẫu này, lượng từ và định ngữ nằm giữa hai thành tố của cụm ly hợp.</p>
+    </article>
+  </section>
+
+  <div class="section-head">
+    <h2>03 · 50 động từ ly hợp thường gặp</h2>
+    <p>Đủ 50 từ · Tìm theo chữ Hán, pinyin hoặc nghĩa tiếng Việt</p>
+  </div>
+  <div class="toolbar">
+    <input class="search" id="search" type="search" placeholder="Ví dụ: 洗澡, xǐzǎo, tắm..." aria-label="Tìm động từ ly hợp">
+    <button class="filter active" data-filter="all">Tất cả</button>
+    <button class="filter" data-filter="daily">Sinh hoạt</button>
+    <button class="filter" data-filter="social">Giao tiếp</button>
+    <button class="filter" data-filter="other">Khác</button>
+  </div>
+  <section class="vocab-grid" id="vocabGrid">
+    <article class="vocab" data-category="daily" data-search="搬家 banjia chuyển nhà"><div class="vocab-top"><div class="vocab-word">搬家</div><span class="vocab-tag">Sinh hoạt</span></div><div class="vocab-py">bān jiā</div><div class="vocab-meaning">chuyển nhà</div><div class="vocab-example"><div class="cn">我们去年搬了一次家。</div><span class="py">Wǒmen qùnián bān le yí cì jiā.</span><span class="vi">Năm ngoái chúng tôi đã chuyển nhà một lần.</span></div><div class="vocab-note">搬 + 了 + 一次 + 家</div></article>
+    <article class="vocab" data-category="social" data-search="吵架 chaojia cãi nhau"><div class="vocab-top"><div class="vocab-word">吵架</div><span class="vocab-tag">Giao tiếp</span></div><div class="vocab-py">chǎo jià</div><div class="vocab-meaning">cãi nhau</div><div class="vocab-example"><div class="cn">他们昨天吵了一架。</div><span class="py">Tāmen zuótiān chǎo le yí jià.</span><span class="vi">Hôm qua họ đã cãi nhau một trận.</span></div><div class="vocab-note">吵 + 了 + 一架</div></article>
+    <article class="vocab" data-category="daily" data-search="唱歌 changge ca hát"><div class="vocab-top"><div class="vocab-word">唱歌</div><span class="vocab-tag">Sinh hoạt</span></div><div class="vocab-py">chàng gē</div><div class="vocab-meaning">ca hát</div><div class="vocab-example"><div class="cn">她喜欢唱歌。</div><span class="py">Tā xǐhuan chànggē.</span><span class="vi">Cô ấy thích ca hát.</span></div><div class="vocab-note">唱歌 dùng liền khi không cần thành phần chen giữa</div></article>
+    <article class="vocab" data-category="daily" data-search="放假 fangjia được nghỉ, nghỉ lễ"><div class="vocab-top"><div class="vocab-word">放假</div><span class="vocab-tag">Sinh hoạt</span></div><div class="vocab-py">fàng jià</div><div class="vocab-meaning">được nghỉ, nghỉ lễ</div><div class="vocab-example"><div class="cn">我们下个月放三天假。</div><span class="py">Wǒmen xià ge yuè fàng sān tiān jià.</span><span class="vi">Tháng sau chúng tôi được nghỉ ba ngày.</span></div><div class="vocab-note">放 + 三天 + 假</div></article>
+    <article class="vocab" data-category="daily" data-search="散步 sanbu đi dạo"><div class="vocab-top"><div class="vocab-word">散步</div><span class="vocab-tag">Sinh hoạt</span></div><div class="vocab-py">sàn bù</div><div class="vocab-meaning">đi dạo</div><div class="vocab-example"><div class="cn">我每天散半个小时的步。</div><span class="py">Wǒ měitiān sàn bàn ge xiǎoshí de bù.</span><span class="vi">Mỗi ngày tôi đi dạo nửa tiếng.</span></div><div class="vocab-note">散 + 半个小时的 + 步</div></article>
+    <article class="vocab" data-category="other" data-search="签名 qianming ký tên"><div class="vocab-top"><div class="vocab-word">签名</div><span class="vocab-tag">Khác</span></div><div class="vocab-py">qiān míng</div><div class="vocab-meaning">ký tên</div><div class="vocab-example"><div class="cn">请在这里签个名。</div><span class="py">Qǐng zài zhèlǐ qiān ge míng.</span><span class="vi">Xin hãy ký tên ở đây.</span></div><div class="vocab-note">签 + 个 + 名</div></article>
+    <article class="vocab" data-category="social" data-search="约会 yuehui hẹn hò, cuộc hẹn"><div class="vocab-top"><div class="vocab-word">约会</div><span class="vocab-tag">Giao tiếp</span></div><div class="vocab-py">yuē huì</div><div class="vocab-meaning">hẹn hò, cuộc hẹn</div><div class="vocab-example"><div class="cn">她今晚要跟朋友约会。</div><span class="py">Tā jīnwǎn yào gēn péngyou yuēhuì.</span><span class="vi">Tối nay cô ấy có hẹn với bạn.</span></div><div class="vocab-note">跟 + người + 约会</div></article>
+    <article class="vocab" data-category="other" data-search="让步 rangbu nhượng bộ"><div class="vocab-top"><div class="vocab-word">让步</div><span class="vocab-tag">Khác</span></div><div class="vocab-py">ràng bù</div><div class="vocab-meaning">nhượng bộ</div><div class="vocab-example"><div class="cn">这次他没有让步。</div><span class="py">Zhè cì tā méiyǒu ràngbù.</span><span class="vi">Lần này anh ấy không nhượng bộ.</span></div><div class="vocab-note">让步 thường dùng liền</div></article>
+    <article class="vocab" data-category="daily" data-search="起床 qichuang thức dậy, rời giường"><div class="vocab-top"><div class="vocab-word">起床</div><span class="vocab-tag">Sinh hoạt</span></div><div class="vocab-py">qǐ chuáng</div><div class="vocab-meaning">thức dậy, rời giường</div><div class="vocab-example"><div class="cn">我今天起了床就去上班了。</div><span class="py">Wǒ jīntiān qǐ le chuáng jiù qù shàngbān le.</span><span class="vi">Hôm nay tôi thức dậy rồi đi làm luôn.</span></div><div class="vocab-note">起 + 了 + 个大早</div></article>
+    <article class="vocab" data-category="daily" data-search="踢球 tiqiu đá bóng"><div class="vocab-top"><div class="vocab-word">踢球</div><span class="vocab-tag">Sinh hoạt</span></div><div class="vocab-py">tī qiú</div><div class="vocab-meaning">đá bóng</div><div class="vocab-example"><div class="cn">孩子们踢了一会儿球。</div><span class="py">Háizimen tī le yíhuìr qiú.</span><span class="vi">Bọn trẻ đá bóng một lúc.</span></div><div class="vocab-note">踢 + 了一会儿 + 球</div></article>
+    <article class="vocab" data-category="daily" data-search="上班 shangban đi làm"><div class="vocab-top"><div class="vocab-word">上班</div><span class="vocab-tag">Sinh hoạt</span></div><div class="vocab-py">shàng bān</div><div class="vocab-meaning">đi làm</div><div class="vocab-example"><div class="cn">我每天上八个小时的班。</div><span class="py">Wǒ měitiān shàng bā ge xiǎoshí de bān.</span><span class="vi">Mỗi ngày tôi làm việc tám tiếng.</span></div><div class="vocab-note">上 + 八个小时的 + 班</div></article>
+    <article class="vocab" data-category="daily" data-search="上网 shangwang lên mạng"><div class="vocab-top"><div class="vocab-word">上网</div><span class="vocab-tag">Sinh hoạt</span></div><div class="vocab-py">shàng wǎng</div><div class="vocab-meaning">lên mạng</div><div class="vocab-example"><div class="cn">我上了一会儿网。</div><span class="py">Wǒ shàng le yíhuìr wǎng.</span><span class="vi">Tôi đã lên mạng một lúc.</span></div><div class="vocab-note">上 + 了 + 一会儿 + 网</div></article>
+    <article class="vocab" data-category="daily" data-search="下班 xiaban tan làm"><div class="vocab-top"><div class="vocab-word">下班</div><span class="vocab-tag">Sinh hoạt</span></div><div class="vocab-py">xià bān</div><div class="vocab-meaning">tan làm</div><div class="vocab-example"><div class="cn">你几点下班？</div><span class="py">Nǐ jǐ diǎn xiàbān?</span><span class="vi">Mấy giờ bạn tan làm?</span></div><div class="vocab-note">下班 thường dùng liền</div></article>
+    <article class="vocab" data-category="other" data-search="下雨 xiayu mưa"><div class="vocab-top"><div class="vocab-word">下雨</div><span class="vocab-tag">Khác</span></div><div class="vocab-py">xià yǔ</div><div class="vocab-meaning">mưa</div><div class="vocab-example"><div class="cn">昨天晚上下了一场雨。</div><span class="py">Zuótiān wǎnshang xià le yì cháng yǔ.</span><span class="vi">Tối qua đã có một trận mưa.</span></div><div class="vocab-note">下 + 了 + 一场 + 雨</div></article>
+    <article class="vocab" data-category="other" data-search="出事 chushi xảy ra chuyện, gặp sự cố"><div class="vocab-top"><div class="vocab-word">出事</div><span class="vocab-tag">Khác</span></div><div class="vocab-py">chū shì</div><div class="vocab-meaning">xảy ra chuyện, gặp sự cố</div><div class="vocab-example"><div class="cn">他家里出了一点儿事。</div><span class="py">Tā jiālǐ chū le yìdiǎnr shì.</span><span class="vi">Nhà anh ấy xảy ra chút chuyện.</span></div><div class="vocab-note">出 + 了 + 一点儿 + 事</div></article>
+    <article class="vocab" data-category="other" data-search="出名 chuming nổi tiếng"><div class="vocab-top"><div class="vocab-word">出名</div><span class="vocab-tag">Khác</span></div><div class="vocab-py">chū míng</div><div class="vocab-meaning">nổi tiếng</div><div class="vocab-example"><div class="cn">这座城市因为美食出了名。</div><span class="py">Zhè zuò chéngshì yīnwèi měishí chū le míng.</span><span class="vi">Thành phố này nổi tiếng nhờ ẩm thực.</span></div><div class="vocab-note">出 + 了 + 名</div></article>
+    <article class="vocab" data-category="daily" data-search="出差 chuchai đi công tác"><div class="vocab-top"><div class="vocab-word">出差</div><span class="vocab-tag">Sinh hoạt</span></div><div class="vocab-py">chū chāi</div><div class="vocab-meaning">đi công tác</div><div class="vocab-example"><div class="cn">经理下周要出一次差。</div><span class="py">Jīnglǐ xià zhōu yào chū yí cì chāi.</span><span class="vi">Tuần sau giám đốc phải đi công tác một chuyến.</span></div><div class="vocab-note">出 + 一次 + 差</div></article>
+    <article class="vocab" data-category="social" data-search="分手 fenshou chia tay"><div class="vocab-top"><div class="vocab-word">分手</div><span class="vocab-tag">Giao tiếp</span></div><div class="vocab-py">fēn shǒu</div><div class="vocab-meaning">chia tay</div><div class="vocab-example"><div class="cn">他们已经分手两个月了。</div><span class="py">Tāmen yǐjīng fēnshǒu liǎng ge yuè le.</span><span class="vi">Họ đã chia tay được hai tháng.</span></div><div class="vocab-note">分手 thường dùng liền; thời lượng đặt sau cụm</div></article>
+    <article class="vocab" data-category="daily" data-search="加班 jiaban làm thêm giờ, tăng ca"><div class="vocab-top"><div class="vocab-word">加班</div><span class="vocab-tag">Sinh hoạt</span></div><div class="vocab-py">jiā bān</div><div class="vocab-meaning">làm thêm giờ, tăng ca</div><div class="vocab-example"><div class="cn">我昨天加了两个小时的班。</div><span class="py">Wǒ zuótiān jiā le liǎng ge xiǎoshí de bān.</span><span class="vi">Hôm qua tôi đã tăng ca hai tiếng.</span></div><div class="vocab-note">加 + 了 + 两个小时的 + 班</div></article>
+    <article class="vocab" data-category="social" data-search="发火 fahuo nổi nóng"><div class="vocab-top"><div class="vocab-word">发火</div><span class="vocab-tag">Giao tiếp</span></div><div class="vocab-py">fā huǒ</div><div class="vocab-meaning">nổi nóng</div><div class="vocab-example"><div class="cn">他今天一次也没有发火。</div><span class="py">Tā jīntiān yí cì yě méiyǒu fāhuǒ.</span><span class="vi">Hôm nay anh ấy không nổi nóng lần nào.</span></div><div class="vocab-note">发火 thường dùng liền; số lần có thể đặt trước</div></article>
+    <article class="vocab" data-category="other" data-search="吃亏 chikui chịu thiệt, bị thiệt"><div class="vocab-top"><div class="vocab-word">吃亏</div><span class="vocab-tag">Khác</span></div><div class="vocab-py">chī kuī</div><div class="vocab-meaning">chịu thiệt, bị thiệt</div><div class="vocab-example"><div class="cn">这次我可吃了大亏。</div><span class="py">Zhè cì wǒ kě chī le dà kuī.</span><span class="vi">Lần này tôi đã chịu thiệt lớn.</span></div><div class="vocab-note">吃 + 了 + 大 + 亏</div></article>
+    <article class="vocab" data-category="other" data-search="吃惊 chijing ngạc nhiên, kinh ngạc"><div class="vocab-top"><div class="vocab-word">吃惊</div><span class="vocab-tag">Khác</span></div><div class="vocab-py">chī jīng</div><div class="vocab-meaning">ngạc nhiên, kinh ngạc</div><div class="vocab-example"><div class="cn">听到这个消息，我吃了一惊。</div><span class="py">Tīngdào zhège xiāoxi, wǒ chī le yì jīng.</span><span class="vi">Nghe tin này, tôi rất kinh ngạc.</span></div><div class="vocab-note">吃 + 了 + 一 + 惊</div></article>
+    <article class="vocab" data-category="social" data-search="帮忙 bangmang giúp đỡ, giúp một tay"><div class="vocab-top"><div class="vocab-word">帮忙</div><span class="vocab-tag">Giao tiếp</span></div><div class="vocab-py">bāng máng</div><div class="vocab-meaning">giúp đỡ, giúp một tay</div><div class="vocab-example"><div class="cn">你能帮我一个忙吗？</div><span class="py">Nǐ néng bāng wǒ yí ge máng ma?</span><span class="vi">Bạn có thể giúp tôi một tay không?</span></div><div class="vocab-note">帮 + 我一个 + 忙</div></article>
+    <article class="vocab" data-category="daily" data-search="干活 ganhuo làm việc, làm công"><div class="vocab-top"><div class="vocab-word">干活</div><span class="vocab-tag">Sinh hoạt</span></div><div class="vocab-py">gàn huó</div><div class="vocab-meaning">làm việc, làm công</div><div class="vocab-example"><div class="cn">他在工地干了一天活。</div><span class="py">Tā zài gōngdì gàn le yì tiān huó.</span><span class="vi">Anh ấy làm việc cả ngày ở công trường.</span></div><div class="vocab-note">干 + 了 + 一天 + 活</div></article>
+    <article class="vocab" data-category="other" data-search="开业 kaiye khai trương, bắt đầu kinh doanh"><div class="vocab-top"><div class="vocab-word">开业</div><span class="vocab-tag">Khác</span></div><div class="vocab-py">kāi yè</div><div class="vocab-meaning">khai trương, bắt đầu kinh doanh</div><div class="vocab-example"><div class="cn">这家店下个月开业。</div><span class="py">Zhè jiā diàn xià ge yuè kāiyè.</span><span class="vi">Cửa hàng này tháng sau khai trương.</span></div><div class="vocab-note">开业 thường dùng liền</div></article>
+    <article class="vocab" data-category="daily" data-search="开会 kaihui họp, mở cuộc họp"><div class="vocab-top"><div class="vocab-word">开会</div><span class="vocab-tag">Sinh hoạt</span></div><div class="vocab-py">kāi huì</div><div class="vocab-meaning">họp, mở cuộc họp</div><div class="vocab-example"><div class="cn">我们开了两个小时的会。</div><span class="py">Wǒmen kāi le liǎng ge xiǎoshí de huì.</span><span class="vi">Chúng tôi đã họp hai tiếng.</span></div><div class="vocab-note">开 + 了 + 两个小时的 + 会</div></article>
+    <article class="vocab" data-category="other" data-search="开头 kaitou bắt đầu, phần mở đầu"><div class="vocab-top"><div class="vocab-word">开头</div><span class="vocab-tag">Khác</span></div><div class="vocab-py">kāi tóu</div><div class="vocab-meaning">bắt đầu, phần mở đầu</div><div class="vocab-example"><div class="cn">这本书的开头很有意思。</div><span class="py">Zhè běn shū de kāitóu hěn yǒu yìsi.</span><span class="vi">Phần mở đầu cuốn sách này rất thú vị.</span></div><div class="vocab-note">开头 thường dùng như danh từ trong ví dụ này</div></article>
+    <article class="vocab" data-category="daily" data-search="开学 kaixue khai giảng, bắt đầu năm học"><div class="vocab-top"><div class="vocab-word">开学</div><span class="vocab-tag">Sinh hoạt</span></div><div class="vocab-py">kāi xué</div><div class="vocab-meaning">khai giảng, bắt đầu năm học</div><div class="vocab-example"><div class="cn">我们学校下周开学。</div><span class="py">Wǒmen xuéxiào xià zhōu kāixué.</span><span class="vi">Trường chúng tôi khai giảng vào tuần sau.</span></div><div class="vocab-note">开学 thường dùng liền</div></article>
+    <article class="vocab" data-category="other" data-search="报名 baoming đăng ký"><div class="vocab-top"><div class="vocab-word">报名</div><span class="vocab-tag">Khác</span></div><div class="vocab-py">bào míng</div><div class="vocab-meaning">đăng ký</div><div class="vocab-example"><div class="cn">我已经报了名。</div><span class="py">Wǒ yǐjīng bào le míng.</span><span class="vi">Tôi đã đăng ký rồi.</span></div><div class="vocab-note">报 + 了 + 名</div></article>
+    <article class="vocab" data-category="daily" data-search="拍照 paizhao chụp ảnh"><div class="vocab-top"><div class="vocab-word">拍照</div><span class="vocab-tag">Sinh hoạt</span></div><div class="vocab-py">pāi zhào</div><div class="vocab-meaning">chụp ảnh</div><div class="vocab-example"><div class="cn">我们在海边拍了一张照。</div><span class="py">Wǒmen zài hǎibiān pāi le yì zhāng zhào.</span><span class="vi">Chúng tôi đã chụp một bức ảnh ở bờ biển.</span></div><div class="vocab-note">拍 + 了 + 很多 + 照片（扩展说法）</div></article>
+    <article class="vocab" data-category="social" data-search="拜年 bainian chúc tết"><div class="vocab-top"><div class="vocab-word">拜年</div><span class="vocab-tag">Giao tiếp</span></div><div class="vocab-py">bài nián</div><div class="vocab-meaning">chúc Tết</div><div class="vocab-example"><div class="cn">过年时我们去给老师拜年。</div><span class="py">Guònián shí wǒmen qù gěi lǎoshī bàinián.</span><span class="vi">Tết đến chúng tôi đi chúc Tết thầy cô.</span></div><div class="vocab-note">给 + người + 拜年</div></article>
+    <article class="vocab" data-category="other" data-search="比赛 bisai thi đấu, cuộc thi"><div class="vocab-top"><div class="vocab-word">比赛</div><span class="vocab-tag">Khác</span></div><div class="vocab-py">bǐ sài</div><div class="vocab-meaning">thi đấu, cuộc thi</div><div class="vocab-example"><div class="cn">他们比了一场赛。</div><span class="py">Tāmen bǐ le yì chǎng sài.</span><span class="vi">Họ đã thi đấu một trận.</span></div><div class="vocab-note">比 + 了 + 一场 + 赛</div></article>
+    <article class="vocab" data-category="other" data-search="毕业 biye tốt nghiệp"><div class="vocab-top"><div class="vocab-word">毕业</div><span class="vocab-tag">Khác</span></div><div class="vocab-py">bì yè</div><div class="vocab-meaning">tốt nghiệp</div><div class="vocab-example"><div class="cn">她大学毕业三年了。</div><span class="py">Tā dàxué bìyè sān nián le.</span><span class="vi">Cô ấy tốt nghiệp đại học được ba năm rồi.</span></div><div class="vocab-note">毕业 thường dùng liền; thời lượng đặt sau cụm</div></article>
+    <article class="vocab" data-category="daily" data-search="爬山 pashan leo núi"><div class="vocab-top"><div class="vocab-word">爬山</div><span class="vocab-tag">Sinh hoạt</span></div><div class="vocab-py">pá shān</div><div class="vocab-meaning">leo núi</div><div class="vocab-example"><div class="cn">我们上周爬了一次山。</div><span class="py">Wǒmen shàng zhōu pá le yí cì shān.</span><span class="vi">Tuần trước chúng tôi đã leo núi một lần.</span></div><div class="vocab-note">爬 + 了 + 一次 + 山</div></article>
+    <article class="vocab" data-category="social" data-search="生气 shengqi tức giận"><div class="vocab-top"><div class="vocab-word">生气</div><span class="vocab-tag">Giao tiếp</span></div><div class="vocab-py">shēng qì</div><div class="vocab-meaning">tức giận</div><div class="vocab-example"><div class="cn">你别生我的气。</div><span class="py">Nǐ bié shēng wǒ de qì.</span><span class="vi">Bạn đừng giận tôi.</span></div><div class="vocab-note">生 + 我的 + 气</div></article>
+    <article class="vocab" data-category="other" data-search="生病 shengbing bị ốm, mắc bệnh"><div class="vocab-top"><div class="vocab-word">生病</div><span class="vocab-tag">Khác</span></div><div class="vocab-py">shēng bìng</div><div class="vocab-meaning">bị ốm, mắc bệnh</div><div class="vocab-example"><div class="cn">他生了一场病。</div><span class="py">Tā shēng le yì cháng bìng.</span><span class="vi">Anh ấy đã bị ốm một trận.</span></div><div class="vocab-note">生 + 了 + 一场 + 病</div></article>
+    <article class="vocab" data-category="other" data-search="用功 yonggong chăm chỉ, học hành siêng năng"><div class="vocab-top"><div class="vocab-word">用功</div><span class="vocab-tag">Khác</span></div><div class="vocab-py">yòng gōng</div><div class="vocab-meaning">chăm chỉ, học hành siêng năng</div><div class="vocab-example"><div class="cn">她最近用功多了。</div><span class="py">Tā zuìjìn yònggōng duō le.</span><span class="vi">Dạo gần đây cô ấy chăm chỉ hơn nhiều.</span></div><div class="vocab-note">用功 thường dùng liền</div></article>
+    <article class="vocab" data-category="other" data-search="留学 liuxue du học"><div class="vocab-top"><div class="vocab-word">留学</div><span class="vocab-tag">Khác</span></div><div class="vocab-py">liú xué</div><div class="vocab-meaning">du học</div><div class="vocab-example"><div class="cn">他在中国留了三年学。</div><span class="py">Tā zài Zhōngguó liú le sān nián xué.</span><span class="vi">Anh ấy đã du học ở Trung Quốc ba năm.</span></div><div class="vocab-note">留 + 了 + 三年 + 学</div></article>
+    <article class="vocab" data-category="daily" data-search="睡觉 shuijiao ngủ"><div class="vocab-top"><div class="vocab-word">睡觉</div><span class="vocab-tag">Sinh hoạt</span></div><div class="vocab-py">shuì jiào</div><div class="vocab-meaning">ngủ</div><div class="vocab-example"><div class="cn">昨天我睡了八个小时的觉。</div><span class="py">Zuótiān wǒ shuì le bā ge xiǎoshí de jiào.</span><span class="vi">Hôm qua tôi đã ngủ tám tiếng.</span></div><div class="vocab-note">睡 + 了 + 八个小时的 + 觉</div></article>
+    <article class="vocab" data-category="social" data-search="离婚 lihun ly hôn"><div class="vocab-top"><div class="vocab-word">离婚</div><span class="vocab-tag">Giao tiếp</span></div><div class="vocab-py">lí hūn</div><div class="vocab-meaning">ly hôn</div><div class="vocab-example"><div class="cn">他们去年离的婚。</div><span class="py">Tāmen qùnián lí de hūn.</span><span class="vi">Họ ly hôn vào năm ngoái.</span></div><div class="vocab-note">离 + 的 + 婚</div></article>
+    <article class="vocab" data-category="social" data-search="结婚 jiehun kết hôn"><div class="vocab-top"><div class="vocab-word">结婚</div><span class="vocab-tag">Giao tiếp</span></div><div class="vocab-py">jié hūn</div><div class="vocab-meaning">kết hôn</div><div class="vocab-example"><div class="cn">他们去年结的婚。</div><span class="py">Tāmen qùnián jié de hūn.</span><span class="vi">Họ kết hôn vào năm ngoái.</span></div><div class="vocab-note">结 + 的 + 婚</div></article>
+    <article class="vocab" data-category="other" data-search="考试 kaoshi thi, làm bài thi"><div class="vocab-top"><div class="vocab-word">考试</div><span class="vocab-tag">Khác</span></div><div class="vocab-py">kǎo shì</div><div class="vocab-meaning">thi, làm bài thi</div><div class="vocab-example"><div class="cn">我明天要考一次试。</div><span class="py">Wǒ míngtiān yào kǎo yí cì shì.</span><span class="vi">Ngày mai tôi phải thi một lần.</span></div><div class="vocab-note">考 + 一次 + 试</div></article>
+    <article class="vocab" data-category="social" data-search="聊天 liaotian trò chuyện, tán gẫu"><div class="vocab-top"><div class="vocab-word">聊天</div><span class="vocab-tag">Giao tiếp</span></div><div class="vocab-py">liáo tiān</div><div class="vocab-meaning">trò chuyện, tán gẫu</div><div class="vocab-example"><div class="cn">我们聊了一会儿天。</div><span class="py">Wǒmen liáo le yíhuìr tiān.</span><span class="vi">Chúng tôi trò chuyện một lúc.</span></div><div class="vocab-note">聊 + 了 + 一会儿 + 天</div></article>
+    <article class="vocab" data-category="social" data-search="见面 jianmian gặp mặt, gặp gỡ"><div class="vocab-top"><div class="vocab-word">见面</div><span class="vocab-tag">Giao tiếp</span></div><div class="vocab-py">jiàn miàn</div><div class="vocab-meaning">gặp mặt, gặp gỡ</div><div class="vocab-example"><div class="cn">我们见了一面。</div><span class="py">Wǒmen jiàn le yí miàn.</span><span class="vi">Chúng tôi đã gặp nhau một lần.</span></div><div class="vocab-note">见 + 了 + 一面</div></article>
+    <article class="vocab" data-category="social" data-search="讲话 jianghua nói, phát biểu"><div class="vocab-top"><div class="vocab-word">讲话</div><span class="vocab-tag">Giao tiếp</span></div><div class="vocab-py">jiǎng huà</div><div class="vocab-meaning">nói, phát biểu</div><div class="vocab-example"><div class="cn">他讲了几句话。</div><span class="py">Tā jiǎng le jǐ jù huà.</span><span class="vi">Anh ấy đã nói vài câu.</span></div><div class="vocab-note">讲 + 了 + 几句 + 话</div></article>
+    <article class="vocab" data-category="social" data-search="说话 shuohua nói chuyện, nói"><div class="vocab-top"><div class="vocab-word">说话</div><span class="vocab-tag">Giao tiếp</span></div><div class="vocab-py">shuō huà</div><div class="vocab-meaning">nói chuyện, nói</div><div class="vocab-example"><div class="cn">请你慢点儿说话。</div><span class="py">Qǐng nǐ màn diǎnr shuōhuà.</span><span class="vi">Xin bạn nói chậm một chút.</span></div><div class="vocab-note">说话 thường dùng liền</div></article>
+    <article class="vocab" data-category="daily" data-search="请假 qingjia xin nghỉ phép"><div class="vocab-top"><div class="vocab-word">请假</div><span class="vocab-tag">Sinh hoạt</span></div><div class="vocab-py">qǐng jià</div><div class="vocab-meaning">xin nghỉ phép</div><div class="vocab-example"><div class="cn">我请了三天假。</div><span class="py">Wǒ qǐng le sān tiān jià.</span><span class="vi">Tôi đã xin nghỉ ba ngày.</span></div><div class="vocab-note">请 + 了 + 三天 + 假</div></article>
+    <article class="vocab" data-category="daily" data-search="跑步 paobu chạy bộ"><div class="vocab-top"><div class="vocab-word">跑步</div><span class="vocab-tag">Sinh hoạt</span></div><div class="vocab-py">pǎo bù</div><div class="vocab-meaning">chạy bộ</div><div class="vocab-example"><div class="cn">我每天跑半个小时的步。</div><span class="py">Wǒ měitiān pǎo bàn ge xiǎoshí de bù.</span><span class="vi">Mỗi ngày tôi chạy bộ nửa tiếng.</span></div><div class="vocab-note">跑 + 半个小时的 + 步</div></article>
+    <article class="vocab" data-category="other" data-search="辞职 cizhi xin thôi việc, từ chức"><div class="vocab-top"><div class="vocab-word">辞职</div><span class="vocab-tag">Khác</span></div><div class="vocab-py">cí zhí</div><div class="vocab-meaning">xin thôi việc, từ chức</div><div class="vocab-example"><div class="cn">他上个月辞了职。</div><span class="py">Tā shàng ge yuè cí le zhí.</span><span class="vi">Tháng trước anh ấy đã nghỉ việc.</span></div><div class="vocab-note">辞 + 了 + 职</div></article>
+    <article class="vocab" data-category="daily" data-search="过年 guonian đón tết, ăn tết"><div class="vocab-top"><div class="vocab-word">过年</div><span class="vocab-tag">Sinh hoạt</span></div><div class="vocab-py">guò nián</div><div class="vocab-meaning">đón Tết, ăn Tết</div><div class="vocab-example"><div class="cn">今年我们回老家过年。</div><span class="py">Jīnnián wǒmen huí lǎojiā guònián.</span><span class="vi">Năm nay chúng tôi về quê ăn Tết.</span></div><div class="vocab-note">回 + địa điểm + 过年</div></article>
+  </section>
+  <div class="empty" id="empty">Không tìm thấy từ phù hợp. Thử một từ khóa khác nhé!</div>
+
+  <section class="note-box">
+    <p><strong>Lưu ý về danh sách:</strong> 50 mục được giữ theo danh sách tham khảo của bài viết gốc. Một số mục có cách dùng linh hoạt hoặc thường xuất hiện như từ/cụm cố định; không nên máy móc áp dụng một kiểu tách cho tất cả.</p>
+    <h2>04 · Những lỗi dễ mắc</h2>
+    <p><strong>Không đặt 了 một cách máy móc ở cuối cụm.</strong> Với cách nói “đã tắm”, thường dùng <span class="cn">洗了澡</span>, không phải cứ dùng <span class="cn">洗澡了</span> trong mọi ngữ cảnh. Tuy nhiên, 了 cuối câu vẫn có thể xuất hiện khi biểu thị tình huống mới hoặc sự thay đổi.</p>
+    <p><strong>Không phải mọi từ đều tách theo cùng một mẫu.</strong> Hãy học cả cụm từ và ví dụ đi kèm; một số cách kết hợp là cách nói quen dùng hoặc có giới hạn về ngữ cảnh.</p>
+    <p><strong>Khi có người làm đối tượng:</strong> thường đưa người đó vào giữa hai thành tố, ví dụ <span class="cn">帮我一个忙</span> (giúp tôi một tay), <span class="cn">生他的气</span> (giận anh ấy).</p>
+  </section>
+
+  <section class="quiz" id="practice">
+    <h2>05 · Luyện tập tổng hợp</h2>
+    <p class="quiz-intro">Bộ bài tập gồm 5 dạng, tổng cộng 100 câu. Cả 50 từ đều được đưa vào bài tập và mỗi từ xuất hiện trong hai ngữ cảnh luyện khác nhau: nhận diện từ, hiểu nghĩa, nhận diện trong câu, dịch câu và chọn ví dụ. Làm xong bấm kiểm tra để xem đáp án và giải thích.</p>
+    <div class="quiz-stats"><span>100 câu hỏi</span><span>Đủ 50 từ</span><span>5 dạng bài tập</span></div>
+    <div id="exerciseRoot"></div>
+    <div class="quiz-actions"><button class="primary" id="checkQuiz">Nộp bài và xem kết quả</button><button class="secondary" id="resetQuiz" type="button">Làm lại</button><span class="result" id="quizResult" aria-live="polite"></span></div>
+    <div id="answerReview" aria-live="polite"></div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container"><b>喵~ Học cùng Meow Meow, vui quá là vui</b>中文学习空间 · Tiếng Trung Meow Meow</div>
+</footer>
+
+<script>
+const search = document.getElementById('search');
+const cards = [...document.querySelectorAll('.vocab')];
+const filters = [...document.querySelectorAll('.filter')];
+let activeFilter = 'all';
+function updateCards(){
+  const keyword = search.value.trim().toLowerCase();
+  let visible = 0;
+  cards.forEach(card => {
+    const matchesText = card.dataset.search.includes(keyword);
+    const matchesCategory = activeFilter === 'all' || card.dataset.category === activeFilter;
+    const show = matchesText && matchesCategory;
+    card.hidden = !show;
+    if(show) visible++;
+  });
+  document.getElementById('empty').style.display = visible ? 'none' : 'block';
+}
+search.addEventListener('input', updateCards);
+filters.forEach(button => button.addEventListener('click', () => {
+  activeFilter = button.dataset.filter;
+  filters.forEach(item => item.classList.toggle('active', item === button));
+  updateCards();
+}));
+
+const exerciseData = [{"title":"A. Nhận diện từ qua nghĩa tiếng Việt","hint":"Chọn từ tiếng Trung tương ứng với nghĩa tiếng Việt. (20 câu)","type":"choice","items":[{"q":"Từ nào có nghĩa là “chuyển nhà” ?","o":["上网","搬家","帮忙","爬山"],"a":1,"e":"搬家 = chuyển nhà. Ví dụ: 我们去年搬了一次家。"},{"q":"Từ nào có nghĩa là “cãi nhau” ?","o":["吵架","加班","拍照","结婚"],"a":0,"e":"吵架 = cãi nhau. Ví dụ: 他们昨天吵了一架。"},{"q":"Từ nào có nghĩa là “ca hát” ?","o":["跑步","开会","用功","唱歌"],"a":3,"e":"唱歌 = ca hát. Ví dụ: 她喜欢唱歌。"},{"q":"Từ nào có nghĩa là “được nghỉ, nghỉ lễ” ?","o":["见面","毕业","放假","散步"],"a":2,"e":"放假 = được nghỉ, nghỉ lễ. Ví dụ: 我们下个月放三天假。"},{"q":"Từ nào có nghĩa là “đi dạo” ?","o":["离婚","散步","搬家","上网"],"a":1,"e":"散步 = đi dạo. Ví dụ: 我每天散半个小时的步。"},{"q":"Từ nào có nghĩa là “ký tên” ?","o":["签名","请假","让步","加班"],"a":0,"e":"签名 = ký tên. Ví dụ: 请在这里签个名。"},{"q":"Từ nào có nghĩa là “hẹn hò, cuộc hẹn” ?","o":["开会","放假","出事","约会"],"a":3,"e":"约会 = hẹn hò, cuộc hẹn. Ví dụ: 她今晚要跟朋友约会。"},{"q":"Từ nào có nghĩa là “nhượng bộ” ?","o":["吃惊","上班","让步","毕业"],"a":2,"e":"让步 = nhượng bộ. Ví dụ: 这次他没有让步。"},{"q":"Từ nào có nghĩa là “thức dậy, rời giường” ?","o":["分手","起床","报名","离婚"],"a":1,"e":"起床 = thức dậy, rời giường. Ví dụ: 我今天起了床就去上班了。"},{"q":"Từ nào có nghĩa là “đá bóng” ?","o":["踢球","开业","生病","请假"],"a":0,"e":"踢球 = đá bóng. Ví dụ: 孩子们踢了一会儿球。"},{"q":"Từ nào có nghĩa là “đi làm” ?","o":["放假","比赛","聊天","上班"],"a":3,"e":"上班 = đi làm. Ví dụ: 我每天上八个小时的班。"},{"q":"Từ nào có nghĩa là “lên mạng” ?","o":["过年","睡觉","上网","上班"],"a":2,"e":"上网 = lên mạng. Ví dụ: 我上了一会儿网。"},{"q":"Từ nào có nghĩa là “tan làm” ?","o":["说话","下班","约会","分手"],"a":1,"e":"下班 = tan làm. Ví dụ: 你几点下班？"},{"q":"Từ nào có nghĩa là “mưa” ?","o":["下雨","唱歌","开业","生病"],"a":0,"e":"下雨 = mưa. Ví dụ: 昨天晚上下了一场雨。"},{"q":"Từ nào có nghĩa là “xảy ra chuyện, gặp sự cố” ?","o":["比赛","踢球","吃亏","出事"],"a":3,"e":"出事 = xảy ra chuyện, gặp sự cố. Ví dụ: 他家里出了一点儿事。"},{"q":"Từ nào có nghĩa là “nổi tiếng” ?","o":["开学","出差","出名","睡觉"],"a":2,"e":"出名 = nổi tiếng. Ví dụ: 这座城市因为美食出了名。"},{"q":"Từ nào có nghĩa là “đi công tác” ?","o":["干活","出差","生气","说话"],"a":1,"e":"出差 = đi công tác. Ví dụ: 经理下周要出一次差。"},{"q":"Từ nào có nghĩa là “chia tay” ?","o":["分手","拜年","考试","唱歌"],"a":0,"e":"分手 = chia tay. Ví dụ: 他们已经分手两个月了。"},{"q":"Từ nào có nghĩa là “làm thêm giờ, tăng ca” ?","o":["踢球","留学","辞职","加班"],"a":3,"e":"加班 = làm thêm giờ, tăng ca. Ví dụ: 我昨天加了两个小时的班。"},{"q":"Từ nào có nghĩa là “nổi nóng” ?","o":["签名","讲话","发火","出差"],"a":2,"e":"发火 = nổi nóng. Ví dụ: 他今天一次也没有发火。"}]},{"title":"B. Hiểu nghĩa từ vựng","hint":"Chọn nghĩa tiếng Việt chính xác của từ tiếng Trung. (20 câu)","type":"choice","items":[{"q":"“上班” có nghĩa là gì?","o":["được nghỉ, nghỉ lễ","thi đấu, cuộc thi","trò chuyện, tán gẫu","đi làm"],"a":3,"e":"上班 = đi làm. Ví dụ: 我每天上八个小时的班。"},{"q":"“上网” có nghĩa là gì?","o":["đón Tết, ăn Tết","ngủ","lên mạng","đi làm"],"a":2,"e":"上网 = lên mạng. Ví dụ: 我上了一会儿网。"},{"q":"“下班” có nghĩa là gì?","o":["nói chuyện, nói","tan làm","hẹn hò, cuộc hẹn","chia tay"],"a":1,"e":"下班 = tan làm. Ví dụ: 你几点下班？"},{"q":"“下雨” có nghĩa là gì?","o":["mưa","ca hát","khai trương, bắt đầu kinh doanh","bị ốm, mắc bệnh"],"a":0,"e":"下雨 = mưa. Ví dụ: 昨天晚上下了一场雨。"},{"q":"“出事” có nghĩa là gì?","o":["thi đấu, cuộc thi","đá bóng","chịu thiệt, bị thiệt","xảy ra chuyện, gặp sự cố"],"a":3,"e":"出事 = xảy ra chuyện, gặp sự cố. Ví dụ: 他家里出了一点儿事。"},{"q":"“出名” có nghĩa là gì?","o":["khai giảng, bắt đầu năm học","đi công tác","nổi tiếng","ngủ"],"a":2,"e":"出名 = nổi tiếng. Ví dụ: 这座城市因为美食出了名。"},{"q":"“出差” có nghĩa là gì?","o":["làm việc, làm công","đi công tác","tức giận","nói chuyện, nói"],"a":1,"e":"出差 = đi công tác. Ví dụ: 经理下周要出一次差。"},{"q":"“分手” có nghĩa là gì?","o":["chia tay","chúc Tết","thi, làm bài thi","ca hát"],"a":0,"e":"分手 = chia tay. Ví dụ: 他们已经分手两个月了。"},{"q":"“加班” có nghĩa là gì?","o":["đá bóng","du học","xin thôi việc, từ chức","làm thêm giờ, tăng ca"],"a":3,"e":"加班 = làm thêm giờ, tăng ca. Ví dụ: 我昨天加了两个小时的班。"},{"q":"“发火” có nghĩa là gì?","o":["ký tên","nói, phát biểu","nổi nóng","đi công tác"],"a":2,"e":"发火 = nổi nóng. Ví dụ: 他今天一次也没有发火。"},{"q":"“吃亏” có nghĩa là gì?","o":["cãi nhau","chịu thiệt, bị thiệt","tan làm","làm việc, làm công"],"a":1,"e":"吃亏 = chịu thiệt, bị thiệt. Ví dụ: 这次我可吃了大亏。"},{"q":"“吃惊” có nghĩa là gì?","o":["ngạc nhiên, kinh ngạc","thức dậy, rời giường","nổi nóng","chúc Tết"],"a":0,"e":"吃惊 = ngạc nhiên, kinh ngạc. Ví dụ: 听到这个消息，我吃了一惊。"},{"q":"“帮忙” có nghĩa là gì?","o":["du học","nổi tiếng","bắt đầu, phần mở đầu","giúp đỡ, giúp một tay"],"a":3,"e":"帮忙 = giúp đỡ, giúp một tay. Ví dụ: 你能帮我一个忙吗？"},{"q":"“干活” có nghĩa là gì?","o":["leo núi","giúp đỡ, giúp một tay","làm việc, làm công","nói, phát biểu"],"a":2,"e":"干活 = làm việc, làm công. Ví dụ: 他在工地干了一天活。"},{"q":"“开业” có nghĩa là gì?","o":["chụp ảnh","khai trương, bắt đầu kinh doanh","kết hôn","cãi nhau"],"a":1,"e":"开业 = khai trương, bắt đầu kinh doanh. Ví dụ: 这家店下个月开业。"},{"q":"“开会” có nghĩa là gì?","o":["họp, mở cuộc họp","chăm chỉ, học hành siêng năng","chạy bộ","thức dậy, rời giường"],"a":0,"e":"开会 = họp, mở cuộc họp. Ví dụ: 我们开了两个小时的会。"},{"q":"“开头” có nghĩa là gì?","o":["nổi tiếng","gặp mặt, gặp gỡ","đi dạo","bắt đầu, phần mở đầu"],"a":3,"e":"开头 = bắt đầu, phần mở đầu. Ví dụ: 这本书的开头很有意思。"},{"q":"“开学” có nghĩa là gì?","o":["lên mạng","chuyển nhà","khai giảng, bắt đầu năm học","giúp đỡ, giúp một tay"],"a":2,"e":"开学 = khai giảng, bắt đầu năm học. Ví dụ: 我们学校下周开学。"},{"q":"“报名” có nghĩa là gì?","o":["nhượng bộ","đăng ký","làm thêm giờ, tăng ca","chụp ảnh"],"a":1,"e":"报名 = đăng ký. Ví dụ: 我已经报了名。"},{"q":"“拍照” có nghĩa là gì?","o":["chụp ảnh","xảy ra chuyện, gặp sự cố","họp, mở cuộc họp","chăm chỉ, học hành siêng năng"],"a":0,"e":"拍照 = chụp ảnh. Ví dụ: 我们在海边拍了一张照。"}]},{"title":"C. Nhận diện từ trong câu","hint":"Đọc câu và xác định từ/cụm từ trọng tâm xuất hiện trong câu. (20 câu)","type":"choice","items":[{"q":"Từ/cụm từ nào xuất hiện trong câu: 这次我可吃了大亏。","o":["吃亏","聊天","放假","出事"],"a":0,"e":"Đáp án: 吃亏 — chịu thiệt, bị thiệt. 吃 + 了 + 大 + 亏"},{"q":"Từ/cụm từ nào xuất hiện trong câu: 听到这个消息，我吃了一惊。","o":["毕业","过年","上班","吃惊"],"a":3,"e":"Đáp án: 吃惊 — ngạc nhiên, kinh ngạc. 吃 + 了 + 一 + 惊"},{"q":"Từ/cụm từ nào xuất hiện trong câu: 你能帮我一个忙吗？","o":["分手","约会","帮忙","报名"],"a":2,"e":"Đáp án: 帮忙 — giúp đỡ, giúp một tay. 帮 + 我一个 + 忙"},{"q":"Từ/cụm từ nào xuất hiện trong câu: 他在工地干了一天活。","o":["下雨","干活","开业","生病"],"a":1,"e":"Đáp án: 干活 — làm việc, làm công. 干 + 了 + 一天 + 活"},{"q":"Từ/cụm từ nào xuất hiện trong câu: 这家店下个月开业。","o":["开业","吃亏","比赛","聊天"],"a":0,"e":"Đáp án: 开业 — khai trương, bắt đầu kinh doanh. 开业 thường dùng liền"},{"q":"Từ/cụm từ nào xuất hiện trong câu: 我们开了两个小时的会。","o":["过年","开学","睡觉","开会"],"a":3,"e":"Đáp án: 开会 — họp, mở cuộc họp. 开 + 了 + 两个小时的 + 会"},{"q":"Từ/cụm từ nào xuất hiện trong câu: 这本书的开头很有意思。","o":["说话","生气","开头","约会"],"a":2,"e":"Đáp án: 开头 — bắt đầu, phần mở đầu. 开头 thường dùng như danh từ trong ví dụ này"},{"q":"Từ/cụm từ nào xuất hiện trong câu: 我们学校下周开学。","o":["考试","开学","唱歌","下雨"],"a":1,"e":"Đáp án: 开学 — khai giảng, bắt đầu năm học. 开学 thường dùng liền"},{"q":"Từ/cụm từ nào xuất hiện trong câu: 我已经报了名。","o":["报名","辞职","踢球","吃亏"],"a":0,"e":"Đáp án: 报名 — đăng ký. 报 + 了 + 名"},{"q":"Từ/cụm từ nào xuất hiện trong câu: 我们在海边拍了一张照。","o":["开学","签名","出差","拍照"],"a":3,"e":"Đáp án: 拍照 — chụp ảnh. 拍 + 了 + 很多 + 照片（扩展说法）"},{"q":"Từ/cụm từ nào xuất hiện trong câu: 过年时我们去给老师拜年。","o":["干活","下班","拜年","生气"],"a":2,"e":"Đáp án: 拜年 — chúc Tết. 给 + người + 拜年"},{"q":"Từ/cụm từ nào xuất hiện trong câu: 他们比了一场赛。","o":["发火","比赛","拜年","考试"],"a":1,"e":"Đáp án: 比赛 — thi đấu, cuộc thi. 比 + 了 + 一场 + 赛"},{"q":"Từ/cụm từ nào xuất hiện trong câu: 她大学毕业三年了。","o":["毕业","开头","留学","辞职"],"a":0,"e":"Đáp án: 毕业 — tốt nghiệp. 毕业 thường dùng liền; thời lượng đặt sau cụm"},{"q":"Từ/cụm từ nào xuất hiện trong câu: 我们上周爬了一次山。","o":["出差","讲话","签名","爬山"],"a":3,"e":"Đáp án: 爬山 — leo núi. 爬 + 了 + 一次 + 山"},{"q":"Từ/cụm từ nào xuất hiện trong câu: 你别生我的气。","o":["吵架","结婚","生气","下班"],"a":2,"e":"Đáp án: 生气 — tức giận. 生 + 我的 + 气"},{"q":"Từ/cụm từ nào xuất hiện trong câu: 他生了一场病。","o":["跑步","生病","起床","发火"],"a":1,"e":"Đáp án: 生病 — bị ốm, mắc bệnh. 生 + 了 + 一场 + 病"},{"q":"Từ/cụm từ nào xuất hiện trong câu: 她最近用功多了。","o":["用功","散步","出名","开头"],"a":0,"e":"Đáp án: 用功 — chăm chỉ, học hành siêng năng. 用功 thường dùng liền"},{"q":"Từ/cụm từ nào xuất hiện trong câu: 他在中国留了三年学。","o":["爬山","上网","帮忙","留学"],"a":3,"e":"Đáp án: 留学 — du học. 留 + 了 + 三年 + 学"},{"q":"Từ/cụm từ nào xuất hiện trong câu: 昨天我睡了八个小时的觉。","o":["拍照","加班","睡觉","结婚"],"a":2,"e":"Đáp án: 睡觉 — ngủ. 睡 + 了 + 八个小时的 + 觉"},{"q":"Từ/cụm từ nào xuất hiện trong câu: 他们去年离的婚。","o":["开会","离婚","用功","跑步"],"a":1,"e":"Đáp án: 离婚 — ly hôn. 离 + 的 + 婚"}]},{"title":"D. Dịch câu theo ngữ cảnh","hint":"Chọn bản dịch tiếng Việt sát nghĩa của câu tiếng Trung. (20 câu)","type":"choice","items":[{"q":"Dịch câu sau: 过年时我们去给老师拜年。","o":["Tết đến chúng tôi đi chúc Tết thầy cô.","Mỗi ngày tôi đi dạo nửa tiếng.","Thành phố này nổi tiếng nhờ ẩm thực.","Phần mở đầu cuốn sách này rất thú vị."],"a":0,"e":"过年时我们去给老师拜年。 = Tết đến chúng tôi đi chúc Tết thầy cô. Từ trọng tâm: 拜年 (chúc Tết)."},{"q":"Dịch câu sau: 他们比了一场赛。","o":["Tuần trước chúng tôi đã leo núi một lần.","Tôi đã lên mạng một lúc.","Bạn có thể giúp tôi một tay không?","Họ đã thi đấu một trận."],"a":3,"e":"他们比了一场赛。 = Họ đã thi đấu một trận. Từ trọng tâm: 比赛 (thi đấu, cuộc thi)."},{"q":"Dịch câu sau: 她大学毕业三年了。","o":["Chúng tôi đã chụp một bức ảnh ở bờ biển.","Hôm qua tôi đã tăng ca hai tiếng.","Cô ấy tốt nghiệp đại học được ba năm rồi.","Họ kết hôn vào năm ngoái."],"a":2,"e":"她大学毕业三年了。 = Cô ấy tốt nghiệp đại học được ba năm rồi. Từ trọng tâm: 毕业 (tốt nghiệp)."},{"q":"Dịch câu sau: 我们上周爬了一次山。","o":["Chúng tôi đã họp hai tiếng.","Tuần trước chúng tôi đã leo núi một lần.","Dạo gần đây cô ấy chăm chỉ hơn nhiều.","Mỗi ngày tôi chạy bộ nửa tiếng."],"a":1,"e":"我们上周爬了一次山。 = Tuần trước chúng tôi đã leo núi một lần. Từ trọng tâm: 爬山 (leo núi)."},{"q":"Dịch câu sau: 你别生我的气。","o":["Bạn đừng giận tôi.","Cô ấy tốt nghiệp đại học được ba năm rồi.","Chúng tôi đã gặp nhau một lần.","Mỗi ngày tôi đi dạo nửa tiếng."],"a":0,"e":"你别生我的气。 = Bạn đừng giận tôi. Từ trọng tâm: 生气 (tức giận)."},{"q":"Dịch câu sau: 他生了一场病。","o":["Tôi đã lên mạng một lúc.","Họ ly hôn vào năm ngoái.","Năm ngoái chúng tôi đã chuyển nhà một lần.","Anh ấy đã bị ốm một trận."],"a":3,"e":"他生了一场病。 = Anh ấy đã bị ốm một trận. Từ trọng tâm: 生病 (bị ốm, mắc bệnh)."},{"q":"Dịch câu sau: 她最近用功多了。","o":["Lần này anh ấy không nhượng bộ.","Tôi đã xin nghỉ ba ngày.","Dạo gần đây cô ấy chăm chỉ hơn nhiều.","Hôm qua tôi đã tăng ca hai tiếng."],"a":2,"e":"她最近用功多了。 = Dạo gần đây cô ấy chăm chỉ hơn nhiều. Từ trọng tâm: 用功 (chăm chỉ, học hành siêng năng)."},{"q":"Dịch câu sau: 他在中国留了三年学。","o":["Tháng sau chúng tôi được nghỉ ba ngày.","Anh ấy đã du học ở Trung Quốc ba năm.","Nhà anh ấy xảy ra chút chuyện.","Chúng tôi đã họp hai tiếng."],"a":1,"e":"他在中国留了三年学。 = Anh ấy đã du học ở Trung Quốc ba năm. Từ trọng tâm: 留学 (du học)."},{"q":"Dịch câu sau: 昨天我睡了八个小时的觉。","o":["Hôm qua tôi đã ngủ tám tiếng.","Mỗi ngày tôi làm việc tám tiếng.","Nghe tin này, tôi rất kinh ngạc.","Cô ấy tốt nghiệp đại học được ba năm rồi."],"a":0,"e":"昨天我睡了八个小时的觉。 = Hôm qua tôi đã ngủ tám tiếng. Từ trọng tâm: 睡觉 (ngủ)."},{"q":"Dịch câu sau: 他们去年离的婚。","o":["Năm ngoái chúng tôi đã chuyển nhà một lần.","Họ đã chia tay được hai tháng.","Tôi đã đăng ký rồi.","Họ ly hôn vào năm ngoái."],"a":3,"e":"他们去年离的婚。 = Họ ly hôn vào năm ngoái. Từ trọng tâm: 离婚 (ly hôn)."},{"q":"Dịch câu sau: 他们去年结的婚。","o":["Anh ấy đã bị ốm một trận.","Cửa hàng này tháng sau khai trương.","Họ kết hôn vào năm ngoái.","Tôi đã xin nghỉ ba ngày."],"a":2,"e":"他们去年结的婚。 = Họ kết hôn vào năm ngoái. Từ trọng tâm: 结婚 (kết hôn)."},{"q":"Dịch câu sau: 我明天要考一次试。","o":["Họ đã thi đấu một trận.","Ngày mai tôi phải thi một lần.","Chúng tôi trò chuyện một lúc.","Tháng sau chúng tôi được nghỉ ba ngày."],"a":1,"e":"我明天要考一次试。 = Ngày mai tôi phải thi một lần. Từ trọng tâm: 考试 (thi, làm bài thi)."},{"q":"Dịch câu sau: 我们聊了一会儿天。","o":["Chúng tôi trò chuyện một lúc.","Hôm qua tôi đã ngủ tám tiếng.","Năm nay chúng tôi về quê ăn Tết.","Mỗi ngày tôi làm việc tám tiếng."],"a":0,"e":"我们聊了一会儿天。 = Chúng tôi trò chuyện một lúc. Từ trọng tâm: 聊天 (trò chuyện, tán gẫu)."},{"q":"Dịch câu sau: 我们见了一面。","o":["Họ đã chia tay được hai tháng.","Xin bạn nói chậm một chút.","Tối nay cô ấy có hẹn với bạn.","Chúng tôi đã gặp nhau một lần."],"a":3,"e":"我们见了一面。 = Chúng tôi đã gặp nhau một lần. Từ trọng tâm: 见面 (gặp mặt, gặp gỡ)."},{"q":"Dịch câu sau: 他讲了几句话。","o":["Tối qua đã có một trận mưa.","Cô ấy thích ca hát.","Anh ấy đã nói vài câu.","Cửa hàng này tháng sau khai trương."],"a":2,"e":"他讲了几句话。 = Anh ấy đã nói vài câu. Từ trọng tâm: 讲话 (nói, phát biểu)."},{"q":"Dịch câu sau: 请你慢点儿说话。","o":["Bọn trẻ đá bóng một lúc.","Xin bạn nói chậm một chút.","Lần này tôi đã chịu thiệt lớn.","Họ đã thi đấu một trận."],"a":1,"e":"请你慢点儿说话。 = Xin bạn nói chậm một chút. Từ trọng tâm: 说话 (nói chuyện, nói)."},{"q":"Dịch câu sau: 我请了三天假。","o":["Tôi đã xin nghỉ ba ngày.","Tuần sau giám đốc phải đi công tác một chuyến.","Trường chúng tôi khai giảng vào tuần sau.","Hôm qua tôi đã ngủ tám tiếng."],"a":0,"e":"我请了三天假。 = Tôi đã xin nghỉ ba ngày. Từ trọng tâm: 请假 (xin nghỉ phép)."},{"q":"Dịch câu sau: 我每天跑半个小时的步。","o":["Xin bạn nói chậm một chút.","Anh ấy làm việc cả ngày ở công trường.","Bạn đừng giận tôi.","Mỗi ngày tôi chạy bộ nửa tiếng."],"a":3,"e":"我每天跑半个小时的步。 = Mỗi ngày tôi chạy bộ nửa tiếng. Từ trọng tâm: 跑步 (chạy bộ)."},{"q":"Dịch câu sau: 他上个月辞了职。","o":["Ngày mai tôi phải thi một lần.","Tết đến chúng tôi đi chúc Tết thầy cô.","Tháng trước anh ấy đã nghỉ việc.","Cô ấy thích ca hát."],"a":2,"e":"他上个月辞了职。 = Tháng trước anh ấy đã nghỉ việc. Từ trọng tâm: 辞职 (xin thôi việc, từ chức)."},{"q":"Dịch câu sau: 今年我们回老家过年。","o":["Anh ấy đã du học ở Trung Quốc ba năm.","Năm nay chúng tôi về quê ăn Tết.","Tháng trước anh ấy đã nghỉ việc.","Bọn trẻ đá bóng một lúc."],"a":1,"e":"今年我们回老家过年。 = Năm nay chúng tôi về quê ăn Tết. Từ trọng tâm: 过年 (đón Tết, ăn Tết)."}]},{"title":"E. Chọn câu ví dụ phù hợp","hint":"Chọn đúng câu ví dụ của từ được hỏi. (20 câu)","type":"choice","items":[{"q":"Chọn câu ví dụ phù hợp với từ “结婚” (kết hôn).","o":["他们去年结的婚。","他讲了几句话。","请在这里签个名。","经理下周要出一次差。"],"a":0,"e":"Ví dụ đúng: 他们去年结的婚。 — Họ kết hôn vào năm ngoái. 结 + 的 + 婚"},{"q":"Chọn câu ví dụ phù hợp với từ “考试” (thi, làm bài thi).","o":["他在工地干了一天活。","他们昨天吵了一架。","你几点下班？","我明天要考一次试。"],"a":3,"e":"Ví dụ đúng: 我明天要考一次试。 — Ngày mai tôi phải thi một lần. 考 + 一次 + 试"},{"q":"Chọn câu ví dụ phù hợp với từ “聊天” (trò chuyện, tán gẫu).","o":["他今天一次也没有发火。","我今天起了床就去上班了。","我们聊了一会儿天。","过年时我们去给老师拜年。"],"a":2,"e":"Ví dụ đúng: 我们聊了一会儿天。 — Chúng tôi trò chuyện một lúc. 聊 + 了 + 一会儿 + 天"},{"q":"Chọn câu ví dụ phù hợp với từ “见面” (gặp mặt, gặp gỡ).","o":["这座城市因为美食出了名。","我们见了一面。","这本书的开头很有意思。","他在中国留了三年学。"],"a":1,"e":"Ví dụ đúng: 我们见了一面。 — Chúng tôi đã gặp nhau một lần. 见 + 了 + 一面"},{"q":"Chọn câu ví dụ phù hợp với từ “讲话” (nói, phát biểu).","o":["他讲了几句话。","你能帮我一个忙吗？","我们上周爬了一次山。","请在这里签个名。"],"a":0,"e":"Ví dụ đúng: 他讲了几句话。 — Anh ấy đã nói vài câu. 讲 + 了 + 几句 + 话"},{"q":"Chọn câu ví dụ phù hợp với từ “说话” (nói chuyện, nói).","o":["他们昨天吵了一架。","我们在海边拍了一张照。","他们去年结的婚。","请你慢点儿说话。"],"a":3,"e":"Ví dụ đúng: 请你慢点儿说话。 — Xin bạn nói chậm một chút. 说话 thường dùng liền"},{"q":"Chọn câu ví dụ phù hợp với từ “请假” (xin nghỉ phép).","o":["我每天跑半个小时的步。","她最近用功多了。","我请了三天假。","我今天起了床就去上班了。"],"a":2,"e":"Ví dụ đúng: 我请了三天假。 — Tôi đã xin nghỉ ba ngày. 请 + 了 + 三天 + 假"},{"q":"Chọn câu ví dụ phù hợp với từ “跑步” (chạy bộ).","o":["我们见了一面。","我每天跑半个小时的步。","我每天散半个小时的步。","这座城市因为美食出了名。"],"a":1,"e":"Ví dụ đúng: 我每天跑半个小时的步。 — Mỗi ngày tôi chạy bộ nửa tiếng. 跑 + 半个小时的 + 步"},{"q":"Chọn câu ví dụ phù hợp với từ “辞职” (xin thôi việc, từ chức).","o":["他上个月辞了职。","我们去年搬了一次家。","我上了一会儿网。","你能帮我一个忙吗？"],"a":0,"e":"Ví dụ đúng: 他上个月辞了职。 — Tháng trước anh ấy đã nghỉ việc. 辞 + 了 + 职"},{"q":"Chọn câu ví dụ phù hợp với từ “过年” (đón Tết, ăn Tết).","o":["我们在海边拍了一张照。","这次他没有让步。","我昨天加了两个小时的班。","今年我们回老家过年。"],"a":3,"e":"Ví dụ đúng: 今年我们回老家过年。 — Năm nay chúng tôi về quê ăn Tết. 回 + địa điểm + 过年"},{"q":"Chọn câu ví dụ phù hợp với từ “搬家” (chuyển nhà).","o":["我们去年搬了一次家。","他家里出了一点儿事。","我们开了两个小时的会。","她最近用功多了。"],"a":0,"e":"Ví dụ đúng: 我们去年搬了一次家。 — Năm ngoái chúng tôi đã chuyển nhà một lần. 搬 + 了 + 一次 + 家"},{"q":"Chọn câu ví dụ phù hợp với từ “吵架” (cãi nhau).","o":["我们见了一面。","听到这个消息，我吃了一惊。","她大学毕业三年了。","他们昨天吵了一架。"],"a":3,"e":"Ví dụ đúng: 他们昨天吵了一架。 — Hôm qua họ đã cãi nhau một trận. 吵 + 了 + 一架"},{"q":"Chọn câu ví dụ phù hợp với từ “唱歌” (ca hát).","o":["他们去年离的婚。","我已经报了名。","她喜欢唱歌。","我们去年搬了一次家。"],"a":2,"e":"Ví dụ đúng: 她喜欢唱歌。 — Cô ấy thích ca hát. 唱歌 dùng liền khi không cần thành phần chen giữa"},{"q":"Chọn câu ví dụ phù hợp với từ “放假” (được nghỉ, nghỉ lễ).","o":["他生了一场病。","我们下个月放三天假。","我请了三天假。","这次他没有让步。"],"a":1,"e":"Ví dụ đúng: 我们下个月放三天假。 — Tháng sau chúng tôi được nghỉ ba ngày. 放 + 三天 + 假"},{"q":"Chọn câu ví dụ phù hợp với từ “散步” (đi dạo).","o":["我每天散半个小时的步。","我们聊了一会儿天。","我们下个月放三天假。","他家里出了一点儿事。"],"a":0,"e":"Ví dụ đúng: 我每天散半个小时的步。 — Mỗi ngày tôi đi dạo nửa tiếng. 散 + 半个小时的 + 步"},{"q":"Chọn câu ví dụ phù hợp với từ “签名” (ký tên).","o":["听到这个消息，我吃了一惊。","今年我们回老家过年。","我每天上八个小时的班。","请在这里签个名。"],"a":3,"e":"Ví dụ đúng: 请在这里签个名。 — Xin hãy ký tên ở đây. 签 + 个 + 名"},{"q":"Chọn câu ví dụ phù hợp với từ “约会” (hẹn hò, cuộc hẹn).","o":["我已经报了名。","他们已经分手两个月了。","她今晚要跟朋友约会。","他们去年离的婚。"],"a":2,"e":"Ví dụ đúng: 她今晚要跟朋友约会。 — Tối nay cô ấy có hẹn với bạn. 跟 + người + 约会"},{"q":"Chọn câu ví dụ phù hợp với từ “让步” (nhượng bộ).","o":["昨天晚上下了一场雨。","这次他没有让步。","这家店下个月开业。","他生了一场病。"],"a":1,"e":"Ví dụ đúng: 这次他没有让步。 — Lần này anh ấy không nhượng bộ. 让步 thường dùng liền"},{"q":"Chọn câu ví dụ phù hợp với từ “起床” (thức dậy, rời giường).","o":["我今天起了床就去上班了。","这次我可吃了大亏。","他们比了一场赛。","我们聊了一会儿天。"],"a":0,"e":"Ví dụ đúng: 我今天起了床就去上班了。 — Hôm nay tôi thức dậy rồi đi làm luôn. 起 + 了 + 个大早"},{"q":"Chọn câu ví dụ phù hợp với từ “踢球” (đá bóng).","o":["今年我们回老家过年。","我们学校下周开学。","昨天我睡了八个小时的觉。","孩子们踢了一会儿球。"],"a":3,"e":"Ví dụ đúng: 孩子们踢了一会儿球。 — Bọn trẻ đá bóng một lúc. 踢 + 了一会儿 + 球"}]}];
+const root = document.getElementById('exerciseRoot');
+function renderExercises(){
+ let n=0;
+ root.innerHTML=exerciseData.map((group,gi)=>`<section class="exercise-group"><h3>${group.title}</h3><p class="exercise-hint">${group.hint}</p>${group.items.map((item,ii)=>{const id=`ex-${gi}-${ii}`;const num=++n;return `<div class="exercise-item" data-exercise="${id}"><p class="exercise-prompt">${num}. ${item.q}</p>${group.type==='choice'?`<div class="exercise-options ${item.o.length===3?'two-col':''}">${item.o.map((op,oi)=>`<label class="exercise-option"><input type="radio" name="${id}" value="${oi}"><span>${op}</span></label>`).join('')}</div>`:`<input class="fill-answer" type="text" id="${id}" autocomplete="off" placeholder="Nhập chữ Hán...">`}<div class="feedback" id="fb-${id}"></div></div>`}).join('')}</section>`).join('');
+}
+renderExercises();
+function normalizeAnswer(v){return v.trim().replace(/[，。！？、\s]/g,'');}
+document.getElementById('checkQuiz').addEventListener('click',()=>{
+ let total=0,correct=0,unanswered=0;const details=[];
+ exerciseData.forEach((group,gi)=>group.items.forEach((item,ii)=>{
+  total++;const id=`ex-${gi}-${ii}`;let value,ok=false;
+  if(group.type==='choice'){const selected=document.querySelector(`input[name="${id}"]:checked`);value=selected?Number(selected.value):null;ok=value===item.a;if(value===null)unanswered++;}
+  else {value=document.getElementById(id).value;ok=normalizeAnswer(value)===normalizeAnswer(item.a);if(!value.trim())unanswered++;}
+  if(ok)correct++;
+  const fb=document.getElementById(`fb-${id}`);fb.className=`feedback ${ok?'correct':'wrong'}`;
+  const answer=group.type==='choice'?item.o[item.a]:item.a;
+  fb.innerHTML=`<strong>${ok?'Chính xác!':'Chưa đúng.'}</strong> ${'Đáp án: '+answer+'. '}${item.e}`;
+  details.push({id,ok});
+ }));
+ document.getElementById('quizResult').textContent=`Kết quả: ${correct}/${total} câu đúng${unanswered?` · ${unanswered} câu chưa trả lời`:''}.`;
+ document.getElementById('answerReview').innerHTML=`<div class="score-panel">${correct===total?'Xuất sắc! M đã hoàn thành toàn bộ bài tập.':correct>=total*.7?'Khá tốt! Hãy xem lại những câu chưa chính xác.':'Đừng vội nản, đọc phần giải thích rồi thử lại nhé.'}</div>`;
+ document.querySelectorAll('.feedback').forEach(el=>el.style.display='block');
+});
+document.getElementById('resetQuiz').addEventListener('click',()=>{
+ root.querySelectorAll('input[type="radio"]').forEach(el=>el.checked=false);
+ root.querySelectorAll('input[type="text"]').forEach(el=>el.value='');
+ document.querySelectorAll('.feedback').forEach(el=>{el.className='feedback';el.textContent='';el.style.display='none';});
+ document.getElementById('quizResult').textContent='';document.getElementById('answerReview').innerHTML='';
+});
+</script>
+</body>
+</html>
