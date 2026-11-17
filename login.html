@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -31,6 +30,18 @@ button.primary:hover{background:#346F84}
 .note{margin-top:18px;padding:11px 12px;border-radius:10px;background:#F7FBFC;color:#6A7A80;font-size:.78rem;line-height:1.6}
 .back{display:inline-block;margin-top:18px;color:var(--dark);text-decoration:none;font-size:.84rem;font-weight:700}
 .hidden{display:none}
+
+/* Forgot password */
+.forgot-link{display:block;text-align:center;margin-top:14px;font-size:.88rem;color:var(--dark);text-decoration:none;font-weight:600}
+.forgot-link:hover{text-decoration:underline}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px}
+.modal-box{background:#fff;border-radius:16px;padding:28px 24px;max-width:400px;width:100%;box-shadow:0 20px 50px rgba(0,0,0,.18)}
+.modal-box h3{margin:0 0 12px;font-size:1.25rem;color:var(--ink)}
+.modal-box p{margin:0 0 20px;line-height:1.65;color:var(--muted);font-size:.95rem}
+.modal-box strong{color:var(--ink)}
+.modal-close{width:100%;border:0;border-radius:10px;background:var(--dark);color:#fff;padding:11px;font-weight:700;cursor:pointer}
+.modal-close:hover{background:#346F84}
+
 @media(max-width:720px){.shell{grid-template-columns:1fr}.side{padding:28px}.side h1{font-size:2rem}.form{padding:28px}}
 </style>
 </head>
@@ -59,6 +70,10 @@ button.primary:hover{background:#346F84}
       <label for="loginPass">Mật khẩu</label>
       <input id="loginPass" type="password" autocomplete="current-password" placeholder="Mật khẩu">
       <button class="primary" id="loginBtn">Đăng nhập</button>
+      
+      <!-- Nút Quên mật khẩu -->
+      <a href="#" class="forgot-link" id="forgotPasswordLink">Quên mật khẩu?</a>
+      
       <div class="msg" id="loginMsg"></div>
     </div>
 
@@ -80,6 +95,19 @@ button.primary:hover{background:#346F84}
 
     <a class="back" href="index.html">← Về trang chính</a>
   </section>
+</div>
+
+<!-- Modal Quên mật khẩu -->
+<div id="forgotModal" class="modal-overlay" style="display:none;">
+  <div class="modal-box">
+    <h3>Quên mật khẩu?</h3>
+    <p>
+      Hãy nhắn <strong>Zalo</strong> cho cô Hương (<strong>0905.878.295</strong>)<br>
+      hoặc gửi email: <strong>ngthuhuong139@gmail.com</strong><br><br>
+      để được đặt lại mật khẩu tạm.
+    </p>
+    <button class="modal-close" id="closeForgotModal">Đã hiểu</button>
+  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -115,6 +143,21 @@ function showPane(which){
 }
 $("tabLogin").onclick = () => showPane("login");
 $("tabSignup").onclick = () => showPane("signup");
+
+// Quên mật khẩu
+$("forgotPasswordLink").onclick = (e) => {
+  e.preventDefault();
+  $("forgotModal").style.display = "flex";
+};
+$("closeForgotModal").onclick = () => {
+  $("forgotModal").style.display = "none";
+};
+// Đóng modal khi bấm ra ngoài
+$("forgotModal").onclick = (e) => {
+  if (e.target === $("forgotModal")) {
+    $("forgotModal").style.display = "none";
+  }
+};
 
 (async()=>{
   const { data } = await db.auth.getSession();
