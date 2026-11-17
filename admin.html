@@ -163,6 +163,14 @@ async function loadAdmin(detail){
     <section class="card" style="margin-bottom:18px">
       <h2>Đặt lại mật khẩu học viên</h2>
       <div class="small">Nhập tên tài khoản (username) và mật khẩu tạm mới. Học viên dùng mật khẩu tạm để đăng nhập rồi tự đổi lại.</div>
+      
+      <div style="margin: 14px 0 8px;">
+        <label style="font-size:12px;font-weight:700;display:block;margin-bottom:5px">Service Role Key (chỉ cô dán, không chia sẻ)</label>
+        <input id="serviceKey" type="password" placeholder="Dán service_role key vào đây..." 
+               style="width:100%;border:1px solid var(--line);border-radius:10px;padding:10px 11px;font:inherit">
+        <div class="small" style="margin-top:6px;color:#A04C59">⚠️ Cảnh báo: Service Role Key có toàn quyền. Chỉ dán tạm thời, không lưu vào trang, và không bao giờ chia sẻ file này.</div>
+      </div>
+
       <div class="reset-box">
         <div>
           <label>Tên tài khoản học viên</label>
@@ -170,7 +178,7 @@ async function loadAdmin(detail){
         </div>
         <div>
           <label>Mật khẩu tạm mới</label>
-          <input id="resetPass" type="password" placeholder="Tối thiểu 6 ký tự" autocomplete="new-password">
+          <input id="resetPass" type="text" placeholder="Tối thiểu 6 ký tự" autocomplete="off">
         </div>
         <div>
           <button id="resetBtn">Đặt lại</button>
@@ -190,14 +198,20 @@ async function loadAdmin(detail){
   document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{course=b.dataset.course;renderRank()});
   renderRank();renderStudents();
 
-  // Gắn sự kiện đặt lại mật khẩu
+  // Gắn sự kiện đặt lại mật khẩu (dùng Service Role Key trực tiếp)
   $('#resetBtn').onclick = async () => {
-    const username = $('#resetUser').value.trim();
-    const newPassword = $('#resetPass').value;
+    const serviceKey = $('#serviceKey').value.trim();
+    const usernameRaw = $('#resetUser').value.trim();
+    const newPassword = $('#resetPass').value.trim();
     const msg = $('#resetMsg');
     msg.className = 'msg';
 
-    if (!username || username.length < 2) {
+    if (!serviceKey) {
+      msg.className = 'msg err';
+      msg.textContent = 'Hãy dán Service Role Key vào ô đầu tiên.';
+      return;
+    }
+    if (!usernameRaw || usernameRaw.length < 2) {
       msg.className = 'msg err';
       msg.textContent = 'Hãy nhập tên tài khoản học viên.';
       return;
@@ -208,24 +222,60 @@ async function loadAdmin(detail){
       return;
     }
 
+    // Chuẩn hóa username giống login.html
+    const username = usernameRaw
+      .trim()
+      .toLowerCase()
+      .replace(/đ/g, "d")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/\s+/g, "_")
+      .replace(/[^a-z0-9_-]/g, "")
+      .replace(/_+/g, "_")
+      .replace(/^-+|-+$/g, "")
+      .replace(/^_+|_+$/g, "");
+
+    const email = `${username}@meowmeow.example.com`;
+
     $('#resetBtn').disabled = true;
     msg.textContent = 'Đang đặt lại...';
 
-    const { data, error } = await adminClient.functions.invoke('admin-reset-password', {
-      body: { username, newPassword }
-    });
+    try {
+      if (!window.supabase || !window.supabase.createClient) {
+        throw new Error('Supabase client chưa sẵn sàng. Hãy tải lại trang.');
+      }
 
-    $('#resetBtn').disabled = false;
+      const supabaseAdmin = window.supabase.createClient(
+        "https://xmtvmwcjjqqzscmkdlwd.supabase.co",
+        serviceKey,
+        { auth: { autoRefreshToken: false, persistSession: false } }
+      );
 
-    if (error || data?.error) {
+      // Tìm user theo email (list tối đa 1000 user)
+      const { data: listData, error: listError } = await supabaseAdmin.auth.admin.listUsers({ perPage: 1000 });
+      if (listError) throw listError;
+
+      const user = listData.users.find(u => u.email === email);
+      if (!user) {
+        throw new Error(`Không tìm thấy học viên với username “${usernameRaw}” (email: ${email}).`);
+      }
+
+      const { error: updateError } = await supabaseAdmin.auth.admin.updateUserById(user.id, {
+        password: newPassword
+      });
+      if (updateError) throw updateError;
+
+      msg.className = 'msg ok';
+      msg.textContent = `Đã đặt lại mật khẩu thành công cho “${usernameRaw}”. Học viên dùng mật khẩu tạm này để đăng nhập.`;
+      $('#resetPass').value = '';
+      // Không xóa serviceKey để tiện làm nhiều lần, nhưng khuyến khích xóa sau khi xong
+    } catch (err) {
       msg.className = 'msg err';
-      msg.textContent = data?.error || error?.message || 'Có lỗi xảy ra.';
-      return;
+      msg.textContent = err?.message || 'Có lỗi xảy ra khi đặt lại mật khẩu.';
+      console.error(err);
+    } finally {
+      $('#resetBtn').disabled = false;
     }
-
-    msg.className = 'msg ok';
-    msg.textContent = `Đã đặt lại mật khẩu thành công cho “${username}”.`;
-    $('#resetPass').value = '';
   };
 }
 $('#closeModal').onclick=()=>$('#modal').classList.remove('open');
