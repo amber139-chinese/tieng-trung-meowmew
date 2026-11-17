@@ -1,7 +1,4 @@
 User-agent: *
 Allow: /
 
-Disallow: /admin.html
-Disallow: /login.html
-
-Sitemap: https://amber139-chinese.github.io/tieng-trung-meowmew/sitemap.xml
+Sitemap: https://tiengtrungmeowmeow.online/sitemap.xml
