@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="vi">
 <head>
@@ -31,7 +30,14 @@ h1{font-family:"Noto Serif SC",serif;font-size:clamp(2rem,5vw,3.4rem);margin:6px
 .modal{position:fixed;inset:0;background:rgba(20,40,47,.35);display:none;align-items:center;justify-content:center;padding:18px;z-index:100000}
 .modal.open{display:flex}.modal-card{width:min(760px,100%);max-height:86vh;overflow:auto;background:#fff;border-radius:20px;padding:22px}
 .close{float:right;border:0;background:#EEF6F8;border-radius:50%;width:34px;height:34px;cursor:pointer}
-@media(max-width:800px){.kpis{grid-template-columns:1fr 1fr}.layout{grid-template-columns:1fr}}
+.reset-box{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end;margin-top:14px}
+.reset-box label{font-size:12px;font-weight:700;display:block;margin-bottom:5px}
+.reset-box input{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px 11px;font:inherit}
+.reset-box button{border:0;background:var(--dark);color:#fff;border-radius:10px;padding:11px 16px;font-weight:700;cursor:pointer;white-space:nowrap}
+.reset-box button:disabled{opacity:.6;cursor:not-allowed}
+.msg{margin-top:10px;font-size:13px;min-height:18px}
+.msg.ok{color:var(--green)}.msg.err{color:#A04C59}
+@media(max-width:800px){.kpis{grid-template-columns:1fr 1fr}.layout{grid-template-columns:1fr}.reset-box{grid-template-columns:1fr}}
 </style>
 <script defer src="meow-auth.js"></script>
 </head>
@@ -41,7 +47,7 @@ h1{font-family:"Noto Serif SC",serif;font-size:clamp(2rem,5vw,3.4rem);margin:6px
 <script>
 const $=s=>document.querySelector(s);
 const esc=s=>String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
-let profiles=[],progress=[],games=[],activities=[],course='hsk1';
+let profiles=[],progress=[],games=[],activities=[],course='hsk1', adminClient=null;
 
 function startTodayISO(){
   const d=new Date();d.setHours(0,0,0,0);return d.toISOString();
@@ -116,6 +122,7 @@ function renderStudents(){
 
 async function loadAdmin(detail){
   const {client,user,isAdmin}=detail;
+  adminClient = client;
   if(!isAdmin){
     const {data:p}=await client.from('profiles').select('username,display_name').eq('id',user.id).maybeSingle();
     $('#app').innerHTML=`<div class="denied"><div class="small">QUẢN LÝ LỚP</div><h2>Tài khoản chưa được cấp quyền giáo viên</h2>
@@ -151,6 +158,27 @@ async function loadAdmin(detail){
       <div class="kpi"><b>${attemptsToday}</b><span>Lượt làm bài hôm nay</span></div>
       <div class="kpi"><b>${completed}</b><span>Bài đã hoàn thành</span></div>
     </div>
+
+    <!-- PHẦN ĐẶT LẠI MẬT KHẨU -->
+    <section class="card" style="margin-bottom:18px">
+      <h2>Đặt lại mật khẩu học viên</h2>
+      <div class="small">Nhập tên tài khoản (username) và mật khẩu tạm mới. Học viên dùng mật khẩu tạm để đăng nhập rồi tự đổi lại.</div>
+      <div class="reset-box">
+        <div>
+          <label>Tên tài khoản học viên</label>
+          <input id="resetUser" placeholder="Ví dụ: amber, linh01, be_na" autocomplete="off">
+        </div>
+        <div>
+          <label>Mật khẩu tạm mới</label>
+          <input id="resetPass" type="password" placeholder="Tối thiểu 6 ký tự" autocomplete="new-password">
+        </div>
+        <div>
+          <button id="resetBtn">Đặt lại</button>
+        </div>
+      </div>
+      <div class="msg" id="resetMsg"></div>
+    </section>
+
     <div class="tabs"><button class="tab active" data-course="hsk1">HSK1</button><button class="tab" data-course="hsk4">HSK4</button></div>
     <div class="layout">
       <section class="card"><h2>Bảng thành tích</h2><div class="small">Bài hoàn thành + điểm cao + luyện tập.</div><div id="leader"></div></section>
@@ -161,6 +189,44 @@ async function loadAdmin(detail){
     </section>`;
   document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{course=b.dataset.course;renderRank()});
   renderRank();renderStudents();
+
+  // Gắn sự kiện đặt lại mật khẩu
+  $('#resetBtn').onclick = async () => {
+    const username = $('#resetUser').value.trim();
+    const newPassword = $('#resetPass').value;
+    const msg = $('#resetMsg');
+    msg.className = 'msg';
+
+    if (!username || username.length < 2) {
+      msg.className = 'msg err';
+      msg.textContent = 'Hãy nhập tên tài khoản học viên.';
+      return;
+    }
+    if (newPassword.length < 6) {
+      msg.className = 'msg err';
+      msg.textContent = 'Mật khẩu tạm cần ít nhất 6 ký tự.';
+      return;
+    }
+
+    $('#resetBtn').disabled = true;
+    msg.textContent = 'Đang đặt lại...';
+
+    const { data, error } = await adminClient.functions.invoke('admin-reset-password', {
+      body: { username, newPassword }
+    });
+
+    $('#resetBtn').disabled = false;
+
+    if (error || data?.error) {
+      msg.className = 'msg err';
+      msg.textContent = data?.error || error?.message || 'Có lỗi xảy ra.';
+      return;
+    }
+
+    msg.className = 'msg ok';
+    msg.textContent = `Đã đặt lại mật khẩu thành công cho “${username}”.`;
+    $('#resetPass').value = '';
+  };
 }
 $('#closeModal').onclick=()=>$('#modal').classList.remove('open');
 $('#modal').onclick=e=>{if(e.target===$('#modal'))$('#modal').classList.remove('open')};
