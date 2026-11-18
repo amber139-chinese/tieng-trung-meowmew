@@ -4,14 +4,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ôn tập từ vựng HSK4 · Bài 1–20 · Tiếng Trung Meow Meow</title>
+<title>Từ vựng HSK4 Bài 1–20 – 621 mục từ có ví dụ | Tiếng Trung Meow Meow</title>
+<meta name="description" content="Ôn từ vựng HSK4 theo Bài 1–20 (621 mục từ) có chữ Hán, pinyin, nghĩa tiếng Việt, câu ví dụ và âm Hán Việt. Học bằng flashcard, trắc nghiệm và thứ tự nét bút.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://tiengtrungmeowmeow.online/hsk4-vocab.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:site_name" content="Tiếng Trung Meow Meow">
+<meta property="og:title" content="Từ vựng HSK4 Bài 1–20 – 621 mục từ có ví dụ | Tiếng Trung Meow Meow">
+<meta property="og:description" content="Ôn từ vựng HSK4 theo Bài 1–20 (621 mục từ) có chữ Hán, pinyin, nghĩa tiếng Việt, câu ví dụ và âm Hán Việt. Học bằng flashcard, trắc nghiệm và thứ tự nét bút.">
+<meta property="og:url" content="https://tiengtrungmeowmeow.online/hsk4-vocab.html">
+<meta property="og:image" content="https://tiengtrungmeowmeow.online/icon-192.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Từ vựng HSK4 Bài 1–20 – 621 mục từ có ví dụ | Tiếng Trung Meow Meow">
+<meta name="twitter:description" content="Ôn từ vựng HSK4 theo Bài 1–20 (621 mục từ) có chữ Hán, pinyin, nghĩa tiếng Việt, câu ví dụ và âm Hán Việt. Học bằng flashcard, trắc nghiệm và thứ tự nét bút.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <script>
-/* meow-auth inline — local file:// không redirect; hosting vẫn bắt login */
+/* meow-auth inline — trang công khai: chưa đăng nhập vẫn học được (chế độ khách); đăng nhập chỉ để lưu tiến độ theo tài khoản */
 (function(){
   const SUPABASE_URL = "https://xmtvmwcjjqqzscmkdlwd.supabase.co";
   const SUPABASE_KEY = "sb_publishable_R5TEjUNB6lDTJuN4MNdhVQ_ANwIaKLP";
@@ -82,11 +95,7 @@
       if(!error && data && data.user) user=data.user;
     }catch(e){}
 
-    if(!user){
-      if(isLocalFile){ finishGuest(client); return; }
-      location.replace('login.html?next='+encodeURIComponent(currentTarget()));
-      return;
-    }
+    if(!user){ finishGuest(client); return; }
     window.meowUser=user;
     injectAccountBar(user);
     const admin=await isAdmin(client,user);
@@ -103,10 +112,7 @@
       detail:{user:user,client:client,isAdmin:admin}
     }));
   }
-  start().catch(function(){
-    if(isLocalFile) finishGuest(null);
-    else location.replace('login.html?next='+encodeURIComponent(currentTarget()));
-  });
+  start().catch(function(){ finishGuest(null); });
 })();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js"></script>
@@ -568,7 +574,7 @@ a{color:inherit}
       <div class="toolbar">
 
         <div class="auth-bar" id="authBar">
-          <span id="authStatus">Đang xác thực đăng nhập (meow-auth)…</span>
+          <span id="authStatus">Bạn đang học ở chế độ khách — tiến độ lưu tạm trên máy này. <a href="login.html?next=hsk4-vocab.html">Đăng nhập</a> để lưu theo tài khoản.</span>
           <span id="authLoginWrap" hidden></span>
           <span id="authUserWrap" hidden>
             Tiến độ của: <b id="authUserLabel"></b>
@@ -853,8 +859,8 @@ function updateAuthUI(){
     if(loginWrap) loginWrap.hidden = true;
     if(userWrap) userWrap.hidden = false;
   }else{
-    // meow-auth sẽ redirect login nếu chưa đăng nhập; hiển thị chờ
-    status.textContent = 'Đang xác thực đăng nhập… (meow-auth)';
+    // chưa đăng nhập: học ở chế độ khách
+    status.innerHTML = 'Bạn đang học ở chế độ khách — tiến độ lưu tạm trên máy này. <a href="login.html?next=hsk4-vocab.html">Đăng nhập</a> để lưu theo tài khoản.';
     if(loginWrap) loginWrap.hidden = true;
     if(userWrap) userWrap.hidden = true;
   }
