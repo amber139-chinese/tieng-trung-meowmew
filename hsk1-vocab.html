@@ -3,14 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ôn tập từ vựng HSK1 · Tiếng Trung Meow Meow</title>
+<title>Từ vựng HSK1 3.0 – 500 từ có pinyin, nghĩa tiếng Việt | Tiếng Trung Meow Meow</title>
+<meta name="description" content="Ôn 500 từ vựng HSK1 3.0 có chữ Hán, pinyin, nghĩa tiếng Việt, âm Hán Việt và loại từ. Học bằng flashcard, trắc nghiệm, nghe đọc và xem thứ tự nét bút.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://tiengtrungmeowmeow.online/hsk1-vocab.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:site_name" content="Tiếng Trung Meow Meow">
+<meta property="og:title" content="Từ vựng HSK1 3.0 – 500 từ có pinyin, nghĩa tiếng Việt | Tiếng Trung Meow Meow">
+<meta property="og:description" content="Ôn 500 từ vựng HSK1 3.0 có chữ Hán, pinyin, nghĩa tiếng Việt, âm Hán Việt và loại từ. Học bằng flashcard, trắc nghiệm, nghe đọc và xem thứ tự nét bút.">
+<meta property="og:url" content="https://tiengtrungmeowmeow.online/hsk1-vocab.html">
+<meta property="og:image" content="https://tiengtrungmeowmeow.online/icon-192.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Từ vựng HSK1 3.0 – 500 từ có pinyin, nghĩa tiếng Việt | Tiếng Trung Meow Meow">
+<meta name="twitter:description" content="Ôn 500 từ vựng HSK1 3.0 có chữ Hán, pinyin, nghĩa tiếng Việt, âm Hán Việt và loại từ. Học bằng flashcard, trắc nghiệm, nghe đọc và xem thứ tự nét bút.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <script>
-/* meow-auth inline — file:// không redirect; https vẫn bắt login */
+/* meow-auth inline — trang công khai: chưa đăng nhập vẫn học được (chế độ khách); đăng nhập chỉ để lưu tiến độ theo tài khoản */
 (function(){
   const SUPABASE_URL = "https://xmtvmwcjjqqzscmkdlwd.supabase.co";
   const SUPABASE_KEY = "sb_publishable_R5TEjUNB6lDTJuN4MNdhVQ_ANwIaKLP";
@@ -69,11 +82,7 @@
       var res=await client.auth.getUser();
       if(!res.error && res.data && res.data.user) user=res.data.user;
     }catch(e){}
-    if(!user){
-      if(isLocalFile){ finishGuest(client); return; }
-      location.replace('login.html?next='+encodeURIComponent(currentTarget()));
-      return;
-    }
+    if(!user){ finishGuest(client); return; }
     window.meowUser=user;
     injectAccountBar(user);
     var admin=await isAdmin(client,user);
@@ -90,10 +99,7 @@
       detail:{user:user,client:client,isAdmin:admin}
     }));
   }
-  start().catch(function(){
-    if(isLocalFile) finishGuest(null);
-    else location.replace('login.html?next='+encodeURIComponent(currentTarget()));
-  });
+  start().catch(function(){ finishGuest(null); });
 })();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js"></script>
@@ -525,7 +531,7 @@ a{color:inherit}
     <div class="container">
       <div class="toolbar">
         <div class="auth-bar" id="authBar">
-          <span id="authStatus">Đang xác thực đăng nhập…</span>
+          <span id="authStatus">Bạn đang học ở chế độ khách — tiến độ lưu tạm trên máy này. <a href="login.html?next=hsk1-vocab.html">Đăng nhập</a> để lưu theo tài khoản.</span>
           <span id="authUserWrap" hidden>Tiến độ của: <b id="authUserLabel"></b></span>
         </div>
         <div class="search-row">
@@ -764,7 +770,7 @@ function updateAuthUI(){
     status.textContent = 'Đã đăng nhập · tiến độ lưu theo tài khoản';
     if(wrap){ wrap.hidden=false; const lab=$('#authUserLabel'); if(lab) lab.textContent=displayNameOf(u); }
   }else{
-    status.textContent = 'Chưa đăng nhập / guest — tiến độ lưu tạm trên máy này';
+    status.innerHTML = 'Bạn đang học ở chế độ khách — tiến độ lưu tạm trên máy này. <a href="login.html?next=hsk1-vocab.html">Đăng nhập</a> để lưu theo tài khoản.';
     if(wrap) wrap.hidden=true;
   }
 }
