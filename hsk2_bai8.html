@@ -1071,7 +1071,7 @@ function renderGrammar(c){
   const E=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   const zh=s=>s.replace(/[㐀-鿿]+(?:[，。！？、：；…“”（）][㐀-鿿]+)*/g,m=>'<span class="zh">'+m+'</span>');
   const rich=t=>zh(E(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>'));
-  const paras=t=>{const out=[];let ul=[];String(t).split('\n').forEach(l=>{if(/^•/.test(l)){ul.push('<li>'+rich(l.replace(/^•\s*/,''))+'</li>')}else{if(ul.length){out.push('<ul>'+ul.join('')+'</ul>');ul=[]}if(l.trim())out.push('<p>'+rich(l)+'</p>')}});if(ul.length)out.push('<ul>'+ul.join('')+'</ul>');return out.join('')};
+  const paras=t=>{const out=[];let ul=[];String(t).replace(/\\n/g,'\n').split('\n').forEach(l=>{if(/^•/.test(l)){ul.push('<li>'+rich(l.replace(/^•\s*/,''))+'</li>')}else{if(ul.length){out.push('<ul>'+ul.join('')+'</ul>');ul=[]}if(l.trim())out.push('<p>'+rich(l)+'</p>')}});if(ul.length)out.push('<ul>'+ul.join('')+'</ul>');return out.join('')};
   const say=[];
   const exRows=list=>list.map(e=>{const k=say.push(e[0].replace(/\[\[|\]\]/g,''))-1;return `<div class="ex"><div><div class="ecn">${E(e[0]).replace(/\[\[(.+?)\]\]/g,'<mark>$1</mark>')}</div><div class="epy">${E(e[1])}</div><div class="evi">${E(e[2])}</div></div><button class="iconbtn" data-gsay="${k}">Nghe</button></div>`}).join('');
   const chips=D.grammar.length>1?`<div class="gp-index">${D.grammar.map((g,i)=>`<button class="gp-chip" data-gj="${i}"><b>${i+1}.</b>${E(g.name.split(' — ')[0])}</button>`).join('')}</div>`:'';
