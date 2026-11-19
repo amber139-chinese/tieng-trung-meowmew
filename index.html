@@ -207,7 +207,9 @@
     .course-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
     .course-card{min-height:340px;color:#fff;border-radius:32px;padding:36px;box-shadow:var(--shadow-lg);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;transition:.25s}
     .course-card:nth-child(1){background:linear-gradient(140deg,#2FA7A0 0%,#2E8AA3 55%,#1F6479 100%)}
-    .course-card:nth-child(2){background:linear-gradient(140deg,#4A6FA5 0%,#33558A 55%,#1F3C6B 100%)}
+    .course-card:nth-child(2){background:linear-gradient(140deg,#2F8A6C 0%,#25765F 55%,#185344 100%)}
+    .course-card:nth-child(3){background:linear-gradient(140deg,#6979C8 0%,#4B6CC2 55%,#334B91 100%)}
+    .course-card:nth-child(4){background:linear-gradient(140deg,#4A6FA5 0%,#33558A 55%,#1F3C6B 100%)}
     .course-card:hover{transform:translateY(-6px)}
     .course-card:before{content:"";position:absolute;right:-70px;top:-70px;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.10)}
     .course-card:after{content:"";position:absolute;right:50px;bottom:-90px;width:200px;height:200px;border-radius:50%;background:rgba(240,185,75,.22)}
@@ -226,8 +228,10 @@
     .vocab-section-head h3{margin:8px 0 0;font-family:var(--serif);font-size:1.7rem;color:var(--deep)}
     .vocab-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
     .vocab-card{--c:var(--teal);position:relative;overflow:hidden;border:1.5px solid var(--line);border-radius:28px;background:#fff;padding:28px 24px 24px;box-shadow:var(--shadow);transition:.22s;display:flex;flex-direction:column}
-    .vocab-card:nth-child(2){--c:#C98A1C}
-    .vocab-card:nth-child(3){--c:var(--rose)}
+    .vocab-card.v-hsk2{--c:#2F8A6C}
+    .vocab-card.v-hsk3{--c:#4B6CC2}
+    .vocab-card.v-hsk4{--c:#C98A1C}
+    .vocab-card.v-hsk789{--c:var(--rose)}
     .vocab-card:hover{transform:translateY(-5px);border-color:var(--c)}
     .vocab-card:before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:var(--c)}
     .vocab-card:after{content:"词";position:absolute;right:-4px;bottom:-34px;font-family:var(--serif);font-size:130px;font-weight:900;color:var(--c);opacity:.09;pointer-events:none;line-height:1}
@@ -704,6 +708,8 @@
       <div class="section-head reveal"><div class="section-kicker">课程</div><h2>Bài học</h2></div>
       <div class="course-grid">
         <article class="course-card reveal"><div class="course-index" aria-hidden="true">1</div><div><div class="course-label">HSK1 · 初级</div><h3>HSK1 3.0</h3><div class="course-cn">汉语教程 · 初级</div><p>Dành cho lúc mới bắt đầu: học phát âm, từ vựng cơ bản, mẫu câu và hội thoại qua 15 bài.</p><div class="course-meta"><span class="tag">Bài 1 → Bài 15</span><span class="tag">Cơ bản</span></div></div><div><a class="btn btn-white" href="login.html?next=hsk1.html">Vào học HSK1</a></div></article>
+        <article class="course-card reveal"><div class="course-index" aria-hidden="true">2</div><div><div class="course-label">HSK2 · 初级</div><h3>HSK2 3.0</h3><div class="course-cn">汉语教程 · 初级进阶</div><p>Tiếp tục mở rộng từ vựng, ngữ pháp và khả năng giao tiếp qua 15 bài học có hội thoại, ví dụ và game luyện tập.</p><div class="course-meta"><span class="tag">Bài 1 → Bài 15</span><span class="tag">Sơ cấp</span></div></div><div><a class="btn btn-white" href="login.html?next=hsk2.html">Vào học HSK2</a></div></article>
+        <article class="course-card reveal"><div class="course-index" aria-hidden="true">3</div><div><div class="course-label">HSK3 · 初级</div><h3>HSK3 3.0</h3><div class="course-cn">汉语教程 · 初级提高</div><p>Nâng cao vốn từ và khả năng sử dụng tiếng Trung với nội dung học theo cấp độ HSK3 3.0.</p><div class="course-meta"><span class="tag">HSK3 3.0</span><span class="tag">Sơ cấp nâng cao</span></div></div><div><a class="btn btn-white" href="login.html?next=hsk3.html">Vào học HSK3</a></div></article>
         <article class="course-card reveal"><div class="course-index" aria-hidden="true">4</div><div><div class="course-label">HSK4 · 中级</div><h3>HSK4 2.0</h3><div class="course-cn">汉语教程 · 中级</div><p>20 bài trung cấp đi sâu hơn vào từ vựng, ngữ pháp, đọc hiểu và phần vận dụng có Meow Meow chấm bài.</p><div class="course-meta"><span class="tag">Bài 1 → Bài 20</span><span class="tag">Trung cấp</span></div></div><div><a class="btn btn-white" href="login.html?next=hsk4.html">Vào học HSK4</a></div></article>
       </div>
 
@@ -711,8 +717,10 @@
         <div class="vocab-section-head reveal"><div class="section-kicker">ÔN TỪ VỰNG · 词汇复习</div><h3>Ôn tập từ vựng</h3></div>
         <div class="vocab-grid">
           <article class="vocab-card reveal"><div class="vocab-level">HSK1 · 初级</div><h4>Ôn từ vựng HSK1</h4><div class="course-meta"><span class="tag">500 từ HSK1 3.0</span><span class="tag">Flashcard</span><span class="tag">Nét chữ</span></div><a class="btn btn-primary" href="hsk1-vocab.html">Ôn HSK1</a></article>
-          <article class="vocab-card reveal"><div class="vocab-level">HSK4 · 中级</div><h4>Ôn từ vựng HSK4</h4><div class="course-meta"><span class="tag">621 mục từ</span><span class="tag">Bài 1 → Bài 20</span><span class="tag">Flashcard</span></div><a class="btn btn-primary" href="hsk4-vocab.html">Ôn HSK4</a></article>
-          <article class="vocab-card reveal"><div class="vocab-level">HSK7–9 · 高级</div><h4>Ôn từ vựng HSK7–9</h4><div class="course-meta"><span class="tag">1999 mục từ</span><span class="tag">A → Z</span><span class="tag">Flashcard</span><span class="tag">Từ loại + ví dụ</span></div><a class="btn btn-primary" href="login.html?next=hsk789-vocab.html">Ôn HSK7–9</a></article>
+          <article class="vocab-card v-hsk2 reveal"><div class="vocab-level">HSK2 · 初级</div><h4>Ôn từ vựng HSK2</h4><div class="course-meta"><span class="tag">772 từ HSK2 3.0</span><span class="tag">Loại từ</span><span class="tag">Flashcard</span><span class="tag">Nét chữ</span></div><a class="btn btn-primary" href="hsk2-vocab.html">Ôn HSK2</a></article>
+          <article class="vocab-card v-hsk3 reveal"><div class="vocab-level">HSK3 · 初级</div><h4>Ôn từ vựng HSK3</h4><div class="course-meta"><span class="tag">973 từ HSK3 3.0</span><span class="tag">Loại từ</span><span class="tag">Flashcard</span><span class="tag">Nét chữ</span></div><a class="btn btn-primary" href="hsk3-vocab.html">Ôn HSK3</a></article>
+          <article class="vocab-card v-hsk4 reveal"><div class="vocab-level">HSK4 · 中级</div><h4>Ôn từ vựng HSK4</h4><div class="course-meta"><span class="tag">621 mục từ</span><span class="tag">Bài 1 → Bài 20</span><span class="tag">Flashcard</span></div><a class="btn btn-primary" href="hsk4-vocab.html">Ôn HSK4</a></article>
+          <article class="vocab-card v-hsk789 reveal"><div class="vocab-level">HSK7–9 · 高级</div><h4>Ôn từ vựng HSK7–9</h4><div class="course-meta"><span class="tag">1999 mục từ</span><span class="tag">A → Z</span><span class="tag">Flashcard</span><span class="tag">Từ loại + ví dụ</span></div><a class="btn btn-primary" href="login.html?next=hsk789-vocab.html">Ôn HSK7–9</a></article>
         </div>
       </section>
 
