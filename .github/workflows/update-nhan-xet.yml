@@ -1,0 +1,61 @@
+name: Auto update danh sach anh nhan xet
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "assets/nhan-xet/**"
+      - "scripts/generate-nhan-xet.py"
+
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: auto-update-nhan-xet
+  cancel-in-progress: true
+
+jobs:
+  update-list:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Sync latest main
+        shell: bash
+        run: |
+          git fetch origin main
+          git checkout main
+          git reset --hard origin/main
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Generate image list
+        run: python scripts/generate-nhan-xet.py
+
+      - name: Commit list if changed
+        shell: bash
+        run: |
+          if [ -z "$(git status --porcelain -- assets/nhan-xet/danh-sach.json)" ]; then
+            echo "danh-sach.json is already up to date."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add assets/nhan-xet/danh-sach.json
+          git commit -m "Auto update danh sach anh nhan xet"
+
+          git pull --rebase origin main
+          git push origin main
