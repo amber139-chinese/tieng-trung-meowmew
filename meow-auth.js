@@ -36,7 +36,7 @@
 
     const bar=document.createElement('div');
     bar.id='meow-account-bar';
-    bar.innerHTML=`<span>Xin chào, ${name}</span><button type="button">Đăng xuất</button>`;
+    bar.innerHTML=`<span>Xin chào, ${name}</span><a href="doi-mat-khau.html" data-pw="1">Đổi mật khẩu</a><button type="button">Đăng xuất</button>`;
     document.body.appendChild(bar);
 
     bar.querySelector('button').onclick=async()=>{

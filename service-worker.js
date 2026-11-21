@@ -1,4 +1,4 @@
-const CACHE_NAME = 'meow-meow-pwa-v3';
+const CACHE_NAME = 'meow-meow-pwa-v4';
 
 const CORE_ASSETS = [
   './',

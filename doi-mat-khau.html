@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đổi mật khẩu · Tiếng Trung Meow Meow</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--dark:#3F8198;--ink:#293A40;--muted:#6A7A80;--line:#D7E9ED}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:22px;font-family:"Be Vietnam Pro",sans-serif;color:var(--ink);background:radial-gradient(circle at 15% 10%,rgba(140,200,214,.2),transparent 30%),linear-gradient(145deg,#F7FCFD,#fff)}
+.card{width:min(440px,100%);background:#fff;border:1px solid var(--line);border-radius:24px;padding:34px 30px;box-shadow:0 24px 70px rgba(55,110,125,.13)}
+.mark{font-family:"Noto Serif SC",serif;color:var(--dark);font-size:1.3rem;margin-bottom:6px}
+h1{margin:0 0 6px;font-size:1.5rem}
+.sub{color:var(--muted);font-size:.9rem;margin-bottom:12px}
+label{display:block;font-size:.82rem;font-weight:700;margin:14px 0 6px}
+input{width:100%;border:1px solid var(--line);border-radius:11px;padding:12px 13px;font:inherit;outline:0}
+input:focus{border-color:#8CC8D6;box-shadow:0 0 0 3px rgba(140,200,214,.14)}
+button.primary{width:100%;border:0;border-radius:11px;background:var(--dark);color:#fff;padding:12px;font-weight:700;cursor:pointer;margin-top:20px}
+button.primary:hover{background:#346F84}
+button.primary:disabled{opacity:.6;cursor:default}
+.msg{min-height:24px;margin-top:13px;font-size:.86rem;color:#A04C59}.msg.ok{color:#31775F}
+.back{display:inline-block;margin-top:14px;color:var(--dark);text-decoration:none;font-size:.85rem;font-weight:700}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="mark">喵 · Meow Meow 课堂</div>
+  <h1>Đổi mật khẩu</h1>
+  <div class="sub">Nhập mật khẩu hiện tại (hoặc mật khẩu tạm cô gửi) rồi đặt mật khẩu mới.</div>
+
+  <label for="oldPass">Mật khẩu hiện tại</label>
+  <input id="oldPass" type="password" autocomplete="current-password">
+  <label for="newPass">Mật khẩu mới</label>
+  <input id="newPass" type="password" autocomplete="new-password" placeholder="Tối thiểu 6 ký tự">
+  <label for="newPass2">Nhập lại mật khẩu mới</label>
+  <input id="newPass2" type="password" autocomplete="new-password">
+  <button class="primary" id="saveBtn" disabled>Đang kiểm tra đăng nhập...</button>
+  <div class="msg" id="msg"></div>
+  <a class="back" href="hsk1.html">← Về trang học</a>
+</div>
+
+<!-- meow-auth.js: tự chuyển về login.html nếu chưa đăng nhập, và tạo window.meowSupabase / window.meowUser -->
+<script src="meow-auth.js"></script>
+<script>
+const $ = id => document.getElementById(id);
+let ctx = null;
+
+window.addEventListener('meow-auth-ready', e => {
+  ctx = e.detail;
+  $('saveBtn').disabled = false;
+  $('saveBtn').textContent = 'Lưu mật khẩu mới';
+});
+
+$('saveBtn').onclick = async () => {
+  const msg = $('msg');
+  msg.className = 'msg';
+  const oldPass = $('oldPass').value;
+  const newPass = $('newPass').value;
+  const newPass2 = $('newPass2').value;
+
+  if (!ctx) { msg.textContent = 'Chưa đăng nhập, hãy tải lại trang.'; return; }
+  if (!oldPass) { msg.textContent = 'Hãy nhập mật khẩu hiện tại.'; return; }
+  if (newPass.length < 6) { msg.textContent = 'Mật khẩu mới cần ít nhất 6 ký tự.'; return; }
+  if (newPass !== newPass2) { msg.textContent = 'Hai lần nhập mật khẩu mới chưa giống nhau.'; return; }
+  if (newPass === oldPass) { msg.textContent = 'Mật khẩu mới cần khác mật khẩu hiện tại.'; return; }
+
+  const btn = $('saveBtn');
+  btn.disabled = true;
+  msg.textContent = 'Đang xử lý...';
+
+  // 1) Xác minh mật khẩu hiện tại (tránh người khác dùng máy đang đăng nhập để đổi)
+  const { error: verifyErr } = await ctx.client.auth.signInWithPassword({
+    email: ctx.user.email,
+    password: oldPass
+  });
+  if (verifyErr) {
+    msg.textContent = 'Mật khẩu hiện tại chưa đúng.';
+    btn.disabled = false;
+    return;
+  }
+
+  // 2) Đổi sang mật khẩu mới
+  const { error } = await ctx.client.auth.updateUser({ password: newPass });
+  if (error) {
+    const t = String(error.message || '');
+    msg.textContent = /same|different/i.test(t)
+      ? 'Mật khẩu mới cần khác mật khẩu cũ.'
+      : 'Chưa đổi được mật khẩu, vui lòng thử lại.';
+    btn.disabled = false;
+    return;
+  }
+
+  msg.className = 'msg ok';
+  msg.textContent = 'Đã đổi mật khẩu thành công!';
+  ['oldPass','newPass','newPass2'].forEach(id => $(id).value = '');
+  btn.disabled = false;
+};
+</script>
+</body>
+</html>
