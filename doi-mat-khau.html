@@ -21,6 +21,13 @@ button.primary:hover{background:#346F84}
 button.primary:disabled{opacity:.6;cursor:default}
 .msg{min-height:24px;margin-top:13px;font-size:.86rem;color:#A04C59}.msg.ok{color:#31775F}
 .back{display:inline-block;margin-top:14px;color:var(--dark);text-decoration:none;font-size:.85rem;font-weight:700}
+
+/* Nút hiện/ẩn mật khẩu */
+.pw-wrap{position:relative}
+.pw-wrap input{padding-right:50px}
+.pw-toggle{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:transparent;color:#6A7A80;border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+.pw-toggle:hover{background:#EAF6F8;color:#3F8198}
+.hint{margin-top:6px;font-size:.78rem;color:#6A7A80;min-height:1.1em}.hint b{color:#3F8198}
 </style>
 </head>
 <body>
@@ -45,6 +52,27 @@ button.primary:disabled{opacity:.6;cursor:default}
 <script>
 const $ = id => document.getElementById(id);
 let ctx = null;
+
+// Thêm nút Hiện/Ẩn cho mọi ô mật khẩu
+document.querySelectorAll('input[type="password"]').forEach(inp=>{
+  const wrap=document.createElement('div');
+  wrap.className='pw-wrap';
+  inp.parentNode.insertBefore(wrap,inp);
+  wrap.appendChild(inp);
+  const b=document.createElement('button');
+  b.type='button';
+  b.className='pw-toggle';
+  b.innerHTML='<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>';
+  b.setAttribute('aria-label','Hiện mật khẩu');
+  b.onclick=()=>{
+    const show=inp.type==='password';
+    inp.type=show?'text':'password';
+    b.innerHTML=show?'<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.94 17.94A10.9 10.9 0 0 1 12 19c-6.4 0-10-7-10-7a18.5 18.5 0 0 1 5.06-5.94"/><path d="M9.9 4.24A10.7 10.7 0 0 1 12 4c6.4 0 10 7 10 7a18.6 18.6 0 0 1-2.16 3.19"/><path d="M14.12 14.12A3 3 0 1 1 9.88 9.88"/><path d="M1 1l22 22"/></svg>':'<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>';
+    b.setAttribute('aria-label',show?'Ẩn mật khẩu':'Hiện mật khẩu');
+  };
+  wrap.appendChild(b);
+});
+
 
 window.addEventListener('meow-auth-ready', e => {
   ctx = e.detail;
