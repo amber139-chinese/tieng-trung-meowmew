@@ -1368,6 +1368,7 @@ function shuffleArr(arr){
   }
   return a;
 }
+function hasMeaning(w){ const m=String((w&&w.meanings)||'').replace(/[;·\s]+$/,'').trim(); return !!m && !/^[—–-]+$/.test(m); }
 function buildQuizDeck(){
   let base;
   if(quizOnlyUnlearned){
@@ -1376,6 +1377,7 @@ function buildQuizDeck(){
   }else{
     base = FILTERED.length ? FILTERED : WORDS;
   }
+  base = base.filter(hasMeaning);
   quizDeck = shuffleArr(base);
   quizIndex = 0;
   quizCorrect = 0;
@@ -1398,7 +1400,7 @@ function pickDistractors(correct, mode, n=3){
   for(const w of shuffled){
     const val = mode === 'meaning' ? (w.meanings||'') : (w.hanzi||'');
     const cval = mode === 'meaning' ? (correct.meanings||'') : (correct.hanzi||'');
-    if(!val || val === cval || seen.has(val)) continue;
+    if(!val || val === cval || seen.has(val) || !hasMeaning(w)) continue;
     seen.add(val);
     out.push(w);
     if(out.length >= n) break;
