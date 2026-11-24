@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tổng hợp ngữ pháp HSK1 3.0 · Tiếng Trung Meow Meow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--brand:#2E8AA3;--brand-2:#58B4C8;--brand-dark:#1F6479;--deep:#143F4F;--deep-2:#0E2F3C;--soft:#E8F4F7;--paper:#FBF8F2;--line:#DCE9EC;--ink:#1B2E35;--muted:#5B7078;--gold:#F0B94B;--coral:#EF6A4C;--seal:#D6453A;--ok:#2A8C56;--shadow:0 14px 36px rgba(20,63,79,.10);--serif:"Noto Serif SC","Be Vietnam Pro",serif;--sans:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;--air:repeating-linear-gradient(-45deg,#D6453A 0 16px,#fff 16px 32px,#2E8AA3 32px 48px,#fff 48px 64px)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--sans);color:var(--ink);line-height:1.7;overflow-x:hidden;background:radial-gradient(circle at 12% 6%,rgba(88,180,200,.16),transparent 30%),radial-gradient(circle at 90% 14%,rgba(240,185,75,.14),transparent 26%),var(--paper)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:8px}
+.container{width:min(1140px,calc(100% - 40px));margin:0 auto}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(255,253,248,.92);backdrop-filter:blur(14px)}
+.topbar:after{content:"";display:block;height:7px;background:var(--air)}
+.topbar-inner{min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{display:flex;align-items:center;gap:11px;text-decoration:none;font-weight:800;font-size:.86rem;letter-spacing:.05em;color:var(--deep)}
+.logo-mark{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;color:#fff;font-family:var(--serif);font-weight:900;font-size:1.15rem;background:linear-gradient(145deg,var(--seal),#F0806B);box-shadow:0 6px 14px rgba(214,69,58,.28);transform:rotate(-6deg)}
+.back-link{text-decoration:none;color:var(--brand-dark);font-weight:700;font-size:.9rem;padding:8px 16px;border-radius:999px;border:1.5px solid var(--line);background:#fff}
+.back-link:hover{border-color:var(--coral);color:var(--coral)}
+.hero{position:relative;padding:50px 0 24px}
+.hero:before{content:"语法";position:absolute;right:max(3vw,10px);top:0;font-family:var(--serif);font-weight:900;font-size:clamp(6rem,15vw,12rem);line-height:1;color:rgba(46,138,163,.07);pointer-events:none}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-size:.8rem;font-weight:800;letter-spacing:.14em;color:var(--brand-dark)}
+.kicker:before{content:"";width:34px;height:3px;border-radius:3px;background:var(--coral)}
+.hero h1{position:relative;margin:10px 0 8px;font-family:var(--serif);font-weight:900;font-size:clamp(2rem,5vw,3.3rem);line-height:1.2;color:var(--deep)}
+.hero p{position:relative;margin:0;max-width:680px;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 6px}
+.chips a{text-decoration:none;font-size:.82rem;font-weight:700;padding:6px 14px;border-radius:999px;background:#fff;border:1.5px solid var(--line);color:var(--brand-dark)}
+.chips a:hover{border-color:var(--coral);color:var(--coral)}
+h2.sec{font-family:var(--serif);font-weight:900;color:var(--deep);font-size:1.5rem;margin:42px 0 6px;padding-left:14px;border-left:6px solid var(--coral)}
+.sub{color:var(--muted);margin:0 0 16px;font-size:.92rem}
+.gp{background:#FFFEFA;border:1.5px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:18px 20px;margin-bottom:14px}
+.gp-h{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.num{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;color:#fff;font-weight:800;background:linear-gradient(145deg,var(--brand-dark),var(--brand-2));transform:rotate(-4deg)}
+.gp:nth-child(3n+2) .num{background:linear-gradient(145deg,#C98A1E,var(--gold))}.gp:nth-child(3n) .num{background:linear-gradient(145deg,var(--seal),#F0806B)}
+.gp h3{margin:0;font-size:1.05rem;color:var(--deep)}
+.st{display:inline-block;margin:10px 0 4px;padding:4px 12px;border-radius:8px;background:var(--soft);color:var(--brand-dark);font-family:var(--serif);font-weight:700}
+.gp p{margin:4px 0 8px;color:var(--ink);font-size:.93rem}
+.ex{border-left:4px solid var(--gold);background:#FFF9E8;border-radius:0 12px 12px 0;padding:8px 14px;margin:6px 0}
+.ex .zh{font-family:var(--serif);font-weight:700;font-size:1.12rem;color:var(--deep)}
+.ex .py{color:var(--brand-dark);font-size:.88rem}.ex .vi{color:var(--muted);font-size:.88rem}
+.q{background:#FFFEFA;border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:12px}
+.q .zh{font-family:var(--serif);font-weight:700;font-size:1.15rem;color:var(--deep)}
+.q small{display:block;color:var(--muted);font-size:.78rem;font-weight:600}
+.q input{width:100%;margin-top:8px;padding:10px 14px;border:1.5px solid var(--line);border-radius:12px;font:inherit;font-family:var(--serif);background:#fff}
+.q input:focus{border-color:var(--brand);outline:none}
+.res{display:none;margin-top:10px;padding:10px 14px;border-radius:12px;font-size:.9rem}
+.res.ok{background:#E6F5EC;border:1.5px solid var(--ok)}.res.bad{background:#FDECE8;border:1.5px solid var(--seal)}.res.hint{background:#FFF4D6;border:1.5px solid var(--gold)}
+.res b{font-family:var(--serif)}
+.btn{display:inline-block;margin:10px 10px 0 0;border:0;cursor:pointer;font:inherit;font-weight:800;color:#fff;background:var(--coral);padding:12px 26px;border-radius:999px;box-shadow:0 8px 16px rgba(239,106,76,.28)}
+.btn.alt{background:var(--brand-dark);box-shadow:0 8px 16px rgba(31,100,121,.25)}
+.score{display:none;margin:14px 0;padding:14px 20px;border-radius:16px;background:linear-gradient(135deg,var(--deep),var(--deep-2));color:#FFE9B8;font-weight:800;font-size:1.1rem}
+.footer{margin-top:60px;background:linear-gradient(135deg,var(--deep),var(--deep-2));color:#CFE6EC;padding:26px 0 34px;text-align:center;font-size:.86rem}
+.footer b{display:block;font-family:var(--serif);color:#FFE9B8;margin-bottom:2px}
+@media(max-width:520px){.container{width:calc(100% - 24px)}.logo span:last-child{display:none}}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="container topbar-inner">
+<a class="logo" href="index.html"><span class="logo-mark">喵</span><span>TIẾNG TRUNG MEOW MEOW · 中文课堂</span></a>
+<a class="back-link" href="hsk1.html">← Về HSK1</a>
+</div></div>
+<header class="hero"><div class="container">
+<div class="kicker">HSK1 3.0 · 语法总结</div>
+<h1>Tổng hợp ngữ pháp HSK1</h1>
+<p>38 điểm ngữ pháp trọng tâm của HSK1 (chuẩn HSK 3.0), chia theo 8 nhóm chủ đề. Ôn xong làm bài sửa câu sai và bài dịch ở cuối trang.</p>
+<div class="chips" id="chips"></div>
+</div></header>
+<main class="container">
+<div id="grammar"></div>
+<h2 class="sec" id="baitap">Bài tập 1 · Sửa câu sai</h2>
+<p class="sub">Mỗi câu có một lỗi ngữ pháp phổ biến. Viết lại câu đúng, bấm “Chấm bài” để xem đáp án và giải thích.</p>
+<div id="errs"></div>
+<h2 class="sec">Bài tập 2 · Dịch Việt → Trung</h2>
+<p class="sub">Dịch sang tiếng Trung. Phần dịch không chấm điểm tự động, sau khi chấm bài sẽ hiện gợi ý dịch để bạn đối chiếu.</p>
+<div id="trans"></div>
+<div class="score" id="score"></div>
+<button class="btn" id="grade">Chấm bài</button><button class="btn alt" id="reset">Làm lại</button>
+</main>
+<div class="footer"><div class="container"><b>喵~ Học cùng Meow Meow, vui quá là vui</b>Nội dung ngữ pháp biên soạn theo tài liệu SCT2 — Học Tiếng Trung Thật Thú Vị (HSK 3.0)</div></div>
+<script>
+// fields: số|tên|cấu trúc|giải thích|ví dụ (zh~pinyin~vi, nhiều ví dụ ngăn bằng ^)
+const G=[
+["A. Câu cơ bản và trợ từ ngữ khí",[
+"1|Câu có 是 (shì)|S + 是 + Danh từ|Khẳng định danh tính, thân phận, sự vật, quan hệ.|我是老师。~Wǒ shì lǎoshī.~Tôi là giáo viên.",
+"2|Phủ định với 不 (bù)|S + 不 + V/Adj|Đặt trước động từ hoặc tính từ để phủ định.|他不是学生。~Tā bú shì xuésheng.~Anh ấy không phải là học sinh.",
+"3|Câu hỏi với 吗 (ma)|Câu trần thuật + 吗？|Thêm 吗 vào cuối câu trần thuật để tạo câu hỏi có/không. Không dùng chung với câu đã có đại từ nghi vấn hoặc chính phản.|你忙吗？~Nǐ máng ma?~Bạn có bận không?",
+"4|Trợ từ 呢 (ne) — hỏi lại|N/Đại từ + 呢？|Hỏi lại theo ngữ cảnh vừa nêu, tránh lặp lại toàn câu.|我很好，你呢？~Wǒ hěn hǎo, nǐ ne?~Tôi khỏe, còn bạn thì sao?",
+"5|Trợ từ 吧 (ba) — đề nghị|Câu + 吧。|Thể hiện đề nghị, rủ rê, mệnh lệnh nhẹ nhàng hoặc phỏng đoán.|我们走吧。~Wǒmen zǒu ba.~Chúng ta đi thôi.",
+"6|Kết cấu 的 (de) — sở hữu|Đại từ/DT + 的 + Danh từ|Biểu thị sở hữu. Với người thân/quan hệ gần gũi có thể lược bỏ 的.|这是我的手机。~Zhè shì wǒ de shǒujī.~Đây là điện thoại của tôi.^他是我爸爸。~Tā shì wǒ bàba.~Anh ấy là bố tôi.",
+"7|Phó từ 也 (yě) — cũng|S + 也 + V/Adj|Biểu thị sự giống nhau, đặt trước động từ/tính từ.|我也是越南人。~Wǒ yě shì Yuènán rén.~Tôi cũng là người Việt Nam.",
+"8|Phó từ 都 (dōu) — đều|S(số nhiều) + 都 + V/Adj|Biểu thị tính khái quát cho toàn bộ chủ ngữ số nhiều, đứng trước động từ/tính từ.|我们都喜欢中国菜。~Wǒmen dōu xǐhuan Zhōngguó cài.~Chúng tôi đều thích món ăn Trung Quốc."]],
+["B. Đại từ nghi vấn",[
+"9|谁 (shéi/shuí) — ai|谁 + V / S + 是 + 谁|Dùng hỏi về người, thay vị trí cần hỏi trong câu.|这是谁？~Zhè shì shéi?~Đây là ai?",
+"10|什么 (shénme) — gì/cái gì|V + 什么 / 什么 + Danh từ|Hỏi về sự vật, sự việc; có thể đứng một mình hoặc kèm danh từ phía sau.|你叫什么名字？~Nǐ jiào shénme míngzi?~Bạn tên là gì?",
+"11|哪 / 哪儿 (nǎ / nǎr) — nào / ở đâu|哪 + Lượng từ + DT / 哪儿|哪 dùng để hỏi lựa chọn (kèm lượng từ); 哪儿 dùng hỏi địa điểm.|你是哪国人？~Nǐ shì nǎ guó rén?~Bạn là người nước nào?^你在哪儿工作？~Nǐ zài nǎr gōngzuò?~Bạn làm việc ở đâu?",
+"12|怎么 (zěnme) — như thế nào|怎么 + V|Hỏi về cách thức, phương tiện thực hiện hành động.|你怎么去学校？~Nǐ zěnme qù xuéxiào?~Bạn đi học bằng cách nào?",
+"13|怎么样 (zěnmeyàng) — thế nào|S + 怎么样？|Hỏi ý kiến, tình trạng, cảm nhận về sự vật/sự việc.|今天天气怎么样？~Jīntiān tiānqì zěnmeyàng?~Hôm nay thời tiết thế nào?",
+"14|为什么 (wèishénme) — tại sao|为什么 + S + V？|Hỏi nguyên nhân, lý do.|你为什么不去？~Nǐ wèishénme bú qù?~Tại sao bạn không đi?",
+"15|几 (jǐ) — hỏi số lượng nhỏ|几 + Lượng từ + DT|Hỏi số lượng dự đoán nhỏ (thường dưới 10), bắt buộc có lượng từ.|你家有几口人？~Nǐ jiā yǒu jǐ kǒu rén?~Nhà bạn có mấy người?",
+"16|多少 (duōshao) — hỏi số lượng lớn|多少 + (Lượng từ) + DT|Hỏi số lượng không giới hạn, có thể bỏ lượng từ.|这个多少钱？~Zhège duōshao qián?~Cái này bao nhiêu tiền?"]],
+["C. Số đếm và lượng từ",[
+"17|Số đếm 0–100|十 / 百 kết hợp với số hàng đơn vị|Cách đọc số cơ bản tiếng Trung, nền tảng cho giờ, giá tiền, tuổi tác.|十五~shíwǔ~15^三十六~sānshíliù~36^一百~yìbǎi~100",
+"18|Lượng từ (量词)|Số + Lượng từ + Danh từ|Giữa số đếm và danh từ luôn cần một lượng từ phù hợp (个, 本, 张, 杯, 件…).|一个人，两本书，三张纸~Yí ge rén, liǎng běn shū, sān zhāng zhǐ~Một người, hai quyển sách, ba tờ giấy",
+"19|两 (liǎng) và 二 (èr)|两 + Lượng từ; 二 dùng khi đếm/số thứ tự|Dùng 两 khi kết hợp với lượng từ để chỉ số lượng 2; dùng 二 khi đếm số hoặc trong số nhiều chữ số.|两个苹果~liǎng ge píngguǒ~Hai quả táo",
+"20|Cách nói giá tiền|Số + 块/毛/分 (+钱)|块 (đồng), 毛 (hào, 1/10 块), 分 (xu, 1/100 块); 钱 có thể lược bỏ khi rõ ngữ cảnh.|十五块钱。~Shíwǔ kuài qián.~15 tệ."]],
+["D. Động từ năng nguyện",[
+"21|会 (huì) — biết|S + 会 + V|Diễn tả kỹ năng có được qua học tập, rèn luyện.|我会说汉语。~Wǒ huì shuō Hànyǔ.~Tôi biết nói tiếng Trung.",
+"22|想 (xiǎng) — muốn|S + 想 + V|Diễn tả nguyện vọng, ý muốn chủ quan.|我想喝水。~Wǒ xiǎng hē shuǐ.~Tôi muốn uống nước.",
+"23|要 (yào) — muốn/cần/sắp|S + 要 + V|Diễn tả nhu cầu, ý định mạnh hơn 想, hoặc việc sắp xảy ra.|我要买衣服。~Wǒ yào mǎi yīfu.~Tôi muốn mua quần áo.",
+"24|能 (néng) — có thể|S + 能 + V|Diễn tả khả năng khách quan hoặc được phép làm việc gì.|我能喝咖啡。~Wǒ néng hē kāfēi.~Tôi có thể uống cà phê."]],
+["E. Câu vị ngữ động từ / tính từ – sở hữu – vị trí",[
+"25|Câu vị ngữ động từ|S + V + (O)|Cấu trúc câu cơ bản với động từ làm vị ngữ chính.|我看书。~Wǒ kàn shū.~Tôi đọc sách.",
+"26|Câu vị ngữ tính từ|S + (很) + Adj|Tính từ trực tiếp làm vị ngữ, không dùng 是 ở trước; 很 thường mang tính đệm câu, không nhất thiết mang nghĩa “rất”.|天气很好。~Tiānqì hěn hǎo.~Thời tiết rất tốt.",
+"27|Câu có 有 (yǒu)|S + 有 + O|Biểu thị sự sở hữu hoặc tồn tại; phủ định dùng 没有, không dùng 不有.|我有一个哥哥。~Wǒ yǒu yí ge gēge.~Tôi có một anh trai.",
+"28|在 (zài) — chỉ vị trí|S + 在 + Địa điểm|Động từ/giới từ chỉ nơi chốn, vị trí tồn tại của người/vật.|他在家。~Tā zài jiā.~Anh ấy ở nhà."]],
+["F. Biểu đạt thời gian",[
+"29|Cách nói thời gian|Năm — tháng — ngày — giờ (lớn → nhỏ)|Trật tự luôn đi từ đơn vị lớn đến nhỏ, ngược với tiếng Việt.|二零二五年八月二十五号~èr líng èr wǔ nián bā yuè èrshíwǔ hào~Ngày 25 tháng 8 năm 2025",
+"30|Vị trí trạng ngữ thời gian|(S) + Thời gian + V|Trạng ngữ thời gian đứng trước động từ, có thể đứng trước hoặc sau chủ ngữ.|我今天很忙。/ 今天我很忙。~Wǒ jīntiān hěn máng.~Hôm nay tôi rất bận.",
+"31|正在 / 在 — hành động đang diễn ra|S + 正在/在 + V + (呢)|Diễn tả một hành động đang xảy ra tại thời điểm nói.|我正在吃饭呢。~Wǒ zhèngzài chīfàn ne.~Tôi đang ăn cơm."]],
+["G. Trợ từ động thái 了",[
+"32|了 (le) — hoàn thành / thay đổi|S + V + 了 + (O)|Đặt sau động từ để biểu thị hành động đã hoàn thành, hoặc cuối câu để biểu thị sự thay đổi trạng thái.|我买了一本书。~Wǒ mǎi le yì běn shū.~Tôi đã mua một quyển sách."]],
+["H. Câu mở rộng và cấu trúc phức",[
+"33|Câu liên động (连动句)|S + V1 + (O1) + V2 + (O2)|Một chủ ngữ thực hiện liên tiếp hai hành động có quan hệ mục đích/trình tự.|我去商店买东西。~Wǒ qù shāngdiàn mǎi dōngxi.~Tôi đi cửa hàng mua đồ.",
+"34|Câu hỏi chính phản|V/Adj + 不 + V/Adj|Lặp động từ/tính từ ở dạng khẳng định – phủ định để tạo câu hỏi, không dùng thêm 吗.|你去不去？~Nǐ qù bu qù?~Bạn có đi không?",
+"35|太……了 — cảm thán|太 + Adj + 了|Nhấn mạnh mức độ cao, thường mang sắc thái cảm thán.|太好了！~Tài hǎo le!~Tuyệt quá!",
+"36|一点儿 / 有点儿|Adj + 一点儿; 有点儿 + Adj|一点儿 đứng sau tính từ mang nghĩa so sánh nhẹ; 有点儿 đứng trước tính từ, thường mang sắc thái không hài lòng.|便宜一点儿。~Piányi yìdiǎnr.~Rẻ hơn một chút.^有点儿贵。~Yǒudiǎnr guì.~Hơi đắt.",
+"37|从……到…… — từ…đến…|从 + A + 到 + B|Chỉ phạm vi thời gian hoặc không gian, đứng trước động từ nếu bổ nghĩa cho hành động.|我从八点工作到六点。~Wǒ cóng bā diǎn gōngzuò dào liù diǎn.~Tôi làm việc từ 8 giờ đến 6 giờ.",
+"38|因为……所以…… — nguyên nhân, kết quả|因为 + A，所以 + B|因为 dẫn nguyên nhân, 所以 dẫn kết quả; 所以 luôn đứng đầu vế kết quả, không đảo vị trí.|因为下雨，所以我不去。~Yīnwèi xiàyǔ, suǒyǐ wǒ bú qù.~Vì trời mưa nên tôi không đi."]]
+];
+// sai | đáp án (nhiều đáp án ngăn bằng /) | điểm ngữ pháp | giải thích
+const E=[
+"他不老师。|他不是老师。|Điểm 1|Trước danh từ chỉ thân phận phải có 是. Không thể phủ định danh từ trực tiếp bằng 不.",
+"你是越南人吗是？|你是越南人吗？|Điểm 3|吗 đã tự tạo câu hỏi có/không; không lặp lại 是 sau 吗.",
+"这是谁的书吗？|这是谁的书？|Điểm 3, 9|Câu đã dùng đại từ nghi vấn 谁 thì không thêm 吗 ở cuối câu.",
+"我有两个书。|我有两本书。|Điểm 18|Sách dùng lượng từ 本, không dùng 个. Số 2 kết hợp lượng từ phải đọc là 两.",
+"她很漂亮很。|她很漂亮。|Điểm 26|很 chỉ xuất hiện một lần trước tính từ, không lặp lại ở cuối câu.",
+"我想会说汉语。|我会说汉语。|Điểm 21, 22|会 diễn tả kỹ năng đã học được; 想 diễn tả nguyện vọng. Câu nói về khả năng nên chỉ dùng 会.",
+"你要不要喝茶吗？|你要不要喝茶？|Điểm 3, 34|Câu hỏi chính phản đã mang chức năng nghi vấn nên không thêm 吗.",
+"他在图书馆看书在。|他在图书馆看书。|Điểm 28|在 + địa điểm chỉ xuất hiện một lần trước động từ.",
+"昨天我买了一本书了。|昨天我买了一本书。|Điểm 32|了 sau động từ đã biểu thị hành động hoàn thành trong quá khứ; không cần thêm 了 ở cuối câu.",
+"现在我正在吃饭了。|现在我正在吃饭。|Điểm 31, 32|正在 diễn tả hành động đang diễn ra (chưa hoàn thành) nên không đi kèm 了.",
+"你几岁多大？|你多大？/你几岁？|Điểm 15|几岁 và 多大 đều hỏi tuổi nhưng không kết hợp cả hai trong cùng một câu; chỉ chọn một.",
+"这本书多少钱本？|这本书多少钱？|Điểm 16, 20|多少钱 đã là cụm hỏi giá hoàn chỉnh, không thêm lượng từ 本 sau 钱.",
+"她的书我的。|她的书是我的。|Điểm 1, 6|Câu khẳng định quan hệ giữa hai vế danh từ bắt buộc phải có động từ 是 nối hai vế.",
+"我们都很喜欢都中国菜。|我们都很喜欢中国菜。|Điểm 8|都 chỉ cần đứng một lần trước động từ/tính từ.",
+"他没有去学校了。|他没有去学校。|Điểm 32|Phủ định hành động trong quá khứ dùng 没(有) trước động từ và không thêm 了 ở cuối câu.",
+"我从八点到工作六点。|我从八点工作到六点。|Điểm 37|从…到… phải bao quanh động từ: 从 + mốc đầu + V + 到 + mốc cuối.",
+"因为下雨，我不去所以。|因为下雨，所以我不去。|Điểm 38|所以 luôn đứng ở đầu vế kết quả, ngay trước chủ ngữ của vế đó.",
+"你怎么样去学校？|你怎么去学校？|Điểm 12, 13|怎么 hỏi cách thức/phương tiện; 怎么样 hỏi ý kiến, tình trạng. Hỏi phương tiện di chuyển phải dùng 怎么.",
+"这件衣服有点儿太贵了。|这件衣服有点儿贵。/这件衣服太贵了。|Điểm 35, 36|有点儿 và 太…了 đều nhấn mạnh mức độ nhưng theo hai sắc thái khác nhau; không kết hợp cả hai trong một câu.",
+"我八点半吃饭了正在。|我正在吃饭。/八点半的时候我正在吃饭。/我八点半正在吃饭。|Điểm 31, 32|正在 phải đứng ngay trước động từ; không đặt 了 ở cuối khi đã dùng 正在; trạng ngữ thời gian đặt đầu câu hoặc sau chủ ngữ."
+];
+// đề tiếng Việt | gợi ý dịch
+const T=[
+"Hôm qua tôi cùng bạn đi cửa hàng mua rất nhiều đồ, sau đó về nhà nấu cơm.|昨天我和朋友一起去商店买了很多东西，然后回家做饭。",
+"Tuy tôi biết nói một chút tiếng Trung, nhưng tôi không biết viết chữ Hán.|虽然我会说一点儿汉语，但是我不会写汉字。",
+"Bạn có thể nói chậm một chút được không?|你能说慢一点儿吗？",
+"Bố tôi bây giờ đang làm việc ở bệnh viện, không thể nói chuyện với bạn.|我爸爸现在在医院工作，不能和你说话。",
+"Ngày mai nếu trời không mưa, chúng tôi sẽ đến trường chơi bóng rổ.|如果明天不下雨，我们就去学校打篮球。",
+"Cô ấy mua cho tôi một chiếc điện thoại mới, tôi rất thích.|她给我买了一个新手机，我很喜欢。",
+"Tôi không biết bạn của tôi ở đâu, bạn có biết không?|我不知道我的朋友在哪儿，你知道吗？",
+"Bạn muốn uống nước hay uống trà? Tôi đi mua cho bạn.|你想喝水还是喝茶？我去给你买。",
+"Quyển sách này không phải của tôi, là của bạn học tôi.|这本书不是我的，是我同学的。",
+"Tôi học tiếng Trung được hai năm rồi, nhưng nói vẫn chưa tốt lắm.|我学汉语学了两年了，但是说得还不太好。",
+"Bây giờ đã tám giờ rồi, sao bạn vẫn chưa ăn cơm?|现在已经八点了，你怎么还没吃饭？",
+"Hôm nay trời rất lạnh, bạn mặc thêm quần áo vào.|今天很冷，你多穿一点儿衣服。",
+"Nhà tôi có bốn người: bố, mẹ, anh trai và tôi.|我家有四口人：爸爸、妈妈、哥哥和我。",
+"Anh ấy vừa xem tivi vừa ăn cơm.|他一边看电视一边吃饭。",
+"Cái này bao nhiêu tiền? Đắt quá, rẻ một chút được không?|这个多少钱？太贵了，能便宜一点儿吗？",
+"Tôi muốn đi Bắc Kinh học tiếng Trung, nhưng tôi không có tiền.|我想去北京学汉语，但是我没有钱。",
+"Bạn tôi nói ngày mai cô ấy không đến trường.|我的朋友说她明天不去学校。",
+"Cô giáo hỏi chúng tôi: \"Các em hiểu rồi chứ?\"|老师问我们：\"你们懂了吗？\"",
+"Tôi thích ăn cơm mẹ nấu nhất.|我最喜欢吃妈妈做的饭。",
+"Hôm qua tôi ngủ rất muộn nên hôm nay cảm thấy rất mệt.|昨天我睡得很晚，所以今天觉得很累。"
+];
+const $=s=>document.querySelector(s);
+const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+$('#grammar').innerHTML=G.map((g,i)=>{
+  const id='nhom'+i,items=g[1].map(r=>{const f=r.split('|');
+    const ex=f[4].split('^').map(e=>{const p=e.split('~');return `<div class="ex"><div class="zh">${p[0]}</div><div class="py">${p[1]}</div><div class="vi">(${p[2]})</div></div>`}).join('');
+    return `<div class="gp"><div class="gp-h"><span class="num">${f[0]}</span><h3>${f[1]}</h3></div><span class="st">${f[2]}</span><p>${f[3]}</p>${ex}</div>`}).join('');
+  return `<h2 class="sec" id="${id}">${g[0]}</h2>${items}`}).join('');
+$('#chips').innerHTML=G.map((g,i)=>`<a href="#nhom${i}">${g[0].slice(0,1)} · ${g[0].slice(3)}</a>`).join('')+'<a href="#baitap">Bài tập</a>';
+$('#errs').innerHTML=E.map((r,i)=>{const f=r.split('|');
+  return `<div class="q"><small>Câu ${i+1} · ${f[2]}</small><div class="zh">${f[0]}</div><input id="e${i}" placeholder="Viết lại câu đúng…" autocomplete="off"><div class="res" id="re${i}"></div></div>`}).join('');
+$('#trans').innerHTML=T.map((r,i)=>{const f=r.split('|');
+  return `<div class="q"><small>Câu ${i+1}</small><div>${f[0]}</div><input id="t${i}" placeholder="Dịch sang tiếng Trung…" autocomplete="off"><div class="res" id="rt${i}"></div></div>`}).join('');
+const norm=s=>s.replace(/[\s，。？！、,.?!：:；;“”"'（）()]/g,'');
+$('#grade').onclick=()=>{
+  let ok=0;
+  E.forEach((r,i)=>{const f=r.split('|'),ans=f[1].split('/'),v=$('#e'+i).value,box=$('#re'+i);
+    const good=v.trim()&&ans.some(a=>norm(a)===norm(v));if(good)ok++;
+    box.className='res '+(good?'ok':'bad');box.style.display='block';
+    box.innerHTML=(good?'✓ Chính xác! ':'✗ Chưa đúng. ')+'Đáp án: <b>'+ans.join(' &nbsp;/&nbsp; ')+'</b><br>'+f[3]});
+  T.forEach((r,i)=>{const f=r.split('|'),v=$('#t'+i).value.trim(),box=$('#rt'+i);
+    box.className='res hint';box.style.display='block';
+    box.innerHTML=(v?'Bài của bạn: '+esc(v)+'<br>':'')+'Gợi ý dịch: <b>'+f[1]+'</b>'});
+  const s=$('#score');s.style.display='block';s.textContent='Sửa câu sai: '+ok+'/'+E.length+' câu đúng. Phần dịch hãy đối chiếu với gợi ý (cách dịch khác đúng nghĩa vẫn được).';
+  s.scrollIntoView({behavior:'smooth',block:'center'});
+};
+$('#reset').onclick=()=>{document.querySelectorAll('.q input').forEach(i=>i.value='');document.querySelectorAll('.res').forEach(r=>r.style.display='none');$('#score').style.display='none';window.scrollTo({top:document.getElementById('baitap').offsetTop-80,behavior:'smooth'})};
+</script>
+</body>
+</html>
