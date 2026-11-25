@@ -328,14 +328,25 @@
     E(78, 215, 17, 9.5, CREAM, 3) + E(122, 215, 17, 9.5, CREAM, 3) +
     L('M73 216 v4 M81 216 v4 M119 216 v4 M127 216 v4', OL, 2);
 
+  // mood: '' (mặc định: cười nhẹ) | 'happy' (vui, mắt cười) | 'sad' (buồn: đói hoặc mất chuỗi)
   function headSVG(mood) {
-    var eyes = mood === 'happy'
-      ? L('M66 100 Q76 87 86 100', '#2B1A17', 4) + L('M114 100 Q124 87 134 100', '#2B1A17', 4)
-      : E(76, 97, 7.5, 9, '#2B1A17', 0) + C(78.8, 93, 2.8, '#fff', 0) + C(73.6, 100.5, 1.3, '#fff', 0) +
+    var EYE_OPEN = E(76, 97, 7.5, 9, '#2B1A17', 0) + C(78.8, 93, 2.8, '#fff', 0) + C(73.6, 100.5, 1.3, '#fff', 0) +
         E(124, 97, 7.5, 9, '#2B1A17', 0) + C(126.8, 93, 2.8, '#fff', 0) + C(121.6, 100.5, 1.3, '#fff', 0);
-    var mouth = mood === 'happy'
-      ? P('M92 114 Q100 114 108 114 Q106 125 100 125 Q94 125 92 114Z', '#D64560', 2, '#4A2A22')
-      : L('M100 113.5 Q100 118 94 119 M100 113.5 Q100 118 106 119', '#4A2A22', 2.4);
+    var eyes, mouth;
+    if (mood === 'happy') {
+      eyes = L('M66 100 Q76 87 86 100', '#2B1A17', 4) + L('M114 100 Q124 87 134 100', '#2B1A17', 4);
+      mouth = P('M92 114 Q100 114 108 114 Q106 125 100 125 Q94 125 92 114Z', '#D64560', 2, '#4A2A22');
+    } else if (mood === 'sad') {
+      // mắt to long lanh, lông mày xệ, một giọt nước mắt, miệng cong xuống
+      eyes = EYE_OPEN +
+        L('M63 87 Q73 82 87 79', '#4A2A22', 2.6) + L('M137 87 Q127 82 113 79', '#4A2A22', 2.6) +
+        P('M66 108 Q61.5 115 66 118.5 Q70.5 115 66 108Z', '#9AD1F5', 1.2, '#4A8DBF');
+      mouth = L('M100 113.5 L100 117 M92 125 Q100 116.5 108 125', '#4A2A22', 2.4);
+    } else {
+      // mặc định: cười nhẹ kiểu mèo (chữ w hướng lên)
+      eyes = EYE_OPEN;
+      mouth = L('M100 113.5 L100 117 M100 117 Q95 124.5 88.5 116 M100 117 Q105 124.5 111.5 116', '#4A2A22', 2.4);
+    }
     return E(100, 92, 58, 48, CREAM, 0) +
       P('M52 86 Q50 66 67 56 Q79 50 90 48 Q85 64 82 80 Q68 92 52 86Z', '#F2A65A', 0) +
       P('M146 80 Q148 66 134 57 Q124 52 116 50 Q120 64 122 76 Q134 86 146 80Z', '#4B3A35', 0) +
@@ -774,7 +785,7 @@
   function updateMini() {
     if (!mini) return;
     var av = mini.querySelector('.av');
-    if (av) av.innerHTML = catSVG('mini', eqSafe(), '');
+    if (av) { var mm = moodNow(null); av.innerHTML = catSVG('mini', eqSafe(), mm === 'sad' ? 'sad' : ''); }
     if (lastView) {
       badge.textContent = '🔥 ' + lastView.state.count;
       mini.style.setProperty('--p', ringPct());
@@ -818,9 +829,19 @@
     if (!nm) return '<div class="nm"><button class="nmb empty" type="button" data-act="edit-name">＋ Đặt tên cho mèo</button></div>';
     return '<div class="nm"><button class="nmb" type="button" data-act="edit-name" aria-label="Đổi tên mèo: ' + esc(nm) + '"><span class="t">' + esc(nm) + '</span><i>✎</i></button></div>';
   }
+  // Tâm trạng của mèo: vui khi vừa được ăn / đặt tên / nhận quà; buồn khi đói (hôm nay chưa được ăn) hoặc chuỗi vừa bị đứt; còn lại cười nhẹ.
+  // Muốn mèo CHỈ buồn khi mất chuỗi (không buồn vì đói): xoá điều kiện `hungry` bên dưới.
+  function moodNow(o) {
+    if ((o && (o.fed || o.named)) || ui.mode !== 'main') return 'happy';
+    if (fish) rollDay();
+    var f = fish ? fish.d.f : 0;
+    var lost = !!(lastView && lastView.kind === 'reset');
+    var hungry = fishReady && f < 1;
+    if ((hungry || lost) && f < 1) return 'sad';
+    return '';
+  }
   function catBoxHTML(o) {
-    var happy = o && (o.fed || o.named) || ui.mode !== 'main';
-    return catSVG('full', eqSafe(), happy ? 'happy' : '') +
+    return catSVG('full', eqSafe(), moodNow(o)) +
       (o && o.fed ? '<span class="fly">🐟</span><span class="hr h1">♥</span><span class="hr h2">♥</span><span class="hr h3">♥</span>' : '');
   }
   function heroHTML(o) {
@@ -988,6 +1009,7 @@
       case 'feed':
         if (!feed()) return;
         renderCard({ fed: true }, true);
+        updateMini();
         el = ov.querySelector('.feed'); (el && !el.disabled ? el : ov.querySelector('.go')).focus();
         break;
       case 'mail-open':
