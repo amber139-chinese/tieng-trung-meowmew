@@ -439,5 +439,6 @@ async function load(){
 document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{course=b.dataset.course;history.replaceState(null,'',`?course=${course}`);load()});
 window.addEventListener('meow-auth-ready',load,{once:true});
 </script>
+<script defer src="meow-cat.js"></script>
 </body>
 </html>

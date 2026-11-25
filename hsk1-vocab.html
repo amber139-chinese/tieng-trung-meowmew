@@ -1248,6 +1248,7 @@ function answerQuiz(chosenId){
   const fb=$('#quizFeedback');
   if(ok){
     quizCorrect++;
+    try{window.MeowCat&&MeowCat.correct(location.pathname.split('/').pop()+':'+w.id)}catch(e){} // 🐟 +1 cá cho mèo
     fb.className='quiz-feedback show ok';
     fb.textContent='Chính xác! '+(w.pinyin?w.pinyin+' · ':'')+(w.meanings||'');
   }else{
@@ -1377,5 +1378,6 @@ else {
   loadSheet();
 })();
 </script>
+<script defer src="meow-cat.js" data-standalone></script>
 </body>
 </html>

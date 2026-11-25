@@ -150,4 +150,5 @@ async function send(){if(!C.ENDPOINT)return;try{await fetch(C.ENDPOINT,{method:'
 function mail(){if(C.ENDPOINT){send();return}const p=payload();location.href=`mailto:${C.FALLBACK_EMAIL||''}?subject=${encodeURIComponent('Thi thử HSK1 số '+X.id+' - '+S.name+' - '+S.cls)}&body=${encodeURIComponent(p.score+(p.passed?' - Đạt':' - Chưa đạt')+' (Nghe hiểu '+p.listening+', Đọc hiểu '+p.reading+'; đúng '+p.correct+')\n'+p.answers.map(a=>a.q+'.'+(a.answer||'-')).join(' '))}`}
 function toast(t){const e=$('#toast');e.textContent=t;e.style.display='block';setTimeout(()=>e.style.display='none',3500)}
 if(S.start&&S.name)begin();
-</script></body></html>
+</script><script defer src="/meow-cat.js" data-standalone></script>
+</body></html>

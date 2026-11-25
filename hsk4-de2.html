@@ -415,4 +415,5 @@ const TOTAL=105*60*1000;
 function tick(){const left=Math.max(0,TOTAL-(Date.now()-state.startedAt));const s=Math.floor(left/1000),h=Math.floor(s/3600),m=Math.floor((s%3600)/60),ss=s%60;$('timer').textContent=[h,m,ss].map(x=>String(x).padStart(2,'0')).join(':');if(left<=0)submitExam()}
 setInterval(tick,1000);tick();render();
 </script>
+<script defer src="meow-cat.js" data-standalone></script>
 </body></html>

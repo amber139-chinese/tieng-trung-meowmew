@@ -1521,6 +1521,7 @@ function answerQuiz(chosenId){
   const fb = $('#quizFeedback');
   if(ok){
     quizCorrect++;
+    try{window.MeowCat&&MeowCat.correct(location.pathname.split('/').pop()+':'+w.id)}catch(e){} // 🐟 +1 cá cho mèo
     fb.className = 'quiz-feedback show ok';
     fb.textContent = 'Chính xác! ' + (w.pinyin ? w.pinyin + ' · ' : '') + (w.meanings || '');
     // đúng rồi thì có thể bỏ khỏi chưa thuộc nếu muốn — không tự động
@@ -1728,5 +1729,6 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#strokeModal').c
   try{ renderUnlearned(); }catch(e){}
 })();
 </script>
+<script defer src="meow-cat.js"></script>
 </body>
 </html>
