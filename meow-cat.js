@@ -42,7 +42,7 @@
   var FISH_VOCAB_CAP = 15; // tối đa cá kiếm từ từ vựng mỗi ngày
   var FISH_EX_CAP = 30;    // tối đa cá kiếm từ bài tập mỗi ngày
   var FEED_CAP = 5;        // mèo ăn tối đa bấy nhiêu con cá mỗi ngày (no rồi thì mai ăn tiếp)
-  var LEVELS = [[0, 'Mèo con'], [10, 'Mèo ngoan'], [30, 'Mèo béo'], [80, 'Mèo Thần Tài 财神']]; // [số cá đã ăn, danh hiệu]
+  var LEVELS = [[0, 'Meow Meow'], [10, 'Mèo ngoan'], [30, 'Mèo béo'], [80, 'Mèo Thần Tài 财神']]; // [số cá đã ăn, danh hiệu]
   /* ===================== */
 
   var thisScript = document.currentScript;
@@ -701,16 +701,16 @@
     var ms = MILESTONES.indexOf(n) >= 0 && (kind === 'extended' || kind === 'saved');
     var h, p;
     if (kind === 'first') {
-      h = 'Chào bạn! Mình bắt đầu chuỗi nhé';
-      p = 'Hôm nay là ngày đầu tiên. Mai quay lại để chuỗi lên ' + (n + 1) + ' ngày nha!';
+      h = '你好! Chúng mình bắt đầu chuỗi nhaaa';
+      p = 'Hôm nay là ngày đầu tiên. Mai quay lại để chuỗi lên nào!!! ' + (n + 1) + ' ngày nha!';
     } else if (kind === 'extended') {
-      h = ms ? 'Mốc ' + n + ' ngày liên tiếp!' : 'Đã giữ chuỗi hôm nay!';
+      h = ms ? 'Mốc ' + n + ' ngày liên tiếp!' : 'Đã giữ chuỗi hôm nay! Bạn giỏi quá iii';
       p = ms ? name + ' tự hào về bạn lắm. 太棒了!' : name + ' đã giữ chuỗi giúp bạn rồi. Mai nhớ quay lại nha!';
     } else if (kind === 'saved') {
       h = 'Thẻ đóng băng đã cứu chuỗi! ❄';
       p = 'Bạn vắng ' + view.missed + ' ngày, ' + name + ' đã dùng ' + view.used + ' thẻ để giữ chuỗi ' + n + ' ngày cho bạn.';
     } else if (kind === 'reset') {
-      h = 'Chuỗi cũ đã đứt, mình làm lại nhé';
+      h = 'Chuỗi cũ đã đứt, mình làm lại nhé, huhu';
       p = 'Chuỗi ' + view.prev + ' ngày trước đó đã dừng (bạn vắng ' + view.missed + ' ngày mà chỉ có ' + fz + ' thẻ ❄). ' +
         'Từ hôm nay ' + name + ' cùng bạn đếm lại từ 1. Đồ đã mở vẫn là của bạn!';
     } else {
@@ -797,14 +797,14 @@
 
   function moodText(o) {
     var f = fish ? fish.d.f : 0, bal = fishBalance();
-    if (ui.mode === 'adopt') return 'Meo~ bạn đặt tên cho mình nhé?';
+    if (ui.mode === 'adopt') return 'Meow~ bạn đặt tên cho tui điiii';
     if (ui.mode === 'reward') return 'Oa! Mình có đồ mới rồi nè!';
     if (o && o.named) return 'Meo~ Mình thích cái tên "' + catName() + '" lắm! ♥';
-    if (o && o.fed) return f >= FEED_CAP ? 'Ực… no căng rồi! Cảm ơn bạn nhiều ♥' : ['好吃! Ngon quá, cảm ơn bạn!', 'Nhồm nhoàm… ngon ghê á!', 'Meo meo~ thêm miếng nữa nha!'][f % 3];
-    if (f >= FEED_CAP) return 'Mèo no rồi, mai ăn tiếp nhé!';
+    if (o && o.fed) return f >= FEED_CAP ? 'Ực… no căng rồi! Cảm ơn bạn nhiều ♥' : ['好吃! Ngon quá xá lun, cảm ơn bảo bối nha', 'Nhồm nhoàm… ngon ghê á!', 'Meo meo~ thêm miếng nữa nha!'][f % 3];
+    if (f >= FEED_CAP) return 'Mèo no rồi, mai mèo ăn tiếp hen!';
     if (f >= 3) return 'Mèo no căng rồi ♥';
-    if (f >= 1) return 'Mèo ăn ngon lắm, cảm ơn bạn!';
-    return bal > 0 ? 'Meo~ mình đói bụng, bạn cho mình ăn cá nhé!' : 'Meo~ mình đói… làm bài đúng để kiếm cá cho mình nhé!';
+    if (f >= 1) return 'Mèo ăn ngon quá xá lun, 谢谢你!';
+    return bal > 0 ? 'Meow~ tui đói bụng rồi, có ai cho tui ăn cá hong z' : 'Meo~ mình đói… làm bài đúng để kiếm cá cho mình được hong';
   }
 
   function pantryHTML() {
@@ -906,8 +906,8 @@
   function adoptHTML() {
     var chips = NAME_IDEAS.map(function (n) { return '<button type="button" class="chip" data-act="chip" data-n="' + esc(n) + '">' + esc(n) + '</button>'; }).join('');
     return '<h2 class="ttl">Đặt tên cho chú mèo của bạn</h2>' +
-      '<p class="sub">Mèo sẽ ở bên bạn mỗi ngày học, cùng bạn giữ chuỗi và nhận quà. Bạn có thể đổi tên bất cứ lúc nào.</p>' +
-      '<form class="nmf big" data-form="adopt" autocomplete="off"><input maxlength="' + NAME_MAX + '" placeholder="Nhập tên mèo…" aria-label="Tên mèo"></form>' +
+      '<p class="sub">Meow sẽ ở bên bạn mỗi ngày học, cùng bạn giữ chuỗi và nhận quà. Hong thích tên cũ thì đổi tên mới nhen </p>' +
+      '<form class="nmf big" data-form="adopt" autocomplete="off"><input maxlength="' + NAME_MAX + '" placeholder="Nhập tên mèo iu nào …" aria-label="Tên mèo"></form>' +
       '<div class="nerr" role="alert"></div><div class="sugg">Hoặc chọn một cái tên:</div><div class="chips">' + chips + '</div>';
   }
   function rewardHTML() {
