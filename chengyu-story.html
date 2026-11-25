@@ -254,4 +254,5 @@ quiz(pool,title)}
 function route(){const h=location.hash.slice(1)||"home",m=h.match(/^i(\d+)$/);app.onclick=click;document.querySelectorAll("#nav a").forEach(a=>a.classList.toggle("on",a.dataset.n==(m?"catalog":h)));
 if(m)detail(+m[1]);else if(h=="catalog"){catalog();top2()}else if(h=="flash")flash();else if(h=="quiz")quiz();else if(h=="review")review();else home();if(!m)top2()}
 let ready=0;function top2(){ready&&$("#tem").scrollIntoView()}addEventListener("hashchange",route);route();ready=1;
-</script></body></html>
+</script><script defer src="meow-cat.js" data-standalone></script>
+</body></html>
