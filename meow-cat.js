@@ -8,8 +8,8 @@
  *   để mở mũ / giày / trang phục / phụ kiện cho mèo. Quà tính theo KỶ LỤC chuỗi nên đứt chuỗi cũng không mất quà.
  * - Chuỗi tính theo ngày (giờ máy học viên): mở web mỗi ngày = giữ chuỗi.
  * - Thẻ đóng băng ❄: học đủ 7 ngày liên tiếp nhận 1 thẻ (tối đa 2). Vắng ngày nào thì tự dùng thẻ để cứu chuỗi.
- * - Cá 🐟: làm đúng từ vựng (+1/câu) hoặc làm bài tập (tối đa +5/phần) để kiếm cá, rồi cho mèo ăn.
- *   Trang khác muốn tặng cá thì gọi:  MeowCat.correct('khoa-duy-nhat')  hoặc  MeowCat.reward('ten-bai', diemPhanTram)
+ * - Cá 🐟: đúng 5 từ vựng +1 cá; làm đạt 1 phần bài tập (>=80%) +1 cá; thắng game (đúng 10 từ/câu) +1 cá; rồi cho mèo ăn.
+ *   Trang khác muốn tặng cá thì gọi:  MeowCat.correct('khoa-duy-nhat')  hoặc  MeowCat.reward('ten-bai', diemPhanTram)  hoặc  MeowCat.gameWin('ten-game', soTuDung)
  * - Nhắc qua email: học viên tự nhập email thật trong popup (cần chạy tao-bang-streak.sql + deploy
  *   supabase/functions/streak-reminder).
  * - Lưu localStorage theo tài khoản; nếu đã chạy tao-bang-streak.sql thì đồng bộ lên Supabase.
@@ -39,8 +39,13 @@
   var MILESTONES = [3, 7, 14, 21, 30, 50, 75, 100, 200, 365];
   var FREEZE_EVERY = 7;   // học đủ bấy nhiêu ngày liên tiếp thì nhận 1 thẻ đóng băng
   var MAX_FREEZES = 2;    // giữ tối đa bấy nhiêu thẻ cùng lúc
-  var FISH_VOCAB_CAP = 15; // tối đa cá kiếm từ từ vựng mỗi ngày
-  var FISH_EX_CAP = 30;    // tối đa cá kiếm từ bài tập mỗi ngày
+  var VOCAB_PER_FISH = 5;  // đúng bấy nhiêu từ vựng thì được 1 cá
+  var PASS_SCORE = 80;     // điểm % tối thiểu để tính là làm đúng 1 phần bài tập
+  var EX_FISH = 1;         // số cá cho mỗi phần bài tập đạt (mỗi bài hsk1/hsk2/hsk3/hsk4 tính riêng, 1 lần/ngày)
+  var GAME_WIN_WORDS = 10; // chơi game: đúng đủ bấy nhiêu từ/câu trong 1 lượt thì thắng
+  var GAME_FISH = 1;       // số cá cho mỗi lượt game thắng
+  var FISH_VOCAB_CAP = 5;  // tối đa cá kiếm từ từ vựng mỗi ngày (5 cá = 25 từ)
+  var FISH_EX_CAP = 10;    // tối đa cá kiếm từ bài tập + game mỗi ngày
   var FEED_CAP = 5;        // mèo ăn tối đa bấy nhiêu con cá mỗi ngày (no rồi thì mai ăn tiếp)
   var LEVELS = [[0, 'Meow Meow'], [10, 'Mèo ngoan'], [30, 'Mèo béo'], [80, 'Mèo Thần Tài 财神']]; // [số cá đã ăn, danh hiệu]
   /* ===================== */
@@ -453,22 +458,35 @@
   }
   function whenReady(fn) { if (fishReady) fn(); else pending.push(fn); }
 
-  // 1 từ vựng đúng = +1 cá (mỗi từ chỉ được tính 1 lần/ngày)
+  // 5 từ vựng đúng = +1 cá (mỗi từ chỉ được tính 1 lần/ngày). Đếm số từ qua fish.d.keys nên không cần thêm trường dữ liệu mới.
   function correct(key) {
     whenReady(function () {
       rollDay();
       var k = 'v:' + key;
       if (fish.d.keys[k]) return;
-      if (addFish(1, 'v')) fish.d.keys[k] = 1;
+      fish.d.keys[k] = 1;
+      var n = 0, i;
+      for (i in fish.d.keys) if (i.indexOf('v:') === 0) n++;        // số từ đúng hôm nay
+      var owed = Math.floor(n / VOCAB_PER_FISH) - fish.d.v;          // cá đáng được nhận - cá đã nhận
+      var got = owed > 0 ? addFish(owed, 'v') : 0;
+      if (!got) persistFish();                                       // chưa đủ 5 từ vẫn phải lưu để nhớ số từ
     });
   }
-  // bài tập: điểm% -> tối đa 5 cá/phần/ngày; làm lại điểm cao hơn thì được thêm phần chênh
+  // bài tập: làm đạt (>= PASS_SCORE %) 1 phần bài tập nhỏ của 1 bài => +EX_FISH cá, mỗi phần chỉ nhận 1 lần/ngày
   function reward(key, score) {
     whenReady(function () {
       rollDay();
-      var want = Math.max(0, Math.min(5, Math.floor((Number(score) || 0) / 20))), k = 'g:' + key, old = fish.d.keys[k] | 0;
-      if (want > old) { var got = addFish(want - old, 'x'); if (got) fish.d.keys[k] = old + got; }
+      var k = 'g:' + key;
+      if (fish.d.keys[k]) return;
+      if ((Number(score) || 0) < PASS_SCORE) return;
+      fish.d.keys[k] = 1;
+      if (!addFish(EX_FISH, 'x')) persistFish();
     });
+  }
+  // game: thắng 1 lượt (đúng >= GAME_WIN_WORDS từ/câu) => +GAME_FISH cá. Chơi lại được tiếp, nhưng tổng cá bài tập + game có trần mỗi ngày (FISH_EX_CAP).
+  function gameWin(name, words) {
+    if ((Number(words) || 0) < GAME_WIN_WORDS) return;
+    whenReady(function () { rollDay(); addFish(GAME_FISH, 'x'); });
   }
   function feed() {
     if (!fishReady) return false;
@@ -816,7 +834,7 @@
     return '<div class="pantry"><div class="prow"><div><div class="fn">🐟 <b>' + bal + '</b> cá trong túi</div>' +
       '<div class="pips">' + pips + '<em>hôm nay đã ăn ' + f + '/' + FEED_CAP + '</em></div></div>' +
       '<button type="button" class="feed" data-act="feed"' + (can ? '' : ' disabled') + '>' + (full ? 'Mèo no rồi' : bal < 1 ? 'Hết cá' : 'Cho ăn 🐟') + '</button></div>' +
-      '<div class="phint">Đúng 1 câu từ vựng +1 🐟 · Làm bài tập tới +5 🐟 mỗi phần · đã cho ăn tổng ' + fishFedTotal() + ' 🐟</div></div>';
+      '<div class="phint">Đúng 5 từ vựng +1 🐟 · Làm đạt mỗi phần bài tập +1 🐟 · Thắng game (đúng 10 từ) +1 🐟 · đã cho ăn tổng ' + fishFedTotal() + ' 🐟</div></div>';
   }
 
   /* --- thẻ: hero --- */
@@ -1158,6 +1176,7 @@
     show: function () { open(false); },
     correct: correct,
     reward: reward,
+    gameWin: gameWin,
     name: function () { return catName(); },
     setName: function (n) { return fishReady ? commitName(n) : false; },
     fish: function () { return fishReady ? { balance: fishBalance(), fed: fishFedTotal(), level: levelName() } : null; },
