@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>猫猫词典 – Meow Meow Dictionary | Từ điển Trung – Việt | Tiếng Trung Meow Meow</title>
+<meta name="description" content="Từ điển Trung – Việt miễn phí: tra theo chữ Hán giản thể, phồn thể, pinyin (có dấu, không dấu, số thanh) và nghĩa tiếng Việt.">
+<meta name="theme-color" content="#F4BDD0">
+<link rel="icon" href="../favicon.ico" sizes="48x48">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="dictionary.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../index.html">TIẾNG TRUNG MEOW MEOW · 中文课堂</a>
+  <a class="toplink" href="../index.html">Trang chính</a>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <h1><span class="hz">猫猫词典</span><span class="en">Meow Meow Dictionary</span></h1>
+    <p class="sub">Từ điển Trung – Việt cho người học tiếng Trung</p>
+
+    <form id="searchForm" class="search" role="search" autocomplete="off">
+      <label class="sr" for="q">Tra từ</label>
+      <input id="q" name="q" type="search" inputmode="search" enterkeyhint="search" spellcheck="false" autocapitalize="off"
+             placeholder="Nhập chữ Hán, pinyin hoặc nghĩa tiếng Việt…" aria-autocomplete="list" aria-controls="suggest" aria-expanded="false">
+      <button type="submit" class="go" aria-label="Tra từ">Tra</button>
+      <ul id="suggest" class="suggest" role="listbox" hidden></ul>
+    </form>
+  </section>
+
+  <div id="status" class="status" role="status" aria-live="polite"></div>
+
+  <section id="viewHome" class="view">
+    <div id="historyBox" class="box" hidden>
+      <div class="box-head"><h2>Tra gần đây</h2><button type="button" id="clearHistory" class="link">Xoá lịch sử</button></div>
+      <div id="historyList" class="chips"></div>
+    </div>
+    <div class="box">
+      <h2>Bạn có thể tra bằng</h2>
+      <ul class="howto">
+        <li><b>Chữ Hán</b> giản thể hoặc phồn thể <span class="chips"><button class="chip ex" data-q="学习">学习</button><button class="chip ex" data-q="學習">學習</button></span></li>
+        <li><b>Pinyin</b> có dấu, không dấu hoặc số thanh <span class="chips"><button class="chip ex" data-q="xuéxí">xuéxí</button><button class="chip ex" data-q="xuexi">xuexi</button><button class="chip ex" data-q="xue2xi2">xue2xi2</button></span></li>
+        <li><b>Nghĩa tiếng Việt</b> <span class="chips"><button class="chip ex" data-q="mèo">mèo</button><button class="chip ex" data-q="học tập">học tập</button></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="viewResults" class="view" hidden>
+    <h2 id="resultsTitle" class="results-title"></h2>
+    <div id="segments" class="box" hidden></div>
+    <div id="resultList" class="list"></div>
+    <div class="more-wrap"><button id="moreBtn" class="btn" type="button" hidden>Xem thêm kết quả</button></div>
+  </section>
+
+  <section id="viewDetail" class="view" hidden></section>
+</main>
+
+<footer class="foot">
+  <p>Dữ liệu từ điển: <a href="https://github.com/ph0ngp/CVDICT" target="_blank" rel="noopener">CVDICT</a> (dựa trên CC-CEDICT),
+  giấy phép <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>.
+  Dữ liệu biên soạn riêng của Meow Meow được gắn nhãn riêng trong từng mục từ.</p>
+</footer>
+
+<noscript><p style="padding:20px;text-align:center">Từ điển cần bật JavaScript để hoạt động.</p></noscript>
+<script src="data-loader.js"></script>
+<script src="search-engine.js"></script>
+<script src="word-detail.js"></script>
+<script src="dictionary.js"></script>
+</body>
+</html>
