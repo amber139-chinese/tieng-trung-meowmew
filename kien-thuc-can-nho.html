@@ -186,6 +186,30 @@ a{color:inherit}
     中文学习空间 · Tiếng Trung Meow Meow
   </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/* Yêu cầu đăng nhập khi bấm vào từng thư mục */
+(function(){
+  var db = window.supabase.createClient(
+    "https://xmtvmwcjjqqzscmkdlwd.supabase.co",
+    "sb_publishable_R5TEjUNB6lDTJuN4MNdhVQ_ANwIaKLP"
+  );
+  document.querySelectorAll("a.entry-card").forEach(function(a){
+    a.addEventListener("click", async function(e){
+      e.preventDefault();
+      var href = a.getAttribute("href");
+      var go = function(url){ location.href = url; };
+      try {
+        var r = await db.auth.getSession();
+        if (r.data && r.data.session) go(href);
+        else go("login.html?next=" + encodeURIComponent(href));
+      } catch(err) {
+        go("login.html?next=" + encodeURIComponent(href));
+      }
+    });
+  });
+})();
+</script>
 <script defer src="meow-cat.js" data-standalone></script>
 </body>
 </html>
