@@ -8,6 +8,11 @@ on:
       - 'CVDICT.json'
       - 'data/dictionary/supplements.json'
       - 'scripts/build-dictionary.py'
+      - 'scripts/import-hsk-vocab.py'
+      - 'hsk2-vocab.html'
+      - 'hsk3-vocab.html'
+      - 'hsk4-vocab.html'
+      - 'hsk789-vocab.html'
 
 permissions:
   contents: write
@@ -23,7 +28,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Build
+      - name: Build (lần 1: mục từ từ CVDICT)
+        run: python scripts/build-dictionary.py
+      - name: Import loại từ, ví dụ, cấp HSK từ các trang từ vựng
+        run: python scripts/import-hsk-vocab.py
+      - name: Build (lần 2: ghép dữ liệu bổ sung vào chỉ mục)
         run: python scripts/build-dictionary.py
       - name: Validate data
         run: python scripts/validate-dictionary.py
