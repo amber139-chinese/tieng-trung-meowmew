@@ -1,0 +1,38 @@
+name: Build dictionary data
+
+# Dựng lại dữ liệu từ điển (data/dictionary/) khi nguồn thay đổi. Chạy tay: tab Actions → "Build dictionary data" → Run workflow.
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'CVDICT.json'
+      - 'data/dictionary/supplements.json'
+      - 'scripts/build-dictionary.py'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Build
+        run: python scripts/build-dictionary.py
+      - name: Validate data
+        run: python scripts/validate-dictionary.py
+      - name: Test search engine
+        run: node scripts/test-dictionary.js
+      - name: Commit data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/dictionary
+          git diff --cached --quiet || git commit -m "Update dictionary data"
+          git push
