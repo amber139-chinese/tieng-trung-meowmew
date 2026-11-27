@@ -81,7 +81,7 @@
   function create(opts) {
     var load = opts.load;                       // function(relativePath) -> Promise<json>
     var BASE = opts.base || 'data/dictionary/';
-    var manifest = null, memo = {}, suppPromise = null;
+    var manifest = null, memo = {};
     var CAND_MAX = opts.candidateMax || 300;
 
     function getJSON(rel) {
@@ -160,14 +160,24 @@
       });
     }
 
-    function getSupplements() {
-      if (!suppPromise) suppPromise = getJSON('supplements.json').then(function (j) { return (j && j.entries) || {}; })
-        .catch(function () { return {}; });          // thiếu file bổ sung không được làm hỏng từ điển
-      return suppPromise;
+    /* Dữ liệu bổ sung (loại từ, ví dụ, HSK, Hán Việt...) nằm trong supp/s-NNN.json, mỗi file phục vụ suppSize mục từ.
+     * Trả về {id: dữ liệu bổ sung}; mục nào không có thì không xuất hiện. Thiếu/lỗi file bổ sung không làm hỏng tra cứu. */
+    function supplementsFor(entries) {
+      return ready().then(function (m) {
+        var size = m.suppSize || 1000, have = {}, need = {};
+        (m.suppShards || []).forEach(function (n) { have[n] = 1; });
+        entries.forEach(function (e) { var n = Math.floor(e.id / size); if (have[n]) need[n] = 1; });
+        return Promise.all(Object.keys(need).map(function (n) {
+          return getJSON('supp/s-' + pad(n) + '.json').catch(function () { return {}; });
+        })).then(function (parts) {
+          var all = {}, out = {};
+          parts.forEach(function (part) { for (var k in part) all[k] = part[k]; });
+          entries.forEach(function (e) { if (all[e.id]) out[e.id] = all[e.id]; });
+          return out;
+        });
+      });
     }
-    function supplementFor(entry) {
-      return getSupplements().then(function (all) { return all[entry.s + '|' + entry.p] || null; });
-    }
+    function supplementFor(entry) { return supplementsFor([entry]).then(function (m) { return m[entry.id] || null; }); }
 
     /* ---- tra theo chữ Hán ---- */
     function hanSearch(q, add) {
@@ -333,7 +343,7 @@
 
     return {
       init: init, search: search, lookupHeadword: lookupHeadword, startsWith: startsWith,
-      supplementFor: supplementFor, getSupplements: getSupplements, getEntries: getEntries,
+      supplementFor: supplementFor, supplementsFor: supplementsFor, getEntries: getEntries,
       meta: function () { return manifest; }
     };
   }

@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>猫猫词典 – Meow Meow Dictionary | Từ điển Trung – Việt | Tiếng Trung Meow Meow</title>
 <meta name="description" content="Từ điển Trung – Việt miễn phí: tra theo chữ Hán giản thể, phồn thể, pinyin (có dấu, không dấu, số thanh) và nghĩa tiếng Việt.">
-<meta name="theme-color" content="#F4BDD0">
-<link rel="icon" href="../favicon.ico" sizes="48x48">
+<meta name="theme-color" content="#C8102E">
+<link rel="icon" type="image/svg+xml" href="img/meow-logo-bieu-tuong.svg">
+<link rel="alternate icon" href="../favicon.ico" sizes="48x48">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
@@ -14,20 +15,29 @@
 </head>
 <body>
 <header class="topbar">
-  <a class="brand" href="../index.html">TIẾNG TRUNG MEOW MEOW · 中文课堂</a>
-  <a class="toplink" href="../index.html">Trang chính</a>
+  <a class="brand" href="../index.html" aria-label="Tiếng Trung Meow Meow – về trang chính">
+    <img src="img/meow-logo-ngang-nen-toi.svg" alt="Tiếng Trung Meow Meow · 中文课堂" width="143" height="44">
+  </a>
+  <nav class="topnav" aria-label="Điều hướng"><a class="toplink" href="../index.html">Trang chính</a></nav>
 </header>
+<div class="fret" aria-hidden="true"></div>
 
 <main class="wrap">
   <section class="hero">
-    <h1><span class="hz">猫猫词典</span><span class="en">Meow Meow Dictionary</span></h1>
-    <p class="sub">Từ điển Trung – Việt cho người học tiếng Trung</p>
+    <div class="hero-top">
+      <img class="seal" src="img/meow-logo-bieu-tuong.svg" alt="" width="72" height="89">
+      <div class="hero-text">
+        <h1><span class="hz">猫猫词典</span><span class="en">Meow Meow Dictionary</span></h1>
+        <p class="sub">Từ điển Trung – Việt cho người học tiếng Trung</p>
+      </div>
+    </div>
+    <div class="rule" aria-hidden="true"><i></i></div>
 
     <form id="searchForm" class="search" role="search" autocomplete="off">
       <label class="sr" for="q">Tra từ</label>
       <input id="q" name="q" type="search" inputmode="search" enterkeyhint="search" spellcheck="false" autocapitalize="off"
-             placeholder="Nhập chữ Hán, pinyin hoặc nghĩa tiếng Việt…" aria-autocomplete="list" aria-controls="suggest" aria-expanded="false">
-      <button type="submit" class="go" aria-label="Tra từ">Tra</button>
+             placeholder="Chữ Hán, pinyin hoặc nghĩa Việt…" aria-autocomplete="list" aria-controls="suggest" aria-expanded="false">
+      <button type="submit" class="go" aria-label="Tra từ"><span class="zh" aria-hidden="true">查</span> Tra</button>
       <ul id="suggest" class="suggest" role="listbox" hidden></ul>
     </form>
   </section>
@@ -59,7 +69,9 @@
   <section id="viewDetail" class="view" hidden></section>
 </main>
 
+<div class="fret" aria-hidden="true"></div>
 <footer class="foot">
+  <img class="foot-logo" src="img/meow-logo-ngang-nen-toi.svg" alt="Tiếng Trung Meow Meow" width="120" height="37">
   <p>Dữ liệu từ điển: <a href="https://github.com/ph0ngp/CVDICT" target="_blank" rel="noopener">CVDICT</a> (dựa trên CC-CEDICT),
   giấy phép <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>.
   Dữ liệu biên soạn riêng của Meow Meow được gắn nhãn riêng trong từng mục từ.</p>
@@ -68,6 +80,7 @@
 <noscript><p style="padding:20px;text-align:center">Từ điển cần bật JavaScript để hoạt động.</p></noscript>
 <script src="data-loader.js"></script>
 <script src="search-engine.js"></script>
+<script src="speech.js"></script>
 <script src="word-detail.js"></script>
 <script src="dictionary.js"></script>
 </body>

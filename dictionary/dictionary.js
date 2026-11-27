@@ -67,7 +67,7 @@
 
   /* ---------- kết quả ---------- */
   function cardFor(r, suppMap) {
-    var e = r.entry, sp = suppMap[e.s + '|' + e.p];
+    var e = r.entry, sp = suppMap[e.id];
     var hz = h('div', { class: 'hz', lang: 'zh-Hans', text: e.s });
     if (e.t && e.t !== e.s) hz.appendChild(h('small', { lang: 'zh-Hant', text: e.t }));
     var body = h('div', {}, [h('div', { class: 'py', text: e.d || e.p })]);
@@ -76,12 +76,13 @@
     var meta = [];
     if (sp) meta.push(h('span', { class: 'tag mm', text: 'Meow Meow' }));
     if (sp && sp.hsk_level) meta.push(h('span', { class: 'tag', text: 'HSK ' + sp.hsk_level }));
+    if (sp && sp.part_of_speech) sp.part_of_speech.slice(0, 3).forEach(function (p) { meta.push(h('span', { class: 'tag pos', text: p })); });
     if (meta.length) body.appendChild(h('div', { class: 'meta' }, meta));
     var a = h('a', { class: 'card', href: url({ w: e.s }), 'data-w': e.s }, [hz, body]);
     return a;
   }
   function appendResults(res) {
-    return engine.getSupplements().then(function (sm) {
+    return engine.supplementsFor(res.results.map(function (r) { return r.entry; })).then(function (sm) {
       res.results.forEach(function (r) { el.list.appendChild(cardFor(r, sm)); });
     });
   }
@@ -161,7 +162,7 @@
   }
 
   /* ---------- gợi ý khi gõ ---------- */
-  function hideSuggest() { el.suggest.hidden = true; el.suggest.textContent = ''; el.q.setAttribute('aria-expanded', 'false'); state.sugItems = []; state.sugIndex = -1; }
+  function hideSuggest() { state.sugToken++; clearTimeout(state.sugTimer); el.suggest.hidden = true; el.suggest.textContent = ''; el.q.setAttribute('aria-expanded', 'false'); state.sugItems = []; state.sugIndex = -1; }
   function markSelected() {
     Array.prototype.forEach.call(el.suggest.children, function (li, i) { li.setAttribute('aria-selected', i === state.sugIndex ? 'true' : 'false'); });
   }

@@ -9,21 +9,34 @@ Module từ điển Trung – Việt độc lập tại `/dictionary/`. Không s
 | `dictionary/dictionary.js` | Điều hướng (`?q=` kết quả, `?w=` chi tiết), gợi ý khi gõ, lịch sử tra cứu |
 | `dictionary/search-engine.js` | Bộ máy tìm kiếm (chạy cả trên trình duyệt lẫn Node để kiểm thử) |
 | `dictionary/data-loader.js` | Nạp shard dữ liệu + cache IndexedDB theo phiên bản dữ liệu |
-| `dictionary/word-detail.js` | Trang chi tiết một từ |
+| `dictionary/word-detail.js` | Trang chi tiết một từ (loại từ, nghĩa theo từ loại, ví dụ có nút nghe, cấp HSK) |
+| `dictionary/speech.js` | Phát âm: chọn giọng giống các bài HSK (ưu tiên giọng nữ tự nhiên của trình duyệt), tốc độ 0,88 |
 | `CVDICT.json` | Nguồn gốc, **không bị sửa** |
 | `data/dictionary/` | Dữ liệu đã dựng (đừng sửa tay, trừ `supplements.json`) |
-| `scripts/build-dictionary.py` | Dựng dữ liệu từ `CVDICT.json` |
+| `scripts/import-hsk-vocab.py` | Lấy loại từ, câu ví dụ, cấp HSK từ `hsk2/3/4/789-vocab.html` → `data/dictionary/hsk-import.json` |
+| `scripts/build-dictionary.py` | Dựng dữ liệu từ `CVDICT.json` + dữ liệu bổ sung |
 | `scripts/validate-dictionary.py` | Kiểm tra toàn vẹn dữ liệu |
 | `scripts/test-dictionary.js` | Kiểm thử bộ máy tìm kiếm thật trên dữ liệu thật |
 | `.github/workflows/build-dictionary.yml` | Tự dựng lại + kiểm tra + commit khi nguồn đổi |
 
 ## Dựng lại dữ liệu
 ```
-python scripts/build-dictionary.py      # đọc CVDICT.json + data/dictionary/supplements.json
+python scripts/build-dictionary.py      # đọc CVDICT.json
+python scripts/import-hsk-vocab.py      # đọc các trang hsk*-vocab.html ở thư mục gốc
+python scripts/build-dictionary.py      # ghép dữ liệu bổ sung vào chỉ mục (chạy lại sau bước import)
 python scripts/validate-dictionary.py   # kiểm tra
 node scripts/test-dictionary.js         # kiểm thử tìm kiếm
 ```
-Hoặc trên GitHub: Actions → *Build dictionary data* → Run workflow.
+Hoặc trên GitHub: Actions → *Build dictionary data* → Run workflow (làm đủ các bước trên).
+
+## Dữ liệu bổ sung (loại từ, ví dụ, HSK, Hán Việt)
+Có hai nguồn, ghép lại theo từng trường, **biên soạn tay đè lên nhập tự động**:
+1. `data/dictionary/hsk-import.json`: tự sinh từ các trang từ vựng HSK2, HSK3, HSK4, HSK7–9. Chỉ lấy đúng những gì các trang đó có
+   (HSK2/3: loại từ + nghĩa theo từ loại + ví dụ; HSK4: nghĩa + ví dụ; HSK7–9: nghĩa + cấp). Từ nào không khớp chắc chắn một mục
+   CVDICT thì bị bỏ qua và ghi vào `hsk-import-report.txt`. Trang HSK1 lấy dữ liệu từ Google Sheet nên chưa nhập được.
+2. `data/dictionary/supplements.json`: biên soạn tay (xem bên dưới).
+
+Kết quả được chia thành `data/dictionary/supp/s-NNN.json` (mỗi file phục vụ 1000 mục từ), chỉ tải khi có kết quả cần.
 
 ## Thêm dữ liệu biên soạn riêng (Hán Việt, ví dụ, HSK…)
 Sửa `data/dictionary/supplements.json`, thêm vào `entries` với khoá `"giản thể|pinyin có dấu cách âm tiết"`
