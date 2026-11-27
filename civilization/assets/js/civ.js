@@ -2,16 +2,26 @@
    [slug, chữ Hán, tên Việt, mô tả ngắn, nhóm, thời kỳ, phút đọc] */
 const LESSONS=[
 ["pangu","盘古开天地","Bàn Cổ khai thiên lập địa","Thuở hỗn mang như quả trứng khổng lồ, và người khổng lồ chống trời tách đất.","myth","Thần thoại khởi nguyên",6],
+["fuxi-bagua","伏羲画卦","Phục Hy vẽ Bát quái","Người ngước nhìn trời đất và vạch nên tám quẻ – nền tảng của Kinh Dịch.","myth","Thần thoại cổ đại",6],
 ["nuwa","女娲补天","Nữ Oa vá trời","Nữ thần luyện đá ngũ sắc vá bầu trời nứt vỡ, dựng lại trật tự thế gian.","myth","Thần thoại cổ đại",7],
 ["houyi-change","后羿射日与嫦娥奔月","Hậu Nghệ bắn mặt trời · Hằng Nga bay lên cung trăng","Người anh hùng, thuốc trường sinh và nguồn gốc của ánh trăng mùa thu.","myth","Thần thoại cổ đại",8],
+["yu-great-flood","大禹治水","Đại Vũ trị thủy","Nước lũ tràn bờ, một người dẫn dòng thay vì chắn dòng – câu chuyện về trị thủy và hợp sức cộng đồng.","myth","Thần thoại cổ đại",7],
+["shennong-herbs","神农尝百草","Thần Nông nếm trăm loại thảo mộc","Vị thủy tổ nghề nông thử vị cây cỏ, dạy dân gieo ngũ cốc và phân biệt thứ có ích với thứ có hại.","craft","Thần thoại cổ đại",7],
 ["rice-cultivation","水稻种植","Nguồn gốc nghề trồng lúa nước","Từ hạt lúa hoang bên Trường Giang đến nền nông nghiệp định cư.","craft","Thời tiền sử",7],
 ["silk-sericulture","养蚕与丝绸","Nghề nuôi tằm và dệt lụa","Con tằm, cành dâu và sợi tơ nối Trung Hoa với thế giới trên Con đường Tơ lụa.","craft","Từ thời Tân thạch khí",7],
 ["papermaking","造纸术","Nghề làm giấy","Từ vỏ cây, giẻ rách đến tờ giấy – phát minh đổi thay cách con người ghi chép.","invention","Thời Hán",7],
 ["woodblock-printing","雕版印刷术","In mộc bản","Khắc chữ lên ván gỗ để nhân bản sách vở, mở đường cho tri thức lan rộng.","invention","Thời Đường – Tống",7],
-["compass-maritime","指南针与航海","La bàn và hàng hải","Từ muôi đá nam châm đến những đoàn bảo thuyền vượt đại dương.","invention","Thời Tống – Minh",7]];
+["gunpowder","火药","Thuốc súng","Từ thí nghiệm luyện đan đến pháo hoa và hỏa khí – một phát minh có hai mặt.","invention","Thời Đường – Tống",7],
+["compass-maritime","指南针与航海","La bàn và hàng hải","Từ muôi đá nam châm đến những đoàn bảo thuyền vượt đại dương.","invention","Thời Tống – Minh",7],
+["dujiangyan","都江堰","Đô Giang Yển","Hệ thống thủy lợi hơn hai nghìn năm tuổi, điều tiết dòng Mân Giang mà không chắn ngang sông.","build","Thời Chiến Quốc",7],
+["great-wall","万里长城","Vạn Lý Trường Thành","Một hệ thống phòng thủ được nối dài qua nhiều triều đại, không phải bức tường xây một lần.","build","Nhiều triều đại",8],
+["silk-road","丝绸之路","Con đường Tơ lụa","Không phải một con đường mà là cả mạng lưới nối Á – Âu: hàng hóa, tôn giáo và tri thức cùng lên đường.","exchange","Từ thời Hán",8],
+["zheng-he","郑和下西洋","Trịnh Hòa hạ Tây Dương","Bảy chuyến hải hành thời Minh: hạm đội, ngoại giao và giao thương trên Ấn Độ Dương.","exchange","Thời Minh",8]];
 const GROUPS=[["myth","Thần thoại & truyền thuyết","神话","Những câu chuyện kể về khởi nguyên của trời đất, con người và các vị anh hùng."],
 ["craft","Nông nghiệp & nghề thủ công","农桑","Hạt lúa, con tằm – nền tảng của đời sống và nền văn minh nông nghiệp."],
-["invention","Phát minh","发明","Giấy, in ấn, la bàn – những sáng chế làm đổi thay lịch sử."]];
+["invention","Phát minh","发明","Giấy, in ấn, thuốc súng, la bàn – những sáng chế làm đổi thay lịch sử."],
+["build","Công trình & di sản","工程","Thủy lợi và phòng thủ – những công trình lớn dựng nên bằng tri thức và sức lao động nhiều thế hệ."],
+["exchange","Giao lưu & thương mại","交流","Con đường Tơ lụa và hải hành thời Minh – nơi hàng hóa, con người và tri thức gặp nhau."]];
 const LS=(()=>{try{return window.localStorage}catch(e){return null}})();
 const isDone=s=>{try{return LS&&LS.getItem("civ:done:"+s)==="1"}catch(e){return false}};
 document.documentElement.classList.add("js");

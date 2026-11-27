@@ -41,11 +41,11 @@ a:hover{color:var(--seal)}
 
 /* ---------- hero ---------- */
 .hero{position:relative;background:transparent;padding-bottom:8px}
-.hero-art{display:block;width:100%;height:clamp(280px,56vh,540px);object-fit:cover;object-position:center 42%;cursor:zoom-in;background:var(--deep)}
+.hero-art{display:block;width:100%;height:clamp(300px,64vh,600px);object-fit:cover;object-position:center 42%;cursor:zoom-in;background:var(--deep)}
 .hero-art-wrap{position:relative}
-.hero-art-wrap:after{content:"";position:absolute;inset:auto 0 0 0;height:130px;background:linear-gradient(0deg,var(--paper) 4%,rgba(246,238,219,.0));pointer-events:none}
+.hero-art-wrap:after{content:"";position:absolute;inset:auto 0 0 0;height:90px;background:linear-gradient(0deg,var(--paper) 2%,rgba(246,238,219,.0));pointer-events:none}
 .hero-card{position:relative;z-index:2;display:grid;grid-template-columns:auto 1fr;gap:clamp(18px,3vw,36px);align-items:stretch;
-  width:min(940px,calc(100% - 28px));margin:-110px auto 0;padding:clamp(20px,3vw,34px) clamp(20px,3.4vw,40px);
+  width:min(940px,calc(100% - 28px));margin:-64px auto 0;padding:clamp(20px,3vw,34px) clamp(20px,3.4vw,40px);
   background:var(--card);border:1px solid var(--line);border-radius:6px;box-shadow:var(--shadow);
   background-image:radial-gradient(rgba(120,90,40,.05) 1px,transparent 1.3px);background-size:7px 7px}
 .hero-card:before{content:"";position:absolute;inset:6px;border:1px solid var(--line-2);border-radius:3px;pointer-events:none}
