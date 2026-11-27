@@ -1,0 +1,41 @@
+hsk2-vocab.html: 774 từ → khớp 766, không chọn được cách đọc 3, không có trong CVDICT 5
+hsk3-vocab.html: 973 từ → khớp 970, không chọn được cách đọc 1, không có trong CVDICT 2
+hsk4-vocab.html: 621 từ → khớp 617, không chọn được cách đọc 1, không có trong CVDICT 3
+hsk789-vocab.html: 1999 từ → khớp 1978, không chọn được cách đọc 3, không có trong CVDICT 18
+
+[hsk2-vocab.html] #34 不太 (bú tài): không có trong CVDICT
+[hsk2-vocab.html] #44 不一会儿 (bù yíhuìr): không có trong CVDICT
+[hsk2-vocab.html] #215 好处 (hǎochù): không chọn được cách đọc (hǎo chu, hǎo chǔ)
+[hsk2-vocab.html] #257 家 (jiā(kēxuéjiā)): không chọn được cách đọc (jiā)
+[hsk2-vocab.html] #264 见过 (jiànguo): không có trong CVDICT
+[hsk2-vocab.html] #508 送到 (sòngdào): không có trong CVDICT
+[hsk2-vocab.html] #551 头 (tou (lǐtou)): không chọn được cách đọc (tou, tóu)
+[hsk2-vocab.html] #723 这时候 (zhè shíhou): không có trong CVDICT
+[hsk3-vocab.html] #192 放到 (fàngdào): không có trong CVDICT
+[hsk3-vocab.html] #301 化 (huà (xiàndàihuà)): không chọn được cách đọc (huà, huā)
+[hsk3-vocab.html] #508 能不能 (néng bu néng): không có trong CVDICT
+[hsk4-vocab.html] #166 好处 (hǎochù): không chọn được cách đọc (hǎo chu, hǎo chǔ)
+[hsk4-vocab.html] #180 会员卡 (huìyuánkǎ): không có trong CVDICT
+[hsk4-vocab.html] #349 勺（子） (sháo(zi)): không có trong CVDICT
+[hsk4-vocab.html] #437 弹钢琴 (tán gāngqín): không có trong CVDICT
+[hsk789-vocab.html] #253 不利于 (bùlì yú): không có trong CVDICT
+[hsk789-vocab.html] #283 不肯 (bù kěn): không có trong CVDICT
+[hsk789-vocab.html] #286 不难 (bù nán): không có trong CVDICT
+[hsk789-vocab.html] #288 不显眼 (bùxiǎnyǎn): không có trong CVDICT
+[hsk789-vocab.html] #290 不如说 (bùrú shuō): không có trong CVDICT
+[hsk789-vocab.html] #300 不予 (bù yǔ): không có trong CVDICT
+[hsk789-vocab.html] #341 沧重 (cāngzhòng): không có trong CVDICT
+[hsk789-vocab.html] #387 狂狂 (chángkuáng): không có trong CVDICT
+[hsk789-vocab.html] #443 趁着 (chènzhe): không có trong CVDICT
+[hsk789-vocab.html] #668 撮折 (cuòzhé): không có trong CVDICT
+[hsk789-vocab.html] #783 倒数 (dǎoshǔ): không chọn được cách đọc (dào shù, dào shǔ)
+[hsk789-vocab.html] #879 叠起 (diéqǐ): không có trong CVDICT
+[hsk789-vocab.html] #896 定为 (dìngwéi): không có trong CVDICT
+[hsk789-vocab.html] #948 度 (dù (zhìmíngdù)): không chọn được cách đọc (duó, dù)
+[hsk789-vocab.html] #1092 飞往 (fēiwǎng): không có trong CVDICT
+[hsk789-vocab.html] #1095 非(非金属) (fēi (fēijīnshǔ)): không có trong CVDICT
+[hsk789-vocab.html] #1135 分量 (fèn-liàng): không chọn được cách đọc (fèn liang, fēn liàng)
+[hsk789-vocab.html] #1257 感(责任感) (gǎn(zérèngǎn)): không có trong CVDICT
+[hsk789-vocab.html] #1362 公益性 (gōngyìxìng): không có trong CVDICT
+[hsk789-vocab.html] #1434 刮分 (guāfēn): không có trong CVDICT
+[hsk789-vocab.html] #1743 怀着 (huáizhe): không có trong CVDICT
