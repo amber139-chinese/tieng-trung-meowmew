@@ -1,0 +1,24 @@
+{
+  "_schema": {
+    "ghi_chu": "Dữ liệu biên soạn riêng của Meow Meow, tách khỏi CVDICT. Khoá mỗi mục: 'giản thể|pinyin có dấu, cách âm tiết' (khớp đúng với mục CVDICT). Trường nào chưa có dữ liệu thì BỎ TRỐNG hoặc không ghi; không điền suy đoán. Đặt \"verified\": false nếu chưa kiểm chứng để trang hiển thị nhãn 'chưa xác minh'.",
+    "truong": ["simplified", "traditional", "pinyin", "pinyin_display", "han_viet", "part_of_speech[]", "meanings[]", "examples[{zh,vi}]", "synonyms[]", "antonyms[]", "related_words[]", "hsk_level", "usage_notes", "source", "verified", "updated_at"]
+  },
+  "entries": {
+    "学习|xué xí": {
+      "simplified": "学习",
+      "traditional": "學習",
+      "pinyin": "xué xí",
+      "pinyin_display": "xuéxí",
+      "han_viet": "Học tập",
+      "part_of_speech": ["动词"],
+      "meanings": ["Học.", "Học tập.", "Nghiên cứu."],
+      "examples": [
+        { "zh": "我每天学习两个小时。", "vi": "Mỗi ngày tôi học hai tiếng." }
+      ],
+      "related_words": ["学生", "学校", "学习方法"],
+      "source": "Ví dụ mẫu do chủ website Meow Meow cung cấp trong yêu cầu dự án",
+      "verified": true,
+      "updated_at": "2026-11-26"
+    }
+  }
+}
