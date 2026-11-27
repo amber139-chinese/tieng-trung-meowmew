@@ -97,6 +97,8 @@ button.primary:hover{background:#346F84}
       <input id="signupPass" type="password" autocomplete="new-password" placeholder="Tối thiểu 6 ký tự">
       <label for="signupPass2">Nhập lại mật khẩu</label>
       <input id="signupPass2" type="password" autocomplete="new-password" placeholder="Nhập lại mật khẩu">
+      <label for="signupCode">Mã kích hoạt</label>
+      <input id="signupCode" type="password" autocomplete="off" placeholder="Nhập mã do cô giáo cung cấp">
       <button class="primary" id="signupBtn">Tạo tài khoản</button>
       <div class="msg" id="signupMsg"></div>
       <div class="note">Có thể đặt tên tài khoản đơn giản như <b>Amber</b>, <b>Hương</b>, <b>bé na</b>, <b>linh01</b>. Hệ thống sẽ tự xử lý định dạng.</div>
@@ -252,6 +254,10 @@ $("signupBtn").onclick = async () => {
     msg.textContent = "Hai lần nhập mật khẩu chưa giống nhau.";
     return;
   }
+  if(!$("signupCode").value.trim()) {
+    msg.textContent = "Hãy nhập mã kích hoạt do cô giáo cung cấp.";
+    return;
+  }
 
   msg.textContent = "Đang tạo tài khoản...";
   const { data, error } = await db.auth.signUp({
@@ -260,7 +266,8 @@ $("signupBtn").onclick = async () => {
     options: {
       data: {
         username: normalizeUser(username),
-        display_name: displayName
+        display_name: displayName,
+        signup_code: $("signupCode").value.trim()
       }
     }
   });
@@ -269,6 +276,8 @@ $("signupBtn").onclick = async () => {
     const text = String(error.message || "");
     if(/already|registered|exists/i.test(text)) {
       msg.textContent = "Tên này đã có người dùng (hệ thống bỏ dấu nên “Hương” và “Huong” là một). Bạn thử thêm số, ví dụ: " + (normalizeUser(username) || "huong") + "01.";
+    } else if(/Database error|kich hoat/i.test(text)) {
+      msg.textContent = "Mã kích hoạt chưa đúng.";
     } else {
       msg.textContent = "Chưa tạo được tài khoản. Vui lòng thử tên khác hoặc thử lại.";
     }
