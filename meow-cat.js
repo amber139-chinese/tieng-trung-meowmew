@@ -4,8 +4,10 @@
  * - Popup khi học viên mở web (1 lần / phiên / ngày) cho biết đã giữ chuỗi chưa.
  * - Luôn có một chú mèo nhỏ ở góc trái dưới của MỌI trang (vòng tiến độ tới món quà kế tiếp); bấm vào để mở lại.
  * - Học viên TỰ ĐẶT TÊN cho mèo (đồng bộ theo tài khoản).
- * - Tủ đồ: giữ chuỗi tới các mốc 10 · 20 · 30 · 40 · 50 · 60 · 70 · 100 · 150 · 200 · 250 · 300 ngày
- *   để mở mũ / giày / trang phục / phụ kiện cho mèo. Quà tính theo KỶ LỤC chuỗi nên đứt chuỗi cũng không mất quà.
+ * - Tủ đồ: giữ chuỗi tới các mốc 5 · 10 · 15 · 20 · 25 · 30 · 35 · 40 · 45 · 50 · 60 · 70 · 90 · 100 · 150 · 200 · 250 · 300 ngày
+ *   để mở mũ / giày / trang phục / phụ kiện / đồ cầm tay cho mèo. Quà tính theo KỶ LỤC chuỗi nên đứt chuỗi cũng không mất quà.
+ * - Đổi quà (v3): dùng cá đổi 20 món (bạn đồng hành, trang sức, hoa, trái cây, sữa...) giá 5 → 50 cá, không giới hạn số lần,
+ *   mỗi món đổi 1 lần rồi mặc cho mèo. Bấm vào món nào cũng hiện khung "Lịch sử ra đời" (xem LORE). Muốn sửa giá: đổi `cost` trong SHOP.
  * - Chuỗi tính theo ngày (giờ máy học viên): mở web mỗi ngày = giữ chuỗi.
  * - Thẻ đóng băng ❄: học đủ 7 ngày liên tiếp nhận 1 thẻ (tối đa 2). Vắng ngày nào thì tự dùng thẻ để cứu chuỗi.
  * - Cá 🐟: đúng 5 từ vựng +1 cá; làm đạt 1 phần bài tập (>=80%) +1 cá; thắng game (đúng 10 từ/câu) +1 cá; rồi cho mèo ăn.
@@ -299,26 +301,464 @@
     P('M70 192 Q76 205 100 205 Q124 205 130 192 Q120 190 114 182 Q100 176 86 182 Q80 190 70 192Z', GOLD, 2.5, GOLD_D) +
     E(100, 183, 13, 5.5, '#FFE08A', 1.8, GOLD_D) + TX(100, 199, 9, '#C8102E', '元宝');
 
-  var SLOTS = { h: 'Mũ', s: 'Giày', o: 'Trang phục', a: 'Phụ kiện' };
-  var SLOT_ORDER = ['h', 's', 'o', 'a'];
-  var VB = { h: '20 0 160 112', s: '38 190 124 42', o: '28 112 144 108', a: '0 0 200 232' };
+  /* ================================================================
+   *  v3 — ĐỔI QUÀ BẰNG CÁ + MỐC CHUỖI DÀY HƠN + LỊCH SỬ TỪNG MÓN
+   *  Thêm 6 món mốc chuỗi (5·15·25·35·45·90 ngày) và 20 món đổi bằng cá.
+   * ================================================================ */
+  var GRN = '#4CAF6A', GRN_D = '#2E7D4F', PINK = '#FFB6C8', PINK_D = '#C0507A', JADE = '#7FD1A8', JADE_D = '#2F7F63', TIGER = '#F5A524', DK = '#4B3A35';
+
+  // --- hàm vẽ bổ sung ---
+  function mir(inner, cx) { return '<g>' + inner + '</g><g transform="matrix(-1 0 0 1 ' + (2 * cx) + ' 0)">' + inner + '</g>'; }
+  function rope(d, w) { return L(d, '#8E1224', (w || 3.4) + 2.4) + L(d, RED, w || 3.4); }
+  function ring(cx, cy, rx, ry, rot, w) {
+    var tf = ' transform="rotate(' + rot + ' ' + cx + ' ' + cy + ')"', b = '<ellipse cx="' + cx + '" cy="' + cy + '" rx="' + rx + '" ry="' + ry + '" fill="none" stroke-linecap="round"' + tf;
+    return b + ' stroke="' + JADE_D + '" stroke-width="' + (w + 2.6) + '"/>' + b + ' stroke="' + JADE + '" stroke-width="' + w + '"/>';
+  }
+  function bloom(cx, cy, r, fill, st, mid) { // hoa 5 cánh tròn (mai, đào...)
+    var s = '', i, a, d = r * 0.62, pr = (r * 0.52).toFixed(1), pts = [];
+    for (i = 0; i < 5; i++) { a = -Math.PI / 2 + i * 2 * Math.PI / 5; pts.push([(cx + d * Math.cos(a)).toFixed(1), (cy + d * Math.sin(a)).toFixed(1)]); }
+    pts.forEach(function (p) { s += C(p[0], p[1], pr, fill, 2, st); });
+    pts.forEach(function (p) { s += C(p[0], p[1], pr, fill, 0); });
+    return s + C(cx, cy, (r * 0.3).toFixed(1), mid, 0);
+  }
+  function rose(cx, cy, R, c1, c2, c3, st) { // mẫu đơn nhiều lớp
+    var s = '', i, a;
+    for (i = 0; i < 7; i++) { a = i * 2 * Math.PI / 7; s += C((cx + R * 0.6 * Math.cos(a)).toFixed(1), (cy + R * 0.6 * Math.sin(a)).toFixed(1), (R * 0.46).toFixed(1), c1, 2.2, st); }
+    s += C(cx, cy, (R * 0.64).toFixed(1), c1, 0);
+    for (i = 0; i < 5; i++) { a = i * 2 * Math.PI / 5 + 0.3; s += C((cx + R * 0.26 * Math.cos(a)).toFixed(1), (cy + R * 0.26 * Math.sin(a)).toFixed(1), (R * 0.3).toFixed(1), c2, 1.6, st); }
+    return s + C(cx, cy, (R * 0.15).toFixed(1), c3, 0);
+  }
+  function orch(cx, cy, s) { // hoa lan nhỏ
+    var o = '#8A4FB0', w = '#F3E5FF';
+    return E(cx, cy - 5.5 * s, 3 * s, 5.5 * s, w, 1.6, o) +
+      E(cx - 5 * s, cy - 1.5 * s, 5.2 * s, 2.8 * s, w, 1.6, o, 'rotate(-25 ' + (cx - 5 * s) + ' ' + (cy - 1.5 * s) + ')') +
+      E(cx + 5 * s, cy - 1.5 * s, 5.2 * s, 2.8 * s, w, 1.6, o, 'rotate(25 ' + (cx + 5 * s) + ' ' + (cy - 1.5 * s) + ')') +
+      E(cx, cy + 1.5 * s, 3.4 * s, 3 * s, '#C77BD8', 1.6, o) + C(cx, cy - s, 1.1 * s, GOLD, 0);
+  }
+  function ffly(x, y, s) { // đom đóm
+    return '<g transform="translate(' + x + ' ' + y + ') scale(' + s + ')"><circle r="14" fill="#E8FF6A" opacity=".4" class="gl"/>' +
+      E(-4, -6, 5.5, 3, 'rgba(255,255,255,.8)', 1.2, '#8A97B0', 'rotate(-35 -4 -6)') + E(0, 0, 7, 3.8, DK, 0) + C(-7, 0, 2.8, DK, 0) +
+      C(5.5, 0, 4, '#F4FF5E', 1.2, '#A8B315') + L('M-8 -2 q-3 -4 -6 -3', DK, 1.2) + '</g>';
+  }
+
+  // --- bạn đồng hành bay (góc trên bên trái) ---
+  var BFLY = '<g class="hov"><g transform="translate(-4 0)">' + mir(
+      P('M28 64 C19 43 5 50 9 62 C12 68 21 68 28 64Z', '#F58FA8', 2.2) +
+      P('M28 66 C21 68 11 71 14 79 C17 86 26 80 28 70Z', '#FFC27A', 2.2) +
+      C(15, 57, 3, '#fff', 0) + C(19, 76, 2.3, '#fff', 0), 28) +
+    E(28, 68, 2.6, 9, DK, 0) + L('M27 59 Q24 51 20 49 M29 59 Q32 51 36 49', DK, 1.7) + '</g></g>';
+  var MAGPIE = '<g class="hov"><g transform="translate(-2 0)">' +
+    P('M20 68 L3 80 Q3 85 8 84 L22 76Z', '#2B2B3A', 2) +
+    E(28, 68, 12, 8.5, '#2B2B3A', 2.2, null, 'rotate(-12 28 68)') + E(31, 72, 7.5, 4.2, '#fff', 0, null, 'rotate(-12 31 72)') +
+    P('M17 65 Q27 54 38 66 Q28 76 17 65Z', '#3B6FD8', 2) + L('M21 65 Q28 60 34 65', '#8FB4FF', 1.6) +
+    L('M26 76 v6 M32 76 v6', '#E8A317', 1.8) +
+    C(38, 59, 6.8, '#2B2B3A', 2.2) + P('M43 58 L49 60.5 L43 62.5Z', '#F2B632', 1.6, GOLD_D) + C(39.5, 57.5, 1.7, '#fff', 0) + C(40, 57.5, 0.8, '#2B1A17', 0) +
+    '</g></g>';
+  var FIREFLY = '<g class="hov">' + ffly(15, 62, 1) + ffly(33, 80, 0.85) + ffly(14, 95, 0.75) + star(32, 52, 4, '#F4FF5E') + '</g>';
+  var SPIDER = '<g class="dng">' + L('M22 -6 V54', '#B8A894', 1.6) +
+    mir(L('M17 63 Q8 57 4 65 M16.5 66 Q6 65 4 75 M17.5 69 Q8 74 7 84 M19 71 Q14 80 12 89', DK, 1.9), 22) +
+    E(22, 67, 8.5, 7.5, DK, 2) + C(22, 56, 5.2, DK, 2) + C(19.8, 55, 1.5, '#fff', 0) + C(24.2, 55, 1.5, '#fff', 0) +
+    TX(22, 70.4, 9, GOLD, '喜') + '</g>';
+
+  // --- bạn đồng hành bò (góc dưới bên trái) ---
+  var TURTLE =
+    P('M6 219 L1 222 L7 223Z', '#8FD18F', 1.8) + E(46, 213, 6.2, 5.4, '#8FD18F', 2.2) + C(48, 211.5, 1.4, '#2B1A17', 0) +
+    E(13, 226, 5.2, 3.6, '#8FD18F', 2.2) + E(35, 226, 5.2, 3.6, '#8FD18F', 2.2) +
+    P('M6 226 Q6 196 24 196 Q42 196 42 226Z', '#5FAE6B', 2.6) +
+    L('M24 198 V225 M12 207 Q24 214 36 207 M9 218 Q24 224 39 218', GRN_D, 1.8) + E(24, 226, 18, 2.6, '#E8D8A8', 2);
+  var CRICKET =
+    L('M14 220 L6 210 L3 225 M21 224 L15 231 L8 231', '#6B4A2A', 2.4) +
+    E(22, 218, 14, 7.5, '#9A6A3A', 2.2) + P('M10 216 Q22 205 34 216 Q22 222 10 216Z', '#B88650', 1.8) + L('M14 215.5 Q22 210 30 215.5', '#7A5430', 1.2) +
+    L('M30 224 L32 231 M37 222 L40 229', '#6B4A2A', 2.2) +
+    C(38, 213, 6, '#9A6A3A', 2.2) + C(40.3, 211.5, 1.9, '#fff', 0) + C(40.8, 211.6, 0.9, '#2B1A17', 0) +
+    L('M40 208 Q45 199 50 198 M37 208 Q37 199 42 194', '#6B4A2A', 1.6);
+  var SILK =
+    P('M0 229 Q12 218 30 224 Q18 234 0 229Z', '#6DBE6A', 2) + L('M3 229 Q16 224 28 225', GRN_D, 1.2) +
+    C(10, 222, 6.2, '#FFFBF0', 2.2) + C(20, 219.5, 6.8, '#FFFBF0', 2.2) + C(30, 216, 7, '#FFFBF0', 2.2) + C(38, 208, 7.2, '#FFFBF0', 2.2) +
+    C(42, 199, 7.2, '#FFF3E0', 2.2) + C(39.5, 198, 1.4, '#2B1A17', 0) + C(45, 198, 1.4, '#2B1A17', 0) + L('M40.5 202 Q42.5 204 44.5 202', DK, 1.4) +
+    L('M20 213 q-1.5 3 0 6.5 M30 209 q-1.5 3.5 0 7', '#D9C9B0', 1.2);
+  var TOAD =
+    E(26, 228.5, 19, 3.4, '#E8A317', 2, GOLD_D) + E(26, 225.5, 19, 3.4, GOLD, 2, GOLD_D) +
+    E(10, 219, 7, 5, '#E8A317', 2.2, GOLD_D) +
+    E(24, 213, 16, 12.5, GOLD, 2.4, GOLD_D) + E(26, 218, 9, 6, '#FFE08A', 0) +
+    C(16, 208, 2.2, '#C48A00', 0) + C(23, 204, 2, '#C48A00', 0) + C(17, 215, 1.8, '#C48A00', 0) +
+    E(34, 222, 5, 4, '#E8A317', 2.2, GOLD_D) +
+    C(31, 200, 4.4, '#fff', 2, GOLD_D) + C(40, 203, 4.4, '#fff', 2, GOLD_D) + C(32.2, 200.5, 2, '#2B1A17', 0) + C(41.2, 203.5, 2, '#2B1A17', 0) +
+    L('M30 212 Q38 217 44 211', GOLD_D, 1.8) +
+    C(46, 214.5, 6, '#FFD25E', 1.8, GOLD_D) + P('M44 212.5 h4 v4 h-4z', CREAM, 1.2, GOLD_D);
+
+  // --- món ngon (bên phải, dưới đất) ---
+  var BOWL = P('M150 219 Q152 233 174 233 Q196 233 198 219Z', '#fff', 2.4) + L('M155 225 Q174 232 193 225', RED, 2.2) + E(174, 219, 24, 4.5, '#fff', 2.4);
+  var ORANGES = BOWL +
+    C(165, 212, 8, '#FF9F2E', 2.2, '#B35F00') + C(183, 212, 8, '#FF9F2E', 2.2, '#B35F00') + C(174, 204, 8, '#FFAD3D', 2.2, '#B35F00') +
+    E(161, 209, 2.4, 1.6, 'rgba(255,255,255,.55)', 0) + E(179, 209, 2.4, 1.6, 'rgba(255,255,255,.55)', 0) +
+    TX(174, 207.4, 9, '#7A3300', '吉') + P('M174 196.5 Q179 189 186 192 Q182 198 174 196.5Z', '#4CAF50', 1.4, GRN_D);
+  var SOYMILK =
+    L('M165 207 q-5 -6 0 -12 q5 -6 0 -12 M176 205 q-5 -6 0 -12 q5 -6 0 -12 M187 207 q-5 -6 0 -12 q5 -6 0 -12', '#D6C6B4', 2.2) +
+    L('M188 222 L199 198', '#D9902F', 6.4) + L('M188 222 L199 198', '#F2C26A', 3.2) +
+    BOWL + E(174, 219, 19.5, 3.2, '#FFF4D6', 1.4, '#D9B97A');
+  var PEACH =
+    E(174, 228.5, 24, 4.2, GOLD, 2.2, GOLD_D) + E(174, 227, 19, 2.6, '#FFE08A', 0) +
+    P('M174 198 C158 192 150 212 164 222 Q174 227 184 222 C198 212 190 192 174 198Z', '#FFB3AE', 2.4, PINK_D) +
+    E(184, 211, 4.5, 7.5, '#FF8A8A', 0, null, 'rotate(18 184 211)') +
+    P('M174 198 Q180 188 193 190 Q189 201 174 198Z', '#6DBE6A', 2, GRN_D) + TX(172, 217, 12.5, '#C8102E', '寿');
+  var TANGHULU = L('M176 182 V232', '#D9B27A', 3) +
+    C(176, 223, 7.5, '#E8344E', 2, '#8E1224') + C(176, 210, 7.5, '#E8344E', 2, '#8E1224') + C(176, 197, 7.5, '#E8344E', 2, '#8E1224') +
+    E(173.4, 194.5, 2.6, 1.7, 'rgba(255,255,255,.75)', 0, null, 'rotate(-30 173.4 194.5)') +
+    E(173.4, 207.5, 2.6, 1.7, 'rgba(255,255,255,.75)', 0, null, 'rotate(-30 173.4 207.5)') +
+    E(173.4, 220.5, 2.6, 1.7, 'rgba(255,255,255,.75)', 0, null, 'rotate(-30 173.4 220.5)');
+
+  // --- cầm tay: bàn chân cầm ở (152,177) ---
+  var GRIP = E(152, 177, 10, 8.5, CREAM, 2.6) + L('M148 174.5 v4 M152 173.5 v5 M156 174.5 v4', OL, 1.6);
+  var PLUM = L('M152 176 Q146 152 158 134', '#7A4A32', 3.4) + L('M149 156 Q160 152 168 142', '#7A4A32', 2.6) + L('M155 142 Q148 134 144 128', '#7A4A32', 2.2) +
+    bloom(158, 131, 8.5, PINK, PINK_D, GOLD) + bloom(168, 141, 7, '#FFD0DC', PINK_D, GOLD) + bloom(144, 127, 6.5, PINK, PINK_D, GOLD) +
+    C(151, 150, 2.6, '#E8607F', 0) + C(157, 146, 2.2, '#E8607F', 0);
+  var LOTUS = L('M152 176 Q150 156 152 142', GRN, 3.6) +
+    P('M152 171 Q170 156 185 166 Q170 179 152 173Z', '#6DBE6A', 2.2, GRN_D) + L('M155 171 Q168 165 180 167', GRN_D, 1.2) +
+    P('M152 146 Q137 140 137 124 Q150 127 155 143Z', PINK, 2.2, PINK_D) + P('M152 146 Q167 140 167 124 Q154 127 149 143Z', PINK, 2.2, PINK_D) +
+    P('M152 148 Q141 134 152 117 Q163 134 152 148Z', '#FF8FB0', 2.2, PINK_D) + E(152, 148, 7, 2.6, GOLD, 0);
+  var PEONY = L('M152 176 Q150 162 152 150', GRN, 3.4) +
+    P('M151 170 Q137 161 133 169 Q142 178 151 172Z', GRN, 2, GRN_D) + P('M153 165 Q167 155 172 163 Q164 173 153 167Z', GRN, 2, GRN_D) +
+    rose(152, 138, 18, '#E8506A', '#FF8FA3', GOLD, '#A8283E');
+  var ORCHID = L('M152 176 Q144 150 124 142', '#3F9B5A', 3.6) + L('M152 176 Q156 146 178 134', '#3F9B5A', 3.6) + L('M152 176 Q150 146 144 118', GRN, 3.2) +
+    L('M152 174 Q158 152 163 136', '#7A8A3A', 2.2) + orch(163, 131, 1.2) + orch(159, 148, 1) + orch(167, 118, 0.9);
+  var LANTERN = L('M148 176 V116 Q148 109 158 109', '#8B5A2B', 3.2) + L('M158 109 V120', '#8B5A2B', 1.8) +
+    P('M146 120 h24 v5 h-24z', GOLD, 2, GOLD_D) + E(158, 140, 16, 14.5, RED, 2.4, '#8E1224') +
+    L('M158 126 V154', '#8E1224', 1.4) + E(158, 140, 8, 14.5, 'none', 1.4, '#8E1224') +
+    P('M147 153 h22 v4 h-22z', GOLD, 2, GOLD_D) + L('M158 157 V167', '#F2B632', 2.4) + P('M154 167 h8 l1 8 h-10z', RED, 1.4, '#8E1224') +
+    TX(158, 145, 12, GOLD, '福');
+  var FAN = P('M149 172 h6 v9 h-6z', '#8B5A2B', 1.6) +
+    P('M152 172 L117.4 152 A40 40 0 0 1 186.6 152Z', CREAM, 2.4, '#8E1224') +
+    L('M152 172 L117.4 152 M152 172 L132 137.4 M152 172 L152 132 M152 172 L172 137.4 M152 172 L186.6 152', '#C8102E', 1.5) +
+    L('M117.4 152 A40 40 0 0 1 186.6 152', GOLD, 3) + bloom(152, 148, 7, PINK, PINK_D, GOLD);
+
+  // --- trang sức ---
+  var JADE_CORD = L('M70 130 Q100 168 130 130', RED, 2.6);
+  var PENDANT = JADE_CORD + L('M100 149 V161', RED, 2.4) +
+    C(100, 172, 11.5, JADE, 2.4, JADE_D) + C(100, 172, 4.2, CREAM, 1.8, JADE_D) + L('M91.5 168 Q93.5 163 98.5 161', '#E8FFF3', 2) +
+    L('M100 183.5 V190', RED, 2) + P('M96 190 h8 l1.5 10 h-11z', RED, 1.4, '#8E1224');
+  var KNOT = rope('M70 130 Q100 168 130 130', 2.6) + rope('M100 149 V155', 2.4) +
+    rope('M100 155 L112 168 L100 181 L88 168Z', 3) + rope('M100 162 L106 168 L100 174 L94 168Z', 2.4) + C(100, 168, 2.6, GOLD, 1.2, GOLD_D) +
+    L('M100 181 V191', '#8E1224', 5) + L('M100 181 V191', RED, 2.6) + P('M94 191 h12 l2 14 h-16z', RED, 1.6, '#8E1224') + L('M97 196 v8 M100 196 v9 M103 196 v8', '#FFB0B8', 1);
+  var BANGLE = mir(ring(63, 164, 12.5, 4.8, 8, 4.4), 100);
+  var BUYAO = L('M140 57 Q135 74 137 90', '#E8A317', 1.6) + C(137, 92, 3, '#fff', 1.2, GOLD_D) +
+    L('M143 60 Q143 78 145 98', '#E8A317', 1.6) + C(145, 100, 3.2, JADE, 1.2, JADE_D) +
+    L('M148 57 Q153 73 152 88', '#E8A317', 1.6) + C(152, 90, 2.8, '#fff', 1.2, GOLD_D) +
+    bloom(143, 51, 9, '#FFD25E', GOLD_D, RED);
+
+  // --- món mốc chuỗi mới ---
+  var HAT4 = // mũ đầu hổ
+    C(70, 27, 9.5, TIGER, 2.6) + C(70, 28, 4.6, '#FFB0B8', 0) + C(130, 27, 9.5, TIGER, 2.6) + C(130, 28, 4.6, '#FFB0B8', 0) +
+    P('M62 58 Q60 22 100 18 Q140 22 138 58 Q100 48 62 58Z', TIGER, 3) +
+    L('M82 24 L85 39 M118 24 L115 39 M71 34 L76 44 M129 34 L124 44', DK, 3.4) + TX(100, 38.5, 14, DK, '王') +
+    P('M60 52 Q100 40 140 52 L141 63 Q100 52 59 63Z', '#FFF3E0', 2.5);
+  var SHOE4 = pair( // giày đầu hổ
+    P(SHOE, TIGER) + P(SOLE, '#FFF8EE', 2) + L('M72 201 v5 M78 200.5 v6 M84 201 v5', DK, 2.2) + C(66, 202, 4, TIGER, 2) + C(90, 202, 4, TIGER, 2) +
+    C(71, 209, 2.6, '#fff', 1.2) + C(85, 209, 2.6, '#fff', 1.2) + C(71, 209.4, 1.2, '#2B1A17', 0) + C(85, 209.4, 1.2, '#2B1A17', 0) +
+    P('M75 214 h6 l-3 3.4z', '#E5758B', 1.2) + L('M78 217.4 v2 M74 220 Q78 222 82 220', DK, 1.4));
+  var OUTFIT4 = // yếm đỗ đâu
+    L('M78 140 Q100 128 122 140', GOLD, 3.2) +
+    P('M80 138 L120 138 L128 168 Q126 194 100 206 Q74 194 72 168Z', '#E8344E', 3) +
+    '<path d="M84 145 L116 145 L121 168 Q119 187 100 197 Q81 187 79 168Z" fill="none" stroke="#FFD25E" stroke-width="2" stroke-dasharray="3 3" stroke-linecap="round"/>' +
+    TX(100, 176, 17, GOLD, '福');
+  var LOCK = L('M70 130 Q100 168 130 130', GOLD, 3.4) + L('M93 161 Q93 150 100 150 Q107 150 107 161', GOLD_D, 3.4) +
+    P('M86 160 h28 q4 0 4 4 v18 q0 4 -4 4 h-28 q-4 0 -4 -4 v-18 q0 -4 4 -4z', GOLD, 2.4, GOLD_D) +
+    TX(100, 173.5, 10, RED, '长命') + TX(100, 184, 9, RED, '百岁') +
+    L('M90 190 v8 M100 190 v10 M110 190 v8', RED, 2.2);
+
+  var SLOTS = { h: 'Mũ', s: 'Giày', o: 'Trang phục', a: 'Phụ kiện', j: 'Trang sức tóc', n: 'Trang sức đeo', f: 'Cầm tay', m: 'Món ngon', k: 'Bạn bay', g: 'Bạn bò' };
+  var SLOT_ORDER = ['h', 's', 'o', 'a', 'j', 'n', 'f', 'm', 'k', 'g'];
+  var SLOT_CAT = { h: 'wear', s: 'wear', o: 'wear', a: 'wear', j: 'jewel', n: 'jewel', f: 'hold', m: 'food', k: 'pet', g: 'pet' };
+  var CATS = [['all', 'Tất cả'], ['wear', 'Quần áo'], ['jewel', 'Trang sức'], ['hold', 'Hoa & cầm tay'], ['food', 'Ăn uống'], ['pet', 'Bạn đồng hành']];
+  var SOLO = { f: 1, m: 1, k: 1, g: 1 }; // món vẽ riêng (không kèm mèo) ở ảnh nhỏ
+  var VB = { h: '20 0 160 112', s: '38 190 124 42', o: '28 112 144 108', a: '0 0 200 232', j: '92 20 98 96', n: '48 120 104 90', f: '112 104 86 78', m: '142 184 58 48', k: '0 38 54 62', g: '0 190 56 42' };
+
+  // Quà theo mốc chuỗi (xếp theo ngày)
   var ITEMS = [
+    { id: 'f1', slot: 'f', day: 5,   name: 'Đèn lồng đỏ',         zh: '红灯笼',   py: 'hóng dēnglong',     svg: LANTERN, vb: '128 100 62 82', nw: 1 },
     { id: 'h1', slot: 'h', day: 10,  name: 'Mũ len đỏ',           zh: '红毛线帽', py: 'hóng máoxiàn mào', svg: HAT1 },
+    { id: 'h4', slot: 'h', day: 15,  name: 'Mũ đầu hổ',           zh: '虎头帽',   py: 'hǔtóu mào',         svg: HAT4, nw: 1 },
     { id: 's1', slot: 's', day: 20,  name: 'Giày vải đỏ',         zh: '红布鞋',   py: 'hóng bùxié',        svg: SHOE1 },
+    { id: 'o4', slot: 'o', day: 25,  name: 'Yếm đỗ đâu',          zh: '肚兜',     py: 'dùdōu',             svg: OUTFIT4, nw: 1 },
     { id: 'o1', slot: 'o', day: 30,  name: 'Áo Đường trang',      zh: '唐装',     py: 'tángzhuāng',        svg: OUTFIT1 },
+    { id: 's4', slot: 's', day: 35,  name: 'Giày đầu hổ',         zh: '虎头鞋',   py: 'hǔtóu xié',         svg: SHOE4, nw: 1 },
     { id: 'a1', slot: 'a', day: 40,  name: 'Kính tròn',           zh: '圆框眼镜', py: 'yuánkuàng yǎnjìng', svg: GLASSES, layer: 'post', vb: '30 56 140 84' },
+    { id: 'f2', slot: 'f', day: 45,  name: 'Quạt giấy',           zh: '折扇',     py: 'zhéshàn',           svg: FAN, vb: '110 126 86 60', nw: 1 },
     { id: 'h2', slot: 'h', day: 50,  name: 'Mũ Trạng Nguyên',     zh: '状元帽',   py: 'zhuàngyuán mào',    svg: HAT2, vb: '6 0 188 112' },
     { id: 's2', slot: 's', day: 60,  name: 'Giày thêu vàng',      zh: '金绣鞋',   py: 'jīn xiù xié',       svg: SHOE2 },
     { id: 'o2', slot: 'o', day: 70,  name: 'Hán phục ngọc bích',  zh: '汉服',     py: 'hànfú',             svg: OUTFIT2 },
+    { id: 'n1', slot: 'n', day: 90,  name: 'Khoá trường mệnh',    zh: '长命锁',   py: 'chángmìng suǒ',     svg: LOCK, vb: '56 124 88 84', nw: 1 },
     { id: 'a2', slot: 'a', day: 100, name: 'Chuông vàng may mắn', zh: '金铃铛',   py: 'jīn língdang',      svg: BELL, layer: 'pre', vb: '30 100 140 90' },
     { id: 'h3', slot: 'h', day: 150, name: 'Vương miện vàng',     zh: '金皇冠',   py: 'jīn huángguān',     svg: HAT3 },
     { id: 's3', slot: 's', day: 200, name: 'Giày mây cát tường',  zh: '祥云鞋',   py: 'xiángyún xié',      svg: SHOE3 },
     { id: 'o3', slot: 'o', day: 250, name: 'Long bào hoàng kim',  zh: '龙袍',     py: 'lóngpáo',           svg: OUTFIT3 },
     { id: 'a3', slot: 'a', day: 300, name: 'Hào quang Thần Tài',  zh: '财神光环', py: 'cáishén guānghuán', svg: INGOT, back: HALO, layer: 'pre', vb: '0 0 200 232' }
   ];
+  // Quà đổi bằng cá: cost = số cá, giá tăng dần (muốn đổi giá/đổi món chỉ cần sửa tại đây)
+  var SHOP = [
+    { id: 'x01', slot: 'k', cost: 5,  name: 'Bướm hoa',             zh: '蝴蝶',     py: 'húdié',          svg: BFLY, vb: '0 40 52 56' },
+    { id: 'x02', slot: 'm', cost: 5,  name: 'Quýt cát tường',       zh: '橘子',     py: 'júzi',           svg: ORANGES, vb: '142 186 58 48' },
+    { id: 'x03', slot: 'g', cost: 10, name: 'Rùa trường thọ',       zh: '乌龟',     py: 'wūguī',          svg: TURTLE, vb: '0 192 56 40' },
+    { id: 'x04', slot: 'f', cost: 10, name: 'Hoa mai',              zh: '梅花',     py: 'méihuā',         svg: PLUM, vb: '126 112 56 70' },
+    { id: 'x05', slot: 'k', cost: 15, name: 'Chim hỉ thước',        zh: '喜鹊',     py: 'xǐquè',          svg: MAGPIE, vb: '0 46 52 48' },
+    { id: 'x06', slot: 'm', cost: 15, name: 'Sữa đậu nành',         zh: '豆浆',     py: 'dòujiāng',       svg: SOYMILK, vb: '142 178 62 56' },
+    { id: 'x07', slot: 'n', cost: 20, name: 'Ngọc bội',             zh: '玉佩',     py: 'yùpèi',          svg: PENDANT, vb: '56 124 88 84' },
+    { id: 'x08', slot: 'f', cost: 20, name: 'Hoa sen',              zh: '荷花',     py: 'héhuā',          svg: LOTUS, vb: '128 112 62 70' },
+    { id: 'x09', slot: 'g', cost: 25, name: 'Dế mèn',               zh: '蟋蟀',     py: 'xīshuài',        svg: CRICKET, vb: '0 190 56 44' },
+    { id: 'x10', slot: 'm', cost: 25, name: 'Đào thọ',              zh: '寿桃',     py: 'shòutáo',        svg: PEACH, vb: '146 184 56 50' },
+    { id: 'x11', slot: 'f', cost: 30, name: 'Hoa mẫu đơn',          zh: '牡丹',     py: 'mǔdān',          svg: PEONY, vb: '126 112 60 70' },
+    { id: 'x12', slot: 'k', cost: 30, name: 'Đom đóm',              zh: '萤火虫',   py: 'yínghuǒchóng',   svg: FIREFLY, vb: '0 40 52 66' },
+    { id: 'x13', slot: 'n', cost: 35, name: 'Nút thắt Trung Hoa',   zh: '中国结',   py: 'zhōngguó jié',   svg: KNOT, vb: '56 124 88 88' },
+    { id: 'x14', slot: 'm', cost: 35, name: 'Kẹo hồ lô',            zh: '糖葫芦',   py: 'tánghúlu',       svg: TANGHULU, vb: '152 180 48 54' },
+    { id: 'x15', slot: 'k', cost: 40, name: 'Nhện hỉ',              zh: '喜蛛',     py: 'xǐzhū',          svg: SPIDER, vb: '0 20 46 80' },
+    { id: 'x16', slot: 'g', cost: 40, name: 'Tằm tơ',               zh: '蚕',       py: 'cán',            svg: SILK, vb: '0 190 54 44' },
+    { id: 'x17', slot: 'f', cost: 45, name: 'Hoa lan',              zh: '兰花',     py: 'lánhuā',         svg: ORCHID, vb: '118 106 66 76' },
+    { id: 'x18', slot: 'j', cost: 45, name: 'Trâm bộ dao',          zh: '步摇',     py: 'bùyáo',          svg: BUYAO, vb: '100 32 70 78' },
+    { id: 'x19', slot: 'g', cost: 50, name: 'Cóc vàng chiêu tài',   zh: '金蟾',     py: 'jīnchán',        svg: TOAD, vb: '0 192 58 40' },
+    { id: 'x20', slot: 'n', cost: 50, name: 'Vòng ngọc',            zh: '玉镯',     py: 'yùzhuó',         svg: BANGLE, vb: '36 140 128 50' }
+  ];
+  ITEMS.sort(function (a, b) { return a.day - b.day; });
+  SHOP.sort(function (a, b) { return a.cost - b.cost; });
+  var ALL = ITEMS.concat(SHOP);
   var IDX = {};
-  ITEMS.forEach(function (it) { IDX[it.id] = it; });
+  ALL.forEach(function (it) { it.solo = !!SOLO[it.slot]; IDX[it.id] = it; });
   function byId(id) { return Object.prototype.hasOwnProperty.call(IDX, id) ? IDX[id] : null; }
+
+  /* ---------- LỊCH SỬ RA ĐỜI của từng món (hiện trong khung khi bấm vào món đồ) ----------
+   * lore(id, thời kỳ, [đoạn 1, đoạn 2...], ý nghĩa, "bạn có biết")
+   * Nhiều chi tiết là truyền thuyết dân gian nên có ghi rõ "tương truyền" / "được cho là". */
+  var LORE = {};
+  function lore(id, era, ps, mean, fact) { LORE[id] = { era: era, ps: ps, mean: mean, fact: fact || '' }; }
+
+  /* --- quà theo mốc chuỗi --- */
+  lore('f1', 'Từ thời Hán · thịnh hành Đường–Tống', [
+    'Đèn lồng đỏ (红灯笼, hóng dēnglong) gắn với Tết Nguyên Tiêu (rằm tháng Giêng), ngày hội đèn lớn nhất của người Trung Hoa. Tương truyền Hán Minh Đế (thế kỷ 1) khuyến khích thắp đèn đêm rằm tháng Giêng theo tập tục Phật giáo; sang thời Đường–Tống, hội đèn rất thịnh vượng và đèn được làm ra đủ hình, đủ sắc.',
+    'Khung đèn làm bằng tre, bọc lụa hoặc giấy, thắp bằng nến. Dịp Tết, nhà nhà treo đèn đỏ trước cửa để đón năm mới, xua vận xui và cầu sum vầy. Trò "đoán đố đèn" (猜灯谜, cāi dēngmí) - giải câu đố viết trên đèn - là nét vui không thể thiếu của ngày hội.'
+  ], 'Ánh sáng ấm áp, sum vầy và một năm hanh thông.',
+  'Rằm tháng Giêng người Trung Quốc ăn bánh trôi nước nhân mè (汤圆, tāngyuán), tượng trưng cho sự đoàn viên.');
+
+  lore('h1', 'Truyền thống dân gian · màu đỏ cát tường', [
+    'Màu đỏ (红, hóng) là sắc màu may mắn nhất của người Trung Hoa. Từ xa xưa, người ta gắn màu đỏ với lửa và mặt trời, những thứ xua đuổi bóng tối. Truyền thuyết về quái thú Niên (年) kể rằng nó sợ màu đỏ, lửa và tiếng nổ, nên cuối năm nhà nhà dán câu đối đỏ, treo đèn đỏ, đốt pháo để đuổi nó đi. Đó là gốc của tục dùng đồ đỏ ngày Tết.',
+    'Chiếc mũ len đỏ là một biến thể gần gũi: người Trung Hoa tin rằng vào năm tuổi của mình (本命年, běnmìngnián) nên mặc hoặc đeo thứ gì đó màu đỏ như mũ, khăn, dây lưng, tất để "hoá giải vận xui". Len đan tay do bà, mẹ làm còn gửi gắm cả sự ấm áp và lời chúc bình an.'
+  ], 'Đỏ là may mắn, bình an, hưng vượng; mũ đỏ chúc bạn một chặng học suôn sẻ.',
+  'Chữ 红 (hóng) còn có nghĩa "nổi tiếng, đắt khách": người nổi tiếng gọi là 红人 (hóngrén).');
+
+  lore('h4', 'Dân gian miền Bắc · lưu truyền nhiều thế kỷ', [
+    'Mũ đầu hổ (虎头帽, hǔtóumào) là món đồ thủ công truyền thống dành cho trẻ nhỏ ở miền Bắc Trung Quốc, nổi tiếng ở các vùng như Thiểm Tây, Sơn Tây, Hà Nam. Người bà, người mẹ tự tay thêu từng mũi chỉ: đôi mắt tròn, bộ ria và chữ "Vương" (王) trên trán, vì các vằn trên trán hổ trông giống chữ này.',
+    'Nguồn gốc của mũ và giày đầu hổ chưa rõ, chỉ có nhiều truyền thuyết dân gian; điều chắc chắn là người xưa xem hổ là chúa sơn lâm, đủ sức trấn áp tà ma. Đội mũ hổ, đi giày hổ là cách gửi gắm ước nguyện cho con khoẻ mạnh, dũng cảm, lớn nhanh như hổ con. Ngày nay, nghề thêu đồ hổ vẫn được nhiều nơi gìn giữ như một nghề thủ công dân gian.'
+  ], 'Mạnh khoẻ, dũng cảm, được che chở bình an.',
+  'Thành ngữ 虎头虎脑 (hǔtóu hǔnǎo) dùng để khen một đứa bé khoẻ khoắn, đáng yêu.');
+
+  lore('s1', 'Thủ công truyền thống · hàng trăm năm', [
+    'Giày vải (布鞋, bùxié) là loại giày bình dân nhất của người Trung Hoa xưa nay. Đặc sắc nhất là kiểu đế nghìn lớp (千层底, qiāncéngdǐ): người thợ, thường là phụ nữ trong nhà, dán chồng nhiều lớp vải vụn, phơi khô rồi khâu bằng từng mũi chỉ dày, nên đế vừa êm vừa bền. "Nghìn lớp" là cách nói phóng đại cho thật nhiều lớp.',
+    'Giày đỏ dành cho dịp vui: cô dâu mang giày đỏ trong lễ cưới, người đến năm bổn mệnh cũng mang giày đỏ cho may. Ở nhiều vùng, người mẹ còn khâu giày cho con trước khi con đi xa, gợi nhớ bài thơ "Du tử ngâm" của Mạnh Giao đời Đường nói về sợi chỉ trong tay người mẹ hiền.'
+  ], 'Mỗi bước đi vững vàng, nhiều niềm vui.',
+  'Một số nghề làm giày vải truyền thống của Trung Quốc đã được đưa vào danh mục di sản văn hoá phi vật thể.');
+
+  lore('o4', 'Tiền thân từ thời Hán · phổ biến Minh–Thanh', [
+    'Đỗ đâu (肚兜, dùdōu) là chiếc yếm hình thoi che ngực và bụng, buộc bằng dây quanh cổ và eo. Những dạng áo lót che ngực bụng đã có từ thời Hán (gọi là bão phúc 抱腹), thời Đường có "ha tử" (诃子); kiểu đỗ đâu quen thuộc phổ biến từ đời Minh, còn tên "đỗ đâu" thì được dùng từ đời Thanh. Chưa có ghi chép đáng tin về nguồn gốc chính xác của nó. Với trẻ nhỏ, đỗ đâu giữ ấm bụng, tránh cảm lạnh.',
+    'Đỗ đâu trẻ em thường thêu các hình cát tường như cá chép, hoa sen, hổ, hoặc "ngũ độc" (rắn, bọ cạp, rết, cóc, thạch sùng). Theo quan niệm cổ, mặc đỗ đâu ngũ độc dịp Tết Đoan Ngọ là "lấy độc trị độc", tránh bệnh tật mùa hè.'
+  ], 'Bình an, ấm áp, được che chở.',
+  'Tết Đoan Ngọ (mùng 5 tháng 5 âm lịch) còn là ngày ăn bánh ú (粽子, zòngzi) và đua thuyền rồng.');
+
+  lore('o1', 'Cuối nhà Thanh → năm 2001', [
+    'Dù mang tên "Đường", kiểu áo này không có từ thời nhà Đường. Dạng cổ đứng, cài khuy vải (盘扣, pánkòu) của nó phát triển từ áo mã quái (马褂, mǎguà) của người Mãn thời nhà Thanh. Người Hoa ở hải ngoại vốn tự gọi mình là "Đường nhân" (唐人), nên trang phục kiểu Trung Hoa được gọi là Đường trang.',
+    'Tên gọi này nổi tiếng toàn cầu năm 2001, khi các nhà lãnh đạo dự hội nghị APEC ở Thượng Hải cùng mặc áo Đường trang bằng gấm. Từ đó nó trở thành lễ phục ngày Tết, cưới hỏi, mừng thọ; màu đỏ, vàng, hoa văn "thọ" và "phúc" được ưa chuộng nhất.'
+  ], 'Mặc Đường trang đỏ đầu năm để đón tài lộc và sum vầy.',
+  'Mỗi chiếc khuy vải 盘扣 thắt thành hình bướm, hoa mai hay chữ "phúc" đều gửi một lời chúc.');
+
+  lore('s4', 'Dân gian · quà tặng cho em bé', [
+    'Giày đầu hổ (虎头鞋, hǔtóuxié) là đôi giày vải nhỏ xíu của em bé, mũi giày thêu hình mặt hổ với mắt tròn, mũi và ria. Theo tục lệ nhiều vùng miền Bắc, bà nội hoặc bà ngoại làm giày tặng cháu vào dịp đầy tháng, trăm ngày hay thôi nôi.',
+    'Người ta tin giày hổ giúp bé "đi vững", gan dạ và tránh xa tà khí. Đôi giày không chỉ giữ ấm mà còn chứa đựng tình thương và tay nghề của những người lớn trong nhà, nên nhiều gia đình cất giữ như kỷ vật.'
+  ], 'Bước chân vững vàng, mạnh mẽ như hổ con.',
+  'Lễ "trăm ngày" (百日, bǎirì) của bé là dịp cả nhà họp mặt để chúc phúc cho con.');
+
+  lore('a1', 'Du nhập khoảng thời Minh (thế kỷ 15–16)', [
+    'Kính đeo mắt được phát minh ở châu Âu vào khoảng cuối thế kỷ 13. Kính từ phương Tây (qua thế giới Ả Rập) được nhập vào Trung Hoa chủ yếu thời nhà Minh; người Trung Hoa gọi nó là 靉靆 (àidài), một tên đã thấy trong sách đời Tống nên các học giả vẫn còn bàn về thời điểm kính thật sự du nhập. Lúc đầu đây là món đồ hiếm và đắt của quan lại, văn nhân.',
+    'Gọng tròn từ đó gắn với hình ảnh thư sinh chăm đọc sách và đến nay vẫn là "biểu tượng của người học giỏi". Mèo đeo kính tròn trông rất đúng chất một nhà thông thái đang ôn từ vựng!'
+  ], 'Chăm chỉ, sáng suốt, thông tuệ.',
+  'Trong tiếng Trung, kính mắt là 眼镜 (yǎnjìng), nghĩa đen là "gương của mắt".');
+
+  lore('f2', 'Du nhập khoảng thời Tống · thịnh hành thời Minh', [
+    'Quạt tròn (团扇) có ở Trung Hoa từ rất sớm. Nguồn gốc quạt xếp (折扇, zhéshàn) còn tranh luận: nhiều nghiên cứu cho rằng nó từ Nhật Bản (và Cao Ly) truyền sang đầu thời Bắc Tống (năm 988 có sư Nhật dâng quạt), số khác cho rằng Trung Hoa đã có từ thời Nam–Bắc triều. Quạt xếp thịnh hành nhất thời Minh: Minh Thành Tổ (Vĩnh Lạc) thích quạt xếp và cho thợ làm theo, nên quan lại, văn nhân đua nhau dùng.',
+    'Mặt quạt thường được vẽ tranh thuỷ mặc hoặc viết thư pháp, nên quạt vừa để dùng vừa là tác phẩm nghệ thuật, là món quà giữa bạn bè. Chữ 扇 (shàn) đọc giống 善 (shàn, lương thiện) nên chiếc quạt còn gợi ý về lòng nhân hậu.'
+  ], 'Phong nhã, thanh tao, mang gió mát cho những ngày học nóng bức.',
+  'Hình ảnh "thư sinh áo dài phe phẩy quạt" là hình mẫu quen thuộc của văn nhân trong phim cổ trang.');
+
+  lore('h2', 'Khoa cử Tùy–Đường–Tống (thế kỷ 7–13)', [
+    'Trạng Nguyên (状元, zhuàngyuán) là danh hiệu của người đứng đầu kỳ thi Đình, kỳ thi cao nhất trong chế độ khoa cử. Khoa cử khởi đầu từ thời nhà Tùy (khoảng năm 605), được thực hiện bài bản dưới nhà Đường và mở rộng dưới nhà Tống, trở thành con đường chính để ra làm quan. Danh xưng "Trạng Nguyên" phổ biến từ đời Đường, còn vòng thi cuối do chính hoàng đế giám sát thành nền nếp từ năm 973 đời Tống.',
+    'Chiếc mũ có hai cánh dài hai bên là kiểu mũ phốc đầu cánh ngang (展脚幞头, zhǎnjiǎo fútóu) của quan lại đời Tống. Tương truyền cánh mũ dài để các quan đứng chầu không thể thì thầm với nhau. Khi đỗ, Trạng Nguyên đội mũ, cài hoa, cưỡi ngựa diễu hành qua phố trong tiếng reo hò của dân chúng.'
+  ], 'Học giỏi, thi đỗ, vinh quy bái tổ.',
+  'Thành ngữ 金榜题名 (jīnbǎng tímíng) - "tên đề bảng vàng" - dùng để chúc thi đỗ, rất hợp để chúc bạn thi HSK.');
+
+  lore('s2', 'Nghề thêu cổ · hơn 2000 năm', [
+    'Thêu (刺绣, cìxiù) là nghề thủ công cổ của Trung Hoa, có dấu vết từ hàng nghìn năm trước và thịnh vượng nhất ở các đời Đường–Tống–Minh–Thanh. Nổi tiếng nhất là "tứ đại danh tú": Tô tú (Tô Châu), Tương tú (Hồ Nam), Thục tú (Tứ Xuyên) và Việt tú (Quảng Đông).',
+    'Chỉ vàng, chỉ bạc được dùng để thêu trên lễ phục và giày của hoàng tộc, quan lại và cô dâu. Hoa văn trên giày thường là hoa sen, uyên ương, mẫu đơn; mỗi hình ảnh đều là một lời chúc cho người mang.'
+  ], 'Bước đến đâu, giàu sang đến đó.',
+  'Kỹ thuật thêu hai mặt giống hệt nhau của Tô Châu (双面绣) được xem là một tuyệt kỹ.');
+
+  lore('o2', 'Từ thời Hán (206 TCN – 220) trở đi', [
+    'Hán phục (汉服, hànfú) là tên chung của y phục truyền thống người Hán qua nhiều triều đại, gọi theo triều Hán, một triều đại hùng mạnh kéo dài hơn bốn thế kỷ. Đặc trưng là cổ áo vắt chéo, vạt phải đè lên vạt trái (交领右衽), tay áo rộng và dải lụa buộc ngang eo.',
+    'Mỗi thời lại thêm nét riêng: áo Đường phóng khoáng, áo Tống thanh nhã, áo Minh trang trọng. Từ đầu những năm 2000, phong trào mặc Hán phục hồi sinh mạnh mẽ, và ngày nay giới trẻ Trung Quốc rất thích mặc nó đi chơi, chụp ảnh ở các cổ trấn.'
+  ], 'Thanh nhã, lễ nghĩa, tự hào văn hoá.',
+  'Vạt phải đè lên vạt trái là quy tắc quan trọng; kiểu vạt trái đè phải (左衽) từng được xem là cách mặc cho người đã khuất.');
+
+  lore('n1', 'Dân gian · phát triển thời Minh–Thanh', [
+    'Khoá trường mệnh (长命锁, chángmìngsuǒ) là chiếc khoá bạc hoặc vàng nhỏ đeo ở cổ trẻ em, thường khắc các chữ như "trường mệnh phú quý" (长命富贵) hay "bách tuế" (百岁). Nguồn gốc của nó được cho là từ tục đeo sợi chỉ ngũ sắc "tục mệnh lũ" (续命缕) dịp Đoan Ngọ thời Hán, sau này thành khoá kim loại, xuất hiện từ thời Minh và phổ biến mạnh vào thời Thanh.',
+    'Quan niệm xưa nói chiếc "khoá" sẽ giữ chặt sinh mệnh của bé, không để tà ma bắt đi. Khoá thường do ông bà, cha mẹ tặng và đeo cho đến khi bé lớn; ở một số nơi có lễ "mở khoá" (开锁) đánh dấu khi đứa trẻ trưởng thành.'
+  ], 'Sống lâu, khoẻ mạnh, được bảo bọc.',
+  'Dây chỉ ngũ sắc dịp Đoan Ngọ vẫn được nhiều gia đình buộc cho trẻ nhỏ đến ngày nay.');
+
+  lore('a2', 'Thời Thương–Chu (hơn 3000 năm trước)', [
+    'Chuông là một trong những nhạc khí cổ nhất của Trung Hoa. Chuông đồng đã có từ thời Thương–Chu, nổi bật là bộ chuông biên (编钟, biānzhōng) gồm nhiều quả chuông to nhỏ khác nhau để tấu nhạc cung đình. Bộ chuông biên khai quật ở mộ Tằng Hầu Ất (khoảng năm 433 TCN) gồm khoảng 64–65 chiếc tuỳ cách tính (có một chuông bác bổ sung), là một trong những bộ nhạc khí cổ đồ sộ nhất từng tìm thấy.',
+    'Chuông nhỏ (铃铛, língdang) thì gắn với đời sống thường ngày: treo ở mái đình, cổ ngựa, cổ thú nuôi hoặc cổ tay trẻ nhỏ. Người xưa tin tiếng chuông trong trẻo xua tà ma và báo bình an; ở cổ mèo thì còn giúp chủ nghe thấy mèo đi đâu.'
+  ], 'Tiếng chuông mang may mắn và xua điều xấu.',
+  'Chữ 钟 (zhōng) vừa là "chuông" vừa là "đồng hồ"; vì 送钟 (tặng đồng hồ) đọc giống 送终 (đưa tang), người Trung Quốc kiêng tặng đồng hồ.');
+
+  lore('h3', 'Hoàng gia Trung Hoa · Minh–Thanh', [
+    'Hoàng đế Trung Hoa đội mũ miện 冕冠 (miǎnguān) với tấm ván phẳng phía trên, trước sau rủ các chuỗi ngọc (旒, liú). Hoàng hậu đội phượng quan (凤冠, fèngguān), kết bằng vàng, ngọc trai và đá quý, trang trí hình phượng hoàng.',
+    'Cuộc khai quật Định Lăng của hoàng đế Vạn Lịch nhà Minh (1956–1957) đã tìm được các phượng quan của hoàng hậu, trong đó chiếc "chín rồng chín phượng" đính hơn 3.500 viên ngọc trai (một số tài liệu nói hơn 4.000) cùng hơn 100 viên đá quý. Vương miện vàng của mèo là bản đáng yêu của những báu vật ấy.'
+  ], 'Quyền uy, cao quý, thành tựu đỉnh cao.',
+  'Theo cách giải thích cổ, các chuỗi ngọc rủ trước mũ miện nhắc vua đừng chăm chăm vào những điều vụn vặt.');
+
+  lore('s3', 'Hoạ tiết từ thời Chiến Quốc–Hán', [
+    'Hoa văn "tường vân" (祥云, xiángyún) - những đám mây cuộn hình như ý - xuất hiện trên đồ đồng, sơn mài và lụa từ thời Chiến Quốc, Tần Hán. Người xưa xem mây ngũ sắc là điềm lành báo trời đất hoà hợp, nên mây trở thành hoạ tiết của cung điện, long bào, gạch ngói.',
+    'Giày "đầu mây" (云头履, yúntóu lǚ) với mũi giày cong hình mây có từ rất lâu và thịnh hành đến thời Minh–Thanh. Hoa văn tường vân cũng được dùng cho ngọn đuốc Thế vận hội Bắc Kinh 2008, mang tên "Tường Vân".'
+  ], 'Bước trên mây lành: thuận lợi, thăng tiến, may mắn.',
+  'Mây 云 (yún) đọc gần giống vận 运 (yùn), nên mây cũng gợi ý "vận may".');
+
+  lore('o3', 'Hoàng bào các triều đại · nổi bật Minh–Thanh', [
+    'Long bào (龙袍, lóngpáo) là áo thụng thêu rồng của hoàng đế. Từ đời Đường, màu vàng dần trở thành màu dành riêng cho hoàng gia, sang Minh–Thanh thì dân thường không được mặc. Long bào nhà Thanh thường thêu chín con rồng cùng các biểu tượng cát tường như mặt trời, mặt trăng, mây và sóng nước.',
+    'Phần gấu áo có dải sóng nước nhiều màu (海水江崖, hǎishuǐ jiāngyá) tượng trưng cho biển cả và núi non, hàm ý "giang sơn vững bền" - áo của mèo cũng được thêu đúng hoạ tiết ấy ở vạt dưới. Chữ 福 ngay ngực là lời chúc dành cho bạn.'
+  ], 'Quyền lực, phú quý, thành công rực rỡ.',
+  'Người xưa xem 9 là số dương lớn nhất nên gắn với hoàng đế; vì thế mới có "chín rồng" trên long bào.');
+
+  lore('a3', 'Thỏi bạc từ thời Hán · phổ biến Nguyên–Thanh · Thần Tài: dân gian Minh', [
+    'Nguyên bảo (元宝, yuánbǎo) là thỏi vàng bạc hình chiếc thuyền. Thỏi vàng làm tiền lớn đã có từ thời Hán, còn thỏi bạc trở thành tiền tệ lớn quen thuộc từ thời nhà Nguyên và dùng đến hết thời Thanh. Ngày nay nó là biểu tượng của tiền tài, xuất hiện khắp nơi dịp Tết, kể cả trong món sủi cảo gói hình nguyên bảo.',
+    'Thần Tài (财神, Cáishén) có nhiều vị, trong đó vị được thờ nhiều là Triệu Công Minh (赵公明), nổi tiếng nhờ tiểu thuyết Phong Thần Diễn Nghĩa thời Minh. Dân gian có tục "đón Thần Tài" vào mùng 5 Tết, mong năm mới buôn bán thuận lợi, tiền vào như nước.'
+  ], 'Phát tài phát lộc, thành quả xứng đáng với công sức.',
+  'Giữ chuỗi 300 ngày là cực hiếm: hào quang này là phần thưởng cho sự kiên trì của bạn!');
+
+  /* --- quà đổi bằng cá --- */
+  lore('x01', 'Điển tích Chiến Quốc · truyền thuyết Đông Tấn', [
+    'Trang Chu mộng điệp (庄周梦蝶) là điển tích triết học nổi tiếng của Trang Tử (sống khoảng 369–286 TCN theo ước tính): ông mơ mình hoá bướm bay lượn tự do, tỉnh dậy không biết mình là Trang Chu vừa mơ làm bướm hay bướm đang mơ làm Trang Chu. Từ đó bướm trở thành biểu tượng của tự do và những câu hỏi lớn về thực và mộng.',
+    'Trong dân gian, bướm còn là hiện thân của tình yêu chung thuỷ qua truyền thuyết Lương Sơn Bá - Chúc Anh Đài (bối cảnh đời Đông Tấn): hai người không đến được với nhau, khi mất hoá thành đôi bướm bay quanh nhau. Chữ 蝶 (dié) đọc gần giống 耋 (dié, người thọ tám mươi), nên bướm cũng là lời chúc trường thọ.'
+  ], 'Tự do, tình yêu đẹp và tuổi thọ.',
+  'Chuyện Lương - Chúc được ví như "Romeo và Juliet của Trung Hoa"; bản nhạc violin "Lương Chúc" (1959) rất nổi tiếng.');
+
+  lore('x02', 'Cây trồng cổ · Sở Từ (thời Chiến Quốc)', [
+    'Cam quýt có nguồn gốc ở vùng phía Nam Trung Hoa và đã được nhắc trong sách cổ như Thượng Thư - Vũ Cống. Trong Sở Từ có bài "Quất tụng" (橘颂), truyền thống gán cho Khuất Nguyên (một số học giả còn ngờ về tác giả), ca ngợi cây quýt: sinh ra ở đâu thì gắn bó với quê hương nơi đó, tượng trưng cho phẩm cách kiên định.',
+    'Dịp Tết, người Trung Quốc và người Hoa khắp nơi tặng nhau quýt, cam, đặt lên bàn thờ. Chữ 橘 (jú) đọc gần với 吉 (jí, cát tường), còn 橙 (chéng, cam) đọc giống 成 (chéng, thành công), nên quýt cam là lời chúc may mắn và thành đạt.'
+  ], 'Cát tường, may mắn, thành công.',
+  'Quất vàng (金桔, jīnjú) thường được trồng trong chậu để bày ngày Tết.');
+
+  lore('x03', 'Thời Thương (khoảng 1250–1046 TCN)', [
+    'Rùa là một trong "Tứ linh" (四灵) của Trung Hoa, cùng với rồng, phượng hoàng và kỳ lân. Thời nhà Thương, người ta khắc câu hỏi bói toán lên mai rùa và xương thú rồi hơ lửa xem vết nứt để đoán điềm. Đó chính là giáp cốt văn (甲骨文), dạng chữ Hán cổ nhất được biết đến.',
+    'Rùa sống lâu nên là biểu tượng của trường thọ, bền bỉ và vững vàng. Huyền Vũ (玄武), thần thú trấn phương Bắc trong Tứ Tượng, mang hình con rùa quấn rắn. "Chậm mà chắc" rất hợp với việc học chữ Hán mỗi ngày!'
+  ], 'Trường thọ, vững vàng, kiên trì.',
+  'Giáp cốt văn được tìm thấy ở di chỉ Ân Khư (An Dương, Hà Nam), kinh đô cuối cùng của nhà Thương.');
+
+  lore('x04', 'Thi hoạ đời Tống · "Tuế hàn tam hữu"', [
+    'Mai nở giữa mùa đông giá lạnh nên được người Trung Hoa tôn là biểu tượng của nghị lực và khí tiết. Mai cùng tùng, trúc hợp thành "Tuế hàn tam hữu" (岁寒三友, ba người bạn mùa lạnh), và cùng lan, trúc, cúc hợp thành "Tứ quân tử" (四君子) trong hội hoạ.',
+    'Thi nhân Lâm Bô (林逋) đời Bắc Tống ẩn cư bên Tây Hồ, không vợ con, chỉ trồng mai và nuôi hạc, nên được gọi là "mai thê hạc tử" (梅妻鹤子, vợ là mai, con là hạc). Dân gian còn nói năm cánh hoa mai tượng trưng cho năm điều phúc.'
+  ], 'Kiên cường, thanh cao, vượt khó mà nở hoa.',
+  'Mai (梅, méi) đọc giống 眉 (mày), nên có bức tranh "Hỉ thượng mi sao" vẽ chim hỉ thước đậu cành mai.');
+
+  lore('x05', 'Truyền thuyết Ngưu Lang – Chức Nữ', [
+    'Hỉ thước (喜鹊, xǐquè) là chim ác là, được người Trung Quốc xem là loài chim báo tin vui: tiếng kêu của nó nghĩa là khách quý hay tin mừng sắp tới. Trong truyền thuyết Ngưu Lang - Chức Nữ, mỗi năm vào ngày 7 tháng 7 âm lịch (lễ Thất Tịch), đàn chim thước bay lên bắc cầu qua sông Ngân Hà để đôi tình nhân gặp nhau.',
+    'Truyền thuyết này đã được kể từ hàng nghìn năm nay và Thất Tịch ngày nay thường được xem là "Valentine của Trung Hoa". Trong tranh dân gian, hỉ thước đậu cành mai gọi là "Hỉ thượng mi sao" (喜上眉梢), nghĩa là niềm vui hiện lên đầu mày.'
+  ], 'Tin vui, hạnh phúc, duyên lành.',
+  'Hỉ thước là hình mẫu quen thuộc trong tranh cắt giấy dán cửa sổ (窗花) ngày Tết.');
+
+  lore('x06', 'Truyền thuyết thời Tây Hán', [
+    'Sữa đậu nành (豆浆, dòujiāng) là thức uống người Trung Hoa dùng từ rất lâu đời. Tương truyền Lưu An (刘安), Hoài Nam Vương thời Tây Hán, là người nghĩ ra cách xay đậu nành thành sữa và nấu thành đậu phụ, nhưng chưa có bằng chứng lịch sử trực tiếp (ngay cả Bản Thảo Cương Mục đời Minh cũng không nêu người phát minh), nên đây vẫn là truyền thuyết.',
+    'Ngày nay, sáng sớm ở Trung Quốc, một bát sữa đậu nành nóng ăn kèm bánh quẩy (油条, yóutiáo) hoặc bánh bao là bữa sáng quen thuộc. Sữa đậu nành là nguồn đạm thực vật rẻ và ngon, hợp với cả người ăn chay.'
+  ], 'Khởi đầu ngày mới ấm bụng, đủ năng lượng học bài.',
+  'Bánh quẩy thường được cho là đã xuất hiện từ khoảng thời Tống.');
+
+  lore('x07', 'Ngọc Lương Chử (khoảng 3300–2300 TCN) → Lễ Ký', [
+    'Người Trung Hoa chuộng ngọc từ thời đồ đá mới: nền văn hoá Lương Chử (khoảng 3300-2300 TCN) đã chế tác những món ngọc tinh xảo như ngọc bích (璧) và ngọc tông (琮). Ngọc bội (玉佩, yùpèi) là món ngọc đeo bên người của quý tộc, treo ở đai lưng hoặc trước ngực.',
+    'Sách Lễ Ký ghi rằng quân tử không rời ngọc trừ khi có biến cố (君子无故，玉不去身). Khổng Tử còn ví đức của người quân tử với ngọc: ấm áp, trong trẻo, kiên định. Tiếng ngọc chạm nhau khi bước đi nhắc người đeo giữ phong thái chậm rãi, điềm đạm.'
+  ], 'Bình an, cao quý, đức hạnh.',
+  'Thành ngữ 金玉良缘 (jīnyù liángyuán) - "duyên lành vàng ngọc" - dùng để chúc đôi lứa xứng đôi.');
+
+  lore('x08', 'Thi văn Bắc Tống · Chu Đôn Di', [
+    'Sen (莲花, liánhuā) mọc từ bùn mà không nhiễm bùn. Học giả Bắc Tống Chu Đôn Di (1017-1073) viết bài "Ái liên thuyết" ca ngợi sen là "quân tử trong các loài hoa" vì thanh sạch, ngay thẳng, giữ phẩm giá giữa nơi bùn lầy.',
+    'Sen còn gắn với Phật giáo (toà sen của Phật) và nhiều lời chúc chơi chữ: 莲 (lián) đọc giống 连 (liền, liên tiếp), 荷 (hé) gần với 和 (hoà, hoà thuận). Tranh "Liên sinh quý tử" (连生贵子) vẽ sen cùng hạt sen để chúc con cháu đầy đàn.'
+  ], 'Thanh cao, trong sạch, hoà thuận.',
+  'Hạt sen và củ sen đều ăn được; chè hạt sen là món bổ dưỡng ở nhiều vùng Trung Quốc.');
+
+  lore('x09', 'Kinh Thi · Đường–Tống', [
+    'Dế mèn (蟋蟀, xīshuài) đã xuất hiện trong Kinh Thi, bài "Thất nguyệt" tả dế vào nhà khi trời trở lạnh. Thời Đường, cung nữ nuôi dế trong lồng nhỏ bằng vàng để nghe tiếng dế đêm; tới đời Tống, chọi dế (斗蟋蟀, dòu xīshuài) trở thành thú vui phổ biến.',
+    'Cuối đời Nam Tống, tể tướng Giả Tự Đạo (贾似道) mê chọi dế đến mức được cho là tác giả cuốn "Xúc chức kinh" (促织经), thường được xem là sách chuyên về dế sớm nhất. Tới đời Thanh, Bồ Tùng Linh còn viết truyện "Xúc chức" trong Liêu Trai Chí Dị.'
+  ], 'Cần cù, nhắc ta học đều đặn khi mùa thu về.',
+  'Ở Trung Quốc có cả những chiếc ống nuôi dế bằng gốm và ngà rất tinh xảo, nay thành đồ sưu tầm.');
+
+  lore('x10', 'Thần thoại · Tây Du Ký (đời Minh)', [
+    'Đào tiên (蟠桃, pántáo) của Tây Vương Mẫu (西王母) được kể là ba nghìn năm mới chín một lần, ăn vào sẽ trường sinh. Trong tiểu thuyết Tây Du Ký đời Minh, Tôn Ngộ Không được giao coi vườn bàn đào rồi ăn trộm đào tiên cũng chính vì sức hấp dẫn đó.',
+    'Vì thế quả đào (寿桃, shòutáo) là biểu tượng trường thọ. Dịp mừng thọ người già, người ta dâng đào thật hoặc bánh bao nhân đậu nặn hình quả đào, điểm chấm hồng ở đầu. Gỗ đào còn được tin là trừ tà, nên có tục treo "đào phù" (桃符) trước cửa ngày Tết.'
+  ], 'Trường thọ, khoẻ mạnh, hiếu kính với ông bà.',
+  'Truyền thuyết kể Đông Phương Sóc (东方朔) thời Hán Vũ Đế từng "ăn trộm" đào của Tây Vương Mẫu nên sống rất thọ.');
+
+  lore('x11', 'Thịnh Đường · Lạc Dương', [
+    'Mẫu đơn (牡丹, mǔdān) được tôn là "hoa vương" (花王) và "quốc sắc thiên hương" (国色天香). Thời Đường, Trường An và Lạc Dương nổi cơn say mẫu đơn, dân chúng đổ ra ngắm hoa mỗi độ xuân về; đến đời Tống, Âu Dương Tu viết "Lạc Dương mẫu đơn ký" (khoảng năm 1034, một số tài liệu ghi 1031) ghi chép hàng chục giống hoa.',
+    'Dân gian kể rằng Võ Tắc Thiên từng ra lệnh cho trăm hoa nở giữa mùa đông, chỉ mẫu đơn không chịu nở nên bị đày đến Lạc Dương. Đây là giai thoại dân gian, nhưng cho thấy mẫu đơn mang khí chất kiêu hãnh.'
+  ], 'Phú quý, thịnh vượng, vẻ đẹp rực rỡ.',
+  'Lễ hội Mẫu đơn Lạc Dương vẫn được tổ chức mỗi mùa xuân đến nay.');
+
+  lore('x12', 'Đông Tấn · "Nang huỳnh dạ độc"', [
+    'Xưa có chàng Xa Dận (车胤) thời Đông Tấn, nhà nghèo không có dầu thắp đèn nên bắt đom đóm bỏ vào túi lụa mỏng để lấy ánh sáng đọc sách mỗi đêm. Câu chuyện "nang huỳnh dạ độc" (囊萤夜读) trở thành thành ngữ chỉ sự khắc khổ học hành.',
+    'Truyện của Xa Dận thường đi liền với Tôn Khang (孙康) học nhờ ánh tuyết (映雪), hợp thành thành ngữ "nang huỳnh ánh tuyết" (囊萤映雪) vốn được nhắc trong sách vỡ lòng Tam Tự Kinh. Còn về đom đóm, người xưa từng tin chúng sinh ra từ cỏ mục (腐草为萤).'
+  ], 'Hiếu học, vượt khó, ánh sáng nhỏ soi đường lớn.',
+  'Ánh sáng đom đóm là "ánh sáng lạnh": gần như không toả nhiệt.');
+
+  lore('x13', 'Thắt nút cổ xưa · phát triển Đường–Minh–Thanh', [
+    'Trước khi có chữ viết, người xưa dùng nút thắt dây để ghi nhớ sự việc (结绳记事), và Kinh Dịch có nhắc đến thời thượng cổ "thắt nút dây mà cai trị". Về sau, nghệ thuật thắt nút trở thành thủ công mỹ nghệ, phát triển ở đời Đường-Tống và thịnh vượng thời Minh-Thanh, dùng trang trí ngọc bội, quạt, rèm, đèn lồng.',
+    'Chữ 结 (jié) đọc gần với 吉 (cát) và còn có nghĩa kết nối, đoàn kết. Những kiểu nút nổi tiếng như "bàn trường kết" (盘长结), đường dây liền không đứt, tượng trưng cho gắn bó và bình an vô tận. Tên "Trung Quốc kết" (中国结) được phổ biến từ cuối thập niên 1970–1980, khi phong trào thắt nút hồi sinh ở Đài Loan nhờ bà Lydia Chen.'
+  ], 'Gắn kết, đoàn viên, may mắn không dứt.',
+  'Nút thắt đỏ thường được treo trước cửa nhà dịp Tết cùng câu đối.');
+
+  lore('x14', 'Truyền thuyết Nam Tống', [
+    'Kẹo hồ lô (糖葫芦, tánghúlu) là xiên sơn tra (táo gai) bọc đường giòn tan. Tương truyền thời Nam Tống, một vị phi tần được Tống Quang Tông sủng ái bị bệnh nặng, thầy thuốc dân gian kê toa sơn tra nấu với đường phèn và nàng khỏi bệnh; món ăn từ đó lan ra dân gian.',
+    'Ngày nay kẹo hồ lô gắn với mùa đông Bắc Kinh: người bán rong cắm từng xiên đỏ rực trên cọc rơm. Chữ 葫芦 (húlu) đọc gần với 福禄 (fúlù, phúc lộc), nên xiên kẹo cũng là lời chúc "phúc lộc" cho người ăn.'
+  ], 'Phúc lộc, ngọt ngào, vui vẻ.',
+  'Ngày nay người ta cũng làm kẹo hồ lô bằng dâu tây, nho, quýt, nhưng bản gốc vẫn là sơn tra.');
+
+  lore('x15', 'Điềm lành thời Hán · tục Thất Tịch', [
+    'Nhện được xem là điềm lành vì cách gọi "hỉ tử, hỉ chu" (喜蛛, xǐzhū). Sách "Tây Kinh tạp ký" thời Hán có ghi những điềm báo dân gian, trong đó chim thước kêu thì có khách tới, nhện giăng tơ thì sắp có chuyện vui.',
+    'Trong lễ Thất Tịch, các cô gái có tục "khất xảo" (乞巧): đặt nhện vào hộp rồi hôm sau xem mạng nhện giăng đẹp hay không để đoán tài khéo tay. Vì vậy nhện còn là biểu tượng của sự khéo léo, cần mẫn.'
+  ], 'Niềm vui từ trời xuống, khéo léo, cần mẫn.',
+  'Thành ngữ 喜从天降 (xǐ cóng tiān jiàng) - "niềm vui từ trời rơi xuống" - rất hợp với hình ảnh nhện thả mình từ sợi tơ.');
+
+  lore('x16', 'Truyền thuyết Lôi Tổ (khoảng 2700 TCN) · Con đường Tơ lụa', [
+    'Trung Hoa là cái nôi của nghề tơ lụa. Truyền thuyết kể rằng Lôi Tổ (嫘祖), vợ Hoàng Đế, thấy một cái kén rơi vào tách trà nóng, kéo ra được sợi tơ dài rồi dạy dân nuôi tằm dệt lụa. Khảo cổ học tìm thấy vải tơ ở di chỉ Tiền Sơn Dương (Chiết Giang) có tuổi khoảng 4.200–4.700 năm tuỳ nguồn; một số mảnh tơ ở Hà Nam còn được cho là cổ hơn nữa (khoảng 5.300 năm).',
+    'Lụa Trung Hoa theo Con đường Tơ lụa tới tận châu Âu, còn kỹ thuật nuôi tằm được giữ bí mật hàng thế kỷ. Một con tằm nhả ra sợi tơ liền dài hàng trăm đến cả nghìn mét để làm kén. Người xưa trồng dâu nuôi tằm và có lễ cúng "Tằm thần".'
+  ], 'Cần mẫn, tích tiểu thành đại, bền bỉ nhả tơ.',
+  'Tằm chỉ ăn lá dâu, nên "dâu" (桑) và "tằm" (蚕) đi liền nhau trong nhiều thành ngữ nhà nông.');
+
+  lore('x17', 'Thời Xuân Thu · Lan Đình (năm 353)', [
+    'Lan (兰花, lánhuā) toả hương thanh nhã nơi hang vắng nên là biểu tượng của quân tử và tình bạn. Khổng Tử được cho là từng nói lan mọc trong rừng sâu không vì vắng người ngắm mà thôi toả hương, ý nhắc người quân tử giữ đạo dù không ai biết đến.',
+    'Năm 353, danh sĩ Vương Hy Chi cùng hơn 40 bạn hữu họp mặt ở Lan Đình (兰亭) bên Thiệu Hưng, uống rượu làm thơ, và ông viết "Lan Đình tập tự" - được tôn là "thiên hạ đệ nhất hành thư". Vì thế lan gắn liền với thư pháp và đời sống văn nhân.'
+  ], 'Thanh nhã, bạn tri kỷ, đức hạnh thầm lặng.',
+  'Thành ngữ 金兰之交 (jīnlán zhī jiāo) chỉ tình bạn thân thiết, gắn bó như vàng như lan.');
+
+  lore('x18', 'Thời Hán–Đường', [
+    'Bộ dao (步摇, bùyáo) là loại trâm cài tóc có các chuỗi hạt, ngọc rủ xuống, mỗi bước đi lại đung đưa nên mới có tên "bước đi, lay động". Sách "Thích Danh" của Lưu Hy thời Đông Hán đã giải thích tên gọi này.',
+    'Bộ dao thịnh hành từ thời Hán đến Nam–Bắc triều và vẫn được dùng ở các đời sau, thường tạo hình chim phượng, hoa, bướm, kèm vàng và ngọc. Quan niệm xưa cho rằng bước chân nhẹ nhàng, trâm lay khẽ là dáng đi thanh tao của người phụ nữ.'
+  ], 'Duyên dáng, thanh lịch, nhẹ nhàng mà rực rỡ.',
+  'Bộ dao xuất hiện rất nhiều trong phim cổ trang Trung Quốc.');
+
+  lore('x19', 'Truyền thuyết Hán · phong thuỷ dân gian', [
+    'Cóc ba chân ngậm đồng tiền (三足金蟾, sānzú jīnchán) là linh vật chiêu tài. Theo một số dị bản truyền thuyết, Hằng Nga uống thuốc trường sinh rồi bay lên cung trăng và hoá thành con cóc (蟾蜍), nên cóc gắn với mặt trăng và cung trăng còn được gọi là "Thiềm cung" (蟾宫).',
+    'Thành ngữ "thiềm cung chiết quế" (蟾宫折桂), bẻ cành quế trong cung trăng, là cách nói thi đỗ khoa cử. Về sau, truyền thuyết về Lưu Hải Thiềm (刘海蟾, nhân vật khoảng thế kỷ 10, được tôn là tiên và gắn với Thần Tài) đi cùng con cóc ba chân, rải tiền giúp dân nghèo khiến cóc vàng trở thành vật tượng trưng cho tài lộc trong dân gian.'
+  ], 'Chiêu tài, thi cử đỗ đạt, may mắn.',
+  'Theo phong thuỷ dân gian, cóc vàng thường được đặt quay mặt vào trong nhà để "hút tiền vào".');
+
+  lore('x20', 'Ngọc cổ từ thời Thương · phổ biến Minh–Thanh', [
+    'Người Trung Hoa chế tác vòng ngọc từ thời đồ đá mới (như văn hoá Hồng Sơn). Thời nhà Thương, ngọc đã rất được trọng: ngôi mộ Phụ Hảo (khoảng 1200 TCN) chứa 755 món ngọc. Nguồn ngọc (có cả ngọc nephrite, nhiều người nhắc tới ngọc Hoà Điền ở Tân Cương) vẫn còn được giới nghiên cứu bàn luận.',
+    'Vòng ngọc (玉镯, yùzhuó) trở nên phổ biến ở thời Minh-Thanh. Mẹ chồng thường tặng con dâu một chiếc vòng ngọc gia truyền như lời chào đón; người ta còn nói 金有价，玉无价, "vàng có giá, ngọc vô giá". Dân gian tin vòng ngọc có thể "đỡ tai hoạ" cho chủ nhân.'
+  ], 'Bình an, hiền hoà, bền lâu.',
+  'Ngọc phỉ thuý (翡翠, fěicuì) màu xanh biếc trở nên được ưa chuộng nhiều từ thời nhà Thanh.');
 
   /* ---------- hình mèo (SVG, xếp lớp) ---------- */
   var BASE_BACK =
@@ -363,25 +803,34 @@
       L('M46 104 L26 100 M46 111 L27 114 M154 104 L174 100 M154 111 L173 114', '#8B6A58', 2);
   }
 
-  // view: 'full' | 'mini' | 'thumb' ; eq: {h,s,o,a} ; mood: '' | 'happy' ; vb: tuỳ chọn khung nhìn
+  // view: 'full' | 'mini' | 'thumb' ; eq: {h,s,o,a,j,n,f,m,k,g} ; mood: '' | 'happy' | 'sad' ; vb: tuỳ chọn khung nhìn
   function catSVG(view, eq, mood, vb) {
     eq = eq || {};
-    var h = byId(eq.h), sh = byId(eq.s), o = byId(eq.o), a = byId(eq.a);
+    var h = byId(eq.h), sh = byId(eq.s), o = byId(eq.o), a = byId(eq.a), j = byId(eq.j), n = byId(eq.n),
+        f = byId(eq.f), m = byId(eq.m), k = byId(eq.k), g = byId(eq.g);
     var box = vb || (view === 'mini' ? '28 0 144 144' : '0 0 200 232');
     var s = '<svg viewBox="' + box + '" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">';
     if (a && a.back) s += a.back;
     s += BASE_BACK;
+    if (g) s += g.svg;
+    if (k) s += k.svg;
+    if (m) s += m.svg;
     if (sh) s += sh.svg;
     if (o) s += o.svg;
     if (a && a.layer === 'pre') s += a.svg;
+    if (n) s += n.svg;
     s += headSVG(mood);
     if (a && a.layer === 'post') s += a.svg;
+    if (j) s += j.svg;
     if (h) s += h.svg;
+    if (f) s += f.svg + GRIP;
     return s + '</svg>';
   }
   function thumbSVG(it) {
-    var eq = { h: '', s: '', o: '', a: '' }; eq[it.slot] = it.id;
-    return catSVG('thumb', eq, '', it.vb || VB[it.slot]);
+    var vb = it.vb || VB[it.slot];
+    if (it.solo) return '<svg viewBox="' + vb + '" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">' + it.svg + '</svg>';
+    var eq = {}; eq[it.slot] = it.id;
+    return catSVG('thumb', eq, '', vb);
   }
 
   /* ---------- cá 🐟 + hồ sơ mèo (tên, đồ đang mặc) ---------- */
@@ -400,30 +849,41 @@
   var DEV = devId();
   function sum(o) { var t = 0; for (var k in o) t += o[k] | 0; return t; }
   function blankDay() { return { day: today(), v: 0, x: 0, f: 0, keys: {} }; }
+  function blankEq() { var o = {}; SLOT_ORDER.forEach(function (k) { o[k] = ''; }); return o; }
+  function idList(arr, test) {
+    var out = [];
+    (Array.isArray(arr) ? arr : []).forEach(function (id) { var it = typeof id === 'string' ? byId(id) : null; if (it && test(it) && out.indexOf(id) < 0) out.push(id); });
+    return out;
+  }
   function normP(p) {
     p = p || {};
-    var e = p.eq || {}, out = { h: '', s: '', o: '', a: '' };
+    var e = p.eq || {}, out = blankEq();
     SLOT_ORDER.forEach(function (k) { var it = typeof e[k] === 'string' ? byId(e[k]) : null; out[k] = it && it.slot === k ? it.id : ''; });
-    return { nm: String(p.nm || '').replace(/[\u0000-\u001f<>]/g, '').slice(0, NAME_MAX), eq: out, sn: p.sn | 0, t: p.t | 0 };
+    // own = món đã đổi bằng cá; sv = món quà mốc mới (nw) đã xem
+    return { nm: String(p.nm || '').replace(/[\u0000-\u001f<>]/g, '').slice(0, NAME_MAX), eq: out, sn: p.sn | 0, t: p.t | 0,
+      own: idList(p.own, function (it) { return !!it.cost; }), sv: idList(p.sv, function (it) { return !!it.nw; }) };
   }
   function normFish(o) {
     o = o || {};
     var d = o.d && o.d.day ? o.d : blankDay();
-    return { e: o.e || {}, fd: o.fd || {}, ts: o.ts | 0,
+    return { e: o.e || {}, fd: o.fd || {}, sp: o.sp || {}, ts: o.ts | 0,
       d: { day: d.day, v: d.v | 0, x: d.x | 0, f: d.f | 0, keys: d.keys || {} }, p: normP(o.p) };
   }
+  function unionIds(a, b) { var r = a.slice(); b.forEach(function (x) { if (r.indexOf(x) < 0) r.push(x); }); return r; }
   function mergeFish(a, b) {
     if (!a) return b ? normFish(b) : normFish();
     if (!b) return normFish(a);
     var r = normFish(), k;
-    for (k in a.e) r.e[k] = Math.max(a.e[k] | 0, (b.e[k] | 0));
-    for (k in b.e) r.e[k] = Math.max(r.e[k] | 0, b.e[k] | 0);
-    for (k in a.fd) r.fd[k] = Math.max(a.fd[k] | 0, (b.fd[k] | 0));
-    for (k in b.fd) r.fd[k] = Math.max(r.fd[k] | 0, b.fd[k] | 0);
+    ['e', 'fd', 'sp'].forEach(function (f) {
+      for (k in a[f]) r[f][k] = Math.max(a[f][k] | 0, (b[f][k] | 0));
+      for (k in b[f]) r[f][k] = Math.max(r[f][k] | 0, b[f][k] | 0);
+    });
     var pickD = a.d.day > b.d.day ? a : a.d.day < b.d.day ? b : (a.ts >= b.ts ? a : b);
     r.d = pickD.d; r.ts = Math.max(a.ts, b.ts);
     r.p = normP(a.p.t >= b.p.t ? a.p : b.p);
     r.p.sn = Math.max(a.p.sn, b.p.sn);
+    r.p.own = unionIds(a.p.own, b.p.own);   // đồ đã đổi: hợp nhất, không bao giờ mất
+    r.p.sv = unionIds(a.p.sv, b.p.sv);
     return r;
   }
   function fishKeyOf(uid) { return 'meow_cat_fish_v1_' + (uid || 'guest'); }
@@ -431,7 +891,7 @@
     try { var o = JSON.parse(localStorage.getItem(fishKeyOf(uid))); if (o && o.e) return normFish(o); } catch (e) {}
     return null;
   }
-  function fishBalance() { return fish ? Math.max(0, sum(fish.e) - sum(fish.fd)) : 0; }
+  function fishBalance() { return fish ? Math.max(0, sum(fish.e) - sum(fish.fd) - sum(fish.sp)) : 0; }
   function fishFedTotal() { return fish ? sum(fish.fd) : 0; }
   function rollDay() { if (fish.d.day !== today()) fish.d = blankDay(); }
 
@@ -522,23 +982,28 @@
   function countDays() { return lastView ? lastView.state.count : 0; }
   function touchP() { fish.p.t = Date.now(); }
 
+  function owns(id) { return !!fish && fish.p.own.indexOf(id) >= 0; }
+  function isOpen(it) { return it.cost ? owns(it.id) : it.day <= bestDays(); } // quà mốc chuỗi hoặc món đã đổi bằng cá
   function eqSafe() { // chỉ cho mặc những món đã mở
-    var out = { h: '', s: '', o: '', a: '' };
+    var out = blankEq();
     if (!fish) return out;
-    var best = bestDays();
-    SLOT_ORDER.forEach(function (k) { var it = byId(fish.p.eq[k]); if (it && it.slot === k && it.day <= best) out[k] = it.id; });
+    SLOT_ORDER.forEach(function (k) { var it = byId(fish.p.eq[k]); if (it && it.slot === k && isOpen(it)) out[k] = it.id; });
     return out;
   }
-  function unseen() {
+  function unseen() { // quà mốc chuỗi chưa xem (món mới nw của bản này cũng báo cho người chơi cũ)
     if (!fish || !lastView) return [];
-    var best = bestDays();
-    return ITEMS.filter(function (it) { return it.day <= best && it.day > fish.p.sn; });
+    var best = bestDays(), sn = fish.p.sn;
+    return ITEMS.filter(function (it) { return it.day <= best && (it.day > sn || (it.nw && fish.p.sv.indexOf(it.id) < 0)); });
   }
-  function claimNew() { // mở quà mới: tự mặc món mới nhất của mỗi loại
+  function claimNew() { // mở quà mới: tự mặc món mới của mỗi loại (không đè món mốc cao hơn đang mặc)
     var list = unseen();
     if (!list.length) return [];
-    list.forEach(function (it) { fish.p.eq[it.slot] = it.id; });
-    fish.p.sn = list[list.length - 1].day;
+    list.forEach(function (it) {
+      var cur = byId(fish.p.eq[it.slot]);
+      if (!cur || !cur.day || cur.day <= it.day) fish.p.eq[it.slot] = it.id;
+      if (it.nw && fish.p.sv.indexOf(it.id) < 0) fish.p.sv.push(it.id);
+    });
+    fish.p.sn = Math.max(fish.p.sn, list[list.length - 1].day);
     touchP(); persistFish();
     return list;
   }
@@ -546,6 +1011,16 @@
     var best = bestDays();
     for (var i = 0; i < ITEMS.length; i++) if (ITEMS[i].day > best) return ITEMS[i];
     return null;
+  }
+  // đổi cá lấy món: không giới hạn số lần/ngày, mỗi món đổi 1 lần. Mỗi máy ghi bộ đếm "đã tiêu" riêng (fish.sp) nên đồng bộ không mất cá.
+  function buy(id) {
+    var it = byId(id);
+    if (!fishReady || !it || !it.cost || owns(id) || fishBalance() < it.cost) return false;
+    fish.sp[DEV] = (fish.sp[DEV] | 0) + it.cost;
+    fish.p.own.push(id);
+    fish.p.eq[it.slot] = id;
+    touchP(); persistFish(); updateMini();
+    return true;
   }
   function ringPct() {
     var it = nextItem();
@@ -687,6 +1162,37 @@
     '.go{display:block;width:100%;padding:15px 18px;border:0;border-radius:16px;background:var(--red);color:#fff;font:800 15.5px/1 var(--f);cursor:pointer;box-shadow:0 4px 0 var(--red2);transition:transform .08s,box-shadow .08s}',
     '.go:active{transform:translateY(3px);box-shadow:0 1px 0 var(--red2)}.go:focus-visible{outline:3px solid var(--gold);outline-offset:3px}',
 
+    /* v3: tab 3 mục, bộ lọc, cửa hàng */
+    '.tab{padding:10px 4px;white-space:nowrap;font-size:12.5px}@media(max-width:380px){.tab em{display:none}}',
+    '.fl{display:flex;gap:6px;overflow-x:auto;margin:0 -16px 12px;padding:2px 16px 4px;scrollbar-width:none}.fl::-webkit-scrollbar{display:none}',
+    '.fc{flex:none;padding:7px 12px;border:1.5px solid var(--line);border-radius:99px;background:#fff;color:#7A4A00;font:800 12px/1 var(--f);cursor:pointer}',
+    '.fc[aria-pressed=true]{background:var(--gold);border-color:#D9A21E;color:#4A2A00}.fc:focus-visible{outline:3px solid var(--gold);outline-offset:2px}',
+    '.note.tl{margin:0 0 10px;text-align:left}.empty{padding:22px 10px;text-align:center;color:var(--mut);font-size:13px}',
+    '.shophd{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;padding:10px 12px;border-radius:16px;background:#EEF8F3;border:1.5px solid #CFE8DA}',
+    '.shophd .sb{font-size:13px;color:#2F6C58;white-space:nowrap}.shophd .sb b{font-size:20px;color:#1F5F4A}.shophd .ss{font-size:11px;color:#5B8A76;text-align:right}',
+    '.it .pr{display:inline-block;margin-top:1px;padding:2px 9px;border-radius:99px;background:#E7F5EE;color:#1F7A55;font-weight:800}',
+    '.it.short .pr{background:#F6EEDF;color:#A8957F}.it.short .th svg{opacity:.7}',
+    '.next.shopb{border-color:#CFE8DA;background:linear-gradient(135deg,#EEF8F3,#DDF1E7)}.next.shopb .gt svg{filter:none;opacity:1}',
+    '.next.shopb b{color:#1F5F4A}.next.shopb small,.next.shopb .go2{color:#2F6C58}',
+    '.th .hov,.th .dng,.th .gl{animation:none}',
+    /* khung lịch sử */
+    '.shw{position:absolute;inset:0;z-index:5}.scrim{position:absolute;inset:0;background:rgba(42,20,16,.3);animation:fade .2s ease}',
+    '.sheet{position:absolute;left:0;right:0;bottom:0;display:flex;flex-direction:column;max-height:64%;border-radius:24px 24px 0 0;background:#fff;box-shadow:0 -12px 32px rgba(42,20,16,.3);animation:sheetup .28s cubic-bezier(.2,.9,.3,1)}',
+    '.sheet:focus{outline:none}.sheet .x{background:#F4E9D7}',
+    '.sh-hd{flex:none;display:flex;gap:12px;align-items:center;padding:14px 52px 8px 16px}',
+    '.sh-th{flex:none;width:84px;height:84px;overflow:hidden;border-radius:18px;background:#FFF3E0;border:1.5px solid var(--line)}.sh-th svg{display:block;width:100%;height:100%}',
+    '.sh-tt{min-width:0}.sh-tt b{display:block;font:800 17px/1.25 var(--f);color:#7A1020}.sh-tt em{font:700 13px var(--fz);font-style:normal;color:#A07A3A}.sh-tt .py{display:block;font-size:12px;color:#A07A3A}',
+    '.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}.tg{padding:2px 9px;border-radius:99px;background:#F4E9D7;color:#8A5A00;font:800 10.5px/1.6 var(--f)}.tg.gold{background:#FFE9B8}',
+    '.sh-bd{flex:1;min-height:0;overflow:auto;padding:4px 16px 12px;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}',
+    '.era{display:inline-block;margin:2px 0 6px;padding:4px 10px;border-radius:99px;background:#EAF5FC;color:#2F6C8C;font:800 11.5px/1.4 var(--f)}',
+    '.lore h4{margin-top:8px;font:800 13.5px/1.3 var(--f);color:#7A1020}.lore p{margin:4px 0 8px;font-size:13px;line-height:1.6;color:#4A3A32}',
+    '.fact{margin-top:6px;padding:10px 12px;border-radius:14px;background:#FFF6DF;border:1.5px dashed #F0CE7A;font-size:12.5px;line-height:1.5;color:#6A4A00}',
+    '.sh-ft{flex:none;padding:10px 16px calc(14px + env(safe-area-inset-bottom,0px));border-top:1.5px solid var(--line);background:#fff}',
+    '.go.sm{padding:13px 16px;font-size:14.5px}.go.mint{background:var(--mint);box-shadow:0 4px 0 #146048}.go.mint:active{box-shadow:0 1px 0 #146048}',
+    '.go:disabled{background:#CDBFB0;box-shadow:0 4px 0 #B3A596;cursor:default;transform:none}',
+    '.shint{margin-top:8px;text-align:center;font-size:12px;color:var(--mut)}',
+    '.okmsg{margin-bottom:8px;padding:8px 10px;border-radius:12px;background:#EEF8F3;color:#1F5F4A;font-weight:700;font-size:12.5px;text-align:center}',
+
     /* chuyển động */
     '@keyframes fly{0%{transform:translate(-110px,70px) rotate(-30deg) scale(1.3);opacity:1}80%{opacity:1}100%{transform:translate(0,0) rotate(0) scale(.3);opacity:0}}',
     '@keyframes chomp{0%,100%{transform:scale(1)}30%{transform:scale(1.06,.94)}60%{transform:scale(.97,1.04)}}',
@@ -705,12 +1211,17 @@
     '@keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}',
     '@keyframes ping{0%{box-shadow:0 0 0 0 rgba(255,59,92,.55)}80%,100%{box-shadow:0 0 0 9px rgba(255,59,92,0)}}',
     '@keyframes cf{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(320px) rotate(560deg);opacity:0}}',
+    '@keyframes sheetup{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}',
+    '@keyframes hov{0%,100%{transform:translate(0,0)}50%{transform:translate(3px,-5px)}}',
+    '@keyframes dng{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}',
+    '@keyframes glw{0%,100%{opacity:.2}50%{opacity:.6}}',
+    '.hov{animation:hov 2.4s ease-in-out infinite}.dng{animation:dng 2.8s ease-in-out infinite}.gl{animation:glw 2s ease-in-out infinite}',
     '@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.cf{display:none}}'
   ].join('');
 
   var host, root, ov, badge, mini, lastView = null, lastFocus = null;
   var ctx = { client: null, uid: null, canSync: false }, prefs = null;
-  var ui = { mode: 'main', tab: 'today', editing: false, sel: null, newIds: [] };
+  var ui = { mode: 'main', tab: 'today', editing: false, sel: null, newIds: [], cat: 'all', msg: '' };
 
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
@@ -834,7 +1345,7 @@
     return '<div class="pantry"><div class="prow"><div><div class="fn">🐟 <b>' + bal + '</b> cá trong túi</div>' +
       '<div class="pips">' + pips + '<em>hôm nay đã ăn ' + f + '/' + FEED_CAP + '</em></div></div>' +
       '<button type="button" class="feed" data-act="feed"' + (can ? '' : ' disabled') + '>' + (full ? 'Mèo no rồi' : bal < 1 ? 'Hết cá' : 'Cho ăn 🐟') + '</button></div>' +
-      '<div class="phint">Đúng 5 từ vựng +1 🐟 · Làm đạt mỗi phần bài tập +1 🐟 · Thắng game (đúng 10 từ) +1 🐟 · đã cho ăn tổng ' + fishFedTotal() + ' 🐟</div></div>';
+      '<div class="phint">Đúng 5 từ vựng +1 🐟 · Làm đạt mỗi phần bài tập +1 🐟 · Thắng game (đúng 10 từ) +1 🐟 · Cá dùng để cho mèo ăn hoặc đổi quà ở tab "Đổi quà" · đã cho ăn tổng ' + fishFedTotal() + ' 🐟</div></div>';
   }
 
   /* --- thẻ: hero --- */
@@ -850,7 +1361,7 @@
   // Tâm trạng của mèo: vui khi vừa được ăn / đặt tên / nhận quà; buồn khi đói (hôm nay chưa được ăn) hoặc chuỗi vừa bị đứt; còn lại cười nhẹ.
   // Muốn mèo CHỈ buồn khi mất chuỗi (không buồn vì đói): xoá điều kiện `hungry` bên dưới.
   function moodNow(o) {
-    if ((o && (o.fed || o.named)) || ui.mode !== 'main') return 'happy';
+    if ((o && (o.fed || o.named || o.bought)) || ui.mode !== 'main') return 'happy';
     if (fish) rollDay();
     var f = fish ? fish.d.f : 0;
     var lost = !!(lastView && lastView.kind === 'reset');
@@ -860,7 +1371,8 @@
   }
   function catBoxHTML(o) {
     return catSVG('full', eqSafe(), moodNow(o)) +
-      (o && o.fed ? '<span class="fly">🐟</span><span class="hr h1">♥</span><span class="hr h2">♥</span><span class="hr h3">♥</span>' : '');
+      (o && o.fed ? '<span class="fly">🐟</span>' : '') +
+      (o && (o.fed || o.bought) ? '<span class="hr h1">♥</span><span class="hr h2">♥</span><span class="hr h3">♥</span>' : '');
   }
   function heroHTML(o) {
     var cf = '';
@@ -896,28 +1408,74 @@
       '<div class="st ice"><b>❄ ' + s.freezes + '/' + MAX_FREEZES + '</b><span>Thẻ đóng băng</span></div>' +
       '<div class="st"><b>🐟 ' + fishBalance() + '</b><span>Cá trong túi</span></div></div>' +
       '<div class="note">Vắng 1 hôm, mèo tự dùng thẻ ❄ để giữ chuỗi. Học đủ ' + FREEZE_EVERY + ' ngày liên tiếp nhận thêm 1 thẻ.</div>' +
-      nextHTML() + pantryHTML() + mailHTML();
+      nextHTML() + shopTeaserHTML() + pantryHTML() + mailHTML();
   }
 
-  /* --- thẻ: tab Tủ đồ --- */
-  function detailHTML() {
-    var it = ui.sel ? byId(ui.sel) : null, best = bestDays();
-    if (!it) return '<b>Tủ đồ của ' + esc(catName()) + ' · ' + countUnlocked() + '/' + ITEMS.length + ' món</b>Giữ chuỗi để mở quà. Bấm vào món đồ để mặc hoặc cởi.';
-    var lock = it.day > best;
-    return '<b>' + esc(it.name) + '<em>' + it.zh + '</em></b><span class="py">' + it.py + '</span>' +
-      (lock ? 'Giữ chuỗi ' + it.day + ' ngày để mở khoá (còn ' + Math.max(1, it.day - countDays()) + ' ngày).'
-            : (fish.p.eq[it.slot] === it.id ? 'Đang mặc. Bấm lần nữa để cởi.' : 'Đã mở khoá. Bấm để mặc cho mèo.'));
+  /* --- thẻ: tủ đồ + cửa hàng đổi cá --- */
+  function ownedShopCount() { return SHOP.filter(function (i) { return owns(i.id); }).length; }
+  function countUnlocked() { return ITEMS.filter(isOpen).length + ownedShopCount(); }
+  function inCat(it) { return ui.cat === 'all' || SLOT_CAT[it.slot] === ui.cat; }
+  function filtersHTML() {
+    return '<div class="fl" role="group" aria-label="Lọc theo loại">' + CATS.map(function (c) {
+      return '<button type="button" class="fc" data-act="cat" data-c="' + c[0] + '" aria-pressed="' + (ui.cat === c[0]) + '">' + c[1] + '</button>';
+    }).join('') + '</div>';
   }
-  function countUnlocked() { var b = bestDays(); return ITEMS.filter(function (i) { return i.day <= b; }).length; }
+  function itemBtn(it, shop) {
+    var got = isOpen(it), on = got && fish.p.eq[it.slot] === it.id, bal = fishBalance(), sub;
+    var cls = 'it' + (!got && !shop ? ' lock' : '') + (shop && !got && bal < it.cost ? ' short' : '') + (on ? ' on' : '') + (ui.sel === it.id ? ' sel' : '');
+    if (shop && !got) sub = '<span class="pr">🐟 ' + it.cost + '</span>';
+    else if (!got) sub = 'Mốc ' + it.day + ' ngày';
+    else sub = on ? 'Đang mặc' : (it.cost ? 'Đã đổi' : 'Đã mở');
+    return '<button type="button" class="' + cls + '" data-act="sel" data-id="' + it.id + '" aria-pressed="' + on + '">' +
+      '<div class="th"><span class="slot">' + SLOTS[it.slot] + '</span>' + thumbSVG(it) + (!got && !shop ? '<span class="lk">🔒</span>' : '') + (on ? '<span class="tick">✓</span>' : '') + '</div>' +
+      '<b>' + esc(it.name) + '</b><small>' + sub + '</small></button>';
+  }
   function closetHTML() {
-    var best = bestDays(), eq = eqSafe(), h = '<div class="detail">' + detailHTML() + '</div><div class="cl">';
-    ITEMS.forEach(function (it) {
-      var lock = it.day > best, on = !lock && eq[it.slot] === it.id;
-      h += '<button type="button" class="it' + (lock ? ' lock' : '') + (on ? ' on' : '') + (ui.sel === it.id ? ' sel' : '') + '" data-act="eq" data-id="' + it.id + '" aria-pressed="' + on + '">' +
-        '<div class="th"><span class="slot">' + SLOTS[it.slot] + '</span>' + thumbSVG(it) + (lock ? '<span class="lk">🔒</span>' : '') + (on ? '<span class="tick">✓</span>' : '') + '</div>' +
-        '<b>' + esc(it.name) + '</b><small>' + (lock ? 'Mốc ' + it.day + ' ngày' : on ? 'Đang mặc' : 'Đã mở') + '</small></button>';
-    });
-    return h + '</div><button class="lnk center" type="button" data-act="strip">Cởi hết đồ</button>';
+    var list = ITEMS.concat(SHOP.filter(function (i) { return owns(i.id); })).filter(inCat);
+    var h = '<div class="note tl">Tủ đồ của ' + esc(catName()) + ' · ' + countUnlocked() + '/' + ALL.length + ' món. Bấm vào món đồ để xem lịch sử và mặc cho mèo.</div>' + filtersHTML();
+    if (list.length) { h += '<div class="cl">'; list.forEach(function (it) { h += itemBtn(it, false); }); h += '</div>'; }
+    else h += '<div class="empty">Mục này chưa có món nào. Ghé tab "Đổi quà" để đổi bằng cá nhé!</div>';
+    return h + '<button class="lnk center" type="button" data-act="tab-shop">🛍 Đổi thêm quà bằng cá</button><button class="lnk center" type="button" data-act="strip">Cởi hết đồ</button>';
+  }
+  function shopHTML() {
+    var list = SHOP.filter(inCat), h;
+    h = '<div class="shophd"><div class="sb">🐟 <b>' + fishBalance() + '</b> cá trong túi</div><div class="ss">Đổi không giới hạn số lần · mỗi món đổi 1 lần · đã có ' + ownedShopCount() + '/' + SHOP.length + ' món</div></div>' +
+      filtersHTML() + '<div class="cl">';
+    list.forEach(function (it) { h += itemBtn(it, true); });
+    return h + '</div><div class="note">Kiếm cá: đúng 5 từ vựng, làm đạt bài tập hoặc thắng game. Món đã đổi sẽ nằm trong Tủ đồ.</div>';
+  }
+  function shopTeaserHTML() {
+    if (!fishReady) return '';
+    var left = SHOP.filter(function (i) { return !owns(i.id); }), bal = fishBalance();
+    if (!left.length) return '<div class="next done">🛍 Bạn đã đổi hết quà trong cửa hàng, quá đỉnh!</div>';
+    var cheap = left[0], can = left.filter(function (i) { return i.cost <= bal; }).length;
+    return '<button type="button" class="next shopb" data-act="tab-shop"><div class="gt">' + thumbSVG(cheap) + '</div><div class="tx">' +
+      '<b>' + (can ? 'Có ' + can + ' món đổi được ngay!' : 'Đổi cá lấy quà cho mèo') + '</b>' +
+      '<small>' + (can ? 'Bạn đang có ' + bal + ' 🐟' : 'Món rẻ nhất: ' + esc(cheap.name) + ' · cần ' + cheap.cost + ' 🐟, còn thiếu ' + (cheap.cost - bal)) + '</small></div><span class="go2">›</span></button>';
+  }
+  // khung lịch sử ra đời của món đồ (hiện khi bấm vào 1 món)
+  function sheetHTML() {
+    var it = ui.sel ? byId(ui.sel) : null;
+    if (!it || !fish) return '';
+    var got = isOpen(it), worn = got && fish.p.eq[it.slot] === it.id, bal = fishBalance(), lo = LORE[it.id] || { era: '', ps: [], mean: '', fact: '' }, act;
+    if (it.cost && !got) {
+      act = bal >= it.cost
+        ? '<button type="button" class="go sm" data-act="buy" data-id="' + it.id + '">Đổi món này · 🐟 ' + it.cost + '</button>'
+        : '<button type="button" class="go sm" disabled>Cần thêm ' + (it.cost - bal) + ' 🐟 để đổi</button><div class="shint">Bạn đang có ' + bal + ' 🐟. Làm bài đúng để kiếm thêm cá nhé!</div>';
+    } else if (!got) {
+      act = '<button type="button" class="go sm" disabled>🔒 Giữ chuỗi ' + it.day + ' ngày để mở (còn ' + Math.max(1, it.day - countDays()) + ' ngày)</button>';
+    } else {
+      act = '<button type="button" class="go sm mint" data-act="wear" data-id="' + it.id + '">' + (worn ? 'Cởi ra' : 'Mặc cho mèo') + '</button>';
+    }
+    return '<div class="shw"><div class="scrim" data-act="sheet-close"></div><div class="sheet" role="dialog" aria-label="Lịch sử: ' + esc(it.name) + '" tabindex="-1">' +
+      '<button class="x" type="button" data-act="sheet-close" aria-label="Đóng">×</button>' +
+      '<div class="sh-hd"><div class="sh-th">' + thumbSVG(it) + '</div><div class="sh-tt"><b>' + esc(it.name) + '</b><em>' + it.zh + '</em><span class="py">' + it.py + '</span>' +
+      '<div class="tags"><span class="tg">' + SLOTS[it.slot] + '</span>' + (it.cost ? '<span class="tg gold">🐟 ' + it.cost + '</span>' : '<span class="tg gold">Mốc ' + it.day + ' ngày</span>') + '</div></div></div>' +
+      '<div class="sh-bd">' + (lo.era ? '<div class="era">🕰 ' + esc(lo.era) + '</div>' : '') +
+      '<div class="lore"><h4>📜 Lịch sử ra đời</h4>' + lo.ps.map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('') +
+      (lo.mean ? '<h4>🧧 Ý nghĩa</h4><p>' + esc(lo.mean) + '</p>' : '') + '</div>' +
+      (lo.fact ? '<div class="fact">💡 <b>Bạn có biết?</b> ' + esc(lo.fact) + '</div>' : '') + '</div>' +
+      '<div class="sh-ft">' + (ui.msg ? '<div class="okmsg" role="status">' + esc(ui.msg) + '</div>' : '') + act + '</div></div></div>';
   }
 
   /* --- thẻ: đặt tên + nhận quà --- */
@@ -941,12 +1499,13 @@
   function tabsHTML() {
     return '<div class="tabs" role="tablist">' +
       '<button class="tab" type="button" role="tab" data-act="tab-today" aria-selected="' + (ui.tab === 'today') + '">🔥 Hôm nay</button>' +
-      '<button class="tab" type="button" role="tab" data-act="tab-closet" aria-selected="' + (ui.tab === 'closet') + '">🎀 Tủ đồ<em>' + countUnlocked() + '/' + ITEMS.length + '</em></button></div>';
+      '<button class="tab" type="button" role="tab" data-act="tab-closet" aria-selected="' + (ui.tab === 'closet') + '">🎀 Tủ đồ<em>' + countUnlocked() + '/' + ALL.length + '</em></button>' +
+      '<button class="tab" type="button" role="tab" data-act="tab-shop" aria-selected="' + (ui.tab === 'shop') + '">🛍 Đổi quà<em>' + ownedShopCount() + '/' + SHOP.length + '</em></button></div>';
   }
   function bodyHTML() {
     if (ui.mode === 'adopt') return adoptHTML();
     if (ui.mode === 'reward') return rewardHTML();
-    return ui.tab === 'closet' ? closetHTML() : todayHTML();
+    return ui.tab === 'closet' ? closetHTML() : ui.tab === 'shop' ? shopHTML() : todayHTML();
   }
   function footHTML() {
     if (ui.mode === 'adopt') return '<button class="go" type="button" data-act="adopt">Nhận nuôi mèo 🐾</button><button class="lnk center" type="button" data-act="skip">Để sau</button>';
@@ -958,8 +1517,18 @@
     var old = ov.querySelector('.body'), st = old && keepScroll ? old.scrollTop : 0;
     ov.innerHTML = '<div class="card" role="dialog" tabindex="-1" aria-modal="true" aria-label="Chuỗi học và tủ đồ của ' + esc(catName()) + '">' +
       heroHTML(o) + (ui.mode === 'main' ? tabsHTML() : '') +
-      '<div class="body">' + bodyHTML() + '</div><div class="foot">' + footHTML() + '</div></div>';
+      '<div class="body">' + bodyHTML() + '</div><div class="foot">' + footHTML() + '</div>' + (ui.mode === 'main' && ui.sel ? sheetHTML() : '') + '</div>';
     var nb = ov.querySelector('.body'); if (nb) nb.scrollTop = st;
+  }
+  function refreshSheet(keep) { // vẽ lại riêng khung lịch sử
+    var card = ov.querySelector('.card'); if (!card) return;
+    var old = card.querySelector('.shw'), st = 0;
+    if (old) { var bd = old.querySelector('.sh-bd'); if (keep && bd) st = bd.scrollTop; card.removeChild(old); }
+    if (ui.mode === 'main' && ui.sel) {
+      var t = document.createElement('div'); t.innerHTML = sheetHTML();
+      var el = t.firstChild;
+      if (el) { card.appendChild(el); var nb = el.querySelector('.sh-bd'); if (nb) nb.scrollTop = st; }
+    }
   }
   function refreshBody(keepScroll) { // chỉ vẽ lại tab + thân, giữ nguyên hero (mèo không bị giật)
     var b = ov.querySelector('.body'), st = b && keepScroll ? b.scrollTop : 0;
@@ -982,10 +1551,10 @@
     if (unseen().length) { ui.newIds = claimNew().map(function (it) { return it.id; }); updateMini(); return 'reward'; }
     return 'main';
   }
-  function open(auto) {
+  function open(auto, tab) {
     if (!lastView || !ov || !fishReady) return;
     lastFocus = document.activeElement;
-    ui.tab = 'today'; ui.editing = false; ui.sel = null;
+    ui.tab = tab === 'shop' || tab === 'closet' ? tab : 'today'; ui.editing = false; ui.sel = null; ui.msg = '';
     ui.mode = pickMode(!!auto);
     renderCard();
     ov.classList.add('on');
@@ -993,7 +1562,7 @@
   }
   function close() {
     ov.classList.remove('on');
-    ui.editing = false;
+    ui.editing = false; ui.sel = null; ui.msg = '';
     updateDot();
     if (lastFocus && lastFocus.focus) { try { lastFocus.focus(); } catch (e) {} }
   }
@@ -1003,8 +1572,8 @@
     var el, box;
     switch (act) {
       case 'close': close(); break;
-      case 'tab-today': case 'tab-closet':
-        ui.tab = act === 'tab-closet' ? 'closet' : 'today'; ui.sel = null; refreshBody(false);
+      case 'tab-today': case 'tab-closet': case 'tab-shop':
+        ui.tab = act.slice(4); ui.sel = null; ui.msg = ''; refreshBody(false); refreshSheet();
         el = ov.querySelector('.tab[aria-selected=true]'); if (el) el.focus();
         break;
       case 'edit-name':
@@ -1020,9 +1589,16 @@
         break;
       case 'rw-ok': ui.mode = 'main'; ui.tab = 'today'; renderCard(); focusInitial(); break;
       case 'rw-closet': ui.mode = 'main'; ui.tab = 'closet'; renderCard(); el = ov.querySelector('.tab[aria-selected=true]'); if (el) el.focus(); break;
-      case 'eq': closetTap(t.getAttribute('data-id')); break;
+      case 'sel': selTap(t.getAttribute('data-id')); break;
+      case 'sheet-close': closeSheet(); break;
+      case 'wear': wearTap(t.getAttribute('data-id')); break;
+      case 'buy': buyTap(t.getAttribute('data-id')); break;
+      case 'cat':
+        ui.cat = t.getAttribute('data-c') || 'all'; refreshBody(false);
+        el = ov.querySelector('.fc[aria-pressed=true]'); if (el) el.focus();
+        break;
       case 'strip':
-        fish.p.eq = { h: '', s: '', o: '', a: '' }; touchP(); persistFish(); updateMini(); refreshCat(); refreshBody(true);
+        fish.p.eq = blankEq(); touchP(); persistFish(); updateMini(); refreshCat(); refreshBody(true);
         break;
       case 'feed':
         if (!feed()) return;
@@ -1051,15 +1627,24 @@
     }
   }
 
-  function closetTap(id) {
-    var it = byId(id); if (!it) return;
-    ui.sel = id;
-    if (it.day <= bestDays()) {
-      fish.p.eq[it.slot] = fish.p.eq[it.slot] === id ? '' : id;
-      touchP(); persistFish(); updateMini(); refreshCat();
-    }
-    refreshBody(true);
-    var again = ov.querySelector('.it[data-id="' + id + '"]'); if (again) again.focus();
+  function selTap(id) { ui.sel = id; ui.msg = ''; refreshBody(true); refreshSheet(false); focusSheet(); }
+  function closeSheet() {
+    var id = ui.sel; ui.sel = null; ui.msg = '';
+    refreshSheet(); refreshBody(true);
+    var b = id && ov.querySelector('.it[data-id="' + id + '"]'); if (b) b.focus();
+  }
+  function focusSheet() { var el = ov.querySelector('.sheet .go:not(:disabled)') || ov.querySelector('.sheet .x'); if (el) el.focus(); }
+  function wearTap(id) {
+    var it = byId(id); if (!it || !isOpen(it)) return;
+    fish.p.eq[it.slot] = fish.p.eq[it.slot] === id ? '' : id; ui.msg = '';
+    touchP(); persistFish(); updateMini(); refreshCat(); refreshBody(true); refreshSheet(true); focusSheet();
+  }
+  function buyTap(id) {
+    var it = byId(id); if (!it || !buy(id)) return;
+    ui.msg = '🎉 Đã đổi! Mèo mặc luôn rồi (−' + it.cost + ' 🐟)';
+    refreshCat({ bought: true });
+    var m = ov.querySelector('.mood'); if (m) m.textContent = 'Oa! Mình có ' + it.name + ' rồi, cảm ơn bạn nhiều ♥';
+    refreshBody(true); refreshSheet(true); focusSheet();
   }
 
   function submitName(input) {
@@ -1084,6 +1669,7 @@
   function trapKeys(e) {
     if (!ov || !ov.classList.contains('on')) return;
     if (e.key === 'Escape') {
+      if (ui.sel) { closeSheet(); return; }
       if (ui.editing) { ui.editing = false; renderCard(null, true); var b = ov.querySelector('.nmb'); if (b) b.focus(); }
       else close();
       return;
@@ -1173,7 +1759,7 @@
   }
 
   window.MeowCat = {
-    show: function () { open(false); },
+    show: function (tab) { open(false, tab); }, // MeowCat.show('shop') mở thẳng tab Đổi quà
     correct: correct,
     reward: reward,
     gameWin: gameWin,
