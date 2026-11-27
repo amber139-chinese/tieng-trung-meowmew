@@ -545,7 +545,7 @@
 
   lore('h4', 'Dân gian miền Bắc · lưu truyền nhiều thế kỷ', [
     'Mũ đầu hổ (虎头帽, hǔtóumào) là món đồ thủ công truyền thống dành cho trẻ nhỏ ở miền Bắc Trung Quốc, nổi tiếng ở các vùng như Thiểm Tây, Sơn Tây, Hà Nam. Người bà, người mẹ tự tay thêu từng mũi chỉ: đôi mắt tròn, bộ ria và chữ "Vương" (王) trên trán, vì các vằn trên trán hổ trông giống chữ này.',
-    'Nguồn gốc của mũ và giày đầu hổ chưa rõ, chỉ có nhiều truyền thuyết dân gian; điều chắc chắn là người xưa xem hổ là chúa sơn lâm, đủ sức trấn áp tà ma. Đội mũ hổ, đi giày hổ là cách gửi gắm ước nguyện cho con khoẻ mạnh, dũng cảm, lớn nhanh như hổ con. Ngày nay, nghề thêu đồ hổ vẫn được nhiều nơi gìn giữ như một nghề thủ công dân gian.'
+    'Nguồn gốc của mũ và giày đầu hổ chưa rõ, chỉ có nhiều truyền thuyết dân gian (mũ hổ của võ sĩ đã thấy trong mộ đời Đường, còn mũ hổ cho trẻ nhỏ phong phú dần đến đời Thanh); điều chắc chắn là người xưa xem hổ là chúa sơn lâm, đủ sức trấn áp tà ma. Đội mũ hổ, đi giày hổ là cách gửi gắm ước nguyện cho con khoẻ mạnh, dũng cảm, lớn nhanh như hổ con. Ngày nay, nghề thêu đồ hổ vẫn được nhiều nơi gìn giữ như một nghề thủ công dân gian.'
   ], 'Mạnh khoẻ, dũng cảm, được che chở bình an.',
   'Thành ngữ 虎头虎脑 (hǔtóu hǔnǎo) dùng để khen một đứa bé khoẻ khoắn, đáng yêu.');
 
@@ -574,7 +574,7 @@
   'Lễ "trăm ngày" (百日, bǎirì) của bé là dịp cả nhà họp mặt để chúc phúc cho con.');
 
   lore('a1', 'Du nhập khoảng thời Minh (thế kỷ 15–16)', [
-    'Kính đeo mắt được phát minh ở châu Âu vào khoảng cuối thế kỷ 13. Kính từ phương Tây (qua thế giới Ả Rập) được nhập vào Trung Hoa chủ yếu thời nhà Minh; người Trung Hoa gọi nó là 靉靆 (àidài), một tên đã thấy trong sách đời Tống nên các học giả vẫn còn bàn về thời điểm kính thật sự du nhập. Lúc đầu đây là món đồ hiếm và đắt của quan lại, văn nhân.',
+    'Kính đeo mắt được phát minh ở châu Âu vào khoảng cuối thế kỷ 13. Kính từ phương Tây được nhập vào Trung Hoa chủ yếu thời nhà Minh, có thể qua các đoàn triều cống đầu thế kỷ 15 hoặc qua Malacca (chưa có bằng chứng chắc chắn cho thuyết kính đã đến từ đời Nguyên); người Trung Hoa gọi nó là 靉靆 (àidài), một tên đã thấy trong sách đời Tống nên các học giả vẫn còn bàn về thời điểm kính thật sự du nhập. Lúc đầu đây là món đồ hiếm và đắt của quan lại, văn nhân.',
     'Gọng tròn từ đó gắn với hình ảnh thư sinh chăm đọc sách và đến nay vẫn là "biểu tượng của người học giỏi". Mèo đeo kính tròn trông rất đúng chất một nhà thông thái đang ôn từ vựng!'
   ], 'Chăm chỉ, sáng suốt, thông tuệ.',
   'Trong tiếng Trung, kính mắt là 眼镜 (yǎnjìng), nghĩa đen là "gương của mắt".');
@@ -586,7 +586,7 @@
   'Hình ảnh "thư sinh áo dài phe phẩy quạt" là hình mẫu quen thuộc của văn nhân trong phim cổ trang.');
 
   lore('h2', 'Khoa cử Tùy–Đường–Tống (thế kỷ 7–13)', [
-    'Trạng Nguyên (状元, zhuàngyuán) là danh hiệu của người đứng đầu kỳ thi Đình, kỳ thi cao nhất trong chế độ khoa cử. Khoa cử khởi đầu từ thời nhà Tùy (khoảng năm 605), được thực hiện bài bản dưới nhà Đường và mở rộng dưới nhà Tống, trở thành con đường chính để ra làm quan. Danh xưng "Trạng Nguyên" phổ biến từ đời Đường, còn vòng thi cuối do chính hoàng đế giám sát thành nền nếp từ năm 973 đời Tống.',
+    'Trạng Nguyên (状元, zhuàngyuán) là danh hiệu của người đỗ đầu kỳ thi cao nhất trong chế độ khoa cử (đời Đường là kỳ thi tỉnh/hội, đời Tống là kỳ thi Đình). Người được ghi nhận là Trạng Nguyên đầu tiên là Tôn Phục Già (孙伏伽), khoảng năm 622 đời Đường. Khoa cử khởi đầu từ thời nhà Tùy (khoảng năm 605), được thực hiện bài bản dưới nhà Đường và mở rộng dưới nhà Tống, trở thành con đường chính để ra làm quan. Danh xưng "Trạng Nguyên" phổ biến từ đời Đường, còn vòng thi cuối do chính hoàng đế giám sát thành nền nếp từ năm 973 đời Tống.',
     'Chiếc mũ có hai cánh dài hai bên là kiểu mũ phốc đầu cánh ngang (展脚幞头, zhǎnjiǎo fútóu) của quan lại đời Tống. Tương truyền cánh mũ dài để các quan đứng chầu không thể thì thầm với nhau. Khi đỗ, Trạng Nguyên đội mũ, cài hoa, cưỡi ngựa diễu hành qua phố trong tiếng reo hò của dân chúng.'
   ], 'Học giỏi, thi đỗ, vinh quy bái tổ.',
   'Thành ngữ 金榜题名 (jīnbǎng tímíng) - "tên đề bảng vàng" - dùng để chúc thi đỗ, rất hợp để chúc bạn thi HSK.');
@@ -671,7 +671,7 @@
   'Hỉ thước là hình mẫu quen thuộc trong tranh cắt giấy dán cửa sổ (窗花) ngày Tết.');
 
   lore('x06', 'Truyền thuyết thời Tây Hán', [
-    'Sữa đậu nành (豆浆, dòujiāng) là thức uống người Trung Hoa dùng từ rất lâu đời. Tương truyền Lưu An (刘安), Hoài Nam Vương thời Tây Hán, là người nghĩ ra cách xay đậu nành thành sữa và nấu thành đậu phụ, nhưng chưa có bằng chứng lịch sử trực tiếp (ngay cả Bản Thảo Cương Mục đời Minh cũng không nêu người phát minh), nên đây vẫn là truyền thuyết.',
+    'Sữa đậu nành (豆浆, dòujiāng) là thức uống người Trung Hoa dùng từ rất lâu đời. Tương truyền Lưu An (刘安), Hoài Nam Vương thời Tây Hán, là người nghĩ ra cách xay đậu nành thành sữa và nấu thành đậu phụ, nhưng chưa có bằng chứng lịch sử trực tiếp (kể cả trong các tác phẩm của chính Lưu An cũng không thấy nhắc đến đậu phụ), nên đây vẫn là truyền thuyết. Một bức phù điêu trong mộ Đông Hán được tìm thấy năm 1960 từng được dẫn làm chứng cho thuyết đậu phụ có từ thời Hán, song nhiều học giả cho rằng khi ấy mới ở dạng sơ khai.',
     'Ngày nay, sáng sớm ở Trung Quốc, một bát sữa đậu nành nóng ăn kèm bánh quẩy (油条, yóutiáo) hoặc bánh bao là bữa sáng quen thuộc. Sữa đậu nành là nguồn đạm thực vật rẻ và ngon, hợp với cả người ăn chay.'
   ], 'Khởi đầu ngày mới ấm bụng, đủ năng lượng học bài.',
   'Bánh quẩy thường được cho là đã xuất hiện từ khoảng thời Tống.');
@@ -695,10 +695,10 @@
   'Ở Trung Quốc có cả những chiếc ống nuôi dế bằng gốm và ngà rất tinh xảo, nay thành đồ sưu tầm.');
 
   lore('x10', 'Thần thoại · Tây Du Ký (đời Minh)', [
-    'Đào tiên (蟠桃, pántáo) của Tây Vương Mẫu (西王母) được kể là ba nghìn năm mới chín một lần, ăn vào sẽ trường sinh. Trong tiểu thuyết Tây Du Ký đời Minh, Tôn Ngộ Không được giao coi vườn bàn đào rồi ăn trộm đào tiên cũng chính vì sức hấp dẫn đó.',
+    'Đào tiên (蟠桃, pántáo) của Tây Vương Mẫu (西王母) được kể là ba nghìn năm mới chín một lần, ăn vào sẽ trường sinh (trong Tây Du Ký có ba loại, chín sau 3.000, 6.000 và 9.000 năm). Trong tiểu thuyết Tây Du Ký đời Minh, Tôn Ngộ Không được giao coi vườn bàn đào rồi ăn trộm đào tiên cũng chính vì sức hấp dẫn đó.',
     'Vì thế quả đào (寿桃, shòutáo) là biểu tượng trường thọ. Dịp mừng thọ người già, người ta dâng đào thật hoặc bánh bao nhân đậu nặn hình quả đào, điểm chấm hồng ở đầu. Gỗ đào còn được tin là trừ tà, nên có tục treo "đào phù" (桃符) trước cửa ngày Tết.'
   ], 'Trường thọ, khoẻ mạnh, hiếu kính với ông bà.',
-  'Truyền thuyết kể Đông Phương Sóc (东方朔) thời Hán Vũ Đế từng "ăn trộm" đào của Tây Vương Mẫu nên sống rất thọ.');
+  'Truyện Đông Phương Sóc (东方朔) thời Hán Vũ Đế "ăn trộm" đào của Tây Vương Mẫu có trong sách "Hán Vũ cố sự" (khoảng thế kỷ 3), tức là truyền thuyết viết muộn hơn nhân vật thật nhiều thế kỷ.');
 
   lore('x11', 'Thịnh Đường · Lạc Dương', [
     'Mẫu đơn (牡丹, mǔdān) được tôn là "hoa vương" (花王) và "quốc sắc thiên hương" (国色天香). Thời Đường, Trường An và Lạc Dương nổi cơn say mẫu đơn, dân chúng đổ ra ngắm hoa mỗi độ xuân về; đến đời Tống, Âu Dương Tu viết "Lạc Dương mẫu đơn ký" (khoảng năm 1034, một số tài liệu ghi 1031) ghi chép hàng chục giống hoa.',
@@ -724,8 +724,8 @@
   ], 'Phúc lộc, ngọt ngào, vui vẻ.',
   'Ngày nay người ta cũng làm kẹo hồ lô bằng dâu tây, nho, quýt, nhưng bản gốc vẫn là sơn tra.');
 
-  lore('x15', 'Điềm lành thời Hán · tục Thất Tịch', [
-    'Nhện được xem là điềm lành vì cách gọi "hỉ tử, hỉ chu" (喜蛛, xǐzhū). Sách "Tây Kinh tạp ký" thời Hán có ghi những điềm báo dân gian, trong đó chim thước kêu thì có khách tới, nhện giăng tơ thì sắp có chuyện vui.',
+  lore('x15', 'Điềm lành dân gian Hán–Tấn · tục Thất Tịch', [
+    'Nhện được xem là điềm lành vì cách gọi "hỉ tử, hỉ chu" (喜蛛, xǐzhū). Sách "Tây Kinh tạp ký" (chép chuyện Tây Hán nhưng được biên soạn muộn hơn, các học giả cho là không sớm hơn thế kỷ 3, tương truyền gắn với Cát Hồng) có ghi những điềm báo dân gian, trong đó chim thước kêu thì có khách tới, nhện giăng tơ thì sắp có chuyện vui.',
     'Trong lễ Thất Tịch, các cô gái có tục "khất xảo" (乞巧): đặt nhện vào hộp rồi hôm sau xem mạng nhện giăng đẹp hay không để đoán tài khéo tay. Vì vậy nhện còn là biểu tượng của sự khéo léo, cần mẫn.'
   ], 'Niềm vui từ trời xuống, khéo léo, cần mẫn.',
   'Thành ngữ 喜从天降 (xǐ cóng tiān jiàng) - "niềm vui từ trời rơi xuống" - rất hợp với hình ảnh nhện thả mình từ sợi tơ.');
@@ -750,7 +750,7 @@
 
   lore('x19', 'Truyền thuyết Hán · phong thuỷ dân gian', [
     'Cóc ba chân ngậm đồng tiền (三足金蟾, sānzú jīnchán) là linh vật chiêu tài. Theo một số dị bản truyền thuyết, Hằng Nga uống thuốc trường sinh rồi bay lên cung trăng và hoá thành con cóc (蟾蜍), nên cóc gắn với mặt trăng và cung trăng còn được gọi là "Thiềm cung" (蟾宫).',
-    'Thành ngữ "thiềm cung chiết quế" (蟾宫折桂), bẻ cành quế trong cung trăng, là cách nói thi đỗ khoa cử. Về sau, truyền thuyết về Lưu Hải Thiềm (刘海蟾, nhân vật khoảng thế kỷ 10, được tôn là tiên và gắn với Thần Tài) đi cùng con cóc ba chân, rải tiền giúp dân nghèo khiến cóc vàng trở thành vật tượng trưng cho tài lộc trong dân gian.'
+    'Thành ngữ "thiềm cung chiết quế" (蟾宫折桂), bẻ cành quế trong cung trăng, là cách nói thi đỗ khoa cử. Về sau, truyền thuyết về Lưu Hải Thiềm (刘海蟾, tên thật Lưu Thao, đạo sĩ thời Ngũ Đại khoảng thế kỷ 10, thường được xếp vào hàng "chuẩn Thần Tài") đi cùng con cóc ba chân, rải tiền giúp dân nghèo khiến cóc vàng trở thành vật tượng trưng cho tài lộc trong dân gian.'
   ], 'Chiêu tài, thi cử đỗ đạt, may mắn.',
   'Theo phong thuỷ dân gian, cóc vàng thường được đặt quay mặt vào trong nhà để "hút tiền vào".');
 
