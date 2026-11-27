@@ -18,8 +18,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "CVDICT.json"
 OUT = ROOT / "data" / "dictionary"
-SUPP = OUT / "supplements.json"
+SUPP = OUT / "supplements.json"        # biên soạn tay (ưu tiên cao nhất)
+HSK = OUT / "hsk-import.json"          # nhập tự động từ các trang từ vựng (scripts/import-hsk-vocab.py)
+DROP_FIELDS = {"simplified", "traditional", "pinyin", "pinyin_display"}   # đã có sẵn trong mục từ
 
+SUPP_SIZE = 1000            # mỗi file supp/ phục vụ bấy nhiêu mục từ (id liên tiếp)
 ENTRY_SHARD = 250           # số mục từ mỗi file entries (nhỏ để mỗi lần tra chỉ tải vài chục KB)
 INDEX_LIMIT = 200_000       # ~byte tối đa mỗi shard chỉ mục (chưa nén gzip)
 MAX_PHRASE = 60             # nghĩa dài hơn mức này không đưa vào chỉ mục cụm nghĩa
@@ -271,7 +274,6 @@ def main():
     vm = collections.defaultdict(list)
     vm_acc = collections.defaultdict(set)
     vi = collections.defaultdict(list)
-    by_key = {}
     acc = {}
     for i, e in enumerate(entries):
         acc[i] = unicodedata.normalize("NFC", re.sub(r"[^a-züāáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ]", "", e["p"].lower()))
@@ -281,7 +283,6 @@ def main():
         k = toneless(e["p"])
         if k:
             py[k].append(i)
-        by_key[(e["s"], e["p"])] = i
         for m in e["m"]:
             for pk, pa in phrase_keys(m):
                 vm[pk].append(i)
@@ -289,18 +290,28 @@ def main():
             for tok in set(vn_tokens(m)):
                 vi[tok].append(i)
 
-    # 5) dữ liệu biên soạn riêng: chỉ để tìm được theo Hán Việt / nghĩa biên soạn
-    supp_n = 0
-    if SUPP.exists():
-        supp = json.loads(SUPP.read_text(encoding="utf-8")).get("entries", {})
-        for key, sp in supp.items():
-            s, _, p = key.partition("|")
-            i = by_key.get((s, p))
-            if i is None:
-                print(f"  ! supplements: không khớp mục nào trong CVDICT cho '{key}'")
-                continue
-            supp_n += 1
-            texts = [sp.get("han_viet", "")] + list(sp.get("meanings", []))
+    # 5) dữ liệu bổ sung (loại từ, ví dụ, HSK, Hán Việt...): hsk-import.json + supplements.json (biên soạn tay đè lên từng trường)
+    hsk = json.loads(HSK.read_text(encoding="utf-8")) if HSK.exists() else {}
+    cur = json.loads(SUPP.read_text(encoding="utf-8")).get("entries", {}) if SUPP.exists() else {}
+    ids_by_key = collections.defaultdict(list)
+    for i, e in enumerate(entries):
+        ids_by_key[(e["s"], e["p"])].append(i)
+    supp_by_id = {}
+    for key in sorted(set(hsk) | set(cur)):
+        s_, _, p_ = key.partition("|")
+        ids = ids_by_key.get((s_, p_))
+        if not ids:
+            print(f"  ! bổ sung: không khớp mục nào trong CVDICT cho '{key}'")
+            continue
+        rec = {}
+        for src in (hsk.get(key), cur.get(key)):            # biên soạn tay đứng sau nên đè lên
+            for k, v in (src or {}).items():
+                if k not in DROP_FIELDS and v not in (None, "", [], {}):
+                    rec[k] = v
+        for i in ids:
+            supp_by_id[i] = rec
+        texts = [rec.get("han_viet", "")] + list(rec.get("meanings", [])) + [x.get("meaning", "") for x in rec.get("senses", [])]
+        for i in ids:
             for tx in texts:
                 if not tx:
                     continue
@@ -309,14 +320,26 @@ def main():
                     vm_acc[(pk, i)].add(pa)
                 for tok in set(vn_tokens(tx)):
                     vi[tok].append(i)
+    sd = OUT / "supp"
+    if sd.exists():
+        shutil.rmtree(sd)
+    sd.mkdir(parents=True)
+    per_shard = collections.defaultdict(dict)
+    for i, rec in supp_by_id.items():
+        per_shard[i // SUPP_SIZE][str(i)] = rec
+    for n, mp in per_shard.items():
+        (sd / f"s-{n:03d}.json").write_text(json.dumps(mp, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    supp_n = len(supp_by_id)
 
     manifest = {
-        "version": hashlib.sha1(SRC.read_bytes() + (SUPP.read_bytes() if SUPP.exists() else b"")).hexdigest()[:10],
+        "version": hashlib.sha1(SRC.read_bytes() + (SUPP.read_bytes() if SUPP.exists() else b"") + (HSK.read_bytes() if HSK.exists() else b"")).hexdigest()[:10],
         "built": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%MZ"),
         "source": {"name": "CVDICT", "license": "CC BY-SA 4.0", "url": "https://github.com/ph0ngp/CVDICT"},
         "counts": {"source_entries": len(raw), "entries": len(entries), "merged_duplicates": merged, "supplements": supp_n},
         "entryShard": ENTRY_SHARD,
         "entryFiles": n_shards,
+        "suppSize": SUPP_SIZE,
+        "suppShards": sorted(per_shard),
         "indexes": {},
     }
     for name, mp in (("han", han), ("py", py), ("vm", vm), ("vi", vi)):

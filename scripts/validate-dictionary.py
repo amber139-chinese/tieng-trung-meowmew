@@ -59,14 +59,32 @@ for name, info in man["indexes"].items():
         total += len(rows)
     if total != info["keys"]: err(f"{name}: {total} khoá != manifest {info['keys']}")
 
-supp = json.loads((D / "supplements.json").read_text(encoding="utf-8")).get("entries", {})
+# --- dữ liệu bổ sung ---
+size = man.get("suppSize", 1000)
+n_supp = 0
+allowed = {"han_viet", "part_of_speech", "senses", "meanings", "examples", "synonyms", "antonyms", "related_words", "hsk_level",
+           "usage_notes", "source", "verified", "updated_at"}
+for n in man.get("suppShards", []):
+    f = D / "supp" / f"s-{n:03d}.json"
+    if not f.exists(): err(f"thiếu {f.name}"); continue
+    for k, rec in json.loads(f.read_text(encoding="utf-8")).items():
+        i = int(k); n_supp += 1
+        if not (n * size <= i < (n + 1) * size and i < N): err(f"supp {f.name}: id {i} ngoài phạm vi")
+        extra = set(rec) - allowed
+        if extra: warns.append(f"supp id {i} ({entries[i]['s']}): trường lạ {sorted(extra)}")
+        for ex in rec.get("examples", []):
+            if not ex.get("zh"): err(f"supp id {i}: ví dụ thiếu tiếng Trung")
+        if rec.get("part_of_speech") and not all(isinstance(x, str) and x for x in rec["part_of_speech"]): err(f"supp id {i}: part_of_speech lỗi")
+if n_supp != man["counts"]["supplements"]: err(f"supp: {n_supp} mục != manifest {man['counts']['supplements']}")
+# các khoá biên soạn tay phải khớp mục CVDICT
 index = {(e["s"], e["p"]) for e in entries}
-for key, sp in supp.items():
-    s, _, p = key.partition("|")
-    if (s, p) not in index: err(f"supplements '{key}': không khớp mục nào trong CVDICT")
-    if sp.get("verified") is None: warns.append(f"supplements '{key}': thiếu trường verified")
+cur = json.loads((D / "supplements.json").read_text(encoding="utf-8")).get("entries", {}) if (D / "supplements.json").exists() else {}
+for key, sp in cur.items():
+    s_, _, p_ = key.partition("|")
+    if (s_, p_) not in index: err(f"supplements.json '{key}': không khớp mục nào trong CVDICT")
+supp = cur
 
-print(f"Mục từ: {N:,} | chỉ mục: " + ", ".join(f"{k} {v['keys']:,} khoá/{len(v['shards'])} file" for k, v in man["indexes"].items()) + f" | supplements: {len(supp)}")
+print(f"Mục từ: {N:,} | chỉ mục: " + ", ".join(f"{k} {v['keys']:,} khoá/{len(v['shards'])} file" for k, v in man["indexes"].items()) + f" | có dữ liệu bổ sung: {n_supp:,} mục (biên soạn tay: {len(supp)})")
 for w in warns[:10]: print("  cảnh báo:", w)
 if errors:
     print(f"\n{len(errors)} LỖI:"); [print("  ✗", e) for e in errors[:30]]; sys.exit(1)
