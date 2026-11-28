@@ -255,3 +255,12 @@ footer b{display:block;margin-bottom:2px;font:400 1.5rem var(--brush);color:#ffe
   .lib-hero .zh-big{display:none}
   .cards{grid-template-columns:1fr}
 }
+
+/* đáp án thu gọn */
+details.ex{margin:.4rem 0 1.4rem;border:1px solid var(--line-2);border-radius:8px;background:var(--card);overflow:hidden}
+details.ex summary{cursor:pointer;padding:10px 16px;font:700 14px "Be Vietnam Pro",sans-serif;color:var(--jade);list-style:none}
+details.ex summary::-webkit-details-marker{display:none}
+details.ex summary:before{content:"▸ ";color:var(--red)}
+details.ex[open] summary:before{content:"▾ "}
+details.ex>p,details.ex>ol{margin:0;padding:2px 18px 14px 36px}
+details.ex>p{padding-left:18px}

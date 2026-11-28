@@ -22,16 +22,18 @@ const LESSONS=[
 ["keju-exams","科举制度","Chế độ khoa cử","Con đường thi cử mở lối vào quan trường – cơ hội dịch chuyển xã hội và những giới hạn của nó.","society","Từ thời Tùy đến 1905",8],
 ["traditional-medicine","中医药","Y học cổ truyền Trung Hoa","Bản thảo, kinh điển, âm dương ngũ hành và cách người xưa chăm sóc sức khỏe.","society","Từ thời Hán",8],
 ["chinese-porcelain","中国陶瓷","Gốm sứ Trung Hoa","Từ đất và lửa đến bình Thanh Hoa vượt đại dương cùng Cảnh Đức Trấn.","craft","Từ thời cổ đại",7],
+["tea-culture","中国茶文化","Văn hóa trà Trung Hoa","Lục Vũ và Trà Kinh, sáu nhóm trà và những chén trà nối người trồng chè với người thưởng trà.","craft","Từ thời cổ đại",7],
 ["classical-gardens","中国古典园林","Vườn cổ điển Trung Hoa","Núi đá, nước, cây cối và đình hiên – một bức tranh sơn thủy có thể bước vào.","arts","Thời Minh – Thanh",7],
 ["traditional-music","中国传统音乐","Âm nhạc truyền thống Trung Hoa","Cổ cầm, tỳ bà, nhị hồ, ngũ cung và âm nhạc của nhiều vùng, nhiều cộng đồng.","arts","Từ thời cổ đại",8],
-["chinese-opera","中国戏曲","Kinh kịch và hí khúc Trung Hoa","Giọng hát, động tác, mặt phổ và quy ước sân khấu – một thế giới kể chuyện bằng ước lệ.","arts","Từ thời Tống – Nguyên",8]];
+["chinese-opera","中国戏曲","Kinh kịch và hí khúc Trung Hoa","Giọng hát, động tác, mặt phổ và quy ước sân khấu – một thế giới kể chuyện bằng ước lệ.","arts","Từ thời Tống – Nguyên",8],
+["traditional-festivals","中国传统节日","Lễ hội truyền thống Trung Quốc","Mười lễ hội từ Tết đến Tiểu Niên: phong tục, ẩm thực và những truyền thuyết dân gian.","arts","Lịch âm – dương",9]];
 const GROUPS=[["myth","Thần thoại & truyền thuyết","神话","Những câu chuyện kể về khởi nguyên của trời đất, con người và các vị anh hùng."],
 ["craft","Nông nghiệp & nghề thủ công","农桑","Hạt lúa, con tằm – nền tảng của đời sống và nền văn minh nông nghiệp."],
 ["invention","Phát minh","发明","Giấy, in ấn, thuốc súng, la bàn – những sáng chế làm đổi thay lịch sử."],
 ["build","Công trình & di sản","工程","Thủy lợi và phòng thủ – những công trình lớn dựng nên bằng tri thức và sức lao động nhiều thế hệ."],
 ["exchange","Giao lưu & thương mại","交流","Con đường Tơ lụa và hải hành thời Minh – nơi hàng hóa, con người và tri thức gặp nhau."],
 ["society","Tri thức & xã hội","学问","Thi cử và y học – nơi tri thức được tổ chức, truyền dạy và đi vào đời sống."],
-["arts","Văn hóa & nghệ thuật","文艺","Thư pháp, hội họa, vườn cảnh, âm nhạc và hí khúc – nơi chữ viết và hình ảnh trở thành thẩm mỹ."]];
+["arts","Văn hóa & nghệ thuật","文艺","Thư pháp, hội họa, vườn cảnh, âm nhạc, hí khúc và lễ hội – nơi chữ viết và hình ảnh trở thành thẩm mỹ."]];
 const LS=(()=>{try{return window.localStorage}catch(e){return null}})();
 const isDone=s=>{try{return LS&&LS.getItem("civ:done:"+s)==="1"}catch(e){return false}};
 document.documentElement.classList.add("js");
